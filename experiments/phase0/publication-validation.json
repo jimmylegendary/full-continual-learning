@@ -1,0 +1,25 @@
+{
+  "validation_date": "2026-11-09",
+  "scope": "Re-execution of the archived small Bayesian linear probe only; not a neural or integrated System ONE model",
+  "config_equal": true,
+  "full_runs_equal": true,
+  "full_summary_equal": true,
+  "run_count": 12,
+  "seeds_per_mode": 6,
+  "modes": ["structured", "no_shared_structure"],
+  "current_environment": {"python": "3.13.5", "numpy": "2.3.5", "scipy": "1.17.0", "platform": "Linux-6.18.57-x86_64-with-glibc2.41"},
+  "historical_environment": {"python": "3.12.14", "numpy": "2.3.5", "scipy": "1.17.0", "platform": "Linux-6.18.57-x86_64-with-glibc2.39"},
+  "current_runtime_seconds": 3.078855092999902,
+  "output_sha256": "eccd454f9da40556b6f5bf5d196877b0a193eb720197b161f697acbca46784c2",
+  "raw_bytes_expected_equal": false,
+  "note": "Environment/runtime fields differ; numerical equality is tested on config, runs and summary separately.",
+  "source_blob_identity": {
+    "probe.py": "543a5c0ce300cba4a4690ad40d4e5013d77bdb07",
+    "verify.py": "520a74c1b2da972431ba499e4067a934dbbf168c",
+    "requirements.txt": "871c966c09f89af68c058514f0f7ecce9f1578d3",
+    "verification.original.json": "c57c4be0d7ca32e9ba186f14bb8ae1de6eee701d"
+  },
+  "all_four_source_blobs_match_original_bytes": true,
+  "posterior_primal_max_abs_error": 3.58046925441613e-14,
+  "identical_component_max_abs_error": 1.7763568394002505e-15
+}

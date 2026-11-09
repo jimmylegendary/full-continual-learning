@@ -1,0 +1,17 @@
+{
+  "source_zip": {
+    "name": "Melete_SBL_Research_and_Phase0_20261103.zip",
+    "bytes": 811283,
+    "sha256": "a0581ee2cc86964fa7612b24d03bfe493660a71863d1c4f09825d9b91c641e39"
+  },
+  "source_files": {
+    "MELETE_RESEARCH_PLAN.md": {"bytes": 22448, "sha256": "ac4c5326f18603e3d693cfd55e332f3616e3f20ec1dd76083a1134c8d54c3052", "publication": "Historical pre-correction plan retained in source backup; current proposal is docs/09-roadmap.md"},
+    "README.md": {"bytes": 10801, "sha256": "062d56997ed45f569d9ac46bfb0d30b217072261ec8dfe6264ca33b4a4d4b8be", "publication": "Original in source backup; current README is a clearly identified reconstruction"},
+    "SHA256SUMS.txt": {"bytes": 563, "sha256": "a043867168837b702dcbdee109d98801f159b000afbcc5b478bc8e1ec2f8920a"},
+    "probe.py": {"bytes": 16128, "sha256": "372ff6efdd5e5226e6067a3d9e86c2329d743a196ed306dc295d635a4215abc2", "publication": "Exact bytes in Git"},
+    "requirements.txt": {"bytes": 27, "sha256": "1668a3152e33680d94637b13421c15e68bd97cd8701f7f555c691f5bc5c0b9f3", "publication": "Exact bytes in Git"},
+    "results.json": {"bytes": 2907086, "sha256": "b55365218445817ec032cf5bfc63bc2805e46f2c771c77e12f7d5a52d85b0cb5", "publication": "Full per-task raw data in source backup; rounded summary in Git; reproducible via probe.py"},
+    "verification.json": {"bytes": 649, "sha256": "bff8f9ffe97fe0efb2bd08e3ba590d712da05c6eac2b88f28bb1a5b084c51284", "publication": "Exact bytes under verification.original.json"},
+    "verify.py": {"bytes": 2024, "sha256": "2a19e0e4c4aafcd7bc7b06431cd3e9928b5b26a6b113a641ff45ed88fb946f86", "publication": "Exact bytes in Git"}
+  }
+}

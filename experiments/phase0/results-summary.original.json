@@ -1,0 +1,36 @@
+{
+  "archive_date": "2026-11-03",
+  "scope": "Synthetic Bayesian linear prediction only; no actual Titans/HOPE, no general schema discovery, no LLM speed benchmark.",
+  "source_results_sha256": "b55365218445817ec032cf5bfc63bc2805e46f2c771c77e12f7d5a52d85b0cb5",
+  "config": {
+    "ambient_dimension": 24, "rank": 3, "components": 2,
+    "training_tasks": 240, "training_observations": 64,
+    "calibration_tasks": 64, "calibration_query_observations": 64,
+    "test_tasks": 128, "shots": [0,1,2,3,4,6,8,12,16],
+    "noise_sd": 0.15, "risk_threshold": 0.1,
+    "seeds": [202611030,202611031,202611032,202611033,202611034,202611035],
+    "modes": ["structured", "no_shared_structure"]
+  },
+  "curves": {
+    "structured": {
+      "isotropic_ridge": {"0":1.02318703,"1":0.98305159,"2":0.94362764,"3":0.90247335,"4":0.86104094,"6":0.78095303,"8":0.69790321,"12":0.53645148,"16":0.38591537},
+      "learned_pooled_covariance": {"0":1.02318703,"1":0.86713864,"2":0.69861432,"3":0.54591282,"4":0.39951093,"6":0.1546928,"8":0.06867019,"12":0.02541859,"16":0.01537352},
+      "learned_mixture": {"0":1.02318703,"1":0.84818863,"2":0.59914691,"3":0.3138069,"4":0.1418479,"6":0.04061803,"8":0.02025063,"12":0.00929538,"16":0.00625337},
+      "rotated_mixture_ablation": {"0":1.02318703,"1":1.20539678,"2":1.68832544,"3":2.6226166,"4":2.93879702,"6":2.03314371,"8":1.64370213,"12":1.27530684,"16":1.12936179},
+      "oracle_mixture_unknown_context": {"0":1.02318703,"1":0.84577838,"2":0.59663819,"3":0.31179988,"4":0.1428545,"6":0.04086205,"8":0.01993266,"12":0.00895401,"16":0.00590993},
+      "oracle_known_context": {"0":1.02318703,"1":0.72311948,"2":0.42269247,"3":0.17407949,"4":0.08247385,"6":0.03159903,"8":0.01747786,"12":0.00876668,"16":0.00588873}
+    },
+    "no_shared_structure": {
+      "isotropic_ridge": {"0":1.02386278,"1":0.98360506,"2":0.94456292,"3":0.9039113,"4":0.86200665,"6":0.77842998,"8":0.69990209,"12":0.53492376,"16":0.38461805},
+      "learned_pooled_covariance": {"0":1.02386278,"1":0.98360506,"2":0.94456292,"3":0.9039113,"4":0.86200665,"6":0.77842998,"8":0.69990209,"12":0.53492376,"16":0.38461805},
+      "learned_mixture": {"0":1.02386278,"1":0.98360506,"2":0.94456292,"3":0.9039113,"4":0.86200665,"6":0.77842998,"8":0.69990209,"12":0.53492376,"16":0.38461805},
+      "rotated_mixture_ablation": {"0":1.02386278,"1":0.98360506,"2":0.94456292,"3":0.9039113,"4":0.86200665,"6":0.77842998,"8":0.69990209,"12":0.53492376,"16":0.38461805},
+      "oracle_isotropic": {"0":1.02386278,"1":0.98359429,"2":0.94453408,"3":0.90384123,"4":0.86189706,"6":0.77824762,"8":0.69962229,"12":0.53417974,"16":0.3835225}
+    }
+  },
+  "first_measured_grid_at_signal_mse_le_0_1": {
+    "structured": {"isotropic_ridge":null,"learned_pooled_covariance":8,"learned_mixture":6,"rotated_mixture_ablation":null,"oracle_mixture_unknown_context":6,"oracle_known_context":4},
+    "no_shared_structure": {"isotropic_ridge":null,"learned_pooled_covariance":null,"learned_mixture":null,"rotated_mixture_ablation":null,"oracle_isotropic":null}
+  },
+  "note": "Compact rounded archive, not full per-task raw data. Full source data are in original ZIP; probe.py regenerates them."
+}
