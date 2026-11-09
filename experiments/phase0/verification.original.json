@@ -1,0 +1,16 @@
+{
+  "posterior_vs_independent_primal_precision_solution_max_abs_error": 3.58046925441613e-14,
+  "identical_mixture_components_reduce_to_single_prior_max_abs_error": 1.7763568394002505e-15,
+  "identical_component_responsibilities_equal_prior_probabilities": true,
+  "deterministic_rerun": {
+    "structured": {
+      "seed": 202611030,
+      "all_per_task_scores_and_tuning_results_exactly_equal": true
+    },
+    "no_shared_structure": {
+      "seed": 202611030,
+      "all_per_task_scores_and_tuning_results_exactly_equal": true
+    }
+  },
+  "scope": "Numerical identities and deterministic replay only; not evidence for general schema learning."
+}
