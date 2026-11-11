@@ -67,3 +67,5 @@
 ## 7. 문헌을 적용하는 기준
 
 TEM, Goudar의 neural subspace, Chu의 sequence attractor, Yoshida의 manifold/replay, Spens의 generative consolidation, Kumar의 one-shot binding은 서로 다른 역할을 보여준다. 하나의 논문이 형성·선택·수정·rapid learning·연속 운영·속도 이득을 모두 입증했다고 합치지 않는다. 상세 카탈로그는 [참고문헌](../references/README.md), 최신 보완은 [주간 조사](../research/2026-11-09-sbl-tracking.md)를 본다.
+
+2026-11-11에 이 중 신경망 구현 11편을 원문으로 다시 읽었다. 외부 요약의 정정, 학습된 구조와 고정·무구조 대조의 비교 부재, "새로움이 학습을 바꾼다"의 서로 다른 구현 형태는 [2026-11-11-sbl-fulltext-review.md](/home/jimmy/repos/full-continual-learning/research/2026-11-11-sbl-fulltext-review.md)에 정리했다.

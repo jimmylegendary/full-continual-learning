@@ -20,6 +20,7 @@
 
 ## 확인 깊이의 의미
 
+- `fulltext-read`: 원문 본문·Methods·부록을 읽고 주장과 수치를 위치와 함께 대조. 2026-11-11 신경망 SBL 11편에 처음 적용했다. 읽은 판본과 해시는 [evidence.json](/home/jimmy/repos/full-continual-learning/research/2026-11-11-sbl-fulltext/evidence.json)에 있다. 코드 실행·재현은 아니다.
 - `metadata-checked`: 이번 게시에서 공식 arXiv/학회/저널 metadata를 확인. 숫자와 기전의 전면 재검증 아님.
 - `official-search-checked`: 공식 원문을 가리키는 검색 결과에서 identity를 확인. 원문 전체 독해 아님.
 - `discussion-import`: 이전 답변/PDF에 있는 내용과 URL을 보존. 이번 게시에서 재확인하지 않음.

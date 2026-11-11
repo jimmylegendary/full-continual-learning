@@ -33,6 +33,7 @@
 | [후속 가설과 미해결 질문](docs/11-research-agenda.md) | pretraining/alignment, schema 분화, insight |
 | [기존 Melete와 이관 경계](docs/12-melete-lineage.md) | H1–H5와 이전 실험을 어떻게 보존할지 |
 | [주간 SBL 조사 기록](research/2026-11-09-sbl-tracking.md) | 대화에서 보고된 최신 연구와 수치의 출처 상태 |
+| [2026-11-11-sbl-fulltext-review.md](/home/jimmy/repos/full-continual-learning/research/2026-11-11-sbl-fulltext-review.md) | 신경망 SBL 구현 11편 원문 검토: 외부 요약 정정, 공통 공백, FCL 설계의 시작점 |
 | [전체 참고문헌](references/README.md) | 뇌과학·SBL·아키텍처·평가·진화 문헌 및 코드 |
 | [원문·출처 아카이브 안내](sources/README.md) | 대화 원문/주제별 재구성/파일 출처의 차이 |
 | [증거·누락·검증 범위](EVIDENCE.md) | 확인된 것, 재확인하지 않은 것, 이번 작업의 범위 |

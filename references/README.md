@@ -4,6 +4,7 @@
 
 ## 확인 수준
 
+- `fulltext-read`: 원문 본문·Methods·부록을 읽고 주장과 수치를 위치와 함께 대조했다. 읽은 판본(VoR/accepted manuscript/preprint)과 해시는 [evidence.json](/home/jimmy/repos/full-continual-learning/research/2026-11-11-sbl-fulltext/evidence.json)에 있다. 코드 실행이나 결과 재현은 아니다.
 - `metadata-checked`: 이번 이관에서 공식 arXiv/학회/저널 metadata를 확인했다. 전체 본문 수치의 독립 재검증은 아니다.
 - `official-search-checked`: 공식 원문 검색 결과에서 제목/식별자 확인.
 - `discussion-import`: 이전 대화/PDF의 참고문헌과 보고를 보존. 이번 작업에서는 재확인하지 않았다.
@@ -30,6 +31,18 @@
 - S07 [Hippocampo-neocortical compressive RAG](https://doi.org/10.1038/s41467-026-74357-6)
 - S23 [Low-rank recurrent schema](https://www.biorxiv.org/content/10.64898/2026.04.10.717706v1.full)
 - S24 [Task Schema and Binding](https://arxiv.org/abs/2512.17325)
+
+### 신경망 SBL 구현 원문 검토 (2026-11-11)
+
+11편을 원문으로 읽고 외부 요약을 검증했다. 종합은 [2026-11-11-sbl-fulltext-review.md](/home/jimmy/repos/full-continual-learning/research/2026-11-11-sbl-fulltext-review.md)에 있다.
+
+- 생성 모델 공고화: S31 [Spens & Burgess 2024](https://doi.org/10.1038/s41562-023-01799-z)
+- schema 의존 부호화와 neuromodulation: S32 [Hwu & Krichmar 2020](https://doi.org/10.1007/s00422-019-00808-7)
+- 동역학·부분공간 schema: S05 Chu 2025, S03 Goudar 2023
+- 가소성 수준: S25 Elder 2026, S33 [Miconi & Kay 2025](https://doi.org/10.1038/s41593-024-01852-8)
+- 구조/내용 분리와 빠른 binding: S01 TEM 2020, S08 Kumar 2026, S14 Swaminathan 2023(이산 잠재 구조)
+- 리뷰·관점: S34 [Structural knowledge 2025](https://doi.org/10.1007/s10462-025-11270-2), S17 The schema spectrum 2026
+- 갭 탐색의 가장 가까운 후보: S35 [Separating the what and how](https://arxiv.org/abs/2510.20709)
 
 ### 통합 모델의 재료
 

@@ -1,0 +1,822 @@
+{
+  "as_of": "2026-11-11",
+  "scope": "Access route, version and SHA-256 of the documents read for the SBL full-text review. Texts themselves are not redistributed (copyright); the hashes let a reader confirm they hold the same files. Not an efficacy or reproduction record.",
+  "storage": "Host scratch folder fcl-sbl-fulltext-20261111 (outside this repository).",
+  "papers": [
+    {
+      "id": "SPENS24",
+      "doi": "10.1038/s41562-023-01799-z",
+      "status": "fulltext",
+      "route": "publisher OA (Nature Human Behaviour, CC BY 4.0) VoR PDF; Supplementary Information (MOESM1) and Reporting Summary (MOESM2) from Springer static-content; text cross-checked with Europe PMC JATS XML (PMC10963272) and UCL Discovery accepted manuscript",
+      "url": "https://www.nature.com/articles/s41562-023-01799-z.pdf",
+      "version": "VoR: Nature Human Behaviour 8(3):526-543 (2024), DOI 10.1038/s41562-023-01799-z, PMC10963272; bioRxiv 10.1101/2023.01.19.524711 v1 2023-01-20, v2 2023-01-21, v3 2023-05-30 (not retrieved)",
+      "version_date": "2024-01-19 (published online); received 2023-05-30, accepted 2023-12-05",
+      "vor_or_preprint": "VoR",
+      "pages": 20,
+      "words": 18075,
+      "sections_read": "Abstract; Main/Introduction; Results (Modelling encoding and recall; semantic memory; imagination/inference; schema-based distortions; extended model; extended-model distortions; brain damage); Discussion (incl. limitations and predictions); Methods read in full (Data; Basic model; semantic memory; imagination/inference; distortions; boundary extension; Extended model; Carmichael; DRM); Code/Data availability; embedded Reporting Summary. Supplementary Information read in full (9 pp: Fig.S1-S3, VAE layer lists, MHN background and Eq.1-3). Figures 3 and 5 and SI Fig.S1-S2 inspected visually.",
+      "files": [
+        {
+          "file": "download/biorxiv_api_details_2023.01.19.524711.json",
+          "sha256": "ada59062ee180ea443cbc9f436b6fd60423bb6eb3b7adb38814026227217c648"
+        },
+        {
+          "file": "download/europepmc_PMC10963272_fullTextXML.xml",
+          "sha256": "54053fdbfe441cf7cfc7e822b31170639b1ea6db3777d4a1612269f27737438c"
+        },
+        {
+          "file": "download/github_api_ellie-as_generative-memory.json",
+          "sha256": "a4843b996186e80fc5bac355b9ff5199e45336b169b155c0e90713e4684c1bcb"
+        },
+        {
+          "file": "download/nature_spens24_article.html",
+          "sha256": "aa3d76fb4b6fa364f887c526d1638c804fed969248ad2dca8633f3549fc4c63c"
+        },
+        {
+          "file": "download/nature_spens24_vor.pdf",
+          "sha256": "b78a62b28775ec55610aeeca2252bc43b1ba782486c083a5065a3419ed3cde31"
+        },
+        {
+          "file": "download/openalex_spens24.json",
+          "sha256": "ae9657944dacd38fb171b881f7834cb7fa14a43856201f48f3978a1192e138cd"
+        },
+        {
+          "file": "download/supp_MOESM1_ESM.pdf",
+          "sha256": "6f9baebc2f95492b4ce275c64ed0cb640105cd480d401b78dee09c5abbb03612"
+        },
+        {
+          "file": "download/supp_MOESM2_ESM.pdf",
+          "sha256": "a9b713fbc8d39e24534ecaceb9c6deb53f13d36b0ec21843130bb69f67ad93bf"
+        },
+        {
+          "file": "download/ucl_discovery_10186145.pdf",
+          "sha256": "205bdb93003ecaab2b4992bb97cc7421592e0c86340ed13920ce26e4e83a5f1d"
+        },
+        {
+          "file": "fulltext.txt",
+          "sha256": "99812aa6b0efa3bdb095b53c905d339e52e55809a554cc9c617c3e17d74105de"
+        },
+        {
+          "file": "supp_fulltext.txt",
+          "sha256": "5e7f7efb37917f11a466c077ef3a74010437b132d114e96506abb063f94137a2"
+        }
+      ]
+    },
+    {
+      "id": "HWU20",
+      "doi": "10.1007/s00422-019-00808-7",
+      "status": "fulltext",
+      "route": "author page: UCI Cognitive Robotics Lab (sites.socsci.uci.edu/~jkrichma) hosts the Springer-format VoR PDF (metadata Title/Subject = VoR, Springer-created 2019-11-04, 18 pp); Springer ESM1 via static-content; bioRxiv v1 preprint (via Wayback Machine snapshot) read in full for VoR-vs-preprint differences. Springer publisher page is paywalled and bot-walled.",
+      "url": "https://sites.socsci.uci.edu/~jkrichma/Hwu-Krichmar2020_Article_ANeuralModelOfSchemas.pdf",
+      "version": "VoR: Biological Cybernetics 114(2):169-186 (2020), DOI 10.1007/s00422-019-00808-7 (author-hosted copy); preprint bioRxiv 10.1101/434696 v1 2018-10-04 'A Neural Model of Schemas and Memory Consolidation' (only version)",
+      "version_date": "2019-11-04 (published online); received 2019-04-21, accepted 2019-09-24",
+      "vor_or_preprint": "VoR",
+      "pages": 18,
+      "words": 11418,
+      "sections_read": "Abstract; 1 Introduction; 2 Methods and tasks (2.1 Tse summary, 2.2 CHL); 3 Neural model (3.1 indexing stream, 3.2 representation stream, 3.3 novelty and schema familiarity incl. Eq.1-10, 3.4 experimental design, Table 1, Algorithm 1, 3.5 code availability); 4 Results (4.1-4.6); 5 Discussion (5.1-5.6); acknowledgements and references. Figures 5-7 and 10-15 inspected visually. ESM Fig.S1 read. Preprint v1 read in full (Methods/Results/Discussion).",
+      "files": [
+        {
+          "file": "download/biorxiv_434696_v1.pdf",
+          "sha256": "0575d706bb89b18915ca3e6c7614dcbd7f2b2fe5b01d680f2fefcb7cecd07a3c"
+        },
+        {
+          "file": "download/biorxiv_434696_v1_wayback_20260920211003.pdf.gz",
+          "sha256": "76223a50ed5b943e885514fb4b6d870e24d0964e8b29a82ba010a71ad0020f73"
+        },
+        {
+          "file": "download/biorxiv_api_details_434696.json",
+          "sha256": "b5dcb6bcb06fd6fcb32db69fc68dd73242aee113541333eab6deaec5e3fc7c96"
+        },
+        {
+          "file": "download/europepmc_search_preprint_doi.json",
+          "sha256": "63e67f50d78c8f521bb3873af786564c96a147731db36f826e352664f3edd57d"
+        },
+        {
+          "file": "download/europepmc_search_vor_doi.json",
+          "sha256": "3f5c04ba7c26057dc3d76d16823ac8185e92ffded4f83f2d551b4e52c7e43a06"
+        },
+        {
+          "file": "download/github_api_fitany_SchemaNetworkBICY.json",
+          "sha256": "35ece1d57ebb074b1c974e3edfa3af7e3d4db684ee2850e44612a585a190405e"
+        },
+        {
+          "file": "download/github_api_orgs_UCI-CARL_repos.json",
+          "sha256": "ec32344def3cd9b095ae4a9ebafc9b6e125fdcf3dc003dfdb70fa1b0eba5ad03"
+        },
+        {
+          "file": "download/github_api_users_fitany_repos.json",
+          "sha256": "5f81394c34eef9c1409ba6f651bb08bdbcf782c6534480d1a551be6086ec1898"
+        },
+        {
+          "file": "download/openalex_hwu20.json",
+          "sha256": "3a0b252cc1b52b43b9ea0f964dc4d78f03b820758631dc2b267e0a7617e5155e"
+        },
+        {
+          "file": "download/semanticscholar_hwu20.json",
+          "sha256": "a88d300122785c7d65decfe63ae089764bc50943feb893d05b7eb8a428af642a"
+        },
+        {
+          "file": "download/springer_ESM1_422_2019_808_MOESM1_ESM.pdf",
+          "sha256": "e86b53cfaf8455e3ff2d7dfa379d78cfc890e1d99eb815d68640af8be9127e2f"
+        },
+        {
+          "file": "download/uci_author_Hwu-Krichmar2020_Article_ANeuralModelOfSchemas.pdf",
+          "sha256": "1cd49f48cd3bcb31366f140e1b5f2a39fea6c4d7f234f5579dce00b39729cc83"
+        },
+        {
+          "file": "download/wayback_availability_biorxiv_434696.json",
+          "sha256": "1cdedf78bb9dea3f3eab754c1f609adc0f0934828798407e57cf7373aa7229d4"
+        },
+        {
+          "file": "fulltext.txt",
+          "sha256": "33a7d7d2bd2d71d103acfddc90a949d1101f28d63abb50d6655919533515085b"
+        },
+        {
+          "file": "supp_fulltext.txt",
+          "sha256": "f4809b5b2b855aaadd1873b3d3bdc8adbb90563e3960e1ac0d87c7670aac0bfb"
+        }
+      ]
+    },
+    {
+      "id": "CHU25",
+      "doi": "10.52202/085713-0243",
+      "status": "fulltext",
+      "route": "publisher OA: NeurIPS proceedings main PDF + Supplemental zip (supplement PDF extracted with unzip -p); text via pdftotext -layout",
+      "url": "https://proceedings.neurips.cc/paper_files/paper/2025/file/0a88e621aacf222d3a91d8065c40e4d9-Paper-Conference.pdf",
+      "version": "NeurIPS 2025 camera-ready as printed in Advances in Neural Information Processing Systems 38 (pp. 7103-7121; DOI 10.52202/085713-0243). No arXiv version exists (arXiv API: 0 hits). OpenReview forum id RZp2YKtg4q is behind a bot challenge, so submission/rebuttal versions were NOT obtained.",
+      "version_date": "main PDF CreationDate 2025-12-12 (KST); supplement PDF CreationDate 2025-10-17 (KST); slides PDF CreationDate 2025-11-05; proceedings page citation_publication_date 2026-04-23; neurips.cc virtual site loadDate 2025-12-02",
+      "vor_or_preprint": "VoR",
+      "pages": 19,
+      "words": 9937,
+      "sections_read": "Main PDF (19 pp) read in full: Abstract, 1 Introduction, 2 Experimental Background, 3 Methods (3.1 model, 3.2 task/shaping), 4 Results (4.1-4.5), 5 Discussion (Related Works, Limitations), References, NeurIPS checklist items 1-16 (code/compute/error-bar statements). Supplement PDF (15 pp) read in full: A training/model specs, B additional results (B.1-B.6, Tables S1-S5), C analysis methods (C.1 RDM, C.2 fixed points, C.3 attractor tracking, C.4 CCA, C.5 extended problems), D keyword-spotting details. Figures 2, 3, 4c, 5, 6b, S2, S4, S7 inspected as rendered images for values (approximate readings flagged as such in the report). Methods and Supplement both obtained and read.",
+      "files": [
+        {
+          "file": "download/abstract_page.html",
+          "sha256": "258802bc225dcd7e7f1fe2a6d1bdeeab16df4b43be751f27471b5d00b10ad9d6"
+        },
+        {
+          "file": "download/arxiv_api_title_search.xml",
+          "sha256": "8bc727f22571b9f24e6511c68a695545a902fcee18b20e0b580c1ea282f8e96b"
+        },
+        {
+          "file": "download/CHU25_NeurIPS2025_Paper-Conference.pdf",
+          "sha256": "732605b41b6c06396a03b0d1272b390f690f8359ce3d7f5dfa8fbf0f6d057b3a"
+        },
+        {
+          "file": "download/CHU25_NeurIPS2025_Supplemental-Conference.zip",
+          "sha256": "d6cc1e1da909af48ac77b66fc961c78a06e757a41435493a9e0b663c9c9a2ad1"
+        },
+        {
+          "file": "download/CHU25_NeurIPS2025_supp.pdf",
+          "sha256": "eccdb8f620ffb95987cde06299173748c1f8a34b325397660850fef828843f99"
+        },
+        {
+          "file": "download/neurips_slides_118017.pdf",
+          "sha256": "641522032120abd366add1d81d61d52e780a746d736cf42e547b3aa138550293"
+        },
+        {
+          "file": "download/neurips_virtual_poster_118017.html",
+          "sha256": "3bda91b95929f1b84e991c548bb9ff9b7da0d6119ca55f552666cacd4d4e3f28"
+        },
+        {
+          "file": "download/openalex_chu25.json",
+          "sha256": "75e7ecae59754ad1768f024a6a58d846ac55771b5b9aa39e8d3b1d814488d815"
+        },
+        {
+          "file": "fulltext.txt",
+          "sha256": "3eb36c79dd9286628421f9723171a817c5c1f331c891ee5935dbf5b3dfce4881"
+        },
+        {
+          "file": "supp_fulltext.txt",
+          "sha256": "3f8c3c8053e070b3571c7977892ba2abe6ae19260a2d5079af0ec4d7d087b89b"
+        }
+      ]
+    },
+    {
+      "id": "GOUDAR23",
+      "doi": "10.1038/s41593-023-01293-9",
+      "status": "fulltext",
+      "route": "PMC author accepted manuscript (NIHMS2033356, PMC11559441) as JATS full-text XML via NCBI E-utilities efetch, converted with own python3 -I script; supplement from Nature static-content (MOESM1 Supplementary Information, MOESM2 Reporting Summary); bioRxiv v1 and v2 PDFs via Wayback Machine snapshots for version comparison. Nature VoR is paywalled.",
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=PMC11559441&rettype=xml",
+      "version": "Author accepted manuscript (PMC11559441.1 / NIHMS2033356) of Nature Neuroscience 26(5):879-890 (VoR DOI 10.1038/s41593-023-01293-9). Full official title confirmed: 'Schema formation in a neural population subspace underlies learning-to-learn in flexible sensorimotor problem-solving'. bioRxiv v1 (2021-09-02) carried the title 'Elucidating the neural mechanisms of Learning-to-Learn'; v2 (2022-08-02) carries the final title.",
+      "version_date": "received 2021-09-02; accepted 2023-02-27; VoR published online 2023-04-06 (issue May 2023); PMC manuscript XML embedded date 2024-11-14; bioRxiv v1 2021-09-02, v2 2022-08-02",
+      "vor_or_preprint": "accepted_manuscript",
+      "pages": null,
+      "words": 13028,
+      "sections_read": "fulltext.txt (from XML, includes reference list and Fig 1-8 captions): unheaded Introduction (appears under the ABSTRACT heading in fulltext.txt), Results (6 subsections), Discussion, Methods (8 subsections with all equations), Data/Code availability, acknowledgements, figure legends. Figures 1, 3, 6 inspected as images from Nature media server. supp_fulltext.txt (MOESM1, 31 pp): Supplementary Notes 1.1.1-1.1.3, Supplementary Discussion 1.2.1-1.2.2, Supplementary Methods 1.3.1, captions of Supplementary Figs 1-10; Supp Fig 2 and Supp Fig 6 inspected as images. Reporting Summary MOESM2 read (text is font-garbled; key statements decoded by eye: Python 2.7, Numpy 1.16.5, TensorFlow 1.15, sample sizes by computational feasibility, code on GitHub). Methods and Supplement both obtained and read. bioRxiv v1/v2 used only for version comparison (grep of key numbers and abstracts), not read in full.",
+      "files": [
+        {
+          "file": "download/biorxiv_api_details_2021.09.02.455707.json",
+          "sha256": "c4c9377dbfd9b56b5f97a7b39f5a32bbfabcf8621a3372dcc891bdafab3acea3"
+        },
+        {
+          "file": "download/GOUDAR23_bioRxiv_v1_2021-09-02_wayback20231203.pdf",
+          "sha256": "379c2c49624bc718c7333e154a3e1ce3d080a0f97ce2630a9a82e161725e8ebc"
+        },
+        {
+          "file": "download/GOUDAR23_bioRxiv_v2_2022-08-02_wayback20250902.pdf",
+          "sha256": "1b6c5082ed624b1172cafb0a2b32ada19c2318c41ee3a76894272ed90e22aafa"
+        },
+        {
+          "file": "download/GOUDAR23_Nature_Fig1_lw1200.png",
+          "sha256": "f3380e3c5a0098958ef7c3bab28398239418cf88c10e5a2fdf938ff7bb7d8579"
+        },
+        {
+          "file": "download/GOUDAR23_Nature_Fig3_lw1200.png",
+          "sha256": "71798e8a2634684e8f8fdbcc3ce5b7f57b6ccbb4b7280bc5334dc7cc41426b92"
+        },
+        {
+          "file": "download/GOUDAR23_Nature_Fig6_lw1200.png",
+          "sha256": "758dfc32389193d06e2f9d47094b52ce0778857ec77a90119bb7a2544a5059c1"
+        },
+        {
+          "file": "download/GOUDAR23_Nature_MOESM1_ESM.pdf",
+          "sha256": "454b3a7bddb1ff6f9855459c5611e047e93587489afb954d7729862e7a8064de"
+        },
+        {
+          "file": "download/GOUDAR23_Nature_MOESM2_ESM.pdf",
+          "sha256": "b2049a2612252a127b8bf397d4fa0397410888bea8de8528b983f248b7ba506b"
+        },
+        {
+          "file": "download/GOUDAR23_PMC11559441_ncbi_efetch.xml",
+          "sha256": "3151486228fde2c6e5ae87d93ac3f4350720c1379172a5ece28245a0e7496354"
+        },
+        {
+          "file": "download/nature_article_page.html",
+          "sha256": "22b65aec259feb0f14b5d5562e84a76b42960a640878913bee705d9b25c660a4"
+        },
+        {
+          "file": "download/openalex_goudar23_doi.json",
+          "sha256": "d85cb5b5d8b94d98d7a9e09b9981f9541c23419dcababf9f16b9d09a2e1b2c9e"
+        },
+        {
+          "file": "fulltext.txt",
+          "sha256": "0e1fa52b125fd78379e06003a039530830d064db3401fd6b52ec90c9d0b26701"
+        },
+        {
+          "file": "supp_fulltext.txt",
+          "sha256": "70d93b953b2738d3782ac7d2625743f3dda3d02ceedb53e6772d358b0d073e60"
+        }
+      ]
+    },
+    {
+      "id": "ELDER26",
+      "doi": "10.1007/s10827-026-00940-x",
+      "status": "fulltext",
+      "route": "Publisher OA (Springer hybrid OA, CC BY-NC-ND 4.0 per OpenAlex/PMC) -> Europe PMC JATS fullTextXML of the PMC copy of the VoR (PMC13588848); supplement PDF from Springer static-content; figure PNGs from Springer media server. Springer/PMC/EuropePMC PDF routes were bot-walled (see attempted_routes).",
+      "url": "https://doi.org/10.1007/s10827-026-00940-x",
+      "version": "VoR, Journal of Computational Neuroscience 2026 (received 2025-12-05; revised 2026-05-26; accepted 2026-06-18; published online 2026-06-30; later correction notice dated 2026-09-29 only fixes the NIH grant number in Acknowledgements R01GM125748 -> R35GM150897). Preprint: bioRxiv v1 2025-02-04, doi 10.1101/2025.01.30.635821, different title 'An invariant schema emerges within a neural network during hierarchical learning of visual boundaries'; no later bioRxiv version per bioRxiv API.",
+      "version_date": "2026-06-30",
+      "vor_or_preprint": "VoR",
+      "pages": null,
+      "words": 6179,
+      "sections_read": "VoR XML in full: Abstract, Introduction, Results (4 subsections), Discussion, Methods (Dataset, Video embedding, VGG-16, Frames, Top models incl. ENN and Backprop, Trial firing, Circuit distilling, Network robustness analysis), back matter incl. Data Availability and the 2026-09-29 change-history note, reference list skimmed. Supplementary file 1: all 10 pages (captions read; figures S1,S3,S4,S5,S6,S7,S9,S10 viewed as images; S2 and S8 caption-only). Main Figures 1-5 viewed as images. Methods and Supplement both read.",
+      "files": [
+        {
+          "file": "download/biorxiv_api_details_elder26.json",
+          "sha256": "c2ef84d6ca92743d63f274b7f03886e375b57d3863e256993b820488b6a74a36"
+        },
+        {
+          "file": "download/elder26_preprint_europepmc_PMC11838474_supplementaryFiles.zip",
+          "sha256": "ca7c53b9ebc73813d25d5df6ba64076d1572b1475c9332aa8ba0c129fb6afd02"
+        },
+        {
+          "file": "download/elder26_preprint_europepmc_PMC11838474.xml",
+          "sha256": "23e279982a51b8c356f858c49d74cadb6d806bddf0aa35babdf7ac576b64bed2"
+        },
+        {
+          "file": "download/elder26_supp1_springer_10827_2026_940_MOESM1_ESM.pdf",
+          "sha256": "7b611475ebeae0dc8ccdbda0f2ababf20425c3e8efbf02a3856e83ca7f6581d0"
+        },
+        {
+          "file": "download/elder26_vor_europepmc_PMC13588848.xml",
+          "sha256": "b2c56eb4e53f56ac2b8e1cefcb5b017d1b57ad95a4eb320cbda49bc37a1b6560"
+        },
+        {
+          "file": "download/elder26_vor_springer_media_Fig1_HTML.png",
+          "sha256": "91edabbcec3d2a7bbccaaefbf09aac0ba2779ed269ac74da7ea3f8ddacb266c3"
+        },
+        {
+          "file": "download/elder26_vor_springer_media_Fig2_HTML.png",
+          "sha256": "3a23dfa3e64d4321ad070772c190d70fa8b53c20b04e18953431d1e51e3f9fad"
+        },
+        {
+          "file": "download/elder26_vor_springer_media_Fig3_HTML.png",
+          "sha256": "70a35474504d16f527c7a3278e90c6d2f026aee64f3b0d162920669d2c65eed4"
+        },
+        {
+          "file": "download/elder26_vor_springer_media_Fig4_HTML.png",
+          "sha256": "6323f8c02c0254cbb9e62dd0c84266edaa6a3e483b193b65129a4912ce30852d"
+        },
+        {
+          "file": "download/elder26_vor_springer_media_Fig5_HTML.png",
+          "sha256": "bbb5a12a0a0b6061f1bd69818b03e09ae497899393585129c575bfba6ea0327f"
+        },
+        {
+          "file": "download/openalex_elder26.json",
+          "sha256": "4c9e7c038364844a7f52cb01cb1864a529a7395f80bc0d2d24a29e15b250ae16"
+        },
+        {
+          "file": "fulltext.txt",
+          "sha256": "40bb809b933bc1812819f6dc0450a6e954f78f5230998032c833dc89990a8dca"
+        },
+        {
+          "file": "supp_fulltext.txt",
+          "sha256": "2259e9c41fc240384a20f66415be3c21254073d5dd4d440108c9f1565cc8ab3b"
+        }
+      ]
+    },
+    {
+      "id": "MICONI25",
+      "doi": "10.1038/s41593-024-01852-8",
+      "status": "fulltext",
+      "route": "VoR is paywalled (Nature Neuroscience; not in PMC/Europe PMC). Full text read from (1) the author-hosted Springer-typeset proof PDF thomasmiconi.github.io/NN.pdf (also committed in the official code repo; accepted manuscript at proof stage) and (2) bioRxiv v3 via Europe PMC JATS; supplements: VoR ESM1/ESM2 from Springer static-content and the preprint v3 supplement PDF.",
+      "url": "https://doi.org/10.1038/s41593-024-01852-8",
+      "version": "Primary text = accepted manuscript / Springer proof (Received 2023-09-04, Accepted 2024-11-15, 'Published online: xx xx xxxx'); VoR: Nature Neuroscience 28(2):406-414, published online 2025-01-15. Preprint bioRxiv 10.1101/2023.07.27.550739: v1 2023-07-28 'Neural mechanisms of transitive inference and fast knowledge reassembly in learning neural networks', v2 2023-09-02 and v3 2023-09-04 'An active neural mechanism for relational learning and fast knowledge reassembly' (v3 read in full; v1/v2 full text not obtained).",
+      "version_date": "2024-11-15 (accepted; proof PDF); VoR online 2025-01-15",
+      "vor_or_preprint": "accepted_manuscript",
+      "pages": 14,
+      "words": 10479,
+      "sections_read": "Proof PDF in full via fulltext_columns.txt (pages 1-14): Abstract, Main (Results: model overview, metalearning discovers solutions, behavioural patterns, list linking, representational scheme, neuromodulation, reinstatement of recoded representations, coupling of adjacent items, suboptimal solution), Discussion, Methods (metalearning terminology, network organisation, synaptic plasticity eqs 1-7, experimental settings), Code availability, Extended Data legends 1-3, reference list skimmed; Main Figs 1 and 3 viewed as images, Figs 2,4-8 and Extended Data read from legends only. VoR Supplementary Information: all 23 pages (Notes 1-13, legends) and Reporting Summary. Preprint v3: full text (Introduction, Methods, Results, Mechanism sections, Discussion) and its 12-page supplement sections A-H. Methods and Supplement both read. Code: simple.ipynb in full, main.ipynb parameter block / network class / list-linking branches, addons/toymodel.py.",
+      "files": [
+        {
+          "file": "download/biorxiv_api_details_miconi25.json",
+          "sha256": "8c188fbe50fca3d8fae045fa1e2e3246e27345655530ff59a920c84e44be419d"
+        },
+        {
+          "file": "download/europepmc_search_miconi25.json",
+          "sha256": "dd60fdc11a986fb361a2258a3ccd985cb3418b8ae1cea357e397340067212e37"
+        },
+        {
+          "file": "download/miconi25_preprint_v3_europepmc_PMC10402151.xml",
+          "sha256": "030723a4fb3962fcd8124021c34c596d27a86a0565d6bdf28230097f9a4195bb"
+        },
+        {
+          "file": "download/miconi25_preprint_v3_supplement1_NIHPP2023.07.27.550739V3_recovered_from_europepmc_zip.pdf",
+          "sha256": "ae580bda41e3ba5c1a1c66d402e49a6e133b4b846c5896d5f50e66b4eb4a7021"
+        },
+        {
+          "file": "download/miconi25_vor_authorpage_thomasmiconi_github_io_NN.pdf",
+          "sha256": "cb2564c4743ff4ef5c6b8088ce4dbe9e2cf52aca565248cf40bfaf5f40d2a934"
+        },
+        {
+          "file": "download/miconi25_vor_nature_landing.html",
+          "sha256": "6f6ca226051e4f6c9ef5e2d8bd0112f509446209ab6a4e5d85e67a71dd2173b0"
+        },
+        {
+          "file": "download/miconi25_vor_reporting_summary_springer_41593_2024_1852_MOESM2_ESM.pdf",
+          "sha256": "8696550e955f56dae49d6f679b342d393fc39d45c43566b6016940e156005c57"
+        },
+        {
+          "file": "download/miconi25_vor_supp_springer_41593_2024_1852_MOESM1_ESM.pdf",
+          "sha256": "9f49bce2a69d579eb9f923b51c3e0442b6050d8c998515ea8a49952c620ed2b2"
+        },
+        {
+          "file": "download/openalex_miconi25.json",
+          "sha256": "862dcb382a4a73d3f8d0cb53ea8f042f5a2f97ba47bf91162cc40afbf5b5fc3c"
+        },
+        {
+          "file": "fulltext.txt",
+          "sha256": "0f1fd0d1bd7c6f7e9b774e12d0be7b3bb8ad289647578639d802112c722fc255"
+        },
+        {
+          "file": "supp_fulltext.txt",
+          "sha256": "16dfb50f6cf1f1f3c9ec6bd0ac89b09cb69002504c75104fac758d8ebe1c81e8"
+        },
+        {
+          "file": "fulltext_columns.txt",
+          "sha256": "ed70436bc155514d457912db2cf19950f543430d78d806cc7db25412b6fe9832"
+        },
+        {
+          "file": "fulltext_preprint_v3.txt",
+          "sha256": "d7285826d3c35b6a0e032954a6db5cfb58fad8540611ac6323bba98df9a12da7"
+        },
+        {
+          "file": "supp_fulltext_preprint_v3.txt",
+          "sha256": "5296fd442ec29f6b87c48d4fdc3d4d195240112bcde109770d3f3c091a1b296b"
+        }
+      ]
+    },
+    {
+      "id": "TEM20",
+      "doi": "10.1016/j.cell.2020.10.024",
+      "status": "fulltext",
+      "route": "Europe PMC fullTextXML of PMC7707106 (Cell VoR text incl. STAR Methods; CC BY) -> fulltext.txt via jats2txt.py (python3 -I); cross-check against the Oxford ORA copy of the Elsevier Version-of-Record PDF; supplement Document S1 (Tables S1-S4) from the ScienceDirect ARS CDN (md5 equals the PMC XML record) -> supp_fulltext.txt via pdftotext -layout",
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC7707106/fullTextXML",
+      "version": "Cell 183(5):1249-1263.e23, Version of Record (PMC7707106.1); received 2019-10-14, revised 2020-06-11, accepted 2020-10-13; epub 2020-11-11, ppub 2020-11-25. Preprint lineage: bioRxiv 10.1101/770495 v1 2019-09-16, v2 2019-09-24 (v2 PDF downloaded for cross-reference only)",
+      "version_date": "2020-11-25",
+      "vor_or_preprint": "VoR",
+      "pages": null,
+      "words": 23761,
+      "sections_read": [
+        "Highlights, Summary, Introduction, Results (all 14 subsections), Discussion (full)",
+        "STAR Methods in full: Key Resources, Resource Availability, Method Details (Task details, TEM problem statements, High-level and detailed algorithmic description, Memories, Details about embedded hierarchy, Weights, Interplay of backprop and Hebbian learning, Summary of key points, Optimization, Simulation details, Analysis of remapping data), Quantification and Statistical Analysis",
+        "Figure/table captions (Fig 1-7, S1-S7, tables in STAR); figure panels not read except page images of Fig 3 and Fig 4",
+        "Supplement Document S1 Tables S1-S4 read fully (5 pp)",
+        "References not read in detail (92 entries)"
+      ],
+      "files": [
+        {
+          "file": "download/biorxiv_770495_v2_2019-09-24.full.pdf",
+          "sha256": "d8271ae18f5ea9abcb0c7dbcbadc115557aa27201196905c9a6dc83b27abdc16"
+        },
+        {
+          "file": "download/biorxiv_api_details_10.1101-770495.json",
+          "sha256": "a1af9b58c65043e93f292a92e53d19d7072673e0edbb2859819052b61b7eaa1b"
+        },
+        {
+          "file": "download/europepmc_PMC7707106_fullTextXML.xml",
+          "sha256": "29b2bbd3331106e1bb8dde7e12394aef0d926138ecf548f0da64bde2ab4c43a3"
+        },
+        {
+          "file": "download/europepmc_search_meta.json",
+          "sha256": "9988e3c014107c9a485b294065e49b497d8acda3507b11ffe51ba75f91458a76"
+        },
+        {
+          "file": "download/openalex_TEM20.json",
+          "sha256": "3d36105684e934fc75076df227ff29a1508388bc8af9c68231f7b35b64885434"
+        },
+        {
+          "file": "download/ORA_Cell_VoR_1-s2.0-S009286742031388X-main.pdf",
+          "sha256": "5b0ec921e2cd3eed679b3421b52c766ff4e0974deada94538d491173c07bad56"
+        },
+        {
+          "file": "download/ScienceDirect_ARS_mmc1_Document-S1_Tables-S1-S4.pdf",
+          "sha256": "00cdc6f3cf09664b47f55b59f1bfbf7c731e5dd4586bd6342637e2acf54ee186"
+        },
+        {
+          "file": "fulltext.txt",
+          "sha256": "54d8fcd271ec9ecfd28b35b0c35e980614bbc5cfc6848c60ff365b342739abcb"
+        },
+        {
+          "file": "supp_fulltext.txt",
+          "sha256": "e336120a3da314de25ec6e7f724733d26fec3952a61b3477a4f43eda29e5bb54"
+        }
+      ]
+    },
+    {
+      "id": "KUMAR26",
+      "doi": "10.1523/JNEUROSCI.1803-24.2026",
+      "status": "fulltext",
+      "route": "latest arXiv version v5 (2026-10-20) PDF -> fulltext.txt via pdftotext -layout (pp.1-70); Supplementary Figures S1-S8 are embedded in the same PDF (pp.60-70) -> supp_fulltext.txt. The J Neurosci Version of Record (early release 2026-10-26) is paywalled, so it was NOT read; arXiv v1-v4 PDFs and all abs pages/API saved for the version history",
+      "url": "https://arxiv.org/pdf/2106.03580v5",
+      "version": "arXiv v5 read (latest). All versions (UTC, from arXiv abs pages and API): v1 2021-06-07T13:03:51 (1,470 KB, 16 pp, title \"One-shot learning of paired associations by a reservoir computing model with Hebbian plasticity\"); v2 2023-03-04T08:26:26 (3,508 KB, 47 pp, retitled \"One-shot learning of paired association navigation with biologically plausible schemas\", comment \"Major revisions from version 1 preprint\"); v3 2023-08-27T12:39:02 (3,767 KB, 48 pp, \"Minor revisions from version 2 preprint\"); v4 2024-09-10T03:37:18 (5,840 KB, 50 pp, \"Minor revisions in discussion\"); v5 2026-10-20T12:14:19 (9,425 KB, 70 pp, \"Major revisions. 7 figures, 8 supplementary figures\"). Journal: J Neurosci early release 26 Oct 2026, e1803242026, DOI 10.1523/JNEUROSCI.1803-24.2026, PMID 42933903",
+      "version_date": "2026-10-20",
+      "vor_or_preprint": "preprint",
+      "pages": 70,
+      "words": 22319,
+      "sections_read": [
+        "v5: Abstract, Significance Statement, Introduction, Methods in full (neuron model, 3 schemas, model-free RL, working-memory gating, meta-RL methods, Simulations 1-8, hyperparameters Table 1, statistical analysis), Results in full (schemas, DMP, single-goal obstacle, MPA, MPA with obstacle, working memory/gating), Discussion, Code and data availability",
+        "v5 Supplementary Figures S1-S8 captions (embedded, pp.60-70); figure panels not read except page images of Fig 1 (p22), Table 1 (p19), Eq. 45 (p13), p37",
+        "v5 References not read in detail",
+        "v1: abstract, introduction and methods 2.1-2.6 read; v2-v4: abstract, section headings, keyword/term counts and selected contexts only (not read in full)"
+      ],
+      "files": [
+        {
+          "file": "download/arxiv_2106.03580v1.pdf",
+          "sha256": "a04e46d179834b3bf84dd1e65e4713973b4ca86ff4c4ed3c09d697037a64847a"
+        },
+        {
+          "file": "download/arxiv_2106.03580v2.pdf",
+          "sha256": "9f7e5cf835f0ef719c6b8eba6884f3403a0b6475ab6b29309d2009faa4fc4e09"
+        },
+        {
+          "file": "download/arxiv_2106.03580v3.pdf",
+          "sha256": "f094642bbd587fe4ab3143d865e83ff38c1a1c163ce9a4d8d692a8dd1768fc52"
+        },
+        {
+          "file": "download/arxiv_2106.03580v4.pdf",
+          "sha256": "31b3113192947d7c00fd7712740d242a5b9f7e7dbe719cef82762fb8dc0ee1b1"
+        },
+        {
+          "file": "download/arxiv_2106.03580v5.pdf",
+          "sha256": "da1a993a60626d2d305c1c148cf363e0c6e3c6d47f2e421f95e6c349dc005711"
+        },
+        {
+          "file": "download/arxiv_abs_2106.03580.html",
+          "sha256": "17f7f46865dcb170be3be4d2a92ba30fa0479f1a988d9d7ad7d5d78681bcb699"
+        },
+        {
+          "file": "download/arxiv_abs_2106.03580v1.html",
+          "sha256": "e1c4cd3d66ab2054dc1c4692a1057b6d3bcadaf97886b21fd2bf64f16089b0b5"
+        },
+        {
+          "file": "download/arxiv_abs_2106.03580v2.html",
+          "sha256": "0d3f7157c5b0cdffe310febfdd33995a3d4bb7e3670380b36f5699cbfaedcb6e"
+        },
+        {
+          "file": "download/arxiv_abs_2106.03580v3.html",
+          "sha256": "ac0835f942264a9ff8a865b5033b3d0c8f448d27a92179396c7cd318cbf17ed1"
+        },
+        {
+          "file": "download/arxiv_abs_2106.03580v4.html",
+          "sha256": "5f99e711267e47a79fa9282957bc4083e788bf291393d469d95d7b2ae336cb19"
+        },
+        {
+          "file": "download/arxiv_abs_2106.03580v5.html",
+          "sha256": "5118b48939e85791add483ec1e52f61cbe2965f6033ece12b3943c5bf1b4ede4"
+        },
+        {
+          "file": "download/arxiv_api_2106.03580.xml",
+          "sha256": "ad351e6c5beb26c7ff1d3c3d3bc1e1e808fe1c055904343e2c4b5f1e16528436"
+        },
+        {
+          "file": "download/europepmc_search_KUMAR26.json",
+          "sha256": "99206c915411bbd09f4d8bd3ef9c8c3b6c56c7c33b3eb92c67848c7f74cc3776"
+        },
+        {
+          "file": "download/jneurosci_early_release_landing_page_abstract_only.html",
+          "sha256": "631a759fc6ca49fa62aa64d7cef3746f25d62ab077d5b348af6178d01bb9ab96"
+        },
+        {
+          "file": "download/jneurosci_early_release_tab-figures-data.html",
+          "sha256": "3b31735fdc28bd4e306adc229e2f8e2addcbc6c343e137fc5b1a1f8a6afec045"
+        },
+        {
+          "file": "download/openalex_KUMAR26.json",
+          "sha256": "e3b54d3a7202b4283485bdc02a85c14b2ba962a5dcffa6da6125b698d62005cb"
+        },
+        {
+          "file": "fulltext.txt",
+          "sha256": "5d8a4680274b9774780411d3087f6afad1538d35dc057ff2d475f27a1e772bea"
+        },
+        {
+          "file": "supp_fulltext.txt",
+          "sha256": "2c9714db42b286ba23e641d9cb4e923daeeae696e35387bcaf86fc9516ebaeaf"
+        }
+      ]
+    },
+    {
+      "id": "SWAMI23",
+      "doi": "10.52202/075280-1253",
+      "status": "fulltext",
+      "route": "NeurIPS proceedings VoR PDF (papers.neurips.cc) as primary fulltext.txt; arXiv v1 PDF/TeX/HTML compared (fulltext_arxiv_v1.txt); NeurIPS 'Supplemental' PDF read as supp_fulltext.txt",
+      "url": "https://proceedings.neurips.cc/paper_files/paper/2023/file/5bc3356e0fa1753fff7e8d6628e71b22-Paper-Conference.pdf",
+      "version": "NeurIPS 2023 camera-ready (Advances in Neural Information Processing Systems 36, Main Conference Track, Spotlight; proceedings DOI 10.52202/075280-1253, pp. 28785-28804); arXiv 2307.01201 has only v1 (no later arXiv version exists as of 2026-11-11)",
+      "version_date": "arXiv v1 submitted 2023-06-16 (ID 2307 = announcement month; PDF compiled 2023-07-06); NeurIPS main PDF created 2023-10-28 (pdfinfo); conference Dec 2023; NeurIPS Supplemental PDF created 2023-05-25 (submission stage)",
+      "vor_or_preprint": "VoR",
+      "pages": 20,
+      "words": 10989,
+      "sections_read": "NeurIPS main PDF read in full: Abstract, 1 Introduction, 2 Rebinding algorithm for CSCG (Methods: 2.1 CSCG background, 2.2 rebinding, Algorithm 1), 3 Outline of the argument (3.1-3.4), 4 Results (4.1 GINC, 4.2 LIALT, 4.3 Dax), 5 Related work (skimmed), 6 Discussion, Appendix A-D (A local EM update, B prompt completion, C GINC table 1, D LIALT instructions/tables 2-9/failure examples). arXiv v1 TeX source (rb.tex) read in full and diffed sentence-by-sentence against NeurIPS text. NeurIPS Supplemental PDF (6 pp) read in full. Figure panels read via captions/extracted text only. References not read.",
+      "files": [
+        {
+          "file": "download/arxiv_2307.01201v1_eprint.tar.gz",
+          "sha256": "49b321ceb1ea917c1ea798762507fc67c36a9e73fee9e84fa657500209bccb67"
+        },
+        {
+          "file": "download/arxiv_2307.01201v1.html",
+          "sha256": "49a2b2b6da8df50a4f31ee453ed307ffc7147ae7922fe3f639e3e862d6e4b1d8"
+        },
+        {
+          "file": "download/arxiv_2307.01201v1.pdf",
+          "sha256": "0851b557b6ac4ffc266995070e59dc61f99bdff71c6e25476295f04b6d653ca6"
+        },
+        {
+          "file": "download/arxiv_abs_2307.01201.html",
+          "sha256": "7fef93bf0d127e35cc3cdd693dd9782e19da90b951f6f3dc36be5a24521a6074"
+        },
+        {
+          "file": "download/arxiv_api_2307.01201.xml",
+          "sha256": "334278b90a7117d65dd3c9a543d7a80f40e865855147213fdd55db9102ec8774"
+        },
+        {
+          "file": "download/github_repo_vicariousinc_naturecomm_cscg.json",
+          "sha256": "797d9f5b3f7de882a609eace1c5533a3341cd597a1af5afb5d28e33728c6918b"
+        },
+        {
+          "file": "download/github_search_clone_structured_causal_graph.json",
+          "sha256": "0606d0211b5de9d880191743d9aa3fd3aac496980ce16970fac86c2cab957963"
+        },
+        {
+          "file": "download/github_search_schema_rebinding_icl_cscg.json",
+          "sha256": "4af480b8ee5b87b369a76c49bd22c9a783908272ebffbe97898f8ab0f0772a5f"
+        },
+        {
+          "file": "download/neurips2023_bibtex.html",
+          "sha256": "fd4b41f61c1344e250827b9e52ad0849cb293b50cd52ee0d3498f08afe6fbfad"
+        },
+        {
+          "file": "download/neurips2023_main_paper.pdf",
+          "sha256": "63d2ae5550f4add67e1b6e6e90fad34c7f8d27a8e779c9c4261096c4de2ec401"
+        },
+        {
+          "file": "download/neurips2023_supplemental.pdf",
+          "sha256": "1ca1ca3572a296b9388605f0d0710209968b4fd02f67c4c0aa268095aca583e3"
+        },
+        {
+          "file": "download/neurips_proc_abstract_page.html",
+          "sha256": "ff54f0c942d1c3fe748d38fbe1110cb7d5e7ecf5eca2974de853501f39f22d60"
+        },
+        {
+          "file": "download/neurips_virtual_poster_72915.html",
+          "sha256": "d3836fe0266ee4ced745599722e872c29de08a84dfcc25b4c7dff30b26ec0bb7"
+        },
+        {
+          "file": "fulltext.txt",
+          "sha256": "cb5f5e53c82c96927f935e3ddfbb71faae05028d986b64bccf5b9b7ffee1c832"
+        },
+        {
+          "file": "supp_fulltext.txt",
+          "sha256": "58c6f9f1334efc42bbdc245949453e5f2d2ae5e4024b034f8fef9fad55c8ff86"
+        },
+        {
+          "file": "fulltext_arxiv_v1.txt",
+          "sha256": "ff6de5e82d0c96bf24af39df3e35d3a192a63858969d699951d2433ba9d7e9ec"
+        },
+        {
+          "file": "version_diff.txt",
+          "sha256": "622072fe206c70e48a10659b341e98b3657d7aa3accac341822df260294a0bdf"
+        }
+      ]
+    },
+    {
+      "id": "STRUCTK25",
+      "doi": "10.1007/s10462-025-11270-2",
+      "status": "fulltext",
+      "route": "Springer Link VoR article page (HTML, not PDF) rendered in the user's Paseo browser (Electron on the Windows laptop; browserId b8895c52-2e6f-44ab-ac11-5382d63cf881; the tab was already open on the article URL and the page said 'You have full access to this open access article'). Text = document.querySelector('article').innerText, extracted with mcp__paseo__browser_evaluate: SHA-256, character count and word count were computed inside the browser first, then the text was returned in 4 chunks of <=30,000 chars (offsets 0, 30000, 60000, 90000) and reassembled from the worker's transcript JSONL with python3 -I (_scripts/structk25/assemble_from_transcript.py, no retyping). Each chunk SHA-256 and the whole-text SHA-256 equal the browser values. Table bodies are not in article.innerText (only captions + 'Full size table' links), so Tables 1-5 were fetched same-origin from /article/.../tables/1..5 in the same browser (HTTP 200) and saved separately as tables_from_springer_html.txt (own browser SHA-256).",
+      "url": "https://link.springer.com/article/10.1007/s10462-025-11270-2",
+      "version": "VoR (Springer Nature Link HTML; Artificial Intelligence Review 58(9), article number 264, published 2025-06-04; hybrid open access, CC BY-NC-ND 4.0). No preprint/accepted-manuscript copy exists in Europe PMC, arXiv or OpenAlex locations.",
+      "version_date": "published 2025-06-04 and version of record 2025-06-04 (page: 'Published 04 June 2025', 'Version of record 04 June 2025'); accepted 2025-05-12 (page: 'Accepted 12 May 2025'); received date not shown. Browser capture 2026-11-11 about 08:05-08:08 UTC (fulltext.txt mtime 17:08 KST); page counters at capture: 7744 Accesses, 8 Citations.",
+      "vor_or_preprint": "VoR",
+      "pages": null,
+      "words": 14449,
+      "sections_read": [
+        "Abstract",
+        "1 Introduction",
+        "2 Neural substrates (2.1 Cognitive maps, 2.2 Schemas, 2.3 Comparison of neural substrates)",
+        "3 Computational models (3.1 Cognitive maps: 3.1.1 Formulation guidelines, 3.1.2 Taxonomy, 3.1.3 Abstraction mechanisms; 3.2 Schemas: 3.2.1 Formulation guidelines, 3.2.2 Taxonomy, 3.2.3 Abstraction mechanisms; 3.3 Comparison of computational models)",
+        "4 Applications (4.1 AI models with brain-inspired structural knowledge; 4.2 AI models with traditional structural knowledge: 4.2.1 Taxonomy, 4.2.2 Roles and mechanisms; 4.3 Enhancing structural knowledge with personas)",
+        "5 Open problems and future directions (5.1 Systematic generalization, 5.2 Lifelong learning, 5.3 Embodied intelligence, 5.4 Ethical and safety concerns: 5.4.1 Bias, 5.4.2 Privacy)",
+        "6 Conclusion",
+        "References (all 169 entries)",
+        "Back matter: Acknowledgements, Author information, Contributions, Ethics declarations, Additional information, Rights and permissions, About this article",
+        "Equations (1)-(6) as LaTeX source",
+        "Figure captions Fig. 1-6 (text only)",
+        "Tables 1-5 full cell text and footers (tables_from_springer_html.txt)",
+        "NOT read: figure images; no Methods / search-strategy section exists in the article; no supplementary information exists"
+      ],
+      "files": [
+        {
+          "file": "download/arxiv_query_keywords.xml",
+          "sha256": "eb6aa5afc62e5835ec1bbc8bf00ade6fe712507f4166177a019f91db8ae5cea8"
+        },
+        {
+          "file": "download/arxiv_query_title.xml",
+          "sha256": "04e906278c0974087ae245801cfdb092eac294cad0b145643271fe76c99fe96e"
+        },
+        {
+          "file": "download/crossref_work.json",
+          "sha256": "e2de6121124e406b5799ce8fa0137533e01a28c42bf8ada7c4574017ac4c4b2a"
+        },
+        {
+          "file": "download/europepmc_search_doi.json",
+          "sha256": "cf97bbd74367eda85a470674edf2add47e7cc6b6b8e6064cbe58215cf7aeee67"
+        },
+        {
+          "file": "download/europepmc_search_title.json",
+          "sha256": "f30515810ab1a4b06061202290118a1cf7363cb62b70b67e5fe749bdf3dab5be"
+        },
+        {
+          "file": "download/openalex_work.json",
+          "sha256": "af702e5a568a833085711832c666377062efca7d662550691dcd5d177504a0ab"
+        },
+        {
+          "file": "download/scholar_archive_verify_gate.html",
+          "sha256": "ed732c3d39c1497fa8960727a62e3848dbad38e8cc6e3b5f1313cb3e5c587553"
+        },
+        {
+          "file": "download/scholar_archive_verify_headers.txt",
+          "sha256": "5c71291038adc82a19de5255dcd734e075cec2616e86627ffddefc1b447f1008"
+        },
+        {
+          "file": "download/semanticscholar_paper.json",
+          "sha256": "b13094e3788caf52ee1995f93bdda683067a6e2f7fe16485a95902e7eb1858e1"
+        },
+        {
+          "file": "download/springer_pdf_request_BOTWALL_client_challenge.html",
+          "sha256": "32ed63159c77e21ee19ca1b9aa3213ccf0218eb59539560b132a8e68ef0e18ea"
+        },
+        {
+          "file": "download/springer_pdf_request_BOTWALL_headers.txt",
+          "sha256": "a39c0cb2e6ece5dfe1fdee167a1e8542e50a02301da78e1dbab280127afdbe2c"
+        },
+        {
+          "file": "webfetch_evidence.txt",
+          "sha256": "4fe9591ef5517594540a0865640c19e201e76e66129ebd7006161db3921bec68"
+        },
+        {
+          "file": "crossref_refs_parsed.txt",
+          "sha256": "146ab4ad27e4e0e08f5e6c9d9343c3f9790d6f092689eb3a3db76c225b43bfe2"
+        },
+        {
+          "file": "fulltext.txt",
+          "sha256": "fac2773e55390c00acf58009384a567f3626d37ad37390c7956064d9315a60f7"
+        },
+        {
+          "file": "tables_from_springer_html.txt",
+          "sha256": "d2001b82e9584f9017250850012f53ae4f9ebfd82839df09f0bf33657c3f6fa8"
+        }
+      ]
+    },
+    {
+      "id": "SPECTRUM26",
+      "doi": "10.1016/j.neuron.2026.05.007",
+      "status": "fulltext",
+      "route": "Author-hosted copy of the Elsevier/Cell Press 'Corrected proof' PDF on the first author's site (mandanasmi.github.io), after publisher routes (cell.com, ScienceDirect) returned Cloudflare 403 challenge to curl; metadata from PubMed/Europe PMC/OpenAlex. No PMC/arXiv/PsyArXiv/OSF copy exists.",
+      "url": "https://mandanasmi.github.io/data/Papers/Neuron/neuron-final.pdf",
+      "version": "Elsevier typeset PDF, pdfinfo Subject 'Neuron, Corrected proof. doi:10.1016/j.neuron.2026.05.007', Creator Elsevier, 10 pages, footer 'Neuron 114, June 3, 2026' (vol 114, issue 11, pp 1898-1907, identical to PubMed pagination). Article-type header in the PDF: 'Perspective'. Second file author_Neuron_v2.pdf = author LaTeX manuscript 'Neuron v2' (18 pages, PDF CreationDate 2026-03-25), used only to compare versions.",
+      "version_date": "PDF CreationDate 2026-05-28 (final proof); PubMed history: received 2025-10-27, revised 2026-03-13, accepted 2026-05-08, entrez 2026-06-03; issue date 2026-06-03; OpenAlex/Europe PMC first publication date 2026-06-01. Author manuscript v2 PDF CreationDate 2026-03-25 (server Last-Modified of both author PDFs: 2026-08-24).",
+      "vor_or_preprint": "VoR",
+      "pages": 10,
+      "words": 8019,
+      "sections_read": [
+        "Summary",
+        "Introduction to schema theory",
+        "Neuroscience of schemas",
+        "Computational models of schemas",
+        "Evidence for schemas in LLMs",
+        "Lessons to be drawn in neuroscience",
+        "Conclusion",
+        "Acknowledgments/Declaration of interests",
+        "References 1-100 (all)",
+        "Figures 1-3 (captions read; Fig.1 and Fig.3 images viewed; Fig.2 caption only)",
+        "Methods: none exist (Perspective article, no STAR Methods)",
+        "Supplement: none referenced in the PDF"
+      ],
+      "files": [
+        {
+          "file": "download/arxiv_ids_listed_on_author_site.xml",
+          "sha256": "571f7191bf1ddf82551cb8b472327038d96a8d35db9c70ffe5fde427be19c089"
+        },
+        {
+          "file": "download/arxiv_query_schema_spectrum.xml",
+          "sha256": "e87e4a6557a0b264aba33a1ec9a4f2c20b4c34ac55fbc13d1b176218f8e233c0"
+        },
+        {
+          "file": "download/author_homepage.html",
+          "sha256": "88ff01412bad50ce74d8c615fb757becd8c5fcdf8dd99aadc8c36453e734895b"
+        },
+        {
+          "file": "download/author_neuron-final_headers.txt",
+          "sha256": "2f5a3accd9de343b570e03f29752db35957e7384584bb26bc20e312da4b54b69"
+        },
+        {
+          "file": "download/author_neuron-final.pdf",
+          "sha256": "373112c61a39083521ba763c2cd8c216951f6d629eca63e75b017eea681aa0fc"
+        },
+        {
+          "file": "download/author_Neuron_v2_headers.txt",
+          "sha256": "cd131454c08c9ed6b67a0eccd6ecc316eeb893e9fd7c2935a77ffc675b60004f"
+        },
+        {
+          "file": "download/author_Neuron_v2.pdf",
+          "sha256": "b8aab07c898506484bc9fafe41633620f634ef1dd11afda871aab2db57b55ccd"
+        },
+        {
+          "file": "download/cellpress_fulltext_403_headers.txt",
+          "sha256": "d7857ee4472f71f38e5e3e545fece137d8612bc13b6326f91a730e60dca3028a"
+        },
+        {
+          "file": "download/cellpress_showPdf_403_headers.txt",
+          "sha256": "624f3ac4545c0727460e805435c82cab114662c90cfba5a88faef6adfbe8e81d"
+        },
+        {
+          "file": "download/doi_org_redirect_headers.txt",
+          "sha256": "8e1f4abf0c23d0c3019304448917e9e87411f10f23dcb983c21a71bc09150d48"
+        },
+        {
+          "file": "download/europepmc_search.json",
+          "sha256": "4fe147a705adacea16888c7f4ef52c843708e1d54927470f9c58fecf3efbea8d"
+        },
+        {
+          "file": "download/openalex_work.json",
+          "sha256": "4f75e9a74394b4493c8dd330082aae83cdb7d4da7c6dc64009135e3f5456ec3e"
+        },
+        {
+          "file": "download/osf_query_schema_spectrum.json",
+          "sha256": "337a5845bf62ccbe2bee6d47834c9d6317bc033ab935af60bc66d75c688ef71a"
+        },
+        {
+          "file": "download/pubmed_42235490.xml",
+          "sha256": "edc62febabe08fd5d7f169b87493d7e4985cea731c94f530f52143fd62ac3eb3"
+        },
+        {
+          "file": "download/sciencedirect_403_headers.txt",
+          "sha256": "d3adb6a724639de312d7c480c276b404fd8b6e3de0ad9f324ad5b49edd38fda9"
+        },
+        {
+          "file": "fulltext.txt",
+          "sha256": "bb219e03d6e1e5116a9f561aaa75e9dd7150ad565e671cedb8af2426c849edda"
+        },
+        {
+          "file": "fulltext_author_manuscript_v2.txt",
+          "sha256": "9f2599e6e1afaea88c36fb3c01be1b78b3f29247ae57edb35dd9a618e0cb0534"
+        },
+        {
+          "file": "fulltext_reading_order.txt",
+          "sha256": "a97335f4a76717d89b4cdf81a7347d19b925193bb4b1d5a9b76a2c64ce9ced35"
+        }
+      ]
+    }
+  ]
+}
