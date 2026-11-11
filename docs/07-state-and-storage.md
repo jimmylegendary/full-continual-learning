@@ -36,11 +36,35 @@
 - weight update 이후 stale cache를 계속 쓸 때 의미적 정합성이 검증되어야 한다.
 - speculative decoding/rollback과 windowed cache의 제한을 숨기지 않는다.
 
+**USER (B14, 2026-10-12):** 익숙하면 hit한 구조를 compile해 완결된 working frame을 만든다. 매 turn 출력이 frame과 맞지 않으면 이번 입력·출력·내부 출력으로 학습한 뒤 최초 query로 다시 검색해 frame을 재구성하고 중단 지점부터 재개한다.
+
+**PROPOSAL:** 이를 통합 모델의 상태 계약으로 옮긴다.
+- 읽기 기록: 한 요청의 schema 읽기가 어떤 요소(layer 결합·fast state·depth source)를 어떤 순서로 읽었는지 기록한다. 이 기록은 이후 write와 독립이다.
+- 갱신 후 재개: 요청 중 학습이 일어나면 새 root를 만들지 않고 같은 root와 같은 최초 입력으로 다시 읽는다. 재개 위치(token position t, recursion index r)와 무효화한 cache를 기록한다.
+- 이중 write 방지: 재개 때 이미 반영한 증거를 다시 쓰지 않는다.
+- 재현: 같은 입력의 재읽기는 원래 읽기 결과를 재현할 수 있어야 하며 차이는 갱신으로 설명할 수 있어야 한다.
+
+**ARCHIVE:** Melete는 working graph를 snapshot으로 compile하고 선택 node/edge·전역 상태·context·encoder parameter의 의존성을 각각 추적하며, 낮은 compatibility에서 갱신한 뒤 최초 query로 재compile해 중단 지점에서 재개하는 것을 basis로 유지했다 ([2026-10-15-neural-judgment-roadmap.md](https://github.com/jimmylegendary/melete/blob/1d95136c3a64580ec25bc588c96c191eecb85b41/docs/superpowers/plans/2026-10-15-neural-judgment-roadmap.md)). 이 닫힌 loop는 좁은 합성 scene에서만 실행됐고 일반 효용은 검증되지 않았다 ([2026-10-12-neural-workflow-feedback.md](https://github.com/jimmylegendary/melete/blob/1d95136c3a64580ec25bc588c96c191eecb85b41/docs/implementation/records/2026-10-12-neural-workflow-feedback.md)).
+
 ## 4. 학습 귀속
 
 Eligibility에는 event ID, 활성 schema/경로, 관측 시점, 목표, 해석 origin, 의존 state version을 연결한다. 피드백이 늦게 도착해도 현재 활성 schema가 아니라 원래 관련 사건으로 귀속한다.
 
 Read frequency에 따라 association을 강화하는 경우, 그 강화와 사실 validity를 별도로 기록한다. 단순 조회가 많아졌다고 진실성이나 외부 증거가 증가하지 않는다.
+
+**USER (B14, B09):** 조회 trajectory에서 hit한 경로는 모두 연결 강화한다. 검색할 때 시냅스가 강화되는 시나리오를 학습 방식으로 정리한다.
+
+**PROPOSAL:** 조회 구동 강화(read-driven strengthening)를 허용하는 경우 다음을 계약으로 둔다.
+- 강화를 네 가지로 구분해 기록한다. 접근성(조회·활성 trace), 연합(고찰·사용으로 달라지는 연결), compatibility(등록 관측의 귀속), parameter plasticity(write gate에 따라 M·reader·updater가 바뀐 정도)다.
+- 접근성·연합은 학습된 관심에 영향을 줄 수 있으나 사실 validity와 독립 증거 수를 바꾸지 않는다.
+- 같은 root의 반복 조회에 대한 포화 상한과 감쇠를 사전에 명시한다.
+- 강화 전후 값을 hit 경로와 함께 기록한다.
+- 자기증폭(조회가 늘수록 더 자주 선택돼 오판이 고착되는 현상)을 직접 측정하고 독립 반례 뒤 회복 여부를 본다.
+- 강화를 끈 대조군과 같은 예산으로 비교한다.
+
+**ARCHIVE:** Melete v0.2는 강화를 접근성·연합·compatibility·parameter plasticity로 구분했고 ([experience-system.md](https://github.com/jimmylegendary/melete/blob/1d95136c3a64580ec25bc588c96c191eecb85b41/docs/design/experience-system.md) §5), 이후 hit 강화와 사실 validity의 분리·포화·감쇠·반복 안정성 평가·자기증폭 직접 측정을 요구 사항으로 유지했다 ([neural-basis.md](https://github.com/jimmylegendary/melete/blob/1d95136c3a64580ec25bc588c96c191eecb85b41/docs/design/neural-basis.md)). 효용은 입증되지 않았다.
+
+**OPEN:** 강화의 단위(파라미터 국소 경로·fast state·외부 key)는 [11-research-agenda.md](/home/jimmy/repos/full-continual-learning/docs/11-research-agenda.md) §2의 schema 물리 단위가 정해질 때 정한다.
 
 ## 5. 외부화 단위
 
@@ -70,6 +94,18 @@ Base encoder가 바뀌면 기존 schema latent의 좌표 의미도 바뀔 수 �
 ## 7. 검색과 residency
 
 검색용 embedding/key는 schema의 전체 의미나 적합성 판정을 대신하지 않는다. retrieval visibility와 applicability를 분리한다. Hot schema는 resident, cold artifact는 offload 후보로 두되 복사·deserialization·cache warmup 비용을 측정한다.
+
+**USER (B01, 2026-09-27):** 사용자는 eviction·forgetting·memory revision에는 아직 아이디어가 없다고 밝혔다. 설계가 채워야 할 열린 문제다.
+
+**PROPOSAL:** 위 residency는 저장 위치(resident/offload)의 정책이고 eviction은 fast state에서 무엇이 빠지는가의 정책이다. 둘을 분리한다.
+- 망각은 decay α와 L_forget로 표현하되 어떤 정보가 얼마나 약해졌는지를 level별로 기록한다.
+- eviction은 fast state가 용량을 넘을 때 후보를 고른다. 기준 후보는 최근 사용, 독립 증거 수, 적용 조건의 중복, 보호 family와의 연관이다.
+- eviction은 삭제가 아니라 offload·재구성 가능 상태로의 이동을 기본으로 한다. 삭제는 §8의 최소 상태 회귀를 따른다.
+- 평가는 [08-evaluation.md](/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md)의 F10(consolidation)과 보호 family의 회귀로 한다.
+
+**ARCHIVE:** Melete v0.2는 active eviction을 'canonical 경험을 지우지 않고 현재 active set에서 내려놓음'으로 정의하고 consolidation·deletion·graph replay와 구분했다 ([experience-system.md](https://github.com/jimmylegendary/melete/blob/1d95136c3a64580ec25bc588c96c191eecb85b41/docs/design/experience-system.md) §11).
+
+**OPEN:** 기준 후보 중 무엇이 쓰기 gate의 학습 가능한 신호가 되는지는 정하지 않았다.
 
 Multi-user 환경에서는 fast state, eligibility, optimizer state가 사용자를 넘어 섞이지 않게 해야 한다. shared slow model로 어떤 개인 정보를 통합할지 별도 동의·정책이 필요하다. 최초 MVP에서 광범위 개인 DB/native 권한을 자동 활성화하지 않는다.
 

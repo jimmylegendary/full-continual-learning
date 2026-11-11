@@ -8,6 +8,12 @@
 
 현재 계보는 Melete → 경험 기반 조건부 판단 → schema-based learning → pretrained LLM retrofit → recurrent System ONE → 상태·내용 의존적 학습 조율이다. 명칭 변경이 이전 목적의 폐기를 의미하지 않는다.
 
+**USER (B16, 2026-10-13):** Melete의 진짜 목표는 Experience → Latent Conditional Judgment → Revisable Decision이며 결과 예측이 아니다. 통합 모델에서도 이 목표를 유지한다. 경험이 만든 잠재 조건부 구조가 현재 입력에 대한 판단을 정하고, 새 근거가 오면 그 판단을 고칠 수 있어야 한다.
+
+**ARCHIVE:** 이전 N0/N1 prototype은 8개 cue에서 3채널의 후속 결과를 예측하는 과제였고, 이것이 암묵적 조건부 판단을 측정한다는 연결은 검증되지 않았다고 사후 검토에서 정리됐다. 교정은 조건별 선택·미관측 조합·반례·복귀를 주 endpoint로 정의하는 것이었다 ([2026-10-15-neural-review-postmortem.md](https://github.com/jimmylegendary/melete/blob/1d95136c3a64580ec25bc588c96c191eecb85b41/docs/implementation/records/2026-10-15-neural-review-postmortem.md)).
+
+**PROPOSAL:** FCL의 주 판단 지표는 조건별 선택(보류 포함)의 정답·보호·복귀다. 결과값 예측 오차(MSE 등)는 보조 지표이며 조건부 판단의 성공으로 대체하지 않는다. 평가 설계는 [08-evaluation.md](/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md)를 따른다.
+
 ## 2. 명시적 사용자 목표
 
 | ID | 목표 | 경계 |
@@ -44,6 +50,14 @@ Looping은 반복 연산, MoD/MoR은 계산 배분, depth attention은 중간 �
 ### 4층: 경험은 유용한 편향을 만든다
 
 무엇을 먼저 확인하고, 어떤 근거를 받아들이고, 어떤 해석부터 시도하며, 어떤 계산을 생략하는지가 경험으로 형성된다. Artificial Biased Intelligence의 편향은 오류를 고집하는 성향이 아니라 조건부 prior다. 관련 반례가 오면 바뀔 수 있어야 한다.
+
+**USER (B04, 2026-10-05):** 관심·수준·편향은 모델이 경험으로 형성한 자체 상태다. 외부에서 주어진 사용자 프로필이나 고정 규칙이 아니다.
+
+**PROPOSAL:** 모델 상태에 '관심'(무엇을 더 배우려 하는가)과 '수준'(현재 어디까지 이해하는가)을 편향·정책과 같은 층위의 학습 상태로 둔다. 둘은 읽기·쓰기·계산 깊이를 정하는 신호이며, 초기 seed 값은 manifest에 명시하고 경험으로 형성된 효과와 따로 평가한다. 정의와 측정은 [04-rhythms-and-orchestration.md](/home/jimmy/repos/full-continual-learning/docs/04-rhythms-and-orchestration.md)의 학습 가능성 항을 따른다.
+
+**ARCHIVE:** Melete도 관심·편향·수준을 자체 경험으로 형성된 상태로 두고 familiarity·관심·학습 가능성·surprise를 하나의 임계값으로 합치지 않는다고 정리했다 ([2026-10-15-neural-judgment-roadmap.md](https://github.com/jimmylegendary/melete/blob/1d95136c3a64580ec25bc588c96c191eecb85b41/docs/superpowers/plans/2026-10-15-neural-judgment-roadmap.md)).
+
+**OPEN:** 관심·수준이 하나의 벡터인지 문맥별 다차원(방향성)인지는 정하지 않았다.
 
 ### 5층: 학습과 사고의 정책도 학습
 

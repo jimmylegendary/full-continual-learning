@@ -1,0 +1,3830 @@
+[
+ {
+  "id": "F-UT01-01",
+  "source_refs": [
+   "U-T01"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/sources/user-statements.md:7",
+  "date": "unknown",
+  "quote": "내가 만드는 melete알지? 그거 컨셉, 목적 읊어봐",
+  "kind": "question",
+  "label": "USER",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/12-melete-lineage.md:5 (1. 이전 H1–H5)",
+   "/home/jimmy/repos/full-continual-learning/docs/12-melete-lineage.md:7 (1. 이전 H1–H5)",
+   "/home/jimmy/repos/full-continual-learning/docs/11-research-agenda.md:38 (6. LLM과 개인 경험의 관계)"
+  ],
+  "note": "회상 요청: Melete의 컨셉·목적은 이력 문서가 정위치(12 §1 H1–H5)이고 11 §6이 현재 목적을 한 문단으로 요약한다. 조건·예외·정정 이력 보존 같은 T01 세부는 02에만 있어 F-T01-01에서 따로 판정.",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-UT02-01",
+  "source_refs": [
+   "U-T02"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/sources/user-statements.md:11",
+  "date": "unknown",
+  "quote": "AI를 통해 self evolution하면서 개선되는 시스템을 만드는게 어떨까?",
+  "kind": "requirement",
+  "label": "USER",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/10-evolution-policy.md:9 (1. 세 루프와 권한)",
+   "/home/jimmy/repos/full-continual-learning/docs/10-evolution-policy.md:11 (1. 세 루프와 권한)",
+   "/home/jimmy/repos/full-continual-learning/docs/10-evolution-policy.md:19 (3. 후보 생성 계약)",
+   "/home/jimmy/repos/full-continual-learning/docs/10-evolution-policy.md:58 (7. 최소 진화 루프)"
+  ],
+  "note": "AI 주도 개발 진화는 세 루프 중 가장 바깥 루프(10 §1)·후보 생성 계약(§3)·최소 진화 루프(§7)로 설계됐다. 초기엔 작고 고정된 실험 관리로 시작한다는 상한이 붙어 있다(10 L11).",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-UT02-02",
+  "source_refs": [
+   "U-T02"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/sources/user-statements.md:13",
+  "date": "unknown",
+  "quote": "model 수정 없이 하다보니 vec2text에 대한 부분이 잘 될거같은 기대감도 부족하기도 하고",
+  "kind": "lesson",
+  "label": "USER",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md:107 (10. Vec2text에서의 전환)",
+   "/home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md:109 (10. Vec2text에서의 전환)"
+  ],
+  "note": "vec2text 고정 폐기와 학습된 latent interface 허용이 05 §10에 설계로 반영됐다(02 정정표 7행·01 §5 불릿 4와 같은 뜻).",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-UT02-03",
+  "source_refs": [
+   "U-T02"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/sources/user-statements.md:15",
+  "date": "unknown",
+  "quote": "가장 간단하게 시작할 수 있게 하고 그 방식이 점점 고도화되고 복잡해지고 개선되는 방향으로 evolutionary하게 만들고 싶은 것임",
+  "kind": "principle",
+  "label": "USER",
+  "status": "PARTIAL",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/10-evolution-policy.md:11 (1. 세 루프와 권한)",
+   "/home/jimmy/repos/full-continual-learning/docs/10-evolution-policy.md:32 (3. 후보 생성 계약)",
+   "/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md:10 (1. 최종 아키텍처를 작은 범위로 먼저 연결)",
+   "/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md:9 (1. 최종 아키텍처를 작은 범위로 먼저 연결)"
+  ],
+  "note": "얇은 시작(10 L11·L32, 09 P1 행)은 있으나 09가 P0 연구 계약 phase로 시작하고 phase 종료물이 전체 제품이 아니며 넓이×깊이 상승 사다리(진화 권한 포함)가 없어 점진적 해상도 규칙과 어긋난다.",
+  "superseded_by": null,
+  "gap_edit_ids": [
+   "G1-01",
+   "G1-03",
+   "G1-04"
+  ]
+ },
+ {
+  "id": "F-UT02-04",
+  "source_refs": [
+   "U-T02"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/sources/user-statements.md:19",
+  "date": "unknown",
+  "quote": "명확한 objectives",
+  "kind": "requirement",
+  "label": "USER",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/10-evolution-policy.md:15 (2. 목표 계약)",
+   "/home/jimmy/repos/full-continual-learning/docs/10-evolution-policy.md:17 (2. 목표 계약)"
+  ],
+  "note": "10 §2 목표 계약이 최상위 목적(제한된 경험·계산으로 조건부 구조 형성·활용·수정·보존)과 목적에 섞지 않을 것을 정의한다. phase별 동결 시점은 로드맵에 없어 F-UT02-09에서 따로 판정.",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-UT02-05",
+  "source_refs": [
+   "U-T02"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/sources/user-statements.md:20",
+  "date": "unknown",
+  "quote": "숫자로 환산되는 verification(benchmark set 포함)",
+  "kind": "requirement",
+  "label": "USER",
+  "status": "PARTIAL",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md:13 (2. 핵심 benchmark family)",
+   "/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md:62 (6. Metrics)",
+   "/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md:74 (6. Metrics)",
+   "/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md:84 (8. 결과 상태)"
+  ],
+  "note": "family F01–F12·metrics·결과 상태는 있으나 benchmark set 구성(생성기·world 수·split·예산 격자)과 family별 수치 gate 틀이 없다. 08 L74가 목표치 미확정을 명시한다.",
+  "superseded_by": null,
+  "gap_edit_ids": [
+   "G1-08"
+  ]
+ },
+ {
+  "id": "F-UT02-06",
+  "source_refs": [
+   "U-T02"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/sources/user-statements.md:21",
+  "date": "unknown",
+  "quote": "negative feedback & evolution system",
+  "kind": "requirement",
+  "label": "USER",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/10-evolution-policy.md:34 (4. Negative feedback의 내용)",
+   "/home/jimmy/repos/full-continual-learning/docs/10-evolution-policy.md:36 (4. Negative feedback의 내용)",
+   "/home/jimmy/repos/full-continual-learning/docs/10-evolution-policy.md:58 (7. 최소 진화 루프)"
+  ],
+  "note": "10 §4가 failure 조건·관측 근거·원인 가설·변경 대상·기대 개선·유지할 능력을 기록하게 하고 §7이 실패 분석→archive→제한 selection 루프를 정의한다.",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-UT02-07",
+  "source_refs": [
+   "U-T02"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/sources/user-statements.md:22",
+  "date": "unknown",
+  "quote": "operation policy",
+  "kind": "requirement",
+  "label": "USER",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/10-evolution-policy.md:42 (5. Evaluator의 독립성)",
+   "/home/jimmy/repos/full-continual-learning/docs/10-evolution-policy.md:48 (6. Budget와 자동화)",
+   "/home/jimmy/repos/full-continual-learning/docs/10-evolution-policy.md:50 (6. Budget와 자동화)",
+   "/home/jimmy/repos/full-continual-learning/docs/10-evolution-policy.md:54 (6. Budget와 자동화)"
+  ],
+  "note": "10 §5(evaluator 독립)·§6(승인 범위·예산·권한·중단 조건)이 운영 정책을 구성한다.",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-UT02-08",
+  "source_refs": [
+   "U-T02"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/sources/user-statements.md:26",
+  "date": "unknown",
+  "quote": "일단 이 방식 자체에 대해서 리뷰해서 의견줘봐",
+  "kind": "question",
+  "label": "USER",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/10-evolution-policy.md:11 (1. 세 루프와 권한)",
+   "/home/jimmy/repos/full-continual-learning/docs/10-evolution-policy.md:17 (2. 목표 계약)",
+   "/home/jimmy/repos/full-continual-learning/docs/10-evolution-policy.md:44 (5. Evaluator의 독립성)",
+   "/home/jimmy/repos/full-continual-learning/docs/10-evolution-policy.md:60 (7. 최소 진화 루프)"
+  ],
+  "note": "리뷰 결과(세 루프 분리, search space 명시 추가, evaluator 실행 권한 분리, parameter sweep·random search와의 동일 예산 비교)가 10에 설계로 들어 있다.",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-UT02-09",
+  "source_refs": [
+   "U-T02"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/sources/user-statements.md:24",
+  "date": "unknown",
+  "quote": "이걸 확정해서 시스템을 만들어 볼까 함",
+  "kind": "decision",
+  "label": "USER",
+  "status": "PARTIAL",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md:3 (09. 단계별 MVP: 작은 통합 모델에서 전체 구조로)",
+   "/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md:9 (1. 최종 아키텍처를 작은 범위로 먼저 연결)",
+   "/home/jimmy/repos/full-continual-learning/docs/10-evolution-policy.md:17 (2. 목표 계약)"
+  ],
+  "note": "\"4요소 확정 후 구축\" 순서는 09 L3에 문장으로만 있고, P0 산출물에 objectives·negative feedback·operation policy가 없으며 phase별 재동결 규칙도 없다.",
+  "superseded_by": null,
+  "gap_edit_ids": [
+   "G1-01",
+   "G1-03"
+  ]
+ },
+ {
+  "id": "F-UT03-01",
+  "source_refs": [
+   "U-T03"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/sources/user-statements.md:30",
+  "date": "unknown",
+  "quote": "이거 읽고 우리 제품의 base 근거로 삼고싶음",
+  "kind": "decision",
+  "label": "USER",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/03-foundations.md:3 (03. SBL·인지·기억의 이론 기반)",
+   "/home/jimmy/repos/full-continual-learning/docs/03-foundations.md:13 (2. 원자료에서 다룬 13개 이론·회로)"
+  ],
+  "note": "03이 뇌과학 PDF의 13개 이론·회로를 제품 가설과 한계로 재구성해 base 근거로 둔다. 실험 사실·계산이론·제품 가설을 구분한다(03 L3).",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-UT03-02",
+  "source_refs": [
+   "U-T03"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/sources/user-statements.md:30",
+  "date": "unknown",
+  "quote": "일단 읽고 이해해서 내 의도를 파악해봐",
+  "kind": "process",
+  "label": "USER",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/03-foundations.md:7 (1. Schema의 운영적 정의)",
+   "/home/jimmy/repos/full-continual-learning/docs/03-foundations.md:9 (1. Schema의 운영적 정의)",
+   "/home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md:3 (05. 통합 System ONE 아키텍처와 retrofit 경로)"
+  ],
+  "note": "의도 파악의 결과 본문은 01 §3(원천 문서라 근거 제외)이고, 설계 반영은 03 §1(schema·경험·직관 구분)과 05 머리의 USER 최종 방향이다. 6층위별 반영은 F-L1–F-L6에서 판정.",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-UT04-01",
+  "source_refs": [
+   "U-T04"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/sources/user-statements.md:36",
+  "date": "unknown",
+  "quote": "내가 원하던건 결국 schema based learning을 하고싶었나봐",
+  "kind": "decision",
+  "label": "USER",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/03-foundations.md:7 (1. Schema의 운영적 정의)",
+   "/home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md:3 (05. 통합 System ONE 아키텍처와 retrofit 경로)",
+   "/home/jimmy/repos/full-continual-learning/docs/06-mathematical-framework.md:35 (4. 느린 schema 학습: 적응 후 새 사례 일반화)"
+  ],
+  "note": "SBL이 설계의 중심 개념이다: 운영 정의(03 §1), 느린 schema 학습 목적함수(06 §4), 통합 아키텍처의 제어 대상(05 §4).",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-UT04-02",
+  "source_refs": [
+   "U-T04"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/sources/user-statements.md:36",
+  "date": "unknown",
+  "quote": "이게 곧 경험이자 직관이라고 생각했나봐",
+  "kind": "hypothesis",
+  "label": "USER",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/03-foundations.md:9 (1. Schema의 운영적 정의)",
+   "/home/jimmy/repos/full-continual-learning/docs/06-mathematical-framework.md:77 (7. 제한된 선형 표본 효율 설명)"
+  ],
+  "note": "02 정정표 2행이 \"=\"를 \"사건·재사용 구조·빠른 적용 구별\"로 재해석했다(assistant 재해석이지 사용자 진술이 아니므로 SUPERSEDED 아님). 원 의도는 03 L9가 직관=구조의 빠른 활성화로 유지한다.",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-UT04-03",
+  "source_refs": [
+   "U-T04"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/sources/user-statements.md:36",
+  "date": "unknown",
+  "quote": "기존 llm은 이런 schema가 없고 그래서 rapid learning이나 빠른 판단이 안된다고 느낀듯",
+  "kind": "hypothesis",
+  "label": "USER",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/11-research-agenda.md:36 (6. LLM과 개인 경험의 관계)",
+   "/home/jimmy/repos/full-continual-learning/docs/11-research-agenda.md:38 (6. LLM과 개인 경험의 관계)",
+   "/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md:19 (2. 핵심 benchmark family)",
+   "/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md:27 (2. 핵심 benchmark family)"
+  ],
+  "note": "02 정정표 1행(\"구조적 표상은 존재할 수 있다\")은 assistant 재해석이라 SUPERSEDED가 아니다. 원 동기(빠른 학습·빠른 판단 부족)는 F03·F11 측정으로, 가설 자체는 11 §6에서 과장 금지로 처리됐다. 사용자 수용 여부는 확인 필요.",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-UT04-04",
+  "source_refs": [
+   "U-T04"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/sources/user-statements.md:36",
+  "date": "unknown",
+  "quote": "너가볼때도 melete의 핵심은 schema라고 생각해?",
+  "kind": "question",
+  "label": "USER",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/03-foundations.md:7 (1. Schema의 운영적 정의)",
+   "/home/jimmy/repos/full-continual-learning/docs/11-research-agenda.md:38 (6. LLM과 개인 경험의 관계)"
+  ],
+  "note": "답은 설계 중심 개념으로 반영(03 §1)되고 차별성은 \"schema 없는 LLM에 최초로 넣는다\"로 과장하지 않는다(11 §6).",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-UT05-01",
+  "source_refs": [
+   "U-T05"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/sources/user-statements.md:40",
+  "date": "unknown",
+  "quote": "앞으로 매주마다 트래킹해서 보고하도록해줘",
+  "kind": "process",
+  "label": "USER",
+  "status": "PARTIAL",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/research/TRACKING_POLICY.md:3 (SBL 전용 주간 추적 정책)",
+   "/home/jimmy/repos/full-continual-learning/research/TRACKING_POLICY.md:13 (시간과 신규성)",
+   "/home/jimmy/repos/full-continual-learning/research/TRACKING_POLICY.md:27 (보고 순서)",
+   "/home/jimmy/repos/full-continual-learning/docs/03-foundations.md:69 (7. 문헌을 적용하는 기준)"
+  ],
+  "note": "정책 문서(TRACKING_POLICY)는 있으나 머리말이 \"자동화 생성/수정 명령 아님\"을 밝히고, 03–12에는 추적 운영(주기·담당·결과→설계 반영 경로·확인 깊이 갱신)이 없다.",
+  "superseded_by": null,
+  "gap_edit_ids": [
+   "G1-05"
+  ]
+ },
+ {
+  "id": "F-UT05-02",
+  "source_refs": [
+   "U-T05"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/sources/user-statements.md:40",
+  "date": "unknown",
+  "quote": "보고시 schema를 symbolic으로 하는거랑 latent space(continual space)에 표현하는거랑 구분해서 보고좀",
+  "kind": "requirement",
+  "label": "USER",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/research/TRACKING_POLICY.md:7 (범위)",
+   "/home/jimmy/repos/full-continual-learning/research/TRACKING_POLICY.md:27 (보고 순서)",
+   "/home/jimmy/repos/full-continual-learning/docs/03-foundations.md:56 (6. 표현 방식과 학습 지속성의 분리)",
+   "/home/jimmy/repos/full-continual-learning/docs/03-foundations.md:58 (6. 표현 방식과 학습 지속성의 분리)"
+  ],
+  "note": "추적 보고는 symbolic / neural-continuous / discrete latent / hybrid로 구분 보고(TP L7·L27)하고 설계는 03 §6 표로 구분한다. 원 발화의 \"continual space\"는 02 편집 주가 continuous/continual로 풀었다(F-UT05-08).",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-UT05-03",
+  "source_refs": [
+   "U-T05"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/sources/user-statements.md:40",
+  "date": "unknown",
+  "quote": "나는 후자에 더 관심이 있긴함",
+  "kind": "principle",
+  "label": "USER",
+  "status": "PARTIAL",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/research/TRACKING_POLICY.md:7 (범위)",
+   "/home/jimmy/repos/full-continual-learning/docs/06-mathematical-framework.md:9 (1. 상태와 시간)",
+   "/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md:49 (4. 비교군)"
+  ],
+  "note": "latent 우선은 추적 정책(TP L7)과 README에만 명시되고 설계 문서 03–12에는 우선순위 문장이 없다(아키텍처는 사실상 continuous이고 symbolic은 비교군).",
+  "superseded_by": null,
+  "gap_edit_ids": [
+   "G1-06"
+  ]
+ },
+ {
+  "id": "F-UT05-04",
+  "source_refs": [
+   "U-T05"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/sources/user-statements.md:44",
+  "date": "unknown",
+  "quote": "뇌과학, 실제 뇌에서 schema는 어떻게 표현될까?",
+  "kind": "question",
+  "label": "USER",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/03-foundations.md:39 (4. 실제 뇌에서 표현된다는 말의 네 수준)",
+   "/home/jimmy/repos/full-continual-learning/docs/03-foundations.md:41 (4. 실제 뇌에서 표현된다는 말의 네 수준)",
+   "/home/jimmy/repos/full-continual-learning/docs/03-foundations.md:46 (4. 실제 뇌에서 표현된다는 말의 네 수준)",
+   "/home/jimmy/repos/full-continual-learning/docs/03-foundations.md:48 (4. 실제 뇌에서 표현된다는 말의 네 수준)"
+  ],
+  "note": "03 §4가 표현의 네 수준(인지 내용·물리 기반·활성 상태·분석 언어)과 증거 범위 한계를 구분하고 \"시냅스 기반과 continuous는 배타적 대안이 아님\"을 명시한다.",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-UT05-05",
+  "source_refs": [
+   "U-T05"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/sources/user-statements.md:45",
+  "date": "unknown",
+  "quote": "새로운 경험/인지에 대해서 schema를 찾고 그걸 기반으로 답하는 과정",
+  "kind": "question",
+  "label": "USER",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/03-foundations.md:50 (5. Schema 처리의 기능적 루프)",
+   "/home/jimmy/repos/full-continual-learning/docs/03-foundations.md:52 (5. Schema 처리의 기능적 루프)",
+   "/home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md:52 (4. Schema controller의 입력과 출력)",
+   "/home/jimmy/repos/full-continual-learning/docs/06-mathematical-framework.md:13 (2. 결과 이전 선택과 이후 책임 추정)"
+  ],
+  "note": "03 §5 기능적 루프와 05 §4 문맥 수준 head, 06 §2 결과 이전 선택 q^-가 \"schema를 찾고 그 기반으로 답하는 과정\"을 구조·식으로 둔다.",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-UT05-06",
+  "source_refs": [
+   "U-T05"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/sources/user-statements.md:45",
+  "date": "unknown",
+  "quote": "schema에 맞지 않아서 수정 하거나 또는 맞지 않아서 이해를 하기 어려워 한다면 해당 과정은 어떻게 될지",
+  "kind": "question",
+  "label": "USER",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/03-foundations.md:52 (5. Schema 처리의 기능적 루프)",
+   "/home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md:52 (4. Schema controller의 입력과 출력)",
+   "/home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md:58 (4. Schema controller의 입력과 출력)",
+   "/home/jimmy/repos/full-continual-learning/docs/04-rhythms-and-orchestration.md:44 (3. 조율을 위한 최소 분리)",
+   "/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md:20 (2. 핵심 benchmark family)",
+   "/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md:21 (2. 핵심 benchmark family)",
+   "/home/jimmy/repos/full-continual-learning/docs/11-research-agenda.md:24 (3. 표현 보호와 확장)"
+  ],
+  "note": "유지·수정·전환·분리·조합·보류가 구조(05 §4)·동작 표(04 §3)·평가(F04·F05·F09)에 있다. 구조를 그 자리에서 고치는 기제는 후보 수준(11 §3)이고 문헌 보강은 W3 영역(11-11 §4.3).",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-UT05-07",
+  "source_refs": [
+   "U-T05"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/sources/user-statements.md:46",
+  "date": "unknown",
+  "quote": "SBL을 base theory로 삼고 AI model을 만들거나 구조를 제안하는 최신 근황",
+  "kind": "requirement",
+  "label": "USER",
+  "status": "PARTIAL",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/03-foundations.md:69 (7. 문헌을 적용하는 기준)",
+   "/home/jimmy/repos/full-continual-learning/docs/03-foundations.md:71 (7. 문헌을 적용하는 기준)",
+   "/home/jimmy/repos/full-continual-learning/docs/11-research-agenda.md:26 (3. 표현 보호와 확장)",
+   "/home/jimmy/repos/full-continual-learning/docs/11-research-agenda.md:40 (7. 우선 읽을 연구 연결)"
+  ],
+  "note": "최신 근황은 research/ 아카이브에 있고 설계에는 03 L71 링크와 11 §3의 S19·S25·S23 인용뿐이다. 11-09 S20·S21·S22 등과 11-11 DQ1–DQ8·§4.1–4.5가 05/06/08/10/11에 통합되지 않았다.",
+  "superseded_by": null,
+  "gap_edit_ids": [
+   "G1-15",
+   "G1-16"
+  ]
+ },
+ {
+  "id": "F-UT05-08",
+  "source_refs": [
+   "U-T05"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/sources/user-statements.md:50",
+  "date": "unknown",
+  "quote": "후속 논의는 continuous latent space와 continual learning을 구분했다",
+  "kind": "correction",
+  "label": "ARCHIVE",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/03-foundations.md:56 (6. 표현 방식과 학습 지속성의 분리)",
+   "/home/jimmy/repos/full-continual-learning/docs/03-foundations.md:65 (6. 표현 방식과 학습 지속성의 분리)"
+  ],
+  "note": "편집 주(문서 정리자 서술이며 사용자 발화가 아님). continuous 표현과 continual 학습의 분리는 03 §6 제목·표·L65에 설계로 반영됐다. 원 발화 \"continual space\"가 continuous를 뜻했다는 해석은 사용자 확인 필요.",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-UT06-01",
+  "source_refs": [
+   "U-T06"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/sources/user-statements.md:56",
+  "date": "unknown",
+  "quote": "nested learning(HOPE)",
+  "kind": "requirement",
+  "label": "USER",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md:13 (1. 각 재료의 역할)",
+   "/home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md:14 (1. 각 재료의 역할)",
+   "/home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md:15 (1. 각 재료의 역할)",
+   "/home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md:111 (11. Sleep가 만들어야 할 변화)"
+  ],
+  "note": "HOPE/CMS와 \"model needs sleep\"(S1 L57)이 05 §1 재료 표와 §11 Sleep 설계의 재료로 들어 있다. 각 논문의 확인 깊이는 metadata 수준이다(F-UT09-08).",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-UT06-02",
+  "source_refs": [
+   "U-T06"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/sources/user-statements.md:58",
+  "date": "unknown",
+  "quote": "titan-llama(논문이 언급하는 github repo와 code 공개되어 있음)",
+  "kind": "requirement",
+  "label": "USER",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md:12 (1. 각 재료의 역할)",
+   "/home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md:72 (6. Titan-Llama의 코드 접점)",
+   "/home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md:74 (6. Titan-Llama의 코드 접점)"
+  ],
+  "note": "공개 코드는 pin 기준 접점(TitanDecoderLayer의 mlp 재사용, freeze_backbone 규칙, generate의 reset 경로, position clock)과 위험으로 05 §6에 설계됐다. 최신 HEAD 검토는 아니다.",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-UT06-03",
+  "source_refs": [
+   "U-T06"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/sources/user-statements.md:60",
+  "date": "unknown",
+  "quote": "이걸 보면 schema based learning, rapid learning",
+  "kind": "question",
+  "label": "USER",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md:3 (05. 통합 System ONE 아키텍처와 retrofit 경로)",
+   "/home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md:5 (05. 통합 System ONE 아키텍처와 retrofit 경로)",
+   "/home/jimmy/repos/full-continual-learning/docs/06-mathematical-framework.md:23 (3. 빠른 업데이트)",
+   "/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md:19 (2. 핵심 benchmark family)"
+  ],
+  "note": "SBL·rapid learning을 Titans/HOPE/Sleep 위에서 쓰는 가능성은 \"연구 제안·미검증\" 상한과 함께 05 전체·06 §3·08 F03로 설계됐다(05 L5: 기존 논문 하나가 전체를 구현·검증한 것은 아니다).",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-UT06-04",
+  "source_refs": [
+   "U-T06"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/sources/user-statements.md:60",
+  "date": "unknown",
+  "quote": "뇌 스위치 선택 설 적용해서 하는거 될까?",
+  "kind": "question",
+  "label": "USER",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/03-foundations.md:29 (2. 원자료에서 다룬 13개 이론·회로)",
+   "/home/jimmy/repos/full-continual-learning/docs/04-rhythms-and-orchestration.md:42 (3. 조율을 위한 최소 분리)",
+   "/home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md:52 (4. Schema controller의 입력과 출력)",
+   "/home/jimmy/repos/full-continual-learning/docs/06-mathematical-framework.md:11 (2. 결과 이전 선택과 이후 책임 추정)",
+   "/home/jimmy/repos/full-continual-learning/docs/07-state-and-storage.md:66 (6. Version 의미)",
+   "/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md:22 (2. 핵심 benchmark family)"
+  ],
+  "note": "스위치(학습과 사용의 분리·수정 없는 재선택)가 03 표(MS→MEC)·04 Switch 동작·05 문맥 head·06 q^-·07 version lineage·08 F06 ABA로 이어진다.",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-UT06-05",
+  "source_refs": [
+   "U-T06"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/sources/user-statements.md:62",
+  "date": "unknown",
+  "quote": "experience learning이란 근본적으로 schema learning이라고 생각하는데",
+  "kind": "hypothesis",
+  "label": "USER",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/03-foundations.md:11 (1. Schema의 운영적 정의)",
+   "/home/jimmy/repos/full-continual-learning/docs/11-research-agenda.md:7 (1. Pretraining과 alignment 가설)"
+  ],
+  "note": "가설로 채택하되 모든 경험학습=schema learning이라는 정의로 반증 불가능하게 만들지 않는 상한(03 L11, 11 L7)이 있다(01 §5 불릿 5와 같은 뜻: F-NG-05).",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-UT06-06",
+  "source_refs": [
+   "U-T06"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/sources/user-statements.md:62",
+  "date": "unknown",
+  "quote": "정답이 없고 경험에 최적화 하는 학습인거잖아?",
+  "kind": "hypothesis",
+  "label": "USER",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/03-foundations.md:11 (1. Schema의 운영적 정의)",
+   "/home/jimmy/repos/full-continual-learning/docs/06-mathematical-framework.md:25 (3. 빠른 업데이트)",
+   "/home/jimmy/repos/full-continual-learning/docs/06-mathematical-framework.md:39 (4. 느린 schema 학습: 적응 후 새 사례 일반화)"
+  ],
+  "note": "정답 없음=외부 gold label 없음이지 학습 신호 없음이 아니다(03 L11). KV 복원·관측 예측·피드백 목적함수를 구분하고(06 §3) 적응 후 새 사례 일반화를 목적에 넣는다(06 §4).",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-UT06-07",
+  "source_refs": [
+   "U-T06"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/sources/user-statements.md:62",
+  "date": "unknown",
+  "quote": "나는 그걸 schema based learning으로 써보는건 어떨까 싶어서",
+  "kind": "decision",
+  "label": "USER",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md:3 (05. 통합 System ONE 아키텍처와 retrofit 경로)",
+   "/home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md:5 (05. 통합 System ONE 아키텍처와 retrofit 경로)",
+   "/home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md:50 (4. Schema controller의 입력과 출력)"
+  ],
+  "note": "Titans/HOPE/Sleep을 SBL 메커니즘으로 쓰는 것이 05의 구성 자체다. 어떤 논문도 전체를 입증하지 않았다는 상한을 유지한다(05 L5).",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-UT06-08",
+  "source_refs": [
+   "U-T06"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/sources/user-statements.md:66",
+  "date": "unknown",
+  "quote": "schema가 형성되고 활용 가능",
+  "kind": "requirement",
+  "label": "USER",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/03-foundations.md:7 (1. Schema의 운영적 정의)",
+   "/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md:17 (2. 핵심 benchmark family)",
+   "/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md:56 (5. 인과적 개입)",
+   "/home/jimmy/repos/full-continual-learning/docs/06-mathematical-framework.md:35 (4. 느린 schema 학습: 적응 후 새 사례 일반화)",
+   "/home/jimmy/repos/full-continual-learning/docs/11-research-agenda.md:22 (2. Schema의 물리적 단위)"
+  ],
+  "note": "형성은 운영 정의(03 L7)와 인과 개입(08 §5), 활용은 F01 구조 전이로 판정한다. 물리적 단위는 OPEN(11 §2). 같은 뜻: F-U01.",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-UT06-09",
+  "source_refs": [
+   "U-T06"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/sources/user-statements.md:67",
+  "date": "unknown",
+  "quote": "schema based learning이 얘기하는 대부분의 이론들이 적용되고 검증됨",
+  "kind": "requirement",
+  "label": "USER",
+  "status": "PARTIAL",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md:30 (2. 핵심 benchmark family)",
+   "/home/jimmy/repos/full-continual-learning/docs/03-foundations.md:13 (2. 원자료에서 다룬 13개 이론·회로)",
+   "/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md:17 (2. 핵심 benchmark family)"
+  ],
+  "note": "08 L30이 분해 원칙만 선언하고 이론→검증 질문→family 대응표가 없다. 관계 통합(A–B,B–C→A–C, 03 L20·L34) 등 일부 이론에는 family 자체가 없다. 같은 뜻: F-U02.",
+  "superseded_by": null,
+  "gap_edit_ids": [
+   "G1-07"
+  ]
+ },
+ {
+  "id": "F-UT06-10",
+  "source_refs": [
+   "U-T06"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/sources/user-statements.md:68",
+  "date": "unknown",
+  "quote": "rapid learning을 통해 schema에 맞는 부분으로 빠르게 학습 및 이해가 됨",
+  "kind": "requirement",
+  "label": "USER",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/06-mathematical-framework.md:23 (3. 빠른 업데이트)",
+   "/home/jimmy/repos/full-continual-learning/docs/06-mathematical-framework.md:69 (7. 제한된 선형 표본 효율 설명)",
+   "/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md:19 (2. 핵심 benchmark family)",
+   "/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md:64 (6. Metrics)"
+  ],
+  "note": "fast update 식(06 §3), 표본 효율 제한 설명(§7), F03 고정 관측 곡선과 \"목표 품질까지 관측 수\" 지표(08)로 설계·측정된다. 같은 뜻: F-U03, F-VQ-1.",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-UT06-11",
+  "source_refs": [
+   "U-T06"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/sources/user-statements.md:69",
+  "date": "unknown",
+  "quote": "system 1/2 사고방식에서 system 1을 담당하는 부분으로서",
+  "kind": "requirement",
+  "label": "USER",
+  "status": "SUPERSEDED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md:48 (3. 계산의 개념도)",
+   "/home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md:91 (7. Recurrent retrofit)"
+  ],
+  "note": "U-T07의 통합 System ONE 정정(02 T07 \"중요한 사용자 정정\", 파일 순서 U-T06→U-T07)이 \"System 1을 담당하는 별도 부분\"이라는 해석을 대체했다. 속도 목표는 유지되므로 F-UT06-12로 분리 판정. 시간 근거는 파일 순서와 02 서술뿐(날짜 없음).",
+  "superseded_by": {
+   "ref": "U-T07",
+   "source": "/home/jimmy/repos/full-continual-learning/sources/user-statements.md:86",
+   "quote": "SYSTEM ONE을 통합하는 HOPE모델을 만드는데 loop transformer처럼 recursive하게 forward를 하는것"
+  },
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-UT06-12",
+  "source_refs": [
+   "U-T06"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/sources/user-statements.md:69",
+  "date": "unknown",
+  "quote": "llm대비 매우 빠르게 주어진 정보에 대해서 schema를 찾고 답변 가능해짐",
+  "kind": "requirement",
+  "label": "USER",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md:87 (7. Recurrent retrofit)",
+   "/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md:46 (4. 비교군)",
+   "/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md:70 (6. Metrics)",
+   "/home/jimmy/repos/full-continual-learning/docs/06-mathematical-framework.md:93 (9. 프로젝트의 핵심 측정량)",
+   "/home/jimmy/repos/full-continual-learning/docs/11-research-agenda.md:54 (8. 검증 없이 주장하지 않을 것)"
+  ],
+  "note": "속도 목표는 통합 모델의 낮은 유효 계산 경로로 재정의되고(05 L87·L91) 동일 LLM 직접 응답 대비 latency·비용식으로 측정한다(08). 미측정 속도 이득은 주장하지 않는다는 상한이 11 §8에 있다.",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-UT06-13",
+  "source_refs": [
+   "U-T06"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/sources/user-statements.md:71",
+  "date": "unknown",
+  "quote": "내가 기존에 하던 melete의 목표이기도 한데 이제 SBL을 알게되었고 TITAN, HOPE등의 메커니즘과 결합해서 이걸 하는게 될까 싶은거지",
+  "kind": "principle",
+  "label": "USER",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/12-melete-lineage.md:17 (1. 이전 H1–H5)",
+   "/home/jimmy/repos/full-continual-learning/docs/12-melete-lineage.md:44 (4. 가져올 자산)",
+   "/home/jimmy/repos/full-continual-learning/docs/11-research-agenda.md:38 (6. LLM과 개인 경험의 관계)"
+  ],
+  "note": "Melete 목표의 연속성(명칭 변경≠폐기)은 01 §1이 서술하고, 설계 쪽은 12 §4 이관 자산과 11 §6이 이어받는다.",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-UT06-14",
+  "source_refs": [
+   "U-T06"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/sources/user-statements.md:71",
+  "date": "unknown",
+  "quote": "이론적 토대와 수학적 공식만들고",
+  "kind": "requirement",
+  "label": "USER",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/03-foundations.md:7 (1. Schema의 운영적 정의)",
+   "/home/jimmy/repos/full-continual-learning/docs/06-mathematical-framework.md:3 (06. 수학적 연구 명세와 제한된 이론)",
+   "/home/jimmy/repos/full-continual-learning/docs/06-mathematical-framework.md:69 (7. 제한된 선형 표본 효율 설명)",
+   "/home/jimmy/repos/full-continual-learning/docs/06-mathematical-framework.md:79 (8. Loop 감소의 제한된 수렴 설명)",
+   "/home/jimmy/repos/full-continual-learning/docs/06-mathematical-framework.md:97 (10. 아직 정리가 아닌 주장)"
+  ],
+  "note": "이론적 토대는 03, 수식은 06(상태·선택·fast/slow 학습·비용 민감 제어·측정량)이며 제한된 설명(§7–§8)과 아직 정리가 아닌 주장(§10)을 구분한다.",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-UT06-15",
+  "source_refs": [
+   "U-T06"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/sources/user-statements.md:71",
+  "date": "unknown",
+  "quote": "실험을 통한 poc 증명까지 하고싶음",
+  "kind": "requirement",
+  "label": "USER",
+  "status": "PARTIAL",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md:32 (3. 대표 실험: 경험이 숙고를 직관으로 바꾸는가)",
+   "/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md:42 (3. 대표 실험: 경험이 숙고를 직관으로 바꾸는가)",
+   "/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md:19 (2. 첫 integrated MVP의 최소 사용자 여정)",
+   "/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md:25 (3. 초기 실행 순서 제안)",
+   "/home/jimmy/repos/full-continual-learning/docs/06-mathematical-framework.md:3 (06. 수학적 연구 명세와 제한된 이론)"
+  ],
+  "note": "PoC 설계(S0/SE/SES 대표 실험, 사용자 여정)는 있으나 PASS 판정 문장, 소형 모델·데이터 생성기 선택, 비용 상한이 없고 로드맵이 P1에서 실제 CLI+실제 모델로 PoC 전체를 돌리게 정의하지 않는다.",
+  "superseded_by": null,
+  "gap_edit_ids": [
+   "G1-01",
+   "G1-02",
+   "G1-19"
+  ]
+ },
+ {
+  "id": "F-UT06-16",
+  "source_refs": [
+   "U-T06"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/sources/user-statements.md:76",
+  "date": "unknown",
+  "quote": "post training/RL을 통한 alignment는 해당 schema를 여러 sub schema로의 분화 기능을 만든 것임",
+  "kind": "hypothesis",
+  "label": "USER",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/11-research-agenda.md:3 (1. Pretraining과 alignment 가설)",
+   "/home/jimmy/repos/full-continual-learning/docs/11-research-agenda.md:5 (1. Pretraining과 alignment 가설)",
+   "/home/jimmy/repos/full-continual-learning/docs/11-research-agenda.md:9 (1. Pretraining과 alignment 가설)",
+   "/home/jimmy/repos/full-continual-learning/docs/11-research-agenda.md:18 (1. Pretraining과 alignment 가설)"
+  ],
+  "note": "사용자 가설(S1 L75 \"LLM은 하나의 schema\" 포함)을 11 §1이 보존하되 현재 사실로 채택하지 않고 경쟁 가설 4종과 checkpoint 비교 설계를 둔다. 02 정정표 10행과 같은 뜻.",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-UT06-17",
+  "source_refs": [
+   "U-T06"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/sources/user-statements.md:78",
+  "date": "unknown",
+  "quote": "이걸 증명할 수 있다면 좋겠어",
+  "kind": "requirement",
+  "label": "USER",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/11-research-agenda.md:13 (1. Pretraining과 alignment 가설)",
+   "/home/jimmy/repos/full-continual-learning/docs/11-research-agenda.md:18 (1. Pretraining과 alignment 가설)"
+  ],
+  "note": "\"이거 이후 가능하다면\"(S1 L73)에 맞춰 11 §1이 MVP 선행 조건이 아닌 후속 연구로 증명 설계(Base→SFT→DPO/RL 비교, causal patching, 새 binding)를 둔다. 로드맵에는 슬롯이 없어 새 로드맵의 미루는 것에 시작 조건과 함께 기재해야 한다(G1-02가 요구).",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-UT06-18",
+  "source_refs": [
+   "U-T06"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/sources/user-statements.md:80",
+  "date": "unknown",
+  "quote": "phase나눠서 단계별 mvp 계획 및 구현",
+  "kind": "process",
+  "label": "USER",
+  "status": "PARTIAL",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md:5 (1. 최종 아키텍처를 작은 범위로 먼저 연결)",
+   "/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md:9 (1. 최종 아키텍처를 작은 범위로 먼저 연결)",
+   "/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md:10 (1. 최종 아키텍처를 작은 범위로 먼저 연결)",
+   "/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md:17 (1. 최종 아키텍처를 작은 범위로 먼저 연결)"
+  ],
+  "note": "phase 표는 있으나 P0=연구 계약 phase, 종료물이 전체 제품이 아님, capability×phase 표·phase별 데모·상한·미루는 것·회귀 gate 없음 → 점진적 해상도 규칙(2026-10-21)과 어긋난다.",
+  "superseded_by": null,
+  "gap_edit_ids": [
+   "G1-01",
+   "G1-02",
+   "G1-03"
+  ]
+ },
+ {
+  "id": "F-UT06-19",
+  "source_refs": [
+   "U-T06"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/sources/user-statements.md:80",
+  "date": "unknown",
+  "quote": "self evolving하는 방식으로 작업하는 작업방식은 그대로 적용하고",
+  "kind": "process",
+  "label": "USER",
+  "status": "PARTIAL",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/10-evolution-policy.md:9 (1. 세 루프와 권한)",
+   "/home/jimmy/repos/full-continual-learning/docs/10-evolution-policy.md:56 (7. 최소 진화 루프)",
+   "/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md:3 (09. 단계별 MVP: 작은 통합 모델에서 전체 구조로)"
+  ],
+  "note": "진화 루프 설계(10)는 있으나 phase별 적용 범위·권한 상승 규칙이 로드맵과 연결되지 않고 09는 L3 문장뿐이다.",
+  "superseded_by": null,
+  "gap_edit_ids": [
+   "G1-03",
+   "G1-04"
+  ]
+ },
+ {
+  "id": "F-UT07-01",
+  "source_refs": [
+   "U-T07"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/sources/user-statements.md:86",
+  "date": "unknown",
+  "quote": "SYSTEM ONE을 통합하는 HOPE모델을 만드는데",
+  "kind": "correction",
+  "label": "USER",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md:3 (05. 통합 System ONE 아키텍처와 retrofit 경로)",
+   "/home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md:35 (3. 계산의 개념도)",
+   "/home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md:48 (3. 계산의 개념도)",
+   "/home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md:91 (7. Recurrent retrofit)"
+  ],
+  "note": "통합 System ONE이 05의 전제다(별도 fast model을 최종 제품으로 전제하지 않음, System 1/2=같은 모델의 유효 계산 경로 차이). 같은 뜻: F-COR-03, F-T07-01, F-DIR-01, F-U05.",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-UT07-02",
+  "source_refs": [
+   "U-T07"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/sources/user-statements.md:86",
+  "date": "unknown",
+  "quote": "loop transformer처럼 recursive하게 forward를 하는것",
+  "kind": "requirement",
+  "label": "USER",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md:85 (7. Recurrent retrofit)",
+   "/home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md:89 (7. Recurrent retrofit)",
+   "/home/jimmy/repos/full-continual-learning/docs/06-mathematical-framework.md:53 (5. 현재 생각과 지속 기억의 읽기)",
+   "/home/jimmy/repos/full-continual-learning/docs/07-state-and-storage.md:28 (3. Recursion과 cache)",
+   "/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md:40 (3. 대표 실험: 경험이 숙고를 직관으로 바꾸는가)"
+  ],
+  "note": "recursive 경로는 05 §7(retrofit 후보)·06 §5(h_{t,r+1} 갱신)·07 §3(weight/KV 공유와 cache)·08 §3(고정 depth grid 측정)로 설계됐다.",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-UT07-03",
+  "source_refs": [
+   "U-T07"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/sources/user-statements.md:87",
+  "date": "unknown",
+  "quote": "주어진 문맥에 대해서 schema를 찾고",
+  "kind": "requirement",
+  "label": "USER",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md:50 (4. Schema controller의 입력과 출력)",
+   "/home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md:52 (4. Schema controller의 입력과 출력)",
+   "/home/jimmy/repos/full-continual-learning/docs/06-mathematical-framework.md:13 (2. 결과 이전 선택과 이후 책임 추정)"
+  ],
+  "note": "문맥 수준 head(05 §4)가 어떤 관계 구조를 적용할지 고르고 06 §2의 q^-가 결과 이전 선택으로 식화된다.",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-UT07-04",
+  "source_refs": [
+   "U-T07"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/sources/user-statements.md:87",
+  "date": "unknown",
+  "quote": "익숙한건 매우 빠르게 schema기반 답변을 하고",
+  "kind": "requirement",
+  "label": "USER",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md:58 (4. Schema controller의 입력과 출력)",
+   "/home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md:87 (7. Recurrent retrofit)",
+   "/home/jimmy/repos/full-continual-learning/docs/06-mathematical-framework.md:67 (6. 비용 민감한 제어)",
+   "/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md:40 (3. 대표 실험: 경험이 숙고를 직관으로 바꾸는가)"
+  ],
+  "note": "낮은 유효 계산 경로로 직접 답하는 경우가 설계에 있다. 익숙함만으로 halt하지 않고(06 L67) 쉬운 문제만 일찍 종료한 평균과 구별한다(08 §3).",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-UT07-05",
+  "source_refs": [
+   "U-T07"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/sources/user-statements.md:87",
+  "date": "unknown",
+  "quote": "익숙하지 않으면 그 정도에 따라 rapid learning을 해서 schema update하고 답변하고",
+  "kind": "requirement",
+  "label": "USER",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/06-mathematical-framework.md:23 (3. 빠른 업데이트)",
+   "/home/jimmy/repos/full-continual-learning/docs/06-mathematical-framework.md:51 (5. 현재 생각과 지속 기억의 읽기)",
+   "/home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md:54 (4. Schema controller의 입력과 출력)",
+   "/home/jimmy/repos/full-continual-learning/docs/04-rhythms-and-orchestration.md:39 (3. 조율을 위한 최소 분리)"
+  ],
+  "note": "fast update(06 §3), 실행 head의 update 횟수·강도·write 허용(05 §4, 06 §5), Bind·Write 동작(04 §3)으로 설계됐다.",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-UT07-06",
+  "source_refs": [
+   "U-T07"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/sources/user-statements.md:87",
+  "date": "unknown",
+  "quote": "더 익숙하지 않으면 정도에 따라 더 깊은 loop을 타서 답변 하는것",
+  "kind": "requirement",
+  "label": "USER",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md:44 (3. 계산의 개념도)",
+   "/home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md:54 (4. Schema controller의 입력과 출력)",
+   "/home/jimmy/repos/full-continual-learning/docs/06-mathematical-framework.md:67 (6. 비용 민감한 제어)",
+   "/home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md:58 (4. Schema controller의 입력과 출력)"
+  ],
+  "note": "반복마다 계속 계산/빠른 학습/전환/종료를 재평가한다(05 L44). 단 05 L58은 낯섦→단일 단조 제어를 금지해 사용자의 \"정도에 따른 단계 처리\"를 다중 신호 controller로 일반화했다(02 T08 정련). 사용자 수용 여부는 확인 필요.",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-UT07-07",
+  "source_refs": [
+   "U-T07"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/sources/user-statements.md:89",
+  "date": "unknown",
+  "quote": "근데 pretraining부터 하는건 무리니까 기존 모델에",
+  "kind": "decision",
+  "label": "USER",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md:85 (7. Recurrent retrofit)",
+   "/home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md:89 (7. Recurrent retrofit)",
+   "/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md:10 (1. 최종 아키텍처를 작은 범위로 먼저 연결)",
+   "/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md:36 (3. 초기 실행 순서 제안)"
+  ],
+  "note": "pretrained 모델 retrofit이 05 §7과 09 P1 전제다. 원논문 전체 규모 재현 의무는 없다는 상한(09 L36)이 있다.",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-UT07-08",
+  "source_refs": [
+   "U-T07"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/sources/user-statements.md:91",
+  "date": "unknown",
+  "quote": "seq layer는 titan llama로 retrofitting하고",
+  "kind": "requirement",
+  "label": "USER",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md:12 (1. 각 재료의 역할)",
+   "/home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md:72 (6. Titan-Llama의 코드 접점)",
+   "/home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md:80 (6. Titan-Llama의 코드 접점)",
+   "/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md:10 (1. 최종 아키텍처를 작은 범위로 먼저 연결)"
+  ],
+  "note": "sequence layer의 Titan-Llama 계열 retrofit이 05 §1·§6, 09 P1·P5에 있다. 부분 전환을 전 층 성공으로 확대하지 않는 상한이 있다.",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-UT07-09",
+  "source_refs": [
+   "U-T07"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/sources/user-statements.md:92",
+  "date": "unknown",
+  "quote": "ffn쪽은 cms(model needs sleep의 방법으로)로 점진적 교체를 해서 모두 교체하려고 한것",
+  "kind": "requirement",
+  "label": "USER",
+  "status": "PARTIAL",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md:60 (5. CMS 점진 전환의 기능 보존 제안)",
+   "/home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md:64 (5. CMS 점진 전환의 기능 보존 제안)",
+   "/home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md:68 (5. CMS 점진 전환의 기능 보존 제안)",
+   "/home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md:70 (5. CMS 점진 전환의 기능 보존 제안)",
+   "/home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md:15 (1. 각 재료의 역할)",
+   "/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md:14 (1. 최종 아키텍처를 작은 범위로 먼저 연결)"
+  ],
+  "note": "함수 보존 전환 식은 프로젝트 proposal(05 L66)이며 사용자가 지정한 \"model needs sleep의 방법\"(A03은 metadata-checked) 그대로의 전환 절차는 설계에 없다. 05 L70은 Nested Learning(A02) 논의만 인용한다.",
+  "superseded_by": null,
+  "gap_edit_ids": [
+   "G1-13",
+   "G1-14"
+  ]
+ },
+ {
+  "id": "F-UT07-10",
+  "source_refs": [
+   "U-T07"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/sources/user-statements.md:93",
+  "date": "unknown",
+  "quote": "이후 외부로 schema를 offload하고",
+  "kind": "requirement",
+  "label": "USER",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/07-state-and-storage.md:45 (5. 외부화 단위)",
+   "/home/jimmy/repos/full-continual-learning/docs/07-state-and-storage.md:49 (5. 외부화 단위)",
+   "/home/jimmy/repos/full-continual-learning/docs/07-state-and-storage.md:70 (7. 검색과 residency)",
+   "/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md:28 (2. 핵심 benchmark family)",
+   "/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md:15 (1. 최종 아키텍처를 작은 범위로 먼저 연결)"
+  ],
+  "note": "offload 단위(bundle manifest)·residency·평가(F12)·후기 단계(P6)가 있고 상태 경계는 초기 설계(07 §1·§5)다. 01 U10 경계와 일치.",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-UT07-11",
+  "source_refs": [
+   "U-T07"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/sources/user-statements.md:93",
+  "date": "unknown",
+  "quote": "versioning및 retrieval가능하게 해서",
+  "kind": "requirement",
+  "label": "USER",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/07-state-and-storage.md:64 (6. Version 의미)",
+   "/home/jimmy/repos/full-continual-learning/docs/07-state-and-storage.md:72 (7. 검색과 residency)",
+   "/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md:22 (2. 핵심 benchmark family)",
+   "/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md:28 (2. 핵심 benchmark family)"
+  ],
+  "note": "버전은 source/조건/학습 상태의 lineage(07 §6)이고 retrieval은 visibility와 applicability를 분리한다(07 §7). F06·F12로 평가한다.",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-UT07-12",
+  "source_refs": [
+   "U-T07"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/sources/user-statements.md:96",
+  "date": "unknown",
+  "quote": "입력 문맥에 대한 schema판단 mlp나 구조를 넣어서 만들어야 하고",
+  "kind": "requirement",
+  "label": "USER",
+  "status": "PARTIAL",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md:50 (4. Schema controller의 입력과 출력)",
+   "/home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md:52 (4. Schema controller의 입력과 출력)",
+   "/home/jimmy/repos/full-continual-learning/docs/06-mathematical-framework.md:11 (2. 결과 이전 선택과 이후 책임 추정)",
+   "/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md:10 (1. 최종 아키텍처를 작은 범위로 먼저 연결)",
+   "/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md:12 (1. 최종 아키텍처를 작은 범위로 먼저 연결)"
+  ],
+  "note": "controller 구조는 05 §4·06 §2에 설계됐으나 로드맵은 P3에서야 도입한다(P1·P2 산출물은 schema를 판단하지 않는 모델). 02 T07의 \"처음부터 전제\"와 어긋나므로 최소 controller를 P1부터 얇게 두는 해상도 사다리가 필요하다. 같은 뜻: F-U09.",
+  "superseded_by": null,
+  "gap_edit_ids": [
+   "G1-02",
+   "G1-17"
+  ]
+ },
+ {
+  "id": "F-UT08-01",
+  "source_refs": [
+   "U-T08"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/sources/user-statements.md:100",
+  "date": "unknown",
+  "quote": "HOPE의 CMS는 뇌파에서 개념을 얻어서 update주기가 다른 level을 붙혀서 구현했잖아?",
+  "kind": "hypothesis",
+  "label": "USER",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/04-rhythms-and-orchestration.md:5 (04. 뇌 리듬에서 상태·내용 의존적 학습 조율로)",
+   "/home/jimmy/repos/full-continual-learning/docs/04-rhythms-and-orchestration.md:7 (1. CMS에서 구분할 것)",
+   "/home/jimmy/repos/full-continual-learning/docs/04-rhythms-and-orchestration.md:9 (1. CMS에서 구분할 것)"
+  ],
+  "note": "전제는 04가 CMS=다중 갱신 시간척도로 받되 \"느린 level=덜 계산\"을 정정한다(04 §1). CMS가 뇌파에서 유래했다는 서술 자체는 A02 metadata 수준이라 문헌 확인 대상(F-UT09-08).",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-UT08-02",
+  "source_refs": [
+   "U-T08"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/sources/user-statements.md:100",
+  "date": "unknown",
+  "quote": "이 뇌파의 개념을 좀더 딥다이브해서 본질을 파악하고 개선해보는거 필요할거같아",
+  "kind": "requirement",
+  "label": "USER",
+  "status": "PARTIAL",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/04-rhythms-and-orchestration.md:15 (2. 생물학적 관찰과 적용 한계)",
+   "/home/jimmy/repos/full-continual-learning/docs/04-rhythms-and-orchestration.md:33 (3. 조율을 위한 최소 분리)",
+   "/home/jimmy/repos/full-continual-learning/docs/04-rhythms-and-orchestration.md:48 (4. Eligibility의 제안식)",
+   "/home/jimmy/repos/full-continual-learning/docs/04-rhythms-and-orchestration.md:66 (6. 필수 실험 계열)",
+   "/home/jimmy/repos/full-continual-learning/docs/11-research-agenda.md:32 (5. Rhythm 필요성)"
+  ],
+  "note": "딥다이브(R01–R11·조율 분리·eligibility 식·실험 A–D)는 설계됐으나 \"개선\" 실험 A–D가 로드맵 어느 phase에도 배치되지 않는다(09에 rhythm/CMS scheduling 언급 0건).",
+  "superseded_by": null,
+  "gap_edit_ids": [
+   "G1-02",
+   "G1-18"
+  ]
+ },
+ {
+  "id": "F-UT08-03",
+  "source_refs": [
+   "U-T08"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/sources/user-statements.md:102",
+  "date": "unknown",
+  "quote": "사용하는 뇌파가 달라지지 않나? 라는 직관적 가설에서 출발하고싶어",
+  "kind": "hypothesis",
+  "label": "USER",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/04-rhythms-and-orchestration.md:3 (04. 뇌 리듬에서 상태·내용 의존적 학습 조율로)",
+   "/home/jimmy/repos/full-continual-learning/docs/04-rhythms-and-orchestration.md:15 (2. 생물학적 관찰과 적용 한계)",
+   "/home/jimmy/repos/full-continual-learning/docs/04-rhythms-and-orchestration.md:24 (2. 생물학적 관찰과 적용 한계)",
+   "/home/jimmy/repos/full-continual-learning/docs/04-rhythms-and-orchestration.md:46 (3. 조율을 위한 최소 분리)"
+  ],
+  "note": "직관을 출발점으로 두되 Hz↔학습 단조 법칙은 채택하지 않고(04 R06·R09) 익숙함·적용성·신뢰도·변동성 등 후보 신호를 구분한다.",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-UT08-04",
+  "source_refs": [
+   "U-T08"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/sources/user-statements.md:104",
+  "date": "unknown",
+  "quote": "모든 내용이 항상 일정한 token주기로 update된다? 이러면 안되지 않나",
+  "kind": "principle",
+  "label": "USER",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/04-rhythms-and-orchestration.md:3 (04. 뇌 리듬에서 상태·내용 의존적 학습 조율로)",
+   "/home/jimmy/repos/full-continual-learning/docs/04-rhythms-and-orchestration.md:11 (1. CMS에서 구분할 것)",
+   "/home/jimmy/repos/full-continual-learning/docs/04-rhythms-and-orchestration.md:68 (6. 필수 실험 계열)"
+  ],
+  "note": "고정 주기는 대조군 A로 남기고 가변·event·phase 조율 B–D와 비교한다(04 §6). 고정 주기의 유용성(GPU batching)과 의미 결정 문제를 구분한다.",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-UT08-05",
+  "source_refs": [
+   "U-T08"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/sources/user-statements.md:106",
+  "date": "unknown",
+  "quote": "단순히 주기가 동적인것보다 더 본질적으로",
+  "kind": "principle",
+  "label": "USER",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/04-rhythms-and-orchestration.md:5 (04. 뇌 리듬에서 상태·내용 의존적 학습 조율로)",
+   "/home/jimmy/repos/full-continual-learning/docs/04-rhythms-and-orchestration.md:33 (3. 조율을 위한 최소 분리)",
+   "/home/jimmy/repos/full-continual-learning/docs/04-rhythms-and-orchestration.md:76 (6. 필수 실험 계열)"
+  ],
+  "note": "읽기·계산·binding·eligibility·write·switch·통합·보호를 분리한 조율(04 §3)과 event 대 phase 비교(§6)가 주기 가변화를 넘는 본질 탐구다.",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-UT08-06",
+  "source_refs": [
+   "U-T08"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/sources/user-statements.md:107",
+  "date": "unknown",
+  "quote": "여러 주파수가 동시 또는 순차로 쓰일수도있고 어떨때는 하나의 주파수만 쓸수도있고",
+  "kind": "hypothesis",
+  "label": "USER",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/04-rhythms-and-orchestration.md:21 (2. 생물학적 관찰과 적용 한계)",
+   "/home/jimmy/repos/full-continual-learning/docs/04-rhythms-and-orchestration.md:31 (2. 생물학적 관찰과 적용 한계)",
+   "/home/jimmy/repos/full-continual-learning/docs/04-rhythms-and-orchestration.md:52 (4. Eligibility의 제안식)",
+   "/home/jimmy/repos/full-continual-learning/docs/04-rhythms-and-orchestration.md:56 (4. Eligibility의 제안식)"
+  ],
+  "note": "동시성과 순차성의 공존(R03), 한 대역만 선택한다는 전제를 두지 않음(L31), 레벨별 eligibility·write 허용 u[l,n]으로 일부 레벨만 쓰는 경우까지 표현한다.",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-UT08-07",
+  "source_refs": [
+   "U-T08"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/sources/user-statements.md:109",
+  "date": "unknown",
+  "quote": "여튼 본질적 고민을 해보자",
+  "kind": "process",
+  "label": "USER",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/04-rhythms-and-orchestration.md:60 (5. 위상을 넣기 전에 해결할 질문)",
+   "/home/jimmy/repos/full-continual-learning/docs/04-rhythms-and-orchestration.md:64 (5. 위상을 넣기 전에 해결할 질문)",
+   "/home/jimmy/repos/full-continual-learning/docs/11-research-agenda.md:32 (5. Rhythm 필요성)",
+   "/home/jimmy/repos/full-continual-learning/docs/11-research-agenda.md:34 (5. Rhythm 필요성)"
+  ],
+  "note": "본질 질문(명시적 oscillator가 풀려는 문제는 무엇인가, 단계 번호와 동치인가)이 OPEN 가설로 관리된다(04 §5, 11 §5).",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-UT09-01",
+  "source_refs": [
+   "U-T09"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/sources/user-statements.md:113",
+  "date": "unknown",
+  "quote": "loop transformer",
+  "kind": "requirement",
+  "label": "USER",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md:16 (1. 각 재료의 역할)",
+   "/home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md:85 (7. Recurrent retrofit)",
+   "/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md:11 (1. 최종 아키텍처를 작은 범위로 먼저 연결)"
+  ],
+  "note": "looped Transformer가 05 §1 재료·§7 retrofit·09 P2에 있다.",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-UT09-02",
+  "source_refs": [
+   "U-T09"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/sources/user-statements.md:115",
+  "date": "unknown",
+  "quote": "(2개를 결합한 Mixture of Recursion 포함)",
+  "kind": "requirement",
+  "label": "USER",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md:17 (1. 각 재료의 역할)",
+   "/home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md:18 (1. 각 재료의 역할)",
+   "/home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md:93 (8. MoD/MoR의 인과성)",
+   "/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md:12 (1. 최종 아키텍처를 작은 범위로 먼저 연결)"
+  ],
+  "note": "MoD·MoR의 역할과 인과성·cache 정책이 05 §1·§8에, token routing이 09 P3에 있다(S1 L114 mixture of depth 포함).",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-UT09-03",
+  "source_refs": [
+   "U-T09"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/sources/user-statements.md:116",
+  "date": "unknown",
+  "quote": "depth attention",
+  "kind": "requirement",
+  "label": "USER",
+  "status": "PARTIAL",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md:19 (1. 각 재료의 역할)",
+   "/home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md:99 (9. Depth read와 retrofit의 인터페이스)",
+   "/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md:58 (5. 인과적 개입)",
+   "/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md:11 (1. 최종 아키텍처를 작은 범위로 먼저 연결)"
+  ],
+  "note": "설계(05 §9)와 ablation(08 §5)은 있으나 로드맵 phase에 depth read/Depth-Attention 슬롯이 없다(P2는 중간-depth 출력·causal cache까지).",
+  "superseded_by": null,
+  "gap_edit_ids": [
+   "G1-02"
+  ]
+ },
+ {
+  "id": "F-UT09-04",
+  "source_refs": [
+   "U-T09"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/sources/user-statements.md:118",
+  "date": "unknown",
+  "quote": "Ali도 최근 관심있는 개념들이래",
+  "kind": "process",
+  "label": "USER",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/EVIDENCE.md:30 (확인 깊이의 의미)"
+  ],
+  "note": "설계 요구가 아닌 배경 정보다. EVIDENCE.md가 \"architecture의 효용 근거가 아니며 독립 확인한 사실로 기록하지 않는다\"로 처리했다(docs/03–12에는 없고 필요도 없음). 우선순위 신호로 다룰지는 사용자 확인 필요.",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-UT09-05",
+  "source_refs": [
+   "U-T09"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/sources/user-statements.md:119",
+  "date": "unknown",
+  "quote": "이런 개념들과 뇌파 이론들을 결합해서 이걸 재료와 핵심 메커니즘 베이스로 사용해서",
+  "kind": "requirement",
+  "label": "USER",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md:21 (1. 각 재료의 역할)",
+   "/home/jimmy/repos/full-continual-learning/docs/04-rhythms-and-orchestration.md:78 (7. 실행 시계)",
+   "/home/jimmy/repos/full-continual-learning/docs/04-rhythms-and-orchestration.md:82 (8. 기대하는 통합 결과)",
+   "/home/jimmy/repos/full-continual-learning/docs/06-mathematical-framework.md:45 (5. 현재 생각과 지속 기억의 읽기)",
+   "/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md:40 (3. 대표 실험: 경험이 숙고를 직관으로 바꾸는가)"
+  ],
+  "note": "재료+리듬 결합은 시계 분리(04 §7)·정책 π_ψ(06 §5)·통합 결과 정의(04 §8)로 설계되고 (r,u) 격자(08 §3)로 잰다. loop 깊이×CMS 시간척도 교차 실험은 그 격자 외에 없다.",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-UT09-06",
+  "source_refs": [
+   "U-T09"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/sources/user-statements.md:119",
+  "date": "unknown",
+  "quote": "문맥에 따른 schema 선택/rapid learning/update",
+  "kind": "requirement",
+  "label": "USER",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md:52 (4. Schema controller의 입력과 출력)",
+   "/home/jimmy/repos/full-continual-learning/docs/06-mathematical-framework.md:13 (2. 결과 이전 선택과 이후 책임 추정)",
+   "/home/jimmy/repos/full-continual-learning/docs/06-mathematical-framework.md:23 (3. 빠른 업데이트)",
+   "/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md:19 (2. 핵심 benchmark family)",
+   "/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md:20 (2. 핵심 benchmark family)"
+  ],
+  "note": "목표 1(문맥별 schema 선택·rapid update)은 05 §4·06 §2–§3·08 F03·F04로 설계·측정된다. 같은 뜻: F-UT07-03–05, F-T10-01.",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-UT09-07",
+  "source_refs": [
+   "U-T09"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/sources/user-statements.md:120",
+  "date": "unknown",
+  "quote": "주어진 schema에 따른 빠른, 편향된 추론과 깊은 사고/통찰",
+  "kind": "requirement",
+  "label": "USER",
+  "status": "PARTIAL",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md:91 (7. Recurrent retrofit)",
+   "/home/jimmy/repos/full-continual-learning/docs/06-mathematical-framework.md:67 (6. 비용 민감한 제어)",
+   "/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md:38 (3. 대표 실험: 경험이 숙고를 직관으로 바꾸는가)",
+   "/home/jimmy/repos/full-continual-learning/docs/11-research-agenda.md:28 (4. 통찰의 운영적 정의)"
+  ],
+  "note": "빠른 추론·깊은 사고는 설계됐으나 \"편향된\"(경험이 만든 조건부 prior)은 03–12에 개념·지표가 없고(grep \"편향\"은 05 L107의 다른 용법뿐), 통찰은 정의(11 §4)만 있고 측정 family가 없다.",
+  "superseded_by": null,
+  "gap_edit_ids": [
+   "G1-07",
+   "G1-10",
+   "G1-11"
+  ]
+ },
+ {
+  "id": "F-UT09-08",
+  "source_refs": [
+   "U-T09"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/sources/user-statements.md:123",
+  "date": "unknown",
+  "quote": "너도 저 개념들에 대한 논문포함 읽고 이해하고",
+  "kind": "process",
+  "label": "USER",
+  "status": "PARTIAL",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md:5 (05. 통합 System ONE 아키텍처와 retrofit 경로)",
+   "/home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md:89 (7. Recurrent retrofit)",
+   "/home/jimmy/repos/full-continual-learning/references/catalog.tsv:80 (catalog A02 행)",
+   "/home/jimmy/repos/full-continual-learning/references/catalog.tsv:81 (catalog A03 행)",
+   "/home/jimmy/repos/full-continual-learning/references/catalog.tsv:82 (catalog A04 행)",
+   "/home/jimmy/repos/full-continual-learning/references/catalog.tsv:88 (catalog A09 행)",
+   "/home/jimmy/repos/full-continual-learning/references/catalog.tsv:93 (catalog A14 행)"
+  ],
+  "note": "재료 논문 A01–A04·A06–A15는 catalog 확인 깊이가 metadata-checked/official-search-checked/discussion-import뿐이고 fulltext-read는 0편이다(11-11 정독은 신경망 SBL 11편만). 05는 이 깊이의 주장으로 설계됐다.",
+  "superseded_by": null,
+  "gap_edit_ids": [
+   "G1-14"
+  ]
+ },
+ {
+  "id": "F-UT09-09",
+  "source_refs": [
+   "U-T09"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/sources/user-statements.md:125",
+  "date": "unknown",
+  "quote": "1차~6차까지 나의 의도를 풍부하게 파악하고 이해해서 해당 방향으로 align해서 답해줘",
+  "kind": "process",
+  "label": "USER",
+  "status": "PARTIAL",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md:3 (05. 통합 System ONE 아키텍처와 retrofit 경로)",
+   "/home/jimmy/repos/full-continual-learning/docs/04-rhythms-and-orchestration.md:3 (04. 뇌 리듬에서 상태·내용 의존적 학습 조율로)",
+   "/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md:3 (09. 단계별 MVP: 작은 통합 모델에서 전체 구조로)"
+  ],
+  "note": "6층위 해석은 01 §3(원천)에만 있고 03–12에는 층위→설계 요소→검증 gate 추적이 없다. 층위별 판정: 1·2·5층 반영, 3·4층 부분, 6층 누락(F-L1–F-L6). 예시 층위 이름(표면·태도·방법론·철학·전략·세계관, S1 L126)은 고정 분류가 아니다.",
+  "superseded_by": null,
+  "gap_edit_ids": [
+   "G1-09"
+  ]
+ },
+ {
+  "id": "F-UT10-01",
+  "source_refs": [
+   "U-T10",
+   "U-T05"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/sources/user-statements.md:130",
+  "date": "unknown",
+  "quote": "후속 주간 보고의 범위·분류·초기 추적 논문·확인 경계는",
+  "kind": "process",
+  "label": "USER",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/research/TRACKING_POLICY.md:5 (범위)",
+   "/home/jimmy/repos/full-continual-learning/research/TRACKING_POLICY.md:11 (시간과 신규성)",
+   "/home/jimmy/repos/full-continual-learning/research/TRACKING_POLICY.md:15 (각 논문의 필드)",
+   "/home/jimmy/repos/full-continual-learning/research/TRACKING_POLICY.md:25 (보고 순서)",
+   "/home/jimmy/repos/full-continual-learning/research/TRACKING_POLICY.md:31 (초기 baseline)"
+  ],
+  "note": "위임 대상 파일에 범위·분류·초기 추적 논문(baseline)·접근 깊이 표시가 있다(위임 파일 자체가 정위치). 추적 운영의 설계 연결은 F-UT05-01에서 판정.",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-UT10-02",
+  "source_refs": [
+   "U-T10"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/sources/user-statements.md:130",
+  "date": "unknown",
+  "quote": "현재 저장소 업로드가 자동화의 수정·추가 실행이나 외부 메일 발송을 의미하지 않는다",
+  "kind": "principle",
+  "label": "ARCHIVE",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/10-evolution-policy.md:50 (6. Budget와 자동화)",
+   "/home/jimmy/repos/full-continual-learning/docs/10-evolution-policy.md:52 (6. Budget와 자동화)",
+   "/home/jimmy/repos/full-continual-learning/research/TRACKING_POLICY.md:29 (보고 순서)"
+  ],
+  "note": "편집 문서 서술(사용자 발화 아님). 목적 변경·private data·외부 서비스·운영 승격·새 과금은 별도 권한(10 L50)이고 게시가 자동 개발·push 권한을 주지 않는다(10 L52). 같은 뜻: F-TP-09.",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-UT11-01",
+  "source_refs": [
+   "U-T11"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/sources/user-statements.md:134",
+  "date": "unknown",
+  "quote": "우리 논의 한 모든 내용",
+  "kind": "deliverable",
+  "label": "USER",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/README.md:65 (보존·공개 정책)",
+   "/home/jimmy/repos/full-continual-learning/sources/user-statements.md:3 (사용자 연구 요구 원문)",
+   "/home/jimmy/repos/full-continual-learning/README.md:9 (최종적으로 합의한 방향)"
+  ],
+  "note": "저장소 게시로 충족됐으나 README L65·S1 L3이 \"완전 export/전체 덤프가 아닌 주제별 재구성\"임을 명시한다. 이것을 \"모든 내용\"의 충족으로 볼지는 사용자 확인 필요.",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-UT11-02",
+  "source_refs": [
+   "U-T11"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/sources/user-statements.md:134",
+  "date": "unknown",
+  "quote": "기반 이론들",
+  "kind": "deliverable",
+  "label": "USER",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/03-foundations.md:3 (03. SBL·인지·기억의 이론 기반)",
+   "/home/jimmy/repos/full-continual-learning/docs/03-foundations.md:13 (2. 원자료에서 다룬 13개 이론·회로)",
+   "/home/jimmy/repos/full-continual-learning/docs/06-mathematical-framework.md:3 (06. 수학적 연구 명세와 제한된 이론)"
+  ],
+  "note": "기반 이론은 03(인지·기억 이론 13종)과 06(수식)에 이관됐다. 뇌과학 PDF 발췌는 sources/neuroscience-origin.md에 있다.",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-UT11-03",
+  "source_refs": [
+   "U-T11"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/sources/user-statements.md:134",
+  "date": "unknown",
+  "quote": "references도 모두 포함",
+  "kind": "deliverable",
+  "label": "USER",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/references/catalog.tsv:1 (catalog id 행)",
+   "/home/jimmy/repos/full-continual-learning/README.md:37 (읽는 순서)"
+  ],
+  "note": "references/catalog.tsv 100행이 N/S/A/R/E 식별자와 확인 깊이(fulltext-read 12·official-search-checked 16·metadata-checked 8·discussion-import 61·needs-resolution 3)를 남긴다.",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-TP-01",
+  "source_refs": [
+   "U-T10",
+   "U-T05"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/research/TRACKING_POLICY.md:3",
+  "date": "unknown",
+  "quote": "SBL을 AI 모델의 근간 이론·학습 원리·아키텍처로 삼는 연구",
+  "kind": "process",
+  "label": "USER",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/research/TRACKING_POLICY.md:3 (SBL 전용 주간 추적 정책)"
+  ],
+  "note": "추적 범위가 SBL 근간 연구로 한정되고 기존 Sleep-time Compute 추적과 독립이며 한국어로 보고한다(TP L3). 같은 뜻: F-UT05-01.",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-TP-02",
+  "source_refs": [
+   "U-T10",
+   "U-T05"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/research/TRACKING_POLICY.md:7",
+  "date": "unknown",
+  "quote": "Continuous latent schema를 우선 심층 분석한다.",
+  "kind": "principle",
+  "label": "USER",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/research/TRACKING_POLICY.md:7 (범위)"
+  ],
+  "note": "추적 보고의 우선순위 규칙으로 정책에 있다. 같은 뜻: F-UT05-03(설계 문서에는 우선순위 문장이 없어 PARTIAL), F-DIR-02.",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-TP-03",
+  "source_refs": [
+   "U-T10",
+   "U-T05"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/research/TRACKING_POLICY.md:7",
+  "date": "unknown",
+  "quote": "Symbolic schema(규칙·관계·프로그램·이산 구조), neural/continuous, discrete latent/structured probabilistic, hybrid를 나눈다.",
+  "kind": "requirement",
+  "label": "PROPOSAL",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/research/TRACKING_POLICY.md:7 (범위)",
+   "/home/jimmy/repos/full-continual-learning/docs/03-foundations.md:58 (6. 표현 방식과 학습 지속성의 분리)",
+   "/home/jimmy/repos/full-continual-learning/docs/03-foundations.md:61 (6. 표현 방식과 학습 지속성의 분리)"
+  ],
+  "note": "U-T05의 symbolic/latent 구분 요구를 4분류로 확장한 것이다(PROPOSAL). 같은 분류가 설계 03 §6 표에 있고 continuous와 continual을 혼동하지 않는다.",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-TP-04",
+  "source_refs": [
+   "U-T10",
+   "U-T05"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/research/TRACKING_POLICY.md:9",
+  "date": "unknown",
+  "quote": "일반 RAG·embedding search·DB schema·JSON schema를 이름만으로 포함하지 않는다.",
+  "kind": "principle",
+  "label": "PROPOSAL",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/research/TRACKING_POLICY.md:9 (범위)",
+   "/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md:47 (4. 비교군)"
+  ],
+  "note": "직접 SBL 연구와 인접 연구를 구분하고 이름만 비슷한 memory/RAG를 포함하지 않는 추적 범위 규칙이다. 설계에서는 RAG가 강한 대조군으로만 쓰인다(08 §4).",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-TP-05",
+  "source_refs": [
+   "U-T10",
+   "U-T05"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/research/TRACKING_POLICY.md:13",
+  "date": "unknown",
+  "quote": "의미 있는 변화가 없으면 반복하지 않는다. 새 연구가 없으면 없다고 보고하며 관련 없는 memory 논문으로 채우지 않는다.",
+  "kind": "process",
+  "label": "PROPOSAL",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/research/TRACKING_POLICY.md:13 (시간과 신규성)"
+  ],
+  "note": "시간·신규성 규칙(직전 성공 보고 확인, 첫 실행은 최근 7일, 최초 공개/개정/학회/코드 구분, 신규 발견한 이전 연구는 별도 보고, 무변화 시 반복 금지)이 정책에 있다.",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-TP-06",
+  "source_refs": [
+   "U-T10",
+   "U-T05"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/research/TRACKING_POLICY.md:17",
+  "date": "unknown",
+  "quote": "ICL vs 세션 간 지속 상태, benchmark/baselines, 정량 결과와 denominator, ablation, 실패/한계, 접근 깊이",
+  "kind": "process",
+  "label": "PROPOSAL",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/research/TRACKING_POLICY.md:17 (각 논문의 필드)",
+   "/home/jimmy/repos/full-continual-learning/research/TRACKING_POLICY.md:19 (각 논문의 필드)",
+   "/home/jimmy/repos/full-continual-learning/EVIDENCE.md:21 (확인 깊이의 의미)",
+   "/home/jimmy/repos/full-continual-learning/references/catalog.tsv:1 (catalog id 행)"
+  ],
+  "note": "논문별 필드와 접근 깊이 표시·추정 금지 규칙(TP L17–L19)이 catalog status 열과 EVIDENCE의 확인 깊이 정의로 운영된다.",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-TP-07",
+  "source_refs": [
+   "U-T10",
+   "U-T05"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/research/TRACKING_POLICY.md:23",
+  "date": "unknown",
+  "quote": "동일 구조의 새 과제에 대한 표본 효율, 표면 유사성에 속지 않는 전이, mismatch 시 수정/분리/전환, 보존과 망각, 동일 정확도의 추론 비용·지연, 경험 후 quality–compute 변화.",
+  "kind": "principle",
+  "label": "PROPOSAL",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/research/TRACKING_POLICY.md:23 (Melete 평가 관점)",
+   "/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md:17 (2. 핵심 benchmark family)",
+   "/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md:18 (2. 핵심 benchmark family)",
+   "/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md:21 (2. 핵심 benchmark family)",
+   "/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md:26 (2. 핵심 benchmark family)",
+   "/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md:27 (2. 핵심 benchmark family)",
+   "/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md:70 (6. Metrics)"
+  ],
+  "note": "추적 보고의 Melete 평가 관점 6항목이 08의 F01·F02·F05·F10·F11·효율 지표와 1:1로 대응한다.",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-TP-08",
+  "source_refs": [
+   "U-T10",
+   "U-T05"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/research/TRACKING_POLICY.md:27",
+  "date": "unknown",
+  "quote": "핵심 변화 → latent/neural 우선 심층 → symbolic → hybrid/adjacent → Melete 가설과 검증 → 다음 추적.",
+  "kind": "process",
+  "label": "PROPOSAL",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/research/TRACKING_POLICY.md:27 (보고 순서)",
+   "/home/jimmy/repos/full-continual-learning/research/2026-11-09-sbl-tracking.md:86 (9. Melete로 옮길 세 가설)",
+   "/home/jimmy/repos/full-continual-learning/research/2026-11-09-sbl-tracking.md:96 (10. 추적 항목)"
+  ],
+  "note": "보고 순서(latent 우선, 가설과 검증, 다음 추적)가 정책에 있고 11-09 보고가 같은 순서의 §9 가설·§10 추적 항목을 갖는다.",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-TP-09",
+  "source_refs": [
+   "U-T10"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/research/TRACKING_POLICY.md:29",
+  "date": "unknown",
+  "quote": "외부 메일 발송이나 저장소 변경을 추적 task에 암묵적으로 포함하지 않는다.",
+  "kind": "principle",
+  "label": "ARCHIVE",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/research/TRACKING_POLICY.md:29 (보고 순서)",
+   "/home/jimmy/repos/full-continual-learning/docs/10-evolution-policy.md:50 (6. Budget와 자동화)",
+   "/home/jimmy/repos/full-continual-learning/docs/10-evolution-policy.md:52 (6. Budget와 자동화)"
+  ],
+  "note": "추적 task의 권한 경계가 정책과 10 §6에 있다. 같은 뜻: F-UT10-02.",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-TP-10",
+  "source_refs": [
+   "U-T10",
+   "U-T05"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/research/TRACKING_POLICY.md:35",
+  "date": "unknown",
+  "quote": "Spens의 narrative Mistral+xRAG+LoRA와 별도 GPT-2 구조추론 실험을 섞지 않는다.",
+  "kind": "principle",
+  "label": "ARCHIVE",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/research/TRACKING_POLICY.md:33 (초기 baseline)",
+   "/home/jimmy/repos/full-continual-learning/research/TRACKING_POLICY.md:35 (초기 baseline)",
+   "/home/jimmy/repos/full-continual-learning/research/2026-11-02-baseline.md:14 (직접 neural/continuous 계열)",
+   "/home/jimmy/repos/full-continual-learning/research/2026-11-02-baseline.md:23 (Symbolic/discrete/hybrid)"
+  ],
+  "note": "초기 baseline 목록과 S-HAI v3(단일 schema+다중 grounding)·Spens(두 실험 계열 분리) 구분이 정책과 11-02 baseline 문서에 있다.",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-DEF-01",
+  "source_refs": [
+   "DOC01",
+   "U-T07",
+   "U-T09"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/docs/01-intent-and-charter.md:7",
+  "date": "unknown",
+  "quote": "경험에서 재사용 가능한 연속적인 schema를 형성하고, 그 schema가 현재 입력의 해석과 계산 경로, 필요한 학습을 제어하며, 깊은 사고의 성과가 미래의 빠른 판단으로 전환되는 하나의 System ONE.",
+  "kind": "principle",
+  "label": "PROPOSAL",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md:3 (05. 통합 System ONE 아키텍처와 retrofit 경로)",
+   "/home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md:35 (3. 계산의 개념도)",
+   "/home/jimmy/repos/full-continual-learning/docs/06-mathematical-framework.md:45 (5. 현재 생각과 지속 기억의 읽기)",
+   "/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md:32 (3. 대표 실험: 경험이 숙고를 직관으로 바꾸는가)"
+  ],
+  "note": "정의의 세 절(경험→schema, schema→해석·계산·학습 제어, 숙고→직관)이 각각 05 §3, 06 §5, 08 §3 대표 실험으로 설계·검증된다.",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-DEF-02",
+  "source_refs": [
+   "DOC01",
+   "U-T06"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/docs/01-intent-and-charter.md:9",
+  "date": "unknown",
+  "quote": "명칭 변경이 이전 목적의 폐기를 의미하지 않는다.",
+  "kind": "principle",
+  "label": "PROPOSAL",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/12-melete-lineage.md:3 (12. 기존 Melete와 연구 자산의 이관 경계)",
+   "/home/jimmy/repos/full-continual-learning/docs/12-melete-lineage.md:17 (1. 이전 H1–H5)",
+   "/home/jimmy/repos/full-continual-learning/docs/12-melete-lineage.md:44 (4. 가져올 자산)"
+  ],
+  "note": "12가 과거 H1–H5·N0–N5·J1 기록을 이력으로 보존하고 가져올 자산을 구분해 목적의 연속성을 이어받는다.",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-U01",
+  "source_refs": [
+   "DOC01",
+   "U-T06"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/docs/01-intent-and-charter.md:15",
+  "date": "unknown",
+  "quote": "schema가 형성되고 활용 가능해야 한다 | schema라는 이름의 객체·embedding을 저장한 것으로 끝내지 않는다",
+  "kind": "requirement",
+  "label": "USER",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/03-foundations.md:7 (1. Schema의 운영적 정의)",
+   "/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md:17 (2. 핵심 benchmark family)",
+   "/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md:56 (5. 인과적 개입)",
+   "/home/jimmy/repos/full-continual-learning/docs/06-mathematical-framework.md:35 (4. 느린 schema 학습: 적응 후 새 사례 일반화)"
+  ],
+  "note": "운영 정의(03 L7: 벡터·노드 하나와 일대일 대응 가정 금지)와 F01·인과 개입으로 판정한다. 같은 뜻: F-UT06-08.",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-U02",
+  "source_refs": [
+   "DOC01",
+   "U-T06"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/docs/01-intent-and-charter.md:16",
+  "date": "unknown",
+  "quote": "SBL 이론을 폭넓게 적용하고 검증한다 | 인지 현상 재현과 실제 뇌 알고리즘 입증을 구별한다",
+  "kind": "requirement",
+  "label": "USER",
+  "status": "PARTIAL",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md:30 (2. 핵심 benchmark family)",
+   "/home/jimmy/repos/full-continual-learning/docs/03-foundations.md:13 (2. 원자료에서 다룬 13개 이론·회로)"
+  ],
+  "note": "경계(재현≠뇌 알고리즘 입증)는 08 L30에 있으나 이론→검증 질문→family 대응표가 없다. 같은 뜻: F-UT06-09.",
+  "superseded_by": null,
+  "gap_edit_ids": [
+   "G1-07"
+  ]
+ },
+ {
+  "id": "F-U03",
+  "source_refs": [
+   "DOC01",
+   "U-T06",
+   "U-T09"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/docs/01-intent-and-charter.md:17",
+  "date": "unknown",
+  "quote": "schema와 맞는 새 경험을 rapid learning한다 | prior 획득 비용과 새 과제 적응 비용을 분리한다",
+  "kind": "requirement",
+  "label": "USER",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md:19 (2. 핵심 benchmark family)",
+   "/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md:64 (6. Metrics)",
+   "/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md:72 (6. Metrics)",
+   "/home/jimmy/repos/full-continual-learning/docs/06-mathematical-framework.md:65 (6. 비용 민감한 제어)"
+  ],
+  "note": "F03과 학습 지표, online 비용과 Sleep·학습 amortized 비용의 분리 공개(08 L72, 06 L65)로 prior 획득과 적응 비용을 나눈다. 같은 뜻: F-UT06-10.",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-U04",
+  "source_refs": [
+   "DOC01",
+   "U-T09",
+   "U-T07"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/docs/01-intent-and-charter.md:18",
+  "date": "unknown",
+  "quote": "익숙한 문제는 빠르고 편향된 판단, 필요한 문제는 깊은 사고·통찰 | 고정 난도 분류만이 아니라 경험에 따라 익숙함이 바뀌어야 한다",
+  "kind": "requirement",
+  "label": "USER",
+  "status": "PARTIAL",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md:32 (3. 대표 실험: 경험이 숙고를 직관으로 바꾸는가)",
+   "/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md:42 (3. 대표 실험: 경험이 숙고를 직관으로 바꾸는가)",
+   "/home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md:58 (4. Schema controller의 입력과 출력)",
+   "/home/jimmy/repos/full-continual-learning/docs/11-research-agenda.md:28 (4. 통찰의 운영적 정의)"
+  ],
+  "note": "경험에 따라 곡선이 이동해야 한다는 경계는 08 §3에 있으나 \"편향\"은 03–12에 개념·지표가 없고 통찰은 정의만 있다. 같은 뜻: F-UT09-07.",
+  "superseded_by": null,
+  "gap_edit_ids": [
+   "G1-07",
+   "G1-10",
+   "G1-11"
+  ]
+ },
+ {
+  "id": "F-U05",
+  "source_refs": [
+   "DOC01",
+   "U-T07"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/docs/01-intent-and-charter.md:19",
+  "date": "unknown",
+  "quote": "System 1+2를 하나의 모델에 통합한다 | 별도 작은 판단기 + 외부 대형 LLM이 최종 제품이라는 해석은 사용자 정정으로 대체됐다",
+  "kind": "requirement",
+  "label": "USER",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md:48 (3. 계산의 개념도)",
+   "/home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md:91 (7. Recurrent retrofit)"
+  ],
+  "note": "별도 fast model을 최종 제품으로 전제하지 않고 System 1/2를 같은 모델의 계산 예산 차이로 둔다. 같은 뜻: F-UT07-01.",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-U06",
+  "source_refs": [
+   "DOC01",
+   "U-T07"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/docs/01-intent-and-charter.md:20",
+  "date": "unknown",
+  "quote": "기존 모델의 sequence layer를 Titan-Llama 계열로 retrofit한다 | 원 논문의 부분 전환 성과를 전 층 전환 성공으로 확대하지 않는다",
+  "kind": "requirement",
+  "label": "USER",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md:12 (1. 각 재료의 역할)",
+   "/home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md:80 (6. Titan-Llama의 코드 접점)",
+   "/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md:14 (1. 최종 아키텍처를 작은 범위로 먼저 연결)"
+  ],
+  "note": "부분 전환 결과를 전 층 성공으로 확대하지 않는 상한이 05 §6과 09 P5 행에 있다. 같은 뜻: F-UT07-08.",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-U07",
+  "source_refs": [
+   "DOC01",
+   "U-T07",
+   "U-T06"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/docs/01-intent-and-charter.md:21",
+  "date": "unknown",
+  "quote": "FFN을 CMS로 점진적으로 전환하고 Sleep으로 통합한다 | 가중치 이전, 함수 보존, 추가 학습 비용은 별도 문제다",
+  "kind": "requirement",
+  "label": "USER",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md:60 (5. CMS 점진 전환의 기능 보존 제안)",
+   "/home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md:68 (5. CMS 점진 전환의 기능 보존 제안)",
+   "/home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md:111 (11. Sleep가 만들어야 할 변화)",
+   "/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md:26 (2. 핵심 benchmark family)"
+  ],
+  "note": "함수 보존 전환·완전 제거 시 distillation 별도 비용(05 §5)과 Sleep 통합(05 §11, F10)이 있다. 같은 뜻: F-UT07-09(그쪽은 \"model needs sleep의 방법\" 한정이라 PARTIAL).",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-U08",
+  "source_refs": [
+   "DOC01",
+   "U-T09"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/docs/01-intent-and-charter.md:22",
+  "date": "unknown",
+  "quote": "looped Transformer, MoD/MoR, depth attention을 핵심 재료로 검토한다 | 모든 구성의 동시 채택을 전제하지 않는다",
+  "kind": "requirement",
+  "label": "USER",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md:5 (05. 통합 System ONE 아키텍처와 retrofit 경로)",
+   "/home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md:16 (1. 각 재료의 역할)",
+   "/home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md:19 (1. 각 재료의 역할)",
+   "/home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md:101 (9. Depth read와 retrofit의 인터페이스)"
+  ],
+  "note": "재료 표(05 §1)와 \"공통 인터페이스를 정의하고 구현을 경쟁시킨다\"(05 §9)로 동시 채택을 전제하지 않는다. 로드맵 배치는 F-UT09-03에서 판정.",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-U09",
+  "source_refs": [
+   "DOC01",
+   "U-T07"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/docs/01-intent-and-charter.md:23",
+  "date": "unknown",
+  "quote": "문맥에 따른 schema 판단 MLP/제어 구조를 넣는다 | controller는 구성 요소이며 정답 oracle가 아니다",
+  "kind": "requirement",
+  "label": "USER",
+  "status": "PARTIAL",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md:50 (4. Schema controller의 입력과 출력)",
+   "/home/jimmy/repos/full-continual-learning/docs/06-mathematical-framework.md:11 (2. 결과 이전 선택과 이후 책임 추정)",
+   "/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md:54 (4. 비교군)",
+   "/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md:12 (1. 최종 아키텍처를 작은 범위로 먼저 연결)"
+  ],
+  "note": "oracle은 diagnostic upper bound로만 쓰는 경계(08 L54)는 있으나 controller가 로드맵 P3에서야 도입된다. 같은 뜻: F-UT07-12.",
+  "superseded_by": null,
+  "gap_edit_ids": [
+   "G1-02",
+   "G1-17"
+  ]
+ },
+ {
+  "id": "F-U10",
+  "source_refs": [
+   "DOC01",
+   "U-T07"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/docs/01-intent-and-charter.md:24",
+  "date": "unknown",
+  "quote": "schema offload/versioning/retrieval을 지원한다 | 전면 구현은 후반 단계, 상태 경계는 초기 설계부터",
+  "kind": "requirement",
+  "label": "USER",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/07-state-and-storage.md:5 (1. 시계와 정체성)",
+   "/home/jimmy/repos/full-continual-learning/docs/07-state-and-storage.md:45 (5. 외부화 단위)",
+   "/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md:15 (1. 최종 아키텍처를 작은 범위로 먼저 연결)"
+  ],
+  "note": "상태 경계(07 §1·§5)는 초기 설계, 전면 구현은 P6으로 경계와 일치한다. 같은 뜻: F-UT07-10, F-UT07-11, F-DIR-06.",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-U11",
+  "source_refs": [
+   "DOC01",
+   "U-T08"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/docs/01-intent-and-charter.md:25",
+  "date": "unknown",
+  "quote": "뇌파에서 더 본질적인 상태 의존적 조율을 탐구한다 | 단순한 주기 가변화나 Hz→token 직접 대응으로 축소하지 않는다",
+  "kind": "requirement",
+  "label": "USER",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/04-rhythms-and-orchestration.md:5 (04. 뇌 리듬에서 상태·내용 의존적 학습 조율로)",
+   "/home/jimmy/repos/full-continual-learning/docs/04-rhythms-and-orchestration.md:24 (2. 생물학적 관찰과 적용 한계)",
+   "/home/jimmy/repos/full-continual-learning/docs/04-rhythms-and-orchestration.md:31 (2. 생물학적 관찰과 적용 한계)"
+  ],
+  "note": "축소 금지 경계가 04 전반(R01–R11 한계, 단조 법칙 불채택)에 있다. 같은 뜻: F-UT08-04–06. 로드맵 배치는 F-UT08-02에서 판정.",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-U12",
+  "source_refs": [
+   "DOC01",
+   "U-T06",
+   "U-T02"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/docs/01-intent-and-charter.md:26",
+  "date": "unknown",
+  "quote": "이론·수식·실험 PoC·단계별 MVP·self-evolution을 함께 진행한다 | 공개 문서 게시와 모델 구현/성공은 다르다",
+  "kind": "requirement",
+  "label": "USER",
+  "status": "PARTIAL",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/06-mathematical-framework.md:5 (1. 상태와 시간)",
+   "/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md:32 (3. 대표 실험: 경험이 숙고를 직관으로 바꾸는가)",
+   "/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md:5 (1. 최종 아키텍처를 작은 범위로 먼저 연결)",
+   "/home/jimmy/repos/full-continual-learning/docs/10-evolution-policy.md:56 (7. 최소 진화 루프)"
+  ],
+  "note": "수식(06)·PoC 설계(08)·phase(09)·진화 루프(10)는 각각 있으나 함께 진행하는 구조(점진적 해상도 phase, 진화 권한 연결)가 없다. 같은 뜻: F-UT06-14–19.",
+  "superseded_by": null,
+  "gap_edit_ids": [
+   "G1-01",
+   "G1-02",
+   "G1-03"
+  ]
+ },
+ {
+  "id": "F-L1",
+  "source_refs": [
+   "DOC01",
+   "U-T09"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/docs/01-intent-and-charter.md:34",
+  "date": "unknown",
+  "quote": "Looping은 반복 연산, MoD/MoR은 계산 배분, depth attention은 중간 표현 재사용",
+  "kind": "principle",
+  "label": "USER",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md:7 (1. 각 재료의 역할)",
+   "/home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md:23 (2. 한 모델 안의 네 상태)",
+   "/home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md:35 (3. 계산의 개념도)",
+   "/home/jimmy/repos/full-continual-learning/docs/06-mathematical-framework.md:45 (5. 현재 생각과 지속 기억의 읽기)"
+  ],
+  "note": "재료를 계산 그래프(05 §3)·상태(05 §2, 07)·학습 규칙(06)으로 연결했다. 1–3층은 01이 \"명시적 요구의 재구성\"이라 USER.",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-L2",
+  "source_refs": [
+   "DOC01",
+   "U-T09",
+   "U-T07"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/docs/01-intent-and-charter.md:38",
+  "date": "unknown",
+  "quote": "익숙한 관계는 짧게 처리하고 새 binding은 적은 관측으로 학습한다.",
+  "kind": "principle",
+  "label": "USER",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md:32 (3. 대표 실험: 경험이 숙고를 직관으로 바꾸는가)",
+   "/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md:40 (3. 대표 실험: 경험이 숙고를 직관으로 바꾸는가)",
+   "/home/jimmy/repos/full-continual-learning/docs/06-mathematical-framework.md:87 (9. 프로젝트의 핵심 측정량)",
+   "/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md:19 (2. 핵심 benchmark family)"
+  ],
+  "note": "이전 경험에 따라 처리 방식이 달라지는 것을 S0/SE/SES 대표 실험과 C*_ε 측정으로 판정한다.",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-L3",
+  "source_refs": [
+   "DOC01",
+   "U-T09",
+   "U-T07"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/docs/01-intent-and-charter.md:42",
+  "date": "unknown",
+  "quote": "초기에 schema를 한 번 선택하고 끝내지 않는다.",
+  "kind": "principle",
+  "label": "USER",
+  "status": "PARTIAL",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md:44 (3. 계산의 개념도)",
+   "/home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md:52 (4. Schema controller의 입력과 출력)",
+   "/home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md:95 (8. MoD/MoR의 인과성)",
+   "/home/jimmy/repos/full-continual-learning/docs/06-mathematical-framework.md:49 (5. 현재 생각과 지속 기억의 읽기)",
+   "/home/jimmy/repos/full-continual-learning/docs/03-foundations.md:54 (5. Schema 처리의 기능적 루프)"
+  ],
+  "note": "반복마다 재평가하는 구조(05 §3·§4·§8, 06 §5)는 있으나 사고 중 재선택을 시험하는 family·지표가 08에 없다(F06 ABA는 턴 간 재선택).",
+  "superseded_by": null,
+  "gap_edit_ids": [
+   "G1-07"
+  ]
+ },
+ {
+  "id": "F-L4",
+  "source_refs": [
+   "DOC01",
+   "U-T09"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/docs/01-intent-and-charter.md:46",
+  "date": "unknown",
+  "quote": "Artificial Biased Intelligence의 편향은 오류를 고집하는 성향이 아니라 조건부 prior다.",
+  "kind": "principle",
+  "label": "PROPOSAL",
+  "status": "PARTIAL",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/06-mathematical-framework.md:13 (2. 결과 이전 선택과 이후 책임 추정)",
+   "/home/jimmy/repos/full-continual-learning/docs/06-mathematical-framework.md:67 (6. 비용 민감한 제어)",
+   "/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md:18 (2. 핵심 benchmark family)",
+   "/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md:21 (2. 핵심 benchmark family)",
+   "/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md:68 (6. Metrics)"
+  ],
+  "note": "\"편향·조건부 prior\"라는 개념과 지표가 03–12에 없다(grep \"편향\"은 05 L107의 다른 용법 1건뿐). q^-·F02·F05·correction latency가 구성 요소만 간접 커버한다. 4–6층은 01이 \"대화에서 도출한 해석\"이라 PROPOSAL.",
+  "superseded_by": null,
+  "gap_edit_ids": [
+   "G1-10",
+   "G1-11"
+  ]
+ },
+ {
+  "id": "F-L5",
+  "source_refs": [
+   "DOC01",
+   "U-T09",
+   "U-T02"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/docs/01-intent-and-charter.md:50",
+  "date": "unknown",
+  "quote": "무엇을 기억할지, 얼마나 생각할지, 언제 기존 이해를 보호할지, 어느 차원을 확장할지까지 경험과 평가로 개선한다.",
+  "kind": "principle",
+  "label": "PROPOSAL",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/10-evolution-policy.md:5 (1. 세 루프와 권한)",
+   "/home/jimmy/repos/full-continual-learning/docs/06-mathematical-framework.md:39 (4. 느린 schema 학습: 적응 후 새 사례 일반화)",
+   "/home/jimmy/repos/full-continual-learning/docs/06-mathematical-framework.md:67 (6. 비용 민감한 제어)",
+   "/home/jimmy/repos/full-continual-learning/docs/04-rhythms-and-orchestration.md:44 (3. 조율을 위한 최소 분리)",
+   "/home/jimmy/repos/full-continual-learning/docs/11-research-agenda.md:24 (3. 표현 보호와 확장)"
+  ],
+  "note": "정책 학습은 06 §4(θ,ψ 동시 최적화)·§6(halting 교사 신호), 보호·확장은 04 §3·11 §3, 세 시간척도·권한은 10 §1이 다룬다.",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-L6",
+  "source_refs": [
+   "DOC01",
+   "U-T09",
+   "U-T03"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/docs/01-intent-and-charter.md:54",
+  "date": "unknown",
+  "quote": "같은 초기 모델이라도 이력에 따라 잘 알아보는 구조, 우선 가설, 계산량, 학습 정책이 달라질 수 있다는 연구 가설이다.",
+  "kind": "hypothesis",
+  "label": "PROPOSAL",
+  "status": "MISSING",
+  "design_locations": [
+   "목표: /home/jimmy/repos/full-continual-learning/docs/11-research-agenda.md:38 (6. LLM과 개인 경험의 관계)",
+   "검색: 자기 조직|self-organi|이력에 따라|이력 의존|history-depend|history-dependent|이력별|이력이 다른 (docs/03–12) → 0건"
+  ],
+  "note": "이력 의존 자기 조직화 가설은 설계에도 평가에도 없다(11 §6 개인 경험 문단·§8 \"검증 없이 주장하지 않을 것\"에도 미기재). 6층은 01이 \"대화에서 도출한 해석\"이므로 사용자 확인 필요.",
+  "superseded_by": null,
+  "gap_edit_ids": [
+   "G1-12",
+   "G1-07"
+  ]
+ },
+ {
+  "id": "F-CP1",
+  "source_refs": [
+   "DOC01",
+   "U-T06"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/docs/01-intent-and-charter.md:58",
+  "date": "unknown",
+  "quote": "관련 경험에서 배운 구조가 새로운 대상·표현을 가진 과제에 대한 목표 성능까지의 관측 수를 줄인다.",
+  "kind": "hypothesis",
+  "label": "PROPOSAL",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md:19 (2. 핵심 benchmark family)",
+   "/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md:64 (6. Metrics)",
+   "/home/jimmy/repos/full-continual-learning/docs/06-mathematical-framework.md:69 (7. 제한된 선형 표본 효율 설명)"
+  ],
+  "note": "H-SAMPLE 개념은 F03·학습 지표·06 §7로 측정되나 명칭 H-SAMPLE은 03–12에 없다(F-CP3에서 대응 문장 보강). 같은 뜻: F-VQ-1.",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-CP2",
+  "source_refs": [
+   "DOC01",
+   "U-T09"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/docs/01-intent-and-charter.md:60",
+  "date": "unknown",
+  "quote": "경험과 통합 이후 새로운 구조 공유 사례에서 같은 정확도를 얻는 데 필요한 총 계산이 줄어든다.",
+  "kind": "hypothesis",
+  "label": "PROPOSAL",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/06-mathematical-framework.md:93 (9. 프로젝트의 핵심 측정량)",
+   "/home/jimmy/repos/full-continual-learning/docs/06-mathematical-framework.md:65 (6. 비용 민감한 제어)",
+   "/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md:72 (6. Metrics)",
+   "/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md:32 (3. 대표 실험: 경험이 숙고를 직관으로 바꾸는가)"
+  ],
+  "note": "C*_ε 감소(06 §9)와 비용 구성(encoder·loop·routing·depth read·write/backward·retrieval·decoder, 06 L65·08 L72)이 \"loop만 줄이고 다른 비용을 늘린 결과를 인정하지 않는다\"를 구현한다. 같은 뜻: F-VQ-2, F-DIR-04.",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-CP3",
+  "source_refs": [
+   "DOC01"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/docs/01-intent-and-charter.md:62",
+  "date": "unknown",
+  "quote": "두 명제는 독립적으로 평가한다.",
+  "kind": "principle",
+  "label": "PROPOSAL",
+  "status": "PARTIAL",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md:19 (2. 핵심 benchmark family)",
+   "/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md:27 (2. 핵심 benchmark family)",
+   "/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md:11 (1. 세 종류의 성공을 분리)"
+  ],
+  "note": "F03과 F11이 따로 있으나 H-SAMPLE/H-COMPUTE 명칭 대응과 \"한쪽 PASS가 다른 쪽의 근거가 아니다\"라는 독립 판정 규칙 문장이 08에 없다.",
+  "superseded_by": null,
+  "gap_edit_ids": [
+   "G1-09"
+  ]
+ },
+ {
+  "id": "F-NG-01",
+  "source_refs": [
+   "DOC01",
+   "U-T04"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/docs/01-intent-and-charter.md:66",
+  "date": "unknown",
+  "quote": "일반 RAG, 개인 선호 요약, DB/JSON schema 검색만으로 목표 완료 처리하지 않는다.",
+  "kind": "principle",
+  "label": "PROPOSAL",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md:47 (4. 비교군)",
+   "/home/jimmy/repos/full-continual-learning/docs/07-state-and-storage.md:72 (7. 검색과 residency)",
+   "/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md:42 (4. 중단·전환 조건)"
+  ],
+  "note": "RAG·structured text memory는 강한 대조군이고(08 §4) 검색 key는 적합성 판정을 대신하지 않으며(07 §7) neural schema의 독자 기여 미입증은 분리 보고한다(09 §4).",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-NG-02",
+  "source_refs": [
+   "DOC01",
+   "U-T07"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/docs/01-intent-and-charter.md:67",
+  "date": "unknown",
+  "quote": "외부 frozen LLM의 프롬프트 앞에 원문을 붙이는 성공을 최종 neural schema 시스템으로 바꾸지 않는다.",
+  "kind": "principle",
+  "label": "PROPOSAL",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md:47 (4. 비교군)",
+   "/home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md:48 (3. 계산의 개념도)",
+   "/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md:42 (4. 중단·전환 조건)"
+  ],
+  "note": "같은 경험을 raw history로 준 consumer는 비교군(08 §4)이며 외부 teacher·baseline은 통합 목표를 대체하지 않는다(05 L48).",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-NG-03",
+  "source_refs": [
+   "DOC01",
+   "U-T04"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/docs/01-intent-and-charter.md:68",
+  "date": "unknown",
+  "quote": "LLM에 구조적 표상이 전혀 없다고 가정하지 않는다.",
+  "kind": "principle",
+  "label": "PROPOSAL",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/11-research-agenda.md:38 (6. LLM과 개인 경험의 관계)",
+   "/home/jimmy/repos/full-continual-learning/docs/11-research-agenda.md:7 (1. Pretraining과 alignment 가설)"
+  ],
+  "note": "11 §6이 base LLM의 재사용 구조·ICL 가능성을 인정하고 차별성을 과장하지 않는다. 같은 뜻: F-COR-01, F-UT04-03.",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-NG-04",
+  "source_refs": [
+   "DOC01",
+   "U-T02"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/docs/01-intent-and-charter.md:69",
+  "date": "unknown",
+  "quote": "자연어 vec2text 복원이 반드시 필요한 인터페이스라고 고정하지 않는다.",
+  "kind": "principle",
+  "label": "PROPOSAL",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md:105 (10. Vec2text에서의 전환)",
+   "/home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md:107 (10. Vec2text에서의 전환)"
+  ],
+  "note": "05 §10이 vec2text를 필수 관문으로 두지 않고 학습된 interface를 같은 정보·예산으로 비교한다. 같은 뜻: F-UT02-02, F-COR-07.",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-NG-05",
+  "source_refs": [
+   "DOC01",
+   "U-T06"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/docs/01-intent-and-charter.md:70",
+  "date": "unknown",
+  "quote": "모든 경험학습이 schema learning이라는 정의로 가설을 반증 불가능하게 만들지 않는다.",
+  "kind": "principle",
+  "label": "PROPOSAL",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/03-foundations.md:11 (1. Schema의 운영적 정의)",
+   "/home/jimmy/repos/full-continual-learning/docs/11-research-agenda.md:7 (1. Pretraining과 alignment 가설)"
+  ],
+  "note": "03 L11과 11 L7이 같은 상한을 둔다. 같은 뜻: F-UT06-05.",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-NG-06",
+  "source_refs": [
+   "DOC01"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/docs/01-intent-and-charter.md:71",
+  "date": "unknown",
+  "quote": "코드·unit test·문서 gate를 실제 학습 효용 또는 제품 E2E 성공으로 승격하지 않는다.",
+  "kind": "principle",
+  "label": "PROPOSAL",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md:11 (1. 세 종류의 성공을 분리)",
+   "/home/jimmy/repos/full-continual-learning/docs/07-state-and-storage.md:78 (8. 최소 상태 회귀)",
+   "/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md:46 (5. 지속적으로 유지할 자산)"
+  ],
+  "note": "Contract/Efficacy/Product 분리(08 §1)와 저장·해시 검사 vs 판단 효용 분리 보고(07 §8), 테스트 수·문서량을 진전 지표로 쓰지 않는 규칙(09 §5)이 있다.",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-NG-07",
+  "source_refs": [
+   "DOC01",
+   "U-T06"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/docs/01-intent-and-charter.md:72",
+  "date": "unknown",
+  "quote": "뇌가 모든 기억의 불변 버전을 보관한다거나 하나의 universal switch가 모든 schema를 고른다고 주장하지 않는다.",
+  "kind": "principle",
+  "label": "PROPOSAL",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/03-foundations.md:29 (2. 원자료에서 다룬 13개 이론·회로)",
+   "/home/jimmy/repos/full-continual-learning/docs/04-rhythms-and-orchestration.md:31 (2. 생물학적 관찰과 적용 한계)",
+   "/home/jimmy/repos/full-continual-learning/docs/11-research-agenda.md:54 (8. 검증 없이 주장하지 않을 것)"
+  ],
+  "note": "03 표 한계 열, 04 L31, 11 §8이 같은 금지 주장을 명시한다.",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-SR-01",
+  "source_refs": [
+   "DOC01",
+   "U-T09"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/docs/01-intent-and-charter.md:76",
+  "date": "unknown",
+  "quote": "깊게 풀었던 답을 그대로 재출력하는 것이 아니라, 새 사례에서 공통 관계를 재사용해야 한다.",
+  "kind": "principle",
+  "label": "PROPOSAL",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md:17 (2. 핵심 benchmark family)",
+   "/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md:18 (2. 핵심 benchmark family)",
+   "/home/jimmy/repos/full-continual-learning/docs/11-research-agenda.md:30 (4. 통찰의 운영적 정의)"
+  ],
+  "note": "F01(같은 관계·다른 개체)·F02(같은 어휘·다른 관계)가 재출력과 재사용을 구분하고 11 L30이 동일 정답 암기를 충분하지 않다고 명시한다.",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-SR-02",
+  "source_refs": [
+   "DOC01",
+   "U-T09"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/docs/01-intent-and-charter.md:76",
+  "date": "unknown",
+  "quote": "불일치 상황에는 그 편향을 적절히 제한해야 한다.",
+  "kind": "principle",
+  "label": "PROPOSAL",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md:18 (2. 핵심 benchmark family)",
+   "/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md:20 (2. 핵심 benchmark family)",
+   "/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md:21 (2. 핵심 benchmark family)",
+   "/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md:25 (2. 핵심 benchmark family)",
+   "/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md:68 (6. Metrics)"
+  ],
+  "note": "불일치 시 제한은 negative transfer(F02)·보류/학습/분화(F04)·국소 수정(F05)·calibration(F09)·correction latency로 측정된다. 편향 개념 자체의 명시는 F-L4에서 판정.",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-SR-03",
+  "source_refs": [
+   "DOC01",
+   "U-T09"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/docs/01-intent-and-charter.md:76",
+  "date": "unknown",
+  "quote": "insight는 loop 수가 많다는 뜻이 아니라",
+  "kind": "principle",
+  "label": "PROPOSAL",
+  "status": "PARTIAL",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/11-research-agenda.md:28 (4. 통찰의 운영적 정의)",
+   "/home/jimmy/repos/full-continual-learning/docs/11-research-agenda.md:30 (4. 통찰의 운영적 정의)",
+   "/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md:26 (2. 핵심 benchmark family)"
+  ],
+  "note": "통찰은 11 §4가 새 관계·표현·적용 조건의 형성과 이후 전이로 정의하나 측정 protocol·family·gate가 08에 없다. 같은 뜻: F-COR-09.",
+  "superseded_by": null,
+  "gap_edit_ids": [
+   "G1-07"
+  ]
+ },
+ {
+  "id": "F-COR-01",
+  "source_refs": [
+   "DOC02",
+   "U-T04"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/docs/02-discussion-history.md:81",
+  "date": "unknown",
+  "quote": "LLM은 schema가 없다 | 구조적 표상은 존재할 수 있다. 지속되는 경험별 학습을 연구한다",
+  "kind": "correction",
+  "label": "PROPOSAL",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/11-research-agenda.md:36 (6. LLM과 개인 경험의 관계)",
+   "/home/jimmy/repos/full-continual-learning/docs/11-research-agenda.md:38 (6. LLM과 개인 경험의 관계)",
+   "/home/jimmy/repos/full-continual-learning/docs/11-research-agenda.md:7 (1. Pretraining과 alignment 가설)"
+  ],
+  "note": "assistant 재해석(사용자 진술 아님 → SUPERSEDED 근거가 아니다). 원 의도(LLM의 빠른 학습·판단 부족)는 H-SAMPLE/H-COMPUTE 측정으로 설계된다. 사용자가 이 재해석을 수용했는지 원문 근거가 없어 확인 필요. 같은 뜻: F-UT04-03, F-NG-03.",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-COR-02",
+  "source_refs": [
+   "DOC02",
+   "U-T04"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/docs/02-discussion-history.md:82",
+  "date": "unknown",
+  "quote": "schema=경험=직관 | 사건, 재사용 구조, 빠른 적용을 구별한다",
+  "kind": "correction",
+  "label": "PROPOSAL",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/03-foundations.md:9 (1. Schema의 운영적 정의)",
+   "/home/jimmy/repos/full-continual-learning/docs/03-foundations.md:7 (1. Schema의 운영적 정의)"
+  ],
+  "note": "\"=\"를 구별로 바꾼 assistant 재해석이며 03 L9가 세 개념의 관계(직관=구조의 빠른 활성화)를 유지한다. 사용자 수용 여부 확인 필요. 같은 뜻: F-UT04-02.",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-COR-03",
+  "source_refs": [
+   "DOC02",
+   "U-T07"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/docs/02-discussion-history.md:83",
+  "date": "unknown",
+  "quote": "작은 fast 모델 + 큰 LLM이 최종 목표 | 같은 모델의 가변 계산·학습 모드가 최종 방향",
+  "kind": "correction",
+  "label": "USER",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md:35 (3. 계산의 개념도)",
+   "/home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md:48 (3. 계산의 개념도)",
+   "/home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md:91 (7. Recurrent retrofit)"
+  ],
+  "note": "사용자 정정(U-T07, 02 T07 \"중요한 사용자 정정\")이 설계 전반에 반영됐다. 같은 뜻: F-UT07-01, F-T07-01, F-DIR-01, F-U05.",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-COR-04",
+  "source_refs": [
+   "DOC02",
+   "U-T08"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/docs/02-discussion-history.md:84",
+  "date": "unknown",
+  "quote": "느린 CMS는 덜 계산한다 | forward 참여, update 빈도, retention은 별개",
+  "kind": "correction",
+  "label": "PROPOSAL",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/04-rhythms-and-orchestration.md:9 (1. CMS에서 구분할 것)",
+   "/home/jimmy/repos/full-continual-learning/docs/04-rhythms-and-orchestration.md:11 (1. CMS에서 구분할 것)",
+   "/home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md:14 (1. 각 재료의 역할)"
+  ],
+  "note": "04 §1과 05 §1 CMS 행이 처리 시간척도·update 기회·변경 크기·유지 기간을 분리한다.",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-COR-05",
+  "source_refs": [
+   "DOC02",
+   "U-T07"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/docs/02-discussion-history.md:85",
+  "date": "unknown",
+  "quote": "내부 loop는 새 관측이다 | 사고 반복은 증거 수를 늘리지 않는다",
+  "kind": "correction",
+  "label": "PROPOSAL",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/07-state-and-storage.md:9 (1. 시계와 정체성)",
+   "/home/jimmy/repos/full-continual-learning/docs/07-state-and-storage.md:24 (2. Read/write 분리)",
+   "/home/jimmy/repos/full-continual-learning/docs/04-rhythms-and-orchestration.md:80 (7. 실행 시계)",
+   "/home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md:103 (9. Depth read와 retrofit의 인터페이스)"
+  ],
+  "note": "시계 분리(07 §1)·generated 해석의 root 승격 금지(07 §2)·depth bank 반복 읽기의 독립 confidence 금지(05 §9)로 설계됐다.",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-COR-06",
+  "source_refs": [
+   "DOC02",
+   "U-T06"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/docs/02-discussion-history.md:86",
+  "date": "unknown",
+  "quote": "fast weight가 저장되면 schema 성공 | 새 사례 전이와 causal intervention 필요",
+  "kind": "correction",
+  "label": "PROPOSAL",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md:11 (1. 각 재료의 역할)",
+   "/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md:17 (2. 핵심 benchmark family)",
+   "/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md:56 (5. 인과적 개입)"
+  ],
+  "note": "05 §1 Titans 행의 가정 금지, F01 전이, 08 §5 인과 개입이 저장=성공 등식을 막는다.",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-COR-07",
+  "source_refs": [
+   "DOC02",
+   "U-T02"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/docs/02-discussion-history.md:87",
+  "date": "unknown",
+  "quote": "vec2text를 반드시 성공시켜야 함 | 학습된 latent interface/모델 내부 연결도 가능",
+  "kind": "correction",
+  "label": "PROPOSAL",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md:105 (10. Vec2text에서의 전환)",
+   "/home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md:107 (10. Vec2text에서의 전환)"
+  ],
+  "note": "05 §10에 반영됐다. 같은 뜻: F-UT02-02, F-NG-04.",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-COR-08",
+  "source_refs": [
+   "DOC02",
+   "U-T08"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/docs/02-discussion-history.md:88",
+  "date": "unknown",
+  "quote": "뇌파를 token update period로 복제 | 상태·내용·결합·가소성의 조율이 연구 대상",
+  "kind": "correction",
+  "label": "PROPOSAL",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/04-rhythms-and-orchestration.md:1 (04. 뇌 리듬에서 상태·내용 의존적 학습 조율로)",
+   "/home/jimmy/repos/full-continual-learning/docs/04-rhythms-and-orchestration.md:5 (04. 뇌 리듬에서 상태·내용 의존적 학습 조율로)",
+   "/home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md:21 (1. 각 재료의 역할)"
+  ],
+  "note": "04 전체와 05 §1 Rhythm 행의 금지 가정이 Hz→token 대응을 막는다.",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-COR-09",
+  "source_refs": [
+   "DOC02",
+   "U-T09"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/docs/02-discussion-history.md:89",
+  "date": "unknown",
+  "quote": "깊은 loop가 통찰 | 새 구조와 이후 전이가 있어야 한다",
+  "kind": "correction",
+  "label": "PROPOSAL",
+  "status": "PARTIAL",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/11-research-agenda.md:28 (4. 통찰의 운영적 정의)",
+   "/home/jimmy/repos/full-continual-learning/docs/11-research-agenda.md:30 (4. 통찰의 운영적 정의)"
+  ],
+  "note": "정의는 11 §4에 있으나 측정·gate가 없다(같은 뜻: F-SR-03).",
+  "superseded_by": null,
+  "gap_edit_ids": [
+   "G1-07"
+  ]
+ },
+ {
+  "id": "F-COR-10",
+  "source_refs": [
+   "DOC02",
+   "U-T06"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/docs/02-discussion-history.md:90",
+  "date": "unknown",
+  "quote": "pretraining=하나의 schema, RL=분화가 사실 | 반증 가능한 별도 후속 가설",
+  "kind": "correction",
+  "label": "PROPOSAL",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/11-research-agenda.md:3 (1. Pretraining과 alignment 가설)",
+   "/home/jimmy/repos/full-continual-learning/docs/11-research-agenda.md:7 (1. Pretraining과 alignment 가설)",
+   "/home/jimmy/repos/full-continual-learning/docs/11-research-agenda.md:18 (1. Pretraining과 alignment 가설)"
+  ],
+  "note": "11 §1이 사용자 가설로 보존하되 사실로 채택하지 않고 경쟁 가설·대조·후속 연구로 둔다. 같은 뜻: F-UT06-16.",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-COR-11",
+  "source_refs": [
+   "DOC02",
+   "U-T02"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/docs/02-discussion-history.md:91",
+  "date": "unknown",
+  "quote": "사용자가 원한 모든 수치 기준이 확정 | 수치 gate와 phase 세부는 proposal임을 표시",
+  "kind": "correction",
+  "label": "PROPOSAL",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md:74 (6. Metrics)",
+   "/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md:3 (09. 단계별 MVP: 작은 통합 모델에서 전체 구조로)"
+  ],
+  "note": "08 L74와 09 L3이 과거 수치 gate와 phase 세부를 proposal로 표시한다.",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-T01-01",
+  "source_refs": [
+   "DOC02",
+   "U-T01"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/docs/02-discussion-history.md:7",
+  "date": "unknown",
+  "quote": "단순 사실 회수 대신 경험·조건·목표·판단·행동·결과·예외·정정 이력을 보존하고, 모델이나 도구가 바뀌어도 조건부 판단 방식을 이어가는 개인 기억이다.",
+  "kind": "principle",
+  "label": "PROPOSAL",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/06-mathematical-framework.md:7 (1. 상태와 시간)",
+   "/home/jimmy/repos/full-continual-learning/docs/07-state-and-storage.md:68 (6. Version 의미)",
+   "/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md:28 (2. 핵심 benchmark family)",
+   "/home/jimmy/repos/full-continual-learning/docs/12-melete-lineage.md:7 (1. 이전 H1–H5)"
+  ],
+  "note": "경험 기록 단위(06 e_t=(x,y,c,source))·모델 교체 시 migration(07 §6, F12)·H1 이력(12)으로 설계됐다. \"조건부 판단이 모델 교체 후에도 유지\"는 migration 후보 수준이다. 요청: F-UT01-01.",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-T01-02",
+  "source_refs": [
+   "DOC02",
+   "U-T01"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/docs/02-discussion-history.md:7",
+  "date": "unknown",
+  "quote": "새 기술 검토에는 작은 실험을 선호하고 장애에는 우선 복구하는 두 패턴을",
+  "kind": "principle",
+  "label": "PROPOSAL",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md:49 (4. 비교군)",
+   "/home/jimmy/repos/full-continual-learning/docs/06-mathematical-framework.md:9 (1. 상태와 시간)",
+   "/home/jimmy/repos/full-continual-learning/docs/03-foundations.md:33 (3. 구체 예시)"
+  ],
+  "note": "상반된 조건부 패턴을 한 문장으로 평균내지 않는 원칙은 조건별 schema·mixture prior 비교군으로 설계된다(Melete 시기 원칙이라 W2와 겹침).",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-T02-01",
+  "source_refs": [
+   "DOC02",
+   "U-T02"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/docs/02-discussion-history.md:13",
+  "date": "unknown",
+  "quote": "사용자는 vec2text의 효과와 직접 설계의 불확실성 때문에 작은 시작점에서 evolutionary하게 고도화하는 접근을 제안했다.",
+  "kind": "decision",
+  "label": "PROPOSAL",
+  "status": "PARTIAL",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/10-evolution-policy.md:11 (1. 세 루프와 권한)",
+   "/home/jimmy/repos/full-continual-learning/docs/10-evolution-policy.md:32 (3. 후보 생성 계약)",
+   "/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md:9 (1. 최종 아키텍처를 작은 범위로 먼저 연결)",
+   "/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md:10 (1. 최종 아키텍처를 작은 범위로 먼저 연결)"
+  ],
+  "note": "같은 뜻: F-UT02-03(점진적 해상도 규칙과 어긋남). 필수 4요소는 F-UT02-04–07에서 판정.",
+  "superseded_by": null,
+  "gap_edit_ids": [
+   "G1-01",
+   "G1-03",
+   "G1-04"
+  ]
+ },
+ {
+  "id": "F-T02-02",
+  "source_refs": [
+   "DOC02",
+   "U-T02"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/docs/02-discussion-history.md:15",
+  "date": "unknown",
+  "quote": "(a) 실제 경험에 의한 memory state 학습, (b) AI가 architecture·code·update policy를 개선하는 개발 진화, (c) 진화 절차 자체의 개선을 분리했다.",
+  "kind": "decision",
+  "label": "PROPOSAL",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/10-evolution-policy.md:5 (1. 세 루프와 권한)",
+   "/home/jimmy/repos/full-continual-learning/docs/10-evolution-policy.md:7 (1. 세 루프와 권한)",
+   "/home/jimmy/repos/full-continual-learning/docs/10-evolution-policy.md:9 (1. 세 루프와 권한)",
+   "/home/jimmy/repos/full-continual-learning/docs/10-evolution-policy.md:11 (1. 세 루프와 권한)"
+  ],
+  "note": "10 §1 세 루프 표와 \"개발 절차 자체의 진화는 더 바깥쪽 루프\" 문장이 (a)(b)(c) 분리에 대응한다(사용자 수용 여부 원문 없음, assistant·논의 유래).",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-T02-03",
+  "source_refs": [
+   "DOC02",
+   "U-T02"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/docs/02-discussion-history.md:15",
+  "date": "unknown",
+  "quote": "평가기는 후보와 독립되어야 하며 dev 성능을 올리기 위해 정답·split·채점기를 바꾸면 안 된다.",
+  "kind": "principle",
+  "label": "PROPOSAL",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/10-evolution-policy.md:42 (5. Evaluator의 독립성)",
+   "/home/jimmy/repos/full-continual-learning/docs/10-evolution-policy.md:44 (5. Evaluator의 독립성)",
+   "/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md:82 (7. Data와 통계)"
+  ],
+  "note": "10 §5가 실행 권한 분리와 evaluator version 분리를, 08 L82가 결과 후 기준 변경 금지를 규정한다.",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-T02-04",
+  "source_refs": [
+   "DOC02",
+   "U-T02"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/docs/02-discussion-history.md:15",
+  "date": "unknown",
+  "quote": "복잡성 증가는 목표가 아니라 비용을 정당화할 효과가 있을 때 허용하는 결과다.",
+  "kind": "principle",
+  "label": "PROPOSAL",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md:54 (4. 비교군)",
+   "/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md:42 (4. 중단·전환 조건)",
+   "/home/jimmy/repos/full-continual-learning/docs/10-evolution-policy.md:60 (7. 최소 진화 루프)"
+  ],
+  "note": "단순 방법이 더 좋으면 복잡한 구조 필요성을 주장하지 않는 규칙이 08 §4·09 §4·10 §7에 있다.",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-T03-01",
+  "source_refs": [
+   "DOC02",
+   "U-T03"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/docs/02-discussion-history.md:21",
+  "date": "unknown",
+  "quote": "사용자는 익숙한 것과 연결해 배우는 과정, 개인마다 다른 익숙함, 개념을 여러 층위로 분해해 관계를 찾는 능력을 강조했다.",
+  "kind": "principle",
+  "label": "PROPOSAL",
+  "status": "PARTIAL",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/03-foundations.md:24 (2. 원자료에서 다룬 13개 이론·회로)",
+   "/home/jimmy/repos/full-continual-learning/docs/03-foundations.md:25 (2. 원자료에서 다룬 13개 이론·회로)",
+   "/home/jimmy/repos/full-continual-learning/docs/03-foundations.md:36 (3. 구체 예시)",
+   "/home/jimmy/repos/full-continual-learning/docs/07-state-and-storage.md:74 (7. 검색과 residency)"
+  ],
+  "note": "연결 학습은 반영, 개인별 익숙함(이력 의존)과 다층 분해의 검증 family가 없다. 같은 뜻: F-NO-04–F-NO-06.",
+  "superseded_by": null,
+  "gap_edit_ids": [
+   "G1-07",
+   "G1-12"
+  ]
+ },
+ {
+  "id": "F-T06-01",
+  "source_refs": [
+   "DOC02",
+   "U-T06"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/docs/02-discussion-history.md:41",
+  "date": "unknown",
+  "quote": "학습에는 외부 사람이 붙인 정답이 없을 수 있지만 다음 관측·과제 결과·정정·reward 등 학습 신호는 필요하다.",
+  "kind": "principle",
+  "label": "PROPOSAL",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/03-foundations.md:11 (1. Schema의 운영적 정의)",
+   "/home/jimmy/repos/full-continual-learning/docs/06-mathematical-framework.md:25 (3. 빠른 업데이트)",
+   "/home/jimmy/repos/full-continual-learning/docs/07-state-and-storage.md:24 (2. Read/write 분리)"
+  ],
+  "note": "정답 없는 학습의 신호 정의(03 L11), 목적함수 구분(06 §3), generated 해석의 증거 승격 금지(07 §2)로 반영됐다. 같은 뜻: F-UT06-06.",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-T07-01",
+  "source_refs": [
+   "DOC02",
+   "U-T07"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/docs/02-discussion-history.md:47",
+  "date": "unknown",
+  "quote": "초기 제안에는 작은 외부 fast predictor와 별도 LLM fallback이 있었다.",
+  "kind": "correction",
+  "label": "USER",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md:48 (3. 계산의 개념도)",
+   "/home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md:91 (7. Recurrent retrofit)"
+  ],
+  "note": "02 T07 표제(\"중요한 사용자 정정\")가 사용자 정정으로 귀속한 항목이다. 초기 assistant 제안(외부 fast predictor+LLM fallback)이 폐기되고 통합 모델로 대체됐다. 같은 뜻: F-UT07-01, F-COR-03.",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-T07-03",
+  "source_refs": [
+   "DOC02",
+   "U-T07"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/docs/02-discussion-history.md:51",
+  "date": "unknown",
+  "quote": "경험 후 새 관계 공유 사례에서 동일 정확도에 필요한 loop와 총 계산량 감소",
+  "kind": "decision",
+  "label": "PROPOSAL",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md:32 (3. 대표 실험: 경험이 숙고를 직관으로 바꾸는가)",
+   "/home/jimmy/repos/full-continual-learning/docs/06-mathematical-framework.md:93 (9. 프로젝트의 핵심 측정량)",
+   "/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md:42 (3. 대표 실험: 경험이 숙고를 직관으로 바꾸는가)"
+  ],
+  "note": "정정 후 대표 PoC 정의가 08 §3 대표 실험과 06 §9 C*_ε 비교로 설계됐다. PoC PASS 판정 문장은 F-UT06-15에서 PARTIAL.",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-T07-04",
+  "source_refs": [
+   "DOC02",
+   "U-T07"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/docs/02-discussion-history.md:51",
+  "date": "unknown",
+  "quote": "이전 covariance 실험은 진입 근거일 뿐 통합 모델의 PoC로 이름을 바꾸지 않는다.",
+  "kind": "principle",
+  "label": "PROPOSAL",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md:9 (1. 최종 아키텍처를 작은 범위로 먼저 연결)",
+   "/home/jimmy/repos/full-continual-learning/docs/06-mathematical-framework.md:3 (06. 수학적 연구 명세와 제한된 이론)"
+  ],
+  "note": "Phase-0은 별도 실험이고 통합 P0 완료로 부르면 안 된다는 상한이 09 P0 행·06 머리에 있다.",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-T08-01",
+  "source_refs": [
+   "DOC02",
+   "U-T07"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/docs/02-discussion-history.md:55",
+  "date": "unknown",
+  "quote": "controller는 schema 선택·쓰기 정책·추가 계산의 가치·종료 판단을 따로 출력할 수 있어야 한다.",
+  "kind": "principle",
+  "label": "PROPOSAL",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md:52 (4. Schema controller의 입력과 출력)",
+   "/home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md:54 (4. Schema controller의 입력과 출력)",
+   "/home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md:58 (4. Schema controller의 입력과 출력)",
+   "/home/jimmy/repos/full-continual-learning/docs/06-mathematical-framework.md:51 (5. 현재 생각과 지속 기억의 읽기)"
+  ],
+  "note": "두 head 출력 분해가 05 §4·06 §5에 있다. 사용자의 \"익숙함 정도에 따른 단계 처리\"(S1 L87)를 낯섦→학습량→계산량 분리로 일반화한 assistant 정련이라 사용자 수용 여부 확인 필요(F-UT07-06).",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-T09-01",
+  "source_refs": [
+   "DOC02",
+   "U-T08"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/docs/02-discussion-history.md:61",
+  "date": "unknown",
+  "quote": "사용자는 감정·노력·집중·수면·익숙함에 따라 여러 주파수가 동시에 또는 순차적으로 나타날 수 있다는 직관에서 고정 token 주기를 넘어 탐구하자고 했다.",
+  "kind": "principle",
+  "label": "PROPOSAL",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/04-rhythms-and-orchestration.md:3 (04. 뇌 리듬에서 상태·내용 의존적 학습 조율로)",
+   "/home/jimmy/repos/full-continual-learning/docs/04-rhythms-and-orchestration.md:21 (2. 생물학적 관찰과 적용 한계)",
+   "/home/jimmy/repos/full-continual-learning/docs/04-rhythms-and-orchestration.md:66 (6. 필수 실험 계열)"
+  ],
+  "note": "04가 이 직관을 출발점으로 탐구한다. 같은 뜻: F-UT08-03–06. 로드맵 배치는 F-UT08-02(PARTIAL).",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-T10-01",
+  "source_refs": [
+   "DOC02",
+   "U-T09"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/docs/02-discussion-history.md:69",
+  "date": "unknown",
+  "quote": "사용자는 이 재료들을 학습 조율과 결합해 (1) 문맥별 schema 선택·rapid update와 (2) 경험에 의한 빠르고 편향된 추론부터 깊은 사고·통찰까지 달성하고자 했다.",
+  "kind": "requirement",
+  "label": "PROPOSAL",
+  "status": "PARTIAL",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md:50 (4. Schema controller의 입력과 출력)",
+   "/home/jimmy/repos/full-continual-learning/docs/06-mathematical-framework.md:13 (2. 결과 이전 선택과 이후 책임 추정)",
+   "/home/jimmy/repos/full-continual-learning/docs/11-research-agenda.md:28 (4. 통찰의 운영적 정의)"
+  ],
+  "note": "목표 (1)은 반영, (2)의 편향·통찰은 개념·지표 부재. 같은 뜻: F-UT09-06, F-UT09-07.",
+  "superseded_by": null,
+  "gap_edit_ids": [
+   "G1-07",
+   "G1-10",
+   "G1-11"
+  ]
+ },
+ {
+  "id": "F-T11-01",
+  "source_refs": [
+   "DOC02",
+   "U-T05"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/docs/02-discussion-history.md:75",
+  "date": "unknown",
+  "quote": "새로운 참고점으로 schema 압축과 예외 학습, 표현 안정화와 과제 구조 형성의 시간차, selective write, episodic 재구성과 판단의 간극, 저랭크 recurrent scaffold, task schema와 binding 분리, stable schema/upstream plasticity가 제시됐다.",
+  "kind": "lesson",
+  "label": "ARCHIVE",
+  "status": "PARTIAL",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/11-research-agenda.md:26 (3. 표현 보호와 확장)",
+   "/home/jimmy/repos/full-continual-learning/docs/11-research-agenda.md:7 (1. Pretraining과 alignment 가설)",
+   "/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md:58 (5. 인과적 개입)",
+   "/home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md:11 (1. 각 재료의 역할)"
+  ],
+  "note": "일곱 참고점 중 S19·S25·S23(11 §3)과 S24(11 §1)만 인용되고 S20 시간차 지표·S21 선택적 write 학습·S22 재구성↔판단 간극은 설계 반영이 얕거나 없다(통합은 W3 영역).",
+  "superseded_by": null,
+  "gap_edit_ids": [
+   "G1-16"
+  ]
+ },
+ {
+  "id": "F-DIR-01",
+  "source_refs": [
+   "README",
+   "U-T07"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/README.md:11",
+  "date": "unknown",
+  "quote": "System 1/2를 별도 모델 두 개로 고정하지 않는다.",
+  "kind": "decision",
+  "label": "PROPOSAL",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md:48 (3. 계산의 개념도)",
+   "/home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md:91 (7. Recurrent retrofit)"
+  ],
+  "note": "같은 뜻: F-UT07-01, F-COR-03. 05가 System 1/2를 같은 모델의 계산 예산 차이로 둔다.",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-DIR-02",
+  "source_refs": [
+   "README",
+   "U-T05"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/README.md:12",
+  "date": "unknown",
+  "quote": "schema를 재사용 가능한 관계·조건·계산 구조로 학습한다.",
+  "kind": "decision",
+  "label": "PROPOSAL",
+  "status": "PARTIAL",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/03-foundations.md:7 (1. Schema의 운영적 정의)",
+   "/home/jimmy/repos/full-continual-learning/docs/03-foundations.md:56 (6. 표현 방식과 학습 지속성의 분리)",
+   "/home/jimmy/repos/full-continual-learning/docs/06-mathematical-framework.md:9 (1. 상태와 시간)"
+  ],
+  "note": "\"Continuous latent schema 우선\"의 우선순위 문장이 README·추적 정책에만 있고 설계 03–12에는 없다. 같은 뜻: F-UT05-03, F-TP-02.",
+  "superseded_by": null,
+  "gap_edit_ids": [
+   "G1-06"
+  ]
+ },
+ {
+  "id": "F-DIR-03",
+  "source_refs": [
+   "README",
+   "U-T07"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/README.md:13",
+  "date": "unknown",
+  "quote": "원본 모델을 재학습 없이 기계적으로 교체하면 된다는 뜻은 아니다.",
+  "kind": "principle",
+  "label": "PROPOSAL",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md:68 (5. CMS 점진 전환의 기능 보존 제안)",
+   "/home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md:70 (5. CMS 점진 전환의 기능 보존 제안)",
+   "/home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md:89 (7. Recurrent retrofit)"
+  ],
+  "note": "함수 보존 ≠ 직렬 복제, 무학습 swap 성공 비주장, 단순 반복 실행과의 구분이 05 §5·§7에 있다. 같은 뜻: F-UT07-07–09.",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-DIR-04",
+  "source_refs": [
+   "README",
+   "U-T09"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/README.md:14",
+  "date": "unknown",
+  "quote": "경험 후 새로운 사례에서 같은 정확도를 더 적은 총 계산으로 달성하는지가 핵심이다.",
+  "kind": "principle",
+  "label": "PROPOSAL",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/06-mathematical-framework.md:93 (9. 프로젝트의 핵심 측정량)",
+   "/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md:32 (3. 대표 실험: 경험이 숙고를 직관으로 바꾸는가)",
+   "/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md:72 (6. Metrics)"
+  ],
+  "note": "같은 뜻: F-CP2, F-VQ-2.",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-DIR-05",
+  "source_refs": [
+   "README",
+   "U-T08"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/README.md:15",
+  "date": "unknown",
+  "quote": "CMS의 갱신 주기만 동적으로 바꾸는 데 그치지 않고 읽기·활성화·학습 후보·변경·통합·정보 교환을 구분한다.",
+  "kind": "principle",
+  "label": "PROPOSAL",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/04-rhythms-and-orchestration.md:33 (3. 조율을 위한 최소 분리)",
+   "/home/jimmy/repos/full-continual-learning/docs/04-rhythms-and-orchestration.md:37 (3. 조율을 위한 최소 분리)",
+   "/home/jimmy/repos/full-continual-learning/docs/04-rhythms-and-orchestration.md:43 (3. 조율을 위한 최소 분리)"
+  ],
+  "note": "04 §3 동작 표가 구분한다. 같은 뜻: F-UT08-05.",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-DIR-06",
+  "source_refs": [
+   "README",
+   "U-T07"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/README.md:16",
+  "date": "unknown",
+  "quote": "후기 단계의 목표지만 상태 단위와 호환성 계약은 처음부터 설계한다.",
+  "kind": "principle",
+  "label": "PROPOSAL",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/07-state-and-storage.md:5 (1. 시계와 정체성)",
+   "/home/jimmy/repos/full-continual-learning/docs/07-state-and-storage.md:45 (5. 외부화 단위)",
+   "/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md:29 (3. 초기 실행 순서 제안)"
+  ],
+  "note": "07 상태 계약이 설계에 있고 09 §3 3단계가 계약 테스트를 앞에 둔다. 같은 뜻: F-U10, F-UT07-10, F-UT07-11.",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-DIR-07",
+  "source_refs": [
+   "README",
+   "U-T02",
+   "U-T06"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/README.md:17",
+  "date": "unknown",
+  "quote": "목적·수치 검증·negative feedback·운영 정책을 고정하고 구현 후보를 실험으로 개선한다.",
+  "kind": "decision",
+  "label": "PROPOSAL",
+  "status": "PARTIAL",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md:3 (09. 단계별 MVP: 작은 통합 모델에서 전체 구조로)",
+   "/home/jimmy/repos/full-continual-learning/docs/10-evolution-policy.md:17 (2. 목표 계약)",
+   "/home/jimmy/repos/full-continual-learning/docs/10-evolution-policy.md:56 (7. 최소 진화 루프)"
+  ],
+  "note": "10에 설계는 있으나 09의 phase 구조와 연결(고정 시점·진화 권한 상승)이 없다. 같은 뜻: F-UT02-09, F-UT06-18, F-UT06-19.",
+  "superseded_by": null,
+  "gap_edit_ids": [
+   "G1-01",
+   "G1-03"
+  ]
+ },
+ {
+  "id": "F-VQ-1",
+  "source_refs": [
+   "README",
+   "U-T06"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/README.md:45",
+  "date": "unknown",
+  "quote": "과거 경험이 새 문제의 학습에 필요한 관측 수를 줄이는가?",
+  "kind": "question",
+  "label": "PROPOSAL",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md:19 (2. 핵심 benchmark family)",
+   "/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md:64 (6. Metrics)"
+  ],
+  "note": "같은 뜻: F-CP1, F-UT06-10.",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-VQ-2",
+  "source_refs": [
+   "README",
+   "U-T09"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/README.md:46",
+  "date": "unknown",
+  "quote": "같은 정확도를 얻는 데 필요한 loop·gradient update·총 계산량이 줄어드는가?",
+  "kind": "question",
+  "label": "PROPOSAL",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md:27 (2. 핵심 benchmark family)",
+   "/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md:72 (6. Metrics)",
+   "/home/jimmy/repos/full-continual-learning/docs/06-mathematical-framework.md:93 (9. 프로젝트의 핵심 측정량)"
+  ],
+  "note": "F11·비용식·C*_ε로 측정한다. 같은 뜻: F-CP2.",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-VQ-3",
+  "source_refs": [
+   "README",
+   "U-T05"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/README.md:47",
+  "date": "unknown",
+  "quote": "기존 구조와 어긋나는 입력에서는 적절히 보류·수정·전환·분화하는가?",
+  "kind": "question",
+  "label": "PROPOSAL",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md:20 (2. 핵심 benchmark family)",
+   "/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md:21 (2. 핵심 benchmark family)",
+   "/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md:25 (2. 핵심 benchmark family)"
+  ],
+  "note": "F04·F05·F09가 보류/학습/분화·국소 수정·calibration을 잰다. 같은 뜻: F-UT05-06.",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-VQ-4",
+  "source_refs": [
+   "README",
+   "U-T06"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/README.md:48",
+  "date": "unknown",
+  "quote": "학습한 표현을 제거·교체하면 그 구조를 이용한 전이가 선택적으로 사라지는가?",
+  "kind": "question",
+  "label": "PROPOSAL",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md:56 (5. 인과적 개입)",
+   "/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md:58 (5. 인과적 개입)",
+   "/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md:42 (3. 대표 실험: 경험이 숙고를 직관으로 바꾸는가)"
+  ],
+  "note": "08 §5 개입(lesion·direction swap·artifact swap)과 대조(wrong-schema memory·memory lesion)가 선택적 소실을 시험한다.",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-VQ-5",
+  "source_refs": [
+   "README",
+   "U-T07"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/README.md:49",
+  "date": "unknown",
+  "quote": "Sleep과 외부 재적재 후에도 이전 조건의 유효한 판단을 유지하는가?",
+  "kind": "question",
+  "label": "PROPOSAL",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md:22 (2. 핵심 benchmark family)",
+   "/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md:26 (2. 핵심 benchmark family)",
+   "/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md:28 (2. 핵심 benchmark family)"
+  ],
+  "note": "F06·F10·F12가 ABA 복귀·장기 유지·offload/reload 일관성을 잰다.",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-VQ-6",
+  "source_refs": [
+   "README",
+   "U-T06"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/README.md:51",
+  "date": "unknown",
+  "quote": "낮은 reconstruction loss, 많은 테스트 통과, 좋은 latent 시각화, 정확한 원문 복원만으로 이 질문들의 PASS를 대체하지 않는다.",
+  "kind": "principle",
+  "label": "PROPOSAL",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md:11 (1. 세 종류의 성공을 분리)",
+   "/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md:60 (5. 인과적 개입)",
+   "/home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md:11 (1. 각 재료의 역할)"
+  ],
+  "note": "08 §1·§5와 05 §1이 같은 대체 금지를 명시한다. 같은 뜻: F-NG-06.",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-NO-01",
+  "source_refs": [
+   "U-T03",
+   "NO-p2"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/sources/neuroscience-origin.md:7",
+  "date": "unknown",
+  "quote": "기억은 version이 있나봐? 그럼 언제 version이 update되고 update시 이전 기억 version을 정보로 사용해서 update가 되는건지",
+  "kind": "question",
+  "label": "USER",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/07-state-and-storage.md:64 (6. Version 의미)",
+   "/home/jimmy/repos/full-continual-learning/docs/03-foundations.md:20 (2. 원자료에서 다룬 13개 이론·회로)",
+   "/home/jimmy/repos/full-continual-learning/docs/03-foundations.md:21 (2. 원자료에서 다룬 13개 이론·회로)"
+  ],
+  "note": "버전은 특정 source/조건/학습 상태의 lineage(07 §6)이고 업데이트 시 이전 기억 재활성화는 03 표(재활성화 학습·reconsolidation)에 있다.",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-NO-02",
+  "source_refs": [
+   "U-T03",
+   "NO-p2"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/sources/neuroscience-origin.md:7",
+  "date": "unknown",
+  "quote": "switch가 현재 버전만 켜준다면 이전 기억은 언제 인출해서 쓰게되는지 또는 언제 활용하는지",
+  "kind": "question",
+  "label": "USER",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/03-foundations.md:29 (2. 원자료에서 다룬 13개 이론·회로)",
+   "/home/jimmy/repos/full-continual-learning/docs/03-foundations.md:33 (3. 구체 예시)",
+   "/home/jimmy/repos/full-continual-learning/docs/07-state-and-storage.md:66 (6. Version 의미)",
+   "/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md:22 (2. 핵심 benchmark family)"
+  ],
+  "note": "과거 질문엔 이전 경험·현재 결정엔 최신 조건·원인 분석엔 둘 다(03 L33), A→B→A 재사용(07 §6, F06)으로 설계됐다.",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-NO-03",
+  "source_refs": [
+   "U-T03",
+   "NO-p11"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/sources/neuroscience-origin.md:13",
+  "date": "unknown",
+  "quote": "사람은 익숙한것은 깊은 생각없이 처리가능",
+  "kind": "hypothesis",
+  "label": "USER",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/03-foundations.md:26 (2. 원자료에서 다룬 13개 이론·회로)",
+   "/home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md:58 (4. Schema controller의 입력과 출력)",
+   "/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md:27 (2. 핵심 benchmark family)"
+  ],
+  "note": "자동화/익숙함(03 표)과 경험 후 계산 감소(F11)로 반영하되 \"해마가 사고를 끈다\"는 단일 스위치는 아니라는 한계를 둔다.",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-NO-04",
+  "source_refs": [
+   "U-T03",
+   "NO-p11"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/sources/neuroscience-origin.md:14",
+  "date": "unknown",
+  "quote": "사람마다 익숙하다 느끼는게 아예 다름",
+  "kind": "hypothesis",
+  "label": "USER",
+  "status": "PARTIAL",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/07-state-and-storage.md:74 (7. 검색과 residency)",
+   "/home/jimmy/repos/full-continual-learning/docs/06-mathematical-framework.md:95 (9. 프로젝트의 핵심 측정량)",
+   "/home/jimmy/repos/full-continual-learning/docs/03-foundations.md:23 (2. 원자료에서 다룬 13개 이론·회로)"
+  ],
+  "note": "사용자별 state 분리(07 L74)와 history 단위 통계(06 L95)만 있고, 이력에 따라 익숙함·구조가 달라진다는 가설의 시험이 없다(F-L6와 같은 뜻).",
+  "superseded_by": null,
+  "gap_edit_ids": [
+   "G1-12",
+   "G1-07"
+  ]
+ },
+ {
+  "id": "F-NO-05",
+  "source_refs": [
+   "U-T03",
+   "NO-p11"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/sources/neuroscience-origin.md:15",
+  "date": "unknown",
+  "quote": "사람은 자신이 익숙하다 느끼는거랑 연결점이 없는 것은 받아들이지 못함",
+  "kind": "hypothesis",
+  "label": "USER",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/03-foundations.md:24 (2. 원자료에서 다룬 13개 이론·회로)",
+   "/home/jimmy/repos/full-continual-learning/docs/03-foundations.md:36 (3. 구체 예시)",
+   "/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md:20 (2. 핵심 benchmark family)"
+  ],
+  "note": "연결점 대응(structure-mapping, 03 표·§3)과 기존에 없던 관계의 보류/학습/분화(F04)로 반영했고 \"연결점 없으면 학습 불가\"는 채택하지 않는다(NO L22).",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-NO-06",
+  "source_refs": [
+   "U-T03",
+   "NO-p11"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/sources/neuroscience-origin.md:16",
+  "date": "unknown",
+  "quote": "똑똑한 사람은 어떤 경험에서 개념을 받아들일 때 그걸 최대한 분해해서 multi layer에서 이해하고 정보를 받아들임",
+  "kind": "hypothesis",
+  "label": "USER",
+  "status": "PARTIAL",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/03-foundations.md:25 (2. 원자료에서 다룬 13개 이론·회로)",
+   "/home/jimmy/repos/full-continual-learning/docs/03-foundations.md:36 (3. 구체 예시)",
+   "/home/jimmy/repos/full-continual-learning/docs/03-foundations.md:37 (3. 구체 예시)",
+   "/home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md:13 (1. 각 재료의 역할)"
+  ],
+  "note": "다층 분해는 03에 이론·예시만 있고 이를 시험하는 family·지표가 08에 없다(05 L13은 update frequency=추상화 수준 등식을 금지).",
+  "superseded_by": null,
+  "gap_edit_ids": [
+   "G1-07"
+  ]
+ },
+ {
+  "id": "F-NO-07",
+  "source_refs": [
+   "U-T03",
+   "NO-p11"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/sources/neuroscience-origin.md:18",
+  "date": "unknown",
+  "quote": "이런느낌에 대한 뇌과학 이론 찾아서 설명하고 위에 얘기한 스위치 이론과 결합해서 얘기해봐",
+  "kind": "question",
+  "label": "USER",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/03-foundations.md:13 (2. 원자료에서 다룬 13개 이론·회로)",
+   "/home/jimmy/repos/full-continual-learning/docs/03-foundations.md:29 (2. 원자료에서 다룬 13개 이론·회로)",
+   "/home/jimmy/repos/full-continual-learning/docs/03-foundations.md:33 (3. 구체 예시)"
+  ],
+  "note": "친숙성·구조 이해·숙련 이론과 스위치 이론의 결합이 03 표와 §3 예시에 있다.",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-NO-08",
+  "source_refs": [
+   "U-T03",
+   "NO-p11"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/sources/neuroscience-origin.md:20",
+  "date": "unknown",
+  "quote": "내가 알기로 해마쪽에 이런 익숙함을 인지하는게 있다고 함",
+  "kind": "question",
+  "label": "USER",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/03-foundations.md:19 (2. 원자료에서 다룬 13개 이론·회로)",
+   "/home/jimmy/repos/full-continual-learning/docs/03-foundations.md:23 (2. 원자료에서 다룬 13개 이론·회로)"
+  ],
+  "note": "해마의 match–mismatch·familiarity 이론이 한계(분업 논쟁)와 함께 03 표에 있다.",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-NO-09",
+  "source_refs": [
+   "U-T03",
+   "NO-p12"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/sources/neuroscience-origin.md:26",
+  "date": "unknown",
+  "quote": "굵직한 뇌과학이론(CLS처럼)을 정리하고 각 이론이 설명하는 뇌의 기전을 서술하고 예시도 2개정도 들어서 TABLE로 정리해봐",
+  "kind": "deliverable",
+  "label": "USER",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/03-foundations.md:13 (2. 원자료에서 다룬 13개 이론·회로)",
+   "/home/jimmy/repos/full-continual-learning/docs/03-foundations.md:17 (2. 원자료에서 다룬 13개 이론·회로)",
+   "/home/jimmy/repos/full-continual-learning/docs/03-foundations.md:31 (3. 구체 예시)"
+  ],
+  "note": "13행 표(원리·가설·한계)와 §3 예시로 충족됐다. 이론별 예시 2개씩은 표에 없고 §3 예시 5개로 대체됐다.",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-GR-01",
+  "source_refs": [
+   "GLOBAL-PR"
+  ],
+  "source": "사용자 전역 지침(CLAUDE.md):4",
+  "date": "2026-10-21",
+  "quote": "phase 종료 = 실제로 쓸 수 있는 전체 제품.",
+  "kind": "principle",
+  "label": "USER",
+  "status": "PARTIAL",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md:9 (1. 최종 아키텍처를 작은 범위로 먼저 연결)",
+   "/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md:11 (1. 최종 아키텍처를 작은 범위로 먼저 연결)",
+   "/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md:19 (2. 첫 integrated MVP의 최소 사용자 여정)",
+   "/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md:23 (2. 첫 integrated MVP의 최소 사용자 여정)"
+  ],
+  "note": "09 §2가 P1 사용자 여정과 mock-only 금지를 규정하나 P0은 계약 phase이고 P2–P6 종료물이 \"실제 CLI+실제 LLM으로 도는 전체 제품\"으로 정의돼 있지 않다.",
+  "superseded_by": null,
+  "gap_edit_ids": [
+   "G1-01"
+  ]
+ },
+ {
+  "id": "F-GR-02",
+  "source_refs": [
+   "GLOBAL-PR"
+  ],
+  "source": "사용자 전역 지침(CLAUDE.md):5",
+  "date": "2026-10-21",
+  "quote": "한 계층만 만드는 phase(인프라만·엔진만·UI만), fake·mock으로만 도는 phase, spike·조사만 하는 phase.",
+  "kind": "principle",
+  "label": "USER",
+  "status": "PARTIAL",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md:9 (1. 최종 아키텍처를 작은 범위로 먼저 연결)",
+   "/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md:23 (2. 첫 integrated MVP의 최소 사용자 여정)",
+   "/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md:17 (1. 최종 아키텍처를 작은 범위로 먼저 연결)"
+  ],
+  "note": "P0은 연구 계약만 하는 phase이고 09 L23은 full consumer 연결 전 kernel 연구를 phase 안에서 허용한다. spike를 phase 앞쪽 작업으로 넣고 phase는 실행 가능한 제품으로 끝내는 규칙과 어긋난다.",
+  "superseded_by": null,
+  "gap_edit_ids": [
+   "G1-01"
+  ]
+ },
+ {
+  "id": "F-GR-03",
+  "source_refs": [
+   "GLOBAL-PR"
+  ],
+  "source": "사용자 전역 지침(CLAUDE.md):6",
+  "date": "2026-10-21",
+  "quote": "핵심 사용자 여정 전체를 가장 얇게 관통한다(walking skeleton).",
+  "kind": "principle",
+  "label": "USER",
+  "status": "PARTIAL",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md:10 (1. 최종 아키텍처를 작은 범위로 먼저 연결)",
+   "/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md:19 (2. 첫 integrated MVP의 최소 사용자 여정)",
+   "/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md:11 (1. 최종 아키텍처를 작은 범위로 먼저 연결)",
+   "/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md:12 (1. 최종 아키텍처를 작은 범위로 먼저 연결)",
+   "/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md:13 (1. 최종 아키텍처를 작은 범위로 먼저 연결)"
+  ],
+  "note": "P1 행·§2 여정은 실제 입력/저장/재시작을 관통하나 P1에 recursion·controller·Sleep·평가(대조군·망각·표면/구조)가 없어 설계 핵심 여정(경험→schema→계산/학습 조절→전이)은 P4에야 처음 완성된다.",
+  "superseded_by": null,
+  "gap_edit_ids": [
+   "G1-01",
+   "G1-02",
+   "G1-17"
+  ]
+ },
+ {
+  "id": "F-GR-04",
+  "source_refs": [
+   "GLOBAL-PR"
+  ],
+  "source": "사용자 전역 지침(CLAUDE.md):7",
+  "date": "2026-10-21",
+  "quote": "capability × phase 해상도 표로 보이고",
+  "kind": "principle",
+  "label": "USER",
+  "status": "MISSING",
+  "design_locations": [
+   "목표: /home/jimmy/repos/full-continual-learning/docs/09-roadmap.md:5 (1. 최종 아키텍처를 작은 범위로 먼저 연결)",
+   "검색: capability|해상도|resolution|walking|데모|demo (docs/09-roadmap.md) → 0건"
+  ],
+  "note": "docs/09에 capability×phase 표가 없고 phase가 부품(계약→모델→반복→controller→경험→확대→외부화) 순서로 나뉘어 있다.",
+  "superseded_by": null,
+  "gap_edit_ids": [
+   "G1-01",
+   "G1-02"
+  ]
+ },
+ {
+  "id": "F-GR-05",
+  "source_refs": [
+   "GLOBAL-PR"
+  ],
+  "source": "사용자 전역 지침(CLAUDE.md):7",
+  "date": "2026-10-21",
+  "quote": "앞 phase의 사용자 시나리오는 회귀 gate로 계속 통과한다.",
+  "kind": "principle",
+  "label": "USER",
+  "status": "PARTIAL",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md:14 (1. 최종 아키텍처를 작은 범위로 먼저 연결)",
+   "/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md:46 (5. 지속적으로 유지할 자산)",
+   "/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md:11 (1. 세 종류의 성공을 분리)"
+  ],
+  "note": "회귀는 P5 행과 \"지속 자산\"(regression suite)에만 있고 앞 phase 시나리오를 다음 phase 종료 gate로 요구하는 규칙이 없다.",
+  "superseded_by": null,
+  "gap_edit_ids": [
+   "G1-01"
+  ]
+ },
+ {
+  "id": "F-GR-06",
+  "source_refs": [
+   "GLOBAL-PR"
+  ],
+  "source": "사용자 전역 지침(CLAUDE.md):8",
+  "date": "2026-10-21",
+  "quote": "아직 강제하지 못하는 보장은 그 phase에서 약속하지 않는다.",
+  "kind": "principle",
+  "label": "USER",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md:7 (1. 최종 아키텍처를 작은 범위로 먼저 연결)",
+   "/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md:84 (8. 결과 상태)",
+   "/home/jimmy/repos/full-continual-learning/docs/07-state-and-storage.md:3 (07. 실행 상태·시계·cache·schema 저장 계약)",
+   "/home/jimmy/repos/full-continual-learning/docs/06-mathematical-framework.md:3 (06. 수학적 연구 명세와 제한된 이론)"
+  ],
+  "note": "09 표의 \"완료로 부르면 안 되는 것\" 열과 08 §8 결과 상태(PASS/FAIL/INCONCLUSIVE/BLOCKED/NOT RUN)·proposal 표시가 상한 역할을 한다. phase별 \"성립하는 보장과 상한\" 칸은 F-GR-07에서 판정.",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-GR-07",
+  "source_refs": [
+   "GLOBAL-PR"
+  ],
+  "source": "사용자 전역 지침(CLAUDE.md):9",
+  "date": "2026-10-21",
+  "quote": "종료 때 사용자가 할 수 있는 것(데모 시나리오), 넓이·깊이 변화, 성립하는 보장과 상한, 종료 gate(실제 인터페이스·실제 의존성 E2E + 회귀 + 자동 테스트), 미루는 것.",
+  "kind": "principle",
+  "label": "USER",
+  "status": "PARTIAL",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md:7 (1. 최종 아키텍처를 작은 범위로 먼저 연결)",
+   "/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md:9 (1. 최종 아키텍처를 작은 범위로 먼저 연결)",
+   "/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md:19 (2. 첫 integrated MVP의 최소 사용자 여정)"
+  ],
+  "note": "09 표는 구현/산출물·다음 단계 근거·완료 금지 문구만 있고 phase별 데모 시나리오·넓이/깊이 변화·종료 gate(E2E+회귀+자동 테스트)·미루는 것이 없다.",
+  "superseded_by": null,
+  "gap_edit_ids": [
+   "G1-01"
+  ]
+ },
+ {
+  "id": "F-GR-08",
+  "source_refs": [
+   "GLOBAL-PR"
+  ],
+  "source": "사용자 전역 지침(CLAUDE.md):10",
+  "date": "2026-10-21",
+  "quote": "가까운 phase는 작업 단위까지, 먼 phase는 목표와 종료 gate까지만 쓴다.",
+  "kind": "principle",
+  "label": "USER",
+  "status": "REFLECTED",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md:17 (1. 최종 아키텍처를 작은 범위로 먼저 연결)",
+   "/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md:25 (3. 초기 실행 순서 제안)"
+  ],
+  "note": "09 L17·§3이 점진적 상세도를 채택(가까운 P1 작업 순서, 먼 phase는 표만)한다. 먼 phase의 \"목표+종료 gate\" 형식은 G1-01에서 정렬한다.",
+  "superseded_by": null,
+  "gap_edit_ids": []
+ },
+ {
+  "id": "F-GR-09",
+  "source_refs": [
+   "GLOBAL-PR"
+  ],
+  "source": "사용자 전역 지침(CLAUDE.md):11",
+  "date": "2026-10-21",
+  "quote": "기존 계획이 이 규칙과 어긋나면(예: 앞 phase가 실행 가능한 제품이 아님) 이 규칙에 맞게 다시 나눈다.",
+  "kind": "principle",
+  "label": "USER",
+  "status": "MISSING",
+  "design_locations": [
+   "목표: /home/jimmy/repos/full-continual-learning/docs/09-roadmap.md:1 (09. 단계별 MVP: 작은 통합 모델에서 전체 구조로)",
+   "검색: 점진적 해상도|resolution|walking skeleton (docs/03–12) → 0건"
+  ],
+  "note": "현재 docs/09가 P0 연구 계약 phase와 부품식 phase로 규칙과 어긋나지만 재분할이 아직 이루어지지 않았다(점진적 해상도 규칙을 설계 문서가 언급하지 않음).",
+  "superseded_by": null,
+  "gap_edit_ids": [
+   "G1-01"
+  ]
+ },
+ {
+  "id": "F-PO-01",
+  "source_refs": [
+   "POST-1111",
+   "U-T05"
+  ],
+  "source": "/home/jimmy/repos/full-continual-learning/research/2026-11-11-sbl-fulltext-review.md:5",
+  "date": "2026-11-11",
+  "quote": "생각의 시작점으로 삼자고 요청했다(USER, 2026-11-11)",
+  "kind": "requirement",
+  "label": "USER",
+  "status": "PARTIAL",
+  "design_locations": [
+   "/home/jimmy/repos/full-continual-learning/docs/03-foundations.md:69 (7. 문헌을 적용하는 기준)",
+   "/home/jimmy/repos/full-continual-learning/docs/03-foundations.md:71 (7. 문헌을 적용하는 기준)",
+   "/home/jimmy/repos/full-continual-learning/docs/11-research-agenda.md:40 (7. 우선 읽을 연구 연결)",
+   "/home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md:5 (05. 통합 System ONE 아키텍처와 retrofit 경로)"
+  ],
+  "note": "03 L71이 링크만 걸고, 11-11 §4.1(학습 구조 대 고정·무구조 대조 부재)·§4.2(쓰기 기제 5종)·§4.3(accommodation 공백)·§4.4(측정 공백)·§5 DQ1–DQ8 시작점이 05/06/08/10/11 설계에 통합돼 있지 않다(통합은 W3 영역).",
+  "superseded_by": null,
+  "gap_edit_ids": [
+   "G1-15"
+  ]
+ }
+]

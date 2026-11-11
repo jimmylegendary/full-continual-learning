@@ -2,7 +2,7 @@
 
 **경험이 다음에 무엇을 이해하고, 얼마나 생각하며, 무엇을 어떻게 배울지까지 바꾸는 하나의 모델.**
 
-이 저장소는 Melete를 출발점으로 논의한 schema-based learning(SBL), 지속학습, 빠른 적응, 가변 깊이 추론, 뇌 리듬에서 영감을 얻은 조율, 기존 LLM의 점진적 retrofit을 통합하는 연구 기반이다. 정리 기준일: **2026-11-09**.
+이 저장소는 Melete를 출발점으로 논의한 schema-based learning(SBL), 지속학습, 빠른 적응, 가변 깊이 추론, 뇌 리듬에서 영감을 얻은 조율, 기존 LLM의 점진적 retrofit을 통합하는 연구 기반이다. 정리 기준일: **2026-11-12**(설계 반영 감사와 로드맵 재구성).
 
 > 현재 상태: **연구 의도·설계·근거·검증 계획의 아카이브**. 통합 HOPE/Titan/CMS/recursive 모델의 구현·학습·성능 검증 완료를 뜻하지 않는다. 이전 합성 Phase-0 실험은 제한된 연속 prior의 표본 효율 실험이며 통합 모델 PoC가 아니다.
 
@@ -14,7 +14,7 @@
 - **학습과 사고의 결합**: looped Transformer, Mixture-of-Depths/Recursions, depth attention으로 표현 재사용과 계산 배분을 연구한다. 경험 후 새로운 사례에서 같은 정확도를 더 적은 총 계산으로 달성하는지가 핵심이다.
 - **상태·내용에 따른 조율**: CMS의 갱신 주기만 동적으로 바꾸는 데 그치지 않고 읽기·활성화·학습 후보·변경·통합·정보 교환을 구분한다. 뇌파의 Hz를 token 간격에 직접 대응시키지 않는다.
 - **외부 schema offload / versioning / retrieval**: 후기 단계의 목표지만 상태 단위와 호환성 계약은 처음부터 설계한다.
-- **단계별 MVP + self-evolution**: 목적·수치 검증·negative feedback·운영 정책을 고정하고 구현 후보를 실험으로 개선한다.
+- **점진적 해상도 로드맵 + self-evolution**: 매 phase가 실제 CLI·실제 retrofit 모델로 전체 여정을 끝까지 도는 완결 제품이고, phase마다 같은 제품의 넓이와 깊이를 함께 올린다. 목적·수치 검증·negative feedback·운영 정책을 고정하고 구현 후보를 실험으로 개선한다.
 
 ## 읽는 순서
 
@@ -28,12 +28,13 @@
 | [수학적 연구 명세](docs/06-mathematical-framework.md) | 상태, 조건부 schema, 가소성, meta-objective, 비용 |
 | [상태·시계·cache·저장 계약](docs/07-state-and-storage.md) | token/experience/loop/update 구분, rollback, offload |
 | [Benchmark와 판정](docs/08-evaluation.md) | transfer, rapid learning, ABA, uncertainty, compute |
-| [단계별 MVP](docs/09-roadmap.md) | 작은 통합 모델부터 전체 retrofit·외부화까지 |
+| [09-roadmap.md](/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md) | 점진적 해상도 로드맵: P1 MVP(실제 `fcl` CLI·소형 retrofit 모델·규칙형 controller v0·대조군·망각/표면 평가)부터 P5까지, capability × phase 표, 결과 등급과 상한, 열린 결정 D-01–D-14 |
 | [Self-evolution와 운영 정책](docs/10-evolution-policy.md) | 독립 evaluator, 후보 계보, 예산, 승격, 실패 기록 |
 | [후속 가설과 미해결 질문](docs/11-research-agenda.md) | pretraining/alignment, schema 분화, insight |
 | [기존 Melete와 이관 경계](docs/12-melete-lineage.md) | H1–H5와 이전 실험을 어떻게 보존할지 |
 | [주간 SBL 조사 기록](research/2026-11-09-sbl-tracking.md) | 대화에서 보고된 최신 연구와 수치의 출처 상태 |
 | [2026-11-11-sbl-fulltext-review.md](/home/jimmy/repos/full-continual-learning/research/2026-11-11-sbl-fulltext-review.md) | 신경망 SBL 구현 11편 원문 검토: 외부 요약 정정, 공통 공백, FCL 설계의 시작점 |
+| [2026-11-12-design-audit.md](/home/jimmy/repos/full-continual-learning/research/2026-11-12-design-audit.md) | 설계 반영 감사: 사용자 진술 202개 포함 325항목 원장, 반영 판정, 설계 문서 편집 70개, 사용자 확인·열린 결정·남은 문헌 정독 |
 | [전체 참고문헌](references/README.md) | 뇌과학·SBL·아키텍처·평가·진화 문헌 및 코드 |
 | [원문·출처 아카이브 안내](sources/README.md) | 대화 원문/주제별 재구성/파일 출처의 차이 |
 | [증거·누락·검증 범위](EVIDENCE.md) | 확인된 것, 재확인하지 않은 것, 이번 작업의 범위 |

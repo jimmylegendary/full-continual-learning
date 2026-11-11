@@ -1,0 +1,564 @@
+=== EDIT L03-01 ===
+FILE: /home/jimmy/repos/full-continual-learning/docs/03-foundations.md
+SECTION: ## 1. Schema의 운영적 정의
+ANCHOR: 하나의 벡터, graph node, MLP, 특정 시냅스 집합과 일대일 대응한다고 가정하지 않는다.
+OP: INSERT_AFTER_LINE
+LABEL: PROPOSAL(review §5 출발점 1) / LITERATURE(TEM20·SWAMI23·SPENS24·GOUDAR23·CHU25·SPECTRUM26, research/2026-11-11-sbl-fulltext/W4-tem20-kumar26.md:76-78; research/2026-11-11-sbl-fulltext/W6-swami23-metadata-gap.md:36-38; research/2026-11-11-sbl-fulltext/W1-spens24-hwu20.md:67-72; research/2026-11-11-sbl-fulltext/W2-chu25-goudar23.md:81-85,281; research/2026-11-11-sbl-fulltext/W5-spectrum26-structk25.md:72-76; review §5 출발점 1) / LITERATURE(CHU25, research/2026-11-11-sbl-fulltext/W2-chu25-goudar23.md:138-141; research/2026-11-11-sbl-fulltext-review.md:76) / ARCHIVE(S20, research/2026-11-09-sbl-tracking.md:19-23) / OPEN(retrofit LM에 맞는 정의의 우열)
+SOURCE: 2026-11-11-sbl-fulltext-review.md:276-279(§5 출발점 1), 76(CHU25 unshaped 더 저차원); W2-chu25-goudar23.md:138-141,281; W6-swami23-metadata-gap.md:36-38; W4-tem20-kumar26.md:76-78; W1-spens24-hwu20.md:67-72; W5-spectrum26-structk25.md:72-76; 2026-11-09-sbl-tracking.md:19-23(S20, 가설 A=88); README.md 핵심 검증 질문 4
+OVERTURNS: 없음
+NEW_TEXT:
+<<<
+**PROPOSAL ([2026-11-11-sbl-fulltext-review.md](/home/jimmy/repos/full-continual-learning/research/2026-11-11-sbl-fulltext-review.md#5-fcl-설계의-시작점-proposal) 출발점 1):** retrofit LLM에서는 schema를 모듈이 아니라 측정 가능한 성질로 다룬다. 조작적 증거는 세 가지다: 같은 구조의 문제들에 걸친 활동 subspace 재사용(GOUDAR23의 demixing·participation ratio), 새 같은-구조 과제에서의 가중치·상태 변화량 감소, 해당 표현을 제거·교체했을 때 구조 전이만 선택적으로 사라짐. 구현이나 채택 결정이 아니다.
+
+**LITERATURE (TEM20·SWAMI23·SPENS24·GOUDAR23·CHU25·SPECTRUM26, 원문 검토 §5 출발점 1):** 문헌은 느린 구조 파라미터(TEM20의 W, SWAMI23의 CSCG T, SPENS24의 VAE)와 활동 subspace·attractor regime(GOUDAR23, CHU25, SPECTRUM26)이라는 두 정의를 모두 지지한다. **OPEN:** 어느 쪽이 retrofit LM에 맞는지는 문헌에 우열 증거가 없다.
+
+**LITERATURE (CHU25, W2-chu25-goudar23.md:138-141):** 본문 기준으로 unshaped 망이 shaped 망보다 더 저차원이었다(top-3 PC 분산비 93% 대 82.5%, 그림마다 값이 다르다). **PROPOSAL:** 저차원성·압축 자체를 구조 형성의 증거로 보지 않는다. **ARCHIVE (S20, 2026-11-09-sbl-tracking.md:19-23):** 11-09 기록의 가설 A도 같은 방향이며 확인 깊이는 official-search-checked다.
+>>>
+
+=== EDIT L03-02 ===
+FILE: /home/jimmy/repos/full-continual-learning/docs/03-foundations.md
+SECTION: ## 2. 원자료에서 다룬 13개 이론·회로
+ANCHOR: 공간 실험을 범용 언어 성공으로 확대하지 않음
+OP: REPLACE_SUBSTRING
+LABEL: LITERATURE(TEM20, research/2026-11-11-sbl-fulltext/W4-tem20-kumar26.md:72-73,112,117-120,175; review §2 TEM20 행) / PROPOSAL(없음, 한계 칸 보강)
+SOURCE: 2026-11-11-sbl-fulltext-review.md:84(§2 TEM20 행), 142-146(§3 TEM20), 225-231(§4.3); W4-tem20-kumar26.md:72-73,112,117-120,175,284
+OVERTURNS: 없음
+NEW_TEXT:
+<<<
+공간 실험을 범용 언어 성공으로 확대하지 않음. **LITERATURE (TEM20, W4-tem20-kumar26.md:72-73,112,117-120,175):** 논문은 schema라는 말을 쓰지 않고(structural knowledge) 구조와 내용의 분리는 고정 W_repeat/W_tile 같은 아키텍처 prior와 학습 분포가 만든 것이며 구조는 바깥 루프에서만 형성되고 빠른 기억 M은 환경마다 0으로 리셋되고 구조 선택·수정 실험은 없음
+>>>
+
+=== EDIT L03-03 ===
+FILE: /home/jimmy/repos/full-continual-learning/docs/03-foundations.md
+SECTION: ## 2. 원자료에서 다룬 13개 이론·회로
+ANCHOR: schema에 맞지 않는 것도 학습 가능
+OP: REPLACE_SUBSTRING
+LABEL: LITERATURE(HWU20, research/2026-11-11-sbl-fulltext/W1-spens24-hwu20.md:278,342,350; review §2 HWU20 3행) / OPEN(SBL 가설의 신경망 구현 증거)
+SOURCE: 2026-11-11-sbl-fulltext-review.md:71(§2 HWU20 PARTIAL 행); W1-spens24-hwu20.md:278,342,350
+OVERTURNS: 약화: docs/03 §2 SBL 행은 "관련 schema가 sample efficiency 향상"을 Melete로 옮길 가설로 둔다. 원문 검토는 HWU20 신경망 구현에서 새 연합은 epoch을 늘린 조건에서 빨리 배웠지만 새 schema는 기존 schema보다 빨리 배우지 않았음을 확인해(W1:278,342,350; review §2) 이 가설의 신경망 구현 증거를 약화한다. 가설 자체는 OPEN으로 유지한다.
+NEW_TEXT:
+<<<
+schema에 맞지 않는 것도 학습 가능. **LITERATURE (HWU20, W1-spens24-hwu20.md:278,342,350):** 신경망 구현에서도 새 연합은 epoch을 늘린 조건에서 빨리 배웠지만 새 schema는 기존 schema보다 빨리 배우지 않았음
+>>>
+
+=== EDIT L03-04 ===
+FILE: /home/jimmy/repos/full-continual-learning/docs/03-foundations.md
+SECTION: ## 6. 표현 방식과 학습 지속성의 분리
+ANCHOR: ICL의 context 적응, 세션 간 state 보존, slow weight 학습도 구별한다.
+OP: INSERT_AFTER_LINE
+LABEL: PROPOSAL(논문별 분류, research/2026-11-11-sbl-fulltext/W7-remediation.md:341,354,362에서 PROPOSAL로 표시된 hybrid·연속 라벨 포함) / LITERATURE(SPENS24·GOUDAR23·SPECTRUM26·HWU20·ELDER26·SWAMI23, research/2026-11-11-sbl-fulltext/W1-spens24-hwu20.md:69,238-242; research/2026-11-11-sbl-fulltext/W2-chu25-goudar23.md:281; research/2026-11-11-sbl-fulltext/W5-spectrum26-structk25.md:72-76; research/2026-11-11-sbl-fulltext/W3-elder26-miconi25.md:70-71; research/2026-11-11-sbl-fulltext/W6-swami23-metadata-gap.md:36-37,88; review §2·§3) / ARCHIVE(S18·S27, research/2026-11-09-sbl-tracking.md:80-84)
+SOURCE: 2026-11-11-sbl-fulltext-review.md:88(SWAMI23 CSCG 한정),104,111,123,130,155,169-170; W1-spens24-hwu20.md:69,238-242; W2-chu25-goudar23.md:281; W3-elder26-miconi25.md:70-71; W5-spectrum26-structk25.md:72-76; W6-swami23-metadata-gap.md:36-37; W7-remediation.md:341,354,362; 2026-11-09-sbl-tracking.md:80-84(§8); references/catalog.tsv S18·S27 official-search-checked
+OVERTURNS: 없음
+NEW_TEXT:
+<<<
+**PROPOSAL:** 읽은 논문은 위 표의 어느 칸인지 논문별로 따로 분류하며, 아래 분류 라벨(연속·hybrid·이산)은 우리의 정리이고 ELDER26·SWAMI23의 hybrid는 W7-remediation.md:341,362에서 PROPOSAL로 표시됐다. **LITERATURE (SPENS24·GOUDAR23·SPECTRUM26·HWU20·ELDER26·SWAMI23, 원문 검토 §3 "schema가 있는 곳"):** SPENS24는 VAE 가중치와 연속 latent(W1-spens24-hwu20.md:69), GOUDAR23은 가중치가 아니라 집단 활동의 저차원 decision subspace(W2-chu25-goudar23.md:281), SPECTRUM26은 분산 표현의 추상화 수준 스펙트럼이며 추상화의 측정법이 없다(W5-spectrum26-structk25.md:72-76). HWU20은 이긴 mPFC 뉴런 1개의 이산 id와 고정 희소 mask와 연속 가중치(W1-spens24-hwu20.md:238-242), ELDER26은 입력 쪽 연속 특징 위에 얹힌 출력 쪽 거의 디지털한 AND형 배선(W3-elder26-miconi25.md:70-71), SWAMI23은 CSCG의 잠재 전이 그래프 T이며 rebinding은 학습에서 창발한 것이 아니라 설계된 test-time 알고리즘이다(W6-swami23-metadata-gap.md:36-37,88, 원문 검토 §2).
+
+**ARCHIVE (S18·S27, 2026-11-09-sbl-tracking.md:80-84; 확인 깊이 official-search-checked):** symbolic/discrete 비교점으로 graph schema(S18, latent graph·slot·transition이며 continuous neural이 아님)와 agentic program induction(S27, persistent executable program)을 둔다. S27의 ARC-AGI-3 향상 보고는 특정 harness·평가 범위이며 neural schema의 증거가 아니다.
+>>>
+
+=== EDIT L03-05 ===
+FILE: /home/jimmy/repos/full-continual-learning/docs/03-foundations.md
+SECTION: ## 7. 문헌을 적용하는 기준
+ANCHOR: 학습된 구조와 고정·무구조 대조의 비교 부재
+OP: INSERT_AFTER_LINE
+LABEL: LITERATURE(HWU20, research/2026-11-11-sbl-fulltext/W1-spens24-hwu20.md:19-23; review §2) / LITERATURE(CHU25, research/2026-11-11-sbl-fulltext/W2-chu25-goudar23.md:25,182; review §2) / LITERATURE(ELDER26, research/2026-11-11-sbl-fulltext/W3-elder26-miconi25.md:21,175; review §2) / LITERATURE(KUMAR26, research/2026-11-11-sbl-fulltext/W4-tem20-kumar26.md:381-382,397; review §2) / LITERATURE(MICONI25, research/2026-11-11-sbl-fulltext/W3-elder26-miconi25.md:313-316; review §2) / LITERATURE(SWAMI23, research/2026-11-11-sbl-fulltext/W6-swami23-metadata-gap.md:91; review §2) / PROPOSAL(재사용 금지)
+SOURCE: 2026-11-11-sbl-fulltext-review.md:7-16(§0 정정 6건), 69-89(§2 표); W1-spens24-hwu20.md:19-23,265-271; W2-chu25-goudar23.md:25,182; W3-elder26-miconi25.md:21,175; W4-tem20-kumar26.md:381-382,397; W3-elder26-miconi25.md:313-316; W6-swami23-metadata-gap.md:91; W7-remediation.md:429-436
+OVERTURNS: 없음(docs 본문에 이 여섯 표현은 없음. grep Hwu|Chu|Elder|Kumar|Miconi|Swaminathan|fully neural 결과 충돌 없음)
+NEW_TEXT:
+<<<
+**LITERATURE (HWU20·CHU25·ELDER26·KUMAR26·MICONI25·SWAMI23, [2026-11-11-sbl-fulltext-review.md](/home/jimmy/repos/full-continual-learning/research/2026-11-11-sbl-fulltext-review.md#2-외부-요약-검증-결과) §2):** 외부 요약(ChatGPT 조사 요약)을 원문과 대조해 정정한 여섯 가지다. **PROPOSAL:** 이 표현들은 설계 근거로 다시 쓰지 않는다.
+
+- **LITERATURE (HWU20, W1-spens24-hwu20.md:19-23):** novelty·familiarity가 바꾸는 것은 학습률이 아니라 공고화 replay epoch 수다.
+- **LITERATURE (CHU25, W2-chu25-goudar23.md:25,182):** "연속시간 RNN"은 τ=1, Δt=1이라 사실상 이산시간이다.
+- **LITERATURE (ELDER26, W3-elder26-miconi25.md:21,175):** 고정되는 쪽은 출력 쪽 hidden layer(HL1·HL2)이고 갱신되는 쪽은 입력 쪽 가중치(IL)다.
+- **LITERATURE (KUMAR26, W4-tem20-kumar26.md:381-382,397):** "fully neural"은 부분적으로만 맞다(NAVIGATE는 backprop 사전학습 뒤 고정, gating의 WTA·곱셈은 알고리즘 구현).
+- **LITERATURE (MICONI25, W3-elder26-miconi25.md:313-316):** 초록의 예시와 달리 실제 설계는 ABCD+EFGH이고 연결쌍 D>E를 4 trial 제시한다.
+- **LITERATURE (SWAMI23, W6-swami23-metadata-gap.md:91):** "LLM에서도 같은 기제"는 저자들이 "We conjecture"라 쓴 추측이며 transformer 실험은 없다.
+>>>
+
+=== EDIT L03-06 ===
+FILE: /home/jimmy/repos/full-continual-learning/docs/03-foundations.md
+SECTION: ## 7. 문헌을 적용하는 기준
+ANCHOR: 하나의 논문이 형성·선택·수정·rapid learning·연속 운영·속도 이득을 모두 입증했다고 합치지 않는다.
+OP: INSERT_AFTER_LINE
+LABEL: LITERATURE(HWU20·GOUDAR23·ELDER26·SPENS24, research/2026-11-11-sbl-fulltext/W1-spens24-hwu20.md:119,311; research/2026-11-11-sbl-fulltext/W2-chu25-goudar23.md:364; research/2026-11-11-sbl-fulltext/W3-elder26-miconi25.md:98; review §4.1) / LITERATURE(CHU25·TEM20·KUMAR26·SWAMI23·MICONI25, review §4.1 표) / ARCHIVE(Melete J1, docs/12-melete-lineage.md:22) / PROPOSAL(review §4.1)
+SOURCE: 2026-11-11-sbl-fulltext-review.md:17(§0),176-190(§4.1); W1-spens24-hwu20.md:119,311; W2-chu25-goudar23.md:364; W3-elder26-miconi25.md:98; 12-melete-lineage.md:22
+OVERTURNS: 없음
+NEW_TEXT:
+<<<
+**LITERATURE (11편 전체, [2026-11-11-sbl-fulltext-review.md](/home/jimmy/repos/full-continual-learning/research/2026-11-11-sbl-fulltext-review.md#4-논문을-가로지르는-관찰) §4.1):** 원문으로 읽은 11편 어디에서도 학습된 schema 구조가 같은 예산의 고정·무구조 대조보다 낫다는 직접 비교를 찾지 못했다. HWU20은 구조 없는 변형(mPFC 크기 1)이 비중첩 schema에서 gating 변형보다 높았고(≈0.9–0.95 대 ≈0.65, 그림 판독, W1-spens24-hwu20.md:311), GOUDAR23은 입력 척도를 조정하면 순환 가중치를 동결한 망도 완전 가소 망과 비슷했으며(W2-chu25-goudar23.md:364), ELDER26은 hidden이 크면 backprop MLP가 더 높았다(W3-elder26-miconi25.md:98). SPENS24는 미학습 encoder 한 점(epoch 0)뿐이고(W1-spens24-hwu20.md:119), CHU25·TEM20·KUMAR26·SWAMI23·MICONI25에는 고정 무작위 순환·비분해·learned-vs-given·LIALT baseline·비가소 RNN 같은 대조가 없다.
+
+**ARCHIVE (Melete J1, [12-melete-lineage.md](/home/jimmy/repos/full-continual-learning/docs/12-melete-lineage.md):22):** Melete에서도 root budget이 같은 trained graph 대 frozen graph의 추가 개선은 0.48%(대략 95% 구간 −3.07~4.04%)로 독립 기여가 입증되지 않았다.
+
+**PROPOSAL (원문 검토 §4.1):** FCL의 모든 schema 기제 실험은 같은 계산·갱신 예산의 고정/무구조/항상-갱신 대조와 함께 판정한다([08-evaluation.md](/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md) §4).
+>>>
+
+=== EDIT L03-07 ===
+FILE: /home/jimmy/repos/full-continual-learning/docs/03-foundations.md
+SECTION: ## 7. 문헌을 적용하는 기준
+ANCHOR: 2026-11-11에 이 중 신경망 구현 11편을 원문으로 다시 읽었다.
+OP: REPLACE_SUBSTRING
+LABEL: USER(2026-11-11 원문 전체 정독 요청, research/2026-11-11-sbl-fulltext-review.md:5) / LITERATURE(11편 전체, research/2026-11-11-sbl-fulltext-review.md:29-41 §1 표; references/catalog.tsv S14·S32)
+SOURCE: 2026-11-11-sbl-fulltext-review.md:5,29-41; references/catalog.tsv(S14 discrete-latent, S32 hybrid, S06 discussion-import); docs/03-foundations.md:69-71
+OVERTURNS: 정정: docs/03 §7의 "2026-11-11에 이 중 신경망 구현 11편을 원문으로 다시 읽었다"는 바로 앞 문단이 든 문헌(TEM·Goudar·Chu·Yoshida·Spens·Kumar)의 부분집합이 아닌데 "이 중"이라 적었다. 읽은 11편에는 Yoshida가 없고(S06은 discussion-import) Hwu·Elder·Miconi·Swaminathan과 리뷰·관점 2편(STRUCTK25·SPECTRUM26)이 들어 있다(review §1 표). 구현·모형 9편 중 SWAMI23은 이산 잠재 구조, HWU20은 hybrid다(catalog S14·S32).
+NEW_TEXT:
+<<<
+**USER (2026-11-11, 원문 검토 서두):** 외부 SBL 요약의 세부 논문을 원문 전체로 읽고 생각의 시작점으로 삼자는 요청에 따라, 위에서 든 문헌 중 Yoshida를 뺀 다섯 편(TEM·Goudar·Chu·Spens·Kumar)에 Hwu·Elder·Miconi·Swaminathan과 리뷰·관점 2편(STRUCTK25·SPECTRUM26)을 더한 11편(구현·모형 9편, 리뷰·관점 2편)을 원문으로 다시 읽었다.
+>>>
+
+=== EDIT L03-08 ===
+FILE: /home/jimmy/repos/full-continual-learning/docs/03-foundations.md
+SECTION: ## 4. 실제 뇌에서 표현된다는 말의 네 수준
+ANCHOR: 상관·pseudo-population·제한 과제 결과를 뇌 전체의 범용 코드로 확대하지 않는다.
+OP: INSERT_AFTER_LINE
+LABEL: LITERATURE(CHU25, research/2026-11-11-sbl-fulltext/W2-chu25-goudar23.md:152-153,171; review §2 CHU25 행 line 75) / PROPOSAL(research/2026-11-11-sbl-fulltext/W2-chu25-goudar23.md:208)
+SOURCE: 2026-11-11-sbl-fulltext-review.md:75(§2 CHU25 OFC 상관 PARTIAL); W2-chu25-goudar23.md:152-154,171,208
+OVERTURNS: 없음
+NEW_TEXT:
+<<<
+**LITERATURE (CHU25, W2-chu25-goudar23.md:152-153,171; 원문 검토 §2):** 모형과 쥐 OFC의 표상 기하 상관은 r≈0.90이지만 shaping 없는 망도 약 0.85이고, 다른 그림(S7b)은 0.80–0.85로 값이 일치하지 않는다. **PROPOSAL (W2-chu25-goudar23.md:208):** 뇌 데이터와의 상관을 schema 형성의 PASS gate로 쓰지 않고 oracle 구조 RDM과 행동 지표를 함께 본다.
+>>>
+
+=== EDIT L05-01 ===
+FILE: /home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md
+SECTION: ## 1. 각 재료의 역할
+ANCHOR: read/write/compute/consolidate의 시간적 조율 가설
+OP: INSERT_AFTER_LINE
+LABEL: LITERATURE(TEM20·SWAMI23·MICONI25·KUMAR26·SPENS24·HWU20, review §4.3 line 215-225) / LITERATURE(TEM20, research/2026-11-11-sbl-fulltext/W4-tem20-kumar26.md:175; review §4.3) / LITERATURE(KUMAR26, research/2026-11-11-sbl-fulltext/W4-tem20-kumar26.md:284,291; review §4.3) / PROPOSAL(review §4.3 line 223; research/2026-11-11-sbl-fulltext/W7-remediation.md:296 SWAMI23 slow/fast는 우리 정리) / ARCHIVE(S24, research/2026-11-09-sbl-tracking.md:70-72)
+SOURCE: 2026-11-11-sbl-fulltext-review.md:213-231(§4.3); W4-tem20-kumar26.md:175,284,291; W7-remediation.md:296; 2026-11-09-sbl-tracking.md:66-72(S24)
+OVERTURNS: 없음
+NEW_TEXT:
+<<<
+**LITERATURE (TEM20·SWAMI23·MICONI25·KUMAR26·SPENS24·HWU20, [2026-11-11-sbl-fulltext-review.md](/home/jimmy/repos/full-continual-learning/research/2026-11-11-sbl-fulltext-review.md#4-논문을-가로지르는-관찰) §4.3):** 원문 6편에서 같은 분해가 반복된다. 느린 쪽 / 빠른 쪽이 TEM20은 W / M, SWAMI23은 T / E, MICONI25는 느린 파라미터 / fast weight P(t), KUMAR26은 좌표 코드 / cue→goal 연합, SPENS24는 VAE / MHN, HWU20은 피질 CHL / 해마 인덱스다.
+
+**LITERATURE (TEM20·KUMAR26, W4-tem20-kumar26.md:175,284):** 이 분해가 데이터에서 발견된 것은 아니다. TEM20의 분리는 고정 W_repeat/W_tile 같은 아키텍처 prior와 학습 분포가 만들었고, KUMAR26의 모듈 묶음은 Foster 외 2000의 schema 세 개를 이어받았으며 관계 계산 controller(NAVIGATE)는 backprop 사전학습 뒤 고정이다(W4-tem20-kumar26.md:291). 단 SWAMI23의 "T는 느리고 E는 빠르다"는 원문 용어가 아니라 우리의 정리다(W7-remediation.md:296).
+
+**PROPOSAL (원문 검토 §4.3):** 이 분해는 System ONE의 CMS(느린 수준)·Titans(빠른 기억) 역할 분담과 잘 맞는다. 위 논문들이 CMS나 Titans를 쓴 것은 아니며 이 대응은 문헌의 발견이 아니라 우리가 구조 prior로 주입하는 해석이다.
+
+**ARCHIVE (S24, 2026-11-09-sbl-tracking.md:72):** "FFN=모든 schema, sequence=모든 binding"의 일반 법칙은 주장하지 않고 CMS/Titan 역할 분담의 후보 가설로만 쓴다.
+>>>
+
+=== EDIT L05-02 ===
+FILE: /home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md
+SECTION: ## 1. 각 재료의 역할
+ANCHOR: 여러 갱신 시간척도의 기억 [A02]
+OP: REPLACE_SUBSTRING
+LABEL: LITERATURE(NESTED/HOPE arXiv 2512.24695, research/2026-11-11-sbl-fulltext/W6-swami23-metadata-gap.md:153,133; 전문 일부 정독; review §6 line 328) / OPEN(역할 구분은 전문 정독 전까지 잠정)
+SOURCE: W6-swami23-metadata-gap.md:133,153; 2026-11-11-sbl-fulltext-review.md:328(§6 "재료 논문은 부분만 만족, 대부분 초록 수준 판정"); docs/04-rhythms-and-orchestration.md:9
+OVERTURNS: 없음
+NEW_TEXT:
+<<<
+여러 갱신 시간척도의 기억 [A02]. **LITERATURE (NESTED, W6-swami23-metadata-gap.md:153; 전문 일부 정독):** 레벨과 갱신 빈도는 설계 시 고정이고 학습률 η_t와 decay α_t는 입력으로부터 생성되며(Eq. 79–97) schema·assimilation·accommodation 개념은 없음
+>>>
+
+=== EDIT L05-03 ===
+FILE: /home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md
+SECTION: ## 4. Schema controller의 입력과 출력
+ANCHOR: 실행 수준 head: 어떤 token/block를 처리할지, 어느 depth source를 읽을지, fast update 횟수와 강도, 종료 여부.
+OP: INSERT_AFTER_LINE
+LABEL: LITERATURE(KUMAR26·TEM20·SWAMI23·SPENS24, research/2026-11-11-sbl-fulltext/W4-tem20-kumar26.md:319,120; research/2026-11-11-sbl-fulltext/W6-swami23-metadata-gap.md:44,51; research/2026-11-11-sbl-fulltext/W1-spens24-hwu20.md:103; review §4.3 line 225-231) / LITERATURE(STRUCTK25·SPECTRUM26, research/2026-11-11-sbl-fulltext/W7-remediation.md:54-55,103; research/2026-11-11-sbl-fulltext/W5-spectrum26-structk25.md:89-95; review §3 line 162-164,170-171) / PROPOSAL(review §4.3·§5 출발점 3)
+SOURCE: 2026-11-11-sbl-fulltext-review.md:225-231(§4.3),284-287(§5 출발점 3),162-164,170-171(§3); W4-tem20-kumar26.md:120,319; W6-swami23-metadata-gap.md:44,51; W1-spens24-hwu20.md:79,103; W7-remediation.md:54-55,103; W5-spectrum26-structk25.md:89-95
+OVERTURNS: 없음
+NEW_TEXT:
+<<<
+**LITERATURE (KUMAR26·TEM20·SWAMI23·SPENS24, [2026-11-11-sbl-fulltext-review.md](/home/jimmy/repos/full-continual-learning/research/2026-11-11-sbl-fulltext-review.md#4-논문을-가로지르는-관찰) §4.3):** 읽은 11편에는 불일치를 만났을 때 구조를 그 자리에서 수정·분할하는 실험이 하나도 없다. KUMAR26은 place cell remap 뒤 좌표 코드를 약 20 session 재학습하고(W4-tem20-kumar26.md:319), TEM20은 구조 remapping을 예측으로만 말하며(W4-tem20-kumar26.md:120), SWAMI23은 test 시 T를 고정하고(W6-swami23-metadata-gap.md:44,51), SPENS24는 test 시 VAE를 동결한다(W1-spens24-hwu20.md:103).
+
+**LITERATURE (STRUCTK25 §2.2·§3.2.1, SPECTRUM26 p.1899·1902; W7-remediation.md:54-55,103, W5-spectrum26-structk25.md:89-95):** 정성 규칙은 있다. 오류가 크면 새 schema를 만들고 작으면 기존 schema를 미세 조정하며(STRUCTK25), fit이 낮을수록 변화량과 계산이 커진다(SPECTRUM26). 둘 다 데이터와 알고리즘이 없다.
+
+**PROPOSAL (원문 검토 §4.3·§5 출발점 3):** 문맥 수준 head의 "수정/분화" 출력은 문헌에 구현된 기제가 없어 우리가 직접 설계하고 평가해야 하는 공백이다. 구현이나 채택 결정이 아니다.
+>>>
+
+=== EDIT L05-04 ===
+FILE: /home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md
+SECTION: ## 4. Schema controller의 입력과 출력
+ANCHOR: 따라서 novelty→frequency 하나의 단조 함수로 제어하지 않는다.
+OP: INSERT_AFTER_LINE
+LABEL: LITERATURE(SPENS24·HWU20·TEM20·SWAMI23·MICONI25·KUMAR26·SPECTRUM26, review §4.2 표 line 194-203; research/2026-11-11-sbl-fulltext/W1-spens24-hwu20.md:22-23,265-271; research/2026-11-11-sbl-fulltext/W4-tem20-kumar26.md:119; research/2026-11-11-sbl-fulltext/W6-swami23-metadata-gap.md:47; research/2026-11-11-sbl-fulltext/W3-elder26-miconi25.md:258-262,281; research/2026-11-11-sbl-fulltext/W4-tem20-kumar26.md:301-303; research/2026-11-11-sbl-fulltext/W5-spectrum26-structk25.md:89-92) / PROPOSAL(review §4.2 line 205-211)
+SOURCE: 2026-11-11-sbl-fulltext-review.md:192-211(§4.2); W1-spens24-hwu20.md:21-23,265-271; W4-tem20-kumar26.md:119,301-303; W6-swami23-metadata-gap.md:47; W3-elder26-miconi25.md:258-262,281; W5-spectrum26-structk25.md:89-92
+OVERTURNS: 없음
+NEW_TEXT:
+<<<
+**LITERATURE (SPENS24·HWU20·SWAMI23·MICONI25·KUMAR26·TEM20·SPECTRUM26, [2026-11-11-sbl-fulltext-review.md](/home/jimmy/repos/full-continual-learning/research/2026-11-11-sbl-fulltext-review.md#4-논문을-가로지르는-관찰) §4.2):** "새로움·일치도가 학습을 바꾼다"는 말은 읽은 논문에서 서로 다른 기제다. 신호가 정하는 것이 논문마다 다르다: SPENS24는 요소별 재구성 오차가 빠른 저장소에 저장할 대상을, HWU20은 novelty×familiarity가 공고화 replay epoch 수를, SWAMI23은 leave-one-out 조건부확률이 다시 묶을 slot과 보호할 위치를, MICONI25는 네트워크가 스스로 만든 neuromodulator m(t)가 쓰기 시점·부호·크기를(연결별 계수 A는 meta-learned), KUMAR26은 보상과 ACh 억제가 성공 시 쓰기와 실패 시 해당 cue 삭제를 정한다. TEM20의 예측 오차에 비례하는 Hebbian 쓰기는 암묵적 gate이며 논문은 이를 novelty gating이라 부르지 않는다(W4-tem20-kumar26.md:119). SPECTRUM26의 schema fit은 변화량만 정성적으로 말하며 데이터가 없다. 학습률 자체가 학습된 값으로 바뀌는 것은 MICONI25뿐이고 CHU25·GOUDAR23·ELDER26에는 이런 신호가 없다.
+
+**PROPOSAL (원문 검토 §4.2):** 질문 "schema가 학습 규칙 자체를 제어하는가"는 무엇을, 어디에(빠른 기억 대 느린 수준), 얼마나, 언제 공고화하는가로 쪼개 시험한다. Titans식 surprise 기반 쓰기는 이미 "얼마나"를 다루므로 비어 있는 것은 fit·친숙도에 따라 쓰는 위치와 공고화 예산을 바꾸는 것이다.
+>>>
+
+=== EDIT L05-05 ===
+FILE: /home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md
+SECTION: ## 11. Sleep가 만들어야 할 변화
+ANCHOR: 경험의 복원·보존 외에 새 관계 공유 사례에서 짧은 loop가 기능을 수행하도록 학습한다.
+OP: INSERT_AFTER_LINE
+LABEL: LITERATURE(SPENS24, research/2026-11-11-sbl-fulltext/W1-spens24-hwu20.md:90-93,110; review §3) / LITERATURE(HWU20, research/2026-11-11-sbl-fulltext/W1-spens24-hwu20.md:265-271,299-304) / LITERATURE(SWAMI23, research/2026-11-11-sbl-fulltext/W6-swami23-metadata-gap.md:51; review §5 출발점 4) / ARCHIVE(S22, research/2026-11-09-sbl-tracking.md:47-56) / PROPOSAL(review §5 출발점 4)
+SOURCE: 2026-11-11-sbl-fulltext-review.md:67,103-114,154-158,288-291(§5 출발점 4); W1-spens24-hwu20.md:90-93,110,265-271,299-304; W6-swami23-metadata-gap.md:51; 2026-11-09-sbl-tracking.md:41-56(S22)
+OVERTURNS: 없음
+NEW_TEXT:
+<<<
+**LITERATURE (SPENS24, W1-spens24-hwu20.md:90-93,110):** 문헌의 공고화는 빠른 저장소(MHN)가 teacher, 느린 수준(VAE)이 student인 replay다. replay 집합은 noise cue 10,000개를 MHN에 한 번 넣어 만든 고정 집합이고, 새 사건과 교차하는 replay와 generative replay는 제안에 그친다.
+
+**LITERATURE (HWU20, W1-spens24-hwu20.md:265-271,299-304):** replay 횟수는 `epochs = e_default + NM·e_boost`로 정하며, 고정 800 epoch 조건(총 16,800)과 1,600 epoch 조건(총 33,600)보다 적은 총 13,875 epoch로 같거나 더 나은 probe 값을 냈지만(그림 판독 근사) 저자도 neuromodulator가 빠른 학습에 필수는 아니라고 쓴다.
+
+**LITERATURE (SWAMI23, W6-swami23-metadata-gap.md:51; 원문 검토 §5 출발점 4):** Discussion은 T를 시간에 걸쳐 rebinding하는 방안을 제안만 하며 실험은 없고, 원문 검토는 이를 반복된 rebinding의 느린 가중치 흡수 제안으로 요약한다.
+
+**ARCHIVE (S22, 2026-11-09-sbl-tracking.md:50-52):** 원문 복원 후 context로 다시 제공한 iRAG의 filtered QA(Wiki 99.3%, Character 85.4%)와 원문 재구성만으로 consolidation한 직접 QA(Wiki 31%, Character 33%)는 다른 지표이며 기억 복원과 유용한 판단은 별도 학습 문제다.
+
+**PROPOSAL (원문 검토 §5 출발점 4):** Sleep의 첫 형태는 빠른 저장소에서 느린 수준으로 가는 teacher–student replay다. replay 예산의 novelty×familiarity 배분을 같은 총 계산의 고정 예산과 비교하고, 진단으로 SPENS24의 prototype 수축·lure 침입과 HWU20의 Tse식 probe를 빌린다.
+>>>
+
+=== EDIT L06-01 ===
+FILE: /home/jimmy/repos/full-continual-learning/docs/06-mathematical-framework.md
+SECTION: ## 3. 빠른 업데이트
+ANCHOR: 작은 학습률이 안정성 전체를 보장하지 않는다.
+OP: INSERT_AFTER_LINE
+LABEL: LITERATURE(SWAMI23, research/2026-11-11-sbl-fulltext/W6-swami23-metadata-gap.md:47; review §5 출발점 2) / LITERATURE(MICONI25, research/2026-11-11-sbl-fulltext/W3-elder26-miconi25.md:258-262,281; review §2 MICONI25 행) / ARCHIVE(S21 GNM, research/2026-11-09-sbl-tracking.md:27-39) / PROPOSAL(review §4.2·§5 출발점 2)
+SOURCE: 2026-11-11-sbl-fulltext-review.md:82(§2 MICONI25),199,201,205-211(§4.2),280-283(§5 출발점 2); W6-swami23-metadata-gap.md:47; W3-elder26-miconi25.md:258-262,281; 2026-11-09-sbl-tracking.md:27-39(S21),92(가설 C)
+OVERTURNS: 없음
+NEW_TEXT:
+<<<
+**LITERATURE (SWAMI23, W6-swami23-metadata-gap.md:47):** 선택적 갱신의 출발점은 보호/쓰기 규칙이다. leave-one-out 조건부확률과 p_surprise로 확신 있게 맞은 위치(anchor)는 보호하고 틀린 위치만 다시 묶으며, 임계값은 저자가 정한 값(LIALT 0.1, dax 1/16)이다.
+
+**LITERATURE (MICONI25, W3-elder26-miconi25.md:258-262,281):** 네트워크가 스스로 만든 스칼라 neuromodulator m(t)가 연결별 가소성 계수 A와 Hebbian trace로 쓰기를 gate하며, 연결별 계수가 필수다(단일 스칼라로 바꾸면 active 해가 30 run 중 0개).
+
+**ARCHIVE (S21 GNM, 2026-11-09-sbl-tracking.md:29,39; 확인 깊이 official-search-checked):** 무엇을 쓸지를 자연어 지시로 학습하는 neural memory write이며 write-gradient 차단 ablation에서 선택적 기억의 개선이 크게 감소했다고 보고됐다. 추상 schema discovery의 직접 증거는 아니다.
+
+**PROPOSAL ([2026-11-11-sbl-fulltext-review.md](/home/jimmy/repos/full-continual-learning/research/2026-11-11-sbl-fulltext-review.md#5-fcl-설계의-시작점-proposal) §4.2·§5 출발점 2):** MICONI25식 학습된 neuromodulator를 SWAMI23식 규칙보다 강한 후보로 둔다. §5의 u(write 대상·허용)는 "어디에", η(강도)는 "얼마나", §1의 level clock s_l은 "언제"에 대응시키고 "무엇을"은 쓸 증거의 선택으로 두어 하나의 gate로 합치지 않고 따로 시험하며, 대조군은 항상 쓰기, surprise만, 고정 무작위 gate를 같은 쓰기 예산에서 비교한다. 구현이나 채택 결정이 아니다.
+>>>
+
+=== EDIT L06-02 ===
+FILE: /home/jimmy/repos/full-continual-learning/docs/06-mathematical-framework.md
+SECTION: ## 4. 느린 schema 학습: 적응 후 새 사례 일반화
+ANCHOR: rank나 모듈 수가 늘었다는 사실만으로 schema 분화를 선언하지 않는다.
+OP: INSERT_AFTER_LINE
+LABEL: LITERATURE(MICONI25, research/2026-11-11-sbl-fulltext/W3-elder26-miconi25.md:258-262) / LITERATURE(TEM20, research/2026-11-11-sbl-fulltext/W4-tem20-kumar26.md:104-113) / LITERATURE(GOUDAR23, research/2026-11-11-sbl-fulltext/W2-chu25-goudar23.md:299-304,371) / LITERATURE(CHU25, research/2026-11-11-sbl-fulltext/W2-chu25-goudar23.md:99-104) / PROPOSAL(research/2026-11-11-sbl-fulltext/W2-chu25-goudar23.md:374; review §5 출발점 7) / OPEN(바깥 루프 대 창발)
+SOURCE: W3-elder26-miconi25.md:258-262; W4-tem20-kumar26.md:104-113; W2-chu25-goudar23.md:99-104,299-304,371,374; 2026-11-11-sbl-fulltext-review.md:125(GOUDAR23 8–12배),233-244(§4.4),301(§5 출발점 7)
+OVERTURNS: 없음
+NEW_TEXT:
+<<<
+**LITERATURE (MICONI25·TEM20, W3-elder26-miconi25.md:258-262, W4-tem20-kumar26.md:104-113):** 느린 구조를 얻는 방식은 논문마다 다르다. MICONI25는 바깥 루프(A2C+BPTT)와 gradient 없는 안쪽 Hebbian trace를, TEM20은 바깥 BPTT(25 step, 4-lap은 100)와 환경마다 0으로 리셋하는 안쪽 Hebbian M을 쓴다.
+
+**LITERATURE (GOUDAR23·CHU25, W2-chu25-goudar23.md:99-104,299-304,371):** 두 논문에는 명시적 meta-objective가 없고 GOUDAR23의 문제 경계·Adam 리셋·안정화 정규화와 CHU25의 단계 경계는 실험 틀이 공급한다. GOUDAR23에서 재사용을 막으면 가중치 변화가 약 8–12배 커진다.
+
+**PROPOSAL (W2-chu25-goudar23.md:374, 원문 검토 §5 출발점 7):** Adam은 step 크기가 정규화돼 있어 변화량과 trial 수의 상관이 일부 기계적일 수 있고, 위 목적함수의 retention 항 크기를 정할 문헌 측정도 거의 없다.
+
+**OPEN:** 명시적 바깥 루프로 갈지 순차 문제 안에서의 창발에 맡길지는 정해지지 않았다.
+>>>
+
+=== EDIT L06-03 ===
+FILE: /home/jimmy/repos/full-continual-learning/docs/06-mathematical-framework.md
+SECTION: ## 6. 비용 민감한 제어
+ANCHOR: Familiarity만으로 halt하지 않는다.
+OP: INSERT_AFTER_LINE
+LABEL: LITERATURE(HWU20, research/2026-11-11-sbl-fulltext/W1-spens24-hwu20.md:332) / LITERATURE(SPECTRUM26, research/2026-11-11-sbl-fulltext/W5-spectrum26-structk25.md:94-95) / LITERATURE(SWAMI23, research/2026-11-11-sbl-fulltext/W6-swami23-metadata-gap.md:56-57; review §4.4 line 244) / PROPOSAL(research/2026-11-11-sbl-fulltext/W6-swami23-metadata-gap.md:73; research/2026-11-11-sbl-fulltext/W2-chu25-goudar23.md:204; research/2026-11-11-sbl-fulltext/W4-tem20-kumar26.md:315; review §5 출발점 6) / OPEN(H-COMPUTE 문헌 지지 최약)
+SOURCE: 2026-11-11-sbl-fulltext-review.md:24,242-244(§4.4 계산량),298-300(§5 출발점 6); W1-spens24-hwu20.md:332; W5-spectrum26-structk25.md:94-95,139; W6-swami23-metadata-gap.md:56-57,73; W4-tem20-kumar26.md:315; W2-chu25-goudar23.md:204
+OVERTURNS: 없음
+NEW_TEXT:
+<<<
+**LITERATURE (HWU20·SPECTRUM26·SWAMI23, 원문 검토 §4.4 계산량, W1-spens24-hwu20.md:332, W5-spectrum26-structk25.md:94-95, W6-swami23-metadata-gap.md:56-57):** 같은 품질의 추론 계산량을 잰 논문은 읽은 11편에서 찾지 못했다. HWU20의 절감도 학습 epoch이다. 개념 수준의 근거는 SPECTRUM26(accommodation이 더 많은 시간과 계산을 요구한다는 정성적 서술)과 SWAMI23(posterior 엔트로피 감소, 1회 EM으로 충분)뿐이다.
+
+**PROPOSAL (원문 검토 §5 출발점 6, W6-swami23-metadata-gap.md:73, W2-chu25-goudar23.md:204, W4-tem20-kumar26.md:315):** H-COMPUTE는 문헌 지지가 가장 약한 사실상 우리 고유 가설이다. halting의 후보 신호는 CSCG posterior 엔트로피(SWAMI23), 기억 recall 신뢰도(KUMAR26의 0.6 임계값), attractor 수렴 탐침(CHU25 S-C.3의 응용)이며 이 신호들의 계산 절감 효과는 시험되지 않았다. 고정 깊이의 품질–계산 곡선을 먼저 얻고, §9의 C*_ε 첫 추정은 문헌 대조 없는 우리 실측으로 적는다.
+>>>
+
+=== EDIT L06-04 ===
+FILE: /home/jimmy/repos/full-continual-learning/docs/06-mathematical-framework.md
+SECTION: ## 10. 아직 정리가 아닌 주장
+ANCHOR: 이들은 반례와 비교 방법을 가진 OPEN 가설로 관리한다.
+OP: INSERT_AFTER_LINE
+LABEL: OPEN(review §4.1·§4.3) / LITERATURE(SPENS24, research/2026-11-11-sbl-fulltext/W1-spens24-hwu20.md:99,127) / PROPOSAL(review §5 출발점 3; research/2026-11-11-sbl-fulltext/W4-tem20-kumar26.md:182)
+SOURCE: 2026-11-11-sbl-fulltext-review.md:17,176-190(§4.1),225-231(§4.3),284-287(§5 출발점 3); W1-spens24-hwu20.md:97-100,99,127; W4-tem20-kumar26.md:182; W7-remediation.md:54-55; W5-spectrum26-structk25.md:89-92
+OVERTURNS: 없음
+NEW_TEXT:
+<<<
+**OPEN (원문 검토 §4.1·§4.3, 문헌 검토 뒤 추가):** 같은 방식으로 관리할 명제가 더 있다. 학습된 schema 구조가 같은 예산의 고정·무구조 대조보다 낫다는 명제(읽은 11편에 직접 비교가 없다). 오류가 크면 새 구조를 만들고 작으면 미세 조정하는 규칙이 옳다는 명제(STRUCTK25·SPECTRUM26의 정성 규칙이며 데이터가 없다). 예외만 따로 저장하면 schema가 보존된다는 명제(SPENS24 확장 모델의 설계이며 schema 개정과 다중 seed가 없다).
+
+**LITERATURE (SPENS24, W1-spens24-hwu20.md:99,127):** 확장 모델은 consolidation 전에도 prototype 쪽 왜곡을, DRM 모형은 lure 회상을 정성적으로 재현한다. **PROPOSAL (원문 검토 §5 출발점 3, W4-tem20-kumar26.md:182):** 위 명제들의 반례·실패 모드 후보는 잘못된 구조가 조용히 내용을 묶는 것(TEM20형 분리에서의 위험)과 schema 과적용(prototype 왜곡·DRM lure)이다.
+>>>
+
+=== EDIT L08-01 ===
+FILE: /home/jimmy/repos/full-continual-learning/docs/08-evaluation.md
+SECTION: ## 2. 핵심 benchmark family
+ANCHOR: offload/reload, version migration
+OP: INSERT_AFTER_LINE
+LABEL: LITERATURE(GOUDAR23, research/2026-11-11-sbl-fulltext/W2-chu25-goudar23.md:333; review §4.4 line 239-241) / LITERATURE(CHU25, research/2026-11-11-sbl-fulltext/W2-chu25-goudar23.md:123) / LITERATURE(KUMAR26, research/2026-11-11-sbl-fulltext/W4-tem20-kumar26.md:353,398) / LITERATURE(MICONI25, research/2026-11-11-sbl-fulltext/W3-elder26-miconi25.md:313-316) / LITERATURE(SWAMI23, research/2026-11-11-sbl-fulltext/W6-swami23-metadata-gap.md:56; review §5 출발점 5) / PROPOSAL(review §5 출발점 5)
+SOURCE: 2026-11-11-sbl-fulltext-review.md:119,151,239-241(§4.4 표면 대 구조),292-297(§5 출발점 5); W2-chu25-goudar23.md:123,333; W4-tem20-kumar26.md:353,398; W3-elder26-miconi25.md:313-316; W6-swami23-metadata-gap.md:56,76
+OVERTURNS: 없음
+NEW_TEXT:
+<<<
+**LITERATURE (GOUDAR23, 원문 검토 §4.4 표면 대 구조, W2-chu25-goudar23.md:333):** 구조는 같고 표면만 다르거나 표면은 같고 구조가 다른 lure로 두 요인을 분리한 논문은 읽은 11편에서 찾지 못했다. GOUDAR23은 오히려 학습 속도가 자극 코사인 유사도에 크게 의존함을 보인다(문제 3의 trial 수가 유사도 1에서 약 7, 0에서 약 175, 그림 판독).
+
+**PROPOSAL ([2026-11-11-sbl-fulltext-review.md](/home/jimmy/repos/full-continual-learning/research/2026-11-11-sbl-fulltext-review.md#5-fcl-설계의-시작점-proposal) §5 출발점 5):** F01(구조 같고 표면 다름)과 F02(표면 같고 구조 다름)를 표면 유사도 단계별로 함께 측정해 두 요인을 분리한다.
+
+**LITERATURE (CHU25·SWAMI23·KUMAR26·MICONI25, W2-chu25-goudar23.md:123, W6-swami23-metadata-gap.md:56, W4-tem20-kumar26.md:353,398, W3-elder26-miconi25.md:313-316):** 문헌에는 GOUDAR23·CHU25의 trial-to-criterion 곡선(CHU25는 5문제·10 seed에서 새 문제 학습 trial이 약 710에서 455로, 그림 판독), SWAMI23 LIALT의 example형(예시 1개 + 새 토큰), KUMAR26의 1회 노출 용량 곡선(reservoir 1024유닛에서 12쌍 중 약 7.8), MICONI25의 list-linking·sham 대조가 있다. MICONI25의 실제 설계는 ABCD+EFGH이고 연결쌍 D>E를 4 trial 제시한다(초록의 예시와 다름).
+
+**PROPOSAL (원문 검토 §5 출발점 5):** F03의 H-SAMPLE 틀은 이 곡선들을 측정 틀로만 빌리고, MICONI25는 초록이 아니라 실제 설계를 따르며, 수치는 우리 harness에서 다시 잰다.
+>>>
+
+=== EDIT L08-02 ===
+FILE: /home/jimmy/repos/full-continual-learning/docs/08-evaluation.md
+SECTION: ## 3. 대표 실험: 경험이 숙고를 직관으로 바꾸는가
+ANCHOR: Wrong-schema memory, memory lesion, 구조 shuffled experience를 대조한다.
+OP: INSERT_AFTER_LINE
+LABEL: LITERATURE(HWU20, research/2026-11-11-sbl-fulltext/W1-spens24-hwu20.md:332; review §4.4 계산량) / PROPOSAL(review §5 출발점 6)
+SOURCE: 2026-11-11-sbl-fulltext-review.md:24,242-244(§4.4),298-302(§5 출발점 6); W1-spens24-hwu20.md:332; docs/08-evaluation.md:40; docs/09-roadmap.md:30,32
+OVERTURNS: 없음
+NEW_TEXT:
+<<<
+**LITERATURE (HWU20, 원문 검토 §4.4 계산량, W1-spens24-hwu20.md:332):** 같은 품질의 추론 계산량을 잰 논문은 읽은 11편에서 찾지 못해 F11과 SE/SES의 quality–compute 곡선 이동에는 문헌 기준값이 없다. HWU20의 절감도 학습 epoch이다.
+
+**PROPOSAL (원문 검토 §5 출발점 6):** 고정 depth grid의 품질–계산 곡선을 controller보다 먼저 얻는다. controller의 후보 신호와 문헌 지지 수준은 [06-mathematical-framework.md](/home/jimmy/repos/full-continual-learning/docs/06-mathematical-framework.md) §6에 있다.
+>>>
+
+=== EDIT L08-03 ===
+FILE: /home/jimmy/repos/full-continual-learning/docs/08-evaluation.md
+SECTION: ## 4. 비교군
+ANCHOR: Oracle source selection이나 true latent cause는 diagnostic upper bound로만 분리한다.
+OP: INSERT_AFTER_LINE
+LABEL: PROPOSAL(review §4.1·§5 출발점 2·8) / LITERATURE(HWU20·GOUDAR23·ELDER26, research/2026-11-11-sbl-fulltext/W1-spens24-hwu20.md:311; research/2026-11-11-sbl-fulltext/W2-chu25-goudar23.md:364; research/2026-11-11-sbl-fulltext/W3-elder26-miconi25.md:98; review §4.1) / ARCHIVE(S23, research/2026-11-09-sbl-tracking.md:64)
+SOURCE: 2026-11-11-sbl-fulltext-review.md:176-190(§4.1),280-283,302(§5 출발점 2·8); W1-spens24-hwu20.md:311; W2-chu25-goudar23.md:364; W3-elder26-miconi25.md:98; 2026-11-09-sbl-tracking.md:64(S23)
+OVERTURNS: 없음(강화: 기존 §4 비교군 목록의 "same update budget" 항목을 모든 schema 기제 실험의 의무로 올림. 기존 결론을 뒤집지 않음)
+NEW_TEXT:
+<<<
+**PROPOSAL (원문 검토 §4.1·§5 출발점 2·8):** schema 기제를 쓰는 모든 실험은 같은 계산·갱신 예산의 고정/무구조/항상-갱신 대조를 의무로 둔다. 쓰기 gate는 항상 쓰기, surprise만, 고정 무작위 gate를 같은 쓰기 예산에서, replay는 novelty×familiarity 배분을 같은 총 replay 계산의 고정 예산과 비교한다.
+
+**LITERATURE (HWU20·GOUDAR23·ELDER26, W1-spens24-hwu20.md:311, W2-chu25-goudar23.md:364, W3-elder26-miconi25.md:98):** 이런 대조에서 단순한 쪽이 비슷하거나 더 높았던 사례가 읽은 논문에 있다(수치는 [03-foundations.md](/home/jimmy/repos/full-continual-learning/docs/03-foundations.md) §7). **ARCHIVE (S23, 2026-11-09-sbl-tracking.md:64):** 반대 방향의 보고도 있다. 고정 scaffold + 새 readout만으로는 같은 이득이 없었다고 하나 이번에 정독하지 않은 원보고 범위다.
+>>>
+
+=== EDIT L08-04 ===
+FILE: /home/jimmy/repos/full-continual-learning/docs/08-evaluation.md
+SECTION: ## 5. 인과적 개입
+ANCHOR: 오답을 안정화해 flip rate가 줄어드는 현상을 정답 안정성으로 세지 않는다.
+OP: INSERT_AFTER_LINE
+LABEL: LITERATURE(GOUDAR23, research/2026-11-11-sbl-fulltext/W2-chu25-goudar23.md:338,371) / LITERATURE(MICONI25, research/2026-11-11-sbl-fulltext/W3-elder26-miconi25.md:282,300) / PROPOSAL(review §5 출발점 1)
+SOURCE: 2026-11-11-sbl-fulltext-review.md:276-279(§5 출발점 1),77,82(§2); W2-chu25-goudar23.md:338,371; W3-elder26-miconi25.md:282,300; README.md 핵심 검증 질문 4
+OVERTURNS: 없음
+NEW_TEXT:
+<<<
+**LITERATURE (GOUDAR23, W2-chu25-goudar23.md:338,371):** subspace 재사용의 인과 시험이 있다. 재사용을 막은 D→S 교란은 두 번째 문제의 trial이 약 3300으로 문제 1(약 3000)과 비슷해지고, 대조인 S→S는 약 450이다(그림 판독).
+
+**LITERATURE (MICONI25, W3-elder26-miconi25.md:282,300):** W_out 또는 W_in을 교체하면 chance로 떨어진다. 같은 네트워크에서 reinstatement를 제거하는 인과 실험은 없다.
+
+**PROPOSAL (원문 검토 §5 출발점 1):** 구조 전이가 표현 제거·교체 때 선택적으로 사라지는지를 schema의 조작적 증거로 쓴다. 재사용 차단(D→S), 행렬 교체, 재활성화 제거를 설계하되 같은 checkpoint의 inference lesion과 retrained ablation은 구분한다.
+>>>
+
+=== EDIT L08-05 ===
+FILE: /home/jimmy/repos/full-continual-learning/docs/08-evaluation.md
+SECTION: ## 6. Metrics
+ANCHOR: 수정: correction latency, false update, unrelated regression, ABA recovery, backward/forward transfer.
+OP: INSERT_AFTER_LINE
+LABEL: LITERATURE(CHU25, research/2026-11-11-sbl-fulltext/W2-chu25-goudar23.md:118,164-165; review §4.4) / LITERATURE(ELDER26, research/2026-11-11-sbl-fulltext/W3-elder26-miconi25.md:126; review §4.4) / LITERATURE(TEM20, research/2026-11-11-sbl-fulltext/W4-tem20-kumar26.md:112,124; review §4.4) / LITERATURE(KUMAR26, research/2026-11-11-sbl-fulltext/W4-tem20-kumar26.md:386; review §4.4) / LITERATURE(GOUDAR23, research/2026-11-11-sbl-fulltext/W2-chu25-goudar23.md:321; review §4.4) / LITERATURE(MICONI25, research/2026-11-11-sbl-fulltext/W3-elder26-miconi25.md:304; review §4.4) / LITERATURE(HWU20, review §4.4 line 238; research/2026-11-11-sbl-fulltext/W1-spens24-hwu20.md:294,308-309) / LITERATURE(SPENS24, research/2026-11-11-sbl-fulltext/W1-spens24-hwu20.md:120,127,134) / LITERATURE(HWU20, research/2026-11-11-sbl-fulltext/W1-spens24-hwu20.md:290-291) / PROPOSAL(review §5 출발점 4·7)
+SOURCE: 2026-11-11-sbl-fulltext-review.md:235-238(§4.4 보존·망각),288-291,301(§5 출발점 4·7); W2-chu25-goudar23.md:118,164-165,321; W4-tem20-kumar26.md:112,124,386; W3-elder26-miconi25.md:126,304; W1-spens24-hwu20.md:120,127,134,290-291,294,308-309
+OVERTURNS: 없음
+NEW_TEXT:
+<<<
+**LITERATURE (CHU25·ELDER26·TEM20·KUMAR26·GOUDAR23·MICONI25·HWU20, 원문 검토 §4.4 보존·망각, W2-chu25-goudar23.md:321, W4-tem20-kumar26.md:386):** 보존 측정은 읽은 논문에 거의 없다. CHU25·ELDER26은 측정이 없고 TEM20은 기억을 환경마다 리셋하며 KUMAR26은 기존 쌍 보존을 보고하지 않았다(코드의 2NPA 지표는 새 cue만 센다). GOUDAR23은 재학습 savings뿐이고 MICONI25는 장기 망각이 없으며 HWU20만 부분 측정이 있다.
+
+**PROPOSAL (원문 검토 §5 출발점 7):** 보존 평가(F05·F06·F10)는 우리가 만든다. ABA 조건 복귀, 이전 과제의 zero-shot 재평가, savings를 함께 쓴다.
+
+**LITERATURE (SPENS24, W1-spens24-hwu20.md:120,127,134):** 클래스 내 분산 감소와 DRM lure 회상은 인간 데이터와 정성적 유사성만 보이는 재현이다. **LITERATURE (HWU20, W1-spens24-hwu20.md:290-291):** Tse식 probe는 cued/non-cued/original 항목의 활동으로 새 연합을 본다. **PROPOSAL (원문 검토 §5 출발점 4):** 이들을 schema 과적용(prototype 수축·lure 침입)과 공고화의 진단으로 빌린다.
+>>>
+
+=== EDIT L08-06 ===
+FILE: /home/jimmy/repos/full-continual-learning/docs/08-evaluation.md
+SECTION: ## 9. 수치 보고 원칙
+ANCHOR: 공개 source code가 있다고 본인의 재현을 완료한 것은 아니다.
+OP: INSERT_AFTER_LINE
+LABEL: LITERATURE(CHU25·ELDER26·KUMAR26·SWAMI23, review §8 line 346-349; research/2026-11-11-sbl-fulltext/W7-remediation.md:317-319) / PROPOSAL
+SOURCE: 2026-11-11-sbl-fulltext-review.md:346-349(§8); W7-remediation.md:317-319; W3-elder26-miconi25.md:108
+OVERTURNS: 없음
+NEW_TEXT:
+<<<
+**LITERATURE (CHU25·ELDER26·KUMAR26·SWAMI23, 원문 검토 §8, W7-remediation.md:317-319):** 읽은 논문에서도 ±와 괄호값의 정의·분모 누락이 반복됐다. CHU25는 정확도 정의와 93.20의 분모가, ELDER26은 ±의 정의와 978 대 888 clips가, KUMAR26은 본문 ±의 정의가 없고, SWAMI23은 같은 괄호 표기가 표에 따라 95% 신뢰구간 폭(Table 1·4·7)이거나 표준오차(Table 5·6·8·9)다.
+
+**PROPOSAL:** 모든 ±와 괄호값에 정의(SD/SE/95% CI)와 독립 단위(seed/world/query)를 적고, 그림에서 읽은 값은 읽은 값으로 표시하며, 문헌 수치를 인용할 때는 위치와 분모를 함께 적는다.
+>>>
+
+=== EDIT L10-01 ===
+FILE: /home/jimmy/repos/full-continual-learning/docs/10-evolution-policy.md
+SECTION: ## 3. 후보 생성 계약
+ANCHOR: 임의의 전체 rewrite를 곧바로 허용하지 않는다.
+OP: INSERT_AFTER_LINE
+LABEL: PROPOSAL(review §4.1·§5 출발점 8) / LITERATURE(11편 전체, research/2026-11-11-sbl-fulltext-review.md:17,176-190 §4.1)
+SOURCE: 2026-11-11-sbl-fulltext-review.md:17,176-190(§4.1),302(§5 출발점 8); docs/09-roadmap.md:42; EVIDENCE.md:21-30
+OVERTURNS: 없음
+NEW_TEXT:
+<<<
+**PROPOSAL (원문 검토 §4.1·§5 출발점 8):** 문헌에서 온 기제를 후보로 만들 때는 hypothesis/evidence 필드에 논문 id·확인 깊이(fulltext-read 등)·근거 위치를 적고, 같은 계산·갱신 예산의 고정/무구조/항상-갱신 대조를 비교군에 함께 넣는다. 대조 없이 통과한 후보는 "기제의 독자 기여 미분리"로 표기해 효용과 기제 기여를 분리 보고한다([09-roadmap.md](/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md) §4와 같은 원칙).
+
+**LITERATURE (11편 전체, [2026-11-11-sbl-fulltext-review.md](/home/jimmy/repos/full-continual-learning/research/2026-11-11-sbl-fulltext-review.md#4-논문을-가로지르는-관찰) §4.1):** 읽은 11편 어디에도 학습된 구조가 같은 예산의 고정·무구조 대조보다 낫다는 직접 비교가 없다. **PROPOSAL:** 따라서 문헌의 성공을 후보의 expected_mechanism 근거로 곧바로 옮기지 않는다.
+>>>
+
+=== EDIT L10-02 ===
+FILE: /home/jimmy/repos/full-continual-learning/docs/10-evolution-policy.md
+SECTION: ## 5. Evaluator의 독립성
+ANCHOR: DGM 계열에서 논의된 문제를 경계 사례로 기록한다.
+OP: INSERT_AFTER_LINE
+LABEL: LITERATURE(KUMAR26, research/2026-11-11-sbl-fulltext/W4-tem20-kumar26.md:297,390; review §2 KUMAR26 행) / LITERATURE(GOUDAR23·CHU25, research/2026-11-11-sbl-fulltext/W2-chu25-goudar23.md:99-104,299-304) / PROPOSAL
+SOURCE: 2026-11-11-sbl-fulltext-review.md:86(§2 KUMAR26 하이퍼파라미터 튜닝); W4-tem20-kumar26.md:297,390; W2-chu25-goudar23.md:99-104,299-304; docs/08-evaluation.md:80-82(§7)
+OVERTURNS: 없음
+NEW_TEXT:
+<<<
+**LITERATURE (KUMAR26, W4-tem20-kumar26.md:297,390):** 평가 지표에 맞춘 튜닝은 읽은 논문에도 있다. KUMAR26은 학습률·τ_c·β^control·Ω_ACh를 평가 지표(초기 MPA latency와 OPA·6NPA 방문 비율)로 튜닝했고 튜닝 seed 수가 원문에 없다. **LITERATURE (GOUDAR23·CHU25, W2-chu25-goudar23.md:99-104,299-304):** GOUDAR23의 문제 경계·Adam 리셋·안정화 정규화와 CHU25의 단계 경계는 실험 틀이 공급한다.
+
+**PROPOSAL:** 후보의 학습·튜닝에 쓰는 split과 selection·confirmation 평가 split을 분리하고, 단계·문제 경계가 harness에서 오면 결과에 그 사실을 적는다([08-evaluation.md](/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md) §7).
+>>>
+
+=== EDIT L10-03 ===
+FILE: /home/jimmy/repos/full-continual-learning/docs/10-evolution-policy.md
+SECTION: ## 7. 최소 진화 루프
+ANCHOR: sandbox 구현 → dev 학습/평가 → failure analysis
+OP: INSERT_AFTER_LINE
+LABEL: PROPOSAL(review §4.5 line 260) / LITERATURE(HWU20, research/2026-11-11-sbl-fulltext/W1-spens24-hwu20.md:367,369,371) / LITERATURE(MICONI25, research/2026-11-11-sbl-fulltext/W3-elder26-miconi25.md:344-345) / LITERATURE(TEM20, research/2026-11-11-sbl-fulltext/W4-tem20-kumar26.md:206) / LITERATURE(KUMAR26, research/2026-11-11-sbl-fulltext/W4-tem20-kumar26.md:437-438) / LITERATURE(GOUDAR23, research/2026-11-11-sbl-fulltext/W2-chu25-goudar23.md:423) / LITERATURE(SPENS24·HWU20·CHU25·GOUDAR23·ELDER26·MICONI25·TEM20·KUMAR26·SWAMI23, research/2026-11-11-sbl-fulltext-review.md:248-258 §4.5 표)
+SOURCE: 2026-11-11-sbl-fulltext-review.md:246-260(§4.5); W1-spens24-hwu20.md:358,367,369,371; W3-elder26-miconi25.md:344-345; W4-tem20-kumar26.md:206,437-438; W2-chu25-goudar23.md:423
+OVERTURNS: 없음
+NEW_TEXT:
+<<<
+**PROPOSAL ([2026-11-11-sbl-fulltext-review.md](/home/jimmy/repos/full-continual-learning/research/2026-11-11-sbl-fulltext-review.md#4-논문을-가로지르는-관찰) §4.5):** sandbox 구현에서 라이선스 없는 외부 공식 코드는 읽고 인용만 하고, 필요한 기제는 논문 식에서 다시 구현한다. 읽은 구현·모형 9편 중 공식 코드가 있는 것은 7편이고 그중 LICENSE가 있는 것은 GOUDAR23(MIT) 하나이며 CHU25·SWAMI23은 공식 코드가 없다. 기제가 소형(수백 유닛, CPU 가능)이라 재구현 비용은 작다.
+
+**LITERATURE (HWU20·MICONI25·TEM20·KUMAR26·GOUDAR23, 원문 검토 §4.5; W1-spens24-hwu20.md:367,369,371, W3-elder26-miconi25.md:344-345, W4-tem20-kumar26.md:206,437-438, W2-chu25-goudar23.md:423):** 코드와 논문이 어긋난 사례가 많다. HWU20은 Table 1의 N_multimodal 40이 코드·그림의 80과, e_boost 1000이 코드의 2000과 다르고 mPFC→vHPC 가중치가 코드에서는 학습되지 않으며(W1-spens24-hwu20.md:371), MICONI25는 식 4·5가 코드와 다르며, TEM20은 lr 1e-3→1e-4가 코드의 9.4e-4→8e-5와 다르다. KUMAR26은 reservoir N=1024가 코드 기본값 1000과, τ_e 1000 ms가 코드 기본값 xytau=200과 다르고, GOUDAR23의 배포 처리 데이터(10망)는 논문 통계(30망)를 재현하지 않는다.
+
+**PROPOSAL (W1-spens24-hwu20.md:358):** 재구현 전에 어느 판의 실험을 재현할지 정하고 불일치 목록을 만든다.
+>>>
+
+=== EDIT L10-04 ===
+FILE: /home/jimmy/repos/full-continual-learning/docs/10-evolution-policy.md
+SECTION: ## 8. 근거와 적용 범위
+ANCHOR: 이들의 성공을 Melete의 neural schema 형성이나 통합 System ONE 성공의 직접 증거로 사용하지 않는다.
+OP: INSERT_AFTER_LINE
+LABEL: PROPOSAL(EVIDENCE.md 확인 깊이의 의미; review §2·§6) / LITERATURE(STRUCTK25 외 6편, research/2026-11-11-sbl-fulltext-review.md:61-91 §2; research/2026-11-11-sbl-fulltext/W7-remediation.md:222)
+SOURCE: EVIDENCE.md:21-30; 2026-11-11-sbl-fulltext-review.md:7-16,61-91(§2),304-328(§6); W7-remediation.md:222
+OVERTURNS: 없음
+NEW_TEXT:
+<<<
+**PROPOSAL ([EVIDENCE.md](/home/jimmy/repos/full-continual-learning/EVIDENCE.md) 확인 깊이의 의미, 원문 검토 §2·§6):** 문헌 주장에는 확인 깊이(fulltext-read, metadata-checked, official-search-checked, discussion-import)를 함께 적고 초록·검색 결과 수준의 판정을 원문 정독 수준으로 올려 쓰지 않는다. 외부 요약은 원문으로 검증하기 전에 설계 근거로 쓰지 않는다. 부재·갭 결론은 검색 범위와 근거 깊이를 함께 적는다.
+
+**LITERATURE (STRUCTK25 외 6편, 원문 검토 §2, W7-remediation.md:222):** 2026-11-11에 외부 요약을 원문 11편과 대조하자 정정 여섯 건이 나왔다. 리뷰 STRUCTK25에는 참고문헌·인용 오류 세 건이 있어 이 리뷰를 통한 2차 인용은 원논문을 보기 전에 단정하지 않는다.
+>>>
+
+=== EDIT L11-01 ===
+FILE: /home/jimmy/repos/full-continual-learning/docs/11-research-agenda.md
+SECTION: ## 1. Pretraining과 alignment 가설
+ANCHOR: 이 연구는 MVP의 선행 조건이 아니다.
+OP: INSERT_AFTER_LINE
+LABEL: LITERATURE(SWAMI23, research/2026-11-11-sbl-fulltext/W6-swami23-metadata-gap.md:91; review §2 SWAMI23 행) / LITERATURE(SPECTRUM26, research/2026-11-11-sbl-fulltext/W5-spectrum26-structk25.md:96,113-114,121-122; review §2) / PROPOSAL
+SOURCE: 2026-11-11-sbl-fulltext-review.md:88-89(§2 SWAMI23),91(§2 SPECTRUM26); W6-swami23-metadata-gap.md:91; W5-spectrum26-structk25.md:96,113-114,121-124
+OVERTURNS: 없음
+NEW_TEXT:
+<<<
+**LITERATURE (SWAMI23, W6-swami23-metadata-gap.md:91; 원문 검토 §2):** "LLM에서도 같은 기제"는 저자들이 "We conjecture"라 쓴 추측이며 transformer 실험은 없다. **LITERATURE (SPECTRUM26, W5-spectrum26-structk25.md:96,113-114,121-122):** LLM에 대한 대응(ICL ≈ integration, knowledge conflict ≈ assimilation, fine-tuning ≈ accommodation)은 "Arguably"가 붙은 정성 유추이고 데이터가 없으며, 저자는 현재 모델이 schema에 "akin"한 것을 갖되 효과적으로 쓰지 못할 수 있다고 쓴다.
+
+**PROPOSAL:** 이 두 문헌은 위 사용자 가설(pretraining=하나의 schema, post-training=분화)을 지지하거나 반증하는 증거가 아니다. 경쟁 가설 표의 관찰 계획은 그대로 둔다.
+>>>
+
+=== EDIT L11-02 ===
+FILE: /home/jimmy/repos/full-continual-learning/docs/11-research-agenda.md
+SECTION: ## 2. Schema의 물리적 단위
+ANCHOR: Neural manifold와 symbolic role 구조는 설명 수준이 다를 수 있다.
+OP: INSERT_AFTER_LINE
+LABEL: LITERATURE(STRUCTK25, research/2026-11-11-sbl-fulltext/W7-remediation.md:51,139; review §3 STRUCTK25) / LITERATURE(SPECTRUM26, research/2026-11-11-sbl-fulltext/W5-spectrum26-structk25.md:72-76) / PROPOSAL(review §5 출발점 1) / OPEN(research/2026-11-11-sbl-fulltext/W7-remediation.md:139)
+SOURCE: 2026-11-11-sbl-fulltext-review.md:160-170(§3 STRUCTK25·SPECTRUM26),276-279(§5 출발점 1); W7-remediation.md:51,139; W5-spectrum26-structk25.md:72-76
+OVERTURNS: 없음
+NEW_TEXT:
+<<<
+**LITERATURE (STRUCTK25, W7-remediation.md:51; 원문 검토 §3):** 서술형 리뷰는 schema 모델을 명시적(TEM, SMP, CSCG 등 11개)과 암묵적(Goudar·Driscoll의 manifold, Yang·Dubreuil의 subpopulation 등 4개)으로 나눈다(§3.2.2, Table 3). 이는 분류이며 둘 사이의 우열 증거는 없다. **LITERATURE (SPECTRUM26, W5-spectrum26-structk25.md:72-76):** SPECTRUM26은 schema를 별도 저장소가 아니라 분산 표현의 추상화 수준 스펙트럼으로 보지만 추상화의 측정법은 없다.
+
+**PROPOSAL (원문 검토 §5 출발점 1):** retrofit LLM에서는 둘 중 하나를 고르지 않고 세 측정을 조작적 증거로 쓴다([03-foundations.md](/home/jimmy/repos/full-continual-learning/docs/03-foundations.md) §1). **OPEN (W7-remediation.md:139):** retrofit LM에는 implicit-subspace 계열이 맞아 보이나 STRUCTK25에 우열 증거는 없다.
+>>>
+
+=== EDIT L11-03 ===
+FILE: /home/jimmy/repos/full-continual-learning/docs/11-research-agenda.md
+SECTION: ## 3. 표현 보호와 확장
+ANCHOR: 논의된 근거: curriculum unlearning [S19], invariant schema [S25], recurrent scaffold [S23].
+OP: INSERT_AFTER_LINE
+LABEL: LITERATURE(ELDER26, research/2026-11-11-sbl-fulltext/W3-elder26-miconi25.md:21-22,126-130,175; review §2 ELDER26 행·§3 ELDER26) / PROPOSAL(research/2026-11-11-sbl-fulltext/W3-elder26-miconi25.md:145; review §3 ELDER26 주의) / ARCHIVE(S19, research/2026-11-09-sbl-tracking.md:11-15) / ARCHIVE(S23, research/2026-11-09-sbl-tracking.md:62-64) / PROPOSAL(가설 B, research/2026-11-09-sbl-tracking.md:90; review §4.3) / OPEN
+SOURCE: 2026-11-11-sbl-fulltext-review.md:78-80(§2 ELDER26),129-134(§3 ELDER26),225-231(§4.3); W3-elder26-miconi25.md:21-22,126-130,145,175; 2026-11-09-sbl-tracking.md:7-15(S19),58-64(S23),76-78(S25),90(가설 B); docs/11-research-agenda.md:26
+OVERTURNS: 약화: docs/11 §3의 "논의된 근거: curriculum unlearning [S19], invariant schema [S25], recurrent scaffold [S23]"은 세 건을 같은 지위의 근거로 읽히게 한다. 원문 검토 결과 [S25]는 순차 학습·새 클래스·망각을 시험하지 않았고 불변성이 SVM 구성과 weight equalize에서 나왔을 가능성이 있어(W3:21-22,126-130; review §2·§3) "보호가 필요하다"의 직접 근거가 아니다. [S19]는 인접 근거(인간 행동 실험, neural dimensionality 직접 측정 아님), [S23]은 정독하지 않은 원보고 범위다. 기존 문장은 유지하고 지위만 명시한다.
+NEW_TEXT:
+<<<
+**LITERATURE (ELDER26, W3-elder26-miconi25.md:21-22,126-130,175; 원문 검토 §2·§3):** [S25]는 순차 학습·새 클래스·망각을 시험하지 않았고, 고정되는 쪽은 출력 쪽 hidden layer(HL1·HL2)이며 갱신되는 쪽은 입력 쪽 가중치(IL)다. 11-09 기록의 "상위 schema circuit"은 같은 사실을 반대 어휘로 적은 것이다. **PROPOSAL (W3-elder26-miconi25.md:145, 원문 검토 §3 ELDER26 주의):** 불변성이 SVM 구성과 weight equalize에서 나왔을 가능성이 있으므로 "보호가 필요하다"의 직접 근거로 읽지 않는다.
+
+**ARCHIVE (S19·S23, 2026-11-09-sbl-tracking.md:11-15,62-64):** [S19]는 인간 행동 실험과 신경망을 다룬 인접 근거이고 neural dimensionality를 직접 측정하지 않았다. [S23]의 수치는 원보고 범위로 귀속하며 이번에 정독하지 않았다.
+
+**PROPOSAL (가설 B, 2026-11-09-sbl-tracking.md:90; 원문 검토 §4.3):** rapid learning에서 보호·국소 수정·표현 확장·분리 중 무엇을 고르는지는 OPEN으로 연구한다. 구조를 불일치 시 그 자리에서 고치는 기제는 읽은 문헌에 없으므로 F05/F06 비교의 대상은 문헌 재현이 아니라 우리 설계다.
+>>>
+
+=== EDIT L11-04 ===
+FILE: /home/jimmy/repos/full-continual-learning/docs/11-research-agenda.md
+SECTION: ## 4. 통찰의 운영적 정의
+ANCHOR: Reconstruction에서 relational generalization으로 넘어가는 경계가 핵심이다.
+OP: INSERT_AFTER_LINE
+LABEL: LITERATURE(CHU25, research/2026-11-11-sbl-fulltext/W2-chu25-goudar23.md:138-141; review §2 CHU25 행) / ARCHIVE(S20, research/2026-11-09-sbl-tracking.md:19-23,88) / PROPOSAL(가설 A)
+SOURCE: 2026-11-11-sbl-fulltext-review.md:76(§2 CHU25),216-220(§3 CHU25); W2-chu25-goudar23.md:138-141; 2026-11-09-sbl-tracking.md:17-23(S20),88(가설 A)
+OVERTURNS: 없음
+NEW_TEXT:
+<<<
+**LITERATURE (CHU25, W2-chu25-goudar23.md:138-141):** unshaped 망이 shaped 망보다 더 저차원이었다(본문 top-3 PC 분산비 93% 대 82.5%). **ARCHIVE (S20, 2026-11-09-sbl-tracking.md:19-23,88; 확인 깊이 official-search-checked):** 파라미터 공간의 압축과 과제 시간 구조의 형성을 구분하는 것이 가설 A이며, 코드 공개는 당시 미확인이었다.
+
+**PROPOSAL (가설 A):** 저차원성·압축 자체를 구조 형성의 증거로 보지 않고, 안정된 cluster나 저차원화를 schema 형성 PASS로 삼지 않으며 새 과제 예측·전이로 판정한다.
+>>>
+
+=== EDIT L11-05 ===
+FILE: /home/jimmy/repos/full-continual-learning/docs/11-research-agenda.md
+SECTION: ## 6. LLM과 개인 경험의 관계
+ANCHOR: 현재 문맥에 적합하게 사용하고, 장기 보존과 수정의 균형을 맞추는 것이다.
+OP: INSERT_AFTER_LINE
+LABEL: LITERATURE(갭 탐색 범위 한정 결론, research/2026-11-11-sbl-fulltext/W6-swami23-metadata-gap.md:117,156,169; review §6 line 304-328) / OPEN(증명 아님)
+SOURCE: 2026-11-11-sbl-fulltext-review.md:25,304-328(§6); W6-swami23-metadata-gap.md:115-158,169-170
+OVERTURNS: 없음
+NEW_TEXT:
+<<<
+**LITERATURE (갭 탐색, [2026-11-11-sbl-fulltext-review.md](/home/jimmy/repos/full-continual-learning/research/2026-11-11-sbl-fulltext-review.md#6-갭-주장-판정) §6, 범위 한정, W6-swami23-metadata-gap.md:117):** 외부 요약의 결론("다양한 경험에서 schema를 스스로 발견·형성·수정·통합하고, 그 schema가 이후 학습 규칙 자체를 제어하는 범용 지속학습 아키텍처는 완성된 형태로 확인되지 않았다")에 대해 검색 범위 안에서 반례를 찾지 못했다. 범위는 2023-01-01~2026-11-11이다. OpenAlex 26개·arXiv API 44개·Semantic Scholar 9개·웹 검색 5개 쿼리로 고유 레코드 1,047건을 얻어 제목 265건과 초록 약 42건을 읽었고 전문은 5건을 부분적으로 읽었다(W6-swami23-metadata-gap.md:117).
+
+**LITERATURE (갭 탐색, 원문 검토 §6, W6-swami23-metadata-gap.md:156):** 판정 기준 (i) 구조의 발견·형성, (ii) 불일치 시 수정·분할·병합, (iii) 그 구조가 이후 학습 규칙(무엇·어디·얼마나·언제 갱신할지) 제어, (iv) 순차 다과제·다영역 평가, (v) 구현·평가된 완성 형태를 모두 만족하는 사례는 발견되지 않았다. 가장 가까운 사례는 Shan·Minni 외 arXiv 2510.20709(문맥 posterior가 저랭크 RNN의 계산과 학습을 gate하나 task id가 입력으로 주어지고 생성 모형 계열이 손으로 정해짐), LCNet, ALMA이며 모두 소규모이거나 오프라인 탐색이다.
+
+**OPEN:** 이 결론은 검색 범위와 근거 깊이에 대한 서술이며 "갭이 존재한다"는 증명이 아니다. Semantic Scholar 쿼리 9개 중 5건은 HTTP 429로 실패했고(W6-swami23-metadata-gap.md:169) Nested Learning/HOPE·Titans·ATLAS는 부분만 만족했으나 대부분 초록 수준 판정이다.
+>>>
+
+=== EDIT L11-06 ===
+FILE: /home/jimmy/repos/full-continual-learning/docs/11-research-agenda.md
+SECTION: ## 7. 우선 읽을 연구 연결
+ANCHOR: HOPE/Titans/Sleep → 빠른 상태와 여러 시간척도의 학습.
+OP: INSERT_AFTER_LINE
+LABEL: LITERATURE(11편 전체, research/2026-11-11-sbl-fulltext-review.md:29-41 §1 표) / OPEN(review §7 미정독 후보, research/2026-11-11-sbl-fulltext-review.md:330-339; research/2026-11-11-sbl-fulltext/W5-spectrum26-structk25.md:210) / ARCHIVE(11-09 추적 항목 P0–P2, research/2026-11-09-sbl-tracking.md:96-102)
+SOURCE: 2026-11-11-sbl-fulltext-review.md:29-41(§1),330-339(§7); W5-spectrum26-structk25.md:162,210; 2026-11-09-sbl-tracking.md:96-102(§10); references/catalog.tsv S35·S07
+OVERTURNS: 없음
+NEW_TEXT:
+<<<
+**LITERATURE (11편 전체, 원문 검토 §1, 확인 깊이 fulltext-read):** 원문으로 읽은 11편은 SPENS24·HWU20·CHU25·GOUDAR23·ELDER26·MICONI25·TEM20·KUMAR26·SWAMI23(구현·모형 9편)과 STRUCTK25·SPECTRUM26(리뷰·관점 2편)이며 판본과 해시는 [evidence.json](/home/jimmy/repos/full-continual-learning/research/2026-11-11-sbl-fulltext/evidence.json)에 있다.
+
+**OPEN (원문 검토 §7, 미정독 추적 후보):** Shan·Minni 외 *Separating the what and how...*(arXiv 2510.20709, catalog S35)는 문맥 추론이 계산과 학습을 동시에 gate해 갭에 가장 가깝지만 §1–4·Discussion만 읽었다. SMART(Gao 외 2021)는 지속학습을 직접 다루는 schema 모델이며 STRUCTK25 참고문헌에서 발견했고 DOI는 미확인이다. Kobayashi 외 2025(arXiv 2512.20605)는 transformer 내부 schema로 계층적 행동을 제어하며(SPECTRUM26 ref 96) 식별자가 미확인이다. Lanzillotta·Samiei·Precup·Pascanu 2026(arXiv 2607.05609, "To Retain or to Adapt?")과 Stoianov 외 2022(generative replay와 지속학습)도 미확인이고, Spens & Burgess 2026 compressive RAG(catalog S07)는 SPENS24의 후속으로 두 실험 계열을 섞지 않고 비교한다.
+
+**ARCHIVE (2026-11-09-sbl-tracking.md:96-102):** 11-09 추적 항목 중 P0(Boboeva 코드·수치, GNM write-path·자율 지시, Yoshida 원문·코드), P1(S-HAI schema 생성·경쟁, curriculum 표현 지표, Task Schema 인과 재현, CLS 직접 QA 통합), P2(graph/program schema와 neural 모델의 공통 전이 benchmark)는 11-11 원문 검토에서 다루지 않아 미결이다. Kumar v5(2026-10-20)는 11-11에 원문으로 읽어 최신 버전 재조회가 끝났고 S-HAI v3(10/26)는 재조회하지 않았다.
+>>>
+
+=== EDIT L11-07 ===
+FILE: /home/jimmy/repos/full-continual-learning/docs/11-research-agenda.md
+SECTION: ## 7. 우선 읽을 연구 연결
+ANCHOR: 전체 링크와 확인 수준은 [문헌 목록](../references/README.md)에 있다.
+OP: INSERT_AFTER_LINE
+LABEL: LITERATURE(GOUDAR23·MICONI25·KUMAR26·SPECTRUM26·SPENS24·CHU25·ELDER26·STRUCTK25, research/2026-11-11-sbl-fulltext-review.md:341-352 §8; research/2026-11-11-sbl-fulltext/W7-remediation.md:317-319,387-396; research/2026-11-11-sbl-fulltext/W4-tem20-kumar26.md:229,233,235,239; evidence.json) / OPEN
+SOURCE: 2026-11-11-sbl-fulltext-review.md:87,96,341-352(§2·§3·§8); W7-remediation.md:385-396; W4-tem20-kumar26.md:229,233,235,239; W3-elder26-miconi25.md:108; references/README.md 확인 수준; research/2026-11-11-sbl-fulltext/evidence.json
+OVERTURNS: 없음
+NEW_TEXT:
+<<<
+**LITERATURE (GOUDAR23·MICONI25·KUMAR26·SPECTRUM26·SPENS24, [2026-11-11-sbl-fulltext-review.md](/home/jimmy/repos/full-continual-learning/research/2026-11-11-sbl-fulltext-review.md#8-미해결) §8):** 확인 수준의 한계가 남아 있다. GOUDAR23·MICONI25·KUMAR26·SPECTRUM26은 VoR 조판본이 아니라 accepted manuscript·proof·preprint를 읽었고 SPENS24의 bioRxiv 판은 VoR과 대조하지 못했으며 편집 차이는 배제하지 못한다. KUMAR26은 arXiv v1(2021-06-07)이 제목과 내용이 다른 reservoir 논문이고 v5(2026-10-20)가 J Neurosci early release(2026-10-26)와 초록이 같다(W4-tem20-kumar26.md:229,233,235,239).
+
+**LITERATURE (CHU25·ELDER26·KUMAR26·STRUCTK25, 원문 검토 §8, W7-remediation.md:387-396):** 정의·불일치가 미해결인 수치도 있다. CHU25의 정확도 정의, 93.20의 분모, 쪽수(7103–7121 대 7922–7940), ELDER26의 ± 정의와 978 대 888 clips, KUMAR26의 본문 ± 정의다. STRUCTK25는 동적 HTML에서 받은 텍스트라 해시를 고정했고 그림은 보지 않았다.
+
+**LITERATURE (11편 전체, 원문 검토 §3 서두·§8):** 코드는 하나도 실행하지 않았고 재현성 평가는 정적 읽기이며 그림에서 읽은 수치는 근사값이다. 이 11편의 확인 깊이는 fulltext-read이지 재현이 아니다.
+>>>
+
+=== EDIT L11-08 ===
+FILE: /home/jimmy/repos/full-continual-learning/docs/11-research-agenda.md
+SECTION: ## 8. 검증 없이 주장하지 않을 것
+ANCHOR: 삭제 요구가 모든 consolidated weights에서 완전 제거됨.
+OP: INSERT_AFTER_LINE
+LABEL: PROPOSAL(review §0·§4.1·§4.4) / OPEN(accommodation·H-COMPUTE, review §4.3·§4.4·§5 출발점 3·6) / ARCHIVE(가설 C, research/2026-11-09-sbl-tracking.md:92-94) / LITERATURE(11편 전체, research/2026-11-11-sbl-fulltext-review.md:24 §0)
+SOURCE: 2026-11-11-sbl-fulltext-review.md:17,24,213-244(§4.1·§4.3·§4.4),284-287,298-302(§5 출발점 3·6); 2026-11-09-sbl-tracking.md:92-94(가설 C)
+OVERTURNS: 없음
+NEW_TEXT:
+<<<
+**PROPOSAL (원문 검토 §0·§4, 문헌 검토 뒤 추가):** 다음도 검증 없이 주장하지 않는다. 학습된 schema 구조가 같은 예산의 고정·무구조 대조보다 낫다는 것, 문헌이 H-COMPUTE(같은 품질의 추론 계산량 감소)를 뒷받침한다는 것, 불일치 시 구조를 수정하는 기제가 문헌에 있다는 것이다.
+
+**OPEN (가설 C, 2026-11-09-sbl-tracking.md:92; 원문 검토 §4.3·§4.4):** 열린 질문은 둘이다. accommodation은 오류 크기·fit에 따라 새 구조와 미세 조정 중 무엇을 고르고 어떻게 평가하는가(읽은 문헌에는 정성 규칙뿐이다). H-COMPUTE는 어떤 신호(CSCG posterior 엔트로피, recall 신뢰도, attractor 수렴)가 고정 깊이 곡선 위에서 계산을 줄이는가, 곧 schema 선택과 선택적 쓰기가 다음 추론의 비용에 영향을 주는가.
+
+**ARCHIVE (2026-11-09-sbl-tracking.md:94):** 11-09 조사는 이 논문들이 recursive System ONE 전체에서 동일 정확도의 loop/latency 감소를 통합 입증하지 않았다고 정리했다. **LITERATURE (11편 전체, 원문 검토 §0):** 11-11 원문 검토도 우리 H-COMPUTE를 직접 시험한 논문은 없다고 정리한다.
+>>>
+
