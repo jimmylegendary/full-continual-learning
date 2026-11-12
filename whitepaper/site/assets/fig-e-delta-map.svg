@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="552" height="432" viewBox="0 0 552 432" role="img" aria-labelledby="fig-e-delta-title fig-e-delta-desc" style="font-family:'Pretendard','Apple SD Gothic Neo','Noto Sans KR','Noto Sans CJK KR','Malgun Gothic',system-ui,sans-serif;">
+<title id="fig-e-delta-title">델타 지도: 사전학습 모델 위에서 이 설계가 바꾸는 곳</title>
+<desc id="fig-e-delta-desc">입력부, 재귀 core(NMM 경로, CMS 분기, P4의 Sleep), 출력부는 빌린 재료로 흐리게 그렸다. 규칙형 판단기, 상태 묶음과 원장, 같은 예산의 대조 6개 arm은 이 설계가 정한 배선이다. 쓰기 접점의 fit·친숙도 조건화와 불일치 시 구조 수정은 문헌이 비워 두었거나 조각만 구현한 공백이다.</desc>
+<defs><marker id="fig-e-delta-ar-m" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" markerUnits="userSpaceOnUse" orient="auto"><path d="M0 0L10 5L0 10z" style="fill:#52514e"/></marker><marker id="fig-e-delta-ar-a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" markerUnits="userSpaceOnUse" orient="auto"><path d="M0 0L10 5L0 10z" style="fill:#256abf"/></marker><marker id="fig-e-delta-ar-f" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" markerUnits="userSpaceOnUse" orient="auto"><path d="M0 0L10 5L0 10z" style="fill:#0b0b0b"/></marker></defs>
+<rect x="0" y="0" width="552" height="432" style="fill:#fcfcfb"/>
+<path d="M136 56 L168 56" style="fill:none;stroke:#52514e;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round" marker-end="url(#fig-e-delta-ar-m)"/>
+<path d="M384 56 L416 56" style="fill:none;stroke:#52514e;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round" marker-end="url(#fig-e-delta-ar-m)"/>
+<path d="M136 136 L168 136" style="fill:none;stroke:#52514e;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round" marker-end="url(#fig-e-delta-ar-m)"/>
+<path d="M80 168 L80 216" style="fill:none;stroke:#52514e;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round" marker-end="url(#fig-e-delta-ar-m)"/>
+<path d="M176 252 L182 252 Q188 252 188 246 L188 168" style="fill:none;stroke:#256abf;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round" marker-end="url(#fig-e-delta-ar-a)"/>
+<path d="M276 216 L276 168" style="fill:none;stroke:#256abf;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:6 4" marker-end="url(#fig-e-delta-ar-a)"/>
+<path d="M368 168 L368 188 Q368 196 376 196 L444 196 Q452 196 452 204 L452 216" style="fill:none;stroke:#52514e;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round" marker-end="url(#fig-e-delta-ar-m)"/>
+<rect x="24" y="32" width="112" height="48" rx="8" style="fill:#fcfcfb"/>
+<rect x="24" y="32" width="112" height="48" rx="8" style="fill:none;stroke:#52514e;stroke-width:1;stroke-opacity:0.55"/>
+<text x="80" y="62" text-anchor="middle" style="font-size:16px;font-weight:400;fill:#52514e">입력부</text>
+<rect x="416" y="32" width="112" height="48" rx="8" style="fill:#fcfcfb"/>
+<rect x="416" y="32" width="112" height="48" rx="8" style="fill:none;stroke:#52514e;stroke-width:1;stroke-opacity:0.55"/>
+<text x="472" y="62" text-anchor="middle" style="font-size:16px;font-weight:400;fill:#52514e">출력부</text>
+<rect x="168" y="16" width="216" height="152" rx="8" style="fill:#fcfcfb"/>
+<rect x="168" y="16" width="216" height="152" rx="8" style="fill:none;stroke:#52514e;stroke-width:1;stroke-opacity:0.55"/>
+<text x="276" y="40" text-anchor="middle" style="font-size:16px;font-weight:700;fill:#52514e">재귀 core</text>
+<rect x="184" y="56" width="184" height="28" rx="6" style="fill:none;stroke:#52514e;stroke-width:1;stroke-opacity:0.55"/>
+<text x="276" y="76" text-anchor="middle" style="font-size:16px;font-weight:400;fill:#52514e">NMM 경로</text>
+<rect x="184" y="92" width="184" height="28" rx="6" style="fill:none;stroke:#52514e;stroke-width:1;stroke-opacity:0.55"/>
+<text x="276" y="112" text-anchor="middle" style="font-size:16px;font-weight:400;fill:#52514e">CMS 분기</text>
+<rect x="184" y="128" width="184" height="28" rx="6" style="fill:none;stroke:#52514e;stroke-width:1;stroke-dasharray:5 4;stroke-opacity:0.55"/>
+<text x="276" y="148" text-anchor="middle" style="font-size:16px;font-weight:400;fill:#52514e">Sleep (P4)</text>
+<rect x="24" y="104" width="112" height="64" rx="8" style="fill:#fcfcfb"/>
+<rect x="24" y="104" width="112" height="64" rx="8" style="fill:#0b0b0b;stroke:#0b0b0b;stroke-width:1.5;fill-opacity:0.04"/>
+<text x="80" y="130" text-anchor="middle" style="font-size:16px;font-weight:700;fill:#0b0b0b">판단기 v0</text>
+<text x="80" y="154" text-anchor="middle" style="font-size:16px;font-weight:400;fill:#0b0b0b">경로 선택</text>
+<rect x="24" y="216" width="152" height="72" rx="8" style="fill:#fcfcfb"/>
+<rect x="24" y="216" width="152" height="72" rx="8" style="fill:#256abf;stroke:#256abf;stroke-width:2;fill-opacity:0.14"/>
+<text x="100" y="244" text-anchor="middle" style="font-size:16px;font-weight:700;fill:#0b0b0b">쓰기 접점</text>
+<text x="100" y="268" text-anchor="middle" style="font-size:16px;font-weight:400;fill:#0b0b0b">fit·친숙도 (P3)</text>
+<rect x="200" y="216" width="152" height="72" rx="8" style="fill:#fcfcfb"/>
+<rect x="200" y="216" width="152" height="72" rx="8" style="fill:#256abf;stroke:#256abf;stroke-width:2;stroke-dasharray:6 4;fill-opacity:0.14"/>
+<text x="276" y="244" text-anchor="middle" style="font-size:16px;font-weight:700;fill:#0b0b0b">구조 수정 (P3)</text>
+<text x="276" y="268" text-anchor="middle" style="font-size:16px;font-weight:400;fill:#0b0b0b">문헌 구현 없음</text>
+<rect x="376" y="216" width="152" height="72" rx="8" style="fill:#fcfcfb"/>
+<rect x="376" y="216" width="152" height="72" rx="8" style="fill:#0b0b0b;stroke:#0b0b0b;stroke-width:1.5;fill-opacity:0.04"/>
+<text x="452" y="244" text-anchor="middle" style="font-size:16px;font-weight:700;fill:#0b0b0b">상태 묶음·원장</text>
+<text x="452" y="268" text-anchor="middle" style="font-size:16px;font-weight:400;fill:#0b0b0b">저장·재시작·삭제</text>
+<rect x="24" y="324" width="504" height="48" rx="8" style="fill:#fcfcfb"/>
+<rect x="24" y="324" width="504" height="48" rx="8" style="fill:#0b0b0b;stroke:#0b0b0b;stroke-width:1.5;fill-opacity:0.04"/>
+<text x="276" y="354" text-anchor="middle" style="font-size:16px;font-weight:700;fill:#0b0b0b">같은 예산의 대조 6 arm과 나란히 평가</text>
+<line x1="24" y1="392" x2="528" y2="392" style="stroke:#c3c2b7;stroke-width:1;fill:none"/>
+<rect x="24" y="404" width="24" height="16" rx="3" style="fill:#fcfcfb"/>
+<rect x="24" y="404" width="24" height="16" rx="3" style="fill:none;stroke:#52514e;stroke-width:1;stroke-opacity:0.55"/>
+<text x="56" y="418" text-anchor="start" style="font-size:16px;font-weight:400;fill:#0b0b0b">빌린 것</text>
+<rect x="128" y="404" width="24" height="16" rx="3" style="fill:#fcfcfb"/>
+<rect x="128" y="404" width="24" height="16" rx="3" style="fill:#0b0b0b;stroke:#0b0b0b;stroke-width:1.5;fill-opacity:0.04"/>
+<text x="160" y="418" text-anchor="start" style="font-size:16px;font-weight:400;fill:#0b0b0b">이 설계의 배선</text>
+<rect x="280" y="404" width="24" height="16" rx="3" style="fill:#fcfcfb"/>
+<rect x="280" y="404" width="24" height="16" rx="3" style="fill:#256abf;stroke:#256abf;stroke-width:2;fill-opacity:0.14"/>
+<text x="312" y="418" text-anchor="start" style="font-size:16px;font-weight:400;fill:#0b0b0b">공백 (문헌에 없거나 조각뿐)</text>
+</svg>

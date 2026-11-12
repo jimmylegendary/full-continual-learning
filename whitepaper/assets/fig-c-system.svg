@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 720 640" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="fig-c-system-title fig-c-system-desc" font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR','Noto Sans CJK KR','Malgun Gothic',system-ui,sans-serif">
+<title id="fig-c-system-title">System ONE 계산 개념도(제안)</title>
+<desc id="fig-c-system-desc">입력과 목표가 입력부와 공유 코어(Titan 기억과 CMS)를 지나 출력부로 가는 주 흐름, 코어가 읽고 쓰는 지속 기억과 depth bank, 코어를 조율하는 규칙형 판단기, 지속 기억을 공고화하는 Sleep, 선택적 외부 저장소를 보인 구조도. 제안이며 구현은 없다.</desc>
+<defs><marker id="fig-c-system-arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto-start-reverse"><polygon points="0 0, 8 3, 0 6" fill="#4f5d75"/></marker><marker id="fig-c-system-arrow-accent" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto-start-reverse"><polygon points="0 0, 8 3, 0 6" fill="#eb6c36"/></marker><marker id="fig-c-system-arrow-link" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto-start-reverse"><polygon points="0 0, 8 3, 0 6" fill="#2e5aa8"/></marker><marker id="fig-c-system-arrow-open" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto-start-reverse"><polyline points="0 0, 8 3, 0 6" fill="none" stroke="#4f5d75" stroke-width="1.2"/></marker></defs>
+<rect width="100%" height="100%" fill="#f5f5f5"/>
+<path d="M 128,200 L 160,200" fill="none" stroke="#4f5d75" stroke-width="1.2" marker-end="url(#fig-c-system-arrow)"/>
+<path d="M 240,200 L 272,200" fill="none" stroke="#4f5d75" stroke-width="1.2" marker-end="url(#fig-c-system-arrow)"/>
+<path d="M 568,200 L 600,200" fill="none" stroke="#4f5d75" stroke-width="1.2" marker-end="url(#fig-c-system-arrow)"/>
+<path d="M 336,104 L 336,152" fill="none" stroke="#eb6c36" stroke-width="1.2" marker-end="url(#fig-c-system-arrow-accent)"/>
+<path d="M 504,152 L 504,104" fill="none" stroke="#4f5d75" stroke-width="1.2" marker-end="url(#fig-c-system-arrow)"/>
+<path d="M 304,312 L 304,248" fill="none" stroke="#4f5d75" stroke-width="1.2" marker-end="url(#fig-c-system-arrow)"/>
+<path d="M 352,248 L 352,312" fill="none" stroke="#4f5d75" stroke-width="1.2" marker-end="url(#fig-c-system-arrow)"/>
+<path d="M 520,248 L 520,312" fill="none" stroke="#4f5d75" stroke-width="1.2" marker-end="url(#fig-c-system-arrow)"/>
+<path d="M 560,312 L 560,248" fill="none" stroke="#4f5d75" stroke-width="1.2" marker-end="url(#fig-c-system-arrow)"/>
+<path d="M 176,356 L 216,356" fill="none" stroke="#4f5d75" stroke-width="1.2" marker-end="url(#fig-c-system-arrow)"/>
+<path d="M 336,400 L 336,472" fill="none" stroke="#4f5d75" stroke-width="1.2" stroke-dasharray="5,4" marker-end="url(#fig-c-system-arrow)" marker-start="url(#fig-c-system-arrow)"/>
+<rect x="272" y="40" width="296" height="64" rx="6" fill="#f5f5f5"/>
+<rect x="272" y="40" width="296" height="64" rx="6" fill="rgba(235,108,54,0.08)" stroke="#eb6c36" stroke-width="1.2"/>
+<rect x="280" y="48" width="60" height="16" rx="2" fill="none" stroke="#eb6c36" stroke-width="0.8"/>
+<text x="284" y="60" font-size="12" fill="#4f5d75">제어 상태</text>
+<text x="420" y="80" font-size="12" fill="#2d3142" font-weight="600" text-anchor="middle">규칙형 판단기 (controller v0)</text>
+<text x="420" y="96" font-size="12" fill="#4f5d75" text-anchor="middle">익숙함 신호 → fast · learn · deep</text>
+<rect x="24" y="152" width="104" height="96" rx="6" fill="#f5f5f5"/>
+<rect x="24" y="152" width="104" height="96" rx="6" fill="rgba(79,93,117,0.10)" stroke="#7a8399" stroke-width="1"/>
+<rect x="32" y="160" width="60" height="16" rx="2" fill="none" stroke="#7a8399" stroke-width="0.8"/>
+<text x="36" y="172" font-size="12" fill="#4f5d75">입력 표현</text>
+<text x="76" y="192" font-size="12" fill="#2d3142" font-weight="600" text-anchor="middle">입력 / 목표</text>
+<text x="76" y="208" font-size="12" fill="#4f5d75" text-anchor="middle">현재 token +</text>
+<text x="76" y="224" font-size="12" fill="#4f5d75" text-anchor="middle">관계·목표</text>
+<text x="76" y="240" font-size="12" fill="#4f5d75" text-anchor="middle">context</text>
+<rect x="160" y="152" width="80" height="96" rx="6" fill="#f5f5f5"/>
+<rect x="160" y="152" width="80" height="96" rx="6" fill="#ffffff" stroke="#2d3142" stroke-width="1"/>
+<text x="200" y="204" font-size="12" fill="#2d3142" font-weight="600" text-anchor="middle">입력부</text>
+<rect x="272" y="152" width="296" height="96" rx="6" fill="#f5f5f5"/>
+<rect x="272" y="152" width="296" height="96" rx="6" fill="#ffffff" stroke="#2d3142" stroke-width="1"/>
+<text x="420" y="188" font-size="12" fill="#2d3142" font-weight="600" text-anchor="middle">공유 코어 (작은 shared core)</text>
+<text x="420" y="204" font-size="12" fill="#4f5d75" text-anchor="middle">sequence = Titan(NMM) · FFN = CMS</text>
+<text x="420" y="220" font-size="12" fill="#4f5d75" text-anchor="middle">같은 weights를 recursion r회 실행</text>
+<rect x="600" y="152" width="96" height="96" rx="6" fill="#f5f5f5"/>
+<rect x="600" y="152" width="96" height="96" rx="6" fill="#ffffff" stroke="#2d3142" stroke-width="1"/>
+<text x="648" y="204" font-size="12" fill="#2d3142" font-weight="600" text-anchor="middle">출력부</text>
+<rect x="216" y="312" width="240" height="88" rx="6" fill="#f5f5f5"/>
+<rect x="216" y="312" width="240" height="88" rx="6" fill="rgba(45,49,66,0.05)" stroke="#4f5d75" stroke-width="1"/>
+<rect x="224" y="320" width="60" height="16" rx="2" fill="none" stroke="#4f5d75" stroke-width="0.8"/>
+<text x="228" y="332" font-size="12" fill="#4f5d75">지속 기억</text>
+<text x="336" y="352" font-size="12" fill="#2d3142" font-weight="600" text-anchor="middle">지속 기억</text>
+<text x="336" y="368" font-size="12" fill="#4f5d75" text-anchor="middle">schema weights · fast state</text>
+<text x="336" y="384" font-size="12" fill="#4f5d75" text-anchor="middle">느린 CMS levels · 적용 조건</text>
+<rect x="496" y="312" width="200" height="88" rx="6" fill="#f5f5f5"/>
+<rect x="496" y="312" width="200" height="88" rx="6" fill="rgba(45,49,66,0.03)" stroke="rgba(45,49,66,0.30)" stroke-width="1"/>
+<rect x="504" y="320" width="60" height="16" rx="2" fill="none" stroke="rgba(45,49,66,0.30)" stroke-width="0.8"/>
+<text x="508" y="332" font-size="12" fill="#4f5d75">작업 상태</text>
+<text x="596" y="352" font-size="12" fill="#2d3142" font-weight="600" text-anchor="middle">depth bank</text>
+<text x="596" y="368" font-size="12" fill="#4f5d75" text-anchor="middle">recursion별 표현</text>
+<text x="596" y="384" font-size="12" fill="#4f5d75" text-anchor="middle">이번 생각의 재독 통로</text>
+<rect x="24" y="312" width="152" height="88" rx="6" fill="#f5f5f5"/>
+<rect x="24" y="312" width="152" height="88" rx="6" fill="#ffffff" stroke="#2d3142" stroke-width="1"/>
+<text x="100" y="344" font-size="12" fill="#2d3142" font-weight="600" text-anchor="middle">Sleep / replay</text>
+<text x="100" y="360" font-size="12" fill="#4f5d75" text-anchor="middle">fast → slow 공고화</text>
+<text x="100" y="376" font-size="12" fill="#4f5d75" text-anchor="middle">P4부터 (09 §4)</text>
+<rect x="216" y="472" width="240" height="80" rx="6" fill="#f5f5f5"/>
+<rect x="216" y="472" width="240" height="80" rx="6" fill="rgba(45,49,66,0.02)" stroke="rgba(45,49,66,0.20)" stroke-width="1" stroke-dasharray="4,3"/>
+<text x="336" y="500" font-size="12" fill="#2d3142" font-weight="600" text-anchor="middle">외부 저장소</text>
+<text x="336" y="516" font-size="12" fill="#4f5d75" text-anchor="middle">bundle 검색 · 적재 · 버전 관리</text>
+<text x="336" y="532" font-size="12" fill="#4f5d75" text-anchor="middle">상태 경계 P1 · 외부화 P4</text>
+<rect x="240" y="120" width="88" height="16" rx="2" fill="#f5f5f5"/>
+<text x="324" y="132" font-size="12" fill="#4f5d75" text-anchor="end">경로 · 쓰기 · r</text>
+<rect x="512" y="120" width="72" height="16" rx="2" fill="#f5f5f5"/>
+<text x="516" y="132" font-size="12" fill="#4f5d75">익숙함 신호</text>
+<rect x="212" y="272" width="84" height="16" rx="2" fill="#f5f5f5"/>
+<text x="292" y="284" font-size="12" fill="#4f5d75" text-anchor="end">schema read</text>
+<rect x="360" y="272" width="92" height="16" rx="2" fill="#f5f5f5"/>
+<text x="364" y="284" font-size="12" fill="#4f5d75">선택적 update</text>
+<rect x="480" y="272" width="32" height="16" rx="2" fill="#f5f5f5"/>
+<text x="508" y="284" font-size="12" fill="#4f5d75" text-anchor="end">저장</text>
+<rect x="568" y="272" width="72" height="16" rx="2" fill="#f5f5f5"/>
+<text x="572" y="284" font-size="12" fill="#4f5d75">depth read</text>
+<rect x="344" y="428" width="88" height="16" rx="2" fill="#f5f5f5"/>
+<text x="348" y="440" font-size="12" fill="#4f5d75">offload · load</text>
+<line x1="24" y1="576" x2="696" y2="576" stroke="rgba(45,49,66,0.10)" stroke-width="0.8"/>
+<rect x="24" y="580" width="24" height="16" rx="4" fill="rgba(79,93,117,0.10)" stroke="#7a8399" stroke-width="1"/>
+<text x="56" y="592" font-size="12" fill="#4f5d75">입력 표현</text>
+<rect x="132" y="580" width="24" height="16" rx="4" fill="rgba(45,49,66,0.03)" stroke="rgba(45,49,66,0.30)" stroke-width="1"/>
+<text x="164" y="592" font-size="12" fill="#4f5d75">추론 작업 상태</text>
+<rect x="268" y="580" width="24" height="16" rx="4" fill="rgba(45,49,66,0.05)" stroke="#4f5d75" stroke-width="1"/>
+<text x="300" y="592" font-size="12" fill="#4f5d75">지속 기억</text>
+<rect x="376" y="580" width="24" height="16" rx="4" fill="rgba(235,108,54,0.08)" stroke="#eb6c36" stroke-width="1.2"/>
+<text x="408" y="592" font-size="12" fill="#4f5d75">제어 상태</text>
+<rect x="484" y="580" width="24" height="16" rx="4" fill="#ffffff" stroke="#2d3142" stroke-width="1"/>
+<text x="516" y="592" font-size="12" fill="#4f5d75">계산 구성요소·과정</text>
+<rect x="24" y="604" width="24" height="16" rx="4" fill="rgba(45,49,66,0.02)" stroke="rgba(45,49,66,0.20)" stroke-width="1" stroke-dasharray="4,3"/>
+<text x="56" y="616" font-size="12" fill="#4f5d75">후속 phase 확장</text>
+</svg>

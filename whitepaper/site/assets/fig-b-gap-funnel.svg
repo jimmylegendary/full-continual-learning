@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 880 572" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="fig-b-gap-funnel-title fig-b-gap-funnel-desc"><title id="fig-b-gap-funnel-title">갭 판정 검색 깔때기 — 1,047건에서 전문 5건까지</title><desc id="fig-b-gap-funnel-desc">고유 레코드 1,047건, 제목을 읽은 265건, 초록을 읽은 약 42건, 부분적으로 읽은 전문 5건으로 좁아지는 깔때기. 막대 폭은 건수에 비례한다. 결과는 5개 기준을 모두 만족한 사례가 발견되지 않았다는 범위 한정 서술이다.</desc><defs><marker id="fig-b-gap-funnel-arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#4f5d75"/></marker><marker id="fig-b-gap-funnel-arrow-accent" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#eb6c36"/></marker></defs><rect width="100%" height="100%" fill="#f5f5f5"/>
+<polygon points="60,120 540,120 360,160 240,160" fill="rgba(45,49,66,0.06)"/>
+<polygon points="240,208 360,208 310,248 290,248" fill="rgba(45,49,66,0.06)"/>
+<polygon points="290,296 310,296 302,336 298,336" fill="rgba(45,49,66,0.06)"/>
+<rect x="60" y="72" width="480" height="48" fill="#4f5d75"/>
+<line x1="544" y1="96" x2="572" y2="96" stroke="#7a8399" stroke-width="1"/>
+<text x="588" y="76" fill="#2d3142" font-size="16" font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR','Noto Sans CJK KR','Malgun Gothic',system-ui,sans-serif" font-weight="600">고유 레코드 1,047건</text>
+<text x="588" y="96" fill="#4f5d75" font-size="12" font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR','Noto Sans CJK KR','Malgun Gothic',system-ui,sans-serif">쿼리: OpenAlex 26 · arXiv API 44</text>
+<text x="588" y="112" fill="#4f5d75" font-size="12" font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR','Noto Sans CJK KR','Malgun Gothic',system-ui,sans-serif">Semantic Scholar 9 · 웹 검색 5</text>
+<text x="588" y="128" fill="#4f5d75" font-size="12" font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR','Noto Sans CJK KR','Malgun Gothic',system-ui,sans-serif">기간 2023-01-01 ~ 2026-11-11</text>
+<rect x="240" y="160" width="120" height="48" fill="#4f5d75"/>
+<line x1="364" y1="184" x2="572" y2="184" stroke="#7a8399" stroke-width="1"/>
+<text x="588" y="180" fill="#2d3142" font-size="16" font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR','Noto Sans CJK KR','Malgun Gothic',system-ui,sans-serif" font-weight="600">제목 265건</text>
+<text x="588" y="200" fill="#4f5d75" font-size="12" font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR','Noto Sans CJK KR','Malgun Gothic',system-ui,sans-serif">자동 선별 뒤 제목을 읽음</text>
+<rect x="290" y="248" width="20" height="48" fill="#4f5d75"/>
+<line x1="314" y1="272" x2="572" y2="272" stroke="#7a8399" stroke-width="1"/>
+<text x="588" y="268" fill="#2d3142" font-size="16" font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR','Noto Sans CJK KR','Malgun Gothic',system-ui,sans-serif" font-weight="600">초록 약 42건</text>
+<text x="588" y="288" fill="#4f5d75" font-size="12" font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR','Noto Sans CJK KR','Malgun Gothic',system-ui,sans-serif">초록을 읽음</text>
+<rect x="298" y="336" width="4" height="48" fill="#eb6c36"/>
+<line x1="306" y1="360" x2="572" y2="360" stroke="#eb6c36" stroke-width="1"/>
+<text x="588" y="356" fill="#2d3142" font-size="16" font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR','Noto Sans CJK KR','Malgun Gothic',system-ui,sans-serif" font-weight="600">전문 5건</text>
+<text x="588" y="376" fill="#4f5d75" font-size="12" font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR','Noto Sans CJK KR','Malgun Gothic',system-ui,sans-serif">부분적으로 읽음</text>
+<rect x="60" y="424" width="796" height="76" fill="none" stroke="#4f5d75" stroke-width="1" rx="6" stroke-dasharray="4,3"/>
+<text x="76" y="452" fill="#2d3142" font-size="16" font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR','Noto Sans CJK KR','Malgun Gothic',system-ui,sans-serif" font-weight="600">결과(검색 범위 안): 5개 기준 (i)–(v)를 모두 만족하는 사례는 발견되지 않았다.</text>
+<text x="76" y="474" fill="#4f5d75" font-size="12" font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR','Noto Sans CJK KR','Malgun Gothic',system-ui,sans-serif">가장 가까운 사례 셋: Shan·Minni 외(arXiv 2510.20709), LCNet, ALMA — 모두 소규모이거나 오프라인 탐색이다.</text>
+<text x="76" y="490" fill="#4f5d75" font-size="12" font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR','Noto Sans CJK KR','Malgun Gothic',system-ui,sans-serif">이 결론은 범위 한정 서술이며 &#x27;갭이 존재한다&#x27;는 증명이 아니다(OPEN).</text>
+<line x1="32" y1="516" x2="848" y2="516" stroke="rgba(45,49,66,0.12)" stroke-width="0.8"/>
+<text x="32" y="536" fill="#4f5d75" font-size="12" font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR','Noto Sans CJK KR','Malgun Gothic',system-ui,sans-serif" font-weight="600">범례</text>
+<rect x="88" y="526" width="16" height="12" fill="#4f5d75"/>
+<text x="112" y="536" fill="#4f5d75" font-size="12" font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR','Noto Sans CJK KR','Malgun Gothic',system-ui,sans-serif">단계(폭은 건수에 비례, 5건은 보이도록 최소 폭 4)</text>
+<rect x="484" y="526" width="16" height="12" fill="#eb6c36"/>
+<text x="508" y="536" fill="#4f5d75" font-size="12" font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR','Noto Sans CJK KR','Malgun Gothic',system-ui,sans-serif">전문 단계(부분적으로 읽음)</text>
+</svg>

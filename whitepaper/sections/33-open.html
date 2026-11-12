@@ -1,0 +1,167 @@
+<section class="wp-section" id="sec-open" data-part="3부 · 어떻게 검증하고 나아가나">
+<h2 id="open">열린 질문과 아직 주장하지 않는 것</h2>
+
+<p class="lede">목적: 이 설계가 아직 답하지 못한 질문과, 검증 없이 주장하지 않기로 한 것을 한곳에 모아 두어 독자가 설계의 상한을 오해하지 않게 하는 것이다. 기능: 후속 가설과 연구 의제, 갭 탐색의 범위와 한계, 문헌 정독이 남은 묶음, 이 감사와 검증 기록이 보장하지 않는 것의 목록. 입력은 연구 의제 문서와 감사 결과이고 출력은 "주장하지 않는 것" 목록과 사용자 확인으로 가는 길이다. 근거 문서는 <a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/11-research-agenda.md">11-research-agenda.md</a>, <a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/research/2026-11-12-design-audit.md#6-남은-일">감사 §6</a>, <a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/VALIDATION.md#4-검증하지-않은-것">VALIDATION.md §4</a>다.</p>
+
+<aside class="callout callout-warn">
+<p><span class="ev ev-open">OPEN</span> 이 절의 항목은 모두 미해결이거나 검증하지 않은 것이다. 통합 모델은 구현·학습·효용 검증이 하나도 없으며, 저장소는 연구 의도·설계·근거·검증 계획의 아카이브다. 이 절은 "무엇이 아직 아닌가"를 적는 곳이지 성과를 적는 곳이 아니다.</p>
+</aside>
+
+<div class="kpi-row">
+<div class="kpi"><div class="kpi-value">7</div><div class="kpi-label">연구 의제(11 §1–§7)</div></div>
+<div class="kpi"><div class="kpi-value">4</div><div class="kpi-label">문헌 정독이 남은 묶음(감사 §6.2)</div></div>
+<div class="kpi"><div class="kpi-value">14</div><div class="kpi-label">원문 정독 0편인 재료 논문 A01–A04·A06–A15</div></div>
+<div class="kpi"><div class="kpi-value">5</div><div class="kpi-label">검증하지 않은 것(VALIDATION §4)</div></div>
+<div class="kpi"><div class="kpi-value">19</div><div class="kpi-label">사용자 확인 항목(감사 §5)</div></div>
+</div>
+<p class="muted">세는 규칙: 7은 11 §1–§7의 절 수, 14는 catalog.tsv에서 A05(Vec2Text)를 뺀 A01–A15의 행 수, 5는 VALIDATION §4의 목록 항목 수, 19는 감사 §5의 번호 항목 수다.</p>
+
+<h3 id="open-agenda">연구 의제 일곱 가지</h3>
+<p><span class="ev ev-proposal">PROPOSAL</span> 설계 문서 11은 아직 답이 없는 질문을 일곱 개의 의제로 모은다(<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/11-research-agenda.md">11 전체</a>). 대부분은 MVP의 선행 조건이 아니며 해당 phase에서 다시 다룬다.</p>
+
+<h4 id="open-agenda-pretraining">Pretraining과 alignment 가설 (11 §1)</h4>
+<p><span class="ev ev-open">OPEN</span> 사용자 가설: LLM은 대량 데이터에서 하나의 schema를 학습했고, post-training·RL alignment는 이를 여러 sub-schema로 분화하는 기능을 만들었을 수 있다. 문서는 이 가설을 보존하되 현재 사실로 채택하지 않는다. 하나의 parameter set이 여러 조건부 기능을 표현할 수 있고, 전체 지식 체계를 하나의 schema라고 정의하면 반증 가능성이 약해진다(<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/11-research-agenda.md#1-pretraining과-alignment-가설">11 §1</a>).</p>
+<div class="table-wrap"><table class="wp-table" style="overflow-wrap:break-word">
+<caption><span class="tab-no"></span> 경쟁 가설과 관찰할 변화(11 §1)</caption>
+<thead><tr><th scope="col">가설</th><th scope="col">관찰할 변화</th></tr></thead>
+<tbody>
+<tr><td>Access/routing</td><td>기존 기능을 문맥에 맞게 더 잘 선택</td></tr>
+<tr><td>Specialization</td><td>기능적 부분의 분리와 전문화</td></tr>
+<tr><td>New structure</td><td>이전에 없던 표현/연산의 형성</td></tr>
+<tr><td>Output policy</td><td>내부 구조보다 말투·선호·응답 정책 변화</td></tr>
+</tbody></table></div>
+<p><span class="ev ev-proposal">PROPOSAL</span> 같은 base의 Base→SFT→DPO·RL checkpoint(지도 미세조정, 직접 선호 최적화, 강화학습)를 비교하고 비슷한 token·compute의 control을 둔다. 역할·표면 교차 전이, causal patching·lesion, selective impairment, 새로운 binding을 평가한다. cluster 수 증가나 rotation에 민감한 시각화만으로 분화를 주장하지 않는다. 이 연구는 MVP의 선행 조건이 아니다.</p>
+<p><span class="ev ev-literature">LITERATURE</span> (SWAMI23) "LLM에서도 같은 기제"는 저자들이 "We conjecture"라 쓴 추측이며 transformer 실험은 없다. (SPECTRUM26) LLM에 대한 대응(ICL, 곧 in-context learning ≈ integration, knowledge conflict ≈ assimilation, fine-tuning ≈ accommodation)은 "Arguably"가 붙은 정성 유추이고 데이터가 없다. <span class="ev ev-proposal">PROPOSAL</span> 이 두 문헌은 위 사용자 가설을 지지하거나 반증하는 증거가 아니다.</p>
+
+<h4 id="open-agenda-unit">schema의 물리적 단위 (11 §2)</h4>
+<p><span class="ev ev-open">OPEN</span> 한 schema가 MLP 하나인지, low-rank subspace인지, recurrent trajectory인지, 여러 모듈의 조합인지는 열린 문제다. 여러 표현을 비교하되 재사용·전이·수정·보존 기능을 공통으로 평가한다(<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/11-research-agenda.md#2-schema의-물리적-단위">11 §2</a>). <span class="ev ev-literature">LITERATURE</span> (STRUCTK25) 서술형 리뷰는 schema 모델을 명시적(TEM, SMP, CSCG 등 11개)과 암묵적(Goudar·Driscoll의 manifold, Yang·Dubreuil의 subpopulation 등 4개)으로 나눈다. 이는 분류이며 둘 사이의 우열 증거는 없다. (SPECTRUM26) schema를 별도 저장소가 아니라 분산 표현의 추상화 수준 스펙트럼으로 보지만 추상화의 측정법은 없다. <span class="ev ev-proposal">PROPOSAL</span> retrofit LLM에서는 둘 중 하나를 고르지 않고 세 측정을 조작적 증거로 쓴다(<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/03-foundations.md#1-schema의-운영적-정의">03 §1</a>). <span class="ev ev-open">OPEN</span> retrofit LM에는 implicit-subspace 계열이 맞아 보이나 우열 증거는 없다.</p>
+
+<h4 id="open-agenda-protect">표현 보호와 확장 (11 §3)</h4>
+<p>기존 저차원 표현이 예외에 필요한 구분을 억제할 수 있고, 반대로 모든 입력에서 전체 weights를 고치면 안정된 구조가 사라질 수 있다. 보호·국소 수정·rank expansion·schema branch·split을 후보로 두고 F05·F06에서 비교한다(<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/11-research-agenda.md#3-표현-보호와-확장">11 §3</a>). <span class="ev ev-literature">LITERATURE</span> (ELDER26) [S25]는 순차 학습·새 클래스·망각을 시험하지 않았고, 고정되는 쪽은 출력 쪽 hidden layer(HL1·HL2)이며 갱신되는 쪽은 입력 쪽 가중치(IL)다. <span class="ev ev-proposal">PROPOSAL</span> 불변성이 SVM 구성과 weight equalize에서 나왔을 가능성이 있으므로 "보호가 필요하다"의 직접 근거로 읽지 않는다. <span class="ev ev-archive">ARCHIVE</span> ([S19]·[S23]) [S19]는 인간 행동 실험과 신경망을 다룬 인접 근거이고 neural dimensionality를 직접 측정하지 않았으며, [S23]의 수치는 원보고 범위로 귀속하고 이번에 정독하지 않았다. <span class="ev ev-proposal">PROPOSAL</span> (가설 B) 무엇을 고를지는 OPEN이며, 구조를 불일치 시 그 자리에서 고치는 기제는 읽은 문헌에 없으므로 비교의 대상은 문헌 재현이 아니라 우리 설계다.</p>
+
+<h4 id="open-agenda-insight">통찰의 운영적 정의 (11 §4)</h4>
+<p><span class="ev ev-proposal">PROPOSAL</span> 통찰은 현재 문제를 더 오래 생각한 사실이 아니라 새로운 관계·표현·적용 조건을 형성하고 새로운 사례에서도 재사용하는 변화다. 동일 정답의 암기, self-consistency, 반복된 confidence 증가는 충분하지 않다(<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/11-research-agenda.md#4-통찰의-운영적-정의">11 §4</a>). <span class="ev ev-literature">LITERATURE</span> (CHU25) unshaped 망이 shaped 망보다 더 저차원이었다(본문 top-3 PC 분산비 93% 대 82.5%). <span class="ev ev-archive">ARCHIVE</span> ([S20], official-search-checked) 파라미터 공간의 압축과 과제 시간 구조의 형성을 구분하는 것이 가설 A이며, 코드 공개는 당시 미확인이었다. <span class="ev ev-proposal">PROPOSAL</span> (가설 A) 저차원성·압축 자체를 구조 형성의 증거로 보지 않고, 안정된 cluster나 저차원화를 schema 형성 PASS로 삼지 않으며 새 과제 예측·전이로 판정한다. 시험 틀은 평가 절의 F16(통찰의 전이)이다(<a href="#evaluation">평가</a>).</p>
+
+<h4 id="open-agenda-rhythm">rhythm의 필요성 (11 §5)</h4>
+<p><span class="ev ev-open">OPEN</span> event/readiness controller에 oscillator를 더해야 어떤 이득이 있는가. 지연이 가변적이거나 여러 속도의 process가 상호작용하는 환경에서 추가 가치가 있을 수 있으나 아직 제안이다. 유효한 event-only baseline과 비교하고 동기적 stage ID와 동치인지 검토한다(<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/11-research-agenda.md#5-rhythm-필요성">11 §5</a>). 로드맵에서는 위상(phase) 조율(D)을 event/readiness(C)를 기준선으로 확보한 뒤 D 대 C로 비교하며 배치는 열린 결정 D-13이다(<a href="#roadmap">로드맵</a>).</p>
+
+<h4 id="open-agenda-history">LLM과 개인 경험의 관계 (11 §6)</h4>
+<p>base LLM에도 재사용 가능한 구조와 in-context learning이 있을 수 있다. 문제는 그 구조를 개인의 새 경험으로 지속 갱신하고, 현재 문맥에 적합하게 쓰고, 장기 보존과 수정의 균형을 맞추는 것이다. "schema가 없는 LLM에 최초로 schema를 넣는다"로 차별성을 과장하지 않는다(<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/11-research-agenda.md#6-llm과-개인-경험의-관계">11 §6</a>).</p>
+<p><span class="ev ev-user">USER</span> (B14/H1, 2026-10-12) LLM은 일반화 지식에 특화돼 있고 개인의 암묵지와 판단 pattern을 실시간 학습하지 못한다. <span class="ev ev-archive">ARCHIVE</span> Melete는 H1을 "LLM이 in-context adaptation을 못 한다"가 아니라 지속 상태와 경험에 따른 개인적 편향을 분리해 보완하는 제품 가설로 읽었다. <span class="ev ev-proposal">PROPOSAL</span> 통합 모델에서는 이 가설을 "같은 초기 모델에 서로 다른 경험 이력을 준 두 상태가 같은 질문에서 다른 적절한 판단과 계산 경로를 보이고, 반례가 오면 각자 고칠 수 있는가"로 시험한다. 시험은 이력 분기 family F17이다. 헌장 6층위의 "이력에 따른 자기 조직화"는 대화에서 도출한 해석이다.</p>
+<p><span class="ev ev-open">OPEN</span> 이 가설은 아직 이 문서군의 설계에 연결돼 있지 않다. 상한: 분기가 관찰돼도 자기 조직화나 개인화의 일반 원리를 입증한 것이 아니며 단일 world 계열·소형 모델의 관찰로만 보고한다. 이 연구는 MVP의 선행 조건이 아니다.</p>
+
+<h4 id="open-agenda-reading">우선 읽을 연구 연결과 학습 규칙 후보 지도 (11 §7)</h4>
+<p><span class="ev ev-proposal">PROPOSAL</span> 우선 읽을 연구와 그 연결 질문은 일곱 가지다(<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/11-research-agenda.md#7-우선-읽을-연구-연결">11 §7</a>).</p>
+<ul>
+<li>TEM·transformer–hippocampal relation → 구조와 내용의 분리.</li>
+<li>Goudar·Chu·Yoshida·Boboeva → subspace·attractor·manifold·low-rank scaffold.</li>
+<li>LCNet·S-HAI·latent cause → 맥락 선택과 binding, 연속과 이산의 구분.</li>
+<li>GNM → 선택적 write의 학습 가능성.</li>
+<li>Episodic CLS LLM·Spens → 저장·재구성과 판단·통합의 차이.</li>
+<li>Loop·MoD·MoR·AttnRes·MoDA → 계산 배분과 이번 사고의 표현 재사용.</li>
+<li>HOPE·Titans·Sleep → 빠른 상태와 여러 시간척도의 학습.</li>
+</ul>
+<p><span class="ev ev-literature">LITERATURE</span> (11편 전체, 확인 깊이 fulltext-read) 원문으로 읽은 11편은 SPENS24·HWU20·CHU25·GOUDAR23·ELDER26·MICONI25·TEM20·KUMAR26·SWAMI23(구현·모형 9편)과 STRUCTK25·SPECTRUM26(리뷰·관점 2편)이다. 판본과 해시는 <a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/research/2026-11-11-sbl-fulltext/evidence.json">evidence.json</a>에 있다.</p>
+<p><span class="ev ev-open">OPEN</span> 미정독 추적 후보: Shan·Minni 외 <em>Separating the what and how…</em>(arXiv 2510.20709)는 문맥 추론이 계산과 학습을 동시에 gate해 갭에 가장 가깝지만 §1–4와 Discussion만 읽었다. SMART(Gao 외 2021)는 DOI가 미확인이고, Kobayashi 외 2025(arXiv 2512.20605)와 Lanzillotta·Samiei·Precup·Pascanu 2026(arXiv 2607.05609, "To Retain or to Adapt?")과 Stoianov 외 2022는 식별자가 미확인이며, Spens &amp; Burgess 2026 compressive RAG(catalog S07)는 SPENS24의 후속으로 두 실험 계열을 섞지 않고 비교한다. <span class="ev ev-archive">ARCHIVE</span> 11-09 추적 항목 중 P0(Boboeva 코드·수치, GNM write-path·자율 지시, Yoshida 원문·코드), P1(S-HAI schema 생성·경쟁, curriculum 표현 지표, Task Schema 인과 재현, CLS 직접 QA 통합), P2(graph·program schema와 neural 모델의 공통 전이 benchmark)는 11-11 원문 검토에서 다루지 않아 미결이다.</p>
+<p><span class="ev ev-literature">LITERATURE</span> (GOUDAR23·MICONI25·KUMAR26·SPECTRUM26·SPENS24, 원문 검토 §8) 확인 수준의 한계가 남아 있다. 앞 넷은 VoR 조판본이 아니라 accepted manuscript·proof·preprint를 읽었고 SPENS24의 bioRxiv 판은 VoR과 대조하지 못했다. KUMAR26은 arXiv v1(2021-06-07)이 제목과 내용이 다른 reservoir 논문이고 v5(2026-10-20)가 J Neurosci early release(2026-10-26)와 초록이 같다. 정의·불일치가 미해결인 수치도 있다: CHU25의 정확도 정의, 93.20의 분모, 쪽수(7103–7121 대 7922–7940), ELDER26의 ± 정의와 978 대 888 clips, KUMAR26의 본문 ± 정의. 코드는 하나도 실행하지 않았고 재현성 평가는 정적 읽기이며 그림에서 읽은 수치는 근사값이다. 11편의 확인 깊이는 fulltext-read이지 재현이 아니다.</p>
+<p><span class="ev ev-user">USER</span> (B08–B10, 2026-10-09~11) fine-tuning·RL 수준이 아니라 backward·SGD 수준의 근간 학습 방법(forward learning, 뇌과학적 방법·모사 포함)을 전수 조사하고 고찰한다. 학습 방법 50개를 ELI 그림으로 설명하고 제품 적합 순으로 우선순위를 매기며 library 존재와 수학적 완결 여부를 표시하고 조합별 적용 방식과 효과를 정리한다. <span class="ev ev-archive">ARCHIVE</span> Melete는 12계열 50개 비교 항목과 58개 원 자료 참조의 기초 학습 방법 대장, 제품 적합 순위와 13개 조합을 가진 atlas를 만들었다. 이는 문헌·API·수식 검토이며 실행·채택이 아니고 순위는 외부 memory 구조(Melete) 기준이다. FCL은 이를 이관하지 않았고 통합 모델 기준으로 재검토하지 않았다.</p>
+<p><span class="ev ev-proposal">PROPOSAL</span> 학습 규칙 후보 지도를 11 §7 아래에 둔다(<strong>미작성</strong>). 계열별로 신호, 갱신 대상 상태, 근거 문헌, library 존재, 수학적 정의 완결 여부, FCL 적용 자리, 대조군을 채우고 적용 우선순위는 통합 모델 기준으로 다시 매긴다. 새 학습 메커니즘이나 논문 주장은 (1) 문헌 검토에서 그 기능의 직접 구현이 없고 (2) 같은 예산의 기존 조합과 단순 대조군이 그 기능에서 실패할 때만 제안하며, 그 전에는 기존 재료의 조합으로 진행하고 빌린 부분과 새 부분의 기여 지도를 <a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/05-integrated-architecture.md">05-integrated-architecture.md</a>에 둔다. <span class="ev ev-open">OPEN</span> 학습 규칙 후보 지도의 작성 시점과 담당은 정하지 않았다.</p>
+
+<h3 id="open-gap">갭 탐색의 결과와 한계</h3>
+<p><span class="ev ev-literature">LITERATURE</span> (갭 탐색, 범위 한정) 외부 요약의 결론, 곧 "다양한 경험에서 schema를 스스로 발견·형성·수정·통합하고, 그 schema가 이후 학습 규칙 자체를 제어하는 범용 지속학습 아키텍처는 완성된 형태로 확인되지 않았다"에 대해 검색 범위 안에서 반례를 찾지 못했다. 검색 범위는 2023-01-01~2026-11-11이고, OpenAlex 26개·arXiv API 44개·Semantic Scholar 9개·웹 검색 5개 쿼리를 썼다(<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/11-research-agenda.md#6-llm과-개인-경험의-관계">11 §6</a>, <a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/research/2026-11-11-sbl-fulltext-review.md#6-갭-주장-판정">원문 검토 §6</a>).</p>
+<div class="kpi-row">
+<div class="kpi"><div class="kpi-value">1,047</div><div class="kpi-label">고유 레코드(자동 선별의 시작)</div></div>
+<div class="kpi"><div class="kpi-value">265</div><div class="kpi-label">제목을 읽은 건수</div></div>
+<div class="kpi"><div class="kpi-value">약 42</div><div class="kpi-label">초록을 읽은 건수</div></div>
+<div class="kpi"><div class="kpi-value">5</div><div class="kpi-label">전문을 부분적으로 읽은 건수</div></div>
+</div>
+<p class="muted">1,047 → 265 → 42 → 5는 검색 깔때기다. 숫자는 원문 검토 §6의 값이며 새로 센 것이 아니다. 5건은 전문을 부분적으로만 읽었다.</p>
+<p>판정 기준은 다섯 가지다. (i) 다양한 경험에서 재사용 구조를 스스로 발견·형성, (ii) 경험이 어긋날 때 그 구조를 수정·분할·병합, (iii) 그 구조가 이후 학습 규칙(무엇·어디·얼마나·언제 갱신할지)을 제어, (iv) 순차 다과제·다영역의 일반 지속학습 평가, (v) 구현되고 평가된 완성 형태. 이 범위에서 다섯 가지를 모두 만족하는 사례는 발견되지 않았다. 가장 가까운 사례는 Shan·Minni 외(문맥 posterior가 저랭크 RNN의 계산과 학습을 gate하나 task id가 입력으로 주어지고 생성 모형 계열이 손으로 정해짐), LCNet, ALMA이며 모두 소규모이거나 오프라인 탐색이다.</p>
+<aside class="callout callout-warn">
+<p><span class="ev ev-open">OPEN</span> 이 결론은 검색 범위와 근거 깊이에 대한 서술이며 "갭이 존재한다"는 증명이 아니다. Semantic Scholar 쿼리 9개 중 5건은 HTTP 429로 실패했고, Nested Learning/HOPE·Titans·ATLAS는 부분만 만족했으나 대부분 초록 수준의 판정이다.</p>
+</aside>
+
+<h3 id="open-literature-left">문헌 정독이 남은 네 묶음</h3>
+<p><span class="ev ev-open">OPEN</span> 감사 §2는 "문헌 정독이 남음"으로 판정된 항목 9개 중 4개(11-09 주간 조사 2, 11-11 원문 검토 2)를 문헌 통합 편집이 다뤘고 실제로 남은 것은 5개라고 센다. 남은 일은 <a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/research/2026-11-12-design-audit.md#62-문헌-정독이-남은-항목">감사 §6.2</a>가 아래 네 묶음으로 적는다.</p>
+<div class="table-wrap"><table class="wp-table">
+<caption><span class="tab-no"></span> 문헌 정독이 남은 네 묶음(감사 §6.2)</caption>
+<thead><tr><th scope="col">묶음</th><th scope="col">대상</th><th scope="col">지금 상태와 걸려 있는 것</th></tr></thead>
+<tbody>
+<tr><th scope="row">재료 논문 14편의 원문 정독</th><td>Titans, Nested Learning/HOPE, Language Models Need Sleep, Titan-Llama, Looped·Recurrent Depth, MoD·MoR, Depth-Attention 계열, Retrofitted Recurrence 등 A01–A04·A06–A15</td><td>사용자는 "논문 포함 읽고 이해하고"를 요청했다(U-T09). fulltext-read는 0편이고 확인 깊이는 metadata-checked 8편, official-search-checked 3편, discussion-import 3편이다(catalog.tsv status 열을 센 값). 05 §5의 F<sub>CMS</sub> 식과 §7–§9는 이 깊이에서 쓴 프로젝트 제안이다. 정독 우선순위와 질문은 W1-gaps G1-14에 있다.</td></tr>
+<tr><th scope="row">Melete neural-memory 연구층(B06)</th><td>Sleep-time compute, agent memory, admission·commit·validity, canonical·materialized state 분리, Sleep을 transactional compiler로 보는 관점</td><td>05 §11(Sleep)과 07에 어떻게 연결할지 검토해야 한다(G2-28).</td></tr>
+<tr><th scope="row">학습 규칙 후보 지도</th><td>fast-state(TTT·Titans·DeltaNet), eligibility·three-factor, 국소 신용(predictive coding·Forward-Forward 등) 계열. TTT는 test-time training이다</td><td>각 계열의 원문 근거, library 존재, 수학적 정의 완결 여부를 표로 만든다(11 §7, G2-18·G2-29). 지도 자체가 미작성이다.</td></tr>
+<tr><th scope="row">뇌과학 근거 확인</th><td>낯선 입력의 세 경로, 이해 수준에 따라 받아들이는 다음 내용이 달라지는가(흘려듣기)</td><td>후보 문헌은 N12–N19와 Schapiro et al. 2017이며 아직 내용을 확인하지 않았다(G2-30).</td></tr>
+</tbody></table></div>
+<p class="muted">G1-14·G2-18·G2-28–G2-30은 감사 작업의 편집 블록 번호이며 <a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/research/2026-11-12-design-audit/W1-gaps.txt">W1-gaps.txt</a>와 <a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/research/2026-11-12-design-audit/W2-gaps.txt">W2-gaps.txt</a>에 있다.</p>
+
+<h3 id="open-not-established">이 감사와 검증 기록이 보장하지 않는 것</h3>
+<p><span class="ev ev-open">OPEN</span> 설계 반영 감사가 성립시키지 못하는 것은 셋이다(<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/research/2026-11-12-design-audit.md#63-이-감사로-성립하지-않는-것">감사 §6.3</a>).</p>
+<ul>
+<li>원장 판정은 문서 대 문서의 대조다. 설계가 맞다는 증명이 아니다.</li>
+<li>새로 들어간 문장 대부분은 PROPOSAL·OPEN이다. 구현·학습·효용 검증은 하나도 없다.</li>
+<li>B 번호(Melete 시기 피드백)는 세션 요약을 원천으로 썼다. 원 대화 전문 대조는 아니다.</li>
+</ul>
+<p><span class="ev ev-archive">ARCHIVE</span> 게시 검증 기록(<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/VALIDATION.md">VALIDATION.md</a>, 검증일 2026-11-09)은 작은 합성 Phase-0의 재실행이 원래 scope 안에서의 확인임을 밝히고, 검증하지 않은 것을 다섯 가지로 적는다. 이 미실행 영역의 PASS로 확대하지 않는다.</p>
+<ol>
+<li>통합 HOPE·Titans·CMS·recursive model의 구현·학습·GPU 실행. (CMS는 continuum memory system, 시간척도가 다른 여러 수준의 기억 계열이다.)</li>
+<li>자연어의 schema 형성·자율 분화·Sleep의 실제 효용.</li>
+<li>같은 정확도에서 LLM보다 빠른 System ONE.</li>
+<li>모든 외부 논문의 본문·수치·코드와 최신 버전의 독립 감사.</li>
+<li>전체 repository의 모든 로컬 링크·외부 URL 전수 실행 검사.</li>
+</ol>
+
+<h3 id="open-s8">검증 없이 주장하지 않을 것 (11 §8)</h3>
+<p><span class="ev ev-proposal">PROPOSAL</span> 설계 문서 11의 마지막 절은 다음 여덟 가지를 검증 없이 주장하지 않는다고 적는다(<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/11-research-agenda.md#8-검증-없이-주장하지-않을-것">11 §8</a>).</p>
+<ol>
+<li>하나의 universal brain switch.</li>
+<li>schema = 특정 Hz.</li>
+<li>biological state의 완전 재현.</li>
+<li>신경망 모든 부분공간의 의미 해독.</li>
+<li>범용 AGI.</li>
+<li>통합 모델의 미실행 속도 이득.</li>
+<li>기존 Melete보다 나은 실제 사용자 성능.</li>
+<li>삭제 요구가 모든 consolidated weights에서 완전 제거됨.</li>
+</ol>
+<p><span class="ev ev-proposal">PROPOSAL</span> (원문 검토 §0·§4, 문헌 검토 뒤 추가) 다음 세 가지도 검증 없이 주장하지 않는다: 학습된 schema 구조가 같은 예산의 고정·무구조 대조보다 낫다는 것, 문헌이 H-COMPUTE(같은 품질의 추론 계산량 감소)를 뒷받침한다는 것, 불일치 시 구조를 수정하는 기제가 문헌에 있다는 것. <span class="ev ev-open">OPEN</span> (가설 C) 열린 질문은 둘이다. accommodation은 오류 크기·fit에 따라 새 구조와 미세 조정 중 무엇을 고르고 어떻게 평가하는가(읽은 문헌에는 정성 규칙뿐이다). H-COMPUTE는 어떤 신호(CSCG posterior 엔트로피, recall 신뢰도, attractor 수렴)가 고정 깊이 곡선 위에서 계산을 줄이는가, 곧 schema 선택과 선택적 쓰기가 다음 추론의 비용에 영향을 주는가. <span class="ev ev-archive">ARCHIVE</span> 11-09 조사는 이 논문들이 recursive System ONE 전체에서 동일 정확도의 loop·latency 감소를 통합 입증하지 않았다고 정리했고, <span class="ev ev-literature">LITERATURE</span> 11-11 원문 검토도 우리 H-COMPUTE를 직접 시험한 논문은 없다고 정리한다.</p>
+
+<h3 id="open-no-claims">이 설계가 아직 주장하지 않는 것</h3>
+<p><span class="ev ev-proposal">PROPOSAL</span> 아래 목록은 위 문서들이 "검증 없이 주장하지 않는다"고 적은 것을 한곳에 모은 것이다. 하나라도 결과처럼 읽히는 문장을 이 백서에서 발견하면 그 문장이 틀렸다.</p>
+<aside class="callout callout-warn">
+<ul>
+<li><strong>구현·학습·효용:</strong> 통합 모델의 구현·학습·GPU 실행의 어떤 결과도 주장하지 않는다. 자연어의 schema 형성, 자율 분화, Sleep의 실제 효용도 마찬가지다(VALIDATION §4).</li>
+<li><strong>속도·비용:</strong> 같은 정확도에서 LLM보다 빠른 System ONE, 통합 모델의 미실행 속도 이득을 주장하지 않는다(VALIDATION §4, 11 §8).</li>
+<li><strong>학습된 구조의 이득:</strong> 학습된 schema 구조가 같은 예산의 고정·무구조 대조보다 낫다는 것은 읽은 11편 어디에도 직접 비교가 없어 주장하지 않는다(11 §8).</li>
+<li><strong>문헌 지지:</strong> 문헌이 H-COMPUTE(같은 품질의 추론 계산량 감소)를 뒷받침한다거나, 불일치 시 구조를 수정하는 기제가 문헌에 있다고 주장하지 않는다(11 §8).</li>
+<li><strong>뇌 모사:</strong> 하나의 universal brain switch, schema=특정 Hz, biological state의 완전 재현, 신경망 모든 부분공간의 의미 해독, 범용 AGI를 주장하지 않는다(11 §8). 인지 현상의 재현은 실제 뇌 알고리즘의 증명이 아니다(08 §2-1).</li>
+<li><strong>Melete와의 비교·삭제:</strong> 기존 Melete보다 나은 실제 사용자 성능, 삭제 요구가 모든 consolidated weights에서 완전 제거됨을 주장하지 않는다(11 §8). 로드맵의 삭제 보장은 P1의 fast state 한정이다.</li>
+<li><strong>사용자 가설:</strong> pretraining이 하나의 schema를 학습하고 post-training이 이를 분화한다는 것은 보존하되 사실로 채택하지 않는다(11 §1).</li>
+<li><strong>갭의 존재:</strong> 갭 탐색은 검색 범위 안에서 반례를 찾지 못했다는 서술이며 갭이 존재한다는 증명이 아니다(11 §6).</li>
+<li><strong>등급:</strong> 어떤 phase의 PASS도 그 phase의 등급 상한을 넘어 쓰지 않는다. P1은 상한 2라서 "schema 이득"·"개선"·"일반화"라고 쓰지 않는다(09 §3).</li>
+<li><strong>감사 자체:</strong> 원장 판정은 설계가 맞다는 증명이 아니며, B 번호 항목은 원 대화 전문 대조가 아니다(감사 §6.3).</li>
+<li><strong>문헌 확인 깊이:</strong> 읽은 11편도 일부는 accepted manuscript·proof·preprint이고, 코드는 실행하지 않았으며, 그림에서 읽은 수치는 근사다. 재료 논문 14편은 원문을 정독하지 않았다.</li>
+</ul>
+</aside>
+
+<h3 id="open-decisions">열린 결정과 사용자 확인으로 가는 길</h3>
+<aside class="callout callout-decision">
+<p><span class="ev ev-open">OPEN</span> <strong>사용자가 정해야 할 것은 두 곳에 있다.</strong> 열린 결정 D-01–D-14(선택지·추천·비용)는 <a href="#roadmap">로드맵</a>의 결정 표에, 사용자 확인 19개(A–D 묶음)는 <a href="#traceability">추적성</a> 절에 있다. 비용이 드는 결정은 결정 전에 실행하지 않는다. 이 절은 그중 3부의 평가·로드맵·진화와 직접 닿는 확인 항목만 아래에 다시 적는다.</p>
+</aside>
+<div class="table-wrap"><table class="wp-table">
+<caption><span class="tab-no"></span> 사용자 확인 항목 중 3부와 닿는 것(감사 §5의 번호)</caption>
+<thead><tr><th scope="col">번호</th><th scope="col">무엇을 확인하나</th><th scope="col">걸린 곳</th></tr></thead>
+<tbody>
+<tr><th scope="row">8</th><td>사용자의 단계 처리(익숙함 정도 → 빠르게 / rapid learning / 더 깊은 loop)를 다중 신호 controller로 일반화하는 것을 수용하는가. P1 v0는 단조 규칙이고 P3에서 다중 신호로 간다.</td><td>로드맵 D-14, P1·P3</td></tr>
+<tr><th scope="row">9</th><td>U-T07의 "model needs sleep의 방법으로"가 A03의 특정 전환 절차인지 일반적인 Sleep 통합인지.</td><td>로드맵 P4 Sleep v0</td></tr>
+<tr><th scope="row">12</th><td>점진적 해상도를 연구 저장소에 적용한 방식이 맞는가. P1을 "실제 CLI + 실제 소형 pretrained 모델" 제품으로 읽고 controller v0를 P1에 넣었다.</td><td>로드맵 전체, D-14</td></tr>
+<tr><th scope="row">13</th><td>최종 사용 인터페이스는 무엇이며, Codex·Prime agent에 backend로 연결할 권한·인프라가 있는가(B12, D-11).</td><td>로드맵 P5, D-11</td></tr>
+<tr><th scope="row">14</th><td>B15의 논문은 Melete 논문인가 FCL 논문인가. veridraft 개선 요청이 계속되는가.</td><td>진화 정책 산출물 정책</td></tr>
+<tr><th scope="row">15</th><td>B16의 superpowers 사용 지시를 FCL 작업에도 적용하는가.</td><td>진화 정책 산출물 정책</td></tr>
+<tr><th scope="row">17</th><td>B01에서 "아이디어 없음"으로 남긴 eviction·forgetting·memory revision을 어느 phase에서 다룰 것인가.</td><td>로드맵(어느 phase에 둘지 미정)</td></tr>
+<tr><th scope="row">18</th><td>이번에 들어간 틀은 모두 PROPOSAL이다: family F13–F21, gate 레지스트리, 진화 권한 사다리 E0–E3, controller 해상도 사다리 v0–v2, 리듬 실험 A–D 배치.</td><td>평가, 로드맵, 진화 정책</td></tr>
+<tr><th scope="row">19</th><td>J1의 gate 수치(5pp 등)는 당시 master의 제안이었다. FCL의 gate 수치는 pilot 분산을 본 뒤 사전에 확정하고 사용자 승인을 받는다.</td><td>평가의 gate 레지스트리</td></tr>
+</tbody></table></div>
+
+<aside class="callout callout-source">
+<p><strong>근거 문서.</strong> <a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/11-research-agenda.md">11-research-agenda.md</a> · <a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/research/2026-11-12-design-audit.md">2026-11-12-design-audit.md</a> §5–§6 · <a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/VALIDATION.md">VALIDATION.md</a> · <a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/research/2026-11-11-sbl-fulltext-review.md#6-갭-주장-판정">원문 검토 §6·§8</a>. 다음 읽을 곳: <a href="#roadmap">로드맵</a>(열린 결정 D-01–D-14), <a href="#traceability">추적성</a>(사용자 확인 19개).</p>
+</aside>
+</section>

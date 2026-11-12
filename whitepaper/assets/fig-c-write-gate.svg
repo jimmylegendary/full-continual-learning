@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 720 728" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="fig-c-write-gate-title fig-c-write-gate-desc" font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR','Noto Sans CJK KR','Malgun Gothic',system-ui,sans-serif">
+<title id="fig-c-write-gate-title">쓰기 gate의 네 질문과 phase별 해상도</title>
+<desc id="fig-c-write-gate-desc">빠른 쓰기 gate를 무엇을, 어디에, 얼마나, 언제의 네 질문으로 나눠 P1부터 P4까지 어떤 해상도로 다루는지 보인 행렬. P1은 얼마나만 Titans식 surprise 정책 하나이고 나머지는 고정 정책이며, P3에서 fit·친숙도 결합과 분리 ablation이 들어간다. 문서에 적힌 것이 없는 칸은 점선이다.</desc>
+<defs><marker id="fig-c-write-gate-arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto-start-reverse"><polygon points="0 0, 8 3, 0 6" fill="#4f5d75"/></marker><marker id="fig-c-write-gate-arrow-accent" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto-start-reverse"><polygon points="0 0, 8 3, 0 6" fill="#eb6c36"/></marker><marker id="fig-c-write-gate-arrow-link" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto-start-reverse"><polygon points="0 0, 8 3, 0 6" fill="#2e5aa8"/></marker><marker id="fig-c-write-gate-arrow-open" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto-start-reverse"><polyline points="0 0, 8 3, 0 6" fill="none" stroke="#4f5d75" stroke-width="1.2"/></marker></defs>
+<rect width="100%" height="100%" fill="#f5f5f5"/>
+<rect x="24" y="96" width="112" height="120" rx="6" fill="#f5f5f5"/>
+<rect x="24" y="96" width="112" height="120" rx="6" fill="rgba(79,93,117,0.10)" stroke="#7a8399" stroke-width="1"/>
+<text x="80" y="144" font-size="12" fill="#2d3142" font-weight="600" text-anchor="middle">무엇을 쓰나</text>
+<text x="80" y="160" font-size="12" fill="#4f5d75" text-anchor="middle">쓸 증거의 선택</text>
+<text x="80" y="176" font-size="12" fill="#4f5d75" text-anchor="middle">(전용 기호 없음)</text>
+<rect x="144" y="96" width="128" height="120" fill="#f5f5f5"/>
+<rect x="144" y="96" width="128" height="120" rx="4" fill="rgba(45,49,66,0.05)" stroke="rgba(45,49,66,0.30)" stroke-width="1"/>
+<text x="152" y="120" font-size="12" fill="#2d3142">고정 정책</text>
+<rect x="280" y="96" width="128" height="120" fill="#f5f5f5"/>
+<rect x="280" y="96" width="128" height="120" rx="4" fill="none" stroke="rgba(45,49,66,0.30)" stroke-width="1" stroke-dasharray="4,3"/>
+<text x="288" y="120" font-size="12" fill="#7a8399">문서에 적힌 것 없음</text>
+<rect x="552" y="96" width="128" height="120" fill="#f5f5f5"/>
+<rect x="552" y="96" width="128" height="120" rx="4" fill="none" stroke="rgba(45,49,66,0.30)" stroke-width="1" stroke-dasharray="4,3"/>
+<text x="560" y="120" font-size="12" fill="#7a8399">문서에 적힌 것 없음</text>
+<rect x="24" y="224" width="112" height="120" rx="6" fill="#f5f5f5"/>
+<rect x="24" y="224" width="112" height="120" rx="6" fill="rgba(79,93,117,0.10)" stroke="#7a8399" stroke-width="1"/>
+<text x="80" y="264" font-size="12" fill="#2d3142" font-weight="600" text-anchor="middle">어디에 쓰나</text>
+<text x="80" y="280" font-size="12" fill="#4f5d75" text-anchor="middle">u: 쓰는</text>
+<text x="80" y="296" font-size="12" fill="#4f5d75" text-anchor="middle">대상·허용</text>
+<text x="80" y="312" font-size="12" fill="#4f5d75" text-anchor="middle">(06 §5)</text>
+<rect x="144" y="224" width="128" height="120" fill="#f5f5f5"/>
+<rect x="144" y="224" width="128" height="120" rx="4" fill="rgba(45,49,66,0.05)" stroke="rgba(45,49,66,0.30)" stroke-width="1"/>
+<text x="152" y="248" font-size="12" fill="#2d3142">고정 정책</text>
+<rect x="280" y="224" width="128" height="120" fill="#f5f5f5"/>
+<rect x="280" y="224" width="128" height="120" rx="4" fill="rgba(45,49,66,0.12)" stroke="#4f5d75" stroke-width="1"/>
+<text x="288" y="248" font-size="12" fill="#2d3142">layer·level을</text>
+<text x="288" y="264" font-size="12" fill="#2d3142">arm으로 비교</text>
+<rect x="552" y="224" width="128" height="120" fill="#f5f5f5"/>
+<rect x="552" y="224" width="128" height="120" rx="4" fill="none" stroke="rgba(45,49,66,0.30)" stroke-width="1" stroke-dasharray="4,3"/>
+<text x="560" y="248" font-size="12" fill="#7a8399">문서에 적힌 것 없음</text>
+<rect x="24" y="352" width="112" height="120" rx="6" fill="#f5f5f5"/>
+<rect x="24" y="352" width="112" height="120" rx="6" fill="rgba(79,93,117,0.10)" stroke="#7a8399" stroke-width="1"/>
+<text x="80" y="400" font-size="12" fill="#2d3142" font-weight="600" text-anchor="middle">얼마나 쓰나</text>
+<text x="80" y="416" font-size="12" fill="#4f5d75" text-anchor="middle">η: 쓰는 강도</text>
+<text x="80" y="432" font-size="12" fill="#4f5d75" text-anchor="middle">(06 §3·§5)</text>
+<rect x="144" y="352" width="128" height="120" fill="#f5f5f5"/>
+<rect x="144" y="352" width="128" height="120" rx="4" fill="rgba(235,108,54,0.08)" stroke="#eb6c36" stroke-width="1.2"/>
+<text x="152" y="376" font-size="12" fill="#2d3142">Titans식 surprise</text>
+<text x="152" y="392" font-size="12" fill="#2d3142">정책 하나</text>
+<text x="152" y="408" font-size="12" fill="#2d3142">(+항상-갱신·고정</text>
+<text x="152" y="424" font-size="12" fill="#2d3142">대조)</text>
+<rect x="280" y="352" width="128" height="120" fill="#f5f5f5"/>
+<rect x="280" y="352" width="128" height="120" rx="4" fill="rgba(45,49,66,0.12)" stroke="#4f5d75" stroke-width="1"/>
+<text x="288" y="376" font-size="12" fill="#2d3142">write 예산 u 격자</text>
+<text x="288" y="392" font-size="12" fill="#2d3142">(depth r, u) 2차원</text>
+<text x="288" y="408" font-size="12" fill="#2d3142">평가</text>
+<rect x="552" y="352" width="128" height="120" fill="#f5f5f5"/>
+<rect x="552" y="352" width="128" height="120" rx="4" fill="none" stroke="rgba(45,49,66,0.30)" stroke-width="1" stroke-dasharray="4,3"/>
+<text x="560" y="376" font-size="12" fill="#7a8399">문서에 적힌 것 없음</text>
+<rect x="24" y="480" width="112" height="120" rx="6" fill="#f5f5f5"/>
+<rect x="24" y="480" width="112" height="120" rx="6" fill="rgba(79,93,117,0.10)" stroke="#7a8399" stroke-width="1"/>
+<text x="80" y="520" font-size="12" fill="#2d3142" font-weight="600" text-anchor="middle">언제 공고화하나</text>
+<text x="80" y="536" font-size="12" fill="#4f5d75" text-anchor="middle">s_l: level별</text>
+<text x="80" y="552" font-size="12" fill="#4f5d75" text-anchor="middle">clock</text>
+<text x="80" y="568" font-size="12" fill="#4f5d75" text-anchor="middle">(06 §1)</text>
+<rect x="144" y="480" width="128" height="120" fill="#f5f5f5"/>
+<rect x="144" y="480" width="128" height="120" rx="4" fill="rgba(45,49,66,0.05)" stroke="rgba(45,49,66,0.30)" stroke-width="1"/>
+<text x="152" y="504" font-size="12" fill="#2d3142">고정 정책</text>
+<rect x="280" y="480" width="128" height="120" fill="#f5f5f5"/>
+<rect x="280" y="480" width="128" height="120" rx="4" fill="none" stroke="rgba(45,49,66,0.30)" stroke-width="1" stroke-dasharray="4,3"/>
+<text x="288" y="504" font-size="12" fill="#7a8399">문서에 적힌 것 없음</text>
+<rect x="552" y="480" width="128" height="120" fill="#f5f5f5"/>
+<rect x="552" y="480" width="128" height="120" rx="4" fill="rgba(45,49,66,0.12)" stroke="#4f5d75" stroke-width="1"/>
+<text x="560" y="504" font-size="12" fill="#2d3142">공고화 시점 ·</text>
+<text x="560" y="520" font-size="12" fill="#2d3142">replay 예산</text>
+<text x="560" y="536" font-size="12" fill="#2d3142">(novelty ×</text>
+<text x="560" y="552" font-size="12" fill="#2d3142">familiarity 대 고정)</text>
+<rect x="416" y="96" width="128" height="504" fill="#f5f5f5"/>
+<rect x="416" y="96" width="128" height="504" rx="4" fill="rgba(235,108,54,0.08)" stroke="#eb6c36" stroke-width="1.2"/>
+<text x="424" y="124" font-size="12" fill="#2d3142">· fit · 친숙도 결합</text>
+<text x="424" y="140" font-size="12" fill="#2d3142">선택적 write (확신</text>
+<text x="424" y="156" font-size="12" fill="#2d3142">있게 맞은 곳은</text>
+<text x="424" y="172" font-size="12" fill="#2d3142">보호)</text>
+<text x="424" y="196" font-size="12" fill="#2d3142">· 학습된</text>
+<text x="424" y="212" font-size="12" fill="#2d3142">neuromodulator</text>
+<text x="424" y="228" font-size="12" fill="#2d3142">후보</text>
+<text x="424" y="252" font-size="12" fill="#2d3142">· 무엇 · 어디 ·</text>
+<text x="424" y="268" font-size="12" fill="#2d3142">얼마나 · 언제를</text>
+<text x="424" y="284" font-size="12" fill="#2d3142">따로 시험하는 분리</text>
+<text x="424" y="300" font-size="12" fill="#2d3142">ablation</text>
+<text x="24" y="48" font-size="12" fill="#4f5d75" font-weight="600">gate 질문</text>
+<text x="24" y="64" font-size="12" fill="#4f5d75">06의 기호</text>
+<text x="144" y="44" font-size="16" fill="#2d3142" font-weight="600">P1</text>
+<text x="144" y="64" font-size="12" fill="#4f5d75">얇은 전체 여정</text>
+<text x="280" y="44" font-size="16" fill="#2d3142" font-weight="600">P2</text>
+<text x="280" y="64" font-size="12" fill="#4f5d75">여러 구조·고정 깊이</text>
+<text x="416" y="44" font-size="16" fill="#2d3142" font-weight="600">P3</text>
+<text x="416" y="64" font-size="12" fill="#4f5d75">스스로 고르는 모델</text>
+<text x="552" y="44" font-size="16" fill="#2d3142" font-weight="600">P4</text>
+<text x="552" y="64" font-size="12" fill="#4f5d75">세션을 넘는 경험</text>
+<text x="416" y="624" font-size="12" fill="#7a8399">P3 칸은 행 전체에 걸렸다:</text>
+<text x="416" y="640" font-size="12" fill="#7a8399">문서가 행별로 나누지 않았다</text>
+<line x1="24" y1="664" x2="696" y2="664" stroke="rgba(45,49,66,0.10)" stroke-width="0.8"/>
+<rect x="24" y="668" width="24" height="16" rx="4" fill="rgba(45,49,66,0.05)" stroke="rgba(45,49,66,0.30)" stroke-width="1"/>
+<text x="56" y="680" font-size="12" fill="#4f5d75">고정 정책</text>
+<rect x="132" y="668" width="24" height="16" rx="4" fill="rgba(45,49,66,0.12)" stroke="#4f5d75" stroke-width="1"/>
+<text x="164" y="680" font-size="12" fill="#4f5d75">변수화·비교(격자, arm, 따로 끄기)</text>
+<rect x="380" y="668" width="24" height="16" rx="4" fill="rgba(235,108,54,0.08)" stroke="#eb6c36" stroke-width="1"/>
+<text x="412" y="680" font-size="12" fill="#4f5d75">P1의 유일한 정책 · P3 결합·학습 후보</text>
+<rect x="24" y="692" width="24" height="16" rx="4" fill="none" stroke="rgba(45,49,66,0.30)" stroke-width="1" stroke-dasharray="4,3"/>
+<text x="56" y="704" font-size="12" fill="#4f5d75">문서에 적힌 것 없음</text>
+</svg>

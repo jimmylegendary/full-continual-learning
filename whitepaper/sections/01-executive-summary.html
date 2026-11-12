@@ -1,0 +1,71 @@
+<section class="wp-section" id="sec-summary" data-part="들어가며">
+<h2 id="summary">결정을 위한 2분 요약</h2>
+<p class="lede"><span class="ev ev-open">OPEN</span> 다섯 가지를 결정해 주십시오. 앞의 셋(D-14·D-01·D-04)이 첫 구현 단계 P1의 범위와 비용을 좌우하고, 뒤의 둘(H4·논문 정독)은 설계의 전제를 확인합니다. 추천안은 <a href="#summary-decisions">아래 표</a>에 있습니다.</p>
+<aside class="callout callout-source"><p>이 요약의 수치와 문장은 아래 문서에서 가져왔고 직접 센 값은 없다. (<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/research/2026-11-12-design-audit.md">감사 문서</a> · <a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/09-roadmap.md">09 로드맵</a> · <a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/README.md">README</a>)</p></aside>
+
+<h3 id="summary-what">무엇이고, 왜 필요한가</h3>
+<p><span class="ev ev-proposal">PROPOSAL</span> 경험에서 재사용할 구조(schema)를 만들고, 그 구조가 입력의 해석·계산량·학습을 정하며, 깊이 생각한 결과가 다음의 빠른 판단이 되는 하나의 모델입니다 (<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/01-intent-and-charter.md?plain=1#L5">01 §1</a>).</p>
+<p><span class="ev ev-user">USER</span> 새로 훈련하지 않고 기존 모델의 순차 처리 층은 Titan-Llama 계열로, 피드포워드 층은 CMS(여러 갱신 시간척도의 기억)로 점진 교체하고 반복 실행합니다. 익숙하면 바로 답하고, 덜 익숙하면 배우고, 더 낯설면 더 깊이 돕니다 (<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/sources/user-statements.md?plain=1#L82">U-T07</a>).</p>
+<p><span class="ev ev-proposal">PROPOSAL</span> 시험할 가설은 둘입니다. 경험 뒤 새 사례에서 목표 성능까지의 관측이 줄어드는가(H-SAMPLE), 같은 정확도에 드는 총 계산이 줄어드는가(H-COMPUTE) (<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/01-intent-and-charter.md?plain=1#L70">01 §4</a>).</p>
+
+<h3 id="summary-state">지금 어디까지 왔나</h3>
+<p><span class="ev ev-archive">ARCHIVE</span> 저장소는 설계·근거·검증 계획의 <strong>아카이브</strong>이고, 통합 모델의 구현·학습·효용 검증은 하나도 없습니다 (<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/README.md">README</a> · <a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/VALIDATION.md?plain=1#L48">VALIDATION §4</a>).</p>
+<p><span class="ev ev-archive">ARCHIVE</span> 2026-11-12 감사로 사용자 진술 202개 중 195개가 설계 문서에 자리를 얻었습니다(감사 전 111개). 설계 문서 10개에 편집 70개를 넣고 로드맵을 다시 썼으며, 새 내용 대부분은 제안·미해결 수준입니다 (<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/research/2026-11-12-design-audit.md?plain=1#L26">감사 §2</a> · <a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/research/2026-11-12-design-audit.md?plain=1#L50">감사 §3</a> · <a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/research/2026-11-12-design-audit.md?plain=1#L1">감사 머리말</a>).</p>
+
+<div class="kpi-row">
+<div class="kpi"><div class="kpi-value">325</div><div class="kpi-label">감사 원장 항목 — FCL 시기 177 + Melete 시기 148</div></div>
+<div class="kpi"><div class="kpi-value">202 → 195</div><div class="kpi-label">설계 위치가 있는 사용자 진술 (감사 전 111)</div></div>
+<div class="kpi"><div class="kpi-value">70</div><div class="kpi-label">설계 문서 10개에 넣은 편집, 그리고 docs/09 전면 재작성</div></div>
+<div class="kpi"><div class="kpi-value">11편</div><div class="kpi-label">신경망 schema-based learning(SBL) 논문 원문 검토 (fulltext-read)</div></div>
+<div class="kpi"><div class="kpi-value">P1–P5</div><div class="kpi-label">점진적 해상도 로드맵 — 매 phase가 전체 여정</div></div>
+<div class="kpi"><div class="kpi-value">D-01–D-14</div><div class="kpi-label">열린 결정 (비용이 드는 것은 결정 전 실행 안 함)</div></div>
+<div class="kpi"><div class="kpi-value">0</div><div class="kpi-label">통합 모델의 구현·학습·효용 검증</div></div>
+</div>
+
+<h3 id="summary-decisions">결정이 필요한 다섯 가지</h3>
+<aside class="callout callout-decision"><p><strong>결정 요청.</strong> 아래 표의 다섯 항목에 승인·수정·보류를 알려 주십시오. D-14·D-01·D-04는 추천대로 승인하면 되고, H4와 정독은 사용자의 판단이 필요합니다. 나머지 열린 결정(D-02·D-03·D-05–D-13)은 <a href="#open">열린 질문</a>에 있습니다. <span class="ev ev-proposal">PROPOSAL</span></p></aside>
+
+<div class="table-wrap"><table class="wp-table" id="tab-summary-decisions"><caption><span class="tab-no"></span> 결정이 필요한 다섯 가지 — 추천·비용·근거</caption>
+<thead><tr><th>번호</th><th>결정할 것</th><th>추천 · 비용 · 되돌림</th><th>근거</th></tr></thead>
+<tbody>
+<tr><td style="white-space:nowrap"><strong>D-14</strong></td>
+<td>P1에 <strong>규칙형 판단기(controller v0)</strong>를 넣는다. 익숙함 신호의 임계값 두 개로 질문마다 바로 답(fast)·쓴 뒤 답(learn)·한 번 더 돌려 답(deep)을 고르고, 고른 경로를 기록한다.</td>
+<td><p><span class="ev ev-proposal">PROPOSAL</span> 넣는다. 마스터가 2026-11-12에 설계 판단으로 반영했고 <strong>사용자 확인을 기다린다.</strong> 효과는 판단기 없이 learn 경로로 고정한 대조(<code>noctl</code>)와 비교해 가른다.</p>
+<p class="muted">비용: P1 공수가 늘어난다. 되돌림: 대안 “P3에 두기”가 문서에 남아 있다.</p></td>
+<td><a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/09-roadmap.md?plain=1#L376">09 §10 D-14</a><br><a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/research/2026-11-12-design-audit.md?plain=1#L93">감사 §4</a></td></tr>
+<tr><td style="white-space:nowrap"><strong>H4</strong></td>
+<td>text/vec2text 인터페이스를 <strong>필수 경로에서 내리는가.</strong> 통합 모델에는 글자를 받는 외부 LLM이 없으므로 글자 변환이 꼭 필요하지 않다는 추론이다.</td>
+<td><p><span class="ev ev-open">OPEN</span> 내리자는 것은 정리자의 추론이고, 보존된 사용자 발화에는 폐기한다는 문장이 없다. 확인 전까지 H4의 전체 hidden-state 전달과 pointer·terminal 대조를 유지한다.</p>
+<p class="muted">비용: 문서 결정이라 실행 비용은 없다.</p></td>
+<td><a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/12-melete-lineage.md?plain=1#L5">12 §1</a><br><a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/05-integrated-architecture.md?plain=1#L141">05 §10</a><br><a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/research/2026-11-12-design-audit.md?plain=1#L110">감사 §5</a></td></tr>
+<tr><td style="white-space:nowrap"><strong>D-01</strong></td>
+<td>P1의 <strong>base model(출발 모델)</strong>을 무엇으로 하나.</td>
+<td><p><span class="ev ev-proposal">PROPOSAL</span> SmolLM2-135M으로 골격·개발을 하고, T07·T12의 floor 검사에서 막히면 360M을 검토한다.</p>
+<p class="muted">비용: 가중치 다운로드는 작다. 크기를 올리면 학습 시간·비용이 늘어 사용자 승인이 필요하다.</p></td>
+<td><a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/09-roadmap.md?plain=1#L363">09 §10 D-01</a></td></tr>
+<tr><td style="white-space:nowrap"><strong>D-04</strong></td>
+<td>retrofit 학습의 <strong>계산 장소와 시간 상한.</strong></td>
+<td><p><span class="ev ev-proposal">PROPOSAL</span> P1의 시간 실측(T04) 뒤 노트북 GPU의 시간 상한부터 승인하고, 클라우드 GPU는 P5 전까지 보류한다.</p>
+<p class="muted"><strong>비용이 든다.</strong> GPU 장시간 점유, 클라우드는 금전. 결정 전에는 실행하지 않는다.</p></td>
+<td><a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/09-roadmap.md?plain=1#L366">09 §10 D-04</a></td></tr>
+<tr><td style="white-space:nowrap"><strong>정독</strong></td>
+<td>재료 논문 <strong>14편(A01–A04·A06–A15)의 원문 정독</strong>을 할 것인가.</td>
+<td><p><span class="ev ev-open">OPEN</span> 지금은 fulltext-read가 0편이고 확인 깊이는 metadata-checked 이하다. 정독 전에는 CMS 식(05 §5)과 05 §7–§9가 프로젝트 제안이다.</p>
+<p class="muted">비용: 읽기 작업이다. 문서에 비용 수치는 없다.</p></td>
+<td><a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/research/2026-11-12-design-audit.md?plain=1#L162">감사 §6.2</a><br><a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/05-integrated-architecture.md?plain=1#L94">05 §5</a></td></tr>
+</tbody></table></div>
+<ul>
+<li><span class="ev ev-proposal">PROPOSAL</span> <strong>틀렸을 때.</strong> D-14는 P1 설계 한 줄이라 “P3에 두기”로 바꿀 수 있고, 비용이 드는 선택은 사용자 결정 전에 실행하지 않습니다 (<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/09-roadmap.md?plain=1#L348">09 §10</a>).</li>
+<li><span class="ev ev-proposal">PROPOSAL</span> <strong>언제 알 수 있나.</strong> P1이 끝날 때 대조군과 나란히 돈 개발 pilot(등급 2)이 처음 나오며, 그때도 “이 pilot 범위에서 관측했다”까지만 씁니다 (<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/09-roadmap.md?plain=1#L125">09 §3</a>).</li>
+<li><span class="ev ev-proposal">PROPOSAL</span> <strong>안 하면.</strong> 결정이 필요한 P1 작업이 시작되지 않고 설계는 아카이브로 남습니다.</li>
+</ul>
+
+<h3 id="summary-risks">알아 둘 위험</h3>
+<ul>
+<li><span class="ev ev-literature">LITERATURE</span> (fulltext-read) <strong>H-COMPUTE는 문헌 지지가 가장 약합니다.</strong> 읽은 11편에 같은 품질의 추론 계산량을 잰 논문이 없습니다 (<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/06-mathematical-framework.md?plain=1#L97">06 §6</a> · <a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/research/2026-11-11-sbl-fulltext-review.md?plain=1#L233">원문 검토 §4.4</a>).</li>
+<li><span class="ev ev-literature">LITERATURE</span> (fulltext-read) <strong>학습된 구조가 같은 예산의 고정·무구조 대조보다 낫다는 직접 비교가 문헌에 없습니다</strong> (<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/research/2026-11-11-sbl-fulltext-review.md?plain=1#L176">원문 검토 §4.1</a>). <span class="ev ev-archive">ARCHIVE</span> Melete N0–N5에서도 학습된 graph의 독립 기여는 입증되지 않았습니다 (<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/12-melete-lineage.md?plain=1#L19">12 §2</a>).</li>
+<li><span class="ev ev-proposal">PROPOSAL</span> <strong>retrofit은 자동으로 되지 않습니다.</strong> 재학습 없는 기계적 교체나 전 층 전환의 성공을 가정하지 않습니다 (<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/README.md?plain=1#L13">README</a> · <a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/01-intent-and-charter.md?plain=1#L17">01 §2</a>).</li>
+<li><span class="ev ev-proposal">PROPOSAL</span> <strong>첫 결과는 작은 모델에 한정됩니다.</strong> P1은 합성 과제·소형 모델 1종·제한된 seed라 등급 2(개발 pilot)를 넘지 못합니다 (<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/09-roadmap.md?plain=1#L125">09 §3</a>).</li>
+<li><span class="ev ev-open">OPEN</span> <strong>재료 논문 14편은 아직 원문을 읽지 않았습니다.</strong> fulltext-read 0편, 확인 깊이는 metadata-checked 이하입니다 (<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/research/2026-11-12-design-audit.md?plain=1#L162">감사 §6.2</a>).</li>
+</ul>
+</section>

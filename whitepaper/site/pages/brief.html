@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>결정 브리프(eli50) — FCL System ONE 설계 백서</title>
+<script>(function(){var d=document.documentElement;function s(){try{return localStorage.getItem('fcl-wp-theme')}catch(e){return null}}
+var t=s();if(t!=='light'&&t!=='dark'){t=(window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light'}
+d.setAttribute('data-theme',t);
+document.addEventListener('DOMContentLoaded',function(){var b=document.getElementById('theme-toggle');if(!b)return;
+function sync(){var dk=d.getAttribute('data-theme')==='dark';b.setAttribute('aria-pressed',dk?'true':'false');b.textContent=dk?'라이트로 보기':'다크로 보기'}
+sync();b.addEventListener('click',function(){var n=d.getAttribute('data-theme')==='dark'?'light':'dark';d.setAttribute('data-theme',n);try{localStorage.setItem('fcl-wp-theme',n)}catch(e){}sync()})})})();</script>
+<style>
+/* @tokens:start */
+:root{color-scheme:light;--bg:#f9f9f7;--surface:#fcfcfb;--fg:#0b0b0b;--muted:#52514e;--border:#c3c2b7;--accent:#256abf;--accent-2:#eb6834;--ev-user:#2a78d6;--ev-proposal:#6250d6;--ev-literature:#008300;--ev-archive:#898781;--ev-open:#eb6834;--chart-1:#2a78d6;--chart-2:#eb6834;--chart-3:#1baf7a;--chart-4:#eda100;--chart-5:#e87ba4;--chart-6:#008300;--chart-7:#6250d6;--chart-8:#e34948;--ok:#0ca30c;--warn:#fab219;--bad:#d03b3b;--seq-0:#cde2fb;--seq-1:#9ec5f4;--seq-2:#5598e7;--seq-3:#256abf;--seq-4:#104281;}
+:root[data-theme="light"]{color-scheme:light;--bg:#f9f9f7;--surface:#fcfcfb;--fg:#0b0b0b;--muted:#52514e;--border:#c3c2b7;--accent:#256abf;--accent-2:#eb6834;--ev-user:#2a78d6;--ev-proposal:#6250d6;--ev-literature:#008300;--ev-archive:#898781;--ev-open:#eb6834;--chart-1:#2a78d6;--chart-2:#eb6834;--chart-3:#1baf7a;--chart-4:#eda100;--chart-5:#e87ba4;--chart-6:#008300;--chart-7:#6250d6;--chart-8:#e34948;--ok:#0ca30c;--warn:#fab219;--bad:#d03b3b;--seq-0:#cde2fb;--seq-1:#9ec5f4;--seq-2:#5598e7;--seq-3:#256abf;--seq-4:#104281;}
+:root[data-theme="dark"]{color-scheme:dark;--bg:#0d0d0d;--surface:#1a1a19;--fg:#f0efec;--muted:#c3c2b7;--border:#383835;--accent:#6da7ec;--accent-2:#d95926;--ev-user:#3987e5;--ev-proposal:#9085e9;--ev-literature:#008300;--ev-archive:#898781;--ev-open:#d95926;--chart-1:#3987e5;--chart-2:#d95926;--chart-3:#199e70;--chart-4:#c98500;--chart-5:#d55181;--chart-6:#008300;--chart-7:#9085e9;--chart-8:#e66767;--ok:#0ca30c;--warn:#fab219;--bad:#d03b3b;--seq-0:#104281;--seq-1:#184f95;--seq-2:#256abf;--seq-3:#5598e7;--seq-4:#9ec5f4;}
+@media (prefers-color-scheme:dark){:root:not([data-theme]){color-scheme:dark;--bg:#0d0d0d;--surface:#1a1a19;--fg:#f0efec;--muted:#c3c2b7;--border:#383835;--accent:#6da7ec;--accent-2:#d95926;--ev-user:#3987e5;--ev-proposal:#9085e9;--ev-literature:#008300;--ev-archive:#898781;--ev-open:#d95926;--chart-1:#3987e5;--chart-2:#d95926;--chart-3:#199e70;--chart-4:#c98500;--chart-5:#d55181;--chart-6:#008300;--chart-7:#9085e9;--chart-8:#e66767;--ok:#0ca30c;--warn:#fab219;--bad:#d03b3b;--seq-0:#104281;--seq-1:#184f95;--seq-2:#256abf;--seq-3:#5598e7;--seq-4:#9ec5f4;}}
+/* @tokens:end */
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:"Pretendard","Apple SD Gothic Neo","Noto Sans KR","Noto Sans CJK KR","Malgun Gothic",system-ui,sans-serif;font-size:1rem;line-height:1.7;word-break:keep-all;overflow-wrap:anywhere}
+code,.mono{font-family:ui-monospace,"SFMono-Regular","D2Coding","Noto Sans Mono CJK KR",Menlo,monospace}
+a{color:var(--accent);text-underline-offset:.15em}
+a:hover{text-decoration-thickness:2px}
+a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:3px}
+.topbar{position:sticky;top:0;z-index:10;display:flex;flex-wrap:wrap;align-items:center;gap:.2rem 1rem;padding:.55rem 1rem;background:var(--surface);border-bottom:1px solid var(--border);font-size:.9rem}
+.topbar a{text-decoration:none;white-space:nowrap;padding:.15rem 0}
+.topbar a[aria-current]{color:var(--fg);font-weight:700;text-decoration:underline;text-underline-offset:.3em}
+.topbar .sp{flex:1}
+.topbar button{font:inherit;font-size:.85rem;color:var(--fg);background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:.15rem .65rem;cursor:pointer}
+main{max-width:920px;margin:0 auto;padding:1.1rem 1rem 2rem}
+.head{margin:.4rem 0 .8rem}
+.lvl{display:inline-block;background:var(--fg);color:var(--bg);font-weight:800;font-size:.9rem;letter-spacing:.03em;border-radius:999px;padding:.05rem .75rem}
+.lvl-note{margin-left:.55rem;color:var(--muted);font-size:.9rem}
+.args{display:flex;flex-wrap:wrap;gap:.3rem;margin:.6rem 0 0;padding:0;list-style:none}
+.args li{font-family:ui-monospace,"SFMono-Regular","D2Coding","Noto Sans Mono CJK KR",Menlo,monospace;font-size:.72rem;line-height:1.5;border:1px solid var(--border);border-radius:4px;padding:0 .4rem;color:var(--muted);background:var(--surface)}
+h1{font-size:clamp(1.4rem,1.05rem + 1.7vw,2rem);line-height:1.32;margin:.7rem 0 .55rem;font-weight:800;letter-spacing:-.01em}
+h2{font-size:1.14rem;line-height:1.4;margin:1.7rem 0 .4rem}
+p{margin:.45rem 0}
+.lede{font-size:1.05rem}
+.eq{margin:.7rem 0;padding:.5rem .8rem;border-left:4px solid var(--accent);background:var(--surface);font-weight:600}
+figure{margin:1.1rem 0;padding:.85rem .85rem .65rem;border:1px solid var(--border);border-radius:8px;background:var(--surface)}
+figure svg{display:block;width:100%;height:auto}
+.fig-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;background:linear-gradient(to right,var(--surface) 30%,transparent) left center/28px 100% no-repeat local,linear-gradient(to left,var(--surface) 30%,transparent) right center/28px 100% no-repeat local,radial-gradient(farthest-side at 0 50%,color-mix(in srgb,var(--fg) 24%,transparent),transparent) left center/12px 100% no-repeat scroll,radial-gradient(farthest-side at 100% 50%,color-mix(in srgb,var(--fg) 24%,transparent),transparent) right center/12px 100% no-repeat scroll}
+.fig-scroll:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.nb{white-space:nowrap}
+table.dec th:nth-child(1){width:34%}table.dec th:nth-child(2){width:29%}table.dec th:nth-child(3){width:19%}table.dec th:nth-child(4){width:18%}
+table.dec tbody th a,table.weak td a{white-space:nowrap}
+table.weak th:nth-child(1){width:46%}table.weak th:nth-child(2){width:19%}table.weak th:nth-child(3){width:20%}table.weak th:nth-child(4){width:15%}
+.fig-scroll>.fig-in{margin:0 auto}
+figcaption{margin-top:.55rem;font-size:.9rem;line-height:1.55;color:var(--muted)}
+figcaption .l2{display:block}
+figcaption b{color:var(--fg)}
+table{border-collapse:collapse;width:100%}
+th,td{text-align:left;vertical-align:top;padding:.45rem .55rem;border-top:1px solid var(--border);font-size:.9rem;line-height:1.5}
+thead th{border-top:0;border-bottom:2px solid var(--fg);font-size:.8rem;font-weight:700;color:var(--muted)}
+tbody th{font-weight:700}
+.ev{display:inline-block;margin-left:.25rem;padding:0 .45rem;border:1px solid var(--c);border-left-width:4px;border-radius:4px;background:color-mix(in srgb,var(--c) 11%,var(--surface));color:var(--fg);font-size:.72rem;font-weight:600;line-height:1.5;white-space:nowrap;vertical-align:.1em}
+.ev-user{--c:var(--ev-user)}.ev-proposal{--c:var(--ev-proposal)}.ev-literature{--c:var(--ev-literature)}.ev-archive{--c:var(--ev-archive)}.ev-open{--c:var(--ev-open)}
+.flag{display:inline-block;margin-left:.25rem;padding:0 .4rem;border:1px solid var(--border);border-radius:4px;color:var(--muted);font-size:.72rem;line-height:1.5;white-space:nowrap}
+.rec{font-weight:700}
+.note{margin:.55rem 0}
+.note b{display:inline-block;margin-right:.35rem;padding:0 .4rem;border-radius:4px;background:var(--fg);color:var(--bg);font-size:.78rem;line-height:1.5}
+/* 선행 시도 계보 */
+.tl td{padding:.4rem .5rem}
+.tl td.yr{white-space:nowrap;color:var(--muted);width:5.2rem;font-variant-numeric:tabular-nums}
+.tl td:nth-child(3){white-space:nowrap}
+.tl td.rail{position:relative;width:1.5rem;padding:0;border-top:0}
+.tl td.rail::before{content:"";position:absolute;left:50%;top:0;bottom:0;width:2px;margin-left:-1px;background:var(--border)}
+.tl td.rail::after{content:"";position:absolute;left:50%;top:.75rem;width:11px;height:11px;margin-left:-5.5px;border-radius:50%;background:var(--surface);border:2px solid var(--muted)}
+.tl tr.self td.rail::after{background:var(--bad);border-color:var(--bad)}
+.tl tr.now td.rail::after{background:var(--accent);border-color:var(--accent)}
+.tl tr.now td,.tl tr.now th{background:color-mix(in srgb,var(--accent) 8%,var(--surface))}
+.dp{display:inline-block;margin-left:.3rem;padding:0 .4rem;border:1px solid var(--muted);border-radius:999px;color:var(--muted);font-size:.7rem;line-height:1.5;white-space:nowrap}
+/* 약점 선공개 표 */
+.weak{counter-reset:w}
+.weak tbody tr{counter-increment:w}
+.weak tbody th::before{content:counter(w);display:inline-flex;align-items:center;justify-content:center;width:1.35rem;height:1.35rem;margin-right:.4rem;border-radius:50%;background:var(--fg);color:var(--bg);font-size:.75rem;font-weight:700;vertical-align:.05em}
+.sev{display:inline-block;padding:0 .4rem;border-left:4px solid var(--c);background:color-mix(in srgb,var(--c) 10%,var(--surface));font-weight:600}
+.sev-a{--c:var(--bad)}.sev-b{--c:var(--warn)}.sev-c{--c:var(--muted)}
+.cl::before{content:"";display:inline-block;width:.78em;height:.78em;margin-right:.4em;border-radius:50%;border:2px solid var(--c);vertical-align:-.06em}
+.cl-yes{--c:var(--ok)}.cl-yes::before{background:var(--ok)}
+.cl-part{--c:var(--warn)}.cl-part::before{background:linear-gradient(90deg,var(--warn) 50%,transparent 50%)}
+.cl-no{--c:var(--bad)}
+.qa dt{font-weight:700;margin-top:.7rem}
+.qa dd{margin:.15rem 0 0 0}
+.qa dt.hard{padding-left:.55rem;border-left:4px solid var(--bad)}
+.weakest{padding:.7rem .9rem;border:2px solid var(--fg);border-radius:8px;background:var(--surface)}
+.weakest p{margin:.2rem 0}
+footer.budget{max-width:920px;margin:0 auto;padding:.9rem 1rem 2.6rem;border-top:1px solid var(--border);color:var(--muted);font-size:.84rem;line-height:1.6}
+footer.budget p{margin:.3rem 0}
+footer.budget b{color:var(--fg)}
+.sr-only{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+@media (max-width:720px){
+  main{padding:.8rem .75rem 1.6rem}
+  figure{padding:.6rem .6rem .5rem;border-radius:6px}
+  table.stack,table.stack tbody,table.stack tr,table.stack th,table.stack td{display:block;width:100%}
+  table.stack thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+  table.stack tr{margin:.55rem 0;padding:.3rem .1rem .45rem;border:1px solid var(--border);border-radius:8px;background:var(--bg)}
+  table.stack th[scope=row]{border:0;padding:.35rem .6rem .2rem;font-size:1rem}
+  table.stack td{display:grid;grid-template-columns:5.4em 1fr;gap:.4rem;border:0;padding:.18rem .6rem}
+  table.stack td::before{content:attr(data-k);color:var(--muted);font-size:.76rem;font-weight:700}
+  table.tl,table.tl tbody,table.tl tr,table.tl td{display:block;width:100%}
+  table.tl thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+  table.tl tr{position:relative;padding:.35rem 0 .45rem 1.7rem;border-top:1px solid var(--border)}
+  table.tl td{border:0;padding:.05rem .3rem;white-space:normal}
+  table.tl td.rail{position:absolute;left:0;top:0;bottom:0;width:1.2rem;padding:0}
+  table.tl td.rail::after{top:.85rem}
+  table.tl td.yr{width:auto}
+}
+@media print{.topbar{display:none}figure{break-inside:avoid}}
+</style>
+</head>
+<body>
+<nav class="topbar chrome" aria-label="백서 이동"><a href="../index.html">← 백서 본문</a><a href="brief.html" aria-current="page">결정 브리프</a><a href="intuition.html">직관 설명</a><a href="expert.html">전문가 델타</a><span class="sp"></span><button type="button" id="theme-toggle" aria-pressed="false">다크로 보기</button></nav><main>
+<header class="head"><div class="chrome"><span class="lvl">eli50</span><span class="lvl-note">결정권자용 · 2분</span><ul class="args" aria-label="elix 인자"><li>prior: none</li><li>context: executive</li><li>role: commit</li><li>horizon: 2min</li><li>formalism: none</li><li>density: low</li><li>visual: decision_card</li><li>entry: ask_first</li><li>analogy: none</li><li>stance: assertive</li><li>goal: resource_commit</li></ul></div><h1>승인 요청: 첫 구현 착수 전 5건 결정</h1>
+<p class="lede">권고는 승인 3건·방침 1건·확인 1건입니다. 현재 통합 모델의 구현·학습·효용 검증은 0건입니다.</p></header>
+<figure id="card"><table class="stack dec"><thead><tr><th scope="col">결정</th><th scope="col">권고·얻는 것</th><th scope="col">거는 것</th><th scope="col">판정 시점</th></tr></thead><tbody>
+<tr><th scope="row">규칙형 판단기 포함 (<a href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/09-roadmap.md?plain=1#L376">D-14</a>) <span class="flag">확인 대기</span></th><td data-k="권고" class="rec">승인(설계 판단 반영) — 익숙함별 세 답 방식을 처음부터 시험</td><td data-k="거는 것">공수</td><td data-k="판정 시점">첫 구현 종료, 비교 대상과 대조</td></tr>
+<tr><th scope="row">상태→글 변환 경로를 필수에서 제외 (<a href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/05-integrated-architecture.md?plain=1#L141">H4</a>) <span class="ev ev-open">미해결</span></th><td data-k="권고" class="rec">권고 불가 — 근거가 작성자 추론뿐</td><td data-k="거는 것">사용자 가설을 오해할 위험</td><td data-k="판정 시점">외부 연결 설계 때</td></tr>
+<tr><th scope="row">시작 모델 SmolLM2-135M (<a href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/09-roadmap.md?plain=1#L363">D-01</a>)</th><td data-k="권고" class="rec">승인(문서 추천) — 소형 실제 모델 가동</td><td data-k="거는 것">모델 내려받기(작음)</td><td data-k="판정 시점">시험에서 우연 수준 성적 여부</td></tr>
+<tr><th scope="row">학습 계산 장소·시간 상한 (<a href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/09-roadmap.md?plain=1#L366">D-04</a>) <span class="flag">비용 발생</span></th><td data-k="권고" class="rec">방침만(문서 추천) — 그래픽카드 우선, 클라우드 보류</td><td data-k="거는 것">문서에 수치 없음 — <span class="nb">D-04에서</span> 정함</td><td data-k="판정 시점">실측 직후</td></tr>
+<tr><th scope="row">재료 논문 14편 정독 <span class="ev ev-open">미해결</span></th><td data-k="권고" class="rec">착수(사용자 요청) — 근거를 원문 수준으로</td><td data-k="거는 것">공수</td><td data-k="판정 시점">정독 기록 때</td></tr>
+</tbody></table>
+<figcaption>날짜와 비용 수치는 문서에 없다.</figcaption></figure>
+<p class="note"><b>틀렸을 때</b> 대부분 되돌리거나 고칠 수 있다(추정): 판단기는 분리, H4는 후보로 보존, 모델은 상향. 클라우드 지출만 되돌릴 수 없어 보류한다.</p>
+<p class="note"><b>안 하면</b> D-01·D-04가 없으면 모델 가동과 학습이 막히고, 나머지는 ‘제안’ 상태로 남는다.</p>
+<p class="note"><b>기각한 대안</b> D-14 나중 단계로 연기(동작 누락) · H4 필수 유지(외부 모델 없음) · D-01 큰 모델(학습 시간 증가) · D-04 일반 컴퓨터만(학습 시간 미측정) · 정독 초록만(사용자 요청 위배)</p>
+<figure><div class="fig-scroll" tabindex="0" role="region" aria-label="그림 (좁은 화면에서는 좌우로 밀어 볼 수 있음)"><div class="fig-in" style="min-width:320px;max-width:640px"><svg viewBox="0 0 480 192" width="480" height="192" preserveAspectRatio="xMidYMid meet" role="img" aria-labelledby="e-asym-title e-asym-desc" style="font-family:'Pretendard','Apple SD Gothic Neo','Noto Sans KR','Noto Sans CJK KR','Malgun Gothic',system-ui,sans-serif;">
+<title id="e-asym-title">얻는 것과 거는 것의 크기를 그릴 수 없다</title>
+<desc id="e-asym-desc">얻는 것 두 가지와 거는 것 두 가지를 나란히 놓았고, 두 쪽의 눈금은 모두 비어 있다. 문서에 규모 수치가 없어 크기는 추정하지 않았다.</desc>
+<defs><marker id="e-asym-ar-m" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" markerUnits="userSpaceOnUse" orient="auto"><path d="M0 0L10 5L0 10z" style="fill:var(--muted)"/></marker><marker id="e-asym-ar-a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" markerUnits="userSpaceOnUse" orient="auto"><path d="M0 0L10 5L0 10z" style="fill:var(--accent)"/></marker><marker id="e-asym-ar-f" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" markerUnits="userSpaceOnUse" orient="auto"><path d="M0 0L10 5L0 10z" style="fill:var(--fg)"/></marker></defs>
+<rect x="16" y="16" width="216" height="128" rx="8" style="fill:var(--surface);stroke:var(--border);stroke-width:1"/>
+<text x="32" y="44" text-anchor="start" style="font-size:16px;font-weight:700;fill:var(--fg)">얻는 것</text>
+<rect x="32" y="56" width="56" height="12" rx="3" style="fill:none;stroke:var(--muted);stroke-width:1"/>
+<rect x="96" y="56" width="56" height="12" rx="3" style="fill:none;stroke:var(--muted);stroke-width:1"/>
+<rect x="160" y="56" width="56" height="12" rx="3" style="fill:none;stroke:var(--muted);stroke-width:1"/>
+<circle cx="38" cy="95" r="2.5" style="fill:var(--muted);stroke:none;stroke-width:1"/>
+<text x="50" y="100" text-anchor="start" style="font-size:16px;font-weight:400;fill:var(--fg)">전 과정 첫 실제 실행</text>
+<circle cx="38" cy="119" r="2.5" style="fill:var(--muted);stroke:none;stroke-width:1"/>
+<text x="50" y="124" text-anchor="start" style="font-size:16px;font-weight:400;fill:var(--fg)">비교 대상 6개와 나란히</text>
+<rect x="248" y="16" width="216" height="128" rx="8" style="fill:var(--surface);stroke:var(--border);stroke-width:1"/>
+<text x="264" y="44" text-anchor="start" style="font-size:16px;font-weight:700;fill:var(--fg)">거는 것</text>
+<rect x="264" y="56" width="56" height="12" rx="3" style="fill:none;stroke:var(--muted);stroke-width:1"/>
+<rect x="328" y="56" width="56" height="12" rx="3" style="fill:none;stroke:var(--muted);stroke-width:1"/>
+<rect x="392" y="56" width="56" height="12" rx="3" style="fill:none;stroke:var(--muted);stroke-width:1"/>
+<circle cx="270" cy="95" r="2.5" style="fill:var(--muted);stroke:none;stroke-width:1"/>
+<text x="282" y="100" text-anchor="start" style="font-size:16px;font-weight:400;fill:var(--fg)">첫 구현·정독 공수</text>
+<circle cx="270" cy="119" r="2.5" style="fill:var(--muted);stroke:none;stroke-width:1"/>
+<text x="282" y="124" text-anchor="start" style="font-size:16px;font-weight:400;fill:var(--fg)">그래픽카드 점유 시간</text>
+<text x="240" y="176" text-anchor="middle" style="font-size:16px;font-weight:400;fill:var(--muted)">빈 눈금 = 규모 미추정</text>
+</svg></div></div><figcaption>비대칭 여부는 판단할 수 없다.</figcaption></figure>
+</main>
+<footer class="chrome budget"><p><b>분량</b> 목표 180어절 이하 · 실제 <b>210</b>어절 (그림·표 밖 77 + 안 133) — 예산 초과 30어절: 결정이 5건이라 필수 항목 6개(얻는 것·거는 것·틀렸을 때·판정 시점·안 하면·대안)와 권고 근거(문서 추천·설계 판단·사용자 요청)를 한 장에 담았다. 단일 결정 기준 180에서 줄일 만큼 줄였지만 5건을 다 담으려면 이 이하로 내릴 수 없었다.</p><p>센 규칙: 화면에 보이는 제목·본문·그림·표·캡션을 공백으로 나눈 조각 중 글자나 숫자가 든 것. 세지 않은 것: 맨 위 이동 줄, 레벨 배지·인자 줄, 이 하단 줄, 그림의 보조기기용 제목·설명. 계산 도구: work-E/count_words.py.</p><p>근거: <a href="../index.html#summary">본문 2분 요약</a> · <a href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/09-roadmap.md?plain=1#L348">09 §10 D-01·D-04·D-14</a> · <a href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/09-roadmap.md?plain=1#L125">09 §3 등급</a> · <a href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/05-integrated-architecture.md?plain=1#L141">05 §10 H4</a> · <a href="https://github.com/jimmylegendary/full-continual-learning/blob/main/research/2026-11-12-design-audit.md?plain=1#L110">감사 §5 확인 항목</a> · <a href="https://github.com/jimmylegendary/full-continual-learning/blob/main/research/2026-11-12-design-audit.md?plain=1#L162">감사 §6.2 정독</a> · <a href="https://github.com/jimmylegendary/full-continual-learning/blob/main/research/2026-11-12-design-audit/W1-gaps.txt?plain=1#L332">W1-gaps G1-14(정독 우선순위: A02→A03→A04→A09→A10·A12→A13–A15)</a></p></footer>
+</body>
+</html>

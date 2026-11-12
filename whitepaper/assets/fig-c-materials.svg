@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 720 744" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="fig-c-materials-title fig-c-materials-desc" font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR','Noto Sans CJK KR','Malgun Gothic',system-ui,sans-serif">
+<title id="fig-c-materials-title">재료가 모델 안에서 맡는 자리와 확인 깊이</title>
+<desc id="fig-c-materials-desc">System ONE에 쓰는 재료를 모델 안의 여섯 자리(기반, 빠른 기억, 느린 기억, 깊이, 공고화, 조율)로 나눠 놓고 각 재료 논문의 확인 깊이를 붙인 층 구조. 재료 논문 중 원문 정독(fulltext-read)은 0편이다.</desc>
+<defs><marker id="fig-c-materials-arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto-start-reverse"><polygon points="0 0, 8 3, 0 6" fill="#4f5d75"/></marker><marker id="fig-c-materials-arrow-accent" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto-start-reverse"><polygon points="0 0, 8 3, 0 6" fill="#eb6c36"/></marker><marker id="fig-c-materials-arrow-link" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto-start-reverse"><polygon points="0 0, 8 3, 0 6" fill="#2e5aa8"/></marker><marker id="fig-c-materials-arrow-open" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto-start-reverse"><polyline points="0 0, 8 3, 0 6" fill="none" stroke="#4f5d75" stroke-width="1.2"/></marker></defs>
+<rect width="100%" height="100%" fill="#f5f5f5"/>
+<rect x="56" y="24" width="640" height="100" fill="#f5f5f5"/>
+<rect x="56" y="24" width="640" height="100" fill="rgba(45,49,66,0.02)" stroke="rgba(45,49,66,0.20)" stroke-width="1" stroke-dasharray="4,3"/>
+<text x="44" y="48" font-size="12" fill="#7a8399" text-anchor="end" font-family="ui-monospace,'SFMono-Regular','D2Coding','Noto Sans Mono CJK KR',Menlo,monospace">L6</text>
+<text x="72" y="52" font-size="16" fill="#2d3142" font-weight="600">조율 (가설)</text>
+<text x="72" y="72" font-size="12" fill="#4f5d75">Rhythm-inspired control — 읽기·쓰기·계산·공고화의 시간적 조율</text>
+<text x="72" y="112" font-size="12" fill="#7a8399">R01–R11</text>
+<rect x="132" y="96" width="144" height="24" rx="2" fill="none" stroke="rgba(45,49,66,0.20)" stroke-width="0.8" stroke-dasharray="3,2"/>
+<text x="204" y="112" font-size="12" fill="#2d3142" text-anchor="middle" font-family="ui-monospace,'SFMono-Regular','D2Coding','Noto Sans Mono CJK KR',Menlo,monospace">discussion-import</text>
+<rect x="56" y="128" width="640" height="100" fill="#f5f5f5"/>
+<rect x="56" y="128" width="640" height="100" fill="#ffffff" stroke="#2d3142" stroke-width="1"/>
+<text x="44" y="152" font-size="12" fill="#7a8399" text-anchor="end" font-family="ui-monospace,'SFMono-Regular','D2Coding','Noto Sans Mono CJK KR',Menlo,monospace">L5</text>
+<text x="72" y="156" font-size="16" fill="#2d3142" font-weight="600">공고화</text>
+<text x="72" y="176" font-size="12" fill="#4f5d75">Sleep [A03] — fast→slow 통합, Knowledge Seeding, Dreaming</text>
+<text x="72" y="216" font-size="12" fill="#7a8399">A03</text>
+<rect x="100" y="200" width="136" height="24" rx="2" fill="none" stroke="#2d3142" stroke-width="0.8"/>
+<text x="168" y="216" font-size="12" fill="#2d3142" text-anchor="middle" font-family="ui-monospace,'SFMono-Regular','D2Coding','Noto Sans Mono CJK KR',Menlo,monospace">metadata-checked</text>
+<rect x="56" y="232" width="640" height="100" fill="#f5f5f5"/>
+<rect x="56" y="232" width="640" height="100" fill="rgba(235,108,54,0.08)" stroke="#eb6c36" stroke-width="1.2"/>
+<text x="44" y="256" font-size="12" fill="#7a8399" text-anchor="end" font-family="ui-monospace,'SFMono-Regular','D2Coding','Noto Sans Mono CJK KR',Menlo,monospace">L4</text>
+<text x="72" y="260" font-size="16" fill="#2d3142" font-weight="600">깊이 (반복 계산 · 깊이 읽기)</text>
+<text x="72" y="280" font-size="12" fill="#4f5d75">Looped [A06·A07] · MoD [A08] · MoR [A09] · Depth-Attention [A10] · AttnRes·MoDA [A11·A12]</text>
+<text x="72" y="320" font-size="12" fill="#7a8399">A09·A10</text>
+<rect x="132" y="304" width="192" height="24" rx="2" fill="none" stroke="#eb6c36" stroke-width="0.8"/>
+<text x="228" y="320" font-size="12" fill="#2d3142" text-anchor="middle" font-family="ui-monospace,'SFMono-Regular','D2Coding','Noto Sans Mono CJK KR',Menlo,monospace">official-search-checked</text>
+<text x="340" y="320" font-size="12" fill="#7a8399">나머지</text>
+<rect x="384" y="304" width="136" height="24" rx="2" fill="none" stroke="#eb6c36" stroke-width="0.8"/>
+<text x="452" y="320" font-size="12" fill="#2d3142" text-anchor="middle" font-family="ui-monospace,'SFMono-Regular','D2Coding','Noto Sans Mono CJK KR',Menlo,monospace">metadata-checked</text>
+<rect x="56" y="336" width="640" height="100" fill="#f5f5f5"/>
+<rect x="56" y="336" width="640" height="100" fill="rgba(235,108,54,0.08)" stroke="#eb6c36" stroke-width="1.2"/>
+<text x="44" y="360" font-size="12" fill="#7a8399" text-anchor="end" font-family="ui-monospace,'SFMono-Regular','D2Coding','Noto Sans Mono CJK KR',Menlo,monospace">L3</text>
+<text x="72" y="364" font-size="16" fill="#2d3142" font-weight="600">느린 기억 (FFN 자리)</text>
+<text x="72" y="384" font-size="12" fill="#4f5d75">Nested Learning/HOPE · CMS [A02] — 갱신 시간척도가 다른 여러 level의 기억</text>
+<text x="72" y="424" font-size="12" fill="#7a8399">A02</text>
+<rect x="100" y="408" width="136" height="24" rx="2" fill="none" stroke="#eb6c36" stroke-width="0.8"/>
+<text x="168" y="424" font-size="12" fill="#2d3142" text-anchor="middle" font-family="ui-monospace,'SFMono-Regular','D2Coding','Noto Sans Mono CJK KR',Menlo,monospace">metadata-checked</text>
+<rect x="56" y="440" width="640" height="100" fill="#f5f5f5"/>
+<rect x="56" y="440" width="640" height="100" fill="#ffffff" stroke="#2d3142" stroke-width="1"/>
+<text x="44" y="464" font-size="12" fill="#7a8399" text-anchor="end" font-family="ui-monospace,'SFMono-Regular','D2Coding','Noto Sans Mono CJK KR',Menlo,monospace">L2</text>
+<text x="72" y="468" font-size="16" fill="#2d3142" font-weight="600">빠른 기억 (sequence 자리)</text>
+<text x="72" y="488" font-size="12" fill="#4f5d75">Titans [A01] · Titan-Llama [A04] — 입력 관계를 fast weights에 저장·읽기, sequence 경로 retrofit</text>
+<text x="72" y="528" font-size="12" fill="#7a8399">A01</text>
+<rect x="100" y="512" width="136" height="24" rx="2" fill="none" stroke="#2d3142" stroke-width="0.8"/>
+<text x="168" y="528" font-size="12" fill="#2d3142" text-anchor="middle" font-family="ui-monospace,'SFMono-Regular','D2Coding','Noto Sans Mono CJK KR',Menlo,monospace">metadata-checked</text>
+<text x="252" y="528" font-size="12" fill="#7a8399">A04</text>
+<rect x="280" y="512" width="192" height="24" rx="2" fill="none" stroke="#2d3142" stroke-width="0.8"/>
+<text x="376" y="528" font-size="12" fill="#2d3142" text-anchor="middle" font-family="ui-monospace,'SFMono-Regular','D2Coding','Noto Sans Mono CJK KR',Menlo,monospace">official-search-checked</text>
+<rect x="56" y="544" width="640" height="76" fill="#f5f5f5"/>
+<rect x="56" y="544" width="640" height="76" fill="rgba(79,93,117,0.10)" stroke="#7a8399" stroke-width="1"/>
+<text x="44" y="568" font-size="12" fill="#7a8399" text-anchor="end" font-family="ui-monospace,'SFMono-Regular','D2Coding','Noto Sans Mono CJK KR',Menlo,monospace">L1</text>
+<text x="72" y="572" font-size="16" fill="#2d3142" font-weight="600">기반</text>
+<text x="72" y="592" font-size="12" fill="#4f5d75">pretrained LLM 가중치(revision 고정) — 재료 논문이 아니라 출발점</text>
+<line x1="24" y1="636" x2="696" y2="636" stroke="rgba(45,49,66,0.10)" stroke-width="0.8"/>
+<rect x="24" y="640" width="24" height="16" rx="4" fill="rgba(235,108,54,0.08)" stroke="#eb6c36" stroke-width="1.2"/>
+<text x="56" y="652" font-size="12" fill="#4f5d75">05 §5의 F_CMS 식과 §7–§9가 이 깊이에서 쓴 프로젝트 제안(깊이·느린 기억 층)</text>
+<rect x="24" y="664" width="24" height="16" rx="4" fill="rgba(45,49,66,0.02)" stroke="rgba(45,49,66,0.20)" stroke-width="1" stroke-dasharray="4,3"/>
+<text x="56" y="676" font-size="12" fill="#4f5d75">점선 = 확인이 가장 얕은 자리</text>
+<text x="56" y="700" font-size="12" fill="#4f5d75">층 = 모델 안에서 맡는 자리의 분류(계산 순서·우열 아님). 분류는 05 §1의 &#x27;제공하는 것&#x27; 열을 이 백서가 정리한</text>
+<text x="56" y="716" font-size="12" fill="#4f5d75">것이다. 재료 논문 A01–A04·A06–A15의 fulltext-read는 0편이다(design-audit §6.2).</text>
+</svg>

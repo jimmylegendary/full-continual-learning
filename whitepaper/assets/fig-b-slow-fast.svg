@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 880 692" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="fig-b-slow-fast-title fig-b-slow-fast-desc"><title id="fig-b-slow-fast-title">느린 구조와 빠른 결합 — 여섯 편에서 반복되는 분해와 빠진 연결</title><desc id="fig-b-slow-fast-desc">TEM20, SWAMI23, MICONI25, KUMAR26, SPENS24, HWU20의 느린 쪽과 빠른 쪽을 두 구역에 짝지어 놓았다. 빠른 쪽에서 느린 쪽으로 돌아가 구조를 그 자리에서 고치는 점선 화살표는 읽은 11편에 없는 실험이다.</desc><defs><marker id="fig-b-slow-fast-arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#4f5d75"/></marker><marker id="fig-b-slow-fast-arrow-accent" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#eb6c36"/></marker></defs><rect width="100%" height="100%" fill="#f5f5f5"/>
+<rect x="148" y="56" width="300" height="496" fill="rgba(45,49,66,0.04)" stroke="#bfc0c0" stroke-width="1" rx="8"/>
+<rect x="512" y="56" width="300" height="496" fill="rgba(45,49,66,0.04)" stroke="#bfc0c0" stroke-width="1" rx="8"/>
+<text x="164" y="84" fill="#2d3142" font-size="16" font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR','Noto Sans CJK KR','Malgun Gothic',system-ui,sans-serif" font-weight="600">느린 쪽</text>
+<text x="164" y="104" fill="#4f5d75" font-size="12" font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR','Noto Sans CJK KR','Malgun Gothic',system-ui,sans-serif">바깥 루프·오프라인에서 배우거나</text>
+<text x="164" y="120" fill="#4f5d75" font-size="12" font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR','Noto Sans CJK KR','Malgun Gothic',system-ui,sans-serif">아주 느리게 다시 배운다(리뷰 §4.3)</text>
+<text x="164" y="136" fill="#4f5d75" font-size="12" font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR','Noto Sans CJK KR','Malgun Gothic',system-ui,sans-serif">System ONE 대응(PROPOSAL): CMS의 느린 수준</text>
+<text x="528" y="84" fill="#2d3142" font-size="16" font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR','Noto Sans CJK KR','Malgun Gothic',system-ui,sans-serif" font-weight="600">빠른 쪽</text>
+<text x="528" y="104" fill="#4f5d75" font-size="12" font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR','Noto Sans CJK KR','Malgun Gothic',system-ui,sans-serif">사례를 그때그때 묶는 부분(논문마다 이름이 다르다)</text>
+<text x="528" y="120" fill="#4f5d75" font-size="12" font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR','Noto Sans CJK KR','Malgun Gothic',system-ui,sans-serif">문헌이 보인 대응이 아니라 우리의 제안:</text>
+<text x="528" y="136" fill="#4f5d75" font-size="12" font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR','Noto Sans CJK KR','Malgun Gothic',system-ui,sans-serif">System ONE 대응(PROPOSAL): Titans의 빠른 기억</text>
+<text x="24" y="186" fill="#2d3142" font-size="12" font-family="ui-monospace,'SFMono-Regular','D2Coding','Noto Sans Mono CJK KR',Menlo,monospace" font-weight="600">TEM20</text>
+<line x1="432" y1="182" x2="528" y2="182" stroke="#7a8399" stroke-width="1"/>
+<rect x="164" y="156" width="268" height="52" fill="#ffffff" stroke="#2d3142" stroke-width="1" rx="6"/>
+<text x="176" y="178" fill="#2d3142" font-size="16" font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR','Noto Sans CJK KR','Malgun Gothic',system-ui,sans-serif" font-weight="600">W</text>
+<text x="176" y="196" fill="#4f5d75" font-size="12" font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR','Noto Sans CJK KR','Malgun Gothic',system-ui,sans-serif">action 조건 전이 규칙(구조 코드)</text>
+<rect x="528" y="156" width="268" height="52" fill="#ffffff" stroke="#2d3142" stroke-width="1" rx="6"/>
+<text x="540" y="178" fill="#2d3142" font-size="16" font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR','Noto Sans CJK KR','Malgun Gothic',system-ui,sans-serif" font-weight="600">M</text>
+<text x="540" y="196" fill="#4f5d75" font-size="12" font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR','Noto Sans CJK KR','Malgun Gothic',system-ui,sans-serif">Hebbian 빠른 기억, 환경마다 0으로 리셋</text>
+<text x="24" y="246" fill="#2d3142" font-size="12" font-family="ui-monospace,'SFMono-Regular','D2Coding','Noto Sans Mono CJK KR',Menlo,monospace" font-weight="600">SWAMI23</text>
+<line x1="432" y1="242" x2="528" y2="242" stroke="#7a8399" stroke-width="1"/>
+<rect x="164" y="216" width="268" height="52" fill="#ffffff" stroke="#2d3142" stroke-width="1" rx="6"/>
+<text x="176" y="238" fill="#2d3142" font-size="16" font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR','Noto Sans CJK KR','Malgun Gothic',system-ui,sans-serif" font-weight="600">T</text>
+<text x="176" y="256" fill="#4f5d75" font-size="12" font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR','Noto Sans CJK KR','Malgun Gothic',system-ui,sans-serif">CSCG의 잠재 전이 그래프</text>
+<rect x="528" y="216" width="268" height="52" fill="#ffffff" stroke="#2d3142" stroke-width="1" rx="6"/>
+<text x="540" y="238" fill="#2d3142" font-size="16" font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR','Noto Sans CJK KR','Malgun Gothic',system-ui,sans-serif" font-weight="600">E</text>
+<text x="540" y="256" fill="#4f5d75" font-size="12" font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR','Noto Sans CJK KR','Malgun Gothic',system-ui,sans-serif">관측 방출이 slot 역할</text>
+<text x="24" y="306" fill="#2d3142" font-size="12" font-family="ui-monospace,'SFMono-Regular','D2Coding','Noto Sans Mono CJK KR',Menlo,monospace" font-weight="600">MICONI25</text>
+<line x1="432" y1="302" x2="528" y2="302" stroke="#7a8399" stroke-width="1"/>
+<rect x="164" y="276" width="268" height="52" fill="#ffffff" stroke="#2d3142" stroke-width="1" rx="6"/>
+<text x="176" y="298" fill="#2d3142" font-size="16" font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR','Noto Sans CJK KR','Malgun Gothic',system-ui,sans-serif" font-weight="600">느린 파라미터</text>
+<text x="176" y="316" fill="#4f5d75" font-size="12" font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR','Noto Sans CJK KR','Malgun Gothic',system-ui,sans-serif">&#x27;배우는 방법&#x27;이 있는 곳</text>
+<rect x="528" y="276" width="268" height="52" fill="#ffffff" stroke="#2d3142" stroke-width="1" rx="6"/>
+<text x="540" y="298" fill="#2d3142" font-size="16" font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR','Noto Sans CJK KR','Malgun Gothic',system-ui,sans-serif" font-weight="600">P(t)</text>
+<text x="540" y="316" fill="#4f5d75" font-size="12" font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR','Noto Sans CJK KR','Malgun Gothic',system-ui,sans-serif">에피소드 안에서 쓰는 fast weight</text>
+<text x="24" y="366" fill="#2d3142" font-size="12" font-family="ui-monospace,'SFMono-Regular','D2Coding','Noto Sans Mono CJK KR',Menlo,monospace" font-weight="600">KUMAR26</text>
+<line x1="432" y1="362" x2="528" y2="362" stroke="#7a8399" stroke-width="1"/>
+<rect x="164" y="336" width="268" height="52" fill="#ffffff" stroke="#2d3142" stroke-width="1" rx="6"/>
+<text x="176" y="358" fill="#2d3142" font-size="16" font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR','Noto Sans CJK KR','Malgun Gothic',system-ui,sans-serif" font-weight="600">좌표 코드</text>
+<text x="176" y="376" fill="#4f5d75" font-size="12" font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR','Noto Sans CJK KR','Malgun Gothic',system-ui,sans-serif">느린 공간 표현</text>
+<rect x="528" y="336" width="268" height="52" fill="#ffffff" stroke="#2d3142" stroke-width="1" rx="6"/>
+<text x="540" y="358" fill="#2d3142" font-size="16" font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR','Noto Sans CJK KR','Malgun Gothic',system-ui,sans-serif" font-weight="600">cue→goal 연합</text>
+<text x="540" y="376" fill="#4f5d75" font-size="12" font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR','Noto Sans CJK KR','Malgun Gothic',system-ui,sans-serif">보상으로 쓰는 빠른 연합</text>
+<text x="24" y="426" fill="#2d3142" font-size="12" font-family="ui-monospace,'SFMono-Regular','D2Coding','Noto Sans Mono CJK KR',Menlo,monospace" font-weight="600">SPENS24</text>
+<line x1="432" y1="422" x2="528" y2="422" stroke="#7a8399" stroke-width="1"/>
+<rect x="164" y="396" width="268" height="52" fill="#ffffff" stroke="#2d3142" stroke-width="1" rx="6"/>
+<text x="176" y="418" fill="#2d3142" font-size="16" font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR','Noto Sans CJK KR','Malgun Gothic',system-ui,sans-serif" font-weight="600">VAE</text>
+<text x="176" y="436" fill="#4f5d75" font-size="12" font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR','Noto Sans CJK KR','Malgun Gothic',system-ui,sans-serif">가중치와 연속 latent</text>
+<rect x="528" y="396" width="268" height="52" fill="#ffffff" stroke="#2d3142" stroke-width="1" rx="6"/>
+<text x="540" y="418" fill="#2d3142" font-size="16" font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR','Noto Sans CJK KR','Malgun Gothic',system-ui,sans-serif" font-weight="600">MHN</text>
+<text x="540" y="436" fill="#4f5d75" font-size="12" font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR','Noto Sans CJK KR','Malgun Gothic',system-ui,sans-serif">사건을 한 번에 저장</text>
+<text x="24" y="486" fill="#2d3142" font-size="12" font-family="ui-monospace,'SFMono-Regular','D2Coding','Noto Sans Mono CJK KR',Menlo,monospace" font-weight="600">HWU20</text>
+<line x1="432" y1="482" x2="528" y2="482" stroke="#7a8399" stroke-width="1"/>
+<rect x="164" y="456" width="268" height="52" fill="#ffffff" stroke="#2d3142" stroke-width="1" rx="6"/>
+<text x="176" y="488" fill="#2d3142" font-size="16" font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR','Noto Sans CJK KR','Malgun Gothic',system-ui,sans-serif" font-weight="600">피질 CHL</text>
+<rect x="528" y="456" width="268" height="52" fill="#ffffff" stroke="#2d3142" stroke-width="1" rx="6"/>
+<text x="540" y="478" fill="#2d3142" font-size="16" font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR','Noto Sans CJK KR','Malgun Gothic',system-ui,sans-serif" font-weight="600">해마 인덱스</text>
+<text x="540" y="496" fill="#4f5d75" font-size="12" font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR','Noto Sans CJK KR','Malgun Gothic',system-ui,sans-serif">피질 가중치의 학습 목표를 고정</text>
+<path d="M 662,552 V 576 Q 662,584 654,584 H 306 Q 298,584 298,576 V 554" fill="none" stroke="#eb6c36" stroke-width="1.2" stroke-linejoin="round" stroke-dasharray="4,3" marker-end="url(#fig-b-slow-fast-arrow-accent)"/>
+<rect x="350" y="564" width="260" height="18" fill="#f5f5f5" rx="2"/>
+<text x="480" y="578" fill="#2d3142" font-size="12" font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR','Noto Sans CJK KR','Malgun Gothic',system-ui,sans-serif" text-anchor="middle">불일치를 만나면 구조를 그 자리에서 수정·분할</text>
+<text x="480" y="612" fill="#eb6c36" font-size="12" font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR','Noto Sans CJK KR','Malgun Gothic',system-ui,sans-serif" font-weight="600" text-anchor="middle">읽은 11편에 이런 실험은 없다 — FCL이 직접 채울 공백(PROPOSAL)</text>
+<text x="480" y="630" fill="#4f5d75" font-size="12" font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR','Noto Sans CJK KR','Malgun Gothic',system-ui,sans-serif" text-anchor="middle">KUMAR26: remap 뒤 좌표를 약 20 session 재학습 · TEM20: 구조 remapping은 예측으로만 · SWAMI23: test 시 T 고정 · SPENS24: test 시 VAE 동결</text>
+</svg>

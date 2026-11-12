@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 880 480" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="fig-b-lineage-timeline-title fig-b-lineage-timeline-desc"><title id="fig-b-lineage-timeline-title">Melete에서 System ONE까지 — 날짜가 있는 사건의 타임라인</title><desc id="fig-b-lineage-timeline-desc">2026-09-27부터 2026-11-12까지 날짜에 비례해 놓은 사건 열 개. Melete 문서와 뇌과학 PDF의 표기 날짜는 속이 빈 점, FCL 저장소 commit 날짜는 채운 점이다. 발화 날짜가 없는 U-T01부터 U-T11은 축 밖에 둔다.</desc><defs><marker id="fig-b-lineage-timeline-arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#4f5d75"/></marker><marker id="fig-b-lineage-timeline-arrow-accent" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#eb6c36"/></marker></defs><rect width="100%" height="100%" fill="#f5f5f5"/>
+<line x1="48" y1="204" x2="832" y2="204" stroke="#4f5d75" stroke-width="1"/>
+<line x1="48" y1="196" x2="48" y2="212" stroke="#7a8399" stroke-width="1"/>
+<line x1="832" y1="196" x2="832" y2="212" stroke="#7a8399" stroke-width="1"/>
+<line x1="116" y1="198" x2="116" y2="210" stroke="#7a8399" stroke-width="1"/>
+<text x="116" y="228" fill="#4f5d75" font-size="12" font-family="ui-monospace,'SFMono-Regular','D2Coding','Noto Sans Mono CJK KR',Menlo,monospace" text-anchor="middle">10-01</text>
+<line x1="644" y1="198" x2="644" y2="210" stroke="#7a8399" stroke-width="1"/>
+<text x="644" y="228" fill="#4f5d75" font-size="12" font-family="ui-monospace,'SFMono-Regular','D2Coding','Noto Sans Mono CJK KR',Menlo,monospace" text-anchor="middle">11-01</text>
+<line x1="48" y1="108" x2="48" y2="198" stroke="#7a8399" stroke-width="1"/>
+<text x="56" y="122" fill="#4f5d75" font-size="12" font-family="ui-monospace,'SFMono-Regular','D2Coding','Noto Sans Mono CJK KR',Menlo,monospace">2026-09-27</text>
+<text x="56" y="142" fill="#2d3142" font-size="16" font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR','Noto Sans CJK KR','Malgun Gothic',system-ui,sans-serif" font-weight="600">readout 전수 조사</text>
+<text x="56" y="160" fill="#4f5d75" font-size="12" font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR','Noto Sans CJK KR','Malgun Gothic',system-ui,sans-serif">Melete 문서(파일명 날짜)</text>
+<line x1="252" y1="108" x2="252" y2="198" stroke="#7a8399" stroke-width="1"/>
+<text x="260" y="122" fill="#4f5d75" font-size="12" font-family="ui-monospace,'SFMono-Regular','D2Coding','Noto Sans Mono CJK KR',Menlo,monospace">2026-10-09</text>
+<text x="260" y="142" fill="#2d3142" font-size="16" font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR','Noto Sans CJK KR','Malgun Gothic',system-ui,sans-serif" font-weight="600">학습 방법 대장·atlas</text>
+<text x="260" y="160" fill="#4f5d75" font-size="12" font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR','Noto Sans CJK KR','Malgun Gothic',system-ui,sans-serif">Melete 문서(파일명 날짜)</text>
+<line x1="288" y1="210" x2="288" y2="300" stroke="#7a8399" stroke-width="1"/>
+<text x="280" y="254" fill="#4f5d75" font-size="12" font-family="ui-monospace,'SFMono-Regular','D2Coding','Noto Sans Mono CJK KR',Menlo,monospace" text-anchor="end">2026-10-11</text>
+<text x="280" y="274" fill="#2d3142" font-size="16" font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR','Noto Sans CJK KR','Malgun Gothic',system-ui,sans-serif" font-weight="600" text-anchor="end">학습 roadmap 피드백</text>
+<text x="280" y="292" fill="#4f5d75" font-size="12" font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR','Noto Sans CJK KR','Malgun Gothic',system-ui,sans-serif" text-anchor="end">neural default 승격 FAIL</text>
+<line x1="304" y1="210" x2="304" y2="376" stroke="#7a8399" stroke-width="1"/>
+<text x="312" y="330" fill="#4f5d75" font-size="12" font-family="ui-monospace,'SFMono-Regular','D2Coding','Noto Sans Mono CJK KR',Menlo,monospace">2026-10-12</text>
+<text x="312" y="350" fill="#2d3142" font-size="16" font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR','Noto Sans CJK KR','Malgun Gothic',system-ui,sans-serif" font-weight="600">B14 · H1–H5</text>
+<text x="312" y="368" fill="#4f5d75" font-size="12" font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR','Noto Sans CJK KR','Malgun Gothic',system-ui,sans-serif">H3 LLM=slow, Melete=fast</text>
+<line x1="356" y1="210" x2="356" y2="300" stroke="#7a8399" stroke-width="1"/>
+<text x="364" y="254" fill="#4f5d75" font-size="12" font-family="ui-monospace,'SFMono-Regular','D2Coding','Noto Sans Mono CJK KR',Menlo,monospace">2026-10-15</text>
+<text x="364" y="274" fill="#2d3142" font-size="16" font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR','Noto Sans CJK KR','Malgun Gothic',system-ui,sans-serif" font-weight="600">J0 측정 계약</text>
+<text x="364" y="292" fill="#4f5d75" font-size="12" font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR','Noto Sans CJK KR','Malgun Gothic',system-ui,sans-serif">j0-v1 PASS 철회 → v2</text>
+<line x1="456" y1="32" x2="456" y2="198" stroke="#7a8399" stroke-width="1"/>
+<text x="464" y="46" fill="#4f5d75" font-size="12" font-family="ui-monospace,'SFMono-Regular','D2Coding','Noto Sans Mono CJK KR',Menlo,monospace">2026-10-21</text>
+<text x="464" y="66" fill="#2d3142" font-size="16" font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR','Noto Sans CJK KR','Malgun Gothic',system-ui,sans-serif" font-weight="600">J1 진단</text>
+<text x="464" y="84" fill="#4f5d75" font-size="12" font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR','Noto Sans CJK KR','Malgun Gothic',system-ui,sans-serif">seed7 pilot · 5pp gate 미달</text>
+<line x1="628" y1="108" x2="628" y2="198" stroke="#7a8399" stroke-width="1"/>
+<text x="620" y="122" fill="#4f5d75" font-size="12" font-family="ui-monospace,'SFMono-Regular','D2Coding','Noto Sans Mono CJK KR',Menlo,monospace" text-anchor="end">2026-10-31</text>
+<text x="620" y="142" fill="#2d3142" font-size="16" font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR','Noto Sans CJK KR','Malgun Gothic',system-ui,sans-serif" font-weight="600" text-anchor="end">뇌과학 PDF</text>
+<text x="620" y="160" fill="#4f5d75" font-size="12" font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR','Noto Sans CJK KR','Malgun Gothic',system-ui,sans-serif" text-anchor="end">작성일 표기(U-T03 첨부)</text>
+<line x1="780" y1="210" x2="780" y2="300" stroke="#eb6c36" stroke-width="1"/>
+<text x="772" y="254" fill="#eb6c36" font-size="12" font-family="ui-monospace,'SFMono-Regular','D2Coding','Noto Sans Mono CJK KR',Menlo,monospace" text-anchor="end">2026-11-09</text>
+<text x="772" y="274" fill="#2d3142" font-size="16" font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR','Noto Sans CJK KR','Malgun Gothic',system-ui,sans-serif" font-weight="600" text-anchor="end">FCL 저장소 시작</text>
+<text x="772" y="292" fill="#4f5d75" font-size="12" font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR','Noto Sans CJK KR','Malgun Gothic',system-ui,sans-serif" text-anchor="end">commit 3개 · 주간 조사(T11)</text>
+<line x1="816" y1="108" x2="816" y2="198" stroke="#7a8399" stroke-width="1"/>
+<text x="808" y="122" fill="#4f5d75" font-size="12" font-family="ui-monospace,'SFMono-Regular','D2Coding','Noto Sans Mono CJK KR',Menlo,monospace" text-anchor="end">2026-11-11</text>
+<text x="808" y="142" fill="#2d3142" font-size="16" font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR','Noto Sans CJK KR','Malgun Gothic',system-ui,sans-serif" font-weight="600" text-anchor="end">SBL 11편 원문 검토</text>
+<text x="808" y="160" fill="#4f5d75" font-size="12" font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR','Noto Sans CJK KR','Malgun Gothic',system-ui,sans-serif" text-anchor="end">commit 27fafc0</text>
+<line x1="832" y1="210" x2="832" y2="376" stroke="#eb6c36" stroke-width="1"/>
+<text x="824" y="330" fill="#eb6c36" font-size="12" font-family="ui-monospace,'SFMono-Regular','D2Coding','Noto Sans Mono CJK KR',Menlo,monospace" text-anchor="end">2026-11-12</text>
+<text x="824" y="350" fill="#2d3142" font-size="16" font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR','Noto Sans CJK KR','Malgun Gothic',system-ui,sans-serif" font-weight="600" text-anchor="end">설계 반영 감사</text>
+<text x="824" y="368" fill="#4f5d75" font-size="12" font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR','Noto Sans CJK KR','Malgun Gothic',system-ui,sans-serif" text-anchor="end">commit 2ecf3e0 · 로드맵 재구성</text>
+<circle cx="48" cy="204" r="5" fill="#f5f5f5" stroke="#2d3142" stroke-width="1.2"/>
+<circle cx="252" cy="204" r="5" fill="#f5f5f5" stroke="#2d3142" stroke-width="1.2"/>
+<circle cx="288" cy="204" r="5" fill="#f5f5f5" stroke="#2d3142" stroke-width="1.2"/>
+<circle cx="304" cy="204" r="5" fill="#f5f5f5" stroke="#2d3142" stroke-width="1.2"/>
+<circle cx="356" cy="204" r="5" fill="#f5f5f5" stroke="#2d3142" stroke-width="1.2"/>
+<circle cx="456" cy="204" r="5" fill="#f5f5f5" stroke="#2d3142" stroke-width="1.2"/>
+<circle cx="628" cy="204" r="5" fill="#f5f5f5" stroke="#2d3142" stroke-width="1.2"/>
+<circle cx="780" cy="204" r="6" fill="#eb6c36"/>
+<circle cx="816" cy="204" r="4" fill="#2d3142"/>
+<circle cx="832" cy="204" r="6" fill="#eb6c36"/>
+<line x1="32" y1="412" x2="848" y2="412" stroke="rgba(45,49,66,0.12)" stroke-width="0.8"/>
+<text x="32" y="432" fill="#4f5d75" font-size="12" font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR','Noto Sans CJK KR','Malgun Gothic',system-ui,sans-serif" font-weight="600">범례</text>
+<circle cx="100" cy="428" r="5" fill="#f5f5f5" stroke="#2d3142" stroke-width="1.2"/>
+<text x="112" y="432" fill="#4f5d75" font-size="12" font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR','Noto Sans CJK KR','Malgun Gothic',system-ui,sans-serif">Melete 문서·PDF의 표기 날짜</text>
+<circle cx="332" cy="428" r="4" fill="#2d3142"/>
+<text x="344" y="432" fill="#4f5d75" font-size="12" font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR','Noto Sans CJK KR','Malgun Gothic',system-ui,sans-serif">FCL commit 날짜(git log)</text>
+<circle cx="520" cy="428" r="6" fill="#eb6c36"/>
+<text x="532" y="432" fill="#4f5d75" font-size="12" font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR','Noto Sans CJK KR','Malgun Gothic',system-ui,sans-serif">저장소 시작·기준 commit</text>
+<text x="32" y="456" fill="#4f5d75" font-size="12" font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR','Noto Sans CJK KR','Malgun Gothic',system-ui,sans-serif">시간 간격은 날짜에 비례한다. 발화 날짜가 없는 U-T01–U-T11(sources/user-statements.md)은 이 축에 놓지 않았다(날짜 미상).</text>
+</svg>

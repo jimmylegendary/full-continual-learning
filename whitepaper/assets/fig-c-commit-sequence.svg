@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 720 664" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="fig-c-commit-sequence-title fig-c-commit-sequence-desc" font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR','Noto Sans CJK KR','Malgun Gothic',system-ui,sans-serif">
+<title id="fig-c-commit-sequence-title">한 질문의 읽기와 commit 순서</title>
+<desc id="fig-c-commit-sequence-desc">사용자 CLI, runtime, 요청 전용 working state, 디스크의 state store 네 참여자의 순서도. runtime은 committed snapshot을 읽고 learn 또는 deep 경로에서만 working state에서 계산과 fast update를 한 뒤 commit 전 검증을 거쳐 원자적으로 commit하고 새 version을 만든 다음 응답과 결정 trace를 돌려준다. fast 경로는 쓰지 않는다.</desc>
+<defs><marker id="fig-c-commit-sequence-arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto-start-reverse"><polygon points="0 0, 8 3, 0 6" fill="#4f5d75"/></marker><marker id="fig-c-commit-sequence-arrow-accent" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto-start-reverse"><polygon points="0 0, 8 3, 0 6" fill="#eb6c36"/></marker><marker id="fig-c-commit-sequence-arrow-link" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto-start-reverse"><polygon points="0 0, 8 3, 0 6" fill="#2e5aa8"/></marker><marker id="fig-c-commit-sequence-arrow-open" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto-start-reverse"><polyline points="0 0, 8 3, 0 6" fill="none" stroke="#4f5d75" stroke-width="1.2"/></marker></defs>
+<rect width="100%" height="100%" fill="#f5f5f5"/>
+<line x1="88" y1="72" x2="88" y2="580" stroke="rgba(45,49,66,0.20)" stroke-width="1" stroke-dasharray="3,3"/>
+<line x1="272" y1="72" x2="272" y2="580" stroke="rgba(45,49,66,0.20)" stroke-width="1" stroke-dasharray="3,3"/>
+<line x1="456" y1="72" x2="456" y2="580" stroke="rgba(45,49,66,0.20)" stroke-width="1" stroke-dasharray="3,3"/>
+<line x1="640" y1="72" x2="640" y2="580" stroke="rgba(45,49,66,0.20)" stroke-width="1" stroke-dasharray="3,3"/>
+<rect x="244" y="216" width="428" height="292" rx="4" fill="rgba(45,49,66,0.02)" stroke="rgba(45,49,66,0.20)" stroke-width="1"/>
+<rect x="244" y="216" width="40" height="16" rx="2" fill="#f5f5f5" stroke="rgba(45,49,66,0.20)" stroke-width="1"/>
+<text x="264" y="228" font-size="12" fill="#4f5d75" text-anchor="middle" font-family="ui-monospace,'SFMono-Regular','D2Coding','Noto Sans Mono CJK KR',Menlo,monospace">OPT</text>
+<text x="292" y="228" font-size="12" fill="#4f5d75">[learn · deep 경로만 — fast는 건너뜀]</text>
+<path d="M 88,112 L 272,112" fill="none" stroke="#4f5d75" stroke-width="1.2" marker-end="url(#fig-c-commit-sequence-arrow)"/>
+<path d="M 272,152 L 640,152" fill="none" stroke="#4f5d75" stroke-width="1.2" marker-end="url(#fig-c-commit-sequence-arrow)"/>
+<path d="M 640,192 L 272,192" fill="none" stroke="#4f5d75" stroke-width="1.2" stroke-dasharray="5,4" marker-end="url(#fig-c-commit-sequence-arrow)"/>
+<path d="M 272,280 L 456,280" fill="none" stroke="#4f5d75" stroke-width="1.2" marker-end="url(#fig-c-commit-sequence-arrow)"/>
+<path d="M 456,328 L 272,328" fill="none" stroke="#4f5d75" stroke-width="1.2" stroke-dasharray="5,4" marker-end="url(#fig-c-commit-sequence-arrow)"/>
+<path d="M 272,372 L 304,372 Q 312,372 312,380 L 312,388 Q 312,396 304,396 L 272,396" fill="none" stroke="#4f5d75" stroke-width="1.2" marker-end="url(#fig-c-commit-sequence-arrow)"/>
+<path d="M 272,464 L 640,464" fill="none" stroke="#eb6c36" stroke-width="1.2" marker-end="url(#fig-c-commit-sequence-arrow-accent)"/>
+<path d="M 640,496 L 272,496" fill="none" stroke="#4f5d75" stroke-width="1.2" stroke-dasharray="5,4" marker-end="url(#fig-c-commit-sequence-arrow)"/>
+<path d="M 272,548 L 88,548" fill="none" stroke="#4f5d75" stroke-width="1.2" stroke-dasharray="5,4" marker-end="url(#fig-c-commit-sequence-arrow)"/>
+<rect x="24" y="24" width="128" height="48" rx="6" fill="#f5f5f5"/>
+<rect x="24" y="24" width="128" height="48" rx="6" fill="#ffffff" stroke="#2d3142" stroke-width="1"/>
+<text x="88" y="52" font-size="12" fill="#2d3142" font-weight="600" text-anchor="middle">사용자 (fcl CLI)</text>
+<rect x="208" y="24" width="128" height="48" rx="6" fill="#f5f5f5"/>
+<rect x="208" y="24" width="128" height="48" rx="6" fill="#ffffff" stroke="#2d3142" stroke-width="1"/>
+<text x="272" y="44" font-size="12" fill="#2d3142" font-weight="600" text-anchor="middle">runtime</text>
+<text x="272" y="60" font-size="12" fill="#4f5d75" text-anchor="middle">write engine</text>
+<rect x="392" y="24" width="128" height="48" rx="6" fill="#f5f5f5"/>
+<rect x="392" y="24" width="128" height="48" rx="6" fill="#ffffff" stroke="#2d3142" stroke-width="1"/>
+<text x="456" y="44" font-size="12" fill="#2d3142" font-weight="600" text-anchor="middle">working state</text>
+<text x="456" y="60" font-size="12" fill="#4f5d75" text-anchor="middle">요청 전용</text>
+<rect x="576" y="24" width="128" height="48" rx="6" fill="#f5f5f5"/>
+<rect x="576" y="24" width="128" height="48" rx="6" fill="#ffffff" stroke="#2d3142" stroke-width="1"/>
+<text x="640" y="44" font-size="12" fill="#2d3142" font-weight="600" text-anchor="middle">state store</text>
+<text x="640" y="60" font-size="12" fill="#4f5d75" text-anchor="middle">bundle · 원장</text>
+<rect x="268" y="112" width="8" height="424" fill="rgba(45,49,66,0.06)" stroke="#4f5d75" stroke-width="0.8"/>
+<rect x="452" y="312" width="8" height="48" fill="rgba(45,49,66,0.06)" stroke="#4f5d75" stroke-width="0.8"/>
+<rect x="636" y="152" width="8" height="40" fill="rgba(45,49,66,0.06)" stroke="#4f5d75" stroke-width="0.8"/>
+<rect x="636" y="456" width="8" height="40" fill="rgba(45,49,66,0.06)" stroke="#4f5d75" stroke-width="0.8"/>
+<rect x="96" y="88" width="108" height="16" rx="2" fill="#f5f5f5"/>
+<text x="100" y="100" font-size="12" fill="#4f5d75">경험 입력 (root R)</text>
+<rect x="280" y="128" width="160" height="16" rx="2" fill="#f5f5f5"/>
+<text x="284" y="140" font-size="12" fill="#4f5d75">committed snapshot 읽기</text>
+<rect x="548" y="168" width="84" height="16" rx="2" fill="#f5f5f5"/>
+<text x="628" y="180" font-size="12" fill="#4f5d75" text-anchor="end">snapshot vₙ</text>
+<rect x="280" y="256" width="152" height="16" rx="2" fill="#f5f5f5"/>
+<text x="284" y="268" font-size="12" fill="#4f5d75">허용된 계산 · fast update</text>
+<rect x="300" y="304" width="148" height="16" rx="2" fill="#f5f5f5"/>
+<text x="444" y="316" font-size="12" fill="#4f5d75" text-anchor="end">evidence-bound change</text>
+<rect x="320" y="376" width="96" height="16" rx="2" fill="#f5f5f5"/>
+<text x="324" y="388" font-size="12" fill="#4f5d75">commit 전 검증</text>
+<rect x="280" y="440" width="96" height="16" rx="2" fill="#f5f5f5"/>
+<text x="284" y="452" font-size="12" fill="#4f5d75">원자적 commit</text>
+<rect x="532" y="472" width="100" height="16" rx="2" fill="#f5f5f5"/>
+<text x="628" y="484" font-size="12" fill="#4f5d75" text-anchor="end">version vₙ₊₁</text>
+<rect x="160" y="524" width="104" height="16" rx="2" fill="#f5f5f5"/>
+<text x="260" y="536" font-size="12" fill="#4f5d75" text-anchor="end">응답 + 결정 trace</text>
+<line x1="24" y1="624" x2="696" y2="624" stroke="rgba(45,49,66,0.10)" stroke-width="0.8"/>
+<line x1="24" y1="636" x2="48" y2="636" stroke="#4f5d75" stroke-width="1.2"/>
+<text x="56" y="640" font-size="12" fill="#4f5d75">호출</text>
+<line x1="104" y1="636" x2="128" y2="636" stroke="#4f5d75" stroke-width="1.2" stroke-dasharray="5,4"/>
+<text x="136" y="640" font-size="12" fill="#4f5d75">반환</text>
+<line x1="184" y1="636" x2="208" y2="636" stroke="#eb6c36" stroke-width="1.2"/>
+<text x="216" y="640" font-size="12" fill="#4f5d75">commit (원자적)</text>
+</svg>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 720 612" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="fig-c-clocks-title fig-c-clocks-desc" font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR','Noto Sans CJK KR','Malgun Gothic',system-ui,sans-serif">
+<title id="fig-c-clocks-title">한 요청에서 시계가 따로 움직이는 모양</title>
+<desc id="fig-c-clocks-desc">deep 경로 한 요청을 가정한 개념도. 경험 root는 하나로 유지되고, token 위치는 입력을 읽는 동안만 늘며, recursion 지표는 같은 관측에서 1에서 2로 오르고, optimizer step은 실제 write 때만 오르며, level별 clock은 각자의 눈금을 가진다. 아래 축은 wall time이다. 개념도이며 데이터가 아니다.</desc>
+<defs><marker id="fig-c-clocks-arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto-start-reverse"><polygon points="0 0, 8 3, 0 6" fill="#4f5d75"/></marker><marker id="fig-c-clocks-arrow-accent" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto-start-reverse"><polygon points="0 0, 8 3, 0 6" fill="#eb6c36"/></marker><marker id="fig-c-clocks-arrow-link" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto-start-reverse"><polygon points="0 0, 8 3, 0 6" fill="#2e5aa8"/></marker><marker id="fig-c-clocks-arrow-open" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto-start-reverse"><polyline points="0 0, 8 3, 0 6" fill="none" stroke="#4f5d75" stroke-width="1.2"/></marker></defs>
+<rect width="100%" height="100%" fill="#f5f5f5"/>
+<line x1="340" y1="60" x2="340" y2="504" stroke="rgba(45,49,66,0.10)" stroke-width="0.8" stroke-dasharray="2,4"/>
+<line x1="412" y1="60" x2="412" y2="504" stroke="rgba(45,49,66,0.10)" stroke-width="0.8" stroke-dasharray="2,4"/>
+<line x1="572" y1="60" x2="572" y2="504" stroke="rgba(45,49,66,0.10)" stroke-width="0.8" stroke-dasharray="2,4"/>
+<line x1="168" y1="156" x2="696" y2="156" stroke="rgba(45,49,66,0.10)" stroke-width="0.8"/>
+<line x1="168" y1="244" x2="696" y2="244" stroke="rgba(45,49,66,0.10)" stroke-width="0.8"/>
+<line x1="168" y1="332" x2="696" y2="332" stroke="rgba(45,49,66,0.10)" stroke-width="0.8"/>
+<line x1="168" y1="420" x2="696" y2="420" stroke="rgba(45,49,66,0.10)" stroke-width="0.8"/>
+<line x1="168" y1="508" x2="696" y2="508" stroke="rgba(45,49,66,0.10)" stroke-width="0.8"/>
+<path d="M 168,532 L 696,532" fill="none" stroke="#4f5d75" stroke-width="1.2" marker-end="url(#fig-c-clocks-arrow)"/>
+<rect x="168" y="24" width="168" height="32" rx="4" fill="rgba(45,49,66,0.03)" stroke="rgba(45,49,66,0.30)" stroke-width="1"/>
+<text x="252" y="44" font-size="12" fill="#2d3142" font-weight="600" text-anchor="middle">입력 읽기 · r = 1</text>
+<rect x="344" y="24" width="64" height="32" rx="4" fill="rgba(45,49,66,0.03)" stroke="rgba(45,49,66,0.30)" stroke-width="1"/>
+<text x="376" y="44" font-size="12" fill="#2d3142" font-weight="600" text-anchor="middle">write</text>
+<rect x="416" y="24" width="152" height="32" rx="4" fill="rgba(45,49,66,0.03)" stroke="rgba(45,49,66,0.30)" stroke-width="1"/>
+<text x="492" y="44" font-size="12" fill="#2d3142" font-weight="600" text-anchor="middle">retrofit · r = 2</text>
+<rect x="576" y="24" width="120" height="32" rx="4" fill="rgba(45,49,66,0.03)" stroke="rgba(45,49,66,0.30)" stroke-width="1"/>
+<text x="636" y="44" font-size="12" fill="#2d3142" font-weight="600" text-anchor="middle">답</text>
+<rect x="24" y="72" width="120" height="80" rx="6" fill="#f5f5f5"/>
+<rect x="24" y="72" width="120" height="80" rx="6" fill="rgba(79,93,117,0.10)" stroke="#7a8399" stroke-width="1"/>
+<text x="84" y="108" font-size="12" fill="#2d3142" font-weight="600" text-anchor="middle">경험 / root</text>
+<text x="84" y="124" font-size="12" fill="#4f5d75" text-anchor="middle">e_t · root ID</text>
+<rect x="24" y="160" width="120" height="80" rx="6" fill="#f5f5f5"/>
+<rect x="24" y="160" width="120" height="80" rx="6" fill="rgba(79,93,117,0.10)" stroke="#7a8399" stroke-width="1"/>
+<text x="84" y="196" font-size="12" fill="#2d3142" font-weight="600" text-anchor="middle">token 위치</text>
+<text x="84" y="212" font-size="12" fill="#4f5d75" text-anchor="middle">t</text>
+<rect x="24" y="248" width="120" height="80" rx="6" fill="#f5f5f5"/>
+<rect x="24" y="248" width="120" height="80" rx="6" fill="rgba(79,93,117,0.10)" stroke="#7a8399" stroke-width="1"/>
+<text x="84" y="284" font-size="12" fill="#2d3142" font-weight="600" text-anchor="middle">recursion</text>
+<text x="84" y="300" font-size="12" fill="#4f5d75" text-anchor="middle">r</text>
+<rect x="24" y="336" width="120" height="80" rx="6" fill="#f5f5f5"/>
+<rect x="24" y="336" width="120" height="80" rx="6" fill="rgba(79,93,117,0.10)" stroke="#7a8399" stroke-width="1"/>
+<text x="84" y="372" font-size="12" fill="#2d3142" font-weight="600" text-anchor="middle">optimizer step</text>
+<text x="84" y="388" font-size="12" fill="#4f5d75" text-anchor="middle">u</text>
+<rect x="24" y="424" width="120" height="80" rx="6" fill="#f5f5f5"/>
+<rect x="24" y="424" width="120" height="80" rx="6" fill="rgba(79,93,117,0.10)" stroke="#7a8399" stroke-width="1"/>
+<text x="84" y="460" font-size="12" fill="#2d3142" font-weight="600" text-anchor="middle">level clock</text>
+<text x="84" y="476" font-size="12" fill="#4f5d75" text-anchor="middle">s_l</text>
+<rect x="168" y="92" width="528" height="40" rx="6" fill="rgba(45,49,66,0.05)" stroke="#4f5d75" stroke-width="1"/>
+<text x="180" y="116" font-size="12" fill="#2d3142">root R — 같은 입력의 loop·replay는 새 root나 새 증거가 아니다</text>
+<line x1="168" y1="208" x2="320" y2="208" stroke="#4f5d75" stroke-width="1.2"/>
+<line x1="200" y1="196" x2="200" y2="220" stroke="#2d3142" stroke-width="1.2"/>
+<text x="200" y="188" font-size="12" fill="#4f5d75" text-anchor="middle">t=1</text>
+<line x1="240" y1="196" x2="240" y2="220" stroke="#2d3142" stroke-width="1.2"/>
+<text x="240" y="188" font-size="12" fill="#4f5d75" text-anchor="middle">t=2</text>
+<line x1="280" y1="196" x2="280" y2="220" stroke="#2d3142" stroke-width="1.2"/>
+<text x="280" y="188" font-size="12" fill="#4f5d75" text-anchor="middle">t=3</text>
+<line x1="320" y1="196" x2="320" y2="220" stroke="#2d3142" stroke-width="1.2"/>
+<text x="320" y="188" font-size="12" fill="#4f5d75" text-anchor="middle">t=4</text>
+<line x1="320" y1="208" x2="696" y2="208" stroke="#4f5d75" stroke-width="1.2" stroke-dasharray="5,4"/>
+<text x="344" y="196" font-size="12" fill="#4f5d75">t 고정 — recursion마다 문맥 길이를 늘리지 않는다</text>
+<rect x="168" y="260" width="240" height="32" rx="6" fill="#ffffff" stroke="#2d3142" stroke-width="1"/>
+<text x="288" y="280" font-size="12" fill="#2d3142" font-weight="600" text-anchor="middle">r = 1</text>
+<rect x="416" y="260" width="152" height="32" rx="6" fill="rgba(235,108,54,0.08)" stroke="#eb6c36" stroke-width="1.2"/>
+<text x="492" y="280" font-size="12" fill="#2d3142" font-weight="600" text-anchor="middle">r = 2 (같은 관측)</text>
+<text x="168" y="312" font-size="12" fill="#4f5d75">r은 같은 관측에 대한 계산 깊이이며 미래 관측 횟수가 아니다</text>
+<line x1="376" y1="348" x2="376" y2="404" stroke="#2d3142" stroke-width="2"/>
+<text x="368" y="380" font-size="12" fill="#2d3142" font-weight="600" text-anchor="end">u → u+1</text>
+<text x="392" y="372" font-size="12" fill="#4f5d75">실제 update(write)를 수행할 때만 오른다</text>
+<text x="392" y="392" font-size="12" fill="#4f5d75">forward 호출 수가 아니다</text>
+<line x1="168" y1="456" x2="696" y2="456" stroke="rgba(45,49,66,0.20)" stroke-width="0.8"/>
+<line x1="216" y1="448" x2="216" y2="464" stroke="#2d3142" stroke-width="1.2"/>
+<line x1="280" y1="448" x2="280" y2="464" stroke="#2d3142" stroke-width="1.2"/>
+<line x1="344" y1="448" x2="344" y2="464" stroke="#2d3142" stroke-width="1.2"/>
+<line x1="408" y1="448" x2="408" y2="464" stroke="#2d3142" stroke-width="1.2"/>
+<line x1="472" y1="448" x2="472" y2="464" stroke="#2d3142" stroke-width="1.2"/>
+<line x1="536" y1="448" x2="536" y2="464" stroke="#2d3142" stroke-width="1.2"/>
+<line x1="600" y1="448" x2="600" y2="464" stroke="#2d3142" stroke-width="1.2"/>
+<line x1="664" y1="448" x2="664" y2="464" stroke="#2d3142" stroke-width="1.2"/>
+<text x="172" y="444" font-size="12" fill="#4f5d75">level 1</text>
+<line x1="168" y1="488" x2="696" y2="488" stroke="rgba(45,49,66,0.20)" stroke-width="0.8"/>
+<line x1="344" y1="480" x2="344" y2="496" stroke="#2d3142" stroke-width="1.2"/>
+<line x1="600" y1="480" x2="600" y2="496" stroke="#2d3142" stroke-width="1.2"/>
+<text x="172" y="476" font-size="12" fill="#4f5d75">level 2</text>
+<text x="392" y="436" font-size="12" fill="#4f5d75">level마다 다른 눈금 (간격은 예시)</text>
+<text x="168" y="552" font-size="12" fill="#4f5d75">wall time (실제 latency) — FLOPs나 loop 수와 같지 않다</text>
+<line x1="24" y1="572" x2="696" y2="572" stroke="rgba(45,49,66,0.10)" stroke-width="0.8"/>
+<rect x="24" y="576" width="24" height="16" rx="4" fill="rgba(235,108,54,0.08)" stroke="#eb6c36" stroke-width="1.2"/>
+<text x="56" y="588" font-size="12" fill="#4f5d75">깊게 계산한 구간</text>
+<line x1="172" y1="584" x2="196" y2="584" stroke="#4f5d75" stroke-width="1.2"/>
+<text x="204" y="588" font-size="12" fill="#4f5d75">시간 방향</text>
+</svg>

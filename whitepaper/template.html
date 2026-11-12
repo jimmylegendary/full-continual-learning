@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>FCL System ONE 설계 백서</title>
+<meta name="description" content="FCL(Full Continual Learning) 통합 설계 System ONE을 근거·검증 계획·열린 결정과 함께 한곳에 모은 오프라인 백서. 구현·학습·효용 검증은 아직 없다.">
+<link rel="icon" href="data:,">
+<script>
+/* 첫 화면 깜빡임 방지: 저장된 테마가 있으면 그림이 그려지기 전에 data-theme 를 정한다. 없으면 시스템 설정(CSS)을 따른다 */
+(function () {
+  var d = document.documentElement;
+  d.classList.add('js');
+  try {
+    var t = localStorage.getItem('fcl-wp-theme');
+    if (t === 'dark' || t === 'light') d.setAttribute('data-theme', t);
+  } catch (e) {}
+})();
+</script>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="skip-link" href="#main">본문으로 건너뛰기</a>
+<div class="wp-progress" aria-hidden="true"><div class="wp-progress-bar" id="wp-progress-bar"></div></div>
+
+<header class="wp-topbar">
+  <button type="button" class="wp-btn wp-toc-toggle" id="wp-toc-toggle" aria-expanded="false" aria-controls="wp-toc">목차</button>
+  <a class="wp-brand" href="#cover">FCL System ONE 설계 백서<small>기준 커밋 <!--@@COMMIT@@--></small></a>
+  <button type="button" class="wp-btn wp-theme-toggle" id="wp-theme-toggle" aria-pressed="false">다크 모드</button>
+</header>
+
+<div class="wp-shell">
+<!--@@TOC@@-->
+<main class="wp-main" id="main" tabindex="-1">
+<h1 class="sr-only">FCL System ONE 설계 백서</h1>
+<!--@@BODY@@-->
+<footer class="wp-foot">
+<!--@@FOOT@@-->
+</footer>
+</main>
+</div>
+
+<script>
+(function () {
+  'use strict';
+  var KEY = 'fcl-wp-theme';
+  var root = document.documentElement;
+  var mq = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : null;
+
+  /* 테마 토글: aria-pressed = 다크일 때 true. 저장값이 없으면 시스템 설정을 따른다 */
+  var tbtn = document.getElementById('wp-theme-toggle');
+  function effective() {
+    var t = root.getAttribute('data-theme');
+    if (t === 'dark' || t === 'light') return t;
+    return mq && mq.matches ? 'dark' : 'light';
+  }
+  function syncTheme() { if (tbtn) tbtn.setAttribute('aria-pressed', effective() === 'dark' ? 'true' : 'false'); }
+  if (tbtn) {
+    tbtn.addEventListener('click', function () {
+      var next = effective() === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem(KEY, next); } catch (e) {}
+      syncTheme();
+    });
+  }
+  if (mq && mq.addEventListener) mq.addEventListener('change', syncTheme);
+  syncTheme();
+
+  /* 목차 패널(≤1023px): 상단 막대의 버튼으로 연다 */
+  var nav = document.getElementById('wp-toc');
+  var obtn = document.getElementById('wp-toc-toggle');
+  function setToc(open) {
+    if (!nav || !obtn) return;
+    nav.setAttribute('data-open', open ? 'true' : 'false');
+    obtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  }
+  if (nav && obtn) {
+    setToc(false);
+    obtn.addEventListener('click', function () {
+      var open = nav.getAttribute('data-open') !== 'true';
+      setToc(open);
+      if (open) { var a = nav.querySelector('a'); if (a) a.focus(); }
+    });
+    nav.addEventListener('click', function (e) {
+      if (e.target.closest && e.target.closest('a')) setToc(false);
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && nav.getAttribute('data-open') === 'true') { setToc(false); obtn.focus(); }
+    });
+    window.addEventListener('resize', function () { if (window.innerWidth >= 1024) setToc(false); });
+  }
+
+  /* 읽기 진행 막대 */
+  var bar = document.getElementById('wp-progress-bar');
+  var ticking = false;
+  function paint() {
+    var h = document.documentElement;
+    var max = h.scrollHeight - h.clientHeight;
+    var p = max > 0 ? h.scrollTop / max : 0;
+    if (bar) bar.style.transform = 'scaleX(' + Math.max(0, Math.min(1, p)) + ')';
+    ticking = false;
+  }
+  window.addEventListener('scroll', function () {
+    if (!ticking) { ticking = true; window.requestAnimationFrame(paint); }
+  }, { passive: true });
+  window.addEventListener('resize', paint);
+  paint();
+
+  /* 현재 위치 강조(IntersectionObserver): 제목이 화면 위쪽 띠에 들어오면 그 제목을 현재 위치로 본다 */
+  var heads = [].slice.call(document.querySelectorAll('.wp-section > h2, .wp-section h3'));
+  var links = {};
+  [].forEach.call(document.querySelectorAll('.wp-toc a[href^="#"]'), function (a) {
+    links[a.getAttribute('href').slice(1)] = a;
+  });
+  function reveal(a) {
+    if (!nav || !a || nav.offsetParent === null || nav.scrollHeight <= nav.clientHeight) return;
+    var nb = nav.getBoundingClientRect(), ab = a.getBoundingClientRect();
+    if (ab.top < nb.top + 48) nav.scrollTop -= (nb.top + 48 - ab.top);
+    else if (ab.bottom > nb.bottom - 48) nav.scrollTop += ab.bottom - (nb.bottom - 48);
+  }
+  function setActive(h) {
+    if (!h) return;
+    [].forEach.call(document.querySelectorAll('.wp-toc li.is-current'), function (li) { li.classList.remove('is-current'); });
+    [].forEach.call(document.querySelectorAll('.wp-toc a[aria-current]'), function (a) { a.removeAttribute('aria-current'); });
+    var sec = h.closest('.wp-section');
+    var h2 = sec ? sec.querySelector(':scope > h2') : null;
+    var l2 = h2 ? links[h2.id] : null;
+    if (l2 && l2.parentElement) l2.parentElement.classList.add('is-current');
+    var a = links[h.id];
+    if (a) { a.setAttribute('aria-current', 'location'); reveal(a); }
+  }
+  if (heads.length) {
+    setActive(heads[0]);
+    if ('IntersectionObserver' in window) {
+      var inBand = [];
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) {
+          var i = heads.indexOf(en.target);
+          if (en.isIntersecting) {
+            if (inBand.indexOf(en.target) < 0) inBand.push(en.target);
+            setActive(en.target);
+          } else if (inBand.indexOf(en.target) >= 0) {
+            /* 띠에서 나갔다. 아래로 나갔으면(위로 스크롤 중) 바로 앞 제목이 현재 위치다. 위로 나갔으면 다음 제목이 이미 들어와 있다 */
+            inBand.splice(inBand.indexOf(en.target), 1);
+            if (en.rootBounds && en.boundingClientRect.top >= en.rootBounds.bottom && i > 0) setActive(heads[i - 1]);
+          }
+        });
+      }, { rootMargin: '-8% 0px -76% 0px', threshold: 0 });
+      heads.forEach(function (h) { io.observe(h); });
+    }
+  }
+
+  /* 인쇄: 접힌 상자를 펼쳐서 내보낸다 */
+  var opened = [];
+  window.addEventListener('beforeprint', function () {
+    opened = [].filter.call(document.querySelectorAll('details'), function (d) { return !d.open; });
+    opened.forEach(function (d) { d.open = true; });
+  });
+  window.addEventListener('afterprint', function () {
+    opened.forEach(function (d) { d.open = false; });
+    opened = [];
+  });
+})();
+</script>
+</body>
+</html>

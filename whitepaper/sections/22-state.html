@@ -1,0 +1,214 @@
+<section class="wp-section" id="sec-state" data-part="2부 · 어떻게 동작하나">
+<h2 id="state">상태 · 시계 · 저장 계약</h2>
+
+<p class="lede">모델이 배우고 저장하는 일이 믿을 만하려면 "무엇이 언제 읽히고, 언제 쓰이고, 무엇이 디스크에 남았는가"를 구분해 기록해야 한다. 이 절은 그 기록의 계약을 설명한다. 같은 입력의 loop와 replay를 새 증거로 세지 않고, 재시작·rollback·삭제 뒤에도 상태가 맞아야 한다는 요구다. <a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/07-state-and-storage.md">07 머리말</a>의 말대로 이 절은 <strong>설계 요구와 proposal</strong>이며 저장소가 runtime을 구현했다는 뜻이 아니다.</p>
+
+<div class="kpi-row">
+<div class="kpi"><div class="kpi-value">8</div><div class="kpi-label">시계·정체성 필드(<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/07-state-and-storage.md">07 §1</a>의 표 행 수)</div></div>
+<div class="kpi"><div class="kpi-value">24</div><div class="kpi-label">권장 manifest 항목 수(직접 센 값: <a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/07-state-and-storage.md">07 §5</a> 코드 블록의 항목 이름 개수)</div></div>
+<div class="kpi"><div class="kpi-value">9</div><div class="kpi-label">최소 상태 회귀 검사 항목(<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/07-state-and-storage.md">07 §8</a>의 나열 개수)</div></div>
+<div class="kpi"><div class="kpi-value">0</div><div class="kpi-label">구현된 runtime. 아래는 모두 설계 요구와 제안이다</div></div>
+</div>
+
+<h3 id="state-clocks">시계와 정체성</h3>
+
+<p>목적: 서로 다른 것을 같은 숫자로 세는 실수를 막는다. 가령 loop를 한 번 더 돌렸다고 같은 입력이 새 증거가 되거나, forward를 호출했다고 optimizer step이 올라간 것으로 기록되면 안 된다. 기능: 기록하는 모든 항목에 아래 필드를 따로 둔다. 입력은 요청과 그 처리 과정이고, 출력은 필드별로 분리된 시계 기록이다. <span class="ev ev-proposal">PROPOSAL</span> 필드와 "금지되는 혼동"은 <a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/07-state-and-storage.md">07 §1</a>의 표다.</p>
+
+<div class="table-wrap" id="tab-state-clocks"><table class="wp-table">
+<caption><span class="tab-no"></span> 시계와 정체성 필드 (07 §1)</caption>
+<thead><tr><th>필드</th><th>의미</th><th>금지되는 혼동</th></tr></thead>
+<tbody>
+<tr><td>experience / root ID</td><td>외부 관측·사용자 정정의 출처</td><td>같은 입력의 loop를 새 root로 생성</td></tr>
+<tr><td>token position</td><td>실제 token sequence 위치</td><td>recursion마다 문맥 길이를 증가</td></tr>
+<tr><td>recursion index</td><td>같은 관측에 대한 내부 계산 깊이</td><td>미래 관측 횟수</td></tr>
+<tr><td>optimizer step</td><td>실제 update 수행</td><td>forward 호출 수</td></tr>
+<tr><td>level clock</td><td>각 CMS(continuum memory system) memory의 schedule·통합 준비</td><td>모든 level의 동일 의미 시계</td></tr>
+<tr><td>schema version</td><td>적용할 학습 상태</td><td>항상 최신이 가장 적합함</td></tr>
+<tr><td>parameter / representation version</td><td>hidden space의 의미</td><td>shape가 같으면 호환됨</td></tr>
+<tr><td>wall time</td><td>실제 latency</td><td>FLOPs나 loop 수와 동일</td></tr>
+</tbody></table></div>
+
+<p><span class="ev ev-proposal">PROPOSAL</span> 수식의 기호와 대응하면 외부 경험 <math><mrow><msub><mi>e</mi><mi>t</mi></msub></mrow></math>(root), 내부 recursion <math><mrow><mi>r</mi></mrow></math>, optimizer step <math><mrow><mi>u</mi></mrow></math>, level별 consolidation clock <math><mrow><msub><mi>s</mi><mi>l</mi></msub></mrow></math>이 분리되고(<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/06-mathematical-framework.md">06 §1</a>, <a href="#math">수학 명세</a>), token position <math><mrow><mi>t</mi></mrow></math>와 wall-clock이 여기에 더해진다(<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/04-rhythms-and-orchestration.md">04 §7</a>). loop·replay는 경험을 다시 사용하는 계산이지 새로운 world evidence가 아니다.</p>
+
+<figure class="wp-figure" id="fig-c-clocks">
+<img src="assets/fig-c-clocks.svg" alt="타임라인형 개념도(데이터 아님). 위에 입력 읽기 r=1, write, retrofit 한 번 더 r=2, 답의 네 구간. 아래 다섯 줄: 경험 root는 요청 내내 하나, token 위치는 입력을 읽는 동안만 t=1~4로 늘고 이후 고정, recursion은 r=1에서 r=2로 오르되 같은 관측, optimizer step은 write 시점에 한 번만 u에서 u+1, level clock은 level마다 다른 눈금. 맨 아래 wall time 축.">
+<figcaption><span class="fig-no"></span> 한 요청에서 시계가 따로 움직이는 모양. deep 경로 한 요청을 가정한 개념도이며 데이터가 아니다. 눈금 간격과 level 수는 예시다(07 §1, 06 §1).</figcaption>
+</figure>
+
+<h3 id="state-rw">읽기와 쓰기의 분리: snapshot → working state → commit</h3>
+
+<p>목적: 추론이 도중에 바뀌는 상태 위에서 돌지 않게 하고, 쓰기가 한 번의 검증을 거쳐서만 남게 한다. 기능과 입출력: <span class="ev ev-proposal">PROPOSAL</span> 추론은 committed snapshot을 기준으로 시작한다. request-local working state(요청 하나에서만 쓰는 임시 상태)에서 허용된 계산·fast update를 수행해 evidence-bound change(증거에 묶인 변경)를 만든다. commit 전에 같은 root의 영향·budget·source와 revision·삭제 상태·관련 feedback을 검증한다(<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/07-state-and-storage.md">07 §2</a>). 마지막 결과는 새 version의 state다.</p>
+
+<figure class="wp-figure" id="fig-c-commit-sequence">
+<img src="assets/fig-c-commit-sequence.svg" alt="순서도. 참여자는 사용자 CLI, runtime, working state, state store. CLI가 경험을 보내면 runtime이 state store에서 committed snapshot을 읽는다. learn 또는 deep 경로에서만 working state에서 계산과 fast update를 하고 변경을 받아 commit 전 검증을 한 뒤 원자적으로 commit해 새 version을 받는다. 마지막으로 응답과 결정 trace를 CLI에 돌려준다. fast 경로는 이 블록을 건너뛴다.">
+<figcaption><span class="fig-no"></span> 한 질문의 읽기와 commit 순서(제안). 점선 화살표는 반환이고 색 화살표는 원자적 commit이다. 큰 틀은 ‘OPT’ 블록으로, fast 경로는 쓰지 않으므로 건너뛴다(07 §2, 09 §2).</figcaption>
+<details class="more"><summary>그림의 글 설명</summary>
+<ol>
+<li>사용자 CLI → runtime: 경험 입력(같은 입력의 재전송은 같은 root).</li>
+<li>runtime → state store: committed snapshot 읽기. state store → runtime: snapshot vₙ.</li>
+<li>learn·deep 경로만: runtime → working state에서 허용된 계산·fast update. working state → runtime: evidence-bound change.</li>
+<li>runtime 내부: commit 전 검증(같은 root, budget, source·revision, 삭제 상태, feedback).</li>
+<li>runtime → state store: 원자적 commit. state store → runtime: version vₙ₊₁.</li>
+<li>runtime → CLI: 응답과 결정 trace.</li>
+</ol>
+</details>
+</figure>
+
+<ul>
+<li><span class="ev ev-proposal">PROPOSAL</span> 이것은 기본 proposal이며 synchronous write(요청 도중 바로 쓰기)의 유일한 허용 구현은 아니다. 다만 어떤 구현이든 read snapshot, write version, concurrency conflict(동시 쓰기 충돌), retry·idempotency(재시도해도 한 번만 반영되는 성질)가 명시돼야 한다.</li>
+<li><span class="ev ev-proposal">PROPOSAL</span> 마지막에 한 번 commit해도 임시 상태에서 같은 입력을 무제한 학습했다면 과대 반영은 남는다. 그래서 temporary learning budget과 evidence budget을 따로 둔다. generated interpretation(모델이 스스로 만든 해석)은 학습 신호로 쓸 수 있지만 독립 observed root로 승격하지 않는다.</li>
+<li><span class="ev ev-proposal">PROPOSAL</span> 첫 phase(P1)가 보장하겠다고 쓴 것은 같은 입력 재전송이 같은 root로 한 번만 반영되는 것과 commit이 원자적인 것이다(<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/09-roadmap.md">09 §5</a> P1 보장 1·3). 실제로 이 보장이 성립하는지는 구현 뒤에 자동 테스트로 확인할 계획이며 지금은 검증이 없다.</li>
+</ul>
+
+<aside class="callout callout-eli">
+<p><strong>쉬운 설명 — 게임 저장 파일처럼</strong></p>
+<p><em>문제.</em> 모델이 배운 것을 껐다 켜면 사라지거나, 같은 말을 두 번 들으면 두 번 배워 버리면 곤란하다.</p>
+<p><em>해결(제안).</em> 게임 저장처럼 마지막 저장본(snapshot)에서 시작하고, 연습장(working state)에서만 고쳐 보고, 확인이 끝나면 한 번에 덮어 저장(commit)한다. 같은 질문이 다시 와도 한 번만 반영한다.</p>
+<p><em>왜 그냥 되지 않는가.</em> 저장본에 "어떤 모델로 만들었는지(revision)"가 적혀 있지 않으면, 다른 모델에 잘못 불러와도 겉보기엔 멀쩡해서 알아채기 어렵다. 그래서 모양(shape)이 같다는 것만으로는 호환된다고 보지 않는다.</p>
+<p>이 설명에서 생략한 것 — 여러 사람이 동시에 쓸 때의 충돌 처리(첫 phase는 단일 writer만, 동시 write는 거부), 임시 상태에서의 학습 한도를 실제로 얼마로 둘지(문서에 값 없음).</p>
+</aside>
+
+<h3 id="state-recursion">recursion과 cache</h3>
+
+<p>목적: 같은 weights를 여러 번 돌리는(recursion) 모델에서 "어느 loop의 어느 token 표현이 어느 parameter version에서 계산됐는가"를 잃지 않는다. <span class="ev ev-proposal">PROPOSAL</span> 재귀 weight 공유와 KV(key–value cache) 공유는 독립적인 설계 선택이다. token <math><mrow><mi>i</mi></mrow></math>의 depth <math><mrow><mi>r</mi></mrow></math>가 어떤 parameter version에서 계산됐는지 추적한다. MoD(Mixture-of-Depths)·MoR(Mixture-of-Recursions)로 skip된 depth state는 존재하지 않거나 마지막 유효 state를 가리키며 이를 명시한다(<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/07-state-and-storage.md">07 §3</a>). 입력은 요청의 token과 loop 진행이고 출력은 그 표현의 출처 기록이다.</p>
+
+<p><span class="ev ev-proposal">PROPOSAL</span> 최소 검사는 다음과 같다.</p>
+<ul>
+<li>같은 sequence prefix를 두 번 처리해도 의도치 않은 memory double-write가 없어야 한다.</li>
+<li>내부 loop 중 token position이 임의로 늘어나지 않아야 한다.</li>
+<li>autoregressive mask가 미래 token·depth 상태를 노출하지 않아야 한다.</li>
+<li>depth read는 존재하고 허용된 source만 참조해야 한다.</li>
+<li>weight update 이후 stale cache(낡은 cache)를 계속 쓸 때 의미적 정합성이 검증되어야 한다.</li>
+<li>speculative decoding·rollback과 windowed cache의 제한을 숨기지 않는다.</li>
+</ul>
+
+<p><span class="ev ev-user">USER</span> (B14, 2026-10-12) 익숙하면 hit한 구조를 compile해 완결된 working frame을 만든다. 매 turn 출력이 frame과 맞지 않으면 이번 입력·출력·내부 출력으로 학습한 뒤 최초 query로 다시 검색해 frame을 재구성하고 중단 지점부터 재개한다. <span class="ev ev-proposal">PROPOSAL</span> 이를 통합 모델의 상태 계약으로 옮긴 네 가지는 다음과 같다.</p>
+<ul>
+<li><strong>읽기 기록.</strong> 한 요청의 schema 읽기가 어떤 요소(layer 결합·fast state·depth source)를 어떤 순서로 읽었는지 기록한다. 이 기록은 이후 write와 독립이다.</li>
+<li><strong>갱신 후 재개.</strong> 요청 중 학습이 일어나면 새 root를 만들지 않고 같은 root와 같은 최초 입력으로 다시 읽는다. 재개 위치(token position <math><mrow><mi>t</mi></mrow></math>, recursion index <math><mrow><mi>r</mi></mrow></math>)와 무효화한 cache를 기록한다.</li>
+<li><strong>이중 write 방지.</strong> 재개 때 이미 반영한 증거를 다시 쓰지 않는다.</li>
+<li><strong>재현.</strong> 같은 입력의 재읽기는 원래 읽기 결과를 재현할 수 있어야 하며 차이는 갱신으로 설명할 수 있어야 한다.</li>
+</ul>
+
+<p><span class="ev ev-archive">ARCHIVE</span> Melete는 working graph를 snapshot으로 compile하고 선택 node·edge·전역 상태·context·encoder parameter의 의존성을 각각 추적하며, 낮은 compatibility에서 갱신한 뒤 최초 query로 재compile해 중단 지점에서 재개하는 것을 basis로 유지했다. 이 닫힌 loop는 좁은 합성 scene에서만 실행됐고 일반 효용은 검증되지 않았다(<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/07-state-and-storage.md">07 §3</a>).</p>
+
+<h3 id="state-attribution">학습 귀속</h3>
+
+<p>목적: 피드백이 늦게 와도 "지금 켜져 있는 schema"가 아니라 "그 피드백이 원래 가리키던 사건"에 학습이 붙게 한다. <span class="ev ev-proposal">PROPOSAL</span> eligibility(<a href="#architecture">통합 구조</a>의 리듬 절에서 다룬 후보 흔적)에는 event ID, 활성 schema·경로, 관측 시점, 목표, 해석 origin, 의존 state version을 연결한다. 피드백이 늦게 도착해도 현재 활성 schema가 아니라 원래 관련 사건으로 귀속한다. read frequency에 따라 association을 강화하는 경우, 그 강화와 사실 validity를 별도로 기록한다. 단순 조회가 많아졌다고 진실성이나 외부 증거가 증가하지 않는다(<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/07-state-and-storage.md">07 §4</a>).</p>
+
+<p><span class="ev ev-user">USER</span> (B14, B09) 조회 trajectory에서 hit한 경로는 모두 연결 강화한다. 검색할 때 시냅스가 강화되는 시나리오를 학습 방식으로 정리한다. <span class="ev ev-proposal">PROPOSAL</span> 조회 구동 강화(read-driven strengthening)를 허용하는 경우의 계약은 아래와 같다.</p>
+
+<div class="table-wrap" id="tab-state-strengthen"><table class="wp-table">
+<caption><span class="tab-no"></span> 강화의 네 구분과 계약 (07 §4) — PROPOSAL</caption>
+<thead><tr><th>구분</th><th>무엇인가</th><th>사실 validity·독립 증거 수를 바꾸는가</th></tr></thead>
+<tbody>
+<tr><td>접근성</td><td>조회·활성 trace</td><td>바꾸지 않는다(학습된 관심에는 영향 가능)</td></tr>
+<tr><td>연합</td><td>고찰·사용으로 달라지는 연결</td><td>바꾸지 않는다(학습된 관심에는 영향 가능)</td></tr>
+<tr><td>compatibility</td><td>등록 관측의 귀속</td><td>문서가 따로 적지 않았다</td></tr>
+<tr><td>parameter plasticity</td><td>write gate에 따라 M·reader·updater가 바뀐 정도</td><td>문서가 따로 적지 않았다</td></tr>
+</tbody></table></div>
+
+<ul>
+<li><span class="ev ev-proposal">PROPOSAL</span> 같은 root의 반복 조회에 대한 포화 상한과 감쇠를 사전에 명시한다. 강화 전후 값을 hit 경로와 함께 기록한다.</li>
+<li><span class="ev ev-proposal">PROPOSAL</span> 자기증폭(조회가 늘수록 더 자주 선택돼 오판이 고착되는 현상)을 직접 측정하고 독립 반례 뒤 회복 여부를 본다. 강화를 끈 대조군과 같은 예산으로 비교한다.</li>
+<li><span class="ev ev-archive">ARCHIVE</span> Melete v0.2는 강화를 접근성·연합·compatibility·parameter plasticity로 구분했고, 이후 hit 강화와 사실 validity의 분리·포화·감쇠·반복 안정성 평가·자기증폭 직접 측정을 요구 사항으로 유지했다. 효용은 입증되지 않았다.</li>
+<li><span class="ev ev-open">OPEN</span> 강화의 단위(파라미터 국소 경로·fast state·외부 key)는 11 §2의 schema 물리 단위가 정해질 때 정한다(<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/11-research-agenda.md">11 §2</a>).</li>
+</ul>
+
+<h3 id="state-bundle">외부화 단위: bundle manifest</h3>
+
+<p>목적: schema를 모델 밖으로 저장·복원·버전 관리할 수 있는 한 묶음으로 다룬다. <span class="ev ev-proposal">PROPOSAL</span> schema 하나가 tensor 하나일 것이라고 가정하지 않는다. 여러 layer의 delta·adapters·fast states·읽기 조건을 묶은 artifact일 수 있고, 처음에는 기능적으로 검증된 bundle 단위로 저장한다(<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/07-state-and-storage.md">07 §5</a>). 입력은 모델과 그 상태, 출력은 manifest가 가리키는 한 묶음의 파일이다.</p>
+
+<figure class="wp-figure" id="fig-c-bundle">
+<img src="assets/fig-c-bundle.svg" alt="데이터 모델. 중심에 bundle manifest 상자가 있고 안에 식별·계보, 호환성, 내용, 적용·검증, 저장·수명 다섯 묶음의 필드 이름이 적혀 있다. 오른쪽에 상태 payload, source 원장, 일시 상태 bundle, 모델 revision 상자가 관계선으로 연결돼 있고 아래에 이전 version의 manifest가 parent_versions로 연결돼 있다. 첫 phase는 부분집합만 쓴다.">
+<figcaption><span class="fig-no"></span> bundle manifest와 주변 개체(07 §5, 09 §2). 필드 묶음의 이름과 1 : 1, N : N 같은 카디널리티는 이 백서가 07 §5의 나열을 이름에서 읽어 정리한 것이며 문서가 정한 값이 아니다. 첫 phase는 이 중 부분집합만 쓰고 slow level·consolidation 필드는 none이다.</figcaption>
+</figure>
+
+<div class="table-wrap" id="tab-state-manifest"><table class="wp-table">
+<caption><span class="tab-no"></span> 권장 manifest 항목 24개 (07 §5의 코드 블록 전부, 묶음과 뜻은 이름에서 읽은 것)</caption>
+<thead><tr><th>묶음</th><th>필드</th><th>이름에서 읽은 용도</th></tr></thead>
+<tbody>
+<tr><td>식별 · 계보</td><td><code>artifact_id</code>, <code>schema_family</code>, <code>parent_versions</code>, <code>source_root_ids</code></td><td>이 artifact가 무엇이고, 어느 version에서 나왔으며, 어떤 경험 root로 만들어졌는지</td></tr>
+<tr><td>호환성</td><td><code>base_model_revision</code>, <code>encoder_revision</code>, <code>tokenizer_revision</code>, <code>layer_bindings</code>, <code>parameter_shapes</code>, <code>norm/adapter_contract</code></td><td>어떤 기반 모델·encoder·tokenizer에 어느 layer로 붙는지. shape 일치는 호환성 증거가 아니다</td></tr>
+<tr><td>내용</td><td><code>slow_weights_or_deltas</code>, <code>fast_weights</code>, <code>optimizer_moments</code>, <code>update_counters</code>, <code>consolidation_state</code></td><td>이어서 학습할 복원에 필요한 상태(느린 쪽·빠른 쪽·optimizer·시계·공고화)</td></tr>
+<tr><td>적용 · 검증</td><td><code>applicability</code>, <code>confidence_calibration</code>, <code>validation_scope</code></td><td>어떤 조건에서 적용하고 어디까지 검증됐는지</td></tr>
+<tr><td>저장 · 수명</td><td><code>serialization_format</code>, <code>content_hashes</code>, <code>replay_recipe</code>, <code>retention_policy</code>, <code>deletion_dependencies</code>, <code>migration_status</code></td><td>저장 형식과 무결성, 재생 방법, 보존·삭제 의존성, 이전 상태</td></tr>
+</tbody></table></div>
+
+<ul>
+<li><span class="ev ev-proposal">PROPOSAL</span> read-only 복원과 이어서 학습할 복원은 필요한 state가 다르다. 정확한 session 재개에는 KV·position·budget 등 일시적 상태도 별도 bundle로 필요하다(<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/07-state-and-storage.md">07 §5</a>).</li>
+<li><span class="ev ev-proposal">PROPOSAL</span> 첫 phase의 manifest v0는 위 항목의 부분집합이며 slow level과 consolidation 필드는 <code>none</code>이다. 단일 사용자·단일 writer만 두고(동시 write는 거부), 네트워크 서버와 인증은 없다(<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/09-roadmap.md">09 §2</a>).</li>
+</ul>
+
+<h3 id="state-version">version의 의미와 호환성</h3>
+
+<p>목적: "항상 최신이 가장 좋다"는 생각 없이 상태 변화의 계보를 다룬다. <span class="ev ev-proposal">PROPOSAL</span> 버전은 가장 최신의 하나만 선택하는 일렬 교체가 아니라 특정 source·조건·학습 상태의 lineage(계보)다. A→B→A에서 이전 A가 유효할 수 있다. 잘못된 과거 사실과 과거에는 유효했던 상태 변화는 다르게 처리한다(<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/07-state-and-storage.md">07 §6</a>).</p>
+
+<ul>
+<li><span class="ev ev-proposal">PROPOSAL</span> base encoder가 바뀌면 기존 schema latent의 좌표 의미도 바뀔 수 있다. shape 일치는 호환성 증거가 아니다. migration(옛 상태를 새 모델로 옮기기)은 재인코딩·adapter·replay/distillation 등의 후보이며 별도 평가한다.</li>
+<li><span class="ev ev-proposal">PROPOSAL</span> 병합 뒤에는 개별 source의 삭제가 완벽히 가능한지 검증 없이 약속하지 않는다. 그래서 첫 phase의 삭제 보장은 fast state에 한정한다(<a href="#state-regression">아래</a>).</li>
+</ul>
+
+<h3 id="state-residency">검색과 residency, eviction</h3>
+
+<p>목적: 필요한 schema를 찾는 일, 어디에 두는지, 무엇을 내려놓는지를 서로 다른 정책으로 다룬다. <span class="ev ev-proposal">PROPOSAL</span> 검색용 embedding·key는 schema의 전체 의미나 적합성 판정을 대신하지 않는다. retrieval visibility(검색에 보이는가)와 applicability(적용해도 되는가)를 분리한다. hot schema는 resident(메모리에 상주), cold artifact는 offload(밖으로 내림) 후보로 두되 복사·deserialization·cache warmup 비용을 측정한다(<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/07-state-and-storage.md">07 §7</a>).</p>
+
+<p><span class="ev ev-user">USER</span> (B01, 2026-09-27) 사용자는 eviction(밀어내기)·forgetting·memory revision에는 아직 아이디어가 없다고 밝혔다. 설계가 채워야 할 열린 문제다. <span class="ev ev-proposal">PROPOSAL</span> 위 residency는 저장 위치(resident·offload)의 정책이고 eviction은 fast state에서 무엇이 빠지는가의 정책이다. 둘을 분리한다.</p>
+<ul>
+<li>망각은 decay <math><mrow><mi>&#x003B1;</mi></mrow></math>와 <math><mrow><msub><mi>ℒ</mi><mrow><mi>forget</mi></mrow></msub></mrow></math>로 표현하되 어떤 정보가 얼마나 약해졌는지를 level별로 기록한다.</li>
+<li>eviction은 fast state가 용량을 넘을 때 후보를 고른다. 기준 후보는 최근 사용, 독립 증거 수, 적용 조건의 중복, 보호 family와의 연관이다.</li>
+<li>eviction은 삭제가 아니라 offload·재구성 가능 상태로의 이동을 기본으로 한다. 삭제는 최소 상태 회귀를 따른다.</li>
+<li>평가는 <a href="#evaluation">검증 체계</a>의 F10(consolidation)과 보호 family의 회귀로 한다.</li>
+</ul>
+<p><span class="ev ev-archive">ARCHIVE</span> Melete v0.2는 active eviction을 "canonical 경험을 지우지 않고 현재 active set에서 내려놓음"으로 정의하고 consolidation·deletion·graph replay와 구분했다. <span class="ev ev-open">OPEN</span> 기준 후보 중 무엇이 쓰기 gate의 학습 가능한 신호가 되는지는 정하지 않았다. multi-user 환경에서는 fast state, eligibility, optimizer state가 사용자를 넘어 섞이지 않게 해야 하고, shared slow model로 어떤 개인 정보를 통합할지는 별도 동의·정책이 필요하다. 최초 MVP에서 광범위 개인 DB나 native 권한을 자동 활성화하지 않는다(<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/07-state-and-storage.md">07 §7</a>).</p>
+
+<aside class="callout callout-decision">
+<p><strong>사용자 결정 필요 — eviction·forgetting·memory revision을 어느 phase에서 다루는가.</strong> B01에서 사용자는 이 셋에 아직 아이디어가 없다고 밝혔고, 위의 residency·eviction 분리와 기준 후보는 모두 PROPOSAL이다. 확인 대기: <a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/research/2026-11-12-design-audit.md">design-audit §5</a> C군 17번. 아직 정해지지 않은 것: eviction 기준 후보 중 쓰기 gate의 학습 가능한 신호가 되는 것(07 §7 OPEN), 강화의 단위(07 §4 OPEN).</p>
+</aside>
+
+<h3 id="state-regression">최소 상태 회귀와 첫 phase의 상태 계약</h3>
+
+<p>목적: 상태 계약이 지켜지는지를 효용과 따로 확인한다. <span class="ev ev-proposal">PROPOSAL</span> 최소 상태 회귀는 아홉 가지를 검사한다. 같은 입력의 재전송, 같은 ID의 다른 payload, interrupted update(도중에 끊긴 갱신), restart, branch rollback, source 삭제, offload·reload, 모델 revision mismatch, concurrent writes(동시 쓰기)다. 저장·해시 검사 통과와 판단 효용 통과를 별도 보고한다(<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/07-state-and-storage.md">07 §8</a>).</p>
+
+<figure class="wp-figure" id="fig-c-restore-sequence">
+<img src="assets/fig-c-restore-sequence.svg" alt="순서도. 참여자는 사용자 CLI, runtime, state store. 첫째 장면은 재시작 복원으로, runtime을 종료하고 새 프로세스를 띄워 bundle manifest를 읽으며 모델 revision이 일치하면 state를 복원해 같은 질문에 같은 응답을 내고 불일치하면 복원을 거부한다. 둘째는 rollback으로 이전 version의 bundle을 읽어 weights, moments, clock, counters를 되돌린다. 셋째는 source 삭제로 철회를 반영하고 남은 source를 같은 순서로 재생해 재구성한 state를 원자적으로 commit한다.">
+<figcaption><span class="fig-no"></span> 재시작 복원 · rollback · source 삭제(제안). rollback은 회귀 시나리오이고 삭제는 fast state에 한정한다. 근거는 07 §2·§5·§6·§8과 09 §5 P1의 UJ1 ⑧⑨다.</figcaption>
+<details class="more"><summary>그림의 글 설명</summary>
+<ol>
+<li>재시작 복원: CLI가 runtime을 종료하고 새 프로세스를 띄운다. runtime이 state store의 bundle manifest를 읽는다. 모델 revision이 일치하면 state(weights·fast state·moments)를 읽어 복원하고 같은 질문에 같은 응답(허용오차)을 낸다. 불일치하면 복원을 거부한다.</li>
+<li>rollback: 이전 version으로 되돌리라는 요청에 runtime이 그 version의 bundle을 읽어 weights·moments·clock·counters를 가져온다.</li>
+<li>source 삭제: CLI가 삭제를 요청하면 runtime이 철회를 반영하고 남은 source를 같은 순서로 재생해 state를 재구성하고 원자적으로 commit한 뒤 완료를 알린다(fast state 한정).</li>
+</ol>
+</details>
+</figure>
+
+<p><span class="ev ev-proposal">PROPOSAL</span> 첫 phase(P1)의 종료 조건은 "bundle v0 + 원자적 commit + 재시작 복원 + 얇은 source 삭제(replay 재구성, fast state 한정)"다(<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/09-roadmap.md">09 §4</a> 상태 저장 행). 아래 표는 이 가운데 상태에 관한 보장을 옮겼다.</p>
+
+<div class="table-wrap" id="tab-state-p1"><table class="wp-table">
+<caption><span class="tab-no"></span> 첫 phase(P1)가 약속하는 상태 보장 (09 §5 P1 '성립하는 보장') — PROPOSAL, Contract·Product 범위만</caption>
+<thead><tr><th>보장</th><th>내용</th><th>문서 위치</th></tr></thead>
+<tbody>
+<tr><td>재전송</td><td>같은 입력 재전송은 같은 root로 한 번만 반영된다</td><td>보장 (1)</td></tr>
+<tr><td>시계</td><td>경험·token·optimizer·wall 시계가 분리 기록되고 내부 loop·replay는 새 evidence로 세지 않는다</td><td>보장 (2)</td></tr>
+<tr><td>commit과 재시작</td><td>commit은 원자적이고 재시작 전후 같은 snapshot에서 응답이 허용오차 안에서 같다</td><td>보장 (3)</td></tr>
+<tr><td>revision</td><td>모델 revision이 다르면 복원을 거부한다</td><td>보장 (4)</td></tr>
+<tr><td>삭제</td><td>삭제 뒤 state는 그 source 없이 같은 순서로 재생한 state와 허용오차 안에서 같다(fast state 한정)</td><td>보장 (5)</td></tr>
+</tbody></table></div>
+
+<p><span class="ev ev-proposal">PROPOSAL</span> 첫 phase에서 일부러 얇게 둔 것은 단일 사용자·단일 writer(동시 write 거부), 네트워크 서버와 인증 없음, manifest는 07 §5의 부분집합이다. 원 Titan 코드의 <code>generate()</code>·<code>reset_memory=True</code> 같은 state reset 경로를 session 경계로 오인하지 않는다. session 지속성은 별도 계약이다(<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/09-roadmap.md">09 §2</a>, <a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/05-integrated-architecture.md">05 §6</a>). 이후 phase에서 커지는 것은 아래와 같다.</p>
+
+<div class="table-wrap" id="tab-state-phases"><table class="wp-table">
+<caption><span class="tab-no"></span> '상태 저장·재시작·외부화' 행의 해상도 (09 §4)</caption>
+<thead><tr><th>phase</th><th>해상도</th></tr></thead>
+<tbody>
+<tr><td>P1</td><td>bundle v0 + 원자적 commit + 재시작 복원 + 얇은 source 삭제(replay 재구성, fast state 한정)</td></tr>
+<tr><td>P2</td><td>다중 session·branch rollback·동시 write 정책 확대</td></tr>
+<tr><td>P3</td><td>제어 상태(controller)도 bundle에 포함</td></tr>
+<tr><td>P4</td><td>외부화 v0: export/import·offload/reload·version lineage·migration 거부 규칙. 통합 뒤 삭제는 "측정만"</td></tr>
+<tr><td>P5</td><td>retrieval·migration·multi-user 격리. 삭제 의존성은 검증한 범위만</td></tr>
+</tbody></table></div>
+
+<aside class="callout callout-warn">
+<p><strong>이 보장들의 상한.</strong> 위 보장은 Contract(상태 계약) 범위이며 Efficacy(판단·학습의 효용)를 보장하지 않는다. 저장·해시 검사의 통과는 판단 효용의 통과가 아니다(<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/07-state-and-storage.md">07 §8</a>). 통합 뒤의 삭제 완전성은 검증 없이 약속하지 않으며(<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/07-state-and-storage.md">07 §6</a>), 첫 phase의 결과 등급 상한은 2(개발 pilot)다(<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/09-roadmap.md">09 §5</a>). 지금 이 절의 모든 항목은 설계이며 구현·실행은 0이다.</p>
+</aside>
+</section>

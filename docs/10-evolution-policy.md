@@ -134,4 +134,4 @@ HyperAgents [E04]: task/meta agent 개선 연구.
 - 논문은 달성한 gate의 범위만 주장하며 미입증 효용을 결과처럼 쓰지 않는다.
 - 사용자 요구의 반영 확인은 요구 원장(요구 → 설계 위치 → 상태)으로 기록하고 시각화 백서가 이를 요약한다.
 
-**OPEN:** 이 감사 시점(2026-11-12)에 이 저장소에는 기술 가이드, webapp, 논문이 없다. 시각화 백서는 같은 날 이 감사 결과를 입력으로 만든다. B15의 논문이 Melete 신경망 논문인지 FCL 논문인지, B16의 superpowers 사용 지시를 FCL 작업에도 적용하는지는 사용자 확인이 필요하다.
+**OPEN:** 이 감사 시점(2026-11-12)에 이 저장소에는 기술 가이드, webapp, 논문이 없다. 시각화 백서는 같은 날 이 감사 결과를 입력으로 만들었다([README.md](/home/jimmy/repos/full-continual-learning/whitepaper/README.md), 웹 https://fcl-system-one-whitepaper.vercel.app). B15의 논문이 Melete 신경망 논문인지 FCL 논문인지, B16의 superpowers 사용 지시를 FCL 작업에도 적용하는지는 사용자 확인이 필요하다.

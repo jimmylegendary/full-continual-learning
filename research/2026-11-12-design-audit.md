@@ -179,3 +179,7 @@ PARTIAL·MISSING 130개는 이번 반영 후 이렇게 바뀌었다.
 - 원장 판정은 문서 대 문서의 대조다. 설계가 맞다는 증명이 아니다.
 - 새로 들어간 문장 대부분은 PROPOSAL·OPEN이다. 구현·학습·효용 검증은 하나도 없다. [VALIDATION.md](/home/jimmy/repos/full-continual-learning/VALIDATION.md)의 "검증하지 않은 것"은 그대로다.
 - B 번호(Melete 시기 피드백)는 세션 요약을 원천으로 썼다. 원 대화 전문 대조는 아니다.
+
+## 7. 시각화 백서
+
+이 감사와 반영된 설계를 웹 백서로 정리했다: https://fcl-system-one-whitepaper.vercel.app (소스와 조립기는 [README.md](/home/jimmy/repos/full-continual-learning/whitepaper/README.md)). 백서는 이 문서와 설계 문서를 다시 쓴 것이며 새 결과가 아니다.

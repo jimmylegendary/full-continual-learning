@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>직관 설명(eli15) — FCL System ONE 설계 백서</title>
+<script>(function(){var d=document.documentElement;function s(){try{return localStorage.getItem('fcl-wp-theme')}catch(e){return null}}
+var t=s();if(t!=='light'&&t!=='dark'){t=(window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light'}
+d.setAttribute('data-theme',t);
+document.addEventListener('DOMContentLoaded',function(){var b=document.getElementById('theme-toggle');if(!b)return;
+function sync(){var dk=d.getAttribute('data-theme')==='dark';b.setAttribute('aria-pressed',dk?'true':'false');b.textContent=dk?'라이트로 보기':'다크로 보기'}
+sync();b.addEventListener('click',function(){var n=d.getAttribute('data-theme')==='dark'?'light':'dark';d.setAttribute('data-theme',n);try{localStorage.setItem('fcl-wp-theme',n)}catch(e){}sync()})})})();</script>
+<style>
+/* @tokens:start */
+:root{color-scheme:light;--bg:#f9f9f7;--surface:#fcfcfb;--fg:#0b0b0b;--muted:#52514e;--border:#c3c2b7;--accent:#256abf;--accent-2:#eb6834;--ev-user:#2a78d6;--ev-proposal:#6250d6;--ev-literature:#008300;--ev-archive:#898781;--ev-open:#eb6834;--chart-1:#2a78d6;--chart-2:#eb6834;--chart-3:#1baf7a;--chart-4:#eda100;--chart-5:#e87ba4;--chart-6:#008300;--chart-7:#6250d6;--chart-8:#e34948;--ok:#0ca30c;--warn:#fab219;--bad:#d03b3b;--seq-0:#cde2fb;--seq-1:#9ec5f4;--seq-2:#5598e7;--seq-3:#256abf;--seq-4:#104281;}
+:root[data-theme="light"]{color-scheme:light;--bg:#f9f9f7;--surface:#fcfcfb;--fg:#0b0b0b;--muted:#52514e;--border:#c3c2b7;--accent:#256abf;--accent-2:#eb6834;--ev-user:#2a78d6;--ev-proposal:#6250d6;--ev-literature:#008300;--ev-archive:#898781;--ev-open:#eb6834;--chart-1:#2a78d6;--chart-2:#eb6834;--chart-3:#1baf7a;--chart-4:#eda100;--chart-5:#e87ba4;--chart-6:#008300;--chart-7:#6250d6;--chart-8:#e34948;--ok:#0ca30c;--warn:#fab219;--bad:#d03b3b;--seq-0:#cde2fb;--seq-1:#9ec5f4;--seq-2:#5598e7;--seq-3:#256abf;--seq-4:#104281;}
+:root[data-theme="dark"]{color-scheme:dark;--bg:#0d0d0d;--surface:#1a1a19;--fg:#f0efec;--muted:#c3c2b7;--border:#383835;--accent:#6da7ec;--accent-2:#d95926;--ev-user:#3987e5;--ev-proposal:#9085e9;--ev-literature:#008300;--ev-archive:#898781;--ev-open:#d95926;--chart-1:#3987e5;--chart-2:#d95926;--chart-3:#199e70;--chart-4:#c98500;--chart-5:#d55181;--chart-6:#008300;--chart-7:#9085e9;--chart-8:#e66767;--ok:#0ca30c;--warn:#fab219;--bad:#d03b3b;--seq-0:#104281;--seq-1:#184f95;--seq-2:#256abf;--seq-3:#5598e7;--seq-4:#9ec5f4;}
+@media (prefers-color-scheme:dark){:root:not([data-theme]){color-scheme:dark;--bg:#0d0d0d;--surface:#1a1a19;--fg:#f0efec;--muted:#c3c2b7;--border:#383835;--accent:#6da7ec;--accent-2:#d95926;--ev-user:#3987e5;--ev-proposal:#9085e9;--ev-literature:#008300;--ev-archive:#898781;--ev-open:#d95926;--chart-1:#3987e5;--chart-2:#d95926;--chart-3:#199e70;--chart-4:#c98500;--chart-5:#d55181;--chart-6:#008300;--chart-7:#9085e9;--chart-8:#e66767;--ok:#0ca30c;--warn:#fab219;--bad:#d03b3b;--seq-0:#104281;--seq-1:#184f95;--seq-2:#256abf;--seq-3:#5598e7;--seq-4:#9ec5f4;}}
+/* @tokens:end */
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:"Pretendard","Apple SD Gothic Neo","Noto Sans KR","Noto Sans CJK KR","Malgun Gothic",system-ui,sans-serif;font-size:1rem;line-height:1.7;word-break:keep-all;overflow-wrap:anywhere}
+code,.mono{font-family:ui-monospace,"SFMono-Regular","D2Coding","Noto Sans Mono CJK KR",Menlo,monospace}
+a{color:var(--accent);text-underline-offset:.15em}
+a:hover{text-decoration-thickness:2px}
+a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:3px}
+.topbar{position:sticky;top:0;z-index:10;display:flex;flex-wrap:wrap;align-items:center;gap:.2rem 1rem;padding:.55rem 1rem;background:var(--surface);border-bottom:1px solid var(--border);font-size:.9rem}
+.topbar a{text-decoration:none;white-space:nowrap;padding:.15rem 0}
+.topbar a[aria-current]{color:var(--fg);font-weight:700;text-decoration:underline;text-underline-offset:.3em}
+.topbar .sp{flex:1}
+.topbar button{font:inherit;font-size:.85rem;color:var(--fg);background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:.15rem .65rem;cursor:pointer}
+main{max-width:920px;margin:0 auto;padding:1.1rem 1rem 2rem}
+.head{margin:.4rem 0 .8rem}
+.lvl{display:inline-block;background:var(--fg);color:var(--bg);font-weight:800;font-size:.9rem;letter-spacing:.03em;border-radius:999px;padding:.05rem .75rem}
+.lvl-note{margin-left:.55rem;color:var(--muted);font-size:.9rem}
+.args{display:flex;flex-wrap:wrap;gap:.3rem;margin:.6rem 0 0;padding:0;list-style:none}
+.args li{font-family:ui-monospace,"SFMono-Regular","D2Coding","Noto Sans Mono CJK KR",Menlo,monospace;font-size:.72rem;line-height:1.5;border:1px solid var(--border);border-radius:4px;padding:0 .4rem;color:var(--muted);background:var(--surface)}
+h1{font-size:clamp(1.4rem,1.05rem + 1.7vw,2rem);line-height:1.32;margin:.7rem 0 .55rem;font-weight:800;letter-spacing:-.01em}
+h2{font-size:1.14rem;line-height:1.4;margin:1.7rem 0 .4rem}
+p{margin:.45rem 0}
+.lede{font-size:1.05rem}
+.eq{margin:.7rem 0;padding:.5rem .8rem;border-left:4px solid var(--accent);background:var(--surface);font-weight:600}
+figure{margin:1.1rem 0;padding:.85rem .85rem .65rem;border:1px solid var(--border);border-radius:8px;background:var(--surface)}
+figure svg{display:block;width:100%;height:auto}
+.fig-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;background:linear-gradient(to right,var(--surface) 30%,transparent) left center/28px 100% no-repeat local,linear-gradient(to left,var(--surface) 30%,transparent) right center/28px 100% no-repeat local,radial-gradient(farthest-side at 0 50%,color-mix(in srgb,var(--fg) 24%,transparent),transparent) left center/12px 100% no-repeat scroll,radial-gradient(farthest-side at 100% 50%,color-mix(in srgb,var(--fg) 24%,transparent),transparent) right center/12px 100% no-repeat scroll}
+.fig-scroll:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.nb{white-space:nowrap}
+table.dec th:nth-child(1){width:34%}table.dec th:nth-child(2){width:29%}table.dec th:nth-child(3){width:19%}table.dec th:nth-child(4){width:18%}
+table.dec tbody th a,table.weak td a{white-space:nowrap}
+table.weak th:nth-child(1){width:46%}table.weak th:nth-child(2){width:19%}table.weak th:nth-child(3){width:20%}table.weak th:nth-child(4){width:15%}
+.fig-scroll>.fig-in{margin:0 auto}
+figcaption{margin-top:.55rem;font-size:.9rem;line-height:1.55;color:var(--muted)}
+figcaption .l2{display:block}
+figcaption b{color:var(--fg)}
+table{border-collapse:collapse;width:100%}
+th,td{text-align:left;vertical-align:top;padding:.45rem .55rem;border-top:1px solid var(--border);font-size:.9rem;line-height:1.5}
+thead th{border-top:0;border-bottom:2px solid var(--fg);font-size:.8rem;font-weight:700;color:var(--muted)}
+tbody th{font-weight:700}
+.ev{display:inline-block;margin-left:.25rem;padding:0 .45rem;border:1px solid var(--c);border-left-width:4px;border-radius:4px;background:color-mix(in srgb,var(--c) 11%,var(--surface));color:var(--fg);font-size:.72rem;font-weight:600;line-height:1.5;white-space:nowrap;vertical-align:.1em}
+.ev-user{--c:var(--ev-user)}.ev-proposal{--c:var(--ev-proposal)}.ev-literature{--c:var(--ev-literature)}.ev-archive{--c:var(--ev-archive)}.ev-open{--c:var(--ev-open)}
+.flag{display:inline-block;margin-left:.25rem;padding:0 .4rem;border:1px solid var(--border);border-radius:4px;color:var(--muted);font-size:.72rem;line-height:1.5;white-space:nowrap}
+.rec{font-weight:700}
+.note{margin:.55rem 0}
+.note b{display:inline-block;margin-right:.35rem;padding:0 .4rem;border-radius:4px;background:var(--fg);color:var(--bg);font-size:.78rem;line-height:1.5}
+/* 선행 시도 계보 */
+.tl td{padding:.4rem .5rem}
+.tl td.yr{white-space:nowrap;color:var(--muted);width:5.2rem;font-variant-numeric:tabular-nums}
+.tl td:nth-child(3){white-space:nowrap}
+.tl td.rail{position:relative;width:1.5rem;padding:0;border-top:0}
+.tl td.rail::before{content:"";position:absolute;left:50%;top:0;bottom:0;width:2px;margin-left:-1px;background:var(--border)}
+.tl td.rail::after{content:"";position:absolute;left:50%;top:.75rem;width:11px;height:11px;margin-left:-5.5px;border-radius:50%;background:var(--surface);border:2px solid var(--muted)}
+.tl tr.self td.rail::after{background:var(--bad);border-color:var(--bad)}
+.tl tr.now td.rail::after{background:var(--accent);border-color:var(--accent)}
+.tl tr.now td,.tl tr.now th{background:color-mix(in srgb,var(--accent) 8%,var(--surface))}
+.dp{display:inline-block;margin-left:.3rem;padding:0 .4rem;border:1px solid var(--muted);border-radius:999px;color:var(--muted);font-size:.7rem;line-height:1.5;white-space:nowrap}
+/* 약점 선공개 표 */
+.weak{counter-reset:w}
+.weak tbody tr{counter-increment:w}
+.weak tbody th::before{content:counter(w);display:inline-flex;align-items:center;justify-content:center;width:1.35rem;height:1.35rem;margin-right:.4rem;border-radius:50%;background:var(--fg);color:var(--bg);font-size:.75rem;font-weight:700;vertical-align:.05em}
+.sev{display:inline-block;padding:0 .4rem;border-left:4px solid var(--c);background:color-mix(in srgb,var(--c) 10%,var(--surface));font-weight:600}
+.sev-a{--c:var(--bad)}.sev-b{--c:var(--warn)}.sev-c{--c:var(--muted)}
+.cl::before{content:"";display:inline-block;width:.78em;height:.78em;margin-right:.4em;border-radius:50%;border:2px solid var(--c);vertical-align:-.06em}
+.cl-yes{--c:var(--ok)}.cl-yes::before{background:var(--ok)}
+.cl-part{--c:var(--warn)}.cl-part::before{background:linear-gradient(90deg,var(--warn) 50%,transparent 50%)}
+.cl-no{--c:var(--bad)}
+.qa dt{font-weight:700;margin-top:.7rem}
+.qa dd{margin:.15rem 0 0 0}
+.qa dt.hard{padding-left:.55rem;border-left:4px solid var(--bad)}
+.weakest{padding:.7rem .9rem;border:2px solid var(--fg);border-radius:8px;background:var(--surface)}
+.weakest p{margin:.2rem 0}
+footer.budget{max-width:920px;margin:0 auto;padding:.9rem 1rem 2.6rem;border-top:1px solid var(--border);color:var(--muted);font-size:.84rem;line-height:1.6}
+footer.budget p{margin:.3rem 0}
+footer.budget b{color:var(--fg)}
+.sr-only{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+@media (max-width:720px){
+  main{padding:.8rem .75rem 1.6rem}
+  figure{padding:.6rem .6rem .5rem;border-radius:6px}
+  table.stack,table.stack tbody,table.stack tr,table.stack th,table.stack td{display:block;width:100%}
+  table.stack thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+  table.stack tr{margin:.55rem 0;padding:.3rem .1rem .45rem;border:1px solid var(--border);border-radius:8px;background:var(--bg)}
+  table.stack th[scope=row]{border:0;padding:.35rem .6rem .2rem;font-size:1rem}
+  table.stack td{display:grid;grid-template-columns:5.4em 1fr;gap:.4rem;border:0;padding:.18rem .6rem}
+  table.stack td::before{content:attr(data-k);color:var(--muted);font-size:.76rem;font-weight:700}
+  table.tl,table.tl tbody,table.tl tr,table.tl td{display:block;width:100%}
+  table.tl thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+  table.tl tr{position:relative;padding:.35rem 0 .45rem 1.7rem;border-top:1px solid var(--border)}
+  table.tl td{border:0;padding:.05rem .3rem;white-space:normal}
+  table.tl td.rail{position:absolute;left:0;top:0;bottom:0;width:1.2rem;padding:0}
+  table.tl td.rail::after{top:.85rem}
+  table.tl td.yr{width:auto}
+}
+@media print{.topbar{display:none}figure{break-inside:avoid}}
+</style>
+</head>
+<body>
+<nav class="topbar chrome" aria-label="백서 이동"><a href="../index.html">← 백서 본문</a><a href="brief.html">결정 브리프</a><a href="intuition.html" aria-current="page">직관 설명</a><a href="expert.html">전문가 델타</a><span class="sp"></span><button type="button" id="theme-toggle" aria-pressed="false">다크로 보기</button></nav><main>
+<header class="head"><div class="chrome"><span class="lvl">eli15</span><span class="lvl-note">처음 보는 사람용 · 중학생 수준</span><ul class="args" aria-label="elix 인자"><li>prior: hs</li><li>formalism: notation_light</li><li>density: low</li><li>visual: causal_flow</li><li>entry: problem_first</li><li>analogy: everyday</li><li>stance: assertive</li><li>goal: curiosity</li></ul></div><h1>경험이 ‘곰곰이 생각하기’를 ‘척 보면 아는 감’으로 바꿀까?</h1></header>
+<h2>문제부터 <span class="ev ev-user">사용자 명시</span></h2>
+<p>인공지능(AI)은 대화가 끝나면 방금 한 경험이 오래 남지 않습니다(엄밀히는 다름: 대화 안에서는 예시를 따라 하고, 기억 장치를 붙인 AI도 있습니다). 수학 문제집은 다릅니다. 처음 보는 유형은 한 줄씩 따져 풀지만, 열 번 풀면 보자마자 답이 보입니다. 이 설계는 AI에게도 그런 변화를 주려는 계획입니다.</p>
+<h2>세 갈래 길 <span class="ev ev-proposal">제안</span></h2>
+<p>질문이 오면 모델이 먼저 ‘이거 익숙한가?’를 느끼고(놀람 정도 하나로 줄여 말함, 엄밀히는 다름) 세 길 중 하나를 고르게 하려는 설계입니다. 제약은 비용입니다. 늘 깊게 생각하면 시간과 전기가 듭니다.</p>
+<figure><div class="fig-scroll" tabindex="0" role="region" aria-label="그림 (좁은 화면에서는 좌우로 밀어 볼 수 있음)"><div class="fig-in" style="min-width:330px;max-width:640px"><svg viewBox="0 0 480 336" width="480" height="336" preserveAspectRatio="xMidYMid meet" role="img" aria-labelledby="e-paths-title e-paths-desc" style="font-family:'Pretendard','Apple SD Gothic Neo','Noto Sans KR','Noto Sans CJK KR','Malgun Gothic',system-ui,sans-serif;">
+<title id="e-paths-title">익숙함에 따라 고르는 세 갈래 길</title>
+<desc id="e-paths-desc">질문이 오면 모델이 익숙한지 먼저 느끼고 세 길 중 하나를 고른다. 아주 익숙하면 한 번 계산해 바로 답하고, 조금 낯서면 메모한 뒤 한 번 계산하고, 많이 낯서면 메모한 뒤 두 번 계산한다.</desc>
+<defs><marker id="e-paths-ar-m" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" markerUnits="userSpaceOnUse" orient="auto"><path d="M0 0L10 5L0 10z" style="fill:var(--muted)"/></marker><marker id="e-paths-ar-a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" markerUnits="userSpaceOnUse" orient="auto"><path d="M0 0L10 5L0 10z" style="fill:var(--accent)"/></marker><marker id="e-paths-ar-f" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" markerUnits="userSpaceOnUse" orient="auto"><path d="M0 0L10 5L0 10z" style="fill:var(--fg)"/></marker></defs>
+<path d="M240 56 L240 88" style="fill:none;stroke:var(--muted);stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round" marker-end="url(#e-paths-ar-m)"/>
+<path d="M192 136 L192 152 Q192 160 184 160 L96 160 Q88 160 88 168 L88 184" style="fill:none;stroke:var(--muted);stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round" marker-end="url(#e-paths-ar-m)"/>
+<path d="M240 136 L240 184" style="fill:none;stroke:var(--muted);stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round" marker-end="url(#e-paths-ar-m)"/>
+<path d="M288 136 L288 152 Q288 160 296 160 L384 160 Q392 160 392 168 L392 184" style="fill:none;stroke:var(--muted);stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round" marker-end="url(#e-paths-ar-m)"/>
+<rect x="176" y="16" width="128" height="40" rx="8" style="fill:var(--surface)"/>
+<rect x="176" y="16" width="128" height="40" rx="8" style="fill:none;stroke:var(--muted);stroke-width:1;stroke-opacity:0.55"/>
+<text x="240" y="42" text-anchor="middle" style="font-size:16px;font-weight:400;fill:var(--muted)">질문</text>
+<rect x="136" y="88" width="208" height="48" rx="8" style="fill:var(--surface)"/>
+<rect x="136" y="88" width="208" height="48" rx="8" style="fill:var(--fg);stroke:var(--fg);stroke-width:1.5;fill-opacity:0.04"/>
+<text x="240" y="118" text-anchor="middle" style="font-size:16px;font-weight:700;fill:var(--fg)">이거 익숙한가?</text>
+<rect x="20" y="184" width="136" height="64" rx="8" style="fill:var(--surface)"/>
+<rect x="20" y="184" width="136" height="64" rx="8" style="fill:var(--fg);stroke:var(--fg);stroke-width:1.5;fill-opacity:0.04"/>
+<text x="88" y="208" text-anchor="middle" style="font-size:16px;font-weight:400;fill:var(--muted)">아주 익숙하면</text>
+<text x="88" y="232" text-anchor="middle" style="font-size:16px;font-weight:700;fill:var(--fg)">빠르게 답함</text>
+<rect x="172" y="184" width="136" height="64" rx="8" style="fill:var(--surface)"/>
+<rect x="172" y="184" width="136" height="64" rx="8" style="fill:var(--fg);stroke:var(--fg);stroke-width:1.5;fill-opacity:0.04"/>
+<text x="240" y="208" text-anchor="middle" style="font-size:16px;font-weight:400;fill:var(--muted)">조금 낯서면</text>
+<text x="240" y="232" text-anchor="middle" style="font-size:16px;font-weight:700;fill:var(--fg)">배우며 답함</text>
+<rect x="324" y="184" width="136" height="64" rx="8" style="fill:var(--surface)"/>
+<rect x="324" y="184" width="136" height="64" rx="8" style="fill:var(--accent);stroke:var(--accent);stroke-width:2;fill-opacity:0.14"/>
+<text x="392" y="208" text-anchor="middle" style="font-size:16px;font-weight:400;fill:var(--muted)">많이 낯서면</text>
+<text x="392" y="232" text-anchor="middle" style="font-size:16px;font-weight:700;fill:var(--fg)">깊게 생각함</text>
+<rect x="76" y="264" width="24" height="24" rx="4" style="fill:var(--chart-1);stroke:none;stroke-width:0"/>
+<rect x="214" y="264" width="24" height="24" rx="12" style="fill:var(--chart-2);stroke:none;stroke-width:0"/>
+<rect x="242" y="264" width="24" height="24" rx="4" style="fill:var(--chart-1);stroke:none;stroke-width:0"/>
+<rect x="352" y="264" width="24" height="24" rx="12" style="fill:var(--chart-2);stroke:none;stroke-width:0"/>
+<rect x="380" y="264" width="24" height="24" rx="4" style="fill:var(--chart-1);stroke:none;stroke-width:0"/>
+<rect x="408" y="264" width="24" height="24" rx="4" style="fill:var(--chart-1);stroke:none;stroke-width:0"/>
+<line x1="24" y1="304" x2="456" y2="304" style="stroke:var(--border);stroke-width:1;fill:none"/>
+<rect x="148" y="316" width="16" height="16" rx="3" style="fill:var(--chart-1);stroke:none;stroke-width:0"/>
+<text x="172" y="330" text-anchor="start" style="font-size:16px;font-weight:400;fill:var(--fg)">한 번 계산</text>
+<rect x="292" y="316" width="16" height="16" rx="8" style="fill:var(--chart-2);stroke:none;stroke-width:0"/>
+<text x="316" y="330" text-anchor="start" style="font-size:16px;font-weight:400;fill:var(--fg)">메모</text>
+</svg></div></div><figcaption>설계 의도: 익숙할수록 계산을 적게 씁니다.</figcaption></figure>
+<h2>잠에서 정리하기 <span class="ev ev-proposal">제안</span></h2>
+<p>낮에 메모해 둔 것을 밤에 다시 읽으며 머릿속에 굳히는 복습이 ‘잠’입니다. 깊게 생각해 얻은 답이 다음엔 직관으로 나오게 하려는 단계이며 4단계에서 시도합니다(엄밀히는 다름: 사람의 잠과 같다는 뜻이 아닙니다). 익숙하다는 건 비슷한 문제를 풀어 본 흔적이 남았다는 뜻이고, 그래서 처음부터 다 따질 필요가 줄어든다는 것이 가설입니다.</p>
+<figure><div class="fig-scroll" tabindex="0" role="region" aria-label="그림 (좁은 화면에서는 좌우로 밀어 볼 수 있음)"><div class="fig-in" style="min-width:330px;max-width:640px"><svg viewBox="0 0 480 264" width="480" height="264" preserveAspectRatio="xMidYMid meet" role="img" aria-labelledby="e-causal-title e-causal-desc" style="font-family:'Pretendard','Apple SD Gothic Neo','Noto Sans KR','Noto Sans CJK KR','Malgun Gothic',system-ui,sans-serif;">
+<title id="e-causal-title">경험이 쌓이면 계산이 줄어드는 인과 흐름(가설)</title>
+<desc id="e-causal-desc">많이 풀어 본 경험 때문에 익숙해지고, 익숙해져서 얕은 계산으로도 정답이 나온다. 잠(복습)은 익숙함을 굳힌다. 모두 검증 전의 가설이다.</desc>
+<defs><marker id="e-causal-ar-m" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" markerUnits="userSpaceOnUse" orient="auto"><path d="M0 0L10 5L0 10z" style="fill:var(--muted)"/></marker><marker id="e-causal-ar-a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" markerUnits="userSpaceOnUse" orient="auto"><path d="M0 0L10 5L0 10z" style="fill:var(--accent)"/></marker><marker id="e-causal-ar-f" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" markerUnits="userSpaceOnUse" orient="auto"><path d="M0 0L10 5L0 10z" style="fill:var(--fg)"/></marker></defs>
+<path d="M160 64 L160 96" style="fill:none;stroke:var(--accent);stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round" marker-end="url(#e-causal-ar-a)"/>
+<path d="M160 144 L160 176" style="fill:none;stroke:var(--accent);stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round" marker-end="url(#e-causal-ar-a)"/>
+<path d="M344 120 L288 120" style="fill:none;stroke:var(--accent);stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round" marker-end="url(#e-causal-ar-a)"/>
+<text x="176" y="86" text-anchor="start" style="font-size:16px;font-weight:400;fill:var(--muted)">그래서</text>
+<text x="176" y="166" text-anchor="start" style="font-size:16px;font-weight:400;fill:var(--muted)">그래서</text>
+<rect x="296" y="94" width="40" height="20" rx="2" style="fill:var(--surface);stroke:none;stroke-width:0"/>
+<text x="316" y="110" text-anchor="middle" style="font-size:16px;font-weight:400;fill:var(--muted)">굳힘</text>
+<rect x="32" y="16" width="256" height="48" rx="8" style="fill:var(--surface)"/>
+<rect x="32" y="16" width="256" height="48" rx="8" style="fill:var(--fg);stroke:var(--fg);stroke-width:1.5;fill-opacity:0.04"/>
+<text x="160" y="46" text-anchor="middle" style="font-size:16px;font-weight:700;fill:var(--fg)">많이 풀어 본 경험</text>
+<rect x="32" y="96" width="256" height="48" rx="8" style="fill:var(--surface)"/>
+<rect x="32" y="96" width="256" height="48" rx="8" style="fill:var(--fg);stroke:var(--fg);stroke-width:1.5;fill-opacity:0.04"/>
+<text x="160" y="126" text-anchor="middle" style="font-size:16px;font-weight:700;fill:var(--fg)">익숙해진다</text>
+<rect x="32" y="176" width="256" height="64" rx="8" style="fill:var(--surface)"/>
+<rect x="32" y="176" width="256" height="64" rx="8" style="fill:var(--accent);stroke:var(--accent);stroke-width:2;fill-opacity:0.14"/>
+<text x="160" y="202" text-anchor="middle" style="font-size:16px;font-weight:700;fill:var(--fg)">얕은 계산으로도</text>
+<text x="160" y="226" text-anchor="middle" style="font-size:16px;font-weight:700;fill:var(--fg)">정답이 나온다</text>
+<rect x="344" y="96" width="120" height="48" rx="8" style="fill:var(--surface)"/>
+<rect x="344" y="96" width="120" height="48" rx="8" style="fill:none;stroke:var(--muted);stroke-width:1;stroke-opacity:0.55"/>
+<text x="404" y="126" text-anchor="middle" style="font-size:16px;font-weight:400;fill:var(--muted)">잠(복습)</text>
+</svg></div></div><figcaption>화살표는 이 설계가 일으키려는 인과이며 아직 가설입니다.</figcaption></figure>
+<h2>같은 계산으로 더 잘하는지 재기 <span class="ev ev-proposal">제안</span></h2>
+<p>기준은 하나입니다. 같은 정답률에 이르는 데 쓴 계산이 줄었는가.</p>
+<p class="eq">총 계산 = 생각 횟수 × 한 번의 비용 + 메모 비용</p>
+<p>(엄밀히는 다름: 실제 비용 항목은 더 많습니다.) 쉬운 문제만 일찍 끝내 평균을 낮추는 속임수는 따로 가려내고, 같은 계산량을 쓰는 비교 모델(안 배운 모델, 고정된 모델, 복습만 한 모델)과 겨룹니다.</p>
+<figure><div class="fig-scroll" tabindex="0" role="region" aria-label="그림 (좁은 화면에서는 좌우로 밀어 볼 수 있음)"><div class="fig-in" style="min-width:330px;max-width:640px"><svg viewBox="0 0 480 328" width="480" height="328" preserveAspectRatio="xMidYMid meet" role="img" aria-labelledby="e-curve-title e-curve-desc" style="font-family:'Pretendard','Apple SD Gothic Neo','Noto Sans KR','Noto Sans CJK KR','Malgun Gothic',system-ui,sans-serif;">
+<title id="e-curve-title">경험과 잠 뒤에는 같은 정답률에 드는 계산이 줄어야 한다(개념도, 데이터 아님)</title>
+<desc id="e-curve-desc">가로축은 쓴 계산, 세로축은 정답률이다. 경험 전, 경험만, 경험과 잠 뒤의 곡선 세 개가 차례로 왼쪽에 놓이고, 같은 목표 정답률에 이르는 계산이 줄어든다. 숫자 눈금은 없는 개념도이며 측정한 데이터가 아니다.</desc>
+<defs><marker id="e-curve-ar-m" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" markerUnits="userSpaceOnUse" orient="auto"><path d="M0 0L10 5L0 10z" style="fill:var(--muted)"/></marker><marker id="e-curve-ar-a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" markerUnits="userSpaceOnUse" orient="auto"><path d="M0 0L10 5L0 10z" style="fill:var(--accent)"/></marker><marker id="e-curve-ar-f" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" markerUnits="userSpaceOnUse" orient="auto"><path d="M0 0L10 5L0 10z" style="fill:var(--fg)"/></marker></defs>
+<line x1="72" y1="40" x2="72" y2="232" style="stroke:var(--muted);stroke-width:1;fill:none"/>
+<line x1="72" y1="232" x2="412" y2="232" style="stroke:var(--muted);stroke-width:1;fill:none"/>
+<line x1="72" y1="136" x2="402" y2="136" style="stroke:var(--border);stroke-width:1;fill:none"/>
+<path d="M72.0 227.0 L78.0 226.6 L84.0 226.2 L90.0 225.8 L96.0 225.3 L102.0 224.8 L108.0 224.3 L114.0 223.7 L120.0 223.1 L126.0 222.5 L132.0 221.7 L138.0 221.0 L144.0 220.2 L150.0 219.3 L156.0 218.4 L162.0 217.4 L168.0 216.4 L174.0 215.3 L180.0 214.1 L186.0 212.8 L192.0 211.5 L198.0 210.1 L204.0 208.6 L210.0 207.0 L216.0 205.3 L222.0 203.6 L228.0 201.7 L234.0 199.7 L240.0 197.7 L246.0 195.5 L252.0 193.3 L258.0 190.9 L264.0 188.4 L270.0 185.8 L276.0 183.1 L282.0 180.4 L288.0 177.5 L294.0 174.5 L300.0 171.4 L306.0 168.3 L312.0 165.1 L318.0 161.8 L324.0 158.4 L330.0 154.9 L336.0 151.5 L342.0 147.9 L348.0 144.4 L354.0 140.8 L360.0 137.2 L366.0 133.6 L372.0 130.0 L378.0 126.4 L384.0 122.9 L390.0 119.4 L396.0 115.9 L402.0 112.5" style="fill:none;stroke:var(--muted);stroke-width:2;stroke-linecap:round;stroke-linejoin:round"/>
+<path d="M72.0 215.7 L78.0 214.5 L84.0 213.3 L90.0 212.0 L96.0 210.6 L102.0 209.1 L108.0 207.6 L114.0 205.9 L120.0 204.2 L126.0 202.3 L132.0 200.4 L138.0 198.4 L144.0 196.3 L150.0 194.0 L156.0 191.7 L162.0 189.2 L168.0 186.7 L174.0 184.0 L180.0 181.3 L186.0 178.5 L192.0 175.5 L198.0 172.5 L204.0 169.4 L210.0 166.1 L216.0 162.9 L222.0 159.5 L228.0 156.1 L234.0 152.6 L240.0 149.1 L246.0 145.6 L252.0 142.0 L258.0 138.4 L264.0 134.8 L270.0 131.2 L276.0 127.6 L282.0 124.1 L288.0 120.5 L294.0 117.1 L300.0 113.6 L306.0 110.2 L312.0 106.9 L318.0 103.7 L324.0 100.6 L330.0 97.5 L336.0 94.5 L342.0 91.6 L348.0 88.9 L354.0 86.2 L360.0 83.6 L366.0 81.1 L372.0 78.7 L378.0 76.5 L384.0 74.3 L390.0 72.3 L396.0 70.3 L402.0 68.4" style="fill:none;stroke:var(--chart-1);stroke-width:2;stroke-linecap:round;stroke-linejoin:round"/>
+<path d="M72.0 165.1 L78.0 161.8 L84.0 158.4 L90.0 154.9 L96.0 151.5 L102.0 147.9 L108.0 144.4 L114.0 140.8 L120.0 137.2 L126.0 133.6 L132.0 130.0 L138.0 126.4 L144.0 122.9 L150.0 119.4 L156.0 115.9 L162.0 112.5 L168.0 109.1 L174.0 105.9 L180.0 102.6 L186.0 99.5 L192.0 96.5 L198.0 93.5 L204.0 90.7 L210.0 88.0 L216.0 85.3 L222.0 82.8 L228.0 80.3 L234.0 78.0 L240.0 75.7 L246.0 73.6 L252.0 71.6 L258.0 69.7 L264.0 67.8 L270.0 66.1 L276.0 64.4 L282.0 62.9 L288.0 61.4 L294.0 60.0 L300.0 58.7 L306.0 57.5 L312.0 56.3 L318.0 55.3 L324.0 54.2 L330.0 53.3 L336.0 52.4 L342.0 51.5 L348.0 50.7 L354.0 50.0 L360.0 49.3 L366.0 48.7 L372.0 48.1 L378.0 47.5 L384.0 47.0 L390.0 46.5 L396.0 46.1 L402.0 45.6" style="fill:none;stroke:var(--chart-2);stroke-width:2;stroke-linecap:round;stroke-linejoin:round"/>
+<line x1="122" y1="136" x2="122" y2="252" style="stroke:var(--border);stroke-width:1;fill:none"/>
+<line x1="362" y1="136" x2="362" y2="252" style="stroke:var(--border);stroke-width:1;fill:none"/>
+<circle cx="362" cy="136.0" r="5" style="fill:var(--surface);stroke:var(--muted);stroke-width:2"/>
+<circle cx="262" cy="136.0" r="5" style="fill:var(--surface);stroke:var(--chart-1);stroke-width:2"/>
+<circle cx="122" cy="136.0" r="5" style="fill:var(--surface);stroke:var(--chart-2);stroke-width:2"/>
+<path d="M122.0 252 L122.0 260 L362.0 260 L362.0 252" style="fill:none;stroke:var(--fg);stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round"/>
+<text x="242.0" y="284" text-anchor="middle" style="font-size:16px;font-weight:400;fill:var(--fg)">같은 정답률에 드는 계산이 줄어든다</text>
+<circle cx="402" cy="112.48780840924391" r="4" style="fill:var(--muted);stroke:var(--surface);stroke-width:2"/>
+<text x="414" y="117.48780840924391" text-anchor="start" style="font-size:16px;font-weight:400;fill:var(--fg)">경험 전</text>
+<circle cx="402" cy="68.42506202208438" r="4" style="fill:var(--chart-1);stroke:var(--surface);stroke-width:2"/>
+<text x="414" y="73.42506202208438" text-anchor="start" style="font-size:16px;font-weight:400;fill:var(--fg)">경험만</text>
+<circle cx="402" cy="45.62794830426043" r="4" style="fill:var(--chart-2);stroke:var(--surface);stroke-width:2"/>
+<text x="414" y="50.62794830426043" text-anchor="start" style="font-size:16px;font-weight:400;fill:var(--fg)">경험+잠</text>
+<text x="72" y="24" text-anchor="start" style="font-size:16px;font-weight:400;fill:var(--muted)">정답률 (위쪽일수록 높음)</text>
+<text x="64" y="133" text-anchor="end" style="font-size:16px;font-weight:400;fill:var(--muted)">목표</text>
+<text x="64" y="153" text-anchor="end" style="font-size:16px;font-weight:400;fill:var(--muted)">정답률</text>
+<text x="240" y="316" text-anchor="middle" style="font-size:16px;font-weight:400;fill:var(--muted)">쓴 계산 (오른쪽일수록 많음)</text>
+<text x="464" y="24" text-anchor="end" style="font-size:16px;font-weight:700;fill:var(--fg)">개념도 — 데이터 아님</text>
+</svg></div></div><figcaption>개념도 — 데이터 아님. 눈금 숫자는 없고 모양이 주장입니다.</figcaption></figure>
+<h2>아직 아무것도 증명되지 않았습니다 <span class="ev ev-archive">기록</span></h2>
+<p>이 모델은 아직 만들지도, 시험하지도 않았습니다(엄밀히는 다름: 아주 작은 옛 실험은 있지만 이 모델의 것이 아닙니다). 비슷한 연구 11편을 끝까지 읽어도 ‘배워서 만든 구조가 고정된 구조보다 낫다’는 직접 비교는 찾지 못했습니다. 지금까지는 설계를 문서로 다듬었고, 시험은 첫 구현부터 시작합니다. 첫 구현이 끝나도 쓸 수 있는 말은 ‘작은 시험을 해 봤다’까지입니다.</p>
+<figure><div class="fig-scroll" tabindex="0" role="region" aria-label="그림 (좁은 화면에서는 좌우로 밀어 볼 수 있음)"><div class="fig-in" style="min-width:330px;max-width:640px"><svg viewBox="0 0 480 316" width="480" height="316" preserveAspectRatio="xMidYMid meet" role="img" aria-labelledby="e-ladder-title e-ladder-desc" style="font-family:'Pretendard','Apple SD Gothic Neo','Noto Sans KR','Noto Sans CJK KR','Malgun Gothic',system-ui,sans-serif;">
+<title id="e-ladder-title">증명 단계 여섯 칸 가운데 지금은 0단계</title>
+<desc id="e-ladder-desc">확인 단계는 0 설계만 있음, 1 규칙 검사 통과, 2 작은 시험, 3 엄격한 시험, 4 다른 모델과 분야에서도, 5 실제 사용 순서다. 지금은 0단계이고 첫 구현이 끝나도 최대 2단계까지만 말할 수 있다.</desc>
+<defs><marker id="e-ladder-ar-m" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" markerUnits="userSpaceOnUse" orient="auto"><path d="M0 0L10 5L0 10z" style="fill:var(--muted)"/></marker><marker id="e-ladder-ar-a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" markerUnits="userSpaceOnUse" orient="auto"><path d="M0 0L10 5L0 10z" style="fill:var(--accent)"/></marker><marker id="e-ladder-ar-f" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" markerUnits="userSpaceOnUse" orient="auto"><path d="M0 0L10 5L0 10z" style="fill:var(--fg)"/></marker></defs>
+<line x1="36" y1="40" x2="36" y2="280" style="stroke:var(--border);stroke-width:2;fill:none"/>
+<circle cx="36" cy="40" r="16" style="fill:var(--accent);stroke:var(--accent);stroke-width:2;fill-opacity:1"/>
+<text x="36" y="46" text-anchor="middle" style="font-size:16px;font-weight:700;fill:var(--surface)">0</text>
+<text x="68" y="46" text-anchor="start" style="font-size:16px;font-weight:700;fill:var(--fg)">설계만 있음</text>
+<circle cx="36" cy="88" r="16" style="fill:var(--surface);stroke:var(--muted);stroke-width:2"/>
+<text x="36" y="94" text-anchor="middle" style="font-size:16px;font-weight:700;fill:var(--fg)">1</text>
+<text x="68" y="94" text-anchor="start" style="font-size:16px;font-weight:400;fill:var(--fg)">규칙 검사 통과</text>
+<circle cx="36" cy="136" r="16" style="fill:var(--surface);stroke:var(--muted);stroke-width:2"/>
+<text x="36" y="142" text-anchor="middle" style="font-size:16px;font-weight:700;fill:var(--fg)">2</text>
+<text x="68" y="142" text-anchor="start" style="font-size:16px;font-weight:400;fill:var(--fg)">작은 시험</text>
+<circle cx="36" cy="184" r="16" style="fill:var(--surface);stroke:var(--muted);stroke-width:2"/>
+<text x="36" y="190" text-anchor="middle" style="font-size:16px;font-weight:700;fill:var(--fg)">3</text>
+<text x="68" y="190" text-anchor="start" style="font-size:16px;font-weight:400;fill:var(--fg)">엄격한 시험</text>
+<circle cx="36" cy="232" r="16" style="fill:var(--surface);stroke:var(--muted);stroke-width:2"/>
+<text x="36" y="238" text-anchor="middle" style="font-size:16px;font-weight:700;fill:var(--fg)">4</text>
+<text x="68" y="238" text-anchor="start" style="font-size:16px;font-weight:400;fill:var(--fg)">다른 모델·분야에서도</text>
+<circle cx="36" cy="280" r="16" style="fill:var(--surface);stroke:var(--muted);stroke-width:2"/>
+<text x="36" y="286" text-anchor="middle" style="font-size:16px;font-weight:700;fill:var(--fg)">5</text>
+<text x="68" y="286" text-anchor="start" style="font-size:16px;font-weight:400;fill:var(--fg)">실제 사용</text>
+<rect x="292" y="20" width="108" height="40" rx="20" style="fill:var(--accent);stroke:var(--accent);stroke-width:2;fill-opacity:0.14"/>
+<text x="346" y="46" text-anchor="middle" style="font-size:16px;font-weight:700;fill:var(--fg)">지금 여기</text>
+<rect x="292" y="116" width="168" height="40" rx="20" style="fill:none;stroke:var(--fg);stroke-width:1.5"/>
+<text x="376" y="142" text-anchor="middle" style="font-size:16px;font-weight:700;fill:var(--fg)">첫 구현의 상한</text>
+</svg></div></div><figcaption>지금은 0단계입니다.</figcaption></figure>
+<p><b>이 설명에서 생략한 것 —</b> 수식과 학습 방법의 세부, 잠 단계의 구체적 방식, 비교 모델의 정확한 정의, 모델의 실제 크기와 구조.</p>
+</main>
+<footer class="chrome budget"><p><b>분량</b> 목표 400어절 이하 · 실제 <b>362</b>어절 (그림·표 밖 262 + 안 100)</p><p>센 규칙: 화면에 보이는 제목·본문·그림·표·캡션을 공백으로 나눈 조각 중 글자나 숫자가 든 것. 세지 않은 것: 맨 위 이동 줄, 레벨 배지·인자 줄, 이 하단 줄, 그림의 보조기기용 제목·설명. 계산 도구: work-E/count_words.py.</p><p>근거: <a href="../index.html#evaluation">본문 평가 설계</a> · <a href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/08-evaluation.md?plain=1#L104">08 §3 중심 질문</a> · <a href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/09-roadmap.md?plain=1#L125">09 §3 등급</a> · <a href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/09-roadmap.md?plain=1#L187">09 P1</a> · <a href="https://github.com/jimmylegendary/full-continual-learning/blob/main/README.md">README 핵심 검증 질문</a> · <a href="https://github.com/jimmylegendary/full-continual-learning/blob/main/VALIDATION.md?plain=1#L48">VALIDATION §4 검증하지 않은 것</a> · <a href="https://github.com/jimmylegendary/full-continual-learning/blob/main/research/2026-11-11-sbl-fulltext-review.md?plain=1#L176">원문 검토 §4.1</a></p></footer>
+</body>
+</html>

@@ -1,0 +1,428 @@
+<section class="wp-section" id="sec-architecture" data-part="2부 · 어떻게 동작하나">
+<h2 id="architecture">통합 구조: 한 모델이 한 번의 질문을 처리하는 방식</h2>
+
+<p class="lede">System ONE은 사전학습 LLM 하나를 고쳐 쓰는(retrofit) 통합 설계안이다. 한 모델 안에서 질문마다 "그냥 답한다 · 쓰고 나서 답한다 · 쓰고 더 깊이 계산해서 답한다" 가운데 하나를 고르게 하려는 것이 목적이다. 이 절은 위에서 아래로 목적 → 기능 → 입력·출력 → 구조(식·그림) 순서로 그 구조를 설명한다. <strong>통합 모델의 구현·학습·효용 검증은 아직 0이다.</strong> 아래 내용은 모두 제안·가설·검증 계획이다.</p>
+
+<div class="kpi-row">
+<div class="kpi"><div class="kpi-value">3</div><div class="kpi-label">질문 한 건이 고르는 경로: fast · learn · deep (<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/09-roadmap.md">09 §2</a>)</div></div>
+<div class="kpi"><div class="kpi-value">2</div><div class="kpi-label">규칙형 판단기 v0의 임계값 수. 값은 저장소에 없고 첫 phase의 작업 T14(사전 명세와 봉인)에서 dev 분산으로 처음 정한다</div></div>
+<div class="kpi"><div class="kpi-value">4</div><div class="kpi-label">한 모델 안의 상태: 입력 표현 · 추론 작업 상태 · 지속 기억 · 제어 상태 (<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/05-integrated-architecture.md">05 §2</a>)</div></div>
+<div class="kpi"><div class="kpi-value">0</div><div class="kpi-label">통합 모델의 구현·학습·효용 검증 (<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/VALIDATION.md">VALIDATION.md §4</a>)</div></div>
+</div>
+
+<h3 id="architecture-goal">목적: 무엇을 위한 구조인가</h3>
+
+<p><span class="ev ev-user">USER</span> 사용자가 정한 최종 방향(U-T07, <a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/05-integrated-architecture.md">05 머리말</a>)은 이렇다. 사전학습 LLM의 sequence layer(토큰 순서를 처리하는 층)를 Titan-Llama 계열로, FFN(feed-forward network, 층 안의 비선형 변환 블록)을 CMS(continuum memory system, 갱신 시간척도가 다른 여러 level의 기억)로 점진적으로 바꾼다. 같은 core를 재귀적으로 실행하며 문맥별 schema 판단으로 빠른 답·rapid update(빠른 갱신)·깊은 사고를 조절한다. 최종적으로 외부 schema offload·versioning·retrieval을 지원한다.</p>
+
+<p><span class="ev ev-proposal">PROPOSAL</span> 위 조합은 연구 제안이다. 기존 논문 하나가 이 전체를 구현하거나 검증한 것은 아니다(<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/05-integrated-architecture.md">05 머리말</a>). 별도 fast model을 최종 제품으로 전제하지 않는다. 실험용 작은 모형·baseline·외부 teacher는 허용하지만 통합 목표를 대체하지 않는다(<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/05-integrated-architecture.md">05 §3</a>).</p>
+
+<h4 id="architecture-goal-schema">이 구조가 다루는 대상: schema</h4>
+
+<p><span class="ev ev-proposal">PROPOSAL</span> schema는 "여러 경험에 걸쳐 재사용되며 새로운 사례의 예측·판단·학습에 필요한 정보와 계산을 줄이는 조건부 관계 구조"로 둔다(<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/03-foundations.md">03 §1</a>). 하나의 벡터·graph node·MLP·시냅스 집합과 일대일로 대응한다고 가정하지 않는다. retrofit LLM에서는 schema를 모듈이 아니라 측정 가능한 성질로 다루며, 조작적 증거는 세 가지다(<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/research/2026-11-11-sbl-fulltext-review.md">sbl-fulltext-review §5</a> 출발점 1).</p>
+<ol>
+<li>같은 구조의 문제들에 걸친 활동 subspace 재사용</li>
+<li>새 같은-구조 과제에서의 가중치·상태 변화량 감소</li>
+<li>해당 표현을 제거·교체했을 때 구조 전이만 선택적으로 사라짐</li>
+</ol>
+<p><span class="ev ev-user">USER</span> (U-T05) schema를 symbolic으로 두는 것과 latent space에 표현하는 것을 구분해 보고하되 후자에 더 관심이 있다. <span class="ev ev-proposal">PROPOSAL</span> 그래서 1차 대상은 continuous latent schema, 곧 학습 가능한 파라미터·fast state·활성 상태에 놓인 재사용 가능한 관계·조건·계산 구조다. symbolic graph/program schema와 discrete latent는 비교군과 경계 사례다(<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/03-foundations.md">03 §6</a>).</p>
+
+<aside class="callout callout-warn">
+<p><strong>이 절의 상한.</strong></p>
+<ul>
+<li>통합 모델의 구현·학습·GPU 실행, 자연어의 schema 형성, Sleep의 실제 효용은 검증하지 않았다(<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/VALIDATION.md">VALIDATION.md §4</a>).</li>
+<li>아래의 식·그림·경로·사다리는 모두 제안이다. 효과는 "제안한다 · 가설이다 · 검증 계획이다"로만 쓴다.</li>
+<li>각 문단 앞의 라벨(USER·PROPOSAL·LITERATURE·ARCHIVE·OPEN)은 저장소 문서에 붙은 라벨을 그대로 따랐다. 문서보다 강한 라벨은 붙이지 않았다.</li>
+</ul>
+</aside>
+
+<h3 id="architecture-materials">재료: 각 재료가 맡는 일과 확인 깊이</h3>
+
+<p>System ONE은 열한 갈래의 재료를 조합한다(<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/05-integrated-architecture.md">05 §1</a>). <a href="#fig-c-materials">아래 층 그림</a>은 각 재료가 모델 안에서 맡는 자리와 재료 논문의 확인 깊이(<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/references/catalog.tsv">catalog.tsv</a> status 열)를 함께 보이고, <a href="#tab-architecture-materials">그 아래 표</a>는 같은 내용을 "가정하면 안 되는 것"과 함께 적었다.</p>
+
+<figure class="wp-figure" id="fig-c-materials">
+<img src="assets/fig-c-materials.svg" alt="여섯 층 구조. 위에서 아래로 조율(가설), 공고화(Sleep), 깊이(Looped·MoD·MoR·Depth-Attention·AttnRes·MoDA), 느린 기억(Nested Learning·CMS), 빠른 기억(Titans·Titan-Llama), 기반(pretrained LLM). 각 층 오른쪽에 확인 깊이 태그가 붙어 있고 대부분 metadata-checked이다.">
+<figcaption><span class="fig-no"></span> 재료가 모델 안에서 맡는 자리(층)와 각 재료 논문의 확인 깊이. 층은 05 §1 '제공하는 것' 열을 이 백서가 자리별로 정리한 분류이며 계산 순서나 우열이 아니다. 색이 있는 두 층(깊이·느린 기억)은 05 §5의 F_CMS 식과 §7–§9가 이 깊이에서 쓴 프로젝트 제안이라는 표시다. 재료 논문의 fulltext-read는 0편이다(design-audit §6.2).</figcaption>
+</figure>
+
+<div class="table-wrap" id="tab-architecture-materials"><table class="wp-table">
+<caption><span class="tab-no"></span> 재료별 역할과 확인 깊이 (05 §1, references/catalog.tsv)</caption>
+<thead><tr><th>재료</th><th>제공하는 것</th><th>제공한다고 가정하면 안 되는 것</th><th>라벨 · 확인 깊이</th></tr></thead>
+<tbody>
+<tr><td>Titans [A01]</td><td>입력의 관계를 neural memory fast weights에 저장·읽기</td><td>KV(key–value) 정확도만으로 추상 schema 형성</td><td><span class="ev ev-literature">LITERATURE</span> (metadata-checked)</td></tr>
+<tr><td>Titan-Llama [A04]</td><td>pretrained sequence path retrofit, segmented attention + NMM(neural memory module, 신경 기억 모듈)</td><td>전 층 전환·장기 사용자 state 운영의 자동 완성</td><td><span class="ev ev-literature">LITERATURE</span> (official-search-checked). 코드 pin(A04-CODE)은 discussion-import</td></tr>
+<tr><td>Nested Learning / HOPE [A02]</td><td>학습 과정을 여러 optimization level·context flow로 조직(HOPE는 A02가 다루는 구조의 이름)</td><td>update frequency가 의미적 추상화 수준이라는 등식</td><td><span class="ev ev-literature">LITERATURE</span> (metadata-checked)</td></tr>
+<tr><td>CMS [A02]</td><td>여러 갱신 시간척도의 기억. 레벨과 갱신 빈도는 설계 시 고정이고 학습률 <math><mrow><msub><mi>&#x003B7;</mi><mi>t</mi></msub></mrow></math>와 decay <math><mrow><msub><mi>&#x003B1;</mi><mi>t</mi></msub></mrow></math>는 입력으로부터 생성되며(Eq. 79–97) schema·assimilation·accommodation 개념은 없다</td><td>slow level은 forward에서 실행되지 않는다는 해석</td><td><span class="ev ev-literature">LITERATURE</span> (catalog는 metadata-checked, 이 행의 서술은 '전문 일부 정독' 기록)</td></tr>
+<tr><td>Sleep [A03]</td><td>fast→slow consolidation, Knowledge Seeding, Dreaming</td><td>코드·아키텍처 자체의 development evolution과 동일</td><td><span class="ev ev-literature">LITERATURE</span> (metadata-checked)</td></tr>
+<tr><td>Looped Transformer [A06, A07]</td><td>shared weights로 effective depth 증가</td><td>한 번도 반복 학습하지 않은 모델을 그냥 재호출하면 개선</td><td><span class="ev ev-literature">LITERATURE</span> (metadata-checked)</td></tr>
+<tr><td>MoD, Mixture-of-Depths [A08]</td><td>depth별 token 계산 배분</td><td>문맥 수준 schema 이해의 직접 대체</td><td><span class="ev ev-literature">LITERATURE</span> (metadata-checked)</td></tr>
+<tr><td>MoR, Mixture-of-Recursions [A09]</td><td>recursive sharing + adaptive token depth + cache 정책</td><td>임의 pretrained 모델의 무학습 전환</td><td><span class="ev ev-literature">LITERATURE</span> (official-search-checked)</td></tr>
+<tr><td>Depth-Attention [A10]</td><td>이전 layer·loop의 표현 선택적 재사용</td><td>persistent experience memory와 동일</td><td><span class="ev ev-literature">LITERATURE</span> (official-search-checked)</td></tr>
+<tr><td>Attention Residuals(AttnRes) · MoDA(Mixture-of-Depths Attention) [A11, A12]</td><td>residual·block 또는 sequence + depth KV의 선택</td><td>MoDA와 2024 MoD가 같은 방법이라는 해석</td><td><span class="ev ev-literature">LITERATURE</span> (metadata-checked)</td></tr>
+<tr><td>Rhythm-inspired control [R01–R11]</td><td>read·write·compute·consolidate의 시간적 조율 가설</td><td>biological Hz를 token interval에 직접 매핑</td><td><span class="ev ev-proposal">PROPOSAL</span> 가설. 근거 R01–R11은 discussion-import</td></tr>
+</tbody></table></div>
+
+<aside class="callout callout-warn">
+<p><strong>확인 깊이의 상한.</strong> 재료 논문(A01–A04·A06–A15)은 fulltext-read가 0편이고 대부분 metadata-checked 이하다(<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/research/2026-11-12-design-audit.md">design-audit §6.2</a> 항목 1). 그래서 05 §5의 F_CMS 식과 §7–§9(recurrent retrofit·MoD/MoR 인과성·depth read)는 이 깊이에서 쓴 <em>프로젝트 제안</em>이다. 논문이 규정한 절차를 옮긴 것이 아니며, 원문 정독 뒤 차이가 드러나면 이 절이 바뀐다. 정독 우선순위와 대조할 질문은 <a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/research/2026-11-12-design-audit/W1-gaps.txt">W1-gaps.txt</a>의 G1-14에 있다.</p>
+</aside>
+
+<h4 id="architecture-materials-split">같은 분해가 여러 논문에서 반복된다</h4>
+
+<p><span class="ev ev-literature">LITERATURE</span> (fulltext-read) 원문으로 읽은 신경망 SBL(schema-based learning, 기존 구조가 새 학습을 돕는다는 관점) 논문 가운데 여섯 편에서 "느린 구조 + 빠른 결합"의 같은 분해가 반복된다(<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/research/2026-11-11-sbl-fulltext-review.md">sbl-fulltext-review §4</a> 4.3). 느린 쪽 / 빠른 쪽은 TEM20(Tolman-Eichenbaum Machine, Whittington 외 2020)이 W / M, SWAMI23(Swaminathan 외 2023)이 T / E, MICONI25(Miconi·Kay 2025)가 느린 파라미터 / fast weight P(t), KUMAR26(Kumar 외 2026)이 좌표 코드 / cue→goal 연합, SPENS24(Spens·Burgess 2024)가 VAE(변분 오토인코더) / MHN(modern Hopfield network), HWU20(Hwu·Krichmar 2020)이 피질 CHL(문서가 약어를 풀지 않았다) / 해마 인덱스다.</p>
+<p><span class="ev ev-literature">LITERATURE</span> (fulltext-read) 다만 이 분해가 데이터에서 발견된 것은 아니다. TEM20의 분리는 고정 W_repeat/W_tile 같은 아키텍처 prior와 학습 분포가 만들었고, KUMAR26의 모듈 묶음은 Foster 외 2000의 schema 세 개를 이어받았으며 관계 계산 controller(NAVIGATE)는 backprop 사전학습 뒤 고정이다. "T는 느리고 E는 빠르다"는 SWAMI23의 원문 용어가 아니라 우리의 정리다(<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/05-integrated-architecture.md">05 §1</a>).</p>
+<p><span class="ev ev-proposal">PROPOSAL</span> 이 분해는 System ONE의 CMS(느린 수준)·Titans(빠른 기억) 역할 분담과 잘 맞는다. 위 논문들이 CMS나 Titans를 쓴 것은 아니며, 이 대응은 문헌의 발견이 아니라 우리가 구조 prior로 주입하는 해석이다. <span class="ev ev-archive">ARCHIVE</span> "FFN = 모든 schema, sequence = 모든 binding"이라는 일반 법칙은 주장하지 않고 CMS·Titan 역할 분담의 후보 가설로만 쓴다(S24, <a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/research/2026-11-09-sbl-tracking.md">sbl-tracking</a>).</p>
+
+<h3 id="architecture-states">한 모델 안의 네 상태와 전체 구조</h3>
+
+<p><span class="ev ev-proposal">PROPOSAL</span> System ONE은 한 모델 안에 네 가지 상태를 구분해 둔다(<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/05-integrated-architecture.md">05 §2</a>). 아래 표의 기호는 <a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/06-mathematical-framework.md">06 §1</a>에서 가져왔고 상태와의 대응은 이 백서의 정리다. 기호의 뜻은 <a href="#math">수학 명세</a>에 있다.</p>
+
+<div class="table-wrap"><table class="wp-table">
+<caption><span class="tab-no"></span> 한 모델 안의 네 상태 (05 §2, 기호는 06 §1)</caption>
+<thead><tr><th>상태</th><th>담는 것</th><th>기호</th></tr></thead>
+<tbody>
+<tr><td>입력 표현</td><td>현재 token과 관계·목표의 context</td><td><math><mrow><msub><mi>x</mi><mi>t</mi></msub></mrow></math> <math><mrow><msub><mi>c</mi><mi>t</mi></msub></mrow></math></td></tr>
+<tr><td>추론 작업 상태</td><td>현재 문제의 hidden states, 유효한 recursion별 depth bank</td><td><math><mrow><msub><mi>h</mi><mrow><mi>t</mi><mo>&#x0002C;</mo><mi>r</mi></mrow></msub></mrow></math> <math><mrow><msub><mi>D</mi><mrow><mi>t</mi><mo>&#x0002C;</mo><mi>r</mi></mrow></msub></mrow></math></td></tr>
+<tr><td>지속 기억</td><td>schema를 담는 weights, fast state, 느린 CMS levels, 적용 조건</td><td><math><mrow><msub><mi>&#x003B8;</mi><mi>k</mi></msub></mrow></math> <math><mrow><msub><mi>&#x003D5;</mi><mrow><mi>k</mi><mo>&#x0002C;</mo><mi>t</mi></mrow></msub></mrow></math> <math><mrow><msub><mi>M</mi><mi>t</mi></msub></mrow></math></td></tr>
+<tr><td>제어 상태</td><td>schema 적합성, uncertainty, 선택적 write, compute budget, halting, 통합 준비도</td><td><math><mrow><mi>&#x003C8;</mi></mrow></math> (controller 자체의 파라미터)</td></tr>
+</tbody></table></div>
+
+<p>추론 작업 상태와 지속 기억은 구분한다. depth attention은 이번 생각을 다시 읽는 통로이고 memory는 다음 문제에 영향을 주는 통로다. 이번 생각의 일부가 검증·학습을 거쳐 지속 기억에 들어갈 수는 있다(<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/05-integrated-architecture.md">05 §2</a>).</p>
+
+<figure class="wp-figure" id="fig-c-system">
+<img src="assets/fig-c-system.svg" alt="구조도. 입력/목표가 입력부와 공유 코어를 거쳐 출력부로 가는 주 흐름. 코어 위에 규칙형 판단기가 있고 코어 아래에 지속 기억과 depth bank가 있다. 지속 기억 왼쪽에 Sleep, 아래에 외부 저장소가 있다. 제안이며 구현은 없다.">
+<figcaption><span class="fig-no"></span> System ONE의 계산 개념도(제안, 구현 없음). 05 §3의 개념도를 상태 구분과 09 §2의 판단기·상태 경계로 다시 그렸다. 입력 표현·추론 작업 상태·지속 기억·제어 상태는 색과 태그로 구분했고, 점선 상자는 후속 phase의 확장이다.</figcaption>
+<details class="more"><summary>그림의 글 설명</summary>
+<ol>
+<li>주 흐름: 입력/목표 → 입력부 → 공유 코어(sequence는 Titan의 NMM, FFN은 CMS, 같은 weights를 recursion r회 실행) → 출력부.</li>
+<li>코어 ↔ 지속 기억: 코어가 schema를 읽고(schema read) 선택적으로 갱신한다(선택적 update).</li>
+<li>코어 ↔ depth bank: 코어가 recursion마다 표현을 저장하고 이후 recursion이 읽는다(depth read).</li>
+<li>규칙형 판단기 ↔ 코어: 판단기가 경로·쓰기·r을 정하고 코어에서 나온 익숙함 신호를 읽는다.</li>
+<li>Sleep/replay → 지속 기억: fast에서 slow로의 공고화(P4부터). 지속 기억 ↔ 외부 저장소: offload·load(상태 경계는 P1, 외부화는 P4).</li>
+</ol>
+</details>
+</figure>
+
+<p><span class="ev ev-proposal">PROPOSAL</span> 같은 내부 controller가 문맥별 schema와 토큰별 계산을 연결하고, 각 반복에서 계속 계산·빠른 학습·전환·종료를 재평가한다. 외부 저장소는 memory artifact의 검색·적재·버전 관리를 담당한다(<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/05-integrated-architecture.md">05 §3</a>). 입출력은 이렇다. 한 번의 질문에서 입력은 현재 token과 관계·목표 context이고 출력은 응답이다. learn·deep 경로에서는 응답에 더해 지속 기억의 갱신 후보(요청 전용 working state의 변경)가 생기고 commit 전 검증을 거친다. 모든 응답에는 결정 trace(경로·신호값·예산)가 붙는다(<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/09-roadmap.md">09 §2</a>, <a href="#state">상태·시계·저장 계약</a>).</p>
+
+<h3 id="architecture-turn">한 번의 질문: fast · learn · deep 세 경로</h3>
+
+<p><span class="ev ev-user">USER</span> U-T07 원문은 이 모델의 핵심 거동을 "익숙하면 매우 빠르게, 덜 익숙하면 rapid learning, 더 낯설면 더 깊은 loop"로 정의했다(<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/research/2026-11-12-design-audit.md">design-audit §4</a> 근거 1). 그래서 첫 통합 모델(P1)부터 질문마다 경로를 고르는 가장 얇은 판단기를 둔다.</p>
+
+<p><span class="ev ev-proposal">PROPOSAL</span> 규칙형 판단기(controller v0)는 익숙함 신호의 두 임계값으로 질문마다 세 경로 가운데 하나를 고르고, 고른 경로·신호값·예산을 결정 trace로 남긴다(<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/09-roadmap.md">09 §2</a>, <a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/research/2026-11-12-design-audit.md">design-audit §4</a>). 익숙함 신호는 NMM의 surprise(기억이 입력을 얼마나 예상 밖으로 느꼈는가)와 CMS 분기의 잔차(예측 오차)다. 신호를 계산하는 구체식은 저장소에 아직 없고 P1 구현에서 정한다.</p>
+
+<div class="table-wrap" id="tab-architecture-paths"><table class="wp-table">
+<caption><span class="tab-no"></span> 세 경로의 입력과 출력 (09 §2, §4 controller 행, §5 P1)</caption>
+<thead><tr><th>경로</th><th>익숙함 신호</th><th>쓰기</th><th>recursion</th><th>답하는 방식</th></tr></thead>
+<tbody>
+<tr><td>fast</td><td>낮음(익숙함)</td><td>없음</td><td class="num">r = 1</td><td>쓰기 없이 답한다</td></tr>
+<tr><td>learn</td><td>중간</td><td>Titans식 surprise write</td><td class="num">r = 1</td><td>쓰고 나서 답한다</td></tr>
+<tr><td>deep</td><td>높음(낯섦)</td><td>write</td><td class="num">r = 2</td><td>쓰고 나서 retrofit 블록을 한 번 더 적용해 답한다. 짧은 적응 학습을 같은 예산 안에 포함한다</td></tr>
+</tbody></table></div>
+
+<figure class="wp-figure" id="fig-c-turn-flow">
+<img src="assets/fig-c-turn-flow.svg" alt="흐름도. 질문 도착, 익숙함 신호 읽기, 두 임계값과 비교하는 분기점에서 낮은 신호는 fast(쓰기 없이 r=1), 중간은 learn(surprise write 뒤 r=1), 높은 신호는 deep(write 뒤 retrofit 블록 한 번 더, r=2)으로 간다. 셋이 합쳐져 결정 trace를 기록하고 응답한다. 오른쪽에 noctl 대조 arm의 설명이 있다.">
+<figcaption><span class="fig-no"></span> 한 번의 질문이 처리되는 흐름(제안). 규칙형 판단기가 익숙함 신호를 두 임계값과 비교해 경로를 고르고, 세 경로가 합쳐져 결정 trace를 남긴다. 점선 상자는 대조 arm이다.</figcaption>
+</figure>
+
+<p><span class="ev ev-proposal">PROPOSAL</span> 결정 trace는 질문마다 경로·신호값·예산을 남기며, <code>fcl</code> CLI는 응답마다 이 trace를 보인다(첫 phase의 데모 시나리오 UJ1 ④단계, <a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/09-roadmap.md">09 §5</a>). P3의 학습된 controller도 같은 접점과 같은 trace 필드를 쓴다(<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/09-roadmap.md">09 §2</a>, D-14). 대조 arm은 여섯이다. 고정(<code>fixed</code>)·무구조(<code>flat</code>)·항상-갱신(<code>always</code>)·판단기 없음(<code>noctl</code>)·경험을 prompt에 넣은 같은 base(<code>ctx</code>)·경험 없는 base(<code>base</code>)가 같은 CLI와 같은 경로로 돈다. 그중 <code>noctl</code>은 같은 모듈·같은 쓰기 예산에서 판단기 없이 모든 질문을 learn 경로·r = 1로 처리해 경로 선택의 기여를 분리한다(<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/research/2026-11-12-design-audit.md">design-audit §4</a>). 두 임계값은 dev에서 정해 봉인하며 값은 문서에 없다(첫 phase의 작업 T14).</p>
+
+<aside class="callout callout-warn">
+<p><strong>P1에서 쓰지 않는 말.</strong> 이 판단기는 학습된 schema 판단이 아니다. "학습된 schema 판단", "적응 계산"이라 쓰지 않는다. 깊이가 r ∈ {1, 2}뿐이므로 H-COMPUTE(같은 정확도에 필요한 총 계산이 줄어든다는 가설)는 시험하지 않으며 경로 분포와 계산량은 측정만 한다. 사전 명세 readout이 PASS여도 "개선"·"계산 절감"이라 쓰지 않는다. 등급 2(개발 pilot)가 상한이다(<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/09-roadmap.md">09 §5</a> P1 상한).</p>
+</aside>
+
+<aside class="callout callout-eli">
+<p><strong>쉬운 설명 — 질문마다 얼마나 애쓸지 고르는 신호등</strong></p>
+<p><em>문제.</em> 모든 질문에 똑같이 오래 생각하면 느리고, 모든 질문에 똑같이 대충 답하면 새로운 것을 못 배운다.</p>
+<p><em>해결(제안).</em> 모델이 답하기 전에 "이 질문이 얼마나 낯선가"를 먼저 가늠한다. 아주 익숙하면 바로 답한다(fast). 조금 낯설면 한 번 적어 두고 답한다(learn). 많이 낯설면 적어 두고 한 번 더 생각해서 답한다(deep). 눈금이 둘이라 길이 셋으로 갈린다. 낯설다는 신호가 크니까 더 많이 쓰고, 많이 썼으니까 더 깊이 계산한다.</p>
+<p><em>왜 이것만으로는 부족한가.</em> 신호 하나로는 "단어는 익숙한데 문제는 어려운" 경우를 알아채지 못한다. 그래서 이 규칙은 첫 단계의 임시 규칙이고, 여러 신호를 보는 판단기는 나중(P3)에 배우게 한다.</p>
+<p>이 설명에서 생략한 것 — 신호를 실제로 어떻게 계산하는지(저장소에도 아직 없다), 두 눈금의 값(P1에서 처음 정한다), "적어 둔다"가 모델 안에서 무엇을 바꾸는지(엄밀히는 다름: 숫자로 된 기억 상태 φ를 고친다).</p>
+</aside>
+
+<h3 id="architecture-controller">경로를 고르는 판단기: 해상도 사다리 v0–v2</h3>
+
+<p><span class="ev ev-user">USER</span> (U-T07) 입력 문맥에 대한 schema 판단 MLP·구조를 이 과정에 넣는다. <span class="ev ev-proposal">PROPOSAL</span> controller는 첫 통합 모델부터 가장 얇은 형태로 존재하고 이후 단계에서 깊어진다. 모든 버전은 같은 입출력 필드를 유지하고 채우는 정도만 늘린다(<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/05-integrated-architecture.md">05 §4</a>).</p>
+
+<div class="table-wrap"><table class="wp-table">
+<caption><span class="tab-no"></span> controller의 두 head와 입력·출력 (05 §4, 기호는 06 §2·§5)</caption>
+<thead><tr><th>head</th><th>하는 일</th><th>출력</th></tr></thead>
+<tbody>
+<tr><td>문맥 수준 head</td><td>어떤 관계 구조를 적용할지, 다른 schema로 바꿀지, 조합할지, 수정·분화할지 정한다</td><td>schema 선택 분포 <math><mrow><msubsup><mi>q</mi><mrow><mi>t</mi><mo>&#x0002C;</mo><mi>k</mi></mrow><mo>&#x02212;</mo></msubsup></mrow></math></td></tr>
+<tr><td>실행 수준 head</td><td>어떤 token·block를 처리할지, 어느 depth source를 읽을지, fast update의 횟수와 강도, 종료 여부를 정한다</td><td><math><mrow><mo stretchy="false">&#x00028;</mo><msub><mi>a</mi><mrow><mi>t</mi><mo>&#x0002C;</mo><mi>r</mi></mrow></msub><mo>&#x0002C;</mo><msub><mi>u</mi><mrow><mi>t</mi><mo>&#x0002C;</mo><mi>r</mi></mrow></msub><mo>&#x0002C;</mo><msub><mi>&#x003B7;</mi><mrow><mi>t</mi><mo>&#x0002C;</mo><mi>r</mi></mrow></msub><mo>&#x0002C;</mo><msub><mi>b</mi><mrow><mi>t</mi><mo>&#x0002C;</mo><mi>r</mi></mrow></msub><mo stretchy="false">&#x00029;</mo></mrow></math></td></tr>
+</tbody></table></div>
+
+<p><span class="ev ev-proposal">PROPOSAL</span> 후보 입력은 현재·과거 hidden state, memory prediction, 구조 적합성, observed·generated 구분, source reliability, prediction residual, epistemic uncertainty(모델의 지식 부족에서 오는 불확실성), aleatoric uncertainty(데이터 자체의 잡음에서 오는 불확실성), goal, 비용 예산이다. 이들 모두를 쓸 필요는 없으며 ablation(요소를 빼 보는 실험)으로 최소 구조를 찾는다(<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/05-integrated-architecture.md">05 §4</a>).</p>
+
+<figure class="wp-figure" id="fig-c-controller-ladder">
+<img src="assets/fig-c-controller-ladder.svg" alt="세 단 사다리. 아래 v0는 익숙함 신호의 두 임계값으로 fast·learn·deep을 고르는 규칙형 판단기, 가운데 v1은 token·block 계산 mask와 depth source 선택과 학습된 halting, 위 v2는 schema 조합·분화 head와 레벨별 write 허용과 eligibility 기반 지연 귀속. 위로 갈수록 채우는 필드가 늘어난다.">
+<figcaption><span class="fig-no"></span> controller 해상도 사다리 v0–v2(제안). 입출력 필드는 같고 채우는 정도만 늘어난다. v0만 첫 통합 모델(P1)에 있고, v1·v2와 phase의 정확한 대응은 문서에 한 줄로 적혀 있지 않다.</figcaption>
+</figure>
+
+<ul>
+<li><strong>v0 (첫 통합 모델, P1).</strong> 익숙함 신호의 두 임계값으로 fast·learn·deep을 고르는 규칙형이다. depth read와 token routing은 없고 loop는 r ∈ {1, 2}뿐이다(<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/05-integrated-architecture.md">05 §4</a>, <a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/09-roadmap.md">09 §2</a>). P2에서도 유지하되 고정 depth를 잴 때는 우회한다. <em>한계:</em> "익숙해도 긴 관계 합성은 깊게 계산한다" 같은 다중 신호 결정을 다루지 못한다. 이는 P3의 학습된 controller로 넘긴다(<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/09-roadmap.md">09 §2</a>).</li>
+<li><strong>v1.</strong> token·block 단위 계산 mask <math><mrow><mi>a</mi></mrow></math>, depth source 선택, 학습된 halting(<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/06-mathematical-framework.md">06 §6</a>).</li>
+<li><strong>v2.</strong> schema 조합·분화 head, 레벨별·연결별 write 허용 <math><mrow><mi>u</mi></mrow></math>, eligibility 기반 지연 귀속(<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/04-rhythms-and-orchestration.md">04 §4</a>).</li>
+</ul>
+
+<div class="table-wrap"><table class="wp-table">
+<caption><span class="tab-no"></span> 로드맵의 '깊이·recursion·controller' 행 (09 §4)</caption>
+<thead><tr><th>phase</th><th>해상도</th></tr></thead>
+<tbody>
+<tr><td>P1</td><td>규칙형 controller v0: 익숙함 신호 → fast(r=1)·learn(r=1)·deep(r=2, retrofit 블록 1회 추가 적용과 짧은 적응 학습). 경로 분포·계산량은 측정만 하고 품질 이득은 약속하지 않는다</td></tr>
+<tr><td>P2</td><td>v0 유지(고정 depth를 잴 때는 우회) + 고정 depth 격자 r ∈ {1, 2, 4, …}(retrofitted recurrence, 학습 포함), 경험 전·후 quality–compute 곡선</td></tr>
+<tr><td>P3</td><td>학습된 controller(문맥 head <math><mrow><msup><mi>q</mi><mo>&#x02212;</mo></msup></mrow></math>·token/block 계산 mask·학습된 halting, 이후 조합·분화·level별 write 허용) + 적응 깊이. 쉬운 사례만 조기 종료한 평균과 구분한다</td></tr>
+<tr><td>P4</td><td>deep-to-shallow distillation으로 같은 품질의 depth 감소를 시험한다</td></tr>
+<tr><td>P5</td><td>확대된 retrofit·모델에서 controller를 비용 포함으로 재검증한다</td></tr>
+</tbody></table></div>
+
+<p><span class="ev ev-literature">LITERATURE</span> (fulltext-read) 읽은 논문 11편에는 불일치를 만났을 때 구조를 그 자리에서 수정·분할하는 실험이 하나도 없다. KUMAR26은 place cell remap 뒤 좌표 코드를 약 20 session 재학습하고, TEM20은 구조 remapping을 예측으로만 말하며, SWAMI23은 test 시 T를 고정하고, SPENS24는 test 시 VAE(변분 오토인코더)를 동결한다. 정성 규칙은 있다. 오류가 크면 새 schema를 만들고 작으면 기존 schema를 미세 조정하며(STRUCTK25, Yu 외 2025의 리뷰), fit이 낮을수록 변화량과 계산이 커진다(SPECTRUM26, Samiei 외 2026의 관점 논문). 둘 다 데이터와 알고리즘이 없다(<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/05-integrated-architecture.md">05 §4</a>). <span class="ev ev-proposal">PROPOSAL</span> 문맥 head의 "수정·분화" 출력은 문헌에 구현된 기제가 없어 우리가 직접 설계하고 평가해야 하는 공백이다. 구현이나 채택 결정이 아니다.</p>
+
+<aside class="callout callout-decision">
+<p><strong>사용자 결정 필요 — 판단기를 첫 모델부터 두는가 (D-14).</strong></p>
+<ul>
+<li><strong>긴장.</strong> 05 §4는 "익숙한 schema라도 긴 관계 합성은 deep compute가 필요할 수 있고, 처음 보는 이름의 binding은 적은 update로 충분할 수 있다. 따라서 novelty→frequency 하나의 단조 함수로 제어하지 않는다"고 쓴다. 그런데 P1의 규칙형 판단기 v0는 익숙함 신호 하나에 두 임계값을 건 단조 규칙이다.</li>
+<li><strong>지금의 처리(2026-11-12 마스터 설계 판단).</strong> v0는 사용자가 말한 단계 처리의 가장 얇은 단조 규칙으로 P1에 둔다. 다중 신호 결정은 다루지 못한다고 인정하고 P3의 학습된 controller로 넘기며, 원인 혼동은 <code>noctl</code> 대조 arm으로 분리한다.</li>
+<li><strong>선택지(<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/09-roadmap.md">09 §10</a>).</strong> (a) P3에 두고 P1은 write 정책 접점만 둔다, (b) P1에 규칙형 v0(경로 선택만)를 둔다 — 현재 반영, (c) P1에 학습된 문맥 head를 둔다.</li>
+<li><strong>확인 대기.</strong> <a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/research/2026-11-12-design-audit.md">design-audit §5</a> B군 8번(사용자의 단계 처리를 다중 신호 controller로 일반화하는 것을 수용하는가)과 12번(P1에 v0를 넣은 방식이 맞는가), <a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/research/2026-11-12-design-audit.md">design-audit §6</a> 6.1의 D-14. 사다리 v0–v2 자체도 §5 D군 18번이 승인을 기다리는 틀이다. 이 판단으로 P1 공수가 늘었다(v0·r = 2 적응 학습·<code>noctl</code> arm).</li>
+</ul>
+</aside>
+
+<aside class="callout callout-warn">
+<p><strong>문서 사이의 표현 차이 — v0가 무엇을 채우는가.</strong> 05 §4는 v0를 "문맥 head 하나가 K개 schema slot에 대한 <math><mrow><msup><mi>q</mi><mo>&#x02212;</mo></msup></mrow></math>를 내고, 실행 head는 write gate 스칼라 하나와 종료 loop 수 선택(작은 이산 격자)만 낸다"고 서술한다. 09 §2·§5와 design-audit §4(D-14)는 P1의 v0를 "익숙함 신호의 두 임계값으로 경로를 고르는 규칙형, 학습된 schema 판단이 아님"으로 구체화하고, 학습된 문맥 head(<math><mrow><msup><mi>q</mi><mo>&#x02212;</mo></msup></mrow></math>)를 P3에 둔다(09 §1.2 U09 행). 두 서술을 잇는 문장은 저장소에 없다. 한 가지 읽는 법: 필드(경로·쓰기 허용·loop 수)는 P1부터 있고 <math><mrow><msup><mi>q</mi><mo>&#x02212;</mo></msup></mrow></math> 필드는 P1의 규칙형이 채우지 않으며, 채우는 방식이 규칙에서 학습으로 바뀐다. <span class="ev ev-open">OPEN</span> 이 읽기는 이 백서의 해석이고 저장소 문서가 확정한 것이 아니다. K와 loop 격자, 학습 신호는 pilot에서 정한다(05 §4 OPEN).</p>
+</aside>
+
+<h3 id="architecture-write-gate">쓰기 gate: 무엇 · 어디 · 얼마나 · 언제</h3>
+
+<p><span class="ev ev-proposal">PROPOSAL</span> "schema가 학습 규칙 자체를 제어하는가"라는 큰 질문을 네 질문으로 쪼개 따로 시험한다. 무엇을 쓰는가, 어디에(빠른 기억인가 느린 수준인가) 쓰는가, 얼마나 쓰는가, 언제 공고화하는가다(<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/05-integrated-architecture.md">05 §4</a>, <a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/research/2026-11-11-sbl-fulltext-review.md">sbl-fulltext-review §4</a> 4.2). Titans식 surprise 기반 쓰기는 이미 "얼마나"를 다룬다. 비어 있는 것은 fit(구조 적합도)·친숙도에 따라 쓰는 위치와 공고화 예산을 바꾸는 일이다.</p>
+
+<p>기능과 입출력은 이렇다. write engine은 이 네 질문을 교체 가능한 정책 접점으로 받는다(<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/09-roadmap.md">09 §2</a>). 입력은 쓸 후보 증거와 판단기의 신호이고, 출력은 무엇을 어디에 얼마나 쓸지와 공고화 시점이다. 06은 이를 하나의 gate로 합치지 않고 기호에 대응시킨다. 쓰는 대상·허용은 <math><mrow><mi>u</mi></mrow></math>, 강도는 <math><mrow><mi>&#x003B7;</mi></mrow></math>, 언제는 level별 consolidation clock <math><mrow><msub><mi>s</mi><mi>l</mi></msub></mrow></math>이고, "무엇을"은 쓸 증거의 선택으로 두어 전용 기호를 주지 않았다(<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/06-mathematical-framework.md">06 §3</a>).</p>
+
+<figure class="wp-figure" id="fig-c-write-gate">
+<img src="assets/fig-c-write-gate.svg" alt="행렬. 행은 무엇을·어디에·얼마나·언제 공고화하나, 열은 P1·P2·P3·P4. P1은 얼마나만 Titans식 surprise 정책 하나이고 나머지는 고정 정책. P2는 layer·level을 arm으로 비교하고 write 예산 격자를 둔다. P3는 행 전체에 걸친 칸으로 fit·친숙도 결합 선택적 write, 학습된 neuromodulator 후보, 분리 ablation. P4는 언제만 공고화 시점과 replay 예산.">
+<figcaption><span class="fig-no"></span> 쓰기 gate의 네 질문 × phase 해상도(09 §4 '빠른 쓰기 gate' 행, 06 §3). 점선 칸은 문서에 적힌 것이 없다는 뜻이다. P3 칸은 문서가 행별로 나누지 않아 행 전체에 걸쳤다.</figcaption>
+</figure>
+
+<p>문헌은 "신호가 무엇을 정하는가"가 논문마다 다르다는 점을 보인다. 아래 표의 "대응하는 질문" 열은 이 백서의 정리다.</p>
+
+<div class="table-wrap" id="tab-architecture-gate-lit"><table class="wp-table">
+<caption><span class="tab-no"></span> "새로움·일치도가 학습을 바꾼다"의 서로 다른 기제 (sbl-fulltext-review §4.2, 05 §4) — LITERATURE (fulltext-read)</caption>
+<thead><tr><th>논문</th><th>신호</th><th>신호가 정하는 것</th><th>대응하는 질문</th><th>학습률 자체의 변화</th></tr></thead>
+<tbody>
+<tr><td>SPENS24</td><td>요소별 재구성 오차가 고정 임계값 θ를 넘음</td><td>빠른 저장소에 저장할 대상(예외 잔차)</td><td>무엇을</td><td>없음</td></tr>
+<tr><td>HWU20</td><td>novelty × familiarity</td><td>공고화 replay epoch 수</td><td>언제(공고화 예산)</td><td>없음</td></tr>
+<tr><td>TEM20</td><td>예측 오차</td><td>Hebbian 쓰기 크기(암묵적 gate, 논문은 novelty gating이라 부르지 않음)</td><td>얼마나</td><td>없음</td></tr>
+<tr><td>SWAMI23</td><td>leave-one-out 조건부확률이 p_surprise보다 낮음</td><td>어느 slot을 다시 묶고 어느 위치를 보호할지</td><td>어디에</td><td>없음</td></tr>
+<tr><td>MICONI25</td><td>네트워크가 스스로 만든 neuromodulator m(t)</td><td>쓰기 시점·부호·크기(연결별 계수 A는 meta-learned)</td><td>언제·얼마나</td><td>학습된 값(meta-learned)</td></tr>
+<tr><td>KUMAR26</td><td>보상 + 탐색 잡음, ACh 억제</td><td>성공 시 쓰기, 실패 시 해당 cue 삭제</td><td>분류하지 않음</td><td>없음</td></tr>
+<tr><td>SPECTRUM26</td><td>schema fit(정성)</td><td>변화량: integration ≈ 0, assimilation 작음, accommodation 큼(데이터 없음)</td><td>얼마나(정성)</td><td>개념만</td></tr>
+<tr><td>CHU25 · GOUDAR23 · ELDER26</td><td>없음</td><td>—</td><td>—</td><td>—</td></tr>
+</tbody></table></div>
+
+<p><span class="ev ev-proposal">PROPOSAL</span> 첫 번째 "schema-조건부 학습" 후보는 쓰기 gate를 fit과 결합하는 것이다. 선택적 갱신 마스크는 SWAMI23의 규칙(확신 있게 맞은 위치는 보호하고 확신 있게 틀린 위치만 빠른 기억에 쓴다)에서 출발한다. 더 강한 후보는 MICONI25식 학습된 neuromodulator다. 연결별 가소성 계수가 필수라는 결과(단일 스칼라로 바꾸면 active 해가 30 run 중 0개)가 단서다. 대조군은 항상 쓰기, surprise만, 고정 무작위 gate이며 같은 쓰기 예산에서 비교한다(<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/research/2026-11-11-sbl-fulltext-review.md">sbl-fulltext-review §5</a> 출발점 2, <a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/06-mathematical-framework.md">06 §3</a>). 빠른 갱신의 식은 <a href="#math">수학 명세</a>에 옮겼다. 구현이나 채택 결정이 아니다.</p>
+
+<p><span class="ev ev-proposal">PROPOSAL</span> 상한: P1에서 정책이 있는 칸은 "얼마나" 하나(Titans식 surprise 정책과 항상-갱신·고정 대조)뿐이고 무엇·어디·언제는 고정 정책이다. 나머지는 P2 이후의 계획이다(<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/09-roadmap.md">09 §4</a>).</p>
+
+<h3 id="architecture-novel">낯선 입력의 세 경로 A · B · C</h3>
+
+<p><span class="ev ev-user">USER</span> (B14, 2026-10-12) 낯선 입력에서 가장 익숙한 지점에서 시작할 수 있는지 고찰한다. 학습한 뒤 강제로 다시 구성할지, 가장 유사한 기존 pattern의 구성을 쓸지는 설계 변수이며 실험과 뇌과학으로 정한다.</p>
+
+<p><span class="ev ev-proposal">PROPOSAL</span> 통합 모델에서 이 변수를 낯선 입력의 처리 경로 비교로 정의한다. 경로 A는 빠른 쓰기 뒤 같은 입력을 다시 읽고 이어 간다. 경로 B는 쓰기 없이 가장 가까운 기존 schema의 잠정 답으로 이어 간다. 경로 C는 보류하고 추가 관측을 요청한다. 경로 B의 시작점은 controller가 고르는 "가장 익숙한 지점(bridge)"이며 그 선택 규칙을 학습·ablation 대상으로 둔다. 세 경로는 같은 관측·쓰기 예산에서 <a href="#evaluation">검증 체계</a>의 F04와 F19(가까운 새로움·먼 새로움, 후보)로 비교하고 평균 loop 감소로 판정하지 않는다(<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/05-integrated-architecture.md">05 §4</a>).</p>
+
+<figure class="wp-figure" id="fig-c-novel-paths">
+<img src="assets/fig-c-novel-paths.svg" alt="스윔레인 세 줄. 경로 A는 빠른 쓰기, 같은 입력을 다시 읽기, 이어 가기. 경로 B는 쓰기 없음, 가장 익숙한 지점(bridge)에서 잠정 답, 기존 schema의 구성으로 이어 가기. 경로 C는 쓰기 없음, 보류, 추가 관측 요청. 아래에 세 경로를 F04·F19로 비교한다는 띠가 있다.">
+<figcaption><span class="fig-no"></span> 낯선 입력의 세 경로(설계 변수, 제안). 같은 입력·같은 관측 예산·같은 쓰기 예산에서 비교한다. 색 상자는 경로 B의 열린 설계 변수(bridge 선택 규칙)다.</figcaption>
+</figure>
+
+<p><span class="ev ev-archive">ARCHIVE</span> Melete(이 저장소의 전신)는 같은 질문을 낯선 query의 두 대안(write 후 최초 query 재조회·compile 대 가장 가까운 graph의 명시적 잠정 compile + write)으로 두었고, 먼 단서에서 억지로 confident frame을 만들지 않는 신호도 기록하기로 했다. prototype은 두 route를 구현했으나 추가 neural 효용은 입증되지 않았다(<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/05-integrated-architecture.md">05 §4</a>). <span class="ev ev-open">OPEN</span> 경로 선택이 familiarity 단독으로 정해지는지 구조 합성 난도와 함께 정해지는지는 "novelty→frequency 단조 함수로 제어하지 않는다"는 단서를 따른다.</p>
+
+<aside class="callout callout-warn">
+<p><strong>뇌과학 근거 확인이 남았다.</strong> 낯선 입력의 세 경로와 "이해 수준에 따라 받아들이는 다음 내용이 달라지는가(흘려듣기)"에 대한 뇌과학 근거는 아직 확인하지 않았다. 후보 문헌은 N12–N19와 Schapiro 외 2017이고, 내용은 읽지 않았다(<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/research/2026-11-12-design-audit.md">design-audit §6</a> 6.2 항목 4, G2-30). 경로 A·B·C는 이 근거와 무관하게 "비교할 설계 변수"로만 둔다.</p>
+</aside>
+
+<h3 id="architecture-cms">FFN을 CMS로 점진 전환하기</h3>
+
+<p>목적: 기존 FFN을 느린 기반으로 보존한 채 새 기억 분기를 얹어, 전환 직후에도 모델의 기능이 바뀌지 않게 한다. 입력은 hidden state <math><mrow><mi>h</mi></mrow></math>이고 출력은 FFN 모듈의 출력이다. <span class="ev ev-proposal">PROPOSAL</span> 이행 후보는 다음 식이다(<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/05-integrated-architecture.md">05 §5</a>).</p>
+
+<div class="math" id="architecture-eq-f-cms"><math display="block"><mrow><msub><mi>F</mi><mrow><mi>CMS</mi></mrow></msub><mo stretchy="false">&#x00028;</mo><mi>h</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><msub><mi>F</mi><mn>0</mn></msub><mo stretchy="false">&#x00028;</mo><mi>h</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0002B;</mo><munder><mo>&#x02211;</mo><mi>j</mi></munder><msub><mi>g</mi><mi>j</mi></msub><mo stretchy="false">&#x00028;</mo><mi>h</mi><mo stretchy="false">&#x00029;</mo><mspace width="0.167em" /><msub><mi>B</mi><mi>j</mi></msub><mspace width="0.167em" /><mi>&#x003C3;</mi><mo stretchy="false">&#x00028;</mo><msub><mi>A</mi><mi>j</mi></msub><mi>h</mi><mo stretchy="false">&#x00029;</mo></mrow></math></div>
+
+<p>기호(식의 모양에서 읽은 것이며 문서는 형태를 정하지 않았다): <math><mrow><msub><mi>F</mi><mn>0</mn></msub></mrow></math>은 원래 pretrained FFN, <math><mrow><mi>j</mi></mrow></math>는 새 분기의 번호, <math><mrow><msub><mi>g</mi><mi>j</mi></msub><mo stretchy="false">&#x00028;</mo><mi>h</mi><mo stretchy="false">&#x00029;</mo></mrow></math>는 분기 gate, <math><mrow><msub><mi>A</mi><mi>j</mi></msub></mrow></math>는 <math><mrow><mi>h</mi></mrow></math>에 먼저 곱해지는 쪽, <math><mrow><msub><mi>B</mi><mi>j</mi></msub></mrow></math>는 마지막에 곱해지는 쪽, <math><mrow><mi>&#x003C3;</mi></mrow></math>는 비선형 함수(종류는 정하지 않았다)다.</p>
+
+<ul>
+<li><span class="ev ev-proposal">PROPOSAL</span> <math><mrow><msub><mi>B</mi><mi>j</mi></msub><mo>&#x0003D;</mo><mn>0</mn></mrow></math>으로 초기화하면 이 FFN 모듈의 초기 출력은 <math><mrow><msub><mi>F</mi><mn>0</mn></msub></mrow></math>과 같다(함수 보존). <math><mrow><msub><mi>A</mi><mi>j</mi></msub></mrow></math>와 gate까지 모두 0으로 만들면 새 분기의 gradient가 막히므로 그렇게 하지 않는다. 이후 서로 다른 update·protection·activation 정책으로 새 기억을 학습한다.</li>
+<li><span class="ev ev-proposal">PROPOSAL</span> 이 식은 원본 HOPE의 정확한 구조식이 아니라 프로젝트 proposal이다. 모든 FFN이 CMS 계약 아래로 전환되어도 원래 pretrained weights를 내부 기반으로 계승할 수 있다. 원래 FFN을 완전히 제거하려면 distillation·압축으로 추가 이전한다. 여러 <math><mrow><msub><mi>F</mi><mn>0</mn></msub></mrow></math>을 직렬로 복제하는 것은 함수 보존이 아니다. <math><mrow><msub><mi>F</mi><mn>0</mn></msub><mo stretchy="false">&#x00028;</mo><msub><mi>F</mi><mn>0</mn></msub><mo stretchy="false">&#x00028;</mo><mi>h</mi><mo stretchy="false">&#x00029;</mo><mo stretchy="false">&#x00029;</mo><mo>&#x02260;</mo><msub><mi>F</mi><mn>0</mn></msub><mo stretchy="false">&#x00028;</mo><mi>h</mi><mo stretchy="false">&#x00029;</mo></mrow></math>.</li>
+<li><span class="ev ev-literature">LITERATURE</span> (metadata-checked) Nested Learning에는 pretrained MLP 초기화와 추가 학습 논의가 있다. 이것을 무학습 swap 성공 또는 필요한 최소 token 수의 근거로 읽지 않는다(<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/05-integrated-architecture.md">05 §5</a>, A02).</li>
+<li><span class="ev ev-user">USER</span> (U-T07) FFN을 CMS로 점진 교체하되 "model needs sleep의 방법으로" 한다. <span class="ev ev-open">OPEN</span> 위 식은 프로젝트 proposal이다. Sleep 논문 [A03]은 metadata-checked 수준이라 그 논문이 규정한 FFN→CMS 전환 절차는 이 절에 반영돼 있지 않다. 정독 뒤 (a) 이 식과 논문 절차의 차이, (b) Knowledge Seeding·Dreaming 단계와 전환 순서의 관계를 기록하고, 차이가 있으면 어느 쪽을 기본으로 삼을지 사용자와 확정한다. 확정 전에는 이 식을 "Sleep 논문 방법의 구현"이라 부르지 않는다. 같은 쟁점이 <a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/research/2026-11-12-design-audit.md">design-audit §5</a> B군 9번에 사용자 확인 항목으로 있다.</li>
+</ul>
+
+<aside class="callout callout-eli">
+<p><strong>쉬운 설명 — 원래 책은 두고 빈 메모장을 붙인다</strong></p>
+<p><em>문제.</em> 이미 잘 아는 모델의 한가운데를 갈아엎으면 원래 잘하던 것까지 망가질 수 있다.</p>
+<p><em>해결(제안).</em> 원래 책(F₀)은 그대로 두고 옆에 빈 메모장(<math><mrow><msub><mi>B</mi><mi>j</mi></msub><mo>&#x0003D;</mo><mn>0</mn></mrow></math>)을 붙인다. 메모장이 비어 있는 동안에는 답이 원래와 똑같다. 그다음부터 메모장에만 천천히 적는다. 책은 그대로니까 새 내용이 틀려도 원래 지식은 남는다(엄밀히는 다름: 새 분기가 책 위에 더해지는 방식이라 책의 출력도 영향을 받는다).</p>
+<p><em>왜 그냥 되지 않는가.</em> 메모장의 첫 장과 쓰는 손(<math><mrow><msub><mi>A</mi><mi>j</mi></msub></mrow></math>, gate)까지 모두 비워 두면 아무것도 적히지 않는다. 학습 신호(gradient)가 흐를 길이 필요하다.</p>
+<p>이 설명에서 생략한 것 — 메모장이 몇 개인지, 어떤 규칙으로 적는지, 원래 책을 완전히 빼는 방법(증류).</p>
+</aside>
+
+<h3 id="architecture-titan-llama">Titan-Llama 코드 접점</h3>
+
+<p>대화에서 검토한 pin은 <code>sarahpannn/titans-pytorch</code>의 한 커밋(<code>c60b4efa…</code>)이다(<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/references/catalog.tsv">catalog.tsv</a> A04-CODE). 이 pin의 코드 검토 이력은 보존하며 최신 HEAD라고 부르지 않는다. 라이선스 기록이 이 저장소에 없어서 코드 사용 방식은 열린 결정(D-02)이고, 추천은 논문 식에서 재구현하고 코드는 읽기·인용만 하는 것이다(<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/09-roadmap.md">09 §10</a>). 아래 표의 왼쪽은 이전 코드 스냅숏에서 관찰한 범위이고, 새 구현 착수 시 pin 기준 재검토와 실제 integration test가 필요하다(<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/05-integrated-architecture.md">05 §6</a>).</p>
+
+<div class="table-wrap"><table class="wp-table">
+<caption><span class="tab-no"></span> Titan-Llama 코드 접점 (05 §6) — 확인 깊이 discussion-import</caption>
+<thead><tr><th><span class="ev ev-archive">ARCHIVE</span> 코드에서 관찰한 것</th><th><span class="ev ev-proposal">PROPOSAL</span> 설계에서 점검할 것</th></tr></thead>
+<tbody>
+<tr><td><code>TitanDecoderLayer</code>가 원래 <code>hf_layer.mlp</code>를 재사용한다</td><td>CMS wrapper의 구체 접점이 된다</td></tr>
+<tr><td><code>freeze_backbone()</code>의 trainable-name 규칙에 CMS가 빠지면 추가 모듈이 freeze될 수 있다</td><td>optimizer와 trainable parameters를 명시적으로 점검한다</td></tr>
+<tr><td><code>generate()</code>와 기본 <code>generate_with_titan_memory(reset_memory=True)</code>는 state reset 경로를 가진다</td><td>session persistence는 별도 계약이다(<a href="#state">상태·시계·저장 계약</a>)</td></tr>
+<tr><td><code>forward_core()</code>의 position 증가와 memory write는 token 시계다</td><td>이를 recursion 시계로 그대로 재사용하지 않는다</td></tr>
+<tr><td>segmented attention과 remaining full attention, memory state와 KV는 별도다</td><td>partial conversion 결과를 all-layer 성공으로 확대하지 않는다</td></tr>
+</tbody></table></div>
+
+<p><span class="ev ev-proposal">PROPOSAL</span> 저장 쪽 점검도 있다. 재시작·rollback·offload 시 weights만 저장하고 momentum·clock·cache semantics를 누락하지 않는다(<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/05-integrated-architecture.md">05 §6</a>).</p>
+
+<h3 id="architecture-recurrence">재귀 retrofit과 MoD · MoR의 인과성</h3>
+
+<p><span class="ev ev-proposal">PROPOSAL</span> (05 §7) 전체 LLM의 한 번 forward를 1 loop로 두면 최소 경로 비용은 원래 direct answer와 비슷한 수준에서 시작하고 추가 모듈 비용까지 들 수 있다. "매우 빠름"을 목표로 하면 입력부–작은 shared core–출력부의 단위를 먼저 설계해야 한다. Retrofitted Recurrence [A13], ETD(Encode, Think, Decode) [A14], Relaxed Recursive Transformers [A15]는 pretrained model에서 반복 구조로 이행하는 참고다(셋 다 discussion-import). depth별 adapter·LoRA(low-rank adaptation), 중간-depth loss, deep-to-shallow distillation은 후보다. 원래 모델을 같은 입력으로 단순 반복 실행하는 것과 다르다. System 1은 적은 유효 계산 경로, System 2는 같은 모델의 더 큰 계산 예산을 뜻하며, 출력 길이가 같지 않으면 end-to-end 비교를 분리한다(<a href="#evaluation">검증 체계</a>).</p>
+
+<p><span class="ev ev-proposal">PROPOSAL</span> (05 §8) MoD·MoR의 인과성 규칙은 다음과 같다.</p>
+<ul>
+<li>현재 token의 router가 아직 생성되지 않은 token을 참조하지 않게 한다. sequence 전체에서 top-k를 뽑는 방식은 학습용 routing과 autoregressive 실행을 구별해야 한다. expert-choice와 token-choice는 선택 시점이 다르다.</li>
+<li>controller가 추론 도중 정책을 바꾸게 하려면 관측 가능한 state에 근거한 재평가를 정의한다.</li>
+<li>weight sharing은 KV sharing을 자동으로 정당화하지 않는다. recursion index·token·branch·parameter version별로 어떤 source가 존재하는지 정의한다.</li>
+<li>skip된 token의 depth state를 무조건 존재하는 것으로 처리하지 않는다.</li>
+</ul>
+
+<h3 id="architecture-depth-read">깊이 읽기와 latent read 인터페이스</h3>
+
+<p><span class="ev ev-proposal">PROPOSAL</span> (05 §9) Depth-Attention의 cross-layer V mixing, AttnRes의 residual·block aggregation, MoDA의 joint sequence/depth KV는 별도 후보다. 원래 KV 구조에 의존하는 기법을 Titans로 attention을 바꾼 모델에 붙일 때 같은 cache 절약이 유지되는지 검증한다. 그래서 먼저 "유효한 이전 표현을 읽는 기능"을 공통 인터페이스로 정의하고 구현을 경쟁시킨다. depth bank는 이전 loop의 오판도 담는다. 선택 head가 다양성·불확실성을 유지할지, stale parameter version의 표현을 어떻게 무효화할지 평가한다. 같은 root를 반복해서 읽는 것을 독립 confidence 상승으로 계산하지 않는다.</p>
+
+<p>아래 표는 읽기 인터페이스 후보를 모았다. 위 세 줄은 이번 생각을 다시 읽는 통로(depth read)이고, 아래 다섯 줄은 지속 기억에서 읽은 latent를 hidden 계산에 잇는 방식(latent read)이다. "쓰는 것" 열은 그 후보가 지속 기억에 쓰는지를 이 백서가 05 §2·§9에서 읽어 적은 것이다.</p>
+
+<div class="table-wrap" id="tab-architecture-read"><table class="wp-table">
+<caption><span class="tab-no"></span> 읽기 인터페이스 후보 대조 (05 §1·§2·§9·§10, 라벨은 문서 그대로)</caption>
+<thead><tr><th>후보</th><th>읽는 것</th><th>쓰는 것</th><th>장단 · 문서가 적은 주의</th><th>라벨</th></tr></thead>
+<tbody>
+<tr><td>Depth-Attention [A10]</td><td>이전 layer·loop의 표현(sequence attention 전 같은 위치의 depth value 섞기)</td><td>지속 기억에는 쓰지 않는다(읽기 접점). 읽는 대상인 depth bank는 이번 생각의 상태다</td><td>persistent experience memory와 동일하지 않다. depth bank는 이전 loop의 오판도 담는다</td><td><span class="ev ev-literature">LITERATURE</span> (official-search-checked)</td></tr>
+<tr><td>Attention Residuals [A11]</td><td>block·residual 표현의 선택적 집계</td><td>지속 기억에는 쓰지 않는다(읽기 접점)</td><td>같은 root를 반복 읽는 것을 독립 confidence 상승으로 세지 않는다</td><td><span class="ev ev-literature">LITERATURE</span> (metadata-checked)</td></tr>
+<tr><td>MoDA [A12]</td><td>sequence와 depth의 KV를 함께</td><td>지속 기억에는 쓰지 않는다(읽기 접점)</td><td>2024 MoD와 같은 방법이 아니다. 원래 KV 구조에 의존하므로 Titans 기반 모델에서 cache 절약이 유지되는지 검증해야 한다</td><td><span class="ev ev-literature">LITERATURE</span> (metadata-checked)</td></tr>
+<tr><td>source pointer</td><td>원 source를 가리키는 포인터</td><td>쓰지 않음(읽기 접점)</td><td>H4가 요구한 대조: 같은 정보·예산의 pointer와 terminal</td><td><span class="ev ev-proposal">PROPOSAL</span></td></tr>
+<tr><td>terminal state</td><td>trajectory의 마지막 hidden state</td><td>쓰지 않음(읽기 접점)</td><td>전체 hidden-state 전달과 구분해서 관측해야 한다</td><td><span class="ev ev-proposal">PROPOSAL</span></td></tr>
+<tr><td>all-state</td><td>출력 trajectory의 모든 hidden state</td><td>쓰지 않음(읽기 접점)</td><td>H4: 틀렸다고 확인되기 전까지 유지하는 basis. free-form vec2text를 필수 관문으로 두는 것은 아니다</td><td><span class="ev ev-user">USER</span> (H4) · <span class="ev ev-open">OPEN</span></td></tr>
+<tr><td>learned interface (projection·gate·adapter)</td><td>latent read를 hidden computation에 잇는 학습 가능한 변환</td><td>쓰지 않음(읽기 접점). 변환 자체는 학습 대상</td><td>임의 latent를 pretrained hidden space에 그냥 더하면 의미가 전달되지 않는다. alignment를 학습하고 같은 정보·예산으로 비교한다</td><td><span class="ev ev-proposal">PROPOSAL</span></td></tr>
+<tr><td>text prefix(외부 frozen consumer용)</td><td>text로 바꾼 trajectory를 frozen LLM token 앞에 둔다</td><td>쓰지 않음(읽기 접점)</td><td>강한 대조군이다. 사용자 확인 전까지 보존할 후보 interface다</td><td><span class="ev ev-proposal">PROPOSAL</span> · <span class="ev ev-open">OPEN</span></td></tr>
+</tbody></table></div>
+
+<h3 id="architecture-vec2text">vec2text에서 통합 모델로의 전환과 H4</h3>
+
+<p><span class="ev ev-archive">ARCHIVE</span> 이 저장소의 전신 Melete는 trajectory를 text로 읽어 내는 reader(vec2text 계열: 임베딩 벡터에서 text를 복원하는 방법 [A05])로 frozen consumer(고정된 외부 LLM)를 편향시키려 했다. <span class="ev ev-proposal">PROPOSAL</span> 통합 모델에서는 latent read를 projection·gate·adapter로 hidden computation에 연결하는 경로가 가능해져 free-form vec2text를 필수 관문으로 두지 않는다. 그렇다고 임의 latent를 pretrained hidden space에 더하면 의미가 전달되는 것은 아니므로 alignment를 학습하고, source pointer·terminal state·all-state·learned interface를 같은 정보·예산으로 비교한다(<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/05-integrated-architecture.md">05 §10</a>, A05, S26).</p>
+
+<p><span class="ev ev-user">USER</span> (B14/H4, 2026-10-12) 매 turn working frame의 출력 trajectory의 모든 hidden state를 vec2text로 LLM token 앞에 배치해 bias한다는 가설 H4는 틀렸다고 확인되기 전까지 유지하는 basis다. B01(2026-09-27)은 vec2text 대안의 전수 검토도 요구했다. <span class="ev ev-user">USER</span> (U-T02, U-T07) model 수정 없이 하다 보니 vec2text에 대한 기대감이 부족하다고 했고, 가장 간단하게 시작해 점점 고도화하자고 했다. 보존된 사용자 발화(U-T01–U-T11)에는 text interface가 불필요하다는 문장이 없다.</p>
+
+<p><span class="ev ev-proposal">PROPOSAL</span> "필수 관문으로 두지 않는다"는 U-T07의 통합 구조에서 정리자가 도출한 추론이다. 통합 모델에는 text를 전달받는 외부 frozen LLM이 없어 text 변환과 prefix 위치가 필수 조건은 아니다. 그러나 H4가 요구한 관측은 유지한다. terminal만 쓰는 경우와 구분되는 전체 hidden-state 전달, 같은 정보·예산의 pointer·terminal 대조다. 외부 frozen consumer용 text prefix는 강한 대조군이며 사용자 확인 전까지 보존할 후보 interface로 둔다.</p>
+
+<aside class="callout callout-warn">
+<p><strong>OPEN — 정리자의 추론이다.</strong> text interface를 현재 필수 조건에서 내리는 결정이 사용자 의사인지는 확인되지 않았다(<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/05-integrated-architecture.md">05 §10</a> OPEN, <a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/research/2026-11-12-design-audit.md">design-audit §5</a> B군 7번). <span class="ev ev-archive">ARCHIVE</span> Melete의 기록은 GTR sentence vector를 대상으로 한 vec2text의 혼합 실패가 graph hidden-state space를 위해 학습한 decoder의 실패가 아니므로 H4를 기각하는 근거로 쓰지 않는다고 정리했다. 통합 모델의 interface 후보 군은 문헌으로 확인한 것만 추가한다.</p>
+</aside>
+
+<h3 id="architecture-sleep">Sleep이 만들어야 할 변화</h3>
+
+<p><span class="ev ev-proposal">PROPOSAL</span> (05 §11) 목적: 경험의 복원·보존을 넘어, 새 관계 공유 사례에서 짧은 loop가 기능을 수행하도록 학습한다. 후보는 검증된 deep trajectory의 distillation, replay에서 조건·관계 재조합, adaptation-after-replay objective다. generated curriculum은 외부 사실의 새 관측으로 세지 않는다. 같은 데이터·총 계산량의 replay·teacher baseline으로 원인을 분리한다. Sleep 자체는 로드맵의 P4에서 처음 들어가며 P1–P3에서는 약속하지 않는다(<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/09-roadmap.md">09 §4</a>).</p>
+
+<figure class="wp-figure" id="fig-c-sleep">
+<img src="assets/fig-c-sleep.svg" alt="상태기계. 시작에서 S0(retrofit과 기본 학습을 마친 상태)로, 경험 축적으로 SE(지정된 경험을 축적한 상태)로, Sleep으로 SES(같은 경험으로 Sleep까지 수행한 상태)로 간다. SE에는 경험 추가 자기 루프가 있다. 점선 화살표는 SE와 SES를 S0와 C* 값으로 비교하는 측정 계획이다. 위 상자에 Sleep의 첫 형태가 적혀 있다.">
+<figcaption><span class="fig-no"></span> 대표 실험의 세 상태 S0·SE·SES와 Sleep(08 §3, 05 §11). 점선은 측정 계획이다. P1부터 S0→SE만 있고 SES는 P4부터다.</figcaption>
+</figure>
+
+<ul>
+<li><span class="ev ev-literature">LITERATURE</span> (fulltext-read) SPENS24: 문헌의 공고화는 빠른 저장소(MHN, modern Hopfield network)가 teacher, 느린 수준(VAE)이 student인 replay다. replay 집합은 noise cue 10,000개를 MHN에 한 번 넣어 만든 고정 집합이고, 새 사건과 교차하는 replay와 generative replay는 제안에 그친다.</li>
+<li><span class="ev ev-literature">LITERATURE</span> (fulltext-read) HWU20: replay 횟수는 <math><mrow><mrow><mi>epochs</mi></mrow><mo>&#x0003D;</mo><msub><mi>e</mi><mrow><mi>default</mi></mrow></msub><mo>&#x0002B;</mo><mi>N</mi><mi>M</mi><mo>&#x000B7;</mo><msub><mi>e</mi><mrow><mi>boost</mi></mrow></msub></mrow></math>로 정한다. 고정 800 epoch 조건(총 16,800)과 1,600 epoch 조건(총 33,600)보다 적은 총 13,875 epoch로 같거나 더 나은 probe 값을 냈다(그림 판독 근사). 저자도 neuromodulator가 빠른 학습에 필수는 아니라고 쓴다.</li>
+<li><span class="ev ev-literature">LITERATURE</span> (fulltext-read) SWAMI23: Discussion은 T를 시간에 걸쳐 rebinding하는 방안을 제안만 하며 실험은 없다. 원문 검토는 이를 반복된 rebinding의 느린 가중치 흡수 제안으로 요약한다.</li>
+<li><span class="ev ev-archive">ARCHIVE</span> (S22) 원문 복원 뒤 context로 다시 제공한 iRAG의 filtered QA(Wiki 99.3%, Character 85.4%)와 원문 재구성만으로 consolidation한 직접 QA(Wiki 31%, Character 33%)는 다른 지표다. 기억 복원과 유용한 판단은 별도 학습 문제다(<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/05-integrated-architecture.md">05 §11</a>).</li>
+<li><span class="ev ev-proposal">PROPOSAL</span> Sleep의 첫 형태는 빠른 저장소에서 느린 수준으로 가는 teacher–student replay다. replay 예산의 novelty×familiarity 배분을 같은 총 계산의 고정 예산과 비교하고, 진단으로 SPENS24의 prototype 수축·lure 침입과 HWU20의 Tse식 probe를 빌린다(<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/research/2026-11-11-sbl-fulltext-review.md">sbl-fulltext-review §5</a> 출발점 4).</li>
+</ul>
+
+<aside class="callout callout-warn">
+<p><strong>문헌 정독이 남았다 — Melete neural-memory 연구층.</strong> Sleep과 <a href="#state">상태 계약</a>에 연결할 후보(Sleep-time compute, agent memory, admission·commit·validity, canonical/materialized state의 분리, Sleep을 transactional compiler로 보는 관점)는 아직 검토하지 않았다. 이 절의 Sleep 서술은 SBL 논문 6편과 Sleep 논문 [A03]의 metadata 깊이에 기대고 있다(<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/research/2026-11-12-design-audit.md">design-audit §6</a> 6.2 항목 2, G2-28).</p>
+</aside>
+
+<h3 id="architecture-rhythm">리듬과 오케스트레이션: 일정한 주기를 넘어서</h3>
+
+<p><span class="ev ev-user">USER</span> 출발점(<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/04-rhythms-and-orchestration.md">04 머리말</a>): 감정·노력·집중·수면·익숙함에 따라 활동이 달라진다면 모든 내용을 일정 token 주기로만 갱신하는 것으로 충분한가? 여러 주파수의 동시·순차·부분 활성화를 더 본질적으로 이해하고 싶다. <span class="ev ev-proposal">PROPOSAL</span> 연구 방향은 주기 하나를 바꾸는 controller를 넘어 계산·읽기·정보 교환·학습 후보·변경·통합을 구분해 조율하는 것이다. 이는 공학적 가설이며 뇌의 완성된 학습 알고리즘이라는 주장이 아니다. 근거는 R01–R11(모두 discussion-import)과 HOPE/CMS [A02]다.</p>
+
+<h4 id="architecture-rhythm-cms">CMS에서 구분할 것</h4>
+
+<p><span class="ev ev-proposal">PROPOSAL</span> (04 §1) 기본 CMS의 느린 level은 파라미터가 덜 자주 갱신되더라도 매 forward에 참여할 수 있다. HOPE에는 입력별 learning rate·retention 같은 적응적 요소가 이미 있으므로 "모든 내용을 동일 강도로 무조건 쓴다"고 단순화하지 않는다. 처리 시간척도, update 기회, 실제 변경 크기, 기억의 유지 기간은 서로 다르다. 고정 주기는 GPU batching과 비용 관리에 유용할 수 있다. 문제는 그 간격이 학습의 의미까지 대신 결정하는가다.</p>
+
+<p>상수 gradient <math><mrow><mi>g</mi></mrow></math>를 <math><mrow><mi>C</mi></mrow></math>개씩 합산해 학습률 <math><mrow><mi>&#x003B7;</mi></mrow></math>로 적용하는 단순한 경우, 총 <math><mrow><mi>T</mi></mrow></math>개 입력의 변경량은 다음과 같다(<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/04-rhythms-and-orchestration.md">04 §1</a>). 덜 자주 갱신한다고 총 변경량이 반드시 줄지는 않는다는 뜻이다. 실제 non-linear update는 순서와 state에 의존하므로 이 식을 일반 거동으로 확대하지 않는다.</p>
+
+<div class="math" id="architecture-eq-sum-update"><math display="block"><mrow><mfrac><mrow><mi>T</mi></mrow><mrow><mi>C</mi></mrow></mfrac><mo>&#x000B7;</mo><mi>C</mi><mo>&#x000B7;</mo><mi>&#x003B7;</mi><mo>&#x000B7;</mo><mi>g</mi><mo>&#x0003D;</mo><mi>T</mi><mo>&#x000B7;</mo><mi>&#x003B7;</mi><mo>&#x000B7;</mo><mi>g</mi></mrow></math></div>
+
+<h4 id="architecture-rhythm-bio">생물학적 관찰과 적용 한계</h4>
+
+<div class="table-wrap" id="tab-architecture-rhythm-bio"><table class="wp-table">
+<caption><span class="tab-no"></span> 리듬 관찰과 적용 한계 (04 §2) — LITERATURE (discussion-import)</caption>
+<thead><tr><th>근거</th><th>논의한 현상</th><th>옮길 수 있는 가설 · 금지할 확대</th></tr></thead>
+<tbody>
+<tr><td>R01 LFP 생물물리</td><td>막 전류·배치·형태가 집합 신호에 영향</td><td>EEG·LFP는 weight update counter가 아니다</td></tr>
+<tr><td>R02 aperiodic 분해</td><td>주기적 peak와 비주기 background를 분리</td><td>band power 증가는 주파수 증가가 아니다</td></tr>
+<tr><td>R03 rhythmic attention</td><td>느린 위상에 따라 여러 영역의 beta·gamma·alpha 조합 변화</td><td>동시성과 순차성이 공존할 수 있다. 모든 연결이 인과적이라고 확대하지 않는다</td></tr>
+<tr><td>R04 beta·gamma bursts</td><td>개별 시행의 짧은 burst가 평균에서는 지속처럼 보일 수 있음</td><td>평균 빈도뿐 아니라 사건의 시점·길이를 연구한다</td></tr>
+<tr><td>R05 theta phase perturbation</td><td>위상과 과제 구간에 따라 encoding·retrieval 수행 영향</td><td>같은 주파수의 상대 시점도 중요할 수 있다</td></tr>
+<tr><td>R06 novelty theta</td><td>새로운 환경에서 theta frequency 감소 관찰</td><td>낯섦↑ → Hz↑ → 학습↑의 단조 법칙을 쓰지 않는다</td></tr>
+<tr><td>R07 인간 수면 결합</td><td>slow oscillation·spindle·ripple의 정렬</td><td>관찰 상관과 causal intervention을 구별한다</td></tr>
+<tr><td>R08 위상 맞춘 spindle</td><td>생쥐에서 적절한 slow-wave 위상의 조작이 기억 효과와 연결</td><td>단순 발생 횟수보다 관계 시점이 중요할 수 있다</td></tr>
+<tr><td>R09 공포 회로 4 Hz</td><td>특정 행동과 PFC–amygdala 결합</td><td>"4 Hz = 공포" 범용 대응표를 만들지 않는다</td></tr>
+<tr><td>R10 학습률·불확실성</td><td>변동성·관측 신뢰도와 새 정보의 영향</td><td>노력·각성 scalar 하나로 학습 제어를 끝내지 않는다</td></tr>
+<tr><td>R11 eligibility</td><td>특정 시냅스 실험에서 delayed modulatory signal의 제한된 시간창</td><td>과거 activity와 나중 feedback의 귀속. 초 단위를 token에 그대로 옮기지 않는다</td></tr>
+</tbody></table></div>
+
+<p><span class="ev ev-literature">LITERATURE</span> (discussion-import) 빠른 ripple이 장기 통합에 참여할 수 있으므로 "fast frequency = 단기기억"도 틀린 단순화다. 뇌 전체가 순간마다 한 대역만 "선택"한다는 전제도 두지 않는다(<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/04-rhythms-and-orchestration.md">04 §2</a>).</p>
+
+<h4 id="architecture-rhythm-ops">조율을 위한 최소 분리: 여덟 동작</h4>
+
+<p><span class="ev ev-proposal">PROPOSAL</span> 조율은 "무엇을 활성화하고 무엇을 바꾸는가"를 동작으로 나눠 다룬다(<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/04-rhythms-and-orchestration.md">04 §3</a>). 활동한 모든 부분을 학습할 필요가 없다. 간단한 정정은 이해는 쉬워도 즉시 기록해야 하고, 낯선 소문은 계산이 많이 필요해도 강하게 쓰면 안 될 수 있다. 익숙함·적용성·신뢰도·변동성·epistemic uncertainty·aleatoric noise·결과 중요도는 구별할 후보 신호다.</p>
+
+<div class="table-wrap"><table class="wp-table">
+<caption><span class="tab-no"></span> 조율의 여덟 동작 (04 §3)</caption>
+<thead><tr><th>동작</th><th>의미</th><th>예</th></tr></thead>
+<tbody>
+<tr><td>Activate / read</td><td>현재 판단에 이미 있는 구조를 사용</td><td>익숙한 schema를 강하게 읽되 수정은 하지 않는다</td></tr>
+<tr><td>Compute</td><td>hidden state 정교화</td><td>익숙한 긴 관계 합성에 여러 loop</td></tr>
+<tr><td>Bind</td><td>기존 구조에 새 대상 연결</td><td>낯선 이름을 역할에 연결</td></tr>
+<tr><td>Eligibility</td><td>어느 경험이 어떤 경로를 사용했는지 남기는 후보 흔적</td><td>이후 정정의 대상 보존</td></tr>
+<tr><td>Write</td><td>어떤 상태·파라미터를 실제로 변경</td><td>신뢰 가능한 새 증거의 국소 반영</td></tr>
+<tr><td>Switch</td><td>다른 기존 schema나 맥락 선택</td><td>수정 없이 B에서 A로 돌아옴</td></tr>
+<tr><td>Consolidate</td><td>여러 경험의 안정적 구조 통합</td><td>replay·적응 후 일반화 학습</td></tr>
+<tr><td>Protect / expand</td><td>기존 구조 보호 또는 표현 여유 확보</td><td>예외 때문에 전체 schema를 덮어쓰지 않는다</td></tr>
+</tbody></table></div>
+
+<p><span class="ev ev-user">USER</span> (B04, 2026-10-05) 너무 동떨어진 내용은 흘려듣는다. 예: 초등학생과 미적분, 반도체를 모르는 운동선수, 2007년 비권위자의 스마트폰 제안. <span class="ev ev-proposal">PROPOSAL</span> 그래서 학습 가능성(learnability)을 쓰기 허용 <math><mrow><mi>u</mi></mrow></math>와 별도의 신호로 둔다. 후보 입력은 현재 이해 수준에서 이어 붙일 수 있는 거리, 관심, 출처 신뢰도, 잔차 크기다. 거리가 너무 멀거나 신뢰도가 낮은 입력은 얕게 기록하고 강하게 쓰지 않되 폐기하지 않고 보류 상태로 남기며, 독립 근거가 오거나 이어 붙일 지점(bridge)이 생기면 다시 평가한다. 새 영역을 영구히 배제하지 않도록 작은 탐색 예산을 둔다. 이 신호들을 하나의 임계값으로 합치지 않으며 학습량 <math><mrow><mi>&#x003B7;</mi></mrow></math>·쓰기 허용 <math><mrow><mi>u</mi></mrow></math>·계산 깊이 <math><mrow><mi>a</mi></mrow></math>와도 분리한다(<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/04-rhythms-and-orchestration.md">04 §3</a>). <span class="ev ev-archive">ARCHIVE</span> Melete v0.2는 같은 신호를 따로 읽고 선택을 ignore·defer·seek_bridge·reflect·assimilate/restructure로 나눴으나 둘 다 제품 가설이며 검증된 규칙이 아니다. <span class="ev ev-open">OPEN</span> "연결점이 없으면 학습이 불가능하다"는 단정은 채택하지 않았고, 흘려듣기를 불가능이 아니라 학습 대상 제외·보류로 읽는 것이 사용자 의도에 맞는지 확인이 필요하다(평가는 F19 후보).</p>
+
+<h4 id="architecture-rhythm-elig">Eligibility의 제안식</h4>
+
+<p>목적: 최근 사건을 "나중에 피드백이 오면 바꿀 후보"로 남겨 두었다가, 관련 피드백이 결속될 때만 실제 변경을 만든다. 입력은 새 증거와 피드백, 출력은 level <math><mrow><mi>l</mi></mrow></math>별 흔적 <math><mrow><mi>E</mi></mrow></math>와 실제 변경 <math><mrow><mi>W</mi></mrow></math>다. <span class="ev ev-proposal">PROPOSAL</span> 두 식은 생물학의 확정식이 아닌 설계 표기다(<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/04-rhythms-and-orchestration.md">04 §4</a>).</p>
+
+<div class="math" id="architecture-eq-elig-e"><math display="block"><mrow><msub><mi>E</mi><mrow><mi>l</mi><mo>&#x0002C;</mo><mi>n</mi><mo>&#x0002B;</mo><mn>1</mn></mrow></msub><mo>&#x0003D;</mo><msub><mi>&#x003C1;</mi><mrow><mi>l</mi><mo>&#x0002C;</mo><mi>n</mi></mrow></msub><mspace width="0.167em" /><msub><mi>E</mi><mrow><mi>l</mi><mo>&#x0002C;</mo><mi>n</mi></mrow></msub><mo>&#x0002B;</mo><msub><mi>&#x003A8;</mi><mi>l</mi></msub><mo stretchy="false">&#x00028;</mo><msub><mrow><mi>new</mi><mi mathvariant="normal">&#x0005F;</mi><mi>evidence</mi></mrow><mi>n</mi></msub><mo stretchy="false">&#x00029;</mo></mrow></math></div>
+<div class="math" id="architecture-eq-elig-w"><math display="block"><mrow><msub><mi>W</mi><mrow><mi>l</mi><mo>&#x0002C;</mo><mi>n</mi><mo>&#x0002B;</mo><mn>1</mn></mrow></msub><mo>&#x0003D;</mo><msub><mi>W</mi><mrow><mi>l</mi><mo>&#x0002C;</mo><mi>n</mi></mrow></msub><mo>&#x0002B;</mo><msub><mi>u</mi><mrow><mi>l</mi><mo>&#x0002C;</mo><mi>n</mi></mrow></msub><mspace width="0.167em" /><msub><mi>&#x003B7;</mi><mrow><mi>l</mi><mo>&#x0002C;</mo><mi>n</mi></mrow></msub><mspace width="0.167em" /><msub><mi>U</mi><mi>l</mi></msub><mo stretchy="false">&#x00028;</mo><msub><mi>E</mi><mrow><mi>l</mi><mo>&#x0002C;</mo><mi>n</mi></mrow></msub><mo>&#x0002C;</mo><msub><mrow><mi>bound</mi><mi mathvariant="normal">&#x0005F;</mi><mi>feedback</mi></mrow><mi>n</mi></msub><mo stretchy="false">&#x00029;</mo></mrow></math></div>
+
+<p><math><mrow><mi>&#x003C1;</mi></mrow></math>는 흔적의 유지, <math><mrow><mi>u</mi></mrow></math>는 write 허용, <math><mrow><mi>&#x003B7;</mi></mrow></math>는 강도다. 읽기·통신 gate는 별도다. self-generated content는 외부 관측과 다른 provenance를 가지고, 같은 root를 여러 번 추론해도 독립 증거 수는 늘지 않는다.</p>
+
+<h4 id="architecture-rhythm-phase">위상을 넣기 전에 해결할 질문과 실험 A–D</h4>
+
+<p><span class="ev ev-proposal">PROPOSAL</span> (04 §5) 명시적 oscillator가 해결하려는 문제가 무엇인지 먼저 정의한다(준비된 정보의 교환, 간섭 감소, 다른 속도 process의 조율, 지연 변화에 대한 강건성 등). 동기 디지털 모델에서 phase가 단순 execution-stage ID와 동치라면 이를 새로운 뇌 모사 원리라고 부르지 않는다. "위상 섞기" 대조군이 아직 준비되지 않은 memory를 읽게 만드는 잘못된 실행이면 증거로 쓰지 않는다. 모든 비교 경로가 유효한 인과적 실행이어야 한다.</p>
+
+<div class="table-wrap" id="tab-architecture-rhythm-abcd"><table class="wp-table">
+<caption><span class="tab-no"></span> 필수 실험 계열 A–D와 배치 (04 §6, 09 §1.2) — PROPOSAL</caption>
+<thead><tr><th>계열</th><th>무엇을 바꾸나</th><th>배치</th></tr></thead>
+<tbody>
+<tr><td>A 고정 CMS</td><td>같은 update cadence와 실행 순서</td><td>첫 통합 모델의 기본값이자 모든 비교의 대조군</td></tr>
+<tr><td>B 주파수 적응</td><td>상태별 update frequency만 가변</td><td>첫 recursive 모델 이후 A와 같은 budget으로 비교</td></tr>
+<tr><td>C event / readiness</td><td>eligibility·feedback attribution·선택적 write·준비 상태 기반 통신</td><td>controller v1 이후에 시작. 로드맵은 P3에서 A·B·C를 대조한다</td></tr>
+<tr><td>D 위상 조율</td><td>C에 상대 위상·주기적 창을 더함</td><td>C가 안정된 뒤에만 시작. "단계 번호와 동치" 검사를 통과하지 못하면 중단. 배치는 OPEN(D-13: P3 말미 / P4 / 미도입)</td></tr>
+</tbody></table></div>
+
+<p><span class="ev ev-proposal">PROPOSAL</span> 핵심 비교는 D 대 C다. D가 A보다 낫더라도 eligibility나 선택적 쓰기의 이득을 위상의 이득으로 착각하지 않는다. 원인 분리 실험은 optimizer steps·replay data·capacity를 맞추고, 제품 평가는 routing·동기화·메모리 비용을 포함한다. 각 단계는 앞 단계를 대체하지 않고 대조군으로 남으며, D가 시작되기 전에는 위상·oscillator를 구현의 필수 요소로 약속하지 않는다(<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/04-rhythms-and-orchestration.md">04 §6</a>).</p>
+
+<aside class="callout callout-warn">
+<p><strong>리듬 실험 A–D의 배치는 PROPOSAL이다.</strong> 이 배치는 설계 감사에서 새로 들어간 틀이며 사용자 승인을 기다린다(<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/research/2026-11-12-design-audit.md">design-audit §5</a> D군 18번). 위상 조율 D의 배치(D-13)는 P3 종료 재검토에서 C를 기준선으로 삼아 결정한다(<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/09-roadmap.md">09 §10</a>). 리듬 자체의 기대 결과는 "뇌파 유사 스펙트럼이 나왔다"가 아니라 사용할 schema·깊게 처리할 부분·학습할 것과 시점의 조율이 경험을 통해 개선되어 새 구조 공유 과제에서 더 적은 관측과 계산으로 안정적인 판단을 만드는 행동 변화다. 이는 가설이며 아직 아무것도 측정하지 않았다(<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/04-rhythms-and-orchestration.md">04 §8</a>).</p>
+</aside>
+
+<p>실행 시계(경험 e·token 위치 t·recursion r·optimizer step u·level별 clock s_l·wall-clock)를 따로 기록하고 loop·replay를 새로운 world evidence로 세지 않는다는 규칙은 <a href="#state">상태·시계·저장 계약</a>에서 다룬다(<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/04-rhythms-and-orchestration.md">04 §7</a>).</p>
+</section>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 880 700" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="fig-b-gating-forms-title fig-b-gating-forms-desc"><title id="fig-b-gating-forms-title">새로움·일치도 신호가 정하는 것 — 논문마다 다르다</title><desc id="fig-b-gating-forms-desc">여섯 논문에서 신호(재구성 오차, novelty와 familiarity, 예측 오차, 조건부확률, 학습된 neuromodulator, 보상)가 학습에서 정하는 대상(무엇을 저장할지, replay 횟수, 쓰기 크기, 다시 묶을 slot, 쓰기 시점·크기, 쓰기·삭제)을 신호에서 결정으로 이은 그림. 마지막 점선 행은 읽은 문헌에 없는 자리다.</desc><defs><marker id="fig-b-gating-forms-arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#4f5d75"/></marker><marker id="fig-b-gating-forms-arrow-accent" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#eb6c36"/></marker></defs><rect width="100%" height="100%" fill="#f5f5f5"/>
+<text x="24" y="52" fill="#4f5d75" font-size="12" font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR','Noto Sans CJK KR','Malgun Gothic',system-ui,sans-serif" font-weight="600">논문</text>
+<text x="148" y="52" fill="#4f5d75" font-size="12" font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR','Noto Sans CJK KR','Malgun Gothic',system-ui,sans-serif" font-weight="600">신호(무엇을 보고)</text>
+<text x="460" y="52" fill="#4f5d75" font-size="12" font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR','Noto Sans CJK KR','Malgun Gothic',system-ui,sans-serif" font-weight="600">신호가 정하는 것</text>
+<text x="772" y="52" fill="#4f5d75" font-size="12" font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR','Noto Sans CJK KR','Malgun Gothic',system-ui,sans-serif" font-weight="600">학습률 자체</text>
+<line x1="24" y1="64" x2="856" y2="64" stroke="rgba(45,49,66,0.12)" stroke-width="1"/>
+<text x="24" y="110" fill="#2d3142" font-size="12" font-family="ui-monospace,'SFMono-Regular','D2Coding','Noto Sans Mono CJK KR',Menlo,monospace" font-weight="600">SPENS24</text>
+<rect x="148" y="76" width="260" height="60" fill="#ffffff" stroke="#2d3142" stroke-width="1" rx="6"/>
+<text x="160" y="102" fill="#2d3142" font-size="16" font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR','Noto Sans CJK KR','Malgun Gothic',system-ui,sans-serif">요소별 재구성 오차가</text>
+<text x="160" y="122" fill="#2d3142" font-size="16" font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR','Noto Sans CJK KR','Malgun Gothic',system-ui,sans-serif">고정 임계값 θ보다 큼</text>
+<rect x="460" y="76" width="276" height="60" fill="#ffffff" stroke="#2d3142" stroke-width="1" rx="6"/>
+<text x="472" y="102" fill="#2d3142" font-size="16" font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR','Noto Sans CJK KR','Malgun Gothic',system-ui,sans-serif" font-weight="600">빠른 저장소에 무엇을</text>
+<text x="472" y="122" fill="#2d3142" font-size="16" font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR','Noto Sans CJK KR','Malgun Gothic',system-ui,sans-serif" font-weight="600">저장할지(예외 잔차)</text>
+<line x1="408" y1="106" x2="456" y2="106" stroke="#4f5d75" stroke-width="1.2" marker-end="url(#fig-b-gating-forms-arrow)"/>
+<text x="772" y="110" fill="#4f5d75" font-size="12" font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR','Noto Sans CJK KR','Malgun Gothic',system-ui,sans-serif">변화 없음</text>
+<text x="24" y="186" fill="#2d3142" font-size="12" font-family="ui-monospace,'SFMono-Regular','D2Coding','Noto Sans Mono CJK KR',Menlo,monospace" font-weight="600">HWU20</text>
+<rect x="148" y="152" width="260" height="60" fill="#ffffff" stroke="#2d3142" stroke-width="1" rx="6"/>
+<text x="160" y="178" fill="#2d3142" font-size="16" font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR','Noto Sans CJK KR','Malgun Gothic',system-ui,sans-serif">novelty × familiarity</text>
+<rect x="460" y="152" width="276" height="60" fill="#ffffff" stroke="#2d3142" stroke-width="1" rx="6"/>
+<text x="472" y="178" fill="#2d3142" font-size="16" font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR','Noto Sans CJK KR','Malgun Gothic',system-ui,sans-serif" font-weight="600">공고화 replay</text>
+<text x="472" y="198" fill="#2d3142" font-size="16" font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR','Noto Sans CJK KR','Malgun Gothic',system-ui,sans-serif" font-weight="600">epoch 수</text>
+<line x1="408" y1="182" x2="456" y2="182" stroke="#4f5d75" stroke-width="1.2" marker-end="url(#fig-b-gating-forms-arrow)"/>
+<text x="772" y="186" fill="#4f5d75" font-size="12" font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR','Noto Sans CJK KR','Malgun Gothic',system-ui,sans-serif">변화 없음</text>
+<text x="24" y="262" fill="#2d3142" font-size="12" font-family="ui-monospace,'SFMono-Regular','D2Coding','Noto Sans Mono CJK KR',Menlo,monospace" font-weight="600">TEM20</text>
+<rect x="148" y="228" width="260" height="60" fill="#ffffff" stroke="#2d3142" stroke-width="1" rx="6"/>
+<text x="160" y="254" fill="#2d3142" font-size="16" font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR','Noto Sans CJK KR','Malgun Gothic',system-ui,sans-serif">예측 오차 p − p̂</text>
+<rect x="460" y="228" width="276" height="60" fill="#ffffff" stroke="#2d3142" stroke-width="1" rx="6"/>
+<text x="472" y="254" fill="#2d3142" font-size="16" font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR','Noto Sans CJK KR','Malgun Gothic',system-ui,sans-serif" font-weight="600">Hebbian 쓰기 크기</text>
+<text x="472" y="274" fill="#2d3142" font-size="16" font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR','Noto Sans CJK KR','Malgun Gothic',system-ui,sans-serif" font-weight="600">(암묵적)</text>
+<line x1="408" y1="258" x2="456" y2="258" stroke="#4f5d75" stroke-width="1.2" marker-end="url(#fig-b-gating-forms-arrow)"/>
+<text x="772" y="262" fill="#4f5d75" font-size="12" font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR','Noto Sans CJK KR','Malgun Gothic',system-ui,sans-serif">변화 없음</text>
+<text x="24" y="338" fill="#2d3142" font-size="12" font-family="ui-monospace,'SFMono-Regular','D2Coding','Noto Sans Mono CJK KR',Menlo,monospace" font-weight="600">SWAMI23</text>
+<rect x="148" y="304" width="260" height="60" fill="#ffffff" stroke="#2d3142" stroke-width="1" rx="6"/>
+<text x="160" y="330" fill="#2d3142" font-size="16" font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR','Noto Sans CJK KR','Malgun Gothic',system-ui,sans-serif">leave-one-out 조건부확률이</text>
+<text x="160" y="350" fill="#2d3142" font-size="16" font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR','Noto Sans CJK KR','Malgun Gothic',system-ui,sans-serif">p_surprise보다 작음</text>
+<rect x="460" y="304" width="276" height="60" fill="#ffffff" stroke="#2d3142" stroke-width="1" rx="6"/>
+<text x="472" y="330" fill="#2d3142" font-size="16" font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR','Noto Sans CJK KR','Malgun Gothic',system-ui,sans-serif" font-weight="600">어느 slot을 다시 묶고</text>
+<text x="472" y="350" fill="#2d3142" font-size="16" font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR','Noto Sans CJK KR','Malgun Gothic',system-ui,sans-serif" font-weight="600">어느 위치를 보호할지</text>
+<line x1="408" y1="334" x2="456" y2="334" stroke="#4f5d75" stroke-width="1.2" marker-end="url(#fig-b-gating-forms-arrow)"/>
+<text x="772" y="338" fill="#4f5d75" font-size="12" font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR','Noto Sans CJK KR','Malgun Gothic',system-ui,sans-serif">변화 없음</text>
+<text x="24" y="414" fill="#2d3142" font-size="12" font-family="ui-monospace,'SFMono-Regular','D2Coding','Noto Sans Mono CJK KR',Menlo,monospace" font-weight="600">MICONI25</text>
+<rect x="148" y="380" width="260" height="60" fill="#ffffff" stroke="#2d3142" stroke-width="1" rx="6"/>
+<text x="160" y="406" fill="#2d3142" font-size="16" font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR','Noto Sans CJK KR','Malgun Gothic',system-ui,sans-serif">네트워크가 스스로 만든</text>
+<text x="160" y="426" fill="#2d3142" font-size="16" font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR','Noto Sans CJK KR','Malgun Gothic',system-ui,sans-serif">neuromodulator m(t)</text>
+<rect x="460" y="380" width="276" height="60" fill="#ffffff" stroke="#2d3142" stroke-width="1" rx="6"/>
+<text x="472" y="406" fill="#2d3142" font-size="16" font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR','Noto Sans CJK KR','Malgun Gothic',system-ui,sans-serif" font-weight="600">쓰기 시점·부호·크기,</text>
+<text x="472" y="426" fill="#2d3142" font-size="16" font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR','Noto Sans CJK KR','Malgun Gothic',system-ui,sans-serif" font-weight="600">연결별 계수 A</text>
+<line x1="408" y1="410" x2="456" y2="410" stroke="#4f5d75" stroke-width="1.2" marker-end="url(#fig-b-gating-forms-arrow)"/>
+<text x="772" y="414" fill="#4f5d75" font-size="12" font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR','Noto Sans CJK KR','Malgun Gothic',system-ui,sans-serif">학습된 값</text>
+<text x="24" y="490" fill="#2d3142" font-size="12" font-family="ui-monospace,'SFMono-Regular','D2Coding','Noto Sans Mono CJK KR',Menlo,monospace" font-weight="600">KUMAR26</text>
+<rect x="148" y="456" width="260" height="60" fill="#ffffff" stroke="#2d3142" stroke-width="1" rx="6"/>
+<text x="160" y="482" fill="#2d3142" font-size="16" font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR','Noto Sans CJK KR','Malgun Gothic',system-ui,sans-serif">보상 + 탐색 잡음,</text>
+<text x="160" y="502" fill="#2d3142" font-size="16" font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR','Noto Sans CJK KR','Malgun Gothic',system-ui,sans-serif">ACh 억제</text>
+<rect x="460" y="456" width="276" height="60" fill="#ffffff" stroke="#2d3142" stroke-width="1" rx="6"/>
+<text x="472" y="482" fill="#2d3142" font-size="16" font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR','Noto Sans CJK KR','Malgun Gothic',system-ui,sans-serif" font-weight="600">성공 시 쓰기,</text>
+<text x="472" y="502" fill="#2d3142" font-size="16" font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR','Noto Sans CJK KR','Malgun Gothic',system-ui,sans-serif" font-weight="600">실패 시 해당 cue 삭제</text>
+<line x1="408" y1="486" x2="456" y2="486" stroke="#4f5d75" stroke-width="1.2" marker-end="url(#fig-b-gating-forms-arrow)"/>
+<text x="772" y="490" fill="#4f5d75" font-size="12" font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR','Noto Sans CJK KR','Malgun Gothic',system-ui,sans-serif">변화 없음</text>
+<text x="24" y="566" fill="#eb6c36" font-size="12" font-family="ui-monospace,'SFMono-Regular','D2Coding','Noto Sans Mono CJK KR',Menlo,monospace" font-weight="600">FCL</text>
+<rect x="148" y="532" width="260" height="60" fill="rgba(235,108,54,0.08)" stroke="#eb6c36" stroke-width="1.2" rx="6" stroke-dasharray="4,3"/>
+<text x="160" y="558" fill="#2d3142" font-size="16" font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR','Noto Sans CJK KR','Malgun Gothic',system-ui,sans-serif">fit · 친숙도</text>
+<rect x="460" y="532" width="276" height="60" fill="rgba(235,108,54,0.08)" stroke="#eb6c36" stroke-width="1.2" rx="6" stroke-dasharray="4,3"/>
+<text x="472" y="558" fill="#2d3142" font-size="16" font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR','Noto Sans CJK KR','Malgun Gothic',system-ui,sans-serif" font-weight="600">쓰는 위치와 공고화</text>
+<text x="472" y="578" fill="#2d3142" font-size="16" font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR','Noto Sans CJK KR','Malgun Gothic',system-ui,sans-serif" font-weight="600">예산</text>
+<line x1="408" y1="562" x2="456" y2="562" stroke="#eb6c36" stroke-width="1.2" stroke-dasharray="4,3" marker-end="url(#fig-b-gating-forms-arrow-accent)"/>
+<text x="772" y="566" fill="#4f5d75" font-size="12" font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR','Noto Sans CJK KR','Malgun Gothic',system-ui,sans-serif">—</text>
+<text x="148" y="620" fill="#4f5d75" font-size="12" font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR','Noto Sans CJK KR','Malgun Gothic',system-ui,sans-serif">점선 행은 읽은 문헌에 없다. 리뷰 §4.2: &#x27;Titans식 surprise 기반 쓰기는 이미 얼마나를 다룬다. 비어 있는 것은</text>
+<text x="148" y="636" fill="#4f5d75" font-size="12" font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR','Noto Sans CJK KR','Malgun Gothic',system-ui,sans-serif">fit·친숙도에 따라 쓰는 위치와 공고화 예산을 바꾸는 것이다.&#x27; — 이 읽기는 PROPOSAL이다.</text>
+</svg>

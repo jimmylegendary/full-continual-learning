@@ -1,0 +1,632 @@
+<section class="wp-section" id="sec-evaluation" data-part="3부 · 어떻게 검증하고 나아가나">
+<h2 id="evaluation">평가: schema가 미래 학습과 계산을 바꾸는가</h2>
+
+<p class="lede">목적: 통합 모델 System ONE이 "경험이 쌓이면 같은 관계 구조의 새 사례를 더 적은 관측과 더 적은 계산으로 푼다"는 주장을, 구현이 생기기 전에 판정 규칙으로 먼저 정해 두는 것이다. 기능: benchmark family, 대표 실험 S0·SE·SES, 비교군, 인과적 개입, 지표, 사전 등록 gate. 입력과 출력: 세계 생성기와 gate 레지스트리를 넣으면 결과 상태(PASS·FAIL·INCONCLUSIVE·BLOCKED·NOT RUN)와 등급이 붙은 보고서가 나온다. 형식: 표와 필드 목록이다. 근거 문서는 <a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/08-evaluation.md">08-evaluation.md</a>이고, 여기서 schema-based learning을 SBL로 줄여 쓴다.</p>
+
+<aside class="callout callout-warn">
+<p><span class="ev ev-open">OPEN</span> 이 절의 family·대표 실험·gate는 모두 계획이다. 통합 모델은 구현·학습·효용 검증이 하나도 없어서 지금 모든 조합의 검증 수준이 NOT RUN이다(<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/VALIDATION.md#4-검증하지-않은-것">VALIDATION.md §4</a>). 새로 들어간 틀인 family F13–F21과 gate 레지스트리는 <span class="ev ev-proposal">PROPOSAL</span>이고 사용자 승인 대기다(<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/research/2026-11-12-design-audit.md#5-사용자-확인이-필요한-것">감사 §5</a> D묶음 18). 수치 gate의 값은 pilot 분산을 본 뒤 사전에 확정하고 사용자 승인을 받는다(감사 §5 D묶음 19). 지금은 어떤 수치도 정해지지 않았다.</p>
+</aside>
+
+<div class="kpi-row">
+<div class="kpi"><div class="kpi-value">F01–F21</div><div class="kpi-label">benchmark family 21개(핵심 12 + 추가 제안 9)</div></div>
+<div class="kpi"><div class="kpi-value">13</div><div class="kpi-label">조작 가능한 질문으로 옮긴 SBL 이론</div></div>
+<div class="kpi"><div class="kpi-value">5</div><div class="kpi-label">대표 실험의 PoC PASS 조건</div></div>
+<div class="kpi"><div class="kpi-value">6</div><div class="kpi-label">최소 gate(값은 아직 없음)</div></div>
+<div class="kpi"><div class="kpi-value">0</div><div class="kpi-label">통합 모델에서 실행한 평가(전부 NOT RUN)</div></div>
+</div>
+<p class="muted">세는 규칙: 위 숫자는 08 §2·§2-1·§2-2·§3·§6의 표와 목록의 항목 수다. 새로 만든 수치가 아니다. 표 안의 §n은 08의 절 번호다(다른 문서는 '06 §9'처럼 문서 번호를 앞에 적었다).</p>
+
+<h3 id="evaluation-success">무엇을 재는가: 세 종류의 성공</h3>
+<p><span class="ev ev-proposal">PROPOSAL</span> 평가는 성공을 세 가지로 갈라서 각각 따로 판정한다(<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/08-evaluation.md#1-세-종류의-성공을-분리">08 §1</a>).</p>
+
+<div class="table-wrap"><table class="wp-table">
+<caption><span class="tab-no"></span> 세 종류의 성공(08 §1)</caption>
+<thead><tr><th scope="col">종류</th><th scope="col">묻는 것</th></tr></thead>
+<tbody>
+<tr><th scope="row">Contract</th><td>인과적 입력, state, 재생, 누수 방지, budget, source 계보가 맞는가.</td></tr>
+<tr><th scope="row">Efficacy</th><td>새 사례의 판단·학습·보존·비용이 실제로 나아지는가.</td></tr>
+<tr><th scope="row">Product</th><td>실제 입력→추론→학습→재개→재시작→삭제/복구 사용자 여정이 동작하는가.</td></tr>
+</tbody></table></div>
+
+<aside class="callout callout-key">
+<p>Contract PASS나 unit test의 개수는 Efficacy나 P1 완료를 대신하지 않는다. 효용을 검증하지 못한 kernel을 기본 consumer 경로로 자동 승격하지도 않는다(08 §1).</p>
+</aside>
+
+<p><span class="ev ev-proposal">PROPOSAL</span> 헌장의 두 중심 명제는 이 절의 family에 대응시키고 독립적으로 판정한다. H-SAMPLE(새 구조 공유 과제에서 목표 성능까지의 관측 수 감소)은 F01·F03과 학습 지표로, H-COMPUTE(경험·통합 이후 같은 정확도의 총 계산 감소)는 F11·대표 실험·비용식으로 본다. 한쪽의 PASS는 다른 쪽의 근거가 아니다. 빠르게 배워도 추론이 느릴 수 있고, early exit가 좋아져도 지속학습이 없을 수 있다(<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/01-intent-and-charter.md#4-두-개의-중심-명제">01 §4</a>).</p>
+
+<p><span class="ev ev-user">USER</span> (U-T09) 표면에서 meta의 meta까지 의도를 파악해 그 방향으로 설계한다. <span class="ev ev-proposal">PROPOSAL</span> 의도 6층위와 설계·검증의 대응은 아래 표와 같다. 4–6층은 대화에서 도출한 해석이라 사용자 확인 전에는 확정이 아니다.</p>
+<div class="table-wrap"><table class="wp-table" style="overflow-wrap:break-word">
+<caption><span class="tab-no"></span> 의도 6층위와 설계·검증의 대응(08 §1). 4–6층은 대화에서 도출한 해석이며 사용자 확인 전 확정이 아니다</caption>
+<thead><tr><th scope="col">층위</th><th scope="col">설계 위치</th><th scope="col">검증</th><th scope="col">상태</th></tr></thead>
+<tbody>
+<tr><td>1 구현 재료를 계산 그래프·상태·학습 규칙으로 연결</td><td>05 §1–§3, 06 §5</td><td>§1 Contract, §5 인과적 개입</td><td>설계됨</td></tr>
+<tr><td>2 이전 경험에 따라 처리 방식이 달라짐</td><td>06 §9</td><td>§3 S0/SE/SES, F11</td><td>설계됨</td></tr>
+<tr><td>3 사고 중 이해의 틀 재선택</td><td>05 §4·§8, 06 §5</td><td>F15(§2-1 제안)</td><td>지표 추가 제안</td></tr>
+<tr><td>4 경험이 만드는 유용한 편향</td><td>06 §2 q^-와 편향 정의</td><td>F02·F05, §6 편향 지표</td><td>정의·지표 추가 제안</td></tr>
+<tr><td>5 학습·사고 정책도 학습</td><td>06 §4·§6, 10 §1</td><td>F11, controller 단계(§3)</td><td>설계됨</td></tr>
+<tr><td>6 이력에 따른 자기 조직화</td><td>11 §6(제안 문단)</td><td>F17(§2-1 제안)</td><td>OPEN 가설</td></tr>
+</tbody></table></div>
+
+<p><span class="ev ev-archive">ARCHIVE</span> Melete는 N1의 효용 meet를 충족하지 못한 채 N2·N3 구성요소 연구로 나아갔다. 구현 PASS와 효용 PASS를 문서에서는 구분했지만 다음 단계의 진입 조건으로 집행하지 못했다는 것이 사후 검토의 지적이다(<a class="src" href="https://github.com/jimmylegendary/melete/blob/1d95136c3a64580ec25bc588c96c191eecb85b41/docs/superpowers/plans/2026-10-15-neural-judgment-roadmap.md">2026-10-15-neural-judgment-roadmap.md</a>). <span class="ev ev-proposal">PROPOSAL</span> 그래서 다음 phase나 다음 구성요소로 가기 전에 앞 단계의 efficacy gate를 통과하거나, 통과하지 못한 채 진행하는 이유와 범위를 결과 상태(INCONCLUSIVE·FAIL)와 함께 적는다. 통과 없이 진행한 연구는 "선행 미충족 위의 탐색"으로 표시하고 기본 경로나 phase 완료로 올리지 않는다.</p>
+
+<p><span class="ev ev-user">USER</span> (B11, 2026-10-11) 학습 방법 검증이 가장 중요하다. 조합들이 검증됐는가, 수준은 어떤가. <span class="ev ev-proposal">PROPOSAL</span> 조합마다 검증 수준을 한 표에 적고, 낮은 수준의 결과를 높은 수준의 문구로 쓰지 않는다.</p>
+<div class="table-wrap"><table class="wp-table">
+<caption><span class="tab-no"></span> 조합별 검증 수준 표기(08 §1). 현재 통합 모델의 조합은 구현·학습이 없어 모두 NOT RUN</caption>
+<thead><tr><th scope="col">수준</th><th scope="col">뜻</th></tr></thead>
+<tbody>
+<tr><th scope="row">NOT RUN</th><td>설계만 있다.</td></tr>
+<tr><th scope="row">CONTRACT</th><td>상태·누수·재생 검사를 통과했다.</td></tr>
+<tr><th scope="row">PILOT</th><td>사전 정의한 대조 대비 개발 결과다. 확증이 아니다.</td></tr>
+<tr><th scope="row">CONFIRMED</th><td>fresh locked cohort에서 사전 gate를 통과했다.</td></tr>
+</tbody></table></div>
+
+<h3 id="evaluation-families">benchmark family F01–F12: 무엇을 조작하고 무엇을 재는가</h3>
+<p><span class="ev ev-proposal">PROPOSAL</span> 핵심 family 열두 개는 같은 관계 구조, 같은 어휘·다른 관계, 새 역할 결합, 예외·정정, 조건 복귀(ABA: A→B→A), 지연 피드백, 불확실성, 공고화, 계산 효율, 외부화를 하나씩 따로 조작한다(<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/08-evaluation.md#2-핵심-benchmark-family">08 §2</a>).</p>
+<div class="table-wrap"><table class="wp-table" style="overflow-wrap:break-word">
+<caption><span class="tab-no"></span> 핵심 benchmark family F01–F12(08 §2): 조작과 측정</caption>
+<thead><tr><th scope="col">Family</th><th scope="col">조작</th><th scope="col">측정</th></tr></thead>
+<tbody>
+<tr><td>F01 구조 전이</td><td>같은 관계, 다른 개체/표현/수치</td><td>held-out choice/prediction</td></tr>
+<tr><td>F02 표면 함정</td><td>같은 어휘·개체, 다른 관계</td><td>negative transfer, 조건별 paired correctness</td></tr>
+<tr><td>F03 rapid binding</td><td>schema 공유, 새 역할 결합</td><td>0/1/3/10 등 고정 관측 곡선</td></tr>
+<tr><td>F04 새로운 구조</td><td>기존에 없던 관계</td><td>적절한 보류/학습/분화, 설명 가능 범위</td></tr>
+<tr><td>F05 예외·정정</td><td>규칙→예외→기존 규칙 재검사</td><td>국소 수정, 원래 조건 보존</td></tr>
+<tr><td>F06 ABA 선택</td><td>A→B→A, goal/context 변경</td><td>수정 없는 재선택 vs 재학습 비용</td></tr>
+<tr><td>F07 오염·반복</td><td>틀린 generated 해석, 동일 root 재전송</td><td>drift, 과잉확신, false update</td></tr>
+<tr><td>F08 지연 피드백</td><td>중간에 context 전환 후 옛 사건 feedback</td><td>credit assignment 정확도</td></tr>
+<tr><td>F09 불확실성</td><td>여러 schema가 관측상 구별 불가</td><td>calibration, risk/coverage, 유용한 질문</td></tr>
+<tr><td>F10 consolidation</td><td>fast state 제거, sleep/replay</td><td>장기 유지, 새 task 적응 개선</td></tr>
+<tr><td>F11 계산 효율</td><td>같은 품질에서 depth/update budget 변화</td><td>cost-to-quality 곡선</td></tr>
+<tr><td>F12 외부화</td><td>offload/reload, version migration</td><td>판단·후속 학습의 일관성</td></tr>
+</tbody></table></div>
+
+<p><span class="ev ev-literature">LITERATURE</span> (GOUDAR23, 원문 검토 §4.4) 구조는 같고 표면만 다르거나 표면은 같고 구조가 다른 lure로 두 요인을 분리한 논문은 읽은 11편에서 찾지 못했다. GOUDAR23은 오히려 학습 속도가 자극 코사인 유사도에 크게 의존함을 보인다(문제 3의 trial 수가 유사도 1에서 약 7, 0에서 약 175, 그림 판독). <span class="ev ev-proposal">PROPOSAL</span> (원문 검토 §5 출발점 5) 그래서 F01(구조 같고 표면 다름)과 F02(표면 같고 구조 다름)를 표면 유사도 단계별로 함께 재서 두 요인을 분리한다.</p>
+
+<p><span class="ev ev-literature">LITERATURE</span> (CHU25·SWAMI23·KUMAR26·MICONI25) 문헌에는 H-SAMPLE을 재는 틀이 이미 여럿 있다. GOUDAR23·CHU25의 trial-to-criterion 곡선(CHU25는 5문제·10 seed에서 새 문제 학습 trial이 약 710에서 455로, 그림 판독), SWAMI23 LIALT의 예시형(예시 1개 + 새 토큰), KUMAR26의 1회 노출 용량 곡선(reservoir 1024유닛에서 12쌍 중 약 7.8), MICONI25의 list-linking·sham 대조다. MICONI25의 실제 설계는 ABCD+EFGH이고 연결쌍 D&gt;E를 4 trial 제시한다(초록의 예시와 다르다). <span class="ev ev-proposal">PROPOSAL</span> F03은 이 곡선들을 측정 틀로만 빌리고, 수치는 우리 harness에서 다시 잰다.</p>
+
+<h3 id="evaluation-theory-map">SBL 13개 이론을 조작 가능한 질문과 family로</h3>
+<p><span class="ev ev-user">USER</span> (U-T06) schema based learning이 얘기하는 대부분의 이론들이 적용되고 검증되어야 한다. <span class="ev ev-proposal">PROPOSAL</span> 그래서 <a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/03-foundations.md#2-원자료에서-다룬-13개-이론회로">03 §2</a>의 13개 이론을 아래처럼 질문·family·필수 대조에 대응시킨다(<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/08-evaluation.md#2-1-sbl-이론별-검증-질문과-추가-family-proposal">08 §2-1</a>). 이 대응은 AI 과제에서 현상을 재현하는 것이며 실제 뇌 알고리즘의 증명이 아니다. 표에 나오는 약어 CLS는 complementary learning systems, TEM은 Tolman-Eichenbaum machine이다.</p>
+<div class="table-wrap"><table class="wp-table" style="overflow-wrap:break-word">
+<caption><span class="tab-no"></span> SBL 13개 이론의 조작 가능한 질문·대응 family·필수 대조(08 §2-1)</caption>
+<thead><tr><th scope="col">이론</th><th scope="col">조작 가능한 질문</th><th scope="col">family</th><th scope="col">필수 대조</th></tr></thead>
+<tbody>
+<tr><td>CLS</td><td>fast state를 제거해도 공통 구조가 남고 새 사건은 빠르게 기록되는가</td><td>F03, F10</td><td>replay-only, Sleep 없음</td></tr>
+<tr><td>SBL</td><td>관련 schema가 있을 때 목표 성능까지 관측 수가 줄고 무관한 prior는 줄이지 않는가</td><td>F01, F03</td><td>wrong-schema memory, 무작위·동결 memory</td></tr>
+<tr><td>Hippocampal match–mismatch</td><td>표면 novelty와 관계 novelty를 분리해 반응하는가</td><td>F02, F04</td><td>novelty 단일 신호</td></tr>
+<tr><td>Retrieval-mediated integration</td><td>서로 다른 때 배운 A–B와 B–C로 A–C를 추론하는가</td><td>F13</td><td>재활성화 제거, raw history consumer</td></tr>
+<tr><td>Reconsolidation</td><td>재활성화 뒤 조건부로 수정되고 모든 read가 overwrite가 되지는 않는가</td><td>F05, F07</td><td>항상 쓰기</td></tr>
+<tr><td>Latent-cause inference</td><td>같은 원인의 수정과 다른 상황의 분리를 구별하는가</td><td>F05, F06, F09</td><td>단일 pooled prior, oracle cause(상한 진단)</td></tr>
+<tr><td>Familiarity/recollection</td><td>친숙함과 이해·정확도를 분리하는가</td><td>F02</td><td>친숙함 점수만으로 halt</td></tr>
+<tr><td>Structure-mapping</td><td>표면이 달라도 역할·관계를 대응하는가</td><td>F01, F02</td><td>표면 shuffle</td></tr>
+<tr><td>Chunking/expertise</td><td>사례→관계→원리 단위로 다층 재표현해 새 개념의 익숙한 지점이 늘어나는가</td><td>F14, F11</td><td>단일 수준(표면)만 학습한 같은 양의 사례</td></tr>
+<tr><td>Automaticity</td><td>경험 후 같은 품질에 필요한 계산이 줄어드는가</td><td>F11, §3</td><td>쉬운 문제만 조기 종료</td></tr>
+<tr><td>TEM/cognitive map</td><td>구조와 내용을 분리해 새 환경에 전이하는가</td><td>F01, F03</td><td>비분해 baseline</td></tr>
+<tr><td>vmPFC→MEC 조직화</td><td>맥락에 따라 기억을 공유하거나 분리하는가</td><td>F05, F06</td><td>단일 공유 state</td></tr>
+<tr><td>MS→MEC 기억 선택</td><td>학습과 사용을 분리해 수정 없이 재선택하는가</td><td>F06</td><td>재학습</td></tr>
+</tbody></table></div>
+<figure class="wp-figure" id="fig-d-family-theory">
+<div class="chart" style="overflow-x:auto">
+<svg viewBox="0 0 680 378" role="img" aria-labelledby="fig-d-family-theory-title fig-d-family-theory-desc" style="width:100%;height:auto;min-width:600px">
+<title id="fig-d-family-theory-title">SBL 13개 이론과 benchmark family F01–F21의 대응 행렬</title>
+<desc id="fig-d-family-theory-desc">행은 13개 이론, 열은 family F01부터 F21까지다. 08 §2-1 표가 이론에 대응시킨 칸만 칠했고 칠한 칸은 23개다. F08·F12·F15–F21 열은 이 표에서 이론에 대응되지 않았다.</desc>
+<text x="308" y="16" font-size="11.5" font-weight="600" text-anchor="middle" style="fill:var(--fg)">핵심 (08 §2)</text>
+<line x1="195" y1="38" x2="420" y2="38" stroke-width="1" style="stroke:var(--muted);stroke-opacity:.55"/>
+<text x="469.5" y="16" font-size="11.5" font-weight="600" text-anchor="middle" style="fill:var(--fg)">추가·이론별</text>
+<text x="469.5" y="30" font-size="10" font-weight="700" text-anchor="middle" style="fill:var(--ev-proposal)">PROPOSAL</text>
+<line x1="423" y1="38" x2="515" y2="38" stroke-width="1" style="stroke:var(--muted);stroke-opacity:.55"/>
+<text x="555" y="16" font-size="11.5" font-weight="600" text-anchor="middle" style="fill:var(--fg)">추가·Melete</text>
+<text x="555" y="30" font-size="10" font-weight="700" text-anchor="middle" style="fill:var(--ev-proposal)">PROPOSAL</text>
+<line x1="518" y1="38" x2="591" y2="38" stroke-width="1" style="stroke:var(--muted);stroke-opacity:.55"/>
+<text x="186" y="62" font-size="10.5" text-anchor="end" style="fill:var(--muted)">family F</text>
+<text x="202" y="62" font-size="9.5" text-anchor="middle" style="fill:var(--fg)">01</text>
+<text x="221" y="62" font-size="9.5" text-anchor="middle" style="fill:var(--fg)">02</text>
+<text x="240" y="62" font-size="9.5" text-anchor="middle" style="fill:var(--fg)">03</text>
+<text x="259" y="62" font-size="9.5" text-anchor="middle" style="fill:var(--fg)">04</text>
+<text x="278" y="62" font-size="9.5" text-anchor="middle" style="fill:var(--fg)">05</text>
+<text x="297" y="62" font-size="9.5" text-anchor="middle" style="fill:var(--fg)">06</text>
+<text x="316" y="62" font-size="9.5" text-anchor="middle" style="fill:var(--fg)">07</text>
+<text x="335" y="62" font-size="9.5" text-anchor="middle" style="fill:var(--fg)">08</text>
+<text x="354" y="62" font-size="9.5" text-anchor="middle" style="fill:var(--fg)">09</text>
+<text x="373" y="62" font-size="9.5" text-anchor="middle" style="fill:var(--fg)">10</text>
+<text x="392" y="62" font-size="9.5" text-anchor="middle" style="fill:var(--fg)">11</text>
+<text x="411" y="62" font-size="9.5" text-anchor="middle" style="fill:var(--fg)">12</text>
+<text x="430" y="62" font-size="9.5" text-anchor="middle" style="fill:var(--fg)">13</text>
+<text x="449" y="62" font-size="9.5" text-anchor="middle" style="fill:var(--fg)">14</text>
+<text x="468" y="62" font-size="9.5" text-anchor="middle" style="fill:var(--fg)">15</text>
+<text x="487" y="62" font-size="9.5" text-anchor="middle" style="fill:var(--fg)">16</text>
+<text x="506" y="62" font-size="9.5" text-anchor="middle" style="fill:var(--fg)">17</text>
+<text x="525" y="62" font-size="9.5" text-anchor="middle" style="fill:var(--fg)">18</text>
+<text x="544" y="62" font-size="9.5" text-anchor="middle" style="fill:var(--fg)">19</text>
+<text x="563" y="62" font-size="9.5" text-anchor="middle" style="fill:var(--fg)">20</text>
+<text x="582" y="62" font-size="9.5" text-anchor="middle" style="fill:var(--fg)">21</text>
+<text x="186" y="88" font-size="11.5" text-anchor="end" style="fill:var(--fg)">CLS</text>
+<rect x="195" y="76" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="214" y="76" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="233" y="76" width="16" height="16" rx="2.5" style="fill:var(--chart-1)"/>
+<rect x="252" y="76" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="271" y="76" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="290" y="76" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="309" y="76" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="328" y="76" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="347" y="76" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="366" y="76" width="16" height="16" rx="2.5" style="fill:var(--chart-1)"/>
+<rect x="385" y="76" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="404" y="76" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="423" y="76" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="442" y="76" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="461" y="76" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="480" y="76" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="499" y="76" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="518" y="76" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="537" y="76" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="556" y="76" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="575" y="76" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<text x="601" y="88" font-size="10.5" font-weight="600" style="fill:var(--fg)">F03·F10</text>
+<text x="186" y="110" font-size="11.5" text-anchor="end" style="fill:var(--fg)">SBL</text>
+<rect x="195" y="98" width="16" height="16" rx="2.5" style="fill:var(--chart-1)"/>
+<rect x="214" y="98" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="233" y="98" width="16" height="16" rx="2.5" style="fill:var(--chart-1)"/>
+<rect x="252" y="98" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="271" y="98" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="290" y="98" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="309" y="98" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="328" y="98" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="347" y="98" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="366" y="98" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="385" y="98" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="404" y="98" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="423" y="98" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="442" y="98" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="461" y="98" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="480" y="98" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="499" y="98" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="518" y="98" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="537" y="98" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="556" y="98" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="575" y="98" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<text x="601" y="110" font-size="10.5" font-weight="600" style="fill:var(--fg)">F01·F03</text>
+<text x="186" y="132" font-size="11.5" text-anchor="end" style="fill:var(--fg)">Hippocampal match–mismatch</text>
+<rect x="195" y="120" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="214" y="120" width="16" height="16" rx="2.5" style="fill:var(--chart-1)"/>
+<rect x="233" y="120" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="252" y="120" width="16" height="16" rx="2.5" style="fill:var(--chart-1)"/>
+<rect x="271" y="120" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="290" y="120" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="309" y="120" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="328" y="120" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="347" y="120" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="366" y="120" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="385" y="120" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="404" y="120" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="423" y="120" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="442" y="120" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="461" y="120" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="480" y="120" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="499" y="120" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="518" y="120" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="537" y="120" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="556" y="120" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="575" y="120" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<text x="601" y="132" font-size="10.5" font-weight="600" style="fill:var(--fg)">F02·F04</text>
+<text x="186" y="154" font-size="11.5" text-anchor="end" style="fill:var(--fg)">Retrieval-mediated integration</text>
+<rect x="195" y="142" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="214" y="142" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="233" y="142" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="252" y="142" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="271" y="142" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="290" y="142" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="309" y="142" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="328" y="142" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="347" y="142" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="366" y="142" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="385" y="142" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="404" y="142" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="423" y="142" width="16" height="16" rx="2.5" style="fill:var(--chart-1)"/>
+<rect x="442" y="142" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="461" y="142" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="480" y="142" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="499" y="142" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="518" y="142" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="537" y="142" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="556" y="142" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="575" y="142" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<text x="601" y="154" font-size="10.5" font-weight="600" style="fill:var(--fg)">F13</text>
+<text x="186" y="176" font-size="11.5" text-anchor="end" style="fill:var(--fg)">Reconsolidation</text>
+<rect x="195" y="164" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="214" y="164" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="233" y="164" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="252" y="164" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="271" y="164" width="16" height="16" rx="2.5" style="fill:var(--chart-1)"/>
+<rect x="290" y="164" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="309" y="164" width="16" height="16" rx="2.5" style="fill:var(--chart-1)"/>
+<rect x="328" y="164" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="347" y="164" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="366" y="164" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="385" y="164" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="404" y="164" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="423" y="164" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="442" y="164" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="461" y="164" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="480" y="164" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="499" y="164" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="518" y="164" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="537" y="164" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="556" y="164" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="575" y="164" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<text x="601" y="176" font-size="10.5" font-weight="600" style="fill:var(--fg)">F05·F07</text>
+<text x="186" y="198" font-size="11.5" text-anchor="end" style="fill:var(--fg)">Latent-cause inference</text>
+<rect x="195" y="186" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="214" y="186" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="233" y="186" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="252" y="186" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="271" y="186" width="16" height="16" rx="2.5" style="fill:var(--chart-1)"/>
+<rect x="290" y="186" width="16" height="16" rx="2.5" style="fill:var(--chart-1)"/>
+<rect x="309" y="186" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="328" y="186" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="347" y="186" width="16" height="16" rx="2.5" style="fill:var(--chart-1)"/>
+<rect x="366" y="186" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="385" y="186" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="404" y="186" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="423" y="186" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="442" y="186" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="461" y="186" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="480" y="186" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="499" y="186" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="518" y="186" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="537" y="186" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="556" y="186" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="575" y="186" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<text x="601" y="198" font-size="10.5" font-weight="600" style="fill:var(--fg)">F05·F06·F09</text>
+<text x="186" y="220" font-size="11.5" text-anchor="end" style="fill:var(--fg)">Familiarity/recollection</text>
+<rect x="195" y="208" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="214" y="208" width="16" height="16" rx="2.5" style="fill:var(--chart-1)"/>
+<rect x="233" y="208" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="252" y="208" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="271" y="208" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="290" y="208" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="309" y="208" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="328" y="208" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="347" y="208" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="366" y="208" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="385" y="208" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="404" y="208" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="423" y="208" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="442" y="208" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="461" y="208" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="480" y="208" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="499" y="208" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="518" y="208" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="537" y="208" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="556" y="208" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="575" y="208" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<text x="601" y="220" font-size="10.5" font-weight="600" style="fill:var(--fg)">F02</text>
+<text x="186" y="242" font-size="11.5" text-anchor="end" style="fill:var(--fg)">Structure-mapping</text>
+<rect x="195" y="230" width="16" height="16" rx="2.5" style="fill:var(--chart-1)"/>
+<rect x="214" y="230" width="16" height="16" rx="2.5" style="fill:var(--chart-1)"/>
+<rect x="233" y="230" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="252" y="230" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="271" y="230" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="290" y="230" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="309" y="230" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="328" y="230" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="347" y="230" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="366" y="230" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="385" y="230" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="404" y="230" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="423" y="230" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="442" y="230" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="461" y="230" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="480" y="230" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="499" y="230" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="518" y="230" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="537" y="230" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="556" y="230" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="575" y="230" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<text x="601" y="242" font-size="10.5" font-weight="600" style="fill:var(--fg)">F01·F02</text>
+<text x="186" y="264" font-size="11.5" text-anchor="end" style="fill:var(--fg)">Chunking/expertise</text>
+<rect x="195" y="252" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="214" y="252" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="233" y="252" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="252" y="252" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="271" y="252" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="290" y="252" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="309" y="252" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="328" y="252" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="347" y="252" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="366" y="252" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="385" y="252" width="16" height="16" rx="2.5" style="fill:var(--chart-1)"/>
+<rect x="404" y="252" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="423" y="252" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="442" y="252" width="16" height="16" rx="2.5" style="fill:var(--chart-1)"/>
+<rect x="461" y="252" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="480" y="252" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="499" y="252" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="518" y="252" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="537" y="252" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="556" y="252" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="575" y="252" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<text x="601" y="264" font-size="10.5" font-weight="600" style="fill:var(--fg)">F14·F11</text>
+<text x="186" y="286" font-size="11.5" text-anchor="end" style="fill:var(--fg)">Automaticity</text>
+<rect x="195" y="274" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="214" y="274" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="233" y="274" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="252" y="274" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="271" y="274" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="290" y="274" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="309" y="274" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="328" y="274" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="347" y="274" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="366" y="274" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="385" y="274" width="16" height="16" rx="2.5" style="fill:var(--chart-1)"/>
+<rect x="404" y="274" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="423" y="274" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="442" y="274" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="461" y="274" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="480" y="274" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="499" y="274" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="518" y="274" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="537" y="274" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="556" y="274" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="575" y="274" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<text x="601" y="286" font-size="10.5" font-weight="600" style="fill:var(--fg)">F11·§3</text>
+<text x="186" y="308" font-size="11.5" text-anchor="end" style="fill:var(--fg)">TEM/cognitive map</text>
+<rect x="195" y="296" width="16" height="16" rx="2.5" style="fill:var(--chart-1)"/>
+<rect x="214" y="296" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="233" y="296" width="16" height="16" rx="2.5" style="fill:var(--chart-1)"/>
+<rect x="252" y="296" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="271" y="296" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="290" y="296" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="309" y="296" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="328" y="296" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="347" y="296" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="366" y="296" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="385" y="296" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="404" y="296" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="423" y="296" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="442" y="296" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="461" y="296" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="480" y="296" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="499" y="296" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="518" y="296" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="537" y="296" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="556" y="296" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="575" y="296" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<text x="601" y="308" font-size="10.5" font-weight="600" style="fill:var(--fg)">F01·F03</text>
+<text x="186" y="330" font-size="11.5" text-anchor="end" style="fill:var(--fg)">vmPFC→MEC 조직화</text>
+<rect x="195" y="318" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="214" y="318" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="233" y="318" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="252" y="318" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="271" y="318" width="16" height="16" rx="2.5" style="fill:var(--chart-1)"/>
+<rect x="290" y="318" width="16" height="16" rx="2.5" style="fill:var(--chart-1)"/>
+<rect x="309" y="318" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="328" y="318" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="347" y="318" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="366" y="318" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="385" y="318" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="404" y="318" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="423" y="318" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="442" y="318" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="461" y="318" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="480" y="318" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="499" y="318" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="518" y="318" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="537" y="318" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="556" y="318" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="575" y="318" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<text x="601" y="330" font-size="10.5" font-weight="600" style="fill:var(--fg)">F05·F06</text>
+<text x="186" y="352" font-size="11.5" text-anchor="end" style="fill:var(--fg)">MS→MEC 기억 선택</text>
+<rect x="195" y="340" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="214" y="340" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="233" y="340" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="252" y="340" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="271" y="340" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="290" y="340" width="16" height="16" rx="2.5" style="fill:var(--chart-1)"/>
+<rect x="309" y="340" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="328" y="340" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="347" y="340" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="366" y="340" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="385" y="340" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="404" y="340" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="423" y="340" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="442" y="340" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="461" y="340" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="480" y="340" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="499" y="340" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="518" y="340" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="537" y="340" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="556" y="340" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<rect x="575" y="340" width="16" height="16" rx="2.5" style="fill:color-mix(in srgb, var(--border) 45%, var(--surface))"/>
+<text x="601" y="352" font-size="10.5" font-weight="600" style="fill:var(--fg)">F06</text>
+<line x1="421" y1="42" x2="421" y2="358" stroke-width="1" style="stroke:var(--muted);stroke-opacity:.45"/>
+<line x1="516" y1="42" x2="516" y2="358" stroke-width="1" style="stroke:var(--muted);stroke-opacity:.45"/>
+</svg>
+</div>
+<figcaption><span class="fig-no"></span> F01–F21 × SBL 13개 이론 대응 행렬. 칠한 칸은 <a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/08-evaluation.md#2-1-sbl-이론별-검증-질문과-추가-family-proposal">08 §2-1</a> 표가 그 이론의 family로 적은 칸만이며 모두 23칸이다(세는 규칙: 표의 family 열에 적힌 F번호 하나마다 한 칸). Automaticity 행의 "§3"은 family가 아니라 대표 실험이라 칸이 없다. 빈 열(F08·F12·F15–F21)은 이 표가 이론에 대응시키지 않았다는 뜻이며 대응이 불가능하다는 뜻이 아니다. 추가 family F13–F21은 <span class="ev ev-proposal">PROPOSAL</span>이고 승인된 gate가 아니다. 이론별 재현은 AI 과제에서의 현상 재현이며 실제 뇌 알고리즘의 증명이 아니다.</figcaption>
+<details class="more"><summary>표로 보기: 이론별 대응 family(같은 값)</summary>
+<div class="table-wrap"><table class="wp-table"><caption><span class="tab-no"></span> 13개 이론과 대응 family(08 §2-1의 family 열)</caption><thead><tr><th scope="col">이론</th><th scope="col">대응 family</th></tr></thead><tbody>
+<tr><th scope="row">CLS</th><td>F03, F10</td></tr>
+<tr><th scope="row">SBL</th><td>F01, F03</td></tr>
+<tr><th scope="row">Hippocampal match–mismatch</th><td>F02, F04</td></tr>
+<tr><th scope="row">Retrieval-mediated integration</th><td>F13</td></tr>
+<tr><th scope="row">Reconsolidation</th><td>F05, F07</td></tr>
+<tr><th scope="row">Latent-cause inference</th><td>F05, F06, F09</td></tr>
+<tr><th scope="row">Familiarity/recollection</th><td>F02</td></tr>
+<tr><th scope="row">Structure-mapping</th><td>F01, F02</td></tr>
+<tr><th scope="row">Chunking/expertise</th><td>F14, F11</td></tr>
+<tr><th scope="row">Automaticity</th><td>F11, §3</td></tr>
+<tr><th scope="row">TEM/cognitive map</th><td>F01, F03</td></tr>
+<tr><th scope="row">vmPFC→MEC 조직화</th><td>F05, F06</td></tr>
+<tr><th scope="row">MS→MEC 기억 선택</th><td>F06</td></tr>
+</tbody></table></div>
+</details>
+</figure>
+
+<h3 id="evaluation-families-theory">추가 family F13–F17: 이론에서 나온 후보</h3>
+<p><span class="ev ev-proposal">PROPOSAL</span> 위 표에서 기존 열두 개로 덮이지 않는 질문은 다섯 개의 추가 family로 만든다(08 §2-1).</p>
+<ul>
+<li><strong>F13 관계 통합 추론:</strong> A–B와 B–C를 다른 시점에 관측시킨 뒤 A–C를 묻는다. held-out 조합의 정확도와, 재활성화를 제거했을 때의 손실을 잰다.</li>
+<li><strong>F14 다층 추상 전이:</strong> 같은 사례군을 사건·역할·관계·원리 수준으로 재표현해 제공하는 조건을 만들고, 새 표면의 같은 관계(F01)와 다른 도메인의 같은 원리에서 관측 수 곡선을 비교한다. 대조는 같은 양의 사례를 단일 수준으로만 학습한 모델이다.</li>
+<li><strong>F15 사고 중 재선택:</strong> 처음 loop에서 그럴듯하지만 틀린 schema가 고르도록 유도 단서를 넣고, loop 중 전환·조합·보류 비율, 최종 정답, loop 수, 추가 비용을 잰다. 대조는 첫 선택 고정과 oracle schema(상한 진단)다.</li>
+<li><strong>F16 통찰의 전이:</strong> 깊은 loop 뒤에 같은 문제 재제시 정확도(암기), 구조를 공유하는 새 사례의 정확도와 C*<sub>ε</sub> 변화(전이), 형성된 표현을 제거했을 때 전이만 선택적으로 줄어드는지를 잰다. self-consistency와 반복된 confidence 증가는 통찰의 증거로 세지 않는다(<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/11-research-agenda.md#4-통찰의-운영적-정의">11 §4</a>).</li>
+<li><strong>F17 이력 분기:</strong> 같은 초기 모델에 서로 다른 경험 이력 H<sub>a</sub>, H<sub>b</sub>를 준 뒤 같은 입력에서의 schema 선택 분포, 요구 정확도까지의 loop 수, update 정책 출력의 분기를 잰다. 대조는 같은 이력의 순서 섞기, 같은 이력의 다른 seed, 이력 없음이다. 이득이 이력별 과제에서 비대칭인지 교차 전이 행렬로 본다. 사실 정보는 같고 이력만 다른 두 상태에서 이력에 맞는 판단 차이와, 반례 뒤에도 바뀌지 않는 맹목적 고집을 구분해 잰다(B14/H1).</li>
+</ul>
+<p><span class="ev ev-open">OPEN</span> 추가 family의 생성기·world 수·split은 benchmark set v0에서 정한다. 이 항목들은 승인된 gate가 아니다. 또 로드맵(<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/09-roadmap.md#4-capability--phase-해상도-표">09 §4</a>)의 benchmark 행은 F01–F12만 phase에 배치하고, F13–F21의 phase 배치는 문서에 아직 없다.</p>
+
+<h3 id="evaluation-families-melete">추가 family F18–F21: Melete 시기 피드백에서 온 후보</h3>
+<p><span class="ev ev-proposal">PROPOSAL</span> F13–F17에 이어 아래 네 개를 더한다. 번호는 잠정이며 각 family는 같은 관측·계산·갱신 예산의 대조군과 함께 판정한다. Melete 시기의 이력 의존 편향(사실 정보는 같고 경험 이력만 다른 두 상태)은 조작이 F17과 같아서 F17의 측정 항목으로 합쳤다(<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/08-evaluation.md#2-2-melete-시기-피드백에서-온-추가-family-proposal">08 §2-2</a>).</p>
+<div class="table-wrap"><table class="wp-table" style="overflow-wrap:break-word">
+<caption><span class="tab-no"></span> Melete 시기 피드백에서 온 추가 family F18–F21(08 §2-2, 번호는 잠정)</caption>
+<thead><tr><th scope="col">Family</th><th scope="col">조작</th><th scope="col">측정</th></tr></thead>
+<tbody>
+<tr><td>F18 성급한 일반화와 해소</td><td>처음 1–3개 관측이 잘못된 단순 규칙을 유도한 뒤 반례</td><td>잠정 편향 형성 속도, 오류 해소 속도, 원래 조건 보존(B08)</td></tr>
+<tr><td>F19 가까운 새로움·먼 새로움</td><td>기존 관계에서 한 걸음 나간 입력, 표면만 같은 무관한 입력, 매우 먼 입력</td><td>가장 가까운 schema 시작 대 write 대 보류, 흘려듣기·보류의 적절성(B14/H2·H3b, B04)</td></tr>
+<tr><td>F20 반복 조회 자기증폭</td><td>틀린 초기 경로를 반복 조회하거나 모델 자신의 같은 해석을 반복한 뒤 독립 반례</td><td>고착·붕괴 여부, 강화 상한·감쇠로의 회복(B14/H3a)</td></tr>
+<tr><td>F21 생성 단독 반복·선호 변화</td><td>올바른 경험·틀린 해석·동일 root 반복·목표 변경·선호 변화·조건 복귀를 별도 arm으로</td><td>generated 반복의 drift와 외부 반례 뒤 회복</td></tr>
+</tbody></table></div>
+<p><span class="ev ev-archive">ARCHIVE</span> F17의 이력 의존 측정과 F18–F20은 Melete N0의 D5·D3·D4·D7에, F21은 J2 측정 계획에 대응한다(<a class="src" href="https://github.com/jimmylegendary/melete/blob/1d95136c3a64580ec25bc588c96c191eecb85b41/docs/superpowers/plans/2026-10-12-neural-validation.md">2026-10-12-neural-validation.md</a>, <a class="src" href="https://github.com/jimmylegendary/melete/blob/1d95136c3a64580ec25bc588c96c191eecb85b41/docs/superpowers/plans/2026-10-15-neural-judgment-roadmap.md">2026-10-15-neural-judgment-roadmap.md</a>). J2는 J1 미통과로 실행되지 않았다.</p>
+<aside class="callout callout-source">
+<p><strong>번호 이력.</strong> 감사 중에 두 작업이 서로 다른 새 family 다섯 개에 같은 번호 F13–F17을 붙였다. 한쪽의 F13–F17을 유지하고 다른 쪽의 후보를 F18–F21로 옮겼으며, 이력 의존 편향은 조작이 같은 F17의 측정 항목으로 합쳤다(<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/research/2026-11-12-design-audit.md#4-반영-중-마스터가-고친-것">감사 §4</a>).</p>
+</aside>
+
+<h3 id="evaluation-poc">대표 실험: 경험이 숙고를 직관으로 바꾸는가 (S0·SE·SES)</h3>
+<p><span class="ev ev-proposal">PROPOSAL</span> 한 모델을 세 상태에서 같은 질문으로 잰다(<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/08-evaluation.md#3-대표-실험-경험이-숙고를-직관으로-바꾸는가">08 §3</a>).</p>
+<ul>
+<li><strong>S0:</strong> retrofit(기존 모델을 새 구조로 개조)과 기본 학습을 마친 상태.</li>
+<li><strong>SE:</strong> 지정된 경험을 축적한 상태.</li>
+<li><strong>SES:</strong> 같은 경험으로 Sleep(빠른 상태를 느린 가중치로 옮기는 통합 단계)까지 수행한 상태.</li>
+</ul>
+<p>절차는 이렇다. controller(경로를 고르는 판단 구조)를 먼저 우회하고 고정 depth grid의 r에서 품질 Q<sub>s</sub>(r)를 잰다. update budget도 고정하거나 (r,u) 2차원 grid로 평가한다. 시험은 새 binding·entity·value가 관계를 공유하는 사례다. 그다음 단계에서 controller를 켜 실제 policy가 저비용 경로를 고르는지 본다. SE와 SES의 quality–compute 곡선이 왼쪽으로 이동해야 모델 내부의 계산 효율 변화의 근거가 되며, 쉬운 문제만 일찍 끝내서 생긴 평균 loop 감소와는 구별한다. wrong-schema memory, memory lesion, 구조를 섞은 경험을 대조한다.</p>
+
+<p>측정량은 같은 오차 ε에 닿는 최소 계산량이다(<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/06-mathematical-framework.md#9-프로젝트의-핵심-측정량">06 §9</a>). 최소값은 실제로 측정한 budget grid 안에서만 구하고, 측정하지 않은 교차점을 보간해 단정하지 않는다.</p>
+<div class="math"><math display="block"><mrow><msubsup><mi>C</mi><mi>ε</mi><mo>*</mo></msubsup><mo>(</mo><mi>M</mi><mo>)</mo><mo>=</mo><mo>min</mo><mo>{</mo><mi>C</mi><mo>:</mo><mi>Error</mi><mo>(</mo><mi>M</mi><mo>;</mo><msub><mi>𝒯</mi><mtext>new</mtext></msub><mo>,</mo><mi>C</mi><mo>)</mo><mo>≤</mo><mi>ε</mi><mo>}</mo></mrow></math></div>
+<div class="math"><math display="block"><mrow><msubsup><mi>C</mi><mi>ε</mi><mo>*</mo></msubsup><mo>(</mo><msub><mi>M</mi><mtext>after</mtext></msub><mo>)</mo><mo>&lt;</mo><msubsup><mi>C</mi><mi>ε</mi><mo>*</mo></msubsup><mo>(</mo><msub><mi>M</mi><mtext>before</mtext></msub><mo>)</mo></mrow></math></div>
+<p>𝒯<sub>new</sub>는 새 entity·value·binding이지만 관계 구조를 공유하는 시험 집합이다. query 수준의 잡음과 history·world 수준의 변동은 나눠서 통계 처리한다.</p>
+
+<figure class="wp-figure" id="fig-d-s0-se-ses">
+<img src="assets/fig-d-s0-se-ses.svg" alt="개념도이며 데이터가 아니다. 계산량에 따른 품질 꺾은선 세 개(S0, SE, SES)가 왼쪽 위로 이동하고, 목표 품질에 처음 닿는 측정 격자 점 C*가 SES, SE, S0 순으로 오른쪽에 놓인다.">
+<figcaption><span class="fig-no"></span> S0·SE·SES의 quality–compute 곡선 개념도 — 데이터 아님. 곡선 모양과 간격은 임의이고, 판정 조건은 <a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/08-evaluation.md#3-대표-실험-경험이-숙고를-직관으로-바꾸는가">08 §3</a>의 다섯 가지다. C*는 <a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/06-mathematical-framework.md#9-프로젝트의-핵심-측정량">06 §9</a>의 정의대로 측정한 budget 격자 위의 첫 점이며 보간하지 않는다. <a href="assets/fig-d-s0-se-ses.svg">원본 크기로 보기</a></figcaption>
+</figure>
+
+<aside class="callout callout-eli">
+<p><strong>쉬운 설명.</strong> 같은 학생에게 시험을 세 번 보인다. S0는 처음, SE는 연습 문제를 풀어 본 뒤, SES는 연습한 뒤 푹 자고 난 뒤다. 각 시험에서 "정답률이 목표에 닿으려면 풀이 시간을 얼마나 줘야 하나"를 잰다. 연습이나 잠 덕분에 같은 점수를 더 짧은 시간에 받는다면 곡선이 왼쪽으로 옮겨 간 것이다. 단, 쉬운 문제만 골라 빨리 낸 평균은 그 증거가 아니다. 위 그림은 모양을 설명하는 그림일 뿐 실제 측정이 아니다.</p>
+</aside>
+
+<p><span class="ev ev-user">USER</span> (U-T06) 이론·수식과 함께 실험을 통한 PoC 증명까지 한다. <span class="ev ev-proposal">PROPOSAL</span> 대표 실험의 PoC PASS는 아래 다섯 조건을 결과를 보기 전에 사전 등록하고 모두 만족할 때만 선언한다. 값은 pilot 뒤 확정한다.</p>
+<ol>
+<li>SES가 S0보다 C*<sub>ε</sub>가 낮다(비용식 전체를 쓰고 측정한 budget grid 안에서만 비교한다).</li>
+<li>같은 총 계산의 replay-only, 무작위·동결 memory, raw history consumer보다 SES가 낫다(비교군은 아래 절).</li>
+<li>F02 표면 함정과 F05·F06 보호 family에서 한도를 넘는 퇴행이 없다.</li>
+<li>memory lesion과 구조를 섞은 경험에서 이득이 선택적으로 사라진다(인과적 개입은 아래 절).</li>
+<li>모든 측정이 실제 입력→모델 응답 경로, 곧 실제 CLI와 실제 pretrained 모델에서 얻어졌다. mock과 fake는 진단용이며 PoC 근거가 아니다.</li>
+</ol>
+<p>FAIL과 INCONCLUSIVE도 같은 틀로 기록한다. 합성 Phase-0 실험(<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/experiments/phase0/README.md">experiments/phase0/README.md</a>)은 이 PoC의 선행 증거가 아니라 진입 근거다.</p>
+<p><span class="ev ev-literature">LITERATURE</span> (HWU20, 원문 검토 §4.4) 같은 품질의 추론 계산량을 잰 논문은 읽은 11편에서 찾지 못했다. 그래서 F11과 SE·SES의 곡선 이동에는 문헌 기준값이 없다. HWU20의 절감도 학습 epoch이다. <span class="ev ev-proposal">PROPOSAL</span> (원문 검토 §5 출발점 6) 고정 depth grid의 품질–계산 곡선을 controller보다 먼저 얻는다.</p>
+
+<h3 id="evaluation-controls">비교군과 인과적 개입</h3>
+<p><span class="ev ev-proposal">PROPOSAL</span> 비교군은 일곱 묶음이다(<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/08-evaluation.md#4-비교군">08 §4</a>).</p>
+<ul>
+<li>같은 pretrained LLM의 직접 응답과 고정 budget 숙고.</li>
+<li>같은 경험을 raw history로 준 consumer, 강한 RAG(retrieval-augmented generation)·구조화 text memory.</li>
+<li>같은 용량의 frozen·random memory, no-memory, 같은 update budget.</li>
+<li>단일 pooled prior와 mixture prior, 명시적 graph·program schema.</li>
+<li>fixed depth, learned early exit, novelty-only routing, 제안 controller.</li>
+<li>단일 갱신 주기, 고정 multi-timescale CMS(continuum memory system), dynamic-frequency, event/readiness, phase-coordinated.</li>
+<li>replay-only, 같은 계산의 teacher distillation, Sleep 제안.</li>
+</ul>
+<aside class="callout callout-warn">
+<p>단순한 방법이 더 좋으면 그 범위에서 복잡한 구조의 필요성을 주장하지 않는다. oracle source selection이나 true latent cause는 진단용 상한으로만 분리한다(08 §4).</p>
+</aside>
+<p><span class="ev ev-proposal">PROPOSAL</span> (원문 검토 §4.1·§5 출발점 2·8) schema 기제를 쓰는 모든 실험은 같은 계산·갱신 예산의 고정·무구조·항상-갱신 대조를 의무로 둔다. 쓰기 gate는 항상 쓰기, surprise만, 고정 무작위 gate를 같은 쓰기 예산에서 비교하고, replay는 novelty×familiarity 배분을 같은 총 replay 계산의 고정 예산과 비교한다. <span class="ev ev-literature">LITERATURE</span> (HWU20·GOUDAR23·ELDER26) 이런 대조에서 단순한 쪽이 비슷하거나 더 높았던 사례가 읽은 논문에 있다(수치는 <a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/03-foundations.md#7-문헌을-적용하는-기준">03 §7</a>). <span class="ev ev-archive">ARCHIVE</span> (S23) 반대 방향의 보고도 있다. 고정 scaffold에 새 readout만 붙여서는 같은 이득이 없었다고 하나, 이번에 정독하지 않은 원보고의 범위다.</p>
+
+<p>인과적 개입은 같은 모델의 안쪽을 직접 건드려 구조가 정말 쓰이는지 본다(<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/08-evaluation.md#5-인과적-개입">08 §5</a>).</p>
+<ul>
+<li>학습한 encoder 대 동결 encoder, parameter 성분 lesion, graph·low-rank 방향 교체, schema artifact 교체, write gradient 차단, depth read 제거, 같은 정보를 terminal·all-state·pointer로 비교하는 설계.</li>
+<li>재학습한 ablation과 같은 checkpoint의 추론 시 lesion은 다른 질문이다. output 범위나 capacity를 바꾼 lesion을 architecture 기여로 과대해석하지 않는다. 오답을 안정화해 flip rate가 줄어드는 현상을 정답 안정성으로 세지 않는다.</li>
+</ul>
+<p><span class="ev ev-literature">LITERATURE</span> (GOUDAR23) subspace 재사용의 인과 시험이 있다. 재사용을 막은 D→S 교란은 두 번째 문제의 trial이 약 3300으로 문제 1(약 3000)과 비슷해지고, 대조인 S→S는 약 450이다(그림 판독). (MICONI25) W<sub>out</sub> 또는 W<sub>in</sub>을 교체하면 chance로 떨어지지만, 같은 네트워크에서 reinstatement를 제거하는 인과 실험은 없다. <span class="ev ev-proposal">PROPOSAL</span> (원문 검토 §5 출발점 1) 구조 전이가 표현 제거·교체 때 선택적으로 사라지는지를 schema의 조작적 증거로 쓴다.</p>
+
+<h3 id="evaluation-metrics">지표: 학습·판단·편향·수정·효율·비용</h3>
+<p><span class="ev ev-proposal">PROPOSAL</span> 지표는 여섯 묶음이다(<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/08-evaluation.md#6-metrics">08 §6</a>).</p>
+<ul>
+<li><strong>학습:</strong> 목표 품질까지의 관측 수, learning curve와 AUC, adaptation update와 teacher 비용.</li>
+<li><strong>판단:</strong> family별 accuracy·MSE·utility, both-correct condition pairs, calibration, proper scoring, 보류의 risk/coverage. 헌장의 주 판단 지표는 조건별 선택(보류 포함)의 정답·보호·복귀이고 결과값 예측 오차는 보조다(<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/01-intent-and-charter.md#1-한-문장-정의">01 §1</a>).</li>
+<li><strong>편향:</strong> 경험이 만든 조건부 prior q<sup>−</sup>를 이득과 해악으로 나눠 잰다. 이득은 schema가 맞는 사례의 첫 시도 정확도와 필요한 loop 수, 해악은 맞지 않는 사례에서 첫 시도가 일치 답을 내는 비율(conformity)과 반례 k개 뒤의 정답 전환·유지 비율이다. 둘 다 같은 모델에서 q<sup>−</sup>를 균등화한 변형과 쌍으로 보고하고, 이득만 보고하거나 불일치 사례 없이 일치 사례 평균만 보고하지 않는다.</li>
+<li><strong>수정:</strong> correction latency, false update, unrelated regression, ABA recovery, backward·forward transfer.</li>
+<li><strong>효율:</strong> p50·p95 latency, TTFT, decode tokens/s, FLOPs, 활성 parameter·layer 수, memory residency, energy. 측정된 것만 따로 쓴다.</li>
+<li><strong>비용식:</strong> encoder + router + core loops + depth read + memory read·write·backward + retrieval·offload + output decoder. online 비용과 Sleep·학습의 amortized 비용을 둘 다 공개한다. gradient는 공짜 forward가 아니며 batch·sequence length·hardware·warm/cold 상태를 맞춘다.</li>
+</ul>
+<p><span class="ev ev-literature">LITERATURE</span> (원문 검토 §4.4 보존·망각) 보존 측정은 읽은 논문에 거의 없다. CHU25·ELDER26은 측정이 없고, TEM20은 기억을 환경마다 리셋하며, KUMAR26은 기존 쌍 보존을 보고하지 않았다. GOUDAR23은 재학습 savings뿐이고 MICONI25는 장기 망각이 없으며 HWU20만 부분 측정이 있다. <span class="ev ev-proposal">PROPOSAL</span> (원문 검토 §5 출발점 7) 그래서 보존 평가(F05·F06·F10)는 우리가 만든다. ABA 조건 복귀, 이전 과제의 zero-shot 재평가, savings를 함께 쓴다.</p>
+<p><span class="ev ev-literature">LITERATURE</span> (SPENS24·HWU20) 클래스 내 분산 감소와 DRM lure 회상은 인간 데이터와 정성적 유사성만 보이는 재현이고, Tse식 probe는 cued·non-cued·original 항목의 활동으로 새 연합을 본다. <span class="ev ev-proposal">PROPOSAL</span> (원문 검토 §5 출발점 4) 이들은 schema 과적용(prototype 수축·lure 침입)과 공고화의 진단으로 빌린다.</p>
+
+<h3 id="evaluation-gates">gate 레지스트리·benchmark set v0·최소 gate</h3>
+<aside class="callout callout-source">
+<p><strong>문서 위치.</strong> gate 레지스트리는 전용 절이 아니라 <a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/08-evaluation.md#6-metrics">08 §6</a> Metrics의 끝에 있다. 그 위에 "과거 제안된 80% fast coverage / 1pp 품질 margin / fast p95 5배 개선은 proposal이었다. 사용자 승인된 gate나 달성값이 아니다"라는 문단이 있다. benchmark set v0의 필드와 최소 gate 목록도 같은 자리다.</p>
+</aside>
+<p><span class="ev ev-user">USER</span> (U-T02) 숫자로 환산되는 verification(benchmark set 포함)이 필요하다. <span class="ev ev-proposal">PROPOSAL</span> 수치 gate를 아래 틀로 결과를 보기 전에 사전 등록한다. 값은 pilot 뒤 prospective하게 확정하며 이 틀은 승인된 수치가 아니다. 한 행은 열두 필드를 가진다.</p>
+<div class="table-wrap"><table class="wp-table">
+<caption><span class="tab-no"></span> gate 레지스트리 한 행의 필드(08 §6, 12개)</caption>
+<thead><tr><th scope="col">묶음</th><th scope="col">필드</th></tr></thead>
+<tbody>
+<tr><th scope="row">정체</th><td><code>gate_id</code> / <code>hypothesis</code>(H-SAMPLE, H-COMPUTE 또는 보호 family) / <code>family</code></td></tr>
+<tr><th scope="row">측정</th><td><code>primary_metric</code> / 비교 baseline / 효과 크기 하한 Δ<sub>min</sub></td></tr>
+<tr><th scope="row">통계</th><td>통계 단위(seed × world × history) / 신뢰구간 규칙 / 보호 family 퇴행 한도</td></tr>
+<tr><th scope="row">기록</th><td>결과 상태 규칙 / 등록 시점(결과 열람 전) / 대응하는 benchmark <code>set_id</code></td></tr>
+</tbody></table></div>
+<p>Δ<sub>min</sub>은 pilot에서 잰 seed × world 변동의 함수로 정한다. 기본 판정은 신뢰구간 하한이 0을 넘고 중앙값 차이가 Δ<sub>min</sub> 이상일 때다. 변동 척도와 배수는 pilot 설계에서 고정한다(<span class="ev ev-open">OPEN</span>). 결과를 본 뒤 Δ<sub>min</sub>·baseline·test subset을 바꾸면 새 <code>gate_id</code>를 만들고 이전 gate는 FAIL 또는 INCONCLUSIVE로 남긴다.</p>
+<p>benchmark set v0는 아홉 필드를 가진다(값은 <span class="ev ev-open">OPEN</span>).</p>
+<div class="table-wrap"><table class="wp-table">
+<caption><span class="tab-no"></span> benchmark set v0의 필드(08 §6, 9개. 값은 모두 OPEN)</caption>
+<thead><tr><th scope="col">묶음</th><th scope="col">필드</th></tr></thead>
+<tbody>
+<tr><th scope="row">정체</th><td><code>set_id</code> / <code>family</code> / 생성기(관계 구조, 개체·수치 표현, 역할 순열)</td></tr>
+<tr><th scope="row">분할</th><td>world 수 / split(train·dev·select·confirmation. world·history·task family·time 독립)</td></tr>
+<tr><th scope="row">예산·검사</th><td>관측 예산 격자(0/1/3/10 등) / loop·update 예산 격자 / 오염 검사 / 데이터 해시</td></tr>
+</tbody></table></div>
+<p>최소 gate는 여섯 개이고 값은 아직 없다.</p>
+<div class="table-wrap"><table class="wp-table">
+<caption><span class="tab-no"></span> 최소 gate 목록(08 §6, 값 없음)</caption>
+<thead><tr><th scope="col">gate</th><th scope="col">통과의 뜻</th></tr></thead>
+<tbody>
+<tr><th scope="row">G-SAMPLE</th><td>F03에서 SE 또는 SES가 S0보다 목표 품질까지의 관측 수가 적다.</td></tr>
+<tr><th scope="row">G-COMPUTE</th><td>대표 실험에서 C*<sub>ε</sub>(SES) &lt; C*<sub>ε</sub>(S0)이고, 비용은 비용식 전체를 포함하며, 쉬운 문제 편중이 아니다.</td></tr>
+<tr><th scope="row">G-STRUCT</th><td>F01의 이득이 F02 표면 함정에서 negative transfer로 뒤집히지 않는다.</td></tr>
+<tr><th scope="row">G-PROTECT</th><td>F05·F06에서 이전 조건 판단의 퇴행이 한도 이내다.</td></tr>
+<tr><th scope="row">G-CAUSAL</th><td>학습한 표현을 제거·교체하면 구조 전이만 선택적으로 줄어든다.</td></tr>
+<tr><th scope="row">G-CONTROL</th><td>위 gate는 같은 용량·같은 update budget의 대조군보다 우수해야 한다. 대조가 비슷하면 그 범위에서 구조의 독자 기여를 주장하지 않는다.</td></tr>
+</tbody></table></div>
+<aside class="callout callout-decision">
+<p><span class="ev ev-open">OPEN</span> <strong>사용자 승인이 필요하다.</strong> 이 레지스트리 틀과 F13–F21은 PROPOSAL이다(감사 §5 D묶음 18). 수치 gate는 pilot 분산을 본 뒤 사전에 확정해 승인을 받는다(D묶음 19). Melete J1의 gate 수치 5pp는 당시 master의 제안이었고 FCL로 옮기지 않았다. 열린 결정 목록은 <a href="#roadmap">로드맵</a>의 결정 표에, 사용자 확인 19개는 <a href="#traceability">추적성</a> 절에 있다.</p>
+</aside>
+
+<h3 id="evaluation-data">data와 통계</h3>
+<p><span class="ev ev-proposal">PROPOSAL</span> 데이터는 world·history·task family·time 단위로 서로 독립하게 나눈다. 같은 세계의 paraphrase를 train과 test에 섞지 않는다. test oracle와 latent label은 evaluator 전용이다. 1·3·10 관측에서 식별 가능한 query 집합이 달라지면 같은 case의 학습 곡선인 것처럼 보고하지 않고, ambiguous coverage는 accuracy와 따로 센다(<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/08-evaluation.md#7-data와-통계">08 §7</a>).</p>
+<p><span class="ev ev-user">USER</span> (B14, 2026-10-12) 학습 방법 조합을 검토하려면 dataset과 testcase가 필요하다. <span class="ev ev-proposal">PROPOSAL</span> 각 family는 학습을 시작하기 전에 데이터 생성 계약을 가진다.</p>
+<ul>
+<li><strong>생성기:</strong> 시간순 경험 stream, learner가 보는 공개 view, evaluator 전용 oracle을 분리해 만들고 split 단위는 문장이 아니라 world(이력·잠재 구조·도메인)다.</li>
+<li><strong>식별가능성 audit:</strong> 유한한 정책 집합을 정의해 각 query가 해당 관측 수에서 식별 가능한지 먼저 계산한다. 식별 불가능한 사례는 삭제하지 않고 모호 사례로 보존하며, 식별 가능 비율이 사전 기준 미만이면 그 데이터를 쓰지 않는다.</li>
+<li><strong>trivial baseline:</strong> 다수결, 최근접, 마지막 label 복사(copy-last), analytic reference를 같은 split에서 먼저 보고한다.</li>
+<li><strong>독립 의미 검토:</strong> 기계적 contract·seal 검사의 통과는 benchmark의 선언과 실제 fixture가 일치한다는 증명이 아니므로 별도 검토를 요구한다.</li>
+</ul>
+<p><span class="ev ev-archive">ARCHIVE</span> Melete의 설계 진리표는 유한 정책 24개·96 slot 중 40개(41.7%)만 식별 가능했고, 식별 가능 비율의 사전 기준으로 10개 관측 시점의 25%를 제안했다. j0-v1은 return fixture가 선언한 정책과 달라 마지막 label을 복사해도 맞는데 기계적 검사가 이를 놓쳐 PASS가 철회됐다. J1에서는 first-copy가 100%인 ceiling을 조건 발견 성공으로 읽지 않기로 했다(<a class="src" href="https://github.com/jimmylegendary/melete/blob/1d95136c3a64580ec25bc588c96c191eecb85b41/docs/implementation/records/2026-10-15-neural-review-postmortem.md">postmortem</a>, <a class="src" href="https://github.com/jimmylegendary/melete/blob/1d95136c3a64580ec25bc588c96c191eecb85b41/docs/implementation/records/2026-10-15-conditional-judgment-j0-feedback.md">j0 feedback</a>, <a class="src" href="https://github.com/jimmylegendary/melete/blob/1d95136c3a64580ec25bc588c96c191eecb85b41/docs/implementation/records/2026-10-21-neural-judgment-j1-diagnostics.md">j1 diagnostics</a>). 위 수치는 Melete 합성 과제의 값이며 FCL의 기준이 아니다.</p>
+<p><span class="ev ev-proposal">PROPOSAL</span> dev는 상세 실패를 제공하고, selection은 사용 횟수와 feedback을 제한하며, confirmation은 fresh locked cohort다. 숨긴 데이터도 aggregate score의 반복 접근으로 오염될 수 있다. 시도 수와 hypothesis family를 기록하고 multiplicity와 신뢰구간을 prospective하게 계획하며, seed × world 의존성을 고려하고 query 반복을 독립 표본으로 늘리지 않는다. 통계적으로 유의하지 않음은 동등성이나 반증이 아니고, 효과 크기 부족과 추정 불확실성은 다르다. 결과를 본 뒤 threshold·margin·test subset을 고쳐 PASS로 만들지 않는다.</p>
+
+<h3 id="evaluation-status">결과 상태와 수치 보고 원칙</h3>
+<p><span class="ev ev-proposal">PROPOSAL</span> 결과 상태는 다섯 가지다(<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/08-evaluation.md#8-결과-상태">08 §8</a>).</p>
+<div class="table-wrap"><table class="wp-table">
+<caption><span class="tab-no"></span> 결과 상태(08 §8)</caption>
+<thead><tr><th scope="col">상태</th><th scope="col">뜻</th></tr></thead>
+<tbody>
+<tr><th scope="row">PASS</th><td>사전 정의한 scope 안에서 quality·uncertainty·family 보호·비용 조건을 모두 만족한다.</td></tr>
+<tr><th scope="row">FAIL</th><td>사전 조건 미달. 어떤 가설과 범위를 기각하는지 밝힌다.</td></tr>
+<tr><th scope="row">INCONCLUSIVE</th><td>표본·식별성·검정력이 부족하다. PASS가 아니다.</td></tr>
+<tr><th scope="row">BLOCKED</th><td>권한·infra·runtime 문제로 실험 질문을 보존한 실행을 못 했다.</td></tr>
+<tr><th scope="row">NOT RUN</th><td>실행하지 않았다. 설계나 코드가 있다는 것과 구별한다.</td></tr>
+</tbody></table></div>
+<p><span class="ev ev-proposal">PROPOSAL</span> 수치는 정확한 denominator, filtered·unfiltered, calibration·test, mean·median, signal MSE·observation MSE를 표시한다. 과거 보고의 값은 ARCHIVE이고, 이번 실행값은 새 run ID·config·code/data hash·환경·실제 비용과 함께 기록한다. 공개 source code가 있다고 본인의 재현을 완료한 것은 아니다(<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/08-evaluation.md#9-수치-보고-원칙">08 §9</a>). 모든 ±와 괄호값에는 정의(SD·SE·95% CI)와 독립 단위(seed·world·query)를 적고, 그림에서 읽은 값은 읽은 값으로 표시하며, 문헌 수치를 인용할 때는 위치와 분모를 함께 적는다.</p>
+<p><span class="ev ev-literature">LITERATURE</span> (CHU25·ELDER26·KUMAR26·SWAMI23, 원문 검토 §8) 읽은 논문에서도 ±와 괄호값의 정의·분모 누락이 반복됐다. CHU25는 정확도 정의와 93.20의 분모가, ELDER26은 ±의 정의와 978 대 888 clips가, KUMAR26은 본문 ±의 정의가 없고, SWAMI23은 같은 괄호 표기가 표에 따라 95% 신뢰구간 폭이거나 표준오차다.</p>
+
+<aside class="callout callout-source">
+<p><strong>근거 문서.</strong> <a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/08-evaluation.md">08-evaluation.md</a> · <a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/06-mathematical-framework.md#9-프로젝트의-핵심-측정량">06 §9</a>(C*<sub>ε</sub>) · <a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/03-foundations.md#2-원자료에서-다룬-13개-이론회로">03 §2</a>(13 이론) · <a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/research/2026-11-11-sbl-fulltext-review.md#4-논문을-가로지르는-관찰">원문 검토 §4</a>(논문을 가로지르는 관찰) · <a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/research/2026-11-12-design-audit.md#5-사용자-확인이-필요한-것">감사 §5</a>(사용자 확인) · <a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/VALIDATION.md#4-검증하지-않은-것">VALIDATION.md §4</a>(검증하지 않은 것). 다음 읽을 곳: <a href="#roadmap">로드맵</a>(gate가 phase마다 어떻게 쌓이는가), <a href="#evolution">진화 정책</a>(후보 평가의 독립성).</p>
+</aside>
+</section>

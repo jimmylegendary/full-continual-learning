@@ -1,0 +1,20 @@
+<section class="wp-section" id="sec-cover" data-part="들어가며">
+<h2 id="cover">FCL System ONE 설계 백서</h2>
+<p class="lede">경험이 다음에 무엇을 이해하고, 얼마나 생각하며, 무엇을 어떻게 배울지까지 바꾸는 하나의 모델. (<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/README.md?plain=1#L3">README</a> · <a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/docs/01-intent-and-charter.md?plain=1#L5">01 §1</a>)</p>
+<p>Full Continual Learning(FCL) 저장소의 통합 설계를 근거·검증 계획·열린 결정과 함께 한곳에 모은 읽기용 지도입니다. 2026-11-12 · 기준 커밋 <a href="https://github.com/jimmylegendary/full-continual-learning/commit/2ecf3e0">2ecf3e0</a> (main 브랜치).</p>
+<aside class="callout callout-warn"><p><strong>설계·검증 계획 단계 — 구현·효용 검증 전.</strong> <span class="ev ev-archive">ARCHIVE</span> 이 백서가 설명하는 통합 모델(System ONE)은 구현·학습·효용 검증이 하나도 없습니다 (<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/README.md?plain=1#L7">README</a> · <a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/VALIDATION.md?plain=1#L48">VALIDATION §4</a>). 기대하는 효과는 모두 “제안한다·가설이다·검증 계획이다”로 읽어 주십시오.</p></aside>
+<p>처음이라면 <a href="#summary">2분 요약</a>에서 결정할 것을 보고, <a href="#reading-guide">읽는 법</a>에서 자기에게 맞는 경로를 고르십시오. 결정권자용 한 장은 <a href="pages/brief.html">brief</a>에 있습니다.</p>
+<h3 id="cover-evidence">증거 라벨 범례</h3>
+<p>이 백서는 사용자 진술, 제안, 문헌 주장, 과거 기록, 미해결을 섞지 않으려고 주장마다 라벨을 붙입니다. 라벨의 뜻은 저장소 문서를 따릅니다 (<a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/README.md?plain=1#L54">README 증거 표기</a> · <a class="src" href="https://github.com/jimmylegendary/full-continual-learning/blob/main/EVIDENCE.md?plain=1#L21">EVIDENCE 확인 깊이</a>).</p>
+
+<div class="table-wrap"><table class="wp-table" id="tab-cover-evidence"><caption><span class="tab-no"></span> 증거 라벨 5종 — 이 백서의 주장에 붙는다</caption>
+<thead><tr><th>라벨</th><th>뜻</th><th>이 백서에서 쓰는 방식</th></tr></thead>
+<tbody>
+<tr><td><span class="ev ev-user">USER</span></td><td>대화에서 사용자가 명시한 방향.</td><td>사용자 진술 원문에 근거가 있을 때만 붙인다.</td></tr>
+<tr><td><span class="ev ev-proposal">PROPOSAL</span></td><td>대화를 정리하면서 제안된 구현·수식·수치 기준. 자동으로 확정 요구가 되지 않는다.</td><td>“제안한다·가설이다·검증 계획이다”로 읽는다.</td></tr>
+<tr><td><span class="ev ev-literature">LITERATURE</span></td><td>원 논문·공식 구현에 귀속되는 주장.</td><td>문헌별 <strong>확인 깊이</strong>를 괄호로 병기한다 (예: fulltext-read).</td></tr>
+<tr><td><span class="ev ev-archive">ARCHIVE</span></td><td>과거 답변·실험 산출물에 기록된 내용. 이번에 새로 실행했다는 뜻이 아니다.</td><td>과거 수치는 그 기록의 범위로 귀속한다.</td></tr>
+<tr><td><span class="ev ev-open">OPEN</span></td><td>미해결 또는 추가 검증이 필요한 주장.</td><td>결정·확인을 기다리는 것은 모두 이 라벨이다.</td></tr>
+</tbody></table></div>
+<aside class="callout callout-source"><p>라벨은 문서에 붙은 것을 그대로 따른다. 문서보다 강한 라벨을 붙이지 않는다. 확인 깊이의 정의는 <a href="#reading-guide">읽는 법</a>에 있다.</p></aside>
+</section>

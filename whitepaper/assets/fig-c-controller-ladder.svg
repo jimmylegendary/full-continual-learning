@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 720 580" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="fig-c-controller-ladder-title fig-c-controller-ladder-desc" font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR','Noto Sans CJK KR','Malgun Gothic',system-ui,sans-serif">
+<title id="fig-c-controller-ladder-title">controller 해상도 사다리 v0–v2</title>
+<desc id="fig-c-controller-ladder-desc">경로를 고르는 판단기의 세 단계. v0는 익숙함 신호의 두 임계값으로 fast, learn, deep을 고르는 규칙형, v1은 token·block 계산 mask와 깊이 source 선택과 학습된 halting, v2는 schema 조합·분화 head와 level별 write 허용과 지연 귀속이다. 모든 버전은 같은 입출력 필드를 유지하고 채우는 정도만 늘린다.</desc>
+<defs><marker id="fig-c-controller-ladder-arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto-start-reverse"><polygon points="0 0, 8 3, 0 6" fill="#4f5d75"/></marker><marker id="fig-c-controller-ladder-arrow-accent" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto-start-reverse"><polygon points="0 0, 8 3, 0 6" fill="#eb6c36"/></marker><marker id="fig-c-controller-ladder-arrow-link" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto-start-reverse"><polygon points="0 0, 8 3, 0 6" fill="#2e5aa8"/></marker><marker id="fig-c-controller-ladder-arrow-open" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto-start-reverse"><polyline points="0 0, 8 3, 0 6" fill="none" stroke="#4f5d75" stroke-width="1.2"/></marker></defs>
+<rect width="100%" height="100%" fill="#f5f5f5"/>
+<line x1="40" y1="16" x2="40" y2="496" stroke="rgba(45,49,66,0.30)" stroke-width="1.2"/>
+<line x1="680" y1="16" x2="680" y2="496" stroke="rgba(45,49,66,0.30)" stroke-width="1.2"/>
+<rect x="40" y="56" width="640" height="128" fill="#f5f5f5"/>
+<rect x="40" y="56" width="640" height="128" rx="6" fill="#ffffff" stroke="#2d3142" stroke-width="1"/>
+<text x="60" y="92" font-size="20" fill="#2d3142" font-weight="600">v2</text>
+<text x="108" y="92" font-size="12" fill="#2d3142" font-weight="600">조합·분화·지연 귀속</text>
+<text x="60" y="120" font-size="12" fill="#4f5d75">09 §4는 P3 열에 학습된 controller 뒤의</text>
+<text x="60" y="136" font-size="12" fill="#4f5d75">&#x27;조합·분화·level별 write 허용&#x27;을 적었다.</text>
+<line x1="352" y1="72" x2="352" y2="168" stroke="rgba(45,49,66,0.16)" stroke-width="0.8"/>
+<text x="372" y="96" font-size="12" fill="#2d3142">schema 조합·분화 head</text>
+<text x="372" y="116" font-size="12" fill="#2d3142">레벨별·연결별 write 허용 u</text>
+<text x="372" y="136" font-size="12" fill="#2d3142">eligibility 기반 지연 귀속 (04 §4)</text>
+<rect x="40" y="200" width="640" height="128" fill="#f5f5f5"/>
+<rect x="40" y="200" width="640" height="128" rx="6" fill="#ffffff" stroke="#2d3142" stroke-width="1"/>
+<text x="60" y="236" font-size="20" fill="#2d3142" font-weight="600">v1</text>
+<text x="108" y="236" font-size="12" fill="#2d3142" font-weight="600">계산 배분·종료를 학습</text>
+<text x="60" y="264" font-size="12" fill="#4f5d75">09 §4는 P3 열에 학습된 controller(문맥</text>
+<text x="60" y="280" font-size="12" fill="#4f5d75">head·계산 mask·halting)를 적었다.</text>
+<line x1="352" y1="216" x2="352" y2="312" stroke="rgba(45,49,66,0.16)" stroke-width="0.8"/>
+<text x="372" y="240" font-size="12" fill="#2d3142">token·block 단위 계산 mask a</text>
+<text x="372" y="260" font-size="12" fill="#2d3142">depth source 선택</text>
+<text x="372" y="280" font-size="12" fill="#2d3142">학습된 halting (06 §6)</text>
+<rect x="40" y="344" width="640" height="128" fill="#f5f5f5"/>
+<rect x="40" y="344" width="640" height="128" rx="6" fill="rgba(235,108,54,0.08)" stroke="#eb6c36" stroke-width="1.2"/>
+<text x="60" y="380" font-size="20" fill="#eb6c36" font-weight="600">v0</text>
+<text x="108" y="380" font-size="12" fill="#2d3142" font-weight="600">규칙형 판단기 (첫 통합 모델)</text>
+<text x="60" y="408" font-size="12" fill="#4f5d75">09 §2·§5 P1: 학습 없는 규칙. P2에서</text>
+<text x="60" y="424" font-size="12" fill="#4f5d75">유지(고정 depth를 잴 때는 우회).</text>
+<line x1="352" y1="360" x2="352" y2="456" stroke="rgba(45,49,66,0.16)" stroke-width="0.8"/>
+<text x="372" y="384" font-size="12" fill="#2d3142">익숙함 신호의 두 임계값</text>
+<text x="372" y="404" font-size="12" fill="#2d3142">fast · learn · deep, r ∈ {1, 2}</text>
+<text x="372" y="424" font-size="12" fill="#2d3142">결정 trace · 임계값은 dev에서 정해 봉인</text>
+<text x="60" y="40" font-size="12" fill="#4f5d75" font-weight="600">단계 · 09 문서에서의 위치</text>
+<text x="372" y="40" font-size="12" fill="#4f5d75" font-weight="600">이 단계가 채우는 것</text>
+<line x1="24" y1="516" x2="696" y2="516" stroke="rgba(45,49,66,0.10)" stroke-width="0.8"/>
+<rect x="24" y="520" width="24" height="16" rx="4" fill="rgba(235,108,54,0.08)" stroke="#eb6c36" stroke-width="1.2"/>
+<text x="56" y="532" font-size="12" fill="#4f5d75">첫 통합 모델의 판단기</text>
+<rect x="200" y="520" width="24" height="16" rx="4" fill="#ffffff" stroke="#2d3142" stroke-width="1"/>
+<text x="232" y="532" font-size="12" fill="#4f5d75">이후 해상도(제안, 구현 없음)</text>
+<line x1="24" y1="552" x2="48" y2="552" stroke="#4f5d75" stroke-width="1.2"/>
+<text x="56" y="556" font-size="12" fill="#4f5d75">위 단계일수록 채우는 필드가 늘어난다(입출력 필드는 같다)</text>
+</svg>
