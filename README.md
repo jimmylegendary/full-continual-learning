@@ -4,6 +4,8 @@
 
 이 저장소는 Melete를 출발점으로 논의한 schema-based learning(SBL), 지속학습, 빠른 적응, 가변 깊이 추론, 뇌 리듬에서 영감을 얻은 조율, 기존 LLM의 점진적 retrofit을 통합하는 연구 기반이다. 정리 기준일: **2026-11-12**(설계 반영 감사와 로드맵 재구성).
 
+추가 논의 **2026-11-14**: [Schema 정의·분해·변경 간섭](docs/13-schema-decomposition-and-interference.md) — schema/artifact 구분, LLM과의 통합 가설, 보존의 수학적 조건, 실험 A–E 및 [보충 참고문헌](references/schema-decomposition-2026-11-14.md). 연구 제안의 문서화이며 구현·효용 검증 완료가 아니다.
+
 > 현재 상태: **연구 의도·설계·근거·검증 계획의 아카이브**. 통합 HOPE/Titan/CMS/recursive 모델의 구현·학습·성능 검증 완료를 뜻하지 않는다. 이전 합성 Phase-0 실험은 제한된 연속 prior의 표본 효율 실험이며 통합 모델 PoC가 아니다.
 
 ## 최종적으로 합의한 방향
@@ -31,6 +33,7 @@
 | [09-roadmap.md](/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md) | 점진적 해상도 로드맵: P1 MVP(실제 `fcl` CLI·소형 retrofit 모델·규칙형 controller v0·대조군·망각/표면 평가)부터 P5까지, capability × phase 표, 결과 등급과 상한, 열린 결정 D-01–D-14 |
 | [Self-evolution와 운영 정책](docs/10-evolution-policy.md) | 독립 evaluator, 후보 계보, 예산, 승격, 실패 기록 |
 | [후속 가설과 미해결 질문](docs/11-research-agenda.md) | pretraining/alignment, schema 분화, insight |
+| [Schema 정의·분해·변경 간섭](docs/13-schema-decomposition-and-interference.md) | LLM과 System ONE의 공통 설명, 표현/활성화/변경 분리, 조건부 수학 명제, 실험 A–E |
 | [기존 Melete와 이관 경계](docs/12-melete-lineage.md) | H1–H5와 이전 실험을 어떻게 보존할지 |
 | [주간 SBL 조사 기록](research/2026-11-09-sbl-tracking.md) | 대화에서 보고된 최신 연구와 수치의 출처 상태 |
 | [2026-11-11-sbl-fulltext-review.md](/home/jimmy/repos/full-continual-learning/research/2026-11-11-sbl-fulltext-review.md) | 신경망 SBL 구현 11편 원문 검토: 외부 요약 정정, 공통 공백, FCL 설계의 시작점 |
