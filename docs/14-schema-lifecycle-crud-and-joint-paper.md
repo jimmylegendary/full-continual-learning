@@ -130,6 +130,8 @@ $$
 
 전체 pipeline 점수만으로 세 원인의 실패를 구분하지 않는다. D의 순수 손실은 올바른 경로를 주는 조건으로 진단하고, R의 순수 실패는 expert 내용을 고정해 측정한다. 망각 감소가 학습 정지의 결과인지, 이득이 저장량 증가 때문인지 확인한다.
 
+**추가 Read 대조군 (PROPOSAL / NOT RUN):** [WikiTrace·HiVe-Mem 보충 검토](../research/2026-11-16-memory-evidence-read-supplement.md)를 참고하여 schema-only vs 원본 근거 확인 가능한 Read, 기억 사용으로 인한 회귀, retrieval 토큰·지연을 평가한다. External agent memory의 검증을 neural schema 학습의 증거로 취급하지 않는다.
+
 ## 9. 남은 결정과 출처
 
 Expert의 수·rank·검색 key·분화 기준·retention budget·압축 손실·commit 단위·정답 접근권은 아직 확정되지 않았다. 세 정책의 결합이 기존 방법보다 유리하다는 실험도 NOT RUN이다. 초기 정책을 고정한 작은 전체 MVP에서 시작해 독립 evaluator 아래 self-evolution을 적용한다.

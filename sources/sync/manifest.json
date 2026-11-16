@@ -41,6 +41,18 @@
       "path": "research/2026-11-16-sleep-time-melete-integration.md",
       "reference_path": "references/2026-11-16-sleep-time-melete.md",
       "evidence": "8 relevant papers selected from separate automation; arXiv abstract/version verified; fulltext and implementation NOT RUN"
+    },
+    {
+      "id": "memory-evidence-read-2026-11-16",
+      "status": "partial_archive_recovery_and_primary_abstract_checked",
+      "path": "research/2026-11-16-memory-evidence-read-supplement.md",
+      "source": "Accessible topical prior-conversation summary of independent Sleep-time weekly report; full automation response inaccessible in this run",
+      "papers": [
+        "WikiTrace 2611.14320 (2026-11-10)",
+        "HiVe-Mem 2611.12872 (2026-11-09)"
+      ],
+      "evidence": "Official arXiv landing pages rechecked 2026-11-16; WikiTrace public GitHub repository confirmed",
+      "caveat": "No fulltext/appendix or model/code execution; external agent memory NOT continuous neural schema training"
     }
   ],
   "source_excerpts": "sources/sync/2026-11-16-discussion.md",
@@ -51,13 +63,21 @@
     "model_implementation_or_experiments": "not_run",
     "publication_verification": "verify remote ref, tree and changed paths after commit; this manifest does not self-certify publication",
     "primary_source_metadata_check": "8 official arXiv landing pages inspected on 2026-11-16; titles/authors/version/abstract verified; no full text read or experiments",
-    "new_document_checks": "JSON syntax and relative Markdown links checked for changed files against repository tree; repository-wide validator not run"
+    "new_document_checks": "JSON syntax and relative Markdown links checked for changed files against repository tree; repository-wide validator not run",
+    "incremental_evidence_read_2026_11_16": {
+      "base_commit": "534bbb5a1ca86e1694645c99d3a56c8aa3600b81",
+      "local_git": "not_run: container DNS cannot resolve github.com",
+      "source_verification": "2 official arXiv abstracts; 1 public author-code repository existence",
+      "repository_validation": "changed files links and JSON only; repository-wide validator not run",
+      "remote_publication": "confirm by HEAD, contents and compare after commit; not pre-certified"
+    }
   },
   "coverage_limits": [
     "No claim of access to every prior or future conversation",
     "Previous paper dates and numbers retained as discussion-import, not newly verified facts",
     "Existing roadmap, source archives, code and whitepaper are preserved",
-    "Sleep-time source output was partially truncated on retrieval; only accessible and verified report items imported"
+    "Sleep-time source output was partially truncated on retrieval; only accessible and verified report items imported",
+    "Independent Sleep-time report was accessible only via topical prior-conversation excerpt, not a complete report; 2 additional related works cross-checked independently."
   ],
   "source_reports": [
     {
