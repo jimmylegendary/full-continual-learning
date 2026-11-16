@@ -4,15 +4,44 @@
   "sync_date": "2026-11-16",
   "timezone": "Asia/Seoul",
   "base_commit": "aa1413d42904a937041d676fd8406b3bb5f7b0fd",
-  "source_scope": "Accessible messages in the current conversation; not an exhaustive cross-session export",
+  "source_scope": "Accessible current conversation and completed 2026-11-16 Sleep-time Compute automation result; not a complete export of prior/future chats",
   "sync_mode": "hourly_condition_watch",
   "automation_title": "FCL 연구 기록 동기화",
   "items": [
-    {"id": "schema-decomposition-existing", "status": "already_present", "path": "docs/13-schema-decomposition-and-interference.md"},
-    {"id": "schema-crud-ali-proposal", "status": "discussion_reconstruction", "path": "docs/14-schema-lifecycle-crud-and-joint-paper.md", "evidence": "USER and PROPOSAL; implementation NOT RUN"},
-    {"id": "sbl-weekly-2026-11-16", "status": "discussion_import_not_reverified", "path": "research/2026-11-16-sbl-tracking.md", "caveat": "Tian novelty label conflicts with earlier mention; flagged rather than counted as new"},
-    {"id": "impact-agi-conditional", "status": "conditional_assessment_archive", "path": "research/2026-11-16-impact-hypotheses.md"},
-    {"id": "standing-sync-request-2026-11-16", "status": "user_request_and_policy", "path": "SYNC_POLICY.md"}
+    {
+      "id": "schema-decomposition-existing",
+      "status": "already_present",
+      "path": "docs/13-schema-decomposition-and-interference.md"
+    },
+    {
+      "id": "schema-crud-ali-proposal",
+      "status": "discussion_reconstruction",
+      "path": "docs/14-schema-lifecycle-crud-and-joint-paper.md",
+      "evidence": "USER and PROPOSAL; implementation NOT RUN"
+    },
+    {
+      "id": "sbl-weekly-2026-11-16",
+      "status": "discussion_import_not_reverified",
+      "path": "research/2026-11-16-sbl-tracking.md",
+      "caveat": "Tian novelty label conflicts with earlier mention; flagged rather than counted as new"
+    },
+    {
+      "id": "impact-agi-conditional",
+      "status": "conditional_assessment_archive",
+      "path": "research/2026-11-16-impact-hypotheses.md"
+    },
+    {
+      "id": "standing-sync-request-2026-11-16",
+      "status": "user_request_and_policy",
+      "path": "SYNC_POLICY.md"
+    },
+    {
+      "id": "sleep-time-melete-2026-11-16",
+      "status": "selected_report_archive_with_primary_abstract_check",
+      "path": "research/2026-11-16-sleep-time-melete-integration.md",
+      "reference_path": "references/2026-11-16-sleep-time-melete.md",
+      "evidence": "8 relevant papers selected from separate automation; arXiv abstract/version verified; fulltext and implementation NOT RUN"
+    }
   ],
   "source_excerpts": "sources/sync/2026-11-16-discussion.md",
   "reference_supplement": "references/schema-lifecycle-2026-11-16.md",
@@ -20,11 +49,24 @@
     "repository_wide_validator": "not_run: local git clone failed due to DNS resolution",
     "literature_reverification": "not_run",
     "model_implementation_or_experiments": "not_run",
-    "publication_verification": "verify remote ref, tree and changed paths after commit; this manifest does not self-certify publication"
+    "publication_verification": "verify remote ref, tree and changed paths after commit; this manifest does not self-certify publication",
+    "primary_source_metadata_check": "8 official arXiv landing pages inspected on 2026-11-16; titles/authors/version/abstract verified; no full text read or experiments",
+    "new_document_checks": "JSON syntax and relative Markdown links checked for changed files against repository tree; repository-wide validator not run"
   },
   "coverage_limits": [
     "No claim of access to every prior or future conversation",
     "Previous paper dates and numbers retained as discussion-import, not newly verified facts",
-    "Existing roadmap, source archives, code and whitepaper are preserved"
+    "Existing roadmap, source archives, code and whitepaper are preserved",
+    "Sleep-time source output was partially truncated on retrieval; only accessible and verified report items imported"
+  ],
+  "source_reports": [
+    {
+      "title": "Sleep-time Compute 주간 동향",
+      "report_date": "2026-11-16",
+      "task_id": "6a800173dcdc819198767ca618472810",
+      "run_id": "f4042a8b-df7c-832f-a3c8-95b2e35acfde",
+      "access": "completed automation latest_result, partially truncated",
+      "selected_scope": "8 papers with FCL-relevant findings; not an exhaustive source reproduction"
+    }
   ]
 }

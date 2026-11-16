@@ -135,3 +135,7 @@ $$
 Expert의 수·rank·검색 key·분화 기준·retention budget·압축 손실·commit 단위·정답 접근권은 아직 확정되지 않았다. 세 정책의 결합이 기존 방법보다 유리하다는 실험도 NOT RUN이다. 초기 정책을 고정한 작은 전체 MVP에서 시작해 독립 evaluator 아래 self-evolution을 적용한다.
 
 [보충 참고문헌 및 확인 수준](../references/schema-lifecycle-2026-11-16.md). 기존 [상태 계약](07-state-and-storage.md), [평가](08-evaluation.md), [진화 정책](10-evolution-policy.md)과 함께 읽는다.
+
+## 10. 별도 Sleep-time 주간 보고와의 교차 검토 — 2026-11-16
+
+Memory utility·원본 증거 보존·learned memory I/O·장기 기술 획득 평가·LoRA effective rank/merging의 8건 선별 분석은 [연구 연결 기록](../research/2026-11-16-sleep-time-melete-integration.md)에 있다. **PROPOSAL / NOT RUN:** 기존 schema CRUD 구현·판정의 확정 변경이 아니라 실험 후보와 선행연구 경계다.

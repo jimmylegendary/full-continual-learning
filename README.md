@@ -30,15 +30,15 @@
 | [수학적 연구 명세](docs/06-mathematical-framework.md) | 상태, 조건부 schema, 가소성, meta-objective, 비용 |
 | [상태·시계·cache·저장 계약](docs/07-state-and-storage.md) | token/experience/loop/update 구분, rollback, offload |
 | [Benchmark와 판정](docs/08-evaluation.md) | transfer, rapid learning, ABA, uncertainty, compute |
-| [09-roadmap.md](/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md) | 점진적 해상도 로드맵: P1 MVP(실제 `fcl` CLI·소형 retrofit 모델·규칙형 controller v0·대조군·망각/표면 평가)부터 P5까지, capability × phase 표, 결과 등급과 상한, 열린 결정 D-01–D-14 |
+| [09-roadmap.md](docs/09-roadmap.md) | 점진적 해상도 로드맵: P1 MVP(실제 `fcl` CLI·소형 retrofit 모델·규칙형 controller v0·대조군·망각/표면 평가)부터 P5까지, capability × phase 표, 결과 등급과 상한, 열린 결정 D-01–D-14 |
 | [Self-evolution와 운영 정책](docs/10-evolution-policy.md) | 독립 evaluator, 후보 계보, 예산, 승격, 실패 기록 |
 | [후속 가설과 미해결 질문](docs/11-research-agenda.md) | pretraining/alignment, schema 분화, insight |
 | [Schema 정의·분해·변경 간섭](docs/13-schema-decomposition-and-interference.md) | LLM과 System ONE의 공통 설명, 표현/활성화/변경 분리, 조건부 수학 명제, 실험 A–E |
 | [기존 Melete와 이관 경계](docs/12-melete-lineage.md) | H1–H5와 이전 실험을 어떻게 보존할지 |
 | [주간 SBL 조사 기록](research/2026-11-09-sbl-tracking.md) | 대화에서 보고된 최신 연구와 수치의 출처 상태 |
-| [2026-11-11-sbl-fulltext-review.md](/home/jimmy/repos/full-continual-learning/research/2026-11-11-sbl-fulltext-review.md) | 신경망 SBL 구현 11편 원문 검토: 외부 요약 정정, 공통 공백, FCL 설계의 시작점 |
-| [2026-11-12-design-audit.md](/home/jimmy/repos/full-continual-learning/research/2026-11-12-design-audit.md) | 설계 반영 감사: 사용자 진술 202개 포함 325항목 원장, 반영 판정, 설계 문서 편집 70개, 사용자 확인·열린 결정·남은 문헌 정독 |
-| [README.md](/home/jimmy/repos/full-continual-learning/whitepaper/README.md) | 시각화 설계 백서(웹 https://fcl-system-one-whitepaper.vercel.app): 17절 본문 + 결정 브리프·직관 설명·전문가 델타·지식 그래프·피드백 원장 탐색기 |
+| [2026-11-11-sbl-fulltext-review.md](research/2026-11-11-sbl-fulltext-review.md) | 신경망 SBL 구현 11편 원문 검토: 외부 요약 정정, 공통 공백, FCL 설계의 시작점 |
+| [2026-11-12-design-audit.md](research/2026-11-12-design-audit.md) | 설계 반영 감사: 사용자 진술 202개 포함 325항목 원장, 반영 판정, 설계 문서 편집 70개, 사용자 확인·열린 결정·남은 문헌 정독 |
+| [README.md](whitepaper/README.md) | 시각화 설계 백서(웹 https://fcl-system-one-whitepaper.vercel.app): 17절 본문 + 결정 브리프·직관 설명·전문가 델타·지식 그래프·피드백 원장 탐색기 |
 | [전체 참고문헌](references/README.md) | 뇌과학·SBL·아키텍처·평가·진화 문헌 및 코드 |
 | [원문·출처 아카이브 안내](sources/README.md) | 대화 원문/주제별 재구성/파일 출처의 차이 |
 | [증거·누락·검증 범위](EVIDENCE.md) | 확인된 것, 재확인하지 않은 것, 이번 작업의 범위 |
@@ -84,3 +84,7 @@
 | [대화 출처·사용자 원문](sources/sync/2026-11-16-discussion.md) | CRUD 질문과 지속 갱신 요청, 재구성 범위와 정정 필요 사항 |
 
 이번 추가는 문서 동기화다. 기존 코드·로드맵·백서의 구현 상태와 효용 판정은 변경하지 않았다.
+
+## Sleep-time 조사와의 직접 관련 연결 — 2026-11-16
+
+독립 주간 보고에서 Melete의 CRUD·low-rank expert·지속학습 판정에 직접 관련된 **8건만** [연구 교차 검토](research/2026-11-16-sleep-time-melete-integration.md) 및 [참고문헌·확인 범위](references/2026-11-16-sleep-time-melete.md)에 선별 기록했다. Agent 외부 memory를 neural schema 지속학습으로 동일시하지 않는다. 전체 Sleep-time 보고를 이관한 것은 아니며 성능 재현도 수행하지 않았다.
