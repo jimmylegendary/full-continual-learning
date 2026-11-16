@@ -31,3 +31,11 @@
 `python tools/validate_docs.py`로 로컬 링크·TSV·JSON·Python syntax를 검사한다. 외부 URL이나 논문 진위 전체를 검증하는 명령은 아니다.
 
 `python tools/export_references.py`는 TSV에서 JSON/BibTeX 초안을 생성한다. 논문 제출 전에 공식 citation metadata를 대조한다.
+
+## Ongoing discussion sync — 2026-11-16
+
+사용자가 Melete/System ONE 관련 대화·연구 정보를 이 저장소에 항상 갱신해 달라고 요청했다. 상세 범위는 [SYNC_POLICY.md](SYNC_POLICY.md)와 [동기화 manifest](sources/sync/manifest.json)를 참조한다. 이 기록은 상위 권한이나 실제 접근 제한을 우회하지 않는다.
+
+접근 가능한 새 논의·정정·주간 보고의 실질 변경분을 관련 docs/research/references/source ledger와 README에 연결하는 것을 작업 기본값으로 둔다. 재구성 요약과 직접 확보 원문, 사용자 확정과 assistant 제안, 이전 보고와 새 검증을 분리한다. 누락된 세션 내용을 추정해 채우지 않는다.
+
+별도 hourly 동기화 작업이 있으므로 no-change 실행은 커밋·알림을 만들지 않는다. 기존 HEAD와 타인의 변경을 보존하고, 원격 게시 확인 후에만 성공을 보고한다. 논문 읽기·모델 실행·웹 배포를 단순 문서 동기화의 완료에 포함하지 않는다.

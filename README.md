@@ -70,3 +70,17 @@
 **전체 대화의 모든 문자·진행 메시지·도구 로그를 그대로 덤프한 저장소는 아니다.** 이용 가능한 논의의 연구 내용, 사용자 정정, 수식, 실험 결과, 참고문헌을 추적 가능한 구조로 모은 것이다. 확보된 원문과 재구성은 `sources/`에서 구분한다.
 
 현재 별도의 소프트웨어/문서 재사용 라이선스를 선택하지 않았다. 공개 열람이 자동으로 제3자 재배포 허가를 의미하지 않으며, 외부 코드의 라이선스는 각각 확인해야 한다.
+
+## 지속 동기화와 최근 반영 — 2026-11-16
+
+사용자 요청에 따라 접근 가능한 Melete/System ONE 대화와 연구 보고의 변경분을 지속 반영한다. 별도 hourly 확인 작업을 설정했으며, 실시간 전체 채팅 export나 GitHub Actions 설치는 아니다. [동기화 정책](SYNC_POLICY.md)과 [반영 manifest](sources/sync/manifest.json)에 범위·한계를 기록한다.
+
+| 추가 문서 | 내용 |
+|---|---|
+| [Schema 생명주기와 Ali 공동논문 제안](docs/14-schema-lifecycle-crud-and-joint-paper.md) | In-place Update/Create, 기능 손실 기반 Delete/Retain, 문맥 기반 Read/Activate, 목적함수와 실험 |
+| [11/16 SBL 보고 보존](research/2026-11-16-sbl-tracking.md) | 이전 보고의 수치·한계·링크를 discussion-import로 보존; 신규성 중복 주의 |
+| [영향·AGI 조건부 평가](research/2026-11-16-impact-hypotheses.md) | 증명 수준과 산업·학술 영향의 조건부 해석; 성과 주장이 아님 |
+| [보충 참고문헌](references/schema-lifecycle-2026-11-16.md) | CRUD·주간 보고의 원문 링크와 확인 수준 |
+| [대화 출처·사용자 원문](sources/sync/2026-11-16-discussion.md) | CRUD 질문과 지속 갱신 요청, 재구성 범위와 정정 필요 사항 |
+
+이번 추가는 문서 동기화다. 기존 코드·로드맵·백서의 구현 상태와 효용 판정은 변경하지 않았다.
