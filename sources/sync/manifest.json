@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "repository": "jimmylegendary/full-continual-learning",
-  "sync_date": "2026-11-16",
+  "sync_date": "2026-11-17",
   "timezone": "Asia/Seoul",
   "base_commit": "aa1413d42904a937041d676fd8406b3bb5f7b0fd",
   "source_scope": "Accessible current conversation and completed 2026-11-16 Sleep-time Compute automation result; not a complete export of prior/future chats",
@@ -53,6 +53,19 @@
       ],
       "evidence": "Official arXiv landing pages rechecked 2026-11-16; WikiTrace public GitHub repository confirmed",
       "caveat": "No fulltext/appendix or model/code execution; external agent memory NOT continuous neural schema training"
+    },
+    {
+      "id": "sleep-time-selected-addendum-2026-11-17",
+      "status": "previous_weekly_report_additional_selection_official_arxiv_checked",
+      "path": "research/2026-11-17-sleep-time-melete-selected-addendum.md",
+      "reference_path": "references/2026-11-16-sleep-time-melete.md",
+      "papers": [
+        "SoMem arXiv:2611.11929 (first 2026-11-09)",
+        "Recursive memory for prediction and generation arXiv:2611.13760 (first 2026-11-10)"
+      ],
+      "source": "2026-11-16 independent Sleep-time weekly latest_result (partially truncated); official arXiv abstracts and portions of HTML text cross-checked 2026-11-17",
+      "evidence": "SoMem author-linked public GitHub repository existence verified; no full PDF/appendix reading, training, experiments or code execution",
+      "caveat": "Adjacent external document memory and probabilistic finite-state theory, not direct continuous neural SBL"
     }
   ],
   "source_excerpts": "sources/sync/2026-11-16-discussion.md",
@@ -70,6 +83,13 @@
       "source_verification": "2 official arXiv abstracts; 1 public author-code repository existence",
       "repository_validation": "changed files links and JSON only; repository-wide validator not run",
       "remote_publication": "confirm by HEAD, contents and compare after commit; not pre-certified"
+    },
+    "incremental_sleep_selection_2026_11_17": {
+      "base_commit": "4d694cee91b490e257ee5f00f39aa8a8c462e1bb",
+      "source_verification": "2 official arXiv pages (abstract + selected HTML sections); one author-linked public GitHub repo existence",
+      "document_checks": "New note Markdown internal links checked against known repository paths; manifest JSON parse; append-only older reference list; repository-wide validator NOT RUN",
+      "model_implementation_or_experiments": "NOT RUN",
+      "remote_publication": "must verify new branch HEAD and remote changed contents after commit"
     }
   },
   "coverage_limits": [
@@ -77,7 +97,8 @@
     "Previous paper dates and numbers retained as discussion-import, not newly verified facts",
     "Existing roadmap, source archives, code and whitepaper are preserved",
     "Sleep-time source output was partially truncated on retrieval; only accessible and verified report items imported",
-    "Independent Sleep-time report was accessible only via topical prior-conversation excerpt, not a complete report; 2 additional related works cross-checked independently."
+    "Independent Sleep-time report was accessible only via topical prior-conversation excerpt, not a complete report; 2 additional related works cross-checked independently.",
+    "2026-11-17 additional selection derived from partially accessible independent weekly report; SoMem and Recursive memory preprints were first published 2026-11-09/10, not new 2026-11-17 releases."
   ],
   "source_reports": [
     {

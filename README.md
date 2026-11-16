@@ -91,3 +91,6 @@
 ## Sleep-time 조사와의 직접 관련 연결 — 2026-11-16
 
 독립 주간 보고에서 Melete의 CRUD·low-rank expert·지속학습 판정에 직접 관련된 **8건만** [연구 교차 검토](research/2026-11-16-sleep-time-melete-integration.md) 및 [참고문헌·확인 범위](references/2026-11-16-sleep-time-melete.md)에 선별 기록했다. Agent 외부 memory를 neural schema 지속학습으로 동일시하지 않는다. 전체 Sleep-time 보고를 이관한 것은 아니며 성능 재현도 수행하지 않았다.
+
+
+2026-11-17 보충 선별: [SoMem과 recursive state capacity](research/2026-11-17-sleep-time-melete-selected-addendum.md) — 앞선 Sleep-time 주간 보고에서 이미 공개됐던 두 연구를 추가 검토. 외부 근거 기반 memory 재조직과 recurrent 상태의 현재 예측/미래 갱신 충분성을 구분하며, [참고문헌](references/2026-11-16-sleep-time-melete.md)에 기록한다. 새로운 neural SBL 성능의 입증이 아니라 **인접 연구·실험 가설 / NOT RUN**이다.
