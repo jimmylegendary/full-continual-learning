@@ -15,6 +15,8 @@
 
 **OPEN (2026-11-17 검토):** 위 USER·USER-HYPOTHESIS 표시는 2026-11-14 ChatGPT 재구성 문서 안의 표기이며, 이 저장소에는 그 대화의 사용자 원문 블록이 없다([user-statements.md](/home/jimmy/repos/full-continual-learning/sources/user-statements.md), [2026-11-16-discussion.md](/home/jimmy/repos/full-continual-learning/sources/sync/2026-11-16-discussion.md) 확인). 따라서 §1의 「사용자 제안」과 가설 1–4는 사용자 원문이 아니라 **재구성**이다. 원문으로 확인되는 사용자 진술은 U-T06·U-T07(schema 학습, offload·versioning·retrieval, 입력 문맥 schema 판단 구조, LLM이 하나의 schema를 학습하고 post-training이 이를 sub schema로 분화시켰다는 가설)과 2026-11-16 블록(지속학습의 목적, in-place update·create)뿐이며 이 문서의 내용과는 겹치는 부분만 일치한다. 또한 `DERIVATION`은 [SYNC_POLICY.md](/home/jimmy/repos/full-continual-learning/SYNC_POLICY.md)의 증거 표기 목록에 없으므로 §7의 유도는 **PROPOSAL(직접 유도)**로 읽고 아래 2026-11-17 검토 주석과 함께 본다.
 
+**원문 추가 확보 (2026-11-17, SOURCE RECOVERY / USER-HYPOTHESIS):** 이번 실행에서 현재 대화에 포함된 schema 정의·LLM 간섭 원본 사용자 메시지를 직접 확인했고 [원문 보존 파일](../sources/sync/2026-11-schema-user-verbatim.md)에 추가했다. 바로 위 **OPEN**은 확보 **이전** 저장소의 상태를 서술한 역사적 감사 기록이다. 원문에는 “여러개의 schema가 간섭된/중첩된 상태”, post-training/reasoning/RL/CoT의 activation·부분 분리, catastrophe의 인과 및 분해 학습 가능성에 대한 사용자의 가설이 실제로 포함돼 있다. 이는 **사용자 가설이 직접 확인됐다는 뜻이지 과학적 입증이 아니다**. 과거 U-T06의 “하나의 schema” 가설과 정확한 시간순서·개정 관계는 아직 OPEN이다.
+
 관련 문서: [기반 이론](03-foundations.md), [통합 모델](05-integrated-architecture.md), [수학적 명세](06-mathematical-framework.md), [상태와 저장](07-state-and-storage.md), [평가](08-evaluation.md), [현행 로드맵](09-roadmap.md), [열린 연구 의제](11-research-agenda.md).
 
 ## 1. 사용자 제안과 검토 결론

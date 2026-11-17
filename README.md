@@ -84,6 +84,7 @@
 | [영향·AGI 조건부 평가](research/2026-11-16-impact-hypotheses.md) | 증명 수준과 산업·학술 영향의 조건부 해석; 성과 주장이 아님 |
 | [보충 참고문헌](references/schema-lifecycle-2026-11-16.md) | CRUD·주간 보고의 원문 링크와 확인 수준 |
 | [대화 출처·사용자 원문](sources/sync/2026-11-16-discussion.md) | CRUD 질문과 지속 갱신 요청, 재구성 범위와 정정 필요 사항 |
+| [Schema·LLM 간섭과 영향 질문의 USER 원문](sources/sync/2026-11-schema-user-verbatim.md) | 이전 감사 때 직접 확보하지 못했던 schema 분해 가설 및 산업·AGI 영향 질문 원문(작성 시각 미확인) |
 
 이번 추가는 문서 동기화다. 기존 코드·로드맵·백서의 구현 상태와 효용 판정은 변경하지 않았다.
 

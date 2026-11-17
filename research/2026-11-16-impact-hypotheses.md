@@ -2,6 +2,8 @@
 
 정리일: 2026-11-16. **ARCHIVE / PROPOSAL / OPEN.** 사용자가 '이를 증명하면 업계 영향, Hopfield/Transformer/reasoning/MoE와의 비교, AGI/ASI 핵심 논문 가능성'을 질문한 대화의 요지를 보존한다. 실적·수상·채택의 사실 기록이나 미래 예측의 확정이 아니다.
 
+**원문 추가 확보 (2026-11-17, USER):** 이 영향 평가를 요청한 실제 질문(업계 임팩트, Hopfield·Transformer·reasoning·MoE 비교, AGI/ASI 핵심 가능성)을 [현재 대화의 사용자 원문](../sources/sync/2026-11-schema-user-verbatim.md)으로 직접 확보했다. 아래 평가는 여전히 **ARCHIVE / PROPOSAL / OPEN**이며 업계 채택이나 실험 성능의 증거가 아니다.
+
 ## 증명의 수준
 
 1. 과거 함수가 의존하는 상태와 경로를 유지하면 그 함수가 보존된다는 조건부 정리. 이것만으로 새로운 패러다임이라고 할 수 없다.
