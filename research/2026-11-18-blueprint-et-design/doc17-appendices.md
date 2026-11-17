@@ -17,7 +17,7 @@
 | stream 항목 schema | §6.1 | 항목 schema |
 | 입력 tier A·B·C | §6.2 | 입력 tier A·B·C |
 | stream 규모 추정 | §6.6 | 규모 추정 (ESTIMATE) |
-| 대조 stream C0~C4 | §7.6 | 대조 stream |
+| 대조 stream CS0~CS4 | §7.6 | 대조 stream |
 | 발견 곡선 지표 | §8.4 | 발견 곡선 지표 |
 | 대상별 rubric(형식, Einstein 1905 네 구성요소) | §9.2, §9.3 | rubric의 형식, Einstein 1905 rubric 초안 |
 | 통과 기준의 형식 | §10.1 | 판정 문장의 형식 |
@@ -29,11 +29,11 @@
 | 종류 | ID |
 |---|---|
 | 기호 | T0, W(≤T0), P_pre, P_post, W_delta, t_c, T1, checkpoint k, `L_in(c,k)`, `L_sys(c,k)`, `x_in` |
-| 누설 | 누설도 0~3, 누설 변형 V0 V1 V2, 누설 어휘 사전, `leak_by_component` |
+| 누설 | 누설도 0~3, 누설 변형 LV0 LV1 LV2, 누설 어휘 사전, `leak_by_component` |
 | 새로움 | Nv0 Nv1 Nv2 |
-| 대조 stream | C0 없음, C1 순서 섞기, C2 같은 시기 비발견자, C3 무관한 인물, C4 핵심 입력 제거, 핵심 입력 집합 K |
+| 대조 stream | CS0 없음, CS1 순서 섞기, CS2 같은 시기 비발견자, CS3 무관한 인물, CS4 핵심 입력 제거, 핵심 입력 집합 K |
 | 관찰 채널 | S 자발, E0 중립 probe, E1 주제 probe, E2 과제 probe |
-| 통과 조건 | P1~P10(§10.1), ET-3p 계약 C-1~C-7(§10.3) |
+| 통과 조건 | PC-1~PC-10(§10.1), ET-3p 계약 EC-1~EC-7(§10.3) |
 | 위험 | RSK-1~RSK-13(§12.1. 초안에서는 R1~R13) |
 | rubric 구성요소 | E1905-LQ, E1905-BM, E1905-SR, E1905-ME |
 | 객관 하위 과제 | OS-LQ-1~3, OS-BM-1~3, OS-SR-1~3, OS-ME-1~3 |

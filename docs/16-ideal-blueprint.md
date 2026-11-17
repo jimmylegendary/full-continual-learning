@@ -878,7 +878,7 @@ docs/09 §4에 행이 없는 feature는 BF-A2, BF-A3, BF-C1, BF-D1, BF-D4, BF-E4
 | N-3 | Delete/Retain 정책을 어느 phase에 둘지 | BF-G4, §4.7의 BF-G4 행 |
 | N-4 | 「못 찾으면 create」의 해석, low-rank expert를 보관 단위 기본 후보로 올릴지 | BF-B4, BF-E2, FL-2, OP16-2·7 |
 | N-5 | 새 arm·family F22–F24·실험 B의 채택 | §8.2의 후보 표시 |
-| N-8 | 지속학습의 목적을 헌장 U13으로 올릴지 | §7.2, D-26와 묶을 수 있다 |
+| N-8 | 지속학습의 목적을 헌장 U13으로 올릴지 | §7.2, D-26과 묶을 수 있다 |
 | D-11 | 외부 agent 연결 대상·방식·시점 | BF-H4, D-11 |
 | D-13 | 위상(phase) 조율(D) 실험의 배치 | BF-E4 |
 | D-14 | controller의 최소형을 P1에 넣을지 | BF-C2, D-21 |

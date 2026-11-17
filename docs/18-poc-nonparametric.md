@@ -24,7 +24,7 @@
 | 실험 환경: frozen LLM 후보, backend, 고정, 실행 위치 규칙 | §11 | host gate, runcrate readout |
 | 작업 표, 종료 gate, 절삭 순서 | §12 | P0-T01 ~ T21 |
 | Melete 자산 재사용 후보 | §13 | 파일 20개 안팎 |
-| 위협, 한계, NP가 못 이길 때의 분기, 사용자 결정 후보 | §14 | D-19 ~ 09 |
+| 위협, 한계, NP가 못 이길 때의 분기, 사용자 결정 후보 | §14 | D-16 ~ D-23 |
 
 **다른 문서와의 경계.** BF feature의 정의는 [16-ideal-blueprint.md](/home/jimmy/repos/full-continual-learning/docs/16-ideal-blueprint.md), ET의 운영 정의·stream·대상·발견 수준 rubric·단별 상한은 [17-einstein-test.md](/home/jimmy/repos/full-continual-learning/docs/17-einstein-test.md), phase 정의와 로드맵 쪽 종료 gate는 [09-roadmap.md](/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md), 논문 주장과 초록은 [19-paper-plan.md](/home/jimmy/repos/full-continual-learning/docs/19-paper-plan.md), token·GPU-시간·비용은 [15-compute-plan.md](/home/jimmy/repos/full-continual-learning/docs/15-compute-plan.md)가 소유한다. 이 문서는 이름으로 가리키고 값을 복제하지 않는다. 조사 기록은 [2026-11-18-blueprint-et-design.md](/home/jimmy/repos/full-continual-learning/research/2026-11-18-blueprint-et-design.md)다. 읽는 순서는 §2.1(전체 여정), §4(검증 목록), §10(실행 행렬), §12(작업 표)다.
 
@@ -79,7 +79,7 @@
 
 P0는 사용자가 요청한 POC의 **대역(stand-in)이며 최종형이 아니다.** 외부 frozen LLM을 쓰는 이 시스템은 헌장 U05와 [05-integrated-architecture.md](/home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md) §3, [09-roadmap.md](/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md) §1.3이 말하는 「외부 대형 LLM + 작은 판단기」의 최종 제품화가 아니다. 이 구성은 별도 작은 System1 + 외부 LLM 설계로 사용자 정정을 되돌리는 것이 아니다. 사용자의 최종 목표는 하나의 통합 System ONE이고, P0는 그 이후 phase가 학습 모듈로 바꿀 자리를 같은 계약으로 먼저 채우며 영구 대조군이 된다.
 
-동시에 P0는 **mock이나 조사 단계가 아니다.** 학습 0회로 실제 frozen LLM, 실제 디스크 state, 실제 runtime 프로세스 재시작, 실제 CLI에서 전체 여정을 끝까지 도는 완결 제품이며, 종료 때 사용자가 호스트에서 그대로 돌려 볼 수 있다. 「P1은 MVP」라는 사용자 전역 규칙과의 관계는 이렇게 읽는다. 이번 구성에서는 P0(NP)가 뼈대와 전체 여정을 먼저 세우고 P1이 첫 학습 해상도가 된다. 이는 사용자 원문의 「POC → 그 뒤 단계별 구현」에 맞춘 해석이며 사용자 확인 항목이다([09-roadmap.md](/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md)의 결정표가 소유한다).
+동시에 P0는 **mock이나 조사 단계가 아니다.** 학습 0회로 실제 frozen LLM, 실제 디스크 state, 실제 runtime 프로세스 재시작, 실제 CLI에서 전체 여정을 끝까지 도는 완결 제품이며, 종료 때 사용자가 호스트에서 그대로 돌려 볼 수 있다. 「P1은 MVP」라는 사용자 전역 규칙과의 관계는 이렇게 읽는다. 이번 구성에서는 P0(NP)가 뼈대와 전체 여정을 먼저 세우고 P1이 첫 학습 해상도가 된다. 이는 사용자 원문의 순서(POC를 먼저 하고 그 뒤에 단계별로 구현한다)에 맞춘 해석이며 사용자 확인 항목이다([09-roadmap.md](/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md)의 결정표가 소유한다).
 
 ## 2. P0 제품 정의: System ONE-NP
 
@@ -267,7 +267,7 @@ NP-1의 근거는 활성값 수준의 개입과 hidden-state 검색 기억에 �
 
 ## 4. 검증 목록 V0
 
-**PROPOSAL.** P0의 효용 질문을 V0-1 ~ V0-17로 나눈다. 모든 항목은 NOT RUN이다. 평가 family는 [08-evaluation.md](/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md)의 F01 ~ F24를 먼저 재사용하고, 재사용으로 재지 못하는 것만 새 family 후보로 둔다(F25 ~ c, §5.5). F22 ~ F24와 새 arm·실험 B의 채택은 사용자 결정 대기(N-5)이므로, 이 family에 기대는 하위 지표는 승인 전까지 보조 지표(탐색)로만 보고한다. 결과 등급과 상한은 [09-roadmap.md](/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md) §3과 MD-1118-P를 따른다.
+**PROPOSAL.** P0의 효용 질문을 V0-1 ~ V0-17로 나눈다. 모든 항목은 NOT RUN이다. 평가 family는 [08-evaluation.md](/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md)의 F01 ~ F24를 먼저 재사용하고, 재사용으로 재지 못하는 것만 새 family 후보로 둔다(F25·F30·F31, §5.5). F22 ~ F24와 새 arm·실험 B의 채택은 사용자 결정 대기(N-5)이므로, 이 family에 기대는 하위 지표는 승인 전까지 보조 지표(탐색)로만 보고한다. 결과 등급과 상한은 [09-roadmap.md](/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md) §3과 MD-1118-P를 따른다.
 
 ### 4.1 V0 정의표
 
@@ -313,7 +313,7 @@ NP-1의 근거는 활성값 수준의 개입과 hidden-state 검색 기억에 �
 | V0-12 | `np0`, `np1` 대 `base`, `ctx`, `ctx-deep`, `rag`, `summ`, `insight`, `concept`, `flat`. 절제 `np0-notension`, `np0-norecomb`. 진단 `oracle` | 발견 수준(L0 ~ L5)과 그 곡선(최초 발견 시점, 최고 수준, 곡선 아래 면적), 입력량 용량–반응 | 오발견율, 대조 stream(순서 섞기, 핵심 입력 제거, 무관 stream, 결론이 다른 stream)에서의 특이성, 입력 내재 수준 | A + B |
 | V0-13 | `np1`, `np1-vec`, `np1-knn` 대 `base`, `ctx`(demo 재제시), `rag`, `vec-random`(같은 norm의 무작위 방향), `vec-swap`(다른 조건의 vector) | 재시작 뒤 주입 효과 보존, 새 개체 zero-shot 정확도, 합성 과제 정확도 | 제거·교체 때만 효과가 사라지는지, 저장 bytes 대 `ctx` token | A + B |
 | V0-14 | Base 대 post-training 변형(같은 계열·같은 크기) | 과제 분리도(vector로 과제를 구별하는 정확도), 교차 주입 간섭 행렬, 부분공간 겹침 | 무작위 방향 대조, 과제 label 섞기 | E |
-| V0-15 | ET-3p의 NP arm(`np0`, `np1`)과 `lexical-rag`, `base`, `ctx-trunc`. 순서를 섞은 stream과 무관 인물의 stream | docs/17의 ET-3p 계약 gate(C-1 ~ C-7) 전부와 이 문서가 더하는 두 항목(allowlist 밖 호출 0건, 대조 stream 1개 이상 실행) | 누설도 채점 결과, 입력 내재 수준 | F |
+| V0-15 | ET-3p의 NP arm(`np0`, `np1`)과 `lexical-rag`, `base`, `ctx-trunc`. 순서를 섞은 stream과 무관 인물의 stream | docs/17의 ET-3p 계약 gate(EC-1 ~ EC-7) 전부와 이 문서가 더하는 두 항목(allowlist 밖 호출 0건, 대조 stream 1개 이상 실행) | 누설도 채점 결과, 입력 내재 수준 | F |
 | V0-16 | `np1`, `np0` 대 `base`, `ctx`, `rag`(135M급 모델) | round-trip 통과 여부, S-A 소규모 정확도 | NP-0 성립 여부(성립하지 않으면 그 사실을 보고) | A (소규모, 탐색) |
 | V0-17 | `np0`(origin 분리 규칙) 대 `np0-promote`(생성물을 관측으로 승격시키는 위험 arm), `flat` | 근거 root 목록에 생성물이 들어간 건수(0이어야 한다), 틀린 초기 추상화의 고착률과 독립 반례 뒤 회복 속도 | 모델 자신의 같은 해석을 반복한 뒤 drift | C + A |
 
@@ -501,7 +501,7 @@ stream의 크기(항목 수, token, checkpoint 수, probe 수)는 [17-einstein-t
 
 ### 6.5 완주 판정과 보고
 
-V0-15의 체크리스트는 [17-einstein-test.md](/home/jimmy/repos/full-continual-learning/docs/17-einstein-test.md)의 ET-3p 계약 gate(C-1 ~ C-7: 누수 감사 네 층의 실행, 시간 필터, 모델 사용 규칙, checkpoint와 읽기 전용 probe, 소규모 맹검 채점, 보고, 증거 원장)에 이 문서가 시스템 쪽에서 더하는 두 항목(시간캡슐 모드에서 allowlist 밖의 호출 0건, 대조 stream 1개 이상 실행)을 합친 것이다. 전부 PASS하면 「절차 완주」다. 이것은 발견의 PASS가 아니며 절차와 채점·누수 감사가 실제로 돈다는 Product 확인이다. 소형판(R04, host)과 정식판(R15, runcrate)의 결과를 한 비교로 합치지 않는다. 정식판이 어떤 곡선을 보이더라도 이 phase에서는 「발견했다」, 「확증」, 「인간 수준」이라고 쓰지 않는다. 이후 phase의 ET-3(System ONE을 시간캡슐 모델에 retrofit)와 ET-4(봉인 대상 묶음)가 판정 대상이다.
+V0-15의 체크리스트는 [17-einstein-test.md](/home/jimmy/repos/full-continual-learning/docs/17-einstein-test.md)의 ET-3p 계약 gate(EC-1 ~ EC-7: 누수 감사 네 층의 실행, 시간 필터, 모델 사용 규칙, checkpoint와 읽기 전용 probe, 소규모 맹검 채점, 보고, 증거 원장)에 이 문서가 시스템 쪽에서 더하는 두 항목(시간캡슐 모드에서 allowlist 밖의 호출 0건, 대조 stream 1개 이상 실행)을 합친 것이다. 전부 PASS하면 「절차 완주」다. 이것은 발견의 PASS가 아니며 절차와 채점·누수 감사가 실제로 돈다는 Product 확인이다. 소형판(R04, host)과 정식판(R15, runcrate)의 결과를 한 비교로 합치지 않는다. 정식판이 어떤 곡선을 보이더라도 이 phase에서는 「발견했다」, 「확증」, 「인간 수준」이라고 쓰지 않는다. 이후 phase의 ET-3(System ONE을 시간캡슐 모델에 retrofit)와 ET-4(봉인 대상 묶음)가 판정 대상이다.
 
 ## 7. 대조군과 예산 일치
 
@@ -611,7 +611,7 @@ P0는 주 모델(8B급) 말고도 P1 base급(135M급)에서 NP-1이 성립하는
 
 ## 10. P0 실행 행렬
 
-**ESTIMATE / NOT RUN.** suite와 run마다 규모를 low / base / high로 적는다. 이 표의 수는 실행한 결과가 아니라 계획용 규모다. world 수와 seed 수는 봉인 manifest의 값이 아니다. 봉인 값은 dev pilot의 분산으로 P0-T16에서 처음 정하고 사용자가 승인한다(§9.3). 금액은 쓰지 않는다. 비용은 [15-compute-plan.md](/home/jimmy/repos/full-continual-learning/docs/15-compute-plan.md)가 이 표의 호출 수와 token을 받아 계산한다(P10 / P50 / P90). 같은 표를 탭으로 구분한 파일(`W3-exec-matrix.tsv`의 사본)은 조사 기록의 입력표로 둔다(통합 담당이 위치를 정한다).
+**ESTIMATE / NOT RUN.** suite와 run마다 규모를 low / base / high로 적는다. 이 표의 수는 실행한 결과가 아니라 계획용 규모다. world 수와 seed 수는 봉인 manifest의 값이 아니다. 봉인 값은 dev pilot의 분산으로 P0-T16에서 처음 정하고 사용자가 승인한다(§9.3). 금액은 쓰지 않는다. 비용은 [15-compute-plan.md](/home/jimmy/repos/full-continual-learning/docs/15-compute-plan.md)가 이 표의 호출 수와 token을 받아 계산한다(P10 / P50 / P90). 같은 표를 탭으로 구분한 파일은 조사 기록의 [exec-matrix.tsv](/home/jimmy/repos/full-continual-learning/research/2026-11-18-blueprint-et-design/exec-matrix.tsv)다.
 
 ### 10.1 읽는 법
 
@@ -701,6 +701,8 @@ R01 ~ R04를 host에서 직렬로 돌리는 시간이다. 처리량은 가정이
 | base | 8.6 시간 | 14.3 시간 | 27.1 시간 |
 | high | 19.5 시간 | 32.1 시간 | 60.2 시간 |
 
+계산 계획은 같은 처리량 가정에서 표본을 뽑아 host 벽시계를 P50 약 19.2시간(P10–P90 11.8–31.5)으로 적는다([15-compute-plan.md](/home/jimmy/repos/full-continual-learning/docs/15-compute-plan.md)의 P0 실행 행렬 합계 표). 위 표의 14.3시간은 base 규모·중간 처리량의 점 값이고, 표본 P50이 더 큰 것은 분포의 꼬리와 호출 고정 지연이 더해지기 때문이다. 계획에는 계산 계획의 범위를 쓴다.
+
 종료 gate는 효용 판정이 아니라 전체 여정이 실제로 끝까지 도는지의 확인이다. P0-T04의 실측으로 base 규모가 하룻밤을 크게 넘으면 gate 규모(world 수, 질문 수, stream 항목 수)를 줄인다. 이때 줄이는 것은 규모이며 단계(① ~ ⑭)와 arm 종류가 아니다.
 
 ### 10.6 이 표가 말하지 않는 것
@@ -773,7 +775,7 @@ NP 단별 최소 능력: NP-0은 생성과 로그우도(또는 후보 선택), �
 | P0-T01 | 계약: 용어·시계·source 경계. 재사용: P1-T01 설계. P0 추가: NP state의 시계 필드(experience, token, call, wall), origin 태그(observed / generated / derived), 모델 호출 원장 필드 | 시계 혼동 금지 항목마다 실패하는 테스트가 있고 용어 표가 문서에 있다. 생성물이 observed로 승격되지 않는다는 테스트가 있다 | 6 | host | 1 | 워커 |
 | P0-T02 | 계약: 평가. 재사용: P1-T02 설계. P0 추가: 「기억에 넣는 경험」과 「질문」의 분리 규칙, 모델 호출 allowlist, 오염 probe 규격 | 무정보 learner(상수·무작위)가 evaluator에서 chance 수준이고 oracle 누수 audit이 0건이다 | 8 | host | 1 | 워커 |
 | P0-T03 | 계약: budget·대조군. 재사용: P1-T03 설계. P0 단위는 호출 수, token, 저장 bytes, wall. arm 정의표(§7)와 예산 일치 허용오차 | arm 정의표와 허용오차가 hash로 고정되고, 예산이 어긋난 실행을 evaluator가 INVALID로 거부하는 테스트가 있다 | 8 | host | 1 | 워커 |
-| P0-T04 | spike: frozen LLM과 backend, 자원 실측. host llama.cpp(8B 4-bit)와 소형 HF(CPU) 처리량, 노트북, 결정성 잡음 ν, 시간캡슐 후보의 가중치 형식 확인, host에 torch·transformers CPU 빌드 설치 | 실측 표와 선택 근거가 기록되고 §10.5의 host 시간 가정이 실측으로 바뀌며 D-19이 사용자 결정 요청으로 올라가 있다(결정 전에는 읽기와 설정 확인만 한다). runcrate 소액 실측은 사용자 비용 승인 뒤에만 | 10 | host, 노트북 (승인 시 runcrate) | host 3, 노트북 1, runcrate 0 ~ 2 | 워커, 사용자(승인) |
+| P0-T04 | spike: frozen LLM과 backend, 자원 실측. host llama.cpp(8B 4-bit)와 소형 HF(CPU) 처리량, 노트북, 결정성 잡음 ν, 시간캡슐 후보의 가중치 형식 확인, host에 torch·transformers CPU 빌드 설치 | 실측 표와 선택 근거가 기록되고 §10.5의 host 시간 가정이 실측으로 바뀌며 D-19가 사용자 결정 요청으로 올라가 있다(결정 전에는 읽기와 설정 확인만 한다). runcrate 소액 실측은 사용자 비용 승인 뒤에만 | 10 | host, 노트북 (승인 시 runcrate) | host 3, 노트북 1, runcrate 0 ~ 2 | 워커, 사용자(승인) |
 | P0-T05 | spike: NP-1 최소 hook. 소형 HF 모델에서 추출, 저장, 프로세스 재시작, 재적재, 주입, kNN round-trip | 자동 테스트가 PASS하거나, 실패 원인과 축소 범위(예: kNN만)가 사용자에게 보고돼 있고 §3의 NP-1 칸과 V0-13 상한 문구에 반영돼 있다 | 8 | host (소형 HF) | 3 | 워커 |
 | P0-T06 | 세계 생성기와 renderer. 재사용: P1-T06 설계(suite S-A의 renderer와 구조 family 1). P0 추가: 구조 family 2, suite S-B 원형 4종 생성기, suite S-C 재분장기 | seed에서 같은 hash로 결정론 재생, 관측 0/1/3/10별 식별 가능 질의 비율 보고, 누수 audit 0건. S-B의 ground truth·긴장 라벨·핵심 입력 목록이 evaluator 전용으로 분리돼 있다 | 24 | host | 5 | 워커 |
 | P0-T07 | 뼈대 E2E(walking skeleton). 재사용: P1-T07 설계. 실제 frozen LLM으로 `base`와 `ctx` arm이 경험 입력, 질문, 응답, 저장, runtime 종료, 새 프로세스 복원을 한 줄기로 돈다 | mock 없이 실제 가중치로 돈 E2E 스크립트의 원장 기록과 재시작 전후 프로세스 ID 변경이 있다. 같은 경로로 dev 세계의 ceiling, floor, copy baseline을 보고한다 | 16 | host | 3 | 워커 |

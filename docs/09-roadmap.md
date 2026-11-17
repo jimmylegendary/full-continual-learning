@@ -235,7 +235,7 @@ evaluator (별도 프로세스·별도 권한) : 세계 생성기(oracle은 여�
 | 깊이·recursion·controller | NP 대역: 규칙형 controller(fast·learn·deep에 hold를 더함)와 NP 숙의 반복(반복 수·생성 token·LLM 호출 수로 측정. 구조적 recursion은 P2부터) / 학습 모듈: 없음 | NP 대역 유지 / 학습 모듈: 유지 |
 | Sleep·공고화 | NP 대역: Sleep-NP(오프라인 군집·병합·추상화, 재조합 후보 생성, 저장된 근거에 비춘 자가 검사, 정리) / 학습 모듈: 없음 | NP 대역 유지 / 학습 모듈: 유지(발견용 재조합 단계와 연결) |
 | 대조군 | NP arm 자체가 이후 phase의 영구 대조군이 된다. 같은 frozen LLM·같은 token·호출·저장 예산의 대조: 기억 없음, 전체 이력, dense RAG, 요약 기억, 통찰·전략 기억 계열, 개념 기억 계열, 평면 schema, controller 없음, Sleep 없음, wrong-schema swap, oracle schema(진단 상한) | NP arm 영구 대조 + 기억 없음·평면 기억 arm + 대조 stream 5종(없음·순서 섞기·같은 시기 비발견자·무관한 인물·핵심 입력 제거) |
-| 망각·보존 평가 | 최초 과제 재평가, 이전 조건 재방문(ABA), 원능력 probe를 NP arm으로, 보존 예산 아래 eviction 측정 | 긴 stream에서의 용량·망각 관찰과 누설 변형(V0·V1·V2)별 곡선 |
+| 망각·보존 평가 | 최초 과제 재평가, 이전 조건 재방문(ABA), 원능력 probe를 NP arm으로, 보존 예산 아래 eviction 측정 | 긴 stream에서의 용량·망각 관찰과 누설 변형(LV0·LV1·LV2)별 곡선 |
 | 표면/구조 평가 | 2×2(같은 구조·새 표면 대 새 구조·같은 표면)를 suite S-A에서 NP arm으로. 구조 family 2종 | ET-1·ET-2의 오염·표면 의존 probe와 대조 stream |
 | 계산량 측정 | budget meter가 NP 단위로 기록(LLM 호출 수·생성 token·저장 bytes·wall. 학습 FLOPs 없음) | ET run의 전 비용 기록(P5 기록의 연장) |
 | 상태 저장·재시작·외부화 | 뼈대: state store(commit·snapshot·복원), bundle v0, source 삭제 계약(NP state 한정), 보존 예산 아래 eviction. NP state의 version 되돌리기 | 뼈대 유지(version 이력을 발견 보고의 근거 계보로 연결) |
@@ -386,7 +386,7 @@ controller 사다리와의 대응: [05-integrated-architecture.md](/home/jimmy/r
 - **근거**: **USER:** 2026-11-18 요청의 최종 목표 문장(원문과 위치: [2026-11-18-discussion.md](/home/jimmy/repos/full-continual-learning/sources/sync/2026-11-18-discussion.md), 해석은 PROPOSAL). **LITERATURE (2차 출처 요약):** Einstein test의 출처, 공개 시간캡슐 모델, 대상 후보와 추천 묶음은 [2026-11-18-blueprint-et-design.md](/home/jimmy/repos/full-continual-learning/research/2026-11-18-blueprint-et-design.md)와 docs/17 §4·§5에 확인 수준과 함께 있다. **PROPOSAL:** 아래 전부.
 - **데모 시나리오**: **UJ6** (실제 `fcl` CLI, 실제 시간캡슐 기반 가중치). ① 기반 모델 지정: 시간캡슐 모델의 revision과 실효 마감, 봉인 manifest 해시를 확인한다 → ② 감사: 누수 감사 4층(항목·stream·기반 모델·인프라)이 보고서를 낸다 → ③ 인물 stream을 시간순으로 투입: 형성기, T0, 연구기와 T0 이후 세계 지식을 입력 tier A·B·C로 → ④ checkpoint마다 읽기 전용 중립 probe로 발견 곡선을 본다(자발·중립·주제·과제 채널) → ⑤ 같은 stream을 대조 stream(없음·순서 섞기·같은 시기 비발견자·무관한 인물·핵심 입력 제거)과 대조 arm(NP arm 등)으로 반복해 한 보고서에 놓는다 → ⑥ 맹검 채점·일치도·입력 내재 대비 초과·특이성 → ⑦ 봉인 대상을 열어 판정 보고(결과 상태, 등급 3 이하, 범위 태그)를 받는다. UJ0–UJ5가 모두 회귀로 다시 돈다(특히 UJ0의 ET-0 run과 ET-3p run).
 - **넓이 변화**: ET 대상이 pilot에서 봉인 주력 묶음으로(묶음의 대상 수는 OPEN), 입력 tier 세 곡선, 대조 stream 5종과 대조 arm, 인물 stream 길이(항목 수 천 단위), P5에서 확보한 시간캡슐 기반 retrofit 위에서 전 모듈을 같은 CLI로 돈다. 외부 consumer 접점(UJ5)은 유지된다.
-- **깊이 변화**: 봉인과 사전 명세와 독립 검토, 맹검 2인 이상의 채점과 일치도, 누설 변형 3종(V0·V1·V2), 새로움 검사, 핵심 입력 제거, 오염·누수 감사, 용량–반응 곡선과 특이성 판정. 판정의 형식은 docs/17 §10의 조건 P1~P10(값은 dev pilot의 분산으로 봉인 전에 정하고 사용자가 승인)이다.
+- **깊이 변화**: 봉인과 사전 명세와 독립 검토, 맹검 2인 이상의 채점과 일치도, 누설 변형 3종(LV0·LV1·LV2), 새로움 검사, 핵심 입력 제거, 오염·누수 감사, 용량–반응 곡선과 특이성 판정. 판정의 형식은 docs/17 §10의 조건 PC-1~PC-10(값은 dev pilot의 분산으로 봉인 전에 정하고 사용자가 승인)이다.
 - **성립하는 보장**: Contract·Product 범위(시간 필터, 읽기 전용 probe의 상태 해시, 시스템 안 모델 사용 규칙의 호출 로그 감사, 봉인 해시 불일치 거부, evaluator 전용 권한)와 봉인 대상에서의 사전 명세 판정 상태(PASS·FAIL·INCONCLUSIVE·BLOCKED·NOT RUN). FAIL과 INCONCLUSIVE도 같은 틀로 보고하며 소급해서 바꾸지 않는다.
 - **상한**: 등급 3 한정 확증(제안; 근거와 4의 조건은 docs/17 §3.2의 표). 「발견했다」는 ET-4 등급 3에서만 범위 태그(대상 묶음·시간캡슐 기반·입력 tier)와 함께 쓴다. 「아인슈타인 테스트를 통과했다」·「모든 발견·인물·분야」·AGI 문구는 쓰지 않는다. 대상 수가 소수이고 통계 단위가 대상과 구성요소이므로 일반화 주장은 없다. 입력 tier C 단독 결과를 발견으로 읽지 않는다.
 - **종료 gate**: (1) **UJ6 E2E:** 실제 CLI·실제 시간캡슐 기반 가중치·실제 write·저장·재시작으로, 봉인된 주력 대상의 stream을 시간순으로 투입해 checkpoint별 곡선과 판정 보고까지 끝까지 실행한다(mock·조사만의 결과는 불인정). (2) **앞 phase 회귀:** UJ0–UJ5 전부. (3) **자동 테스트:** 시간 필터(날짜 없는 항목·미래 항목 거부)·읽기 전용 probe의 상태 해시·모델 사용 규칙(호출 로그에 현대 모델 없음)·봉인 manifest 해시 불일치 거부·권한 분리(기준 해답·핵심 입력 집합·봉인 stream은 evaluator에만)·누설도 3 항목 거부가 PASS한다(Contract). (4) **효용 판정 기록:** 판정 대상 주장은 [19-paper-plan.md](/home/jimmy/repos/full-continual-learning/docs/19-paper-plan.md)의 PAPER-6 주장(C6-1~C6-4)을 가리키며 여기서 다시 쓰지 않는다. 결과 상태와 등급 필드가 기록돼야 한다. PASS가 아니면 §7의 분기를 따른다. (5) **self-feedback:** B07 세 질문과 capability 표 재검토 기록(§11).
@@ -459,7 +459,7 @@ controller 사다리와의 대응: [05-integrated-architecture.md](/home/jimmy/r
 
 | 상황 | 먼저 할 일 | 허용되는 다음 행동 | 금지 |
 |---|---|---|---|
-| ET-3p의 절차 계약이 깨진다([17-einstein-test.md](/home/jimmy/repos/full-continual-learning/docs/17-einstein-test.md) §10.3의 C-1~C-7) | 원인(모델 형식·문맥 길이·누수 감사·호출 규칙·채점)을 분리해 보고 | 같은 pilot 대상으로 절차를 고쳐 다시 도는 것(dev). 시간캡슐 모델 교체는 사용자 결정 | System ONE을 얹은 ET-3로 올라가기, 실패한 절차를 통과로 보고 |
+| ET-3p의 절차 계약이 깨진다([17-einstein-test.md](/home/jimmy/repos/full-continual-learning/docs/17-einstein-test.md) §10.3의 EC-1~EC-7) | 원인(모델 형식·문맥 길이·누수 감사·호출 규칙·채점)을 분리해 보고 | 같은 pilot 대상으로 절차를 고쳐 다시 도는 것(dev). 시간캡슐 모델 교체는 사용자 결정 | System ONE을 얹은 ET-3로 올라가기, 실패한 절차를 통과로 보고 |
 | 학습 arm이 같은 base·같은 예산의 NP arm보다 낫지 않다(P1 이후) | 그 범위에서 학습 모듈의 필요성을 주장하지 않고 두 상태를 분리 보고: 제품 효용 / 학습 모듈의 독자 기여 | 가설 1개를 사전 등록한 새 candidate, 또는 다음 phase의 범위 축소·재검토 | 같은 recipe 확대, 대조를 바꿔 PASS로 만들기 |
 | 누수 감사에서 누설도 3 항목, 시간 필터 위반, 시스템 안 현대 모델 호출이 발견된다 | 그 run을 INVALID로 표시하고 원인 분리 | 원인을 고쳐 새 manifest와 새 run으로 다시 시작 | 그 run을 결과에 포함, 소급 수정 |
 | ET-4가 FAIL·INCONCLUSIVE·BLOCKED(사료 접근 등)이다 | 어느 가설과 범위를 기각하는지, 표본·식별성·검정력 중 무엇이 부족한지 구분 | 새 protocol·새 manifest·새 fresh cohort, 대안 대상으로의 전환(전환 규칙은 pilot 결과를 보기 전에 선언해 둔 것만) | PASS로 읽기, 같은 봉인 대상 재사용, 임계·대조·subset의 사후 변경, 「아인슈타인 테스트를 통과했다」 문구 |
@@ -579,7 +579,7 @@ controller 사다리와의 대응: [05-integrated-architecture.md](/home/jimmy/r
 
 | ID | 결정 | 선택지 | 추천 | 비용 발생 | 결정자 |
 |---|---|---|---|---|---|
-| D-15 | phase 구성과 「P1은 MVP」 해석(§1.4 보충 주석) | (a) P0(NP)–P6(ET) 7개 phase. P0(NP)가 뼈대와 전체 여정을 먼저 세우고 P1이 첫 학습 해상도 (b) P0(NP)를 P1 앞쪽 작업으로 흡수(phase 6개, NP arm은 P1의 대조군으로만) (c) P0(NP)와 P1을 한 phase로 합침 | (a). 사용자 원문 「POC → 그 뒤 단계별 구현」과 매 phase가 전체 제품이라는 전역 규칙을 함께 만족한다. (b)는 POC가 별도 종료 gate를 가질 수 없다 | 없음 | 사용자 |
+| D-15 | phase 구성과 「P1은 MVP」 해석(§1.4 보충 주석) | (a) P0(NP)–P6(ET) 7개 phase. P0(NP)가 뼈대와 전체 여정을 먼저 세우고 P1이 첫 학습 해상도 (b) P0(NP)를 P1 앞쪽 작업으로 흡수(phase 6개, NP arm은 P1의 대조군으로만) (c) P0(NP)와 P1을 한 phase로 합침 | (a). 사용자 원문의 순서(POC를 먼저 하고 그 뒤에 단계별로 구현한다)와 매 phase가 전체 제품이라는 전역 규칙을 함께 만족한다. (b)는 POC가 별도 종료 gate를 가질 수 없다 | 없음 | 사용자 |
 | D-16 | P0의 NP 단 범위: NP-2(닫힌 꼴 선형 expert, 파라미터가 있다)를 「비모수」 대역에 포함할지 | (a) 포함 (b) 구현은 선택으로 두되 「비모수」 주장에서는 제외 (c) 제외 | (b). 비모수 주장에는 NP-0·NP-1만 넣는다 | 구현 공수 | 사용자 |
 | D-17 | §3 등급 2의 「실제 갱신」을 P0에서 「실제 비모수 state 쓰기」로 읽을지(§3 보충 주석) | (a) 그렇게 읽고 P0 문구에 「비모수」 태그를 단다 (b) 가중치 갱신이어야 하므로 P0의 상한은 등급 1 | (a) | 없음 | 사용자 |
 | D-18 | P0 종료 gate에 sealed readout(등급 3 시도)을 포함할지(D-07의 P0판) | (a) 포함 (b) dev pilot(등급 2)까지만 하고 확증은 P1 이후 | (a). D-07과 같은 이유(효용 gate를 집행하려면 필요) | runcrate 대량 readout(승인 시. [15-compute-plan.md](/home/jimmy/repos/full-continual-learning/docs/15-compute-plan.md)) | 사용자 |
@@ -636,13 +636,13 @@ controller 사다리와의 대응: [05-integrated-architecture.md](/home/jimmy/r
 
 | phase | 실제 UI와 실제 의존성으로 끝까지 도는가 | 한 계층만 만드는가 | mock만으로 도는가 | 조사만 하는가 | 근거(종료 gate) |
 |---|---|---|---|---|---|
-| P0(NP) | 예. 실제 `fcl` CLI, 실제 frozen 공개 가중치 LLM, 실제 비모수 state 저장·재시작으로 UJ0 전체 | 아니오. 경험 입력부터 Sleep·발견(ET-0)·ET-3p까지 전 여정을 가장 얇게 | 아니오 | 아니오. spike는 P0 앞쪽 작업이다 | 아래 P0(NP) 절 종료 gate (1) |
+| P0(NP) | 예. 실제 `fcl` CLI, 실제 frozen 공개 가중치 LLM, 실제 비모수 state 저장·재시작으로 UJ0 전체 | 아니오. 경험 입력부터 Sleep·발견(ET-0)·ET-3p까지 전 여정을 가장 얇게 | 아니오 | 아니오. spike는 P0 앞쪽 작업이다 | §5의 P0(NP) 절 종료 gate (1) |
 | P1 | 예. 실제 CLI·실제 pretrained 가중치·실제 write·실제 재시작으로 UJ1과 대조 6 arm | 아니오 | 아니오 | 아니오 | P1 종료 gate (1) |
 | P2 | 예. UJ2를 arm × depth로 | 아니오 | 아니오 | 아니오 | P2 종료 gate (1) |
 | P3 | 예. UJ3 결정 trace와 복원 | 아니오 | 아니오 | 아니오 | P3 종료 gate (1) |
 | P4 | 예. 실제 sleep 학습·저장/offload/reload·재시작(UJ4) | 아니오 | 아니오 | 아니오 | P4 종료 gate (1) |
 | P5 | 예. 실제 agent·실제 가중치·외부 consumer(UJ5) | 아니오 | 아니오 | 아니오 | P5 종료 gate (1) |
-| P6(ET) | 예. 실제 CLI, 실제 시간캡슐 기반 가중치, 봉인된 인물 stream의 시간순 투입(UJ6) | 아니오. 평가만 하는 phase가 아니라 P5까지의 모듈이 긴 인물 stream 위에서 도는 제품이다 | 아니오 | 아니오. 사료 조사와 stream 구성은 P6 앞쪽 작업이다 | 아래 P6(ET) 절 종료 gate (1) |
+| P6(ET) | 예. 실제 CLI, 실제 시간캡슐 기반 가중치, 봉인된 인물 stream의 시간순 투입(UJ6) | 아니오. 평가만 하는 phase가 아니라 P5까지의 모듈이 긴 인물 stream 위에서 도는 제품이다 | 아니오 | 아니오. 사료 조사와 stream 구성은 P6 앞쪽 작업이다 | §5의 P6(ET) 절 종료 gate (1) |
 
 | 날짜 | 변경 | 이유 | 영향 |
 |---|---|---|---|
