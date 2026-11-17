@@ -21,9 +21,13 @@
 
 **PROPOSAL:** 이 두 문헌은 위 사용자 가설(pretraining=하나의 schema, post-training=분화)을 지지하거나 반증하는 증거가 아니다. 경쟁 가설 표의 관찰 계획은 그대로 둔다.
 
+**OPEN (2026-11-17 검토; [13-schema-decomposition-and-interference.md](/home/jimmy/repos/full-continual-learning/docs/13-schema-decomposition-and-interference.md) §1·§4):** docs/13은 2026-11-14 재구성에서 「LLM은 여러 schema가 분리되지 않고 엉켜 있는 상태로 학습되었다」와 post-training 등이 schema를 가지치기하고 어느 정도 분리했을 수 있다는 가설을 사용자 가설로 쓰지만 그 대화의 사용자 원문은 저장소에 없다. 원문이 있는 U-T06은 LLM이 하나의 schema를 학습하고 post-training이 이를 sub schema로 분화시켰다고 해 표현이 다르다. 두 서술의 관계는 사용자 확인 전까지 정하지 않는다. docs/13 §4.2의 세 변화는 위 경쟁 가설 표에 선택 = Access/routing, 재조직·연결 제거 = Specialization으로 대응하며, docs/13에는 Output policy 행이 없다.
+
 ## 2. Schema의 물리적 단위
 
 한 schema가 MLP 하나인지, low-rank subspace인지, recurrent trajectory인지, 여러 모듈의 조합인지 열린 문제다. 여러 표현을 비교하되 재사용/전이/수정/보존 기능을 공통 평가한다. Neural manifold와 symbolic role 구조는 설명 수준이 다를 수 있다.
+
+**USER 전제와 OPEN (2026-11-17 검토):** 사용자는 해법을 설명하며 "기존 지식(low rank expert)에 대한 in place update"와 "적합한 schema를 못찾으면 create"로 "새로운 low rank expert를 생성"한다고 했다([2026-11-16-discussion.md](/home/jimmy/repos/full-continual-learning/sources/sync/2026-11-16-discussion.md), **USER**). 이것은 우리가 택한 구현 단위의 서술이며 위의 열린 문제를 닫지 않는다. low-rank expert를 기본 후보로 두고 MLP·subspace·trajectory·모듈 조합과 같은 평가(재사용·전이·수정·보존)로 비교한다. [06-mathematical-framework.md](/home/jimmy/repos/full-continual-learning/docs/06-mathematical-framework.md) §10의 '모든 schema가 저랭크라는 명제'는 여전히 OPEN이다. CMS 분기·NMM과의 관계는 [05-integrated-architecture.md](/home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md) §5를 본다.
 
 **LITERATURE (STRUCTK25, W7-remediation.md:51; 원문 검토 §3):** 서술형 리뷰는 schema 모델을 명시적(TEM, SMP, CSCG 등 11개)과 암묵적(Goudar·Driscoll의 manifold, Yang·Dubreuil의 subpopulation 등 4개)으로 나눈다(§3.2.2, Table 3). 이는 분류이며 둘 사이의 우열 증거는 없다. **LITERATURE (SPECTRUM26, W5-spectrum26-structk25.md:72-76):** SPECTRUM26은 schema를 별도 저장소가 아니라 분산 표현의 추상화 수준 스펙트럼으로 보지만 추상화의 측정법은 없다.
 
@@ -38,6 +42,8 @@
 **ARCHIVE (S19·S23, 2026-11-09-sbl-tracking.md:11-15,62-64):** [S19]는 인간 행동 실험과 신경망을 다룬 인접 근거이고 neural dimensionality를 직접 측정하지 않았다. [S23]의 수치는 원보고 범위로 귀속하며 이번에 정독하지 않았다.
 
 **PROPOSAL (가설 B, 2026-11-09-sbl-tracking.md:90; 원문 검토 §4.3):** rapid learning에서 보호·국소 수정·표현 확장·분리 중 무엇을 고르는지는 OPEN으로 연구한다. 구조를 불일치 시 그 자리에서 고치는 기제는 읽은 문헌에 없으므로 F05/F06 비교의 대상은 문헌 재현이 아니라 우리 설계다.
+
+**OPEN (2026-11-17 검토; [13-schema-decomposition-and-interference.md](/home/jimmy/repos/full-continual-learning/docs/13-schema-decomposition-and-interference.md) §8):** 「분리하면 덜 잊는다」는 원리의 선행연구(격리·projection·task별 mask·메모리 분리: PNN·SupSup·GPM·WISE 등)는 docs/13 §8과 [schema-decomposition-2026-11-14.md](/home/jimmy/repos/full-continual-learning/references/schema-decomposition-2026-11-14.md)에만 있고 280dc9a 기준 catalog.tsv에는 없었다(이 검토가 PNN·SupSup·GPM·WISE를 catalog 끝에 후보 행으로 올렸다). 이 절의 후보(보호·국소 수정·rank expansion·branch/split)와 F05/F06 대조군이 그 계열과 어떻게 겹치는지, 아래 §7의 「새 메커니즘 대 기존 조합」 두 조건 중 (1) 직접 구현 부재가 확인됐는지는 OPEN이다. SupSup의 arXiv 초록은 task identity가 없을 때의 추론과 task identity 없는 학습을 언급하므로 task ID를 사람이 미리 나누지 않는다는 것만으로는 독창성 경계가 되지 않는다(초록 수준 확인).
 
 ## 4. 통찰의 운영적 정의
 
@@ -89,6 +95,8 @@ Base LLM에도 재사용 가능한 구조와 ICL이 있을 수 있다. Melete의
 
 **ARCHIVE (2026-11-09-sbl-tracking.md:96-102):** 11-09 추적 항목 중 P0(Boboeva 코드·수치, GNM write-path·자율 지시, Yoshida 원문·코드), P1(S-HAI schema 생성·경쟁, curriculum 표현 지표, Task Schema 인과 재현, CLS 직접 QA 통합), P2(graph/program schema와 neural 모델의 공통 전이 benchmark)는 11-11 원문 검토에서 다루지 않아 미결이다. Kumar v5(2026-10-20)는 11-11에 원문으로 읽어 최신 버전 재조회가 끝났고 S-HAI v3(10/26)는 재조회하지 않았다.
 
+**ARCHIVE (2026-11-16 SBL 보고, discussion-import; [2026-11-16-sbl-tracking.md](/home/jimmy/repos/full-continual-learning/research/2026-11-16-sbl-tracking.md)):** 11/9–11/16 범위에서도 continuous neural schema의 형성·선택·수정·장기 학습을 통합 검증한 새 논문이나 중요한 개정을 확인하지 못했다고 보고됐다. 이는 그 보고 범위의 미발견 진술이며 부재 증명이 아니다. 같은 보고의 후속 추적은 다음과 같다. **P0:** Tian(catalog N28)의 원문 수치·decoder transfer·Reverse-A 대조·분석 코드와 데이터 조건. Singh 외(Experimental Brain Research 244:78, 2026-03-22; 2026-08-24 Correction, 정정 내용 미확보)의 전문·ANN 학습 규칙·공식 코드. Yoshida·Boboeva·Goudar의 신경 부분공간·재생·전이 메커니즘. **P1:** S-HAI가 다중 grounding을 넘어 실제 다중 schema 형성·경쟁·수정으로 확장되는지. Singh 외의 표현(continuous 또는 symbolic)은 미확정이며 cognitive load를 FLOPs·latency와 동일시하지 않는다. 형식(category-theoretic) SBL(arXiv:2604.10589)은 symbolic/formal 이론이며 CRUD 용어 정리의 참고 후보일 뿐 모델 성능의 근거가 아니다.
+
 전체 링크와 확인 수준은 [문헌 목록](../references/README.md)에 있다.
 
 **LITERATURE (GOUDAR23·MICONI25·KUMAR26·SPECTRUM26·SPENS24, [2026-11-11-sbl-fulltext-review.md](/home/jimmy/repos/full-continual-learning/research/2026-11-11-sbl-fulltext-review.md#8-미해결) §8):** 확인 수준의 한계가 남아 있다. GOUDAR23·MICONI25·KUMAR26·SPECTRUM26은 VoR 조판본이 아니라 accepted manuscript·proof·preprint를 읽었고 SPENS24의 bioRxiv 판은 VoR과 대조하지 못했으며 편집 차이는 배제하지 못한다. KUMAR26은 arXiv v1(2021-06-07)이 제목과 내용이 다른 reservoir 논문이고 v5(2026-10-20)가 J Neurosci early release(2026-10-26)와 초록이 같다(W4-tem20-kumar26.md:229,233,235,239).
@@ -111,7 +119,11 @@ Base LLM에도 재사용 가능한 구조와 ICL이 있을 수 있다. Melete의
 
 하나의 universal brain switch, schema=특정 Hz, biological state의 완전 재현, 신경망 모든 부분공간의 의미 해독, 범용 AGI, 통합 모델의 미실행 속도 이득, 기존 Melete보다 나은 실제 사용자 성능, 삭제 요구가 모든 consolidated weights에서 완전 제거됨.
 
+**PROPOSAL (2026-11-17 검토):** 다음도 검증 없이 주장하지 않는다. 유한한 상태와 용량으로 무한한 경험을 재앙적 망각 없이 학습한다는 것(무제한 무망각; [13-schema-decomposition-and-interference.md](/home/jimmy/repos/full-continual-learning/docs/13-schema-decomposition-and-interference.md) §7.5, [14-schema-lifecycle-crud-and-joint-paper.md](/home/jimmy/repos/full-continual-learning/docs/14-schema-lifecycle-crud-and-joint-paper.md) §1·§4), 압축·통합·폐기가 기능 손실 없이 이뤄진다는 것, 기능 손실 추정이 미래 분포에서 정확하다는 것, 외부 agent memory 연구의 개선을 neural schema 지속학습의 증거로 읽는 것이다. 첫째 항의 근거는 비둘기집이다. 독립 이진 사실 N개의 모든 조합을 B비트 상태로 무오류 회상하려면 B≥N이고 근사 회상은 별도의 정보이론 한계를 따른다. 「재앙적 망각 없이」는 의도하지 않은 덮어쓰기로만 비용을 치르지 않는 목표로 읽고, 보존 용량을 늘리는 방법(외부 저장·통합)은 비용을 함께 보고한다. 위 '삭제 요구가 ... 완전 제거됨'은 source 삭제(철회·재구성)를 뜻하며 기능적 망각/보존과 구분한다([07-state-and-storage.md](/home/jimmy/repos/full-continual-learning/docs/07-state-and-storage.md) §7). 정직한 상한 문구 제안이며 사용자 결정이 아니다.
+
 **PROPOSAL (원문 검토 §0·§4, 문헌 검토 뒤 추가):** 다음도 검증 없이 주장하지 않는다. 학습된 schema 구조가 같은 예산의 고정·무구조 대조보다 낫다는 것, 문헌이 H-COMPUTE(같은 품질의 추론 계산량 감소)를 뒷받침한다는 것, 불일치 시 구조를 수정하는 기제가 문헌에 있다는 것이다.
+
+**PROPOSAL (2026-11-17 검토, [2026-11-16-impact-hypotheses.md](/home/jimmy/repos/full-continual-learning/research/2026-11-16-impact-hypotheses.md)):** 다음도 성과나 설계 근거로 쓰지 않는다. 산업·학술 영향의 예상, Hopfield·Transformer·reasoning·MoE급 기여와의 비교, 수상·채택·공동연구·기업 관심, AGI/ASI 핵심 논문 가능성은 사용자 질문에 대한 조건부 평가(ARCHIVE / PROPOSAL / OPEN)이며, 작은 합성 실험이나 모듈 격리만으로 그런 급이라고 평가하지 않는다. 지속학습이 개선 결과를 보존하는 것과 자신을 끝없이 가속해 개선하는 것은 다르며, 지속학습만으로 폭넓은 문제 해결이나 안전한 목표 유지가 보장되지 않는다. 그 질문의 원문은 [2026-11-16-discussion.md](/home/jimmy/repos/full-continual-learning/sources/sync/2026-11-16-discussion.md)의 사용자 원문 블록에 없고 재구성이다.
 
 **OPEN (가설 C, 2026-11-09-sbl-tracking.md:92; 원문 검토 §4.3·§4.4):** 열린 질문은 둘이다. accommodation은 오류 크기·fit에 따라 새 구조와 미세 조정 중 무엇을 고르고 어떻게 평가하는가(읽은 문헌에는 정성 규칙뿐이다). H-COMPUTE는 어떤 신호(CSCG posterior 엔트로피, recall 신뢰도, attractor 수렴)가 고정 깊이 곡선 위에서 계산을 줄이는가, 곧 schema 선택과 선택적 쓰기가 다음 추론의 비용에 영향을 주는가.
 

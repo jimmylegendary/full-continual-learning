@@ -48,6 +48,8 @@ result / uncertainty / regressions / actual_cost / decision
 
 초기 탐색은 update policy, CMS schedule, depth read, rank/capacity, routing 등 한정된 영역부터 한다. 임의의 전체 rewrite를 곧바로 허용하지 않는다. 최고점 하나뿐 아니라 품질·비용·안정성의 Pareto 후보와 다른 계보를 소수 보존한다. 낮은 성능 후보도 연구용 archive에 남을 수 있지만 운영 승격과는 별개다.
 
+**OPEN (2026-11-17 검토):** [14-schema-lifecycle-crud-and-joint-paper.md](/home/jimmy/repos/full-continual-learning/docs/14-schema-lifecycle-crud-and-joint-paper.md) §9가 열어 둔 expert 수·rank·검색 key·분화 기준·retention budget·압축 손실·commit 단위 중 rank/capacity와 routing만 위 영역에 걸린다. 분화 기준·보존 예산·압축 손실은 아직 탐색 변수가 아니며 사용자 승인 전에는 search space에 넣지 않는다(§6). 정답 접근권은 §5의 evaluator 독립성에 따른다.
+
 **PROPOSAL (원문 검토 §4.1·§5 출발점 8):** 문헌에서 온 기제를 후보로 만들 때는 hypothesis/evidence 필드에 논문 id·확인 깊이(fulltext-read 등)·근거 위치를 적고, 같은 계산·갱신 예산의 고정/무구조/항상-갱신 대조를 비교군에 함께 넣는다. 대조 없이 통과한 후보는 "기제의 독자 기여 미분리"로 표기해 효용과 기제 기여를 분리 보고한다([09-roadmap.md](/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md) §4와 같은 원칙).
 
 **LITERATURE (11편 전체, [2026-11-11-sbl-fulltext-review.md](/home/jimmy/repos/full-continual-learning/research/2026-11-11-sbl-fulltext-review.md#4-논문을-가로지르는-관찰) §4.1):** 읽은 11편 어디에도 학습된 구조가 같은 예산의 고정·무구조 대조보다 낫다는 직접 비교가 없다. **PROPOSAL:** 따라서 문헌의 성공을 후보의 expected_mechanism 근거로 곧바로 옮기지 않는다.
@@ -77,6 +79,8 @@ AI가 평가 개선을 제안할 수는 있다. 채택 시 새로운 evaluator v
 본 repository 게시 작업은 지속적인 자동 개발·GPU 학습·자동 push의 포괄 권한을 부여하지 않는다. 향후 작업에서 scope를 확인한다.
 
 실제 consumed compute, 실패 job, 취소·재시도도 합계에 포함한다. 예정 상한을 실행 비용으로 보고하지 않는다. 중단 조건: budget 소진, 반복된 동일 failure, 평가 결함, 비재현, privilege violation, 보호 family 퇴행.
+
+**PROPOSAL (2026-11-17, [15-compute-plan.md](/home/jimmy/repos/full-continual-learning/docs/15-compute-plan.md) §7):** 클라우드 GPU 실행은 실행 manifest에 예상 GPU-시간·예상 비용·중단 기준을 쓰고 사용자 비용 승인 뒤에만 시작하며, 실제 비용이 예상의 1.5배를 넘으면 정지하고 보고한다. 생성할 때 max runtime과 idle shutdown을 반드시 지정하고, 종료 전에 결과·checkpoint를 회수한다(terminate가 로컬 디스크를 지운다). 이 절차는 비용 승인을 대신하지 않는다.
 
 ### 6-1. 외부 문헌 추적 운영 (U-T05, U-T10)
 
@@ -135,3 +139,5 @@ HyperAgents [E04]: task/meta agent 개선 연구.
 - 사용자 요구의 반영 확인은 요구 원장(요구 → 설계 위치 → 상태)으로 기록하고 시각화 백서가 이를 요약한다.
 
 **OPEN:** 이 감사 시점(2026-11-12)에 이 저장소에는 기술 가이드, webapp, 논문이 없다. 시각화 백서는 같은 날 이 감사 결과를 입력으로 만들었다([README.md](/home/jimmy/repos/full-continual-learning/whitepaper/README.md), 웹 https://fcl-system-one-whitepaper.vercel.app). B15의 논문이 Melete 신경망 논문인지 FCL 논문인지, B16의 superpowers 사용 지시를 FCL 작업에도 적용하는지는 사용자 확인이 필요하다.
+
+**OPEN (2026-11-17 검토):** 2026-11-16에 사용자는 "ali에게 joint paper에 대한 상세한 내용을 제안할거라서" 내용과 흐름을 만들어야 한다고 했다([2026-11-16-discussion.md](/home/jimmy/repos/full-continual-learning/sources/sync/2026-11-16-discussion.md), **USER**). 이 논문이 위 B15의 논문과 같은 것인지는 사용자가 말하지 않았다. 별개라면 Melete 논문·FCL 논문·공동논문이 후보가 되며 무엇이 주 논문인지는 사용자 확인이 필요하다. 공동논문의 주장은 달성한 gate의 범위로 제한하며([09-roadmap.md](/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md) §3), 현재 등급은 0(구현·학습 0회)이라 제안문은 설계 단계 문구로 쓴다. 제안문 초안의 상한 점검은 [14-schema-lifecycle-crud-and-joint-paper.md](/home/jimmy/repos/full-continual-learning/docs/14-schema-lifecycle-crud-and-joint-paper.md) §7의 주석을 본다. 외부 발송과 연락은 이 저장소 문서화의 범위가 아니다.

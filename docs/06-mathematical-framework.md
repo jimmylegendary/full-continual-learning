@@ -8,6 +8,23 @@
 
 느린 schema 파라미터 θ_k, fast binding/adaptation state φ_{k,t}, controller ψ, 작업 hidden h_{t,r}, depth bank D_{t,r}, committed memory M_t와 tentative memory M~_{t,r}를 둔다. 이산 k는 선택의 예시이며 schema 본체가 기호라는 뜻은 아니다. 분산 mixture나 continuous routing으로 일반화할 수 있다.
 
+**OPEN (2026-11-17 검토; [13-schema-decomposition-and-interference.md](/home/jimmy/repos/full-continual-learning/docs/13-schema-decomposition-and-interference.md) §3·§5–§7, [14-schema-lifecycle-crud-and-joint-paper.md](/home/jimmy/repos/full-continual-learning/docs/14-schema-lifecycle-crud-and-joint-paper.md) §2·§5, [05-integrated-architecture.md](/home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md) §5와의 기호 충돌):** 같은 기호가 다른 뜻으로 쓰인다. 통합 문서에서는 아래 대응을 먼저 정한다(결정이 아니라 정리 과제).
+
+| 기호 | 이 문서 | 다른 문서 |
+|---|---|---|
+| θ | 느린 schema 파라미터 θ_k | 13 §5–§6: 공유(공통) 파라미터 θ·θ_0, 13 §7.2: 전체 파라미터 |
+| φ | fast binding/adaptation state φ_{k,t} | 13 §3: artifact의 신경 상태(가중치·delta·fast memory) φ_s^(v) |
+| b | 통신·종료 등 정책 출력 b_{t,r} (§5) | 13 §3·§6: binding B_s·b_s |
+| B | 사용 없음 | 13 §3: binding 성분, 05 §5: CMS 상향 투영 B_j, 14 §2: low-rank 인자, 13 §7.5: 총상태 비트 수 |
+| C | 비용 C_t·용량 C (§4)·C*_ε (§9) | 13 §3: 적용 맥락 C_s |
+| D | depth bank D_{t,r}·과거 D_{<t} | 13 §3: 의존 버전 D_s, 13 §7.2: 분포 D_i, 13 §7.3: 전체 의존성 D_i |
+| Q | query 집합 Q_τ (§4) | 13 §3: 재개 상태 Q_s |
+| 𝒜 | 사용 없음 | 13 §3: artifact, 14 §2·§5: 활성 expert 집합 |
+| k | schema 색인 k | 13 §7.1: key 벡터 k_A·k_B (13은 schema 색인으로 s를 쓴다) |
+| e | 경험 e_t=(x_t,y_t,c_t,source_t) | 13 §7.1: 오차 벡터 e_B |
+
+13 §3의 φ_s^(v)는 이 문서의 (θ_k, φ_{k,t})를 함께 포함하는 상위 개념이며 version 첨자다. 06 기호가 §2–§5의 식과 [09-roadmap.md](/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md)에 이미 쓰이므로 06을 기준으로 두고 새 문서에서 대응표를 병기하는 방향이 변경이 가장 작다(검토 제안).
+
 ## 2. 결과 이전 선택과 이후 책임 추정
 
 $$q^-_{t,k}=q_\psi(k\mid x_t,c_t,D_{<t})$$
@@ -33,6 +50,8 @@ $$m_{k,t}=\beta_tm_{k,t-1}-\eta_t\gamma_{t,k}\nabla_{\phi_k}\mathcal L_t^{fast}$
 $$\phi_{k,t+1}=(1-\alpha_t)\phi_{k,t}+m_{k,t}.$$
 
 이 식은 Titans에서 영감을 얻은 후보이지 모든 HOPE/Titans 구현의 동일 식이라는 뜻은 아니다. α는 decay/retention 표기의 선택이다. 입력별 계수의 범위·norm·root budget을 사전 명시한다. 작은 학습률이 안정성 전체를 보장하지 않는다.
+
+**OPEN (2026-11-17 검토; [13-schema-decomposition-and-interference.md](/home/jimmy/repos/full-continual-learning/docs/13-schema-decomposition-and-interference.md) §7.1·§9.1):** 위 식에서 감쇠 $(1-\alpha_t)$와 momentum $\beta_t$는 $\gamma_{t,k}$로 gate되지 않는다. $\gamma_{t,k}=0$이어도 $\phi_{k,t+1}=(1-\alpha_t)\phi_{k,t}+\beta_tm_{k,t-1}$이므로 선택되지 않은 schema $k$의 상태가 바뀐다. docs/13 §7.1의 선형 연합기억에서도 감쇠가 있으면 key가 직교해도 다른 항목의 출력이 $-\alpha\,Mk$만큼 변한다. 쓰기 격리를 주장하는 실험은 감쇠·momentum을 쓰기 gate $u$에 포함하거나 격리 범위에서 제외해야 한다. 식의 수정이 아니라 약속 범위에 대한 주석이다.
 
 **USER (B08, 2026-10-09):** 학습은 적은 data로 빠른 일반화의 오류(overfitting)를 유도하고 시간축 continual learning으로 그 오류가 상황에 맞게 사라지게 하는 것이다. GD→SGD→Adam→Muon 같은 일반 optimizer가 맞는지 묻고, backward·SGD 수준의 근간 학습 방법을 조사·고찰하라고 했다.
 
@@ -145,3 +164,17 @@ $$C_\epsilon^*(M_{after})<C_\epsilon^*(M_{before})$$
 **OPEN (원문 검토 §4.1·§4.3, 문헌 검토 뒤 추가):** 같은 방식으로 관리할 명제가 더 있다. 학습된 schema 구조가 같은 예산의 고정·무구조 대조보다 낫다는 명제(읽은 11편에 직접 비교가 없다). 오류가 크면 새 구조를 만들고 작으면 미세 조정하는 규칙이 옳다는 명제(STRUCTK25·SPECTRUM26의 정성 규칙이며 데이터가 없다). 예외만 따로 저장하면 schema가 보존된다는 명제(SPENS24 확장 모델의 설계이며 schema 개정과 다중 seed가 없다).
 
 **LITERATURE (SPENS24, W1-spens24-hwu20.md:99,127):** 확장 모델은 consolidation 전에도 prototype 쪽 왜곡을, DRM 모형은 lure 회상을 정성적으로 재현한다. **PROPOSAL (원문 검토 §5 출발점 3, W4-tem20-kumar26.md:182):** 위 명제들의 반례·실패 모드 후보는 잘못된 구조가 조용히 내용을 묶는 것(TEM20형 분리에서의 위험)과 schema 과적용(prototype 왜곡·DRM lure)이다.
+
+## 11. 변경 간섭·보존의 조건부 명제 (docs/13 §7 연결, 2026-11-17 검토)
+
+**PROPOSAL / 직접 유도 (2026-11-17; 모델 구현·학습·효용 검증은 NOT RUN이고 소규모 numpy 수치 점검만 수행).** 아래는 [13-schema-decomposition-and-interference.md](/home/jimmy/repos/full-continual-learning/docs/13-schema-decomposition-and-interference.md) §7의 명제를 전제와 함께 다시 쓴 것이다. 독창적 정리나 범용 LLM의 무망각 증명이 아니며 [08-evaluation.md](/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md)의 보호 family 판정을 대신하지 않는다. 기호는 이 문서의 것과 다를 수 있다(§1 기호 충돌 주석).
+
+**명제 A (선형 연합기억의 1-step 간섭).** 전제: $\hat v=Mk$, key $k_A,k_B\ne0$과 encoder 고정, 제곱 손실, 단일 step, 감쇠·momentum 없음. $M'=M+\eta e_Bk_B^\top/\|k_B\|^2$, $e_B=v_B-Mk_B$이면 (i) $v_B-M'k_B=(1-\eta)e_B$ (B 자신은 $0<\eta<2$에서 수축하고 $0<\eta\le1$에서 overshoot이 없다), (ii) $M'k_A-Mk_A=\eta c\,e_B$, $c=k_B^\top k_A/\|k_B\|^2$, (iii) A가 정확했다면($v_A=Mk_A$) $\Delta L_A=\tfrac12\eta^2c^2\|e_B\|^2$이고, 잔차 $r_A=v_A-Mk_A\ne0$이면 $\Delta L_A=-\eta c\,r_A^\top e_B+\tfrac12\eta^2c^2\|e_B\|^2$이다. 영향이 0인 것은 key가 직교할 때뿐이며 서로 직교하는 key는 $d_k$개 이하다. 여러 B 쓰기의 영향은 출력 변화 벡터의 합이다.
+
+**명제 B (비선형 국소 간섭).** 전제: plain SGD 한 step $\theta'=\theta-\eta g_B$이고 $L_A$가 선분 위에서 $C^1$, 열린 선분에서 2회 미분 가능. 그러면 $L_A(\theta')-L_A(\theta)=-\eta g_A^\top g_B+\tfrac{\eta^2}{2}g_B^\top H_A(\xi)g_B$ ($\xi$는 선분 위의 한 점)이다. ReLU 계열·Adam·minibatch·다단계에는 그대로 적용하지 않는다(docs/13 §7.2 주석). 출력 민감도 $\Gamma_{ij}$는 손실 상계가 아니다. 정확 적합·제곱 손실·1차 선형화에서만 $\Delta L_i\lesssim\tfrac12\Gamma_{ij}\|z\|^2$이다. 후보(OPEN): $\mathcal L_{retention}$(§4)·$\mathcal L_{forget}$(§6)의 구체형으로 보호 probe의 $\Delta L_i$ 또는 $\Gamma_{ij}$를 같은 update 크기에서 비교한다. 사전 정규화가 필요하다.
+
+**명제 C (정확 보존의 충분조건).** 보호할 입력 집합 $\mathcal C_i$에서 실행되는 경로(제어 흐름 결정 포함)와 그 경로가 읽는 모든 값·연산이 변경 전후 같으면 결정적 계산에서 $f_{\mathrm{after}}=f_{\mathrm{before}}$이다(계산 그래프 순서의 귀납). 수치 실행에서는 **상태 층**(쓰기 집합 밖 tensor의 byte 동일, 해시 검사)과 **출력 층**(허용오차 $\tau\ge$ noise floor $\nu$, $\nu$는 변경 전 checkpoint를 batch·순서·장치만 바꿔 재실행해 잰다)을 나눠 보고한다. 새 schema를 softmax 혼합에 추가하면 기존 gate가 모두 $(1-g^{*\prime})$배가 되어 이 조건이 깨진다.
+
+**명제 D (선택 오류와 보존의 분해).** 손실이 $[0,1]$이고 올바른 경로 $c(x,y)$와 그 경로의 위험 $R_{\mathrm{correct}}$가 정의돼 있고 올바른 경로를 고른 사건에서 두 시스템의 출력이 같으면 $R_{\mathrm{system}}\le R_{\mathrm{correct}}+\delta$, $\delta=P(\text{경로}\ne c)$이다. soft mixture에서는 볼록·$[0,1]$ 손실에서 $\delta$ 대신 $\mathbb E[1-q_c]$, log 손실에서 $\mathbb E[-\log q_c]$를 쓰며 0-1 손실·argmax 판독에서는 성립하지 않는다.
+
+**명제 E (유한 용량).** 독립 이진 사실 $N$개의 모든 조합을 $B$비트 상태로 **무오류** 회상하려면 $B\ge N$이다(결정적·확률적 상태 모두). 근사 회상은 별도 한계를 따른다(비트 오류율 $D$: $B\ge N(1-h_2(D))$, 전체 벡터 성공확률 $1-\epsilon$: $B\ge(1-\epsilon)N-1$). 따라서 유한 상태에서 독립 사실의 무제한 무망각 보존은 약속하지 않으며 [09-roadmap.md](/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md) §3의 등급 문구도 같은 상한을 따른다.

@@ -61,6 +61,8 @@
 
 실행 수준 head: 어떤 token/block를 처리할지, 어느 depth source를 읽을지, fast update 횟수와 강도, 종료 여부.
 
+**PROPOSAL (2026-11-17 검토; [13-schema-decomposition-and-interference.md](/home/jimmy/repos/full-continual-learning/docs/13-schema-decomposition-and-interference.md) §9.1):** 두 head의 출력을 읽기 gate $g^{\mathrm{read}}$(어떤 schema 상태를 이번 계산에 쓰는가)와 쓰기 gate $g^{\mathrm{write}}$(어떤 상태를 바꾸는가)로 나눠 읽을 수 있다. 이는 [06-mathematical-framework.md](/home/jimmy/repos/full-continual-learning/docs/06-mathematical-framework.md) §2의 $q^-_{t,k}$(결과 이전 schema 선택)·§5의 SchemaRead와 $u_{t,r}$(쓰기 대상·허용)·$\eta_{t,r}$(강도)의 구분에 대응하며 새 필드가 아니다. 여러 schema를 읽어도 모두 수정하지 않는다. 쓰기 허용 집합의 보호는 optimizer 상태·감쇠까지 포함해야 성립한다(06 §3 주석).
+
 **LITERATURE (KUMAR26·TEM20·SWAMI23·SPENS24, [2026-11-11-sbl-fulltext-review.md](/home/jimmy/repos/full-continual-learning/research/2026-11-11-sbl-fulltext-review.md#4-논문을-가로지르는-관찰) §4.3):** 읽은 11편에는 불일치를 만났을 때 구조를 그 자리에서 수정·분할하는 실험이 하나도 없다. KUMAR26은 place cell remap 뒤 좌표 코드를 약 20 session 재학습하고(W4-tem20-kumar26.md:319), TEM20은 구조 remapping을 예측으로만 말하며(W4-tem20-kumar26.md:120), SWAMI23은 test 시 T를 고정하고(W6-swami23-metadata-gap.md:44,51), SPENS24는 test 시 VAE를 동결한다(W1-spens24-hwu20.md:103).
 
 **LITERATURE (STRUCTK25 §2.2·§3.2.1, SPECTRUM26 p.1899·1902; W7-remediation.md:54-55,103, W5-spectrum26-structk25.md:89-95):** 정성 규칙은 있다. 오류가 크면 새 schema를 만들고 작으면 기존 schema를 미세 조정하며(STRUCTK25), fit이 낮을수록 변화량과 계산이 커진다(SPECTRUM26). 둘 다 데이터와 알고리즘이 없다.
@@ -83,6 +85,8 @@
 
 v0도 [07-state-and-storage.md](/home/jimmy/repos/full-continual-learning/docs/07-state-and-storage.md)의 상태 계약과 [08-evaluation.md](/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md)의 대조군·보호 family 평가를 통과해야 한다. 08 §3처럼 controller를 우회하고 고정 depth로 재는 절차와 충돌하지 않는다. **OPEN:** K·loop 격자·학습 신호는 pilot에서 정한다.
 
+**OPEN (2026-11-17 검토, 이름 정리):** 이 절의 v0/v1/v2는 학습된 controller의 사다리다. [09-roadmap.md](/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md)의 P1 'controller v0'는 익숙함 신호의 두 임계값으로 fast·learn·deep을 고르는 규칙형이며 학습된 문맥 head가 없다. 두 'v0'는 다른 것이다. 이 절의 v0는 로드맵 P3의 학습된 controller의 첫 단계로 읽고 P1 규칙형은 'v0-rule'로 부른다. [04-rhythms-and-orchestration.md](/home/jimmy/repos/full-continual-learning/docs/04-rhythms-and-orchestration.md)의 'controller v1 이후'도 이 절의 번호다. 번호는 바꾸지 않는다. CRUD 관점에서는 문맥 head(q^-)가 Read, write gate와 레벨별 write 허용 u가 Update, 조합·분화 head(v2)가 Create에 대응한다([09-roadmap.md](/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md) §4-1).
+
 **USER (B14, 2026-10-12):** 낯선 입력에서 가장 익숙한 지점에서 시작할 수 있는지 고찰한다. 학습한 뒤 강제로 다시 구성할지, 가장 유사한 기존 pattern의 구성을 쓸지는 설계 변수이며 실험과 뇌과학으로 정한다.
 
 **PROPOSAL:** 통합 모델에서 이 변수를 낯선 입력의 처리 경로 비교로 정의한다. 경로 A는 빠른 쓰기 뒤 같은 입력을 다시 읽고 이어 간다. 경로 B는 쓰기 없이 가장 가까운 기존 schema의 잠정 답으로 이어 간다. 경로 C는 보류하고 추가 관측을 요청한다. 경로 B의 시작점은 controller가 고르는 '가장 익숙한 지점(bridge)'이며 그 선택 규칙을 학습·ablation 대상으로 둔다. 세 경로는 같은 관측·쓰기 예산에서 [08-evaluation.md](/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md)의 F04와 F19(가까운 새로움·먼 새로움, 후보)로 비교하고 평균 loop 감소로 판정하지 않는다.
@@ -99,9 +103,15 @@ v0도 [07-state-and-storage.md](/home/jimmy/repos/full-continual-learning/docs/0
 
 B_j=0으로 초기화하면 이 FFN 모듈의 초기 출력은 F0와 같다. A_j/gate까지 모두 0으로 만들어 새 분기의 gradient를 막지 않는다. 이후 서로 다른 update·protection·activation 정책으로 새 기억을 학습한다. 이 식은 원본 HOPE의 정확한 구조식이 아니라 프로젝트 proposal이다.
 
+**PROPOSAL (2026-11-17 검토; [13-schema-decomposition-and-interference.md](/home/jimmy/repos/full-continual-learning/docs/13-schema-decomposition-and-interference.md) §7.3):** $B_j=0$ 초기화의 출력 동일성은 새 분기의 기여가 정확히 0이라는, docs/13 §7.3 충분조건(읽는 모든 값·연산을 유지)의 특수한 경우다. 학습이 시작돼 $B_j\ne0$이 되면 이 보존은 gate $g_j(h)$가 보호 입력에서 0이거나 별도 검증으로 확인될 때만 주장한다. 또 $g_j$가 softmax처럼 합이 1이 되게 정규화되면 분기를 추가하는 순간 기존 분기의 가중치가 모두 줄어든다. 위 식의 $g_j$가 독립 gate인지 정규화 gate인지는 정해지지 않았다(OPEN). 수치 비결정성 때문에 「같다」는 bit 동일성이 아니라 허용오차 안에서의 동일성이다([09-roadmap.md](/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md) P1-T10 주석).
+
+**OPEN (2026-11-17 검토; 인접 사례는 블로그 보고이며 동료 심사가 없다):** 새 branch를 기존 모듈 옆에 두고 gate/router로 선택하는 구성에서는 새 branch가 쓸모를 얻기 전에 gate가 닫힐 수 있다. TNG의 [Bring Your Own Expert](https://huggingface.co/blog/tngtech/bring-your-own-expert-extending-moe-models-with-ne)는 이 cold-start 문제 때문에 새 expert와 router row를 가장 활성화되는 기존 expert의 것으로 초기화하고 router를 잠시 고정했다고 보고한다. 위 F_CMS의 g_j(h)가 같은 이유로 새 분기를 일찍 닫는지는 [09-roadmap.md](/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md) §5 P1-T05 spike의 점검 항목 후보이며, 블로그의 해법을 채택한다는 뜻은 아니다. 확인한 시험은 **NOT RUN**이다.
+
 모든 FFN이 CMS 계약 아래로 전환되어도 원래 pretrained weights를 내부 기반으로 계승할 수 있다. 원래 FFN을 완전히 제거하려면 distillation·압축으로 추가 이전한다. 여러 F0를 직렬 복제하는 것은 함수 보존이 아니다: F0(F0(h)) != F0(h).
 
 Nested Learning에는 pretrained MLP 초기화와 추가 학습 논의가 있다. 이것을 무학습 swap 성공 또는 필요한 최소 token 수의 근거로 읽지 않는다. [A02]
+
+**PROPOSAL (2026-11-17 검토, low-rank expert와의 관계):** 사용자는 기존 지식을 low rank expert로 두고 in place update하며 적합한 schema가 없으면 새 expert를 create한다고 했다([2026-11-16-discussion.md](/home/jimmy/repos/full-continual-learning/sources/sync/2026-11-16-discussion.md), **USER**). 위 F_CMS의 분기 `B_j sigma(A_j h)`는 같은 모양(기반 + gate된 low-rank 분기의 합)이지만 색인 축이 다르다. j는 갱신 시간척도(level)이고, schema expert는 문맥으로 선택·할당되는 기능 단위다([14-schema-lifecycle-crud-and-joint-paper.md](/home/jimmy/repos/full-continual-learning/docs/14-schema-lifecycle-crud-and-joint-paper.md) §2). P1은 fast level이 1개라 expert가 하나이므로 expert 선택은 P3 이후다. in-place update는 분기와 NMM state의 test-time write에 대응한다. NMM은 sequence 쪽 빠른 기억(binding)이며 low-rank라는 규정이 없어 expert로 읽지 않는다. Create의 가장 자연스러운 후보는 새 분기를 B=0으로 추가해 생성 순간의 함수를 보존하는 것이지만 gate·`A_j` 초기화와 선택 규칙은 미정이다(**OPEN**; 위의 'gate까지 0으로 만들지 않는다' 주의가 그대로 적용된다). low-rank가 schema의 단위라는 것은 구현 전제이고 보편 명제가 아니다([06-mathematical-framework.md](/home/jimmy/repos/full-continual-learning/docs/06-mathematical-framework.md) §10, [11-research-agenda.md](/home/jimmy/repos/full-continual-learning/docs/11-research-agenda.md) §2).
 
 **USER (U-T07):** FFN을 CMS로 점진 교체하되 "model needs sleep의 방법으로" 한다. **OPEN:** 위 F_CMS 식은 프로젝트 proposal이다. Sleep 논문 [A03]은 [catalog.tsv](/home/jimmy/repos/full-continual-learning/references/catalog.tsv)에서 metadata-checked 수준이라 그 논문이 규정한 FFN→CMS 전환 절차는 이 절에 반영돼 있지 않다. 정독 뒤 (a) F_CMS와 논문 절차의 차이, (b) Knowledge Seeding·Dreaming 단계와 전환 순서의 관계를 이 절에 기록하고, 차이가 있으면 어느 쪽을 기본으로 삼을지 사용자와 확정한다. 확정 전에는 F_CMS를 "Sleep 논문 방법의 구현"이라고 부르지 않는다.
 
@@ -154,9 +164,13 @@ Depth bank는 이전 loop의 오판도 담는다. 선택 head가 다양성·불�
 
 **OPEN:** text interface를 현재 필수 조건에서 내리는 결정이 사용자 의사인지 확인이 필요하다.
 
+**LITERATURE (2026-11-17 확인, 사용자 공유 링크 경유; metadata-checked + 본문 부분 정독):** Alabdulkareem 외, [Swarm Telepathy: Prefill-Free KV-Cache Transfer Across Families](https://arxiv.org/abs/2610.15095)(arXiv v1 2026-10-10. PDF의 소속은 MIT CSAIL·MIT-IBM이고 학회 채택 표기는 확인하지 못했다)는 서로 다른 모델 계열의 두 고정 LLM 사이에서 발신 모델의 KV cache를 수신 모델의 KV cache로 옮기는 약 300M 파라미터 transformer mapper를 쌍마다 학습한다(영어 텍스트 44M token, 1 GPU-day 미만으로 보고). 수신 모델은 원문을 prefill하지 않는다. 초록의 '평균 정확도 40%·wall-clock 4배'는 KV 압축과 결합한 SwaT를 텍스트 요약과 3개 모델 쌍·5개 예산·7개 데이터셋에서 비교한 값이다. 위 'learned interface' 비교군을 text 없이 구현한 인접 사례이지만 (a) 대상이 LLM 사이의 KV cache이며 Melete식 hidden-state trajectory가 아니고, (b) 쌍마다 mapper가 필요하며, (c) 한 번의 handoff만 평가했고, (d) 저자도 cache에 담긴 정보의 감사 가능성을 후속 과제로 둔다. H4의 text/vec2text 경로를 기각하거나 '필수 아님'을 확정하는 근거로 쓰지 않는다. 재현은 **NOT RUN**이다.
+
 ## 11. Sleep가 만들어야 할 변화
 
 경험의 복원·보존 외에 새 관계 공유 사례에서 짧은 loop가 기능을 수행하도록 학습한다. 검증된 deep trajectory의 distillation, replay에서 조건·관계 재조합, adaptation-after-replay objective가 후보다. Generated curriculum은 외부 사실의 새 관측으로 세지 않는다. 같은 데이터·총 계산량의 replay/teacher baseline으로 원인을 분리한다.
+
+**용어 구분 (2026-11-17 검토, PROPOSAL):** 외부 agent memory의 offline 재조직(MIRIX-2.0의 AutoDream, SoMem의 Topic 재조직과 view 재구축 등)은 문서·그래프·색인을 고치는 연산이며, 위 Sleep [A03]의 Knowledge Seeding·Dreaming과 이름이 비슷해도 fast→slow 파라미터 공고화가 아니다. 앞의 것은 외부 memory 비교 정책으로, 뒤의 것은 이 절의 Sleep으로 따로 보고하고 이름만으로 합치지 않는다. 두 연구는 arXiv preprint이고 성능 수치는 원 저자 보고다([2026-11-16-sleep-time-melete-integration.md](/home/jimmy/repos/full-continual-learning/research/2026-11-16-sleep-time-melete-integration.md), [2026-11-17-sleep-time-melete-selected-addendum.md](/home/jimmy/repos/full-continual-learning/research/2026-11-17-sleep-time-melete-selected-addendum.md)). 또 같은 '재귀'라는 말이라도 Feng·Meng의 recursive memory(arXiv:2611.13760)는 token 시계 위의 상태 갱신이며 §2의 recursion(같은 관측에 대한 내부 계산 깊이)과 다르다([07-state-and-storage.md](/home/jimmy/repos/full-continual-learning/docs/07-state-and-storage.md) §1).
 
 **LITERATURE (SPENS24, W1-spens24-hwu20.md:90-93,110):** 문헌의 공고화는 빠른 저장소(MHN)가 teacher, 느린 수준(VAE)이 student인 replay다. replay 집합은 noise cue 10,000개를 MHN에 한 번 넣어 만든 고정 집합이고, 새 사건과 교차하는 replay와 generative replay는 제안에 그친다.
 

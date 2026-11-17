@@ -31,6 +31,8 @@
 | U11 | 뇌파에서 더 본질적인 상태 의존적 조율을 탐구한다 | 단순한 주기 가변화나 Hz→token 직접 대응으로 축소하지 않는다 |
 | U12 | 이론·수식·실험 PoC·단계별 MVP·self-evolution을 함께 진행한다 | 공개 문서 게시와 모델 구현/성공은 다르다 |
 
+**OPEN (2026-11-17 검토):** 위 U01–U12에는 2026-11-16 사용자 원문의 지속학습 목적, 곧 「무한한 시간동안 경험하는것을 재앙적 망각 없이 학습 하는 것」([2026-11-16-discussion.md](/home/jimmy/repos/full-continual-learning/sources/sync/2026-11-16-discussion.md))이 별도 항목으로 없다. [13-schema-decomposition-and-interference.md](/home/jimmy/repos/full-continual-learning/docs/13-schema-decomposition-and-interference.md) §1·§11과 [14-schema-lifecycle-crud-and-joint-paper.md](/home/jimmy/repos/full-continual-learning/docs/14-schema-lifecycle-crud-and-joint-paper.md)가 이 목적을 쓰지만 헌장 표와 [09-roadmap.md](/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md) §1.2의 U01–U12 경로에는 연결돼 있지 않다. 헌장에 U13으로 올릴지 기존 U03·U10과 보호 family에 묶을지는 사용자 확인이 필요하다(결정 대기).
+
 ## 3. 여섯 층위의 의도
 
 1–3층은 명시적 요구의 재구성, 4–6층은 대화에서 도출한 해석이다. 사람의 내면을 확정 진단한 것이 아니다.
