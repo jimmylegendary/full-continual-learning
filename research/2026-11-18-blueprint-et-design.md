@@ -321,3 +321,5 @@ D-15~D-38은 로드맵 개정 담당(W4)이 붙였고, W2b·W5·W6의 후보는 
 | 수치 설명 | docs/18 §10.5에 host 종료 gate 시간의 점 값(14.3시간)과 계산 계획의 표본 P50(약 19.2시간)의 관계를 적었다. 두 값은 그대로다 |
 | 인용 표기 | docs/19 한눈에 보기의 USER 인용을 원문과 글자 그대로 맞췄다. 요약 표현을 원문 인용처럼 낫표에 넣은 4곳을 풀어 썼다 |
 | 그대로 둔 것 | 참고 영상의 공개 제목과 URL은 조사 출처로 남겼다. docs/18 §14.3과 docs/19 §13에서 한 결정 번호가 두 행에 나오는 곳은 그대로 두었다. 기준은 docs/09 §10이다 |
+
+**병합 뒤 검사 (2026-11-18, main checkout).** `python3 tools/validate_docs.py` 결과는 errors 0이다(files 219, markdown 69, local links 1,120, reference records 296). `unresolved_reference_ids`는 10개다. 기존 3개(N29–N31)에 이번 작업의 needs-resolution 7개(S47–S50, N39, S156, S157)가 더해졌다. 오류가 아니라 URL이나 서지를 1차 출처로 확정하지 못했다는 표시다. mermaid 블록 10개는 mermaid parser로 parse를 확인했다(브라우저 렌더링은 확인하지 않았다). 추가된 줄의 공개 안전성 검사는 hits 0이다.
