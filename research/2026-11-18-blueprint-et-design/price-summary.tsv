@@ -1,0 +1,7 @@
+item	usd_h_1117	usd_h_1118	note
+main(48GB급 VM) 최저가	1.23	1.23	RTX6000Ada
+A100 80GB VM 최저가	1.73	1.73	
+H100 1장 최저가(형태 무관)	3.14	3.15	container
+H100 1장 VM 최저가	3.91	4.72	
+H100 4장 이상 노드 GPU당 최저		5.85	
+CPU 인스턴스(16 vCPU 이상, RAM 64GB 이상) 최저가		0.68	16 vCPU

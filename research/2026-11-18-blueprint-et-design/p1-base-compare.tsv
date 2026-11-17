@@ -1,0 +1,5 @@
+base	params	p1_hours_p10	p1_hours_p50	p1_hours_p90	p1_usd_p10	p1_usd_p50	p1_usd_p90	np1_addon_usd_p10	np1_addon_usd_p50	np1_addon_usd_p90	p1_usd_p50_minus_135m	train_mem_gb_p50	train_mem_gb_p90
+SmolLM2-135M(기본)	135M	6.49	11.5	25.4	10.4	17.5	34.7	0.56	1.08	2.48	0.00	8.55	10.6
+SmolLM2-360M	362M	7.63	15.2	42.0	11.9	22.1	55.0	0.66	1.28	2.92	4.65	13.3	15.8
+Qwen3-1.7B	1721M	11.4	29.9	115.0	17.0	39.9	145.1	1.07	2.33	6.20	22.4	28.8	35.2
+Qwen3-4B	4022M	17.7	57.1	242.9	24.8	73.1	302.6	1.65	4.04	12.1	55.6	48.0	56.4

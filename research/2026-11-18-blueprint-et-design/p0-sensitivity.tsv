@@ -1,0 +1,6 @@
+variant	runcrate_billed_h_p10	runcrate_billed_h_p50	runcrate_billed_h_p90	usd_p10	usd_p50	usd_p90
+기본 가정: HF eager, 동시 sequence 3/8/16	320.9	702.8	1674	394.8	864.5	2059
+서버형 continuous batching: 동시 sequence x4, 호출 지연 x0.5	163.9	316.2	620.3	201.6	389.0	763.0
+순차에 가까운 harness: 동시 sequence x0.5	500.4	1157	2843	615.5	1423	3497
+frozen LLM을 4B급으로 낮춤(8B 행만, 가중치와 token 수는 그대로)	175.5	380.1	868.4	215.9	467.5	1068
+서버형 + 4B급	90	170.6	329.7	110.3	209.9	405.5

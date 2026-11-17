@@ -1,0 +1,8 @@
+tier	role	gpu_type	gpu_count	location	deployment	vcpu	ram_gb	disk_gb	usd_h
+3 주력(48GB급 1장 VM)	기준 충족 후보 1	RTX6000Ada	1	US Midwest	vm	12	72	350	1.23
+3 주력(48GB급 1장 VM)	기준 충족 후보 2	RTX6000Ada	1	US Midwest	vm	12	72	350	1.23
+3 예산 대안	RTX A6000 VM	A6000	1	Des Moines, IA, United States	vm	12	64	256	0.82
+3 vCPU 대안	RTX 5090 VM	RTX5090	1	Gdańsk, Poland	vm	48	88	200	1.83
+4 대형	A100 80GB VM	A100_80G	1	Beltsville, MD, United States	vm	16	160	1000	1.73
+4 대형	H100 최저가(형태 무관)	H100	1	Austin, TX, United States	container	19	207	151	3.15
+4 대형	H100 VM	H100	1	Paris, France	vm	24	240	1000	4.72

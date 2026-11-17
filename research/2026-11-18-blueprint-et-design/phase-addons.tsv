@@ -1,0 +1,11 @@
+phase	item	base	hours_p10	hours_p50	hours_p90	usd_p10	usd_p50	usd_p90	note
+P1	NP arm(np1 hook) 재실행	base 135M	0.45	0.87	2.02	0.56	1.08	2.48	NP arm은 그 phase의 base로 다시 돈다(MD-O)
+P1	ET 단 추가분	base 135M	3.98	12.0	42.4	4.90	14.8	52.2	ET-0 학습 arm 대 NP arm. ET-3p 회귀는 host(비용 0)
+P2	NP arm(np1 hook) 재실행	base 135M	0.45	0.87	2.02	0.56	1.08	2.48	NP arm은 그 phase의 base로 다시 돈다(MD-O)
+P2	ET 단 추가분	base 135M	4.52	13.0	44.0	5.56	16.1	54.1	ET-0 깊이 곡선 + ET-1(R11)
+P3	NP arm(np1 hook) 재실행	base 135M	0.45	0.87	2.02	0.56	1.08	2.48	NP arm은 그 phase의 base로 다시 돈다(MD-O)
+P3	ET 단 추가분	base 135M	0.42	0.80	1.89	0.51	0.98	2.32	ET-1 + ET-2
+P4	NP arm(np1 hook) 재실행	base 135M	0.45	0.87	2.02	0.56	1.08	2.48	NP arm은 그 phase의 base로 다시 돈다(MD-O)
+P4	ET 단 추가분	base 135M	0.42	0.80	1.89	0.51	0.98	2.32	ET-1 잠복 효과 + ET-2 + ET-3 pilot 탐색(별도 행)
+P5	NP arm(np1 hook) 재실행	base 7111M	1.93	5.12	16.3	2.37	6.30	20.1	NP arm은 그 phase의 base로 다시 돈다(MD-O)
+P5	ET 단 추가분	base 7111M	51.6	172.0	595.8	63.4	211.6	732.8	ET-3 정식(별도 행). NP arm은 시간캡슐 기반으로 재실행

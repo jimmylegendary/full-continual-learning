@@ -1,0 +1,11 @@
+base	item	tier	hours_p10	hours_p50	hours_p90	usd_p10	usd_p50	usd_p90
+ET-3p run 1회(실행 행렬 R15 = docs/17의 ET-3p 규모: 항목 330/900/2400)	runcrate 48GB급	4B-13B급 시간캡슐(HF bf16)	0.76	5.03	76.1	0.94	6.19	93.5
+GPT-1900 D34(3.29B, FLOP 환산 본체 약 2.1B)	retrofit 학습(P5 식: 토큰 2억/10억/40억 x run 6/9/20)	main 또는 large 중 최저가	48.8	263.6	1319	153.8	830.5	4154
+GPT-1900 D34(3.29B, FLOP 환산 본체 약 2.1B)	ET-3 run 전체(축소 설계 run 수, probe 포함)	main 48GB급	3.14	22.9	151.4	3.86	28.2	186.3
+GPT-1900 D34(3.29B, FLOP 환산 본체 약 2.1B)	ET-4 run 전체(축소 설계 run 수, probe 포함)	main 48GB급	6.79	41.8	259.8	8.35	51.5	319.6
+TypewriterLM(7.24B)	retrofit 학습(P5 식: 토큰 2억/10억/40억 x run 6/9/20)	main 또는 large 중 최저가	115.8	619.7	3116	364.6	1952	9815
+TypewriterLM(7.24B)	ET-3 run 전체(축소 설계 run 수, probe 포함)	main 48GB급	7.12	57.0	382.0	8.76	70.1	469.8
+TypewriterLM(7.24B)	ET-4 run 전체(축소 설계 run 수, probe 포함)	main 48GB급	16.3	101.6	641.9	20.1	124.9	789.5
+Talkie(13B, 구조 가정)	retrofit 학습(P5 식: 토큰 2억/10억/40억 x run 6/9/20)	main 또는 large 중 최저가	206.7	1099	5572	651.2	3462	17551
+Talkie(13B, 구조 가정)	ET-3 run 전체(축소 설계 run 수, probe 포함)	main 48GB급	12.6	101.8	691.9	15.5	125.2	851.0
+Talkie(13B, 구조 가정)	ET-4 run 전체(축소 설계 run 수, probe 포함)	main 48GB급	28.8	181.7	1157	35.4	223.5	1423

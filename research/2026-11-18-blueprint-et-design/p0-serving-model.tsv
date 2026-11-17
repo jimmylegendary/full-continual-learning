@@ -1,0 +1,6 @@
+model	device	flops_per_token	weights_gb_bf16	prefill_tps_p10	prefill_tps_p50	prefill_tps_p90	decode_tps_seq_p10	decode_tps_seq_p50	decode_tps_seq_p90	decode_tps_conc_p10	decode_tps_conc_p50	decode_tps_conc_p90
+8B급 bf16	48GB급 1장(RTX 6000 Ada 사양)	16.4 GFLOP/token	16.4	9960	7375	4439	38.0	29.1	17.5	474.5	210.0	77.1
+1.7B급 bf16	48GB급 1장(RTX 6000 Ada 사양)	3.40 GFLOP/token	3.4	48041	35576	21410	183.4	140.6	84.3	2289	1013	372.1
+3.3B급 bf16(GPT-1900 D34)	48GB급 1장(RTX 6000 Ada 사양)	6.58 GFLOP/token	6.6	24824	18383	11063	94.8	72.7	43.5	1183	523.3	192.3
+7.24B급 bf16(TypewriterLM)	48GB급 1장(RTX 6000 Ada 사양)	14.5 GFLOP/token	14.5	11280	8353	5027	43.1	33.0	19.8	537.4	237.8	87.4
+13B급 bf16(Talkie)	48GB급 1장(RTX 6000 Ada 사양)	26.0 GFLOP/token	26.0	6282	4652	2800	24.0	18.4	11.0	299.3	132.4	48.7

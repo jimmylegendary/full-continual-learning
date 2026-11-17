@@ -57,3 +57,13 @@ URL fetch 실패는 논문 부존재를 뜻하지 않는다. 검색에서 다른
 - **확인하지 않은 것:** 논문 전문 정독(`fulltext-read`), 코드 실행·재현, 접근이 막힌 출판사 본문, 모델 학습·GPU 실행, 클라우드 인스턴스 생성과 실제 비용.
 - **ESTIMATE:** 이 검토가 새로 쓴 증거 표기로, 계산 추정(작업량·시간·비용)이다. 측정이 아니며 모든 ESTIMATE는 NOT RUN이다. P1-T04에서 측정하기 전까지는 가정이다.
 - **검증 범위:** 저장소의 로컬 링크·JSON·TSV·Python 문법이며([VALIDATION.md](/home/jimmy/repos/full-continual-learning/VALIDATION.md)와 같은 범위) 외부 URL이나 논문 진위 전체를 검증하지 않는다.
+
+
+## 2026-11-18 설계 작업의 범위
+
+[2026-11-18-blueprint-et-design.md](/home/jimmy/repos/full-continual-learning/research/2026-11-18-blueprint-et-design.md)의 검토 범위다.
+
+- **확인한 것:** 사용자 요청 원문의 보존([2026-11-18-discussion.md](/home/jimmy/repos/full-continual-learning/sources/sync/2026-11-18-discussion.md)), 저장소 문서 대 문서의 정합(ID 참조, 절 참조, phase와 ET 단 대응, 등급 상한, H-DISCOVER 문장), 외부 문헌과 공개물의 존재와 서지다. arXiv 초록 페이지, DOI·도서 레지스트리, 학회·학술지 공식 일정 페이지, 모델 카드, 저자 블로그, 공식 저장소 README를 열어 제목·저자·날짜·초록 요지·공개 상태를 확인했고 읽은 범위는 항목별로 부록에 적었다. 새 참고문헌 163행의 status는 metadata-checked 150 / official-search-checked 6 / needs-resolution 7이다.
+- **확인하지 않은 것:** 논문 전문 정독(`fulltext-read`)과 코드 실행·재현, 시간캡슐 모델의 내려받기·실행과 과제 수행 능력, 접근이 막힌 보도(유료 기사, 차단된 서버)의 원문, 참고 영상의 내용, 사료의 개별 문서 열람.
+- **실행하지 않은 것(NOT RUN):** 구현, 학습, GPU 실행, runcrate 호출과 인스턴스 생성, 유료 API, 큰 모델·corpus 내려받기, 비용 지출. 계산 수치는 모두 ESTIMATE다.
+- **검증 범위:** 저장소의 로컬 링크·JSON·TSV·Python 문법(worktree 검사 도구)과 공개 안전성 검사 스크립트 2종, mermaid의 정적 점검이다. 외부 URL이나 논문 진위 전체를 검증하지 않는다. mermaid의 실제 parser 검사와 원본 `tools/validate_docs.py` 검사는 병합 뒤 main checkout에서 한다.

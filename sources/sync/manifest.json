@@ -109,6 +109,22 @@
       "source": "This automation run's accessible conversation context (two complete user messages: schema-decomposition hypothesis and conditional AI-industry/AGI paper-impact question)",
       "evidence": "USER / USER-HYPOTHESIS; prior absence-of-verbatim note preserved as historical review finding",
       "caveat": "Original per-message timestamp not independently available; the earlier U-T06 one-schema formulation and the multi-overlapping-schema formulation are not chronologically reconciled. Original user wording does not establish empirical truth or approval of a mechanism."
+    },
+    {
+      "id": "user-request-2026-11-18-blueprint-poc-einstein-test",
+      "status": "user_request_verbatim_claude_code_session",
+      "path": "sources/sync/2026-11-18-discussion.md",
+      "related_paths": [
+        "docs/16-ideal-blueprint.md",
+        "docs/17-einstein-test.md",
+        "docs/18-poc-nonparametric.md",
+        "docs/19-paper-plan.md",
+        "docs/09-roadmap.md",
+        "docs/15-compute-plan.md",
+        "research/2026-11-18-blueprint-et-design.md"
+      ],
+      "evidence": "USER verbatim block typed in a Claude Code session and relayed by the master agent; not a complete conversation export",
+      "caveat": "The request asks for design and planning documents; it does not authorize implementation, training, GPU runs, cloud instances, spending, large downloads or external sending. The 1901/1904 wording is recorded as written, not reconciled with history"
     }
   ],
   "source_excerpts": "sources/sync/2026-11-16-discussion.md",

@@ -1,0 +1,9 @@
+paper	phase	et_stage	runs	resource_tier	hours_p10	hours_p50	hours_p90	usd_p10	usd_p50	usd_p90	note
+PAPER-0	P0(NP)	ET-0 판정, ET-1·ET-3p 탐색	P0 실행 행렬 R05-R11·R14·R15(필수) + R12·R16(선택), host gate R01-R04	1 host(gate), 3 runcrate 48GB급(대량 readout)	320.9	702.8	1674	394.8	864.5	2059	docs/18의 실행 행렬 기준. 선택 R12·R16 포함. host와 노트북 시간은 비용 0이고 §6.7의 합계 표에 따로 있다
+PAPER-0b	P0 직후(선택)	ET-0·1 benchmark, ET-3p	P0 공유분 + ET-1 benchmark 확장 1배 + ET-3p 대상 1개 추가	3 runcrate 48GB급	8.14	27.0	101.1	10.0	33.2	124.3	PAPER-0과 겹치는 run은 다시 세지 않은 추가분이다. 단독 총계는 PAPER-0과 추가분의 합
+PAPER-1	P1	ET-0(학습 arm 대 NP), ET-3p 회귀	P1 학습·평가(135M) + NP arm 재실행 + ET 추가분	1 host(gate), 2 노트북 우선, 3 48GB급	14.4	27.9	61.5	20.6	37.5	78.5	기본 P1 base 135M. 1.7B–4B로 올리면 §6.10의 P1 base 비교표를 본다
+PAPER-2	P2	ET-0 깊이 곡선, ET-1	P2 학습·평가(135M) + NP arm + ET 추가분	1 host(gate), 3 48GB급	36.5	86.1	234.5	44.9	105.9	288.5	
+PAPER-3	P3	ET-1, ET-2	P3 학습·평가 + NP arm + ET 추가분	1 host(gate), 3 48GB급	10.7	24.5	68.3	13.1	30.1	84.0	
+PAPER-4	P4	ET-1 잠복, ET-2, ET-3 pilot 탐색	P4 Sleep·readout + NP arm + ET 추가분 + ET-3 pilot 탐색(시간캡슐 기반 retrofit은 PAPER-5 행에 둠)	1 host(gate), 3 48GB급, 4 대형(teacher)	13.6	42.1	128.3	18.0	56.7	191.3	시간캡슐 기반 ET-3 pilot 탐색 run은 PAPER-5 행에서 센다(이 행에는 넣지 않음)
+PAPER-5	P5	ET-3(정식)	시간캡슐 기반(TypewriterLM급 7.24B로 대표) retrofit + readout + soak + ET-3 pilot 대상 1개 + NP arm·ET 추가분	1 host(gate), 3 48GB급, 4 대형 가능	400.7	1145	3692	786.7	2593	10583	확보 안 1(공개 모델 사용) 가정. 자체 사전학습은 §6.8의 표
+PAPER-6	P6(ET)	ET-4(봉인 주력 대상 1개 기준)	봉인 사전 명세 recipe로 retrofit 재학습(P5 학습량의 1/3로 가정) + ET-4 봉인 run(대상 1개, 입력 tier 변형과 대조 stream 포함)	3 48GB급, 4 대형 가능	100.3	443.9	1515	230.1	1010	3661	대상 수는 OPEN. 대상이 둘이면 ET-4 부분이 2배

@@ -144,3 +144,7 @@ depth attention
 ## U-T14 — 재검토·저장소 반영·runcrate 계산 계획 (2026-11-17)
 
 원문은 [2026-11-17-discussion.md](/home/jimmy/repos/full-continual-learning/sources/sync/2026-11-17-discussion.md)의 「사용자 원문」 블록에 있다. Claude Code 세션에서 입력한 요청이며 위치만 적는다.
+
+## U-T15 — 이상 청사진·비모수 POC·단계별 구현과 논문·runcrate 실험 계획·아인슈타인 테스트 (2026-11-18)
+
+원문은 [2026-11-18-discussion.md](/home/jimmy/repos/full-continual-learning/sources/sync/2026-11-18-discussion.md)의 「사용자 원문」 블록에 있다. Claude Code 세션에서 입력한 요청이며 위치만 적는다.

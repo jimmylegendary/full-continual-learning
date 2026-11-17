@@ -1,0 +1,231 @@
+provisional	final	definition	note
+DC-W1-01	D-24	docs/09 §10	feature 목록(BF-D4 포함)과 용어 개정 범위를 한 행으로 합침(DC-W1-07과)
+DC-W1-02	D-21	docs/09 §10	hold 경로. DC-W3-05와 한 행(추천이 달라 양쪽을 적음)
+DC-W1-03	D-25	docs/09 §10	branch와 create의 분리. N-4와 구분
+DC-W1-04	D-26	docs/09 §10	발견 feature 묶음과 H-DISCOVER를 헌장에 올릴지. N-8과 묶을 수 있음
+DC-W1-05	D-27	docs/09 §10	발견 feature의 학습 모듈을 둘 phase
+DC-W1-06	D-11	docs/09 §10	새 행 없음. 외부 consumer 접점을 P0부터 얇게 둘지는 D-11에 합침
+DC-W1-07	D-24	docs/09 §10	DC-W1-01과 한 행
+DC-W2a-01	D-30	docs/09 §10	「입력」의 해석(학습자 L / 동반 AI C)
+DC-W2a-02	D-28	docs/09 §10	대상 묶음·T0·원문 「1904」의 읽기를 한 행으로 합침(DC-W2c-01·02와)
+DC-W2a-03	D-31	docs/09 §10	입력 tier의 주 판정 단위. DC-W2a-05와 한 행
+DC-W2a-04	D-32	docs/09 §10	closed-loop 도입. DC-W2a-11과 한 행
+DC-W2a-05	D-31	docs/09 §10	판정 x축과 머리 결과 채널. DC-W2a-03과 한 행
+DC-W2a-06	D-33	docs/09 §10	ET 채점자 구성
+DC-W2a-07	D-34	docs/09 §10	P6의 등급 상한. DC-W2a-08과 한 행
+DC-W2a-08	D-34	docs/09 §10	「통과」 문구와 최소 수준. DC-W2a-07과 한 행
+DC-W2a-09	D-35	docs/09 §10	사료 공개 범위·저작권. DC-W2c-06과 한 행
+DC-W2a-10	D-36	docs/09 §10	stream 구성에 현대 LLM. DC-W2c-04와 한 행
+DC-W2a-11	D-32	docs/09 §10	W_delta의 투입 방식. DC-W2a-04와 한 행
+DC-W2c-01	D-28	docs/09 §10	ET 대상 묶음
+DC-W2c-02	D-28	docs/09 §10	주력의 기반 checkpoint와 T0
+DC-W2c-03	D-29	docs/09 §10	TypewriterLM 라이선스. 시간캡슐 확보 방식과 한 행
+DC-W2c-04	D-36	docs/09 §10	독일어 사료의 처리. DC-W2a-10과 한 행
+DC-W2c-05	D-37	docs/09 §10	참고 영상의 정체
+DC-W2c-06	D-35	docs/09 §10	사료 접근 비용. DC-W2a-09와 한 행
+DC-W2c-07	D-29	docs/09 §10	시간캡슐 모델 공개 상태의 재점검 주기. 결정자는 마스터였으나 합치며 사용자로 적음
+DC-W3-01	D-19	docs/09 §10	frozen LLM 주 모델·복제 모델·backend
+DC-W3-02	D-16	docs/09 §10	NP-2를 「비모수」에 포함할지
+DC-W3-03	D-18	docs/09 §10	P0 종료 gate에 sealed readout 포함(D-07의 P0판)
+DC-W3-04	D-17	docs/09 §10	「실제 갱신」의 P0 해석
+DC-W3-05	D-21	docs/09 §10	hold 경로. DC-W1-02와 한 행
+DC-W3-06	D-20	docs/09 §10	P1 base 크기
+DC-W3-07	D-23	docs/09 §10	구현 위치와 Melete 파일 이관
+DC-W3-08	D-22	docs/09 §10	NP 대조군의 충실도. DC-W3-09와 한 행
+DC-W3-09	D-22	docs/09 §10	NP-0의 생성·판정 분리. DC-W3-08과 한 행
+DC-W2b-01	D-22	docs/09 §10	P0 대조군의 구현 출처. D-22(NP 대조군의 충실도)에 합침
+DC-W2b-02	D-39	docs/09 §10	외부 발견 benchmark 앵커
+DC-W2b-03	D-40	docs/09 §10	제출 4주 전 선행 연구 재조회 gate. DC-W2b-04와 한 행
+DC-W2b-04	D-40	docs/09 §10	PAPER-0b의 투고 성격. DC-W2b-03과 한 행
+DC-W5-01	D-38	docs/09 §10	PAPER-0b를 낼지와 시점. W4가 만든 D-38(논문 전략)에 합침
+DC-W5-02	D-38	docs/09 §10	PAPER-1의 필요 등급과 phase 상한의 어긋남 처리. D-38에 합침
+DC-W5-03	D-42	docs/09 §10	phase마다 1편 고정. DC-W5-04와 한 행
+DC-W5-04	D-42	docs/09 §10	PAPER-0의 범위. DC-W5-03과 한 행
+DC-W5-05	D-41	docs/09 §10	사전 등록(manifest hash)의 공개 시점. DC-W5-11과 한 행
+DC-W5-06	D-43	docs/09 §10	핵심 주장 FAIL일 때 negative-result판을 낼지
+DC-W5-07	D-44	docs/09 §10	논문 공개물의 범위
+DC-W5-08	N-6	research/2026-11-17-design-review.md §7.3	Ali 공동논문과 PAPER-3·4의 관계. 기존 N-6(Ali 제안문 수정안의 승인·발송 여부·축 추가)에 합침
+DC-W5-09	N-5	research/2026-11-17-design-review.md §7.3	실험 B(Base와 post-training)의 배치. 기존 N-5에 합침
+DC-W5-10	D-45	docs/09 §10	제목의 「Einstein」과 「통과」 문구. D-34와 함께 본다
+DC-W5-11	D-41	docs/09 §10	preprint 공개 시점. DC-W5-05와 한 행
+DC-W6-01	D-46	docs/09 §10	P0 서빙 방식과 보조 run의 모델 크기. D-19와 함께 본다
+DC-W6-02	N-11	research/2026-11-17-design-review.md §7.3 (와 docs/09 §10 D-04)	P0 클라우드 비용 상한과 FCL 전용 키·예산. 기존 N-11(과 D-04)에 합침
+DC-W6-03	D-29	docs/09 §10	시간캡슐 기반 확보 안. D-29에 합침
+DC-W6-04	D-20	docs/09 §10	P1 base 크기. D-20에 합침
+DC-W6-05	D-47	docs/09 §10	자체 사전학습용 다중 GPU 노드와 월 약정
+F-NEW-W1-a	F25	docs/16 §8.2	긴장 보존과 지연 해소. docs/18 §5.5의 F-NEW-W3-a와 같은 후보를 합침. docs/08에는 등록하지 않았다(등록은 사용자 결정, N-5와 연결)
+F-NEW-W3-a	F25	docs/18 §5.5	지연 해소 불일치. F-NEW-W1-a와 같은 후보를 합침. docs/08에는 등록하지 않았다(등록은 사용자 결정, N-5와 연결)
+F-NEW-W2a-a	F26	docs/17 §8.7	발견 곡선(용량–반응). docs/08에는 등록하지 않았다(등록은 사용자 결정, N-5와 연결)
+F-NEW-W2a-b	F27	docs/17 §8.7	입력 내재 대비 초과. docs/08에는 등록하지 않았다(등록은 사용자 결정, N-5와 연결)
+F-NEW-W2a-c	F28	docs/17 §8.7	핵심 입력 제거와 stream 특이성. docs/08에는 등록하지 않았다(등록은 사용자 결정, N-5와 연결)
+F-NEW-W2a-d	F29	docs/17 §8.7	오염·누설 probe. docs/08에는 등록하지 않았다(등록은 사용자 결정, N-5와 연결)
+F-NEW-W3-b	F30	docs/18 §5.5	원리 도출과 귀결 예측. docs/08에는 등록하지 않았다(등록은 사용자 결정, N-5와 연결)
+F-NEW-W3-c	F31	docs/18 §5.5	잠재 artifact 재적재와 합성. docs/08에는 등록하지 않았다(등록은 사용자 결정, N-5와 연결)
+NEW-W2a-01	S47	references/catalog.tsv	new catalog row
+NEW-W2a-02	S48	references/catalog.tsv	new catalog row
+NEW-W2a-03	S49	references/catalog.tsv	new catalog row
+NEW-W2a-04	S50	references/catalog.tsv	new catalog row
+NEW-W2a-05	S51	references/catalog.tsv	new catalog row
+NEW-W2b-001	S52	references/catalog.tsv	new catalog row
+NEW-W2b-002	S53	references/catalog.tsv	new catalog row
+NEW-W2b-003	S54	references/catalog.tsv	new catalog row
+NEW-W2b-004	S55	references/catalog.tsv	new catalog row
+NEW-W2b-005	S56	references/catalog.tsv	new catalog row
+NEW-W2b-006	S57	references/catalog.tsv	new catalog row
+NEW-W2b-007	S58	references/catalog.tsv	new catalog row
+NEW-W2b-008	S59	references/catalog.tsv	new catalog row
+NEW-W2b-009	S60	references/catalog.tsv	new catalog row
+NEW-W2b-010	S61	references/catalog.tsv	new catalog row
+NEW-W2b-011	S62	references/catalog.tsv	new catalog row
+NEW-W2b-012	S63	references/catalog.tsv	new catalog row
+NEW-W2b-013	S64	references/catalog.tsv	new catalog row
+NEW-W2b-014	S65	references/catalog.tsv	new catalog row
+NEW-W2b-015	S66	references/catalog.tsv	new catalog row
+NEW-W2b-016	S67	references/catalog.tsv	new catalog row
+NEW-W2b-017	S68	references/catalog.tsv	new catalog row
+NEW-W2b-018	S69	references/catalog.tsv	new catalog row
+NEW-W2b-019	S70	references/catalog.tsv	new catalog row
+NEW-W2b-020	S71	references/catalog.tsv	new catalog row
+NEW-W2b-021	S72	references/catalog.tsv	new catalog row
+NEW-W2b-022	S73	references/catalog.tsv	new catalog row
+NEW-W2b-023	S74	references/catalog.tsv	new catalog row
+NEW-W2b-024	S75	references/catalog.tsv	new catalog row
+NEW-W2b-025	S76	references/catalog.tsv	new catalog row
+NEW-W2b-026	S77	references/catalog.tsv	new catalog row
+NEW-W2b-027	S78	references/catalog.tsv	new catalog row
+NEW-W2b-028	S79	references/catalog.tsv	new catalog row
+NEW-W2b-029	S80	references/catalog.tsv	new catalog row
+NEW-W2b-030	S81	references/catalog.tsv	new catalog row
+NEW-W2b-031	S82	references/catalog.tsv	new catalog row
+NEW-W2b-032	S83	references/catalog.tsv	new catalog row
+NEW-W2b-033	S84	references/catalog.tsv	new catalog row
+NEW-W2b-034	S85	references/catalog.tsv	new catalog row
+NEW-W2b-035	S86	references/catalog.tsv	new catalog row
+NEW-W2b-036	A39	references/catalog.tsv	new catalog row
+NEW-W2b-037	A40	references/catalog.tsv	new catalog row
+NEW-W2b-038	A41	references/catalog.tsv	new catalog row
+NEW-W2b-039	A42	references/catalog.tsv	new catalog row
+NEW-W2b-040	A43	references/catalog.tsv	new catalog row
+NEW-W2b-041	A44	references/catalog.tsv	new catalog row
+NEW-W2b-042	A45	references/catalog.tsv	new catalog row
+NEW-W2b-043	E06	references/catalog.tsv	new catalog row
+NEW-W2b-044	A46	references/catalog.tsv	new catalog row
+NEW-W2b-045	A47	references/catalog.tsv	new catalog row
+NEW-W2b-046	A48	references/catalog.tsv	new catalog row
+NEW-W2b-047	A49	references/catalog.tsv	new catalog row
+NEW-W2b-048	A50	references/catalog.tsv	new catalog row
+NEW-W2b-049	A51	references/catalog.tsv	new catalog row
+NEW-W2b-050	A52	references/catalog.tsv	new catalog row
+NEW-W2b-051	A53	references/catalog.tsv	new catalog row
+NEW-W2b-052	A54	references/catalog.tsv	new catalog row
+NEW-W2b-053	A55	references/catalog.tsv	new catalog row
+NEW-W2b-054	A56	references/catalog.tsv	new catalog row
+NEW-W2b-055	A57	references/catalog.tsv	new catalog row
+NEW-W2b-056	S87	references/catalog.tsv	new catalog row
+NEW-W2b-057	S88	references/catalog.tsv	new catalog row
+NEW-W2b-058	S89	references/catalog.tsv	new catalog row
+NEW-W2b-059	S90	references/catalog.tsv	new catalog row
+NEW-W2b-060	A58	references/catalog.tsv	new catalog row
+NEW-W2b-061	A59	references/catalog.tsv	new catalog row
+NEW-W2b-062	A60	references/catalog.tsv	new catalog row
+NEW-W2b-063	S91	references/catalog.tsv	new catalog row
+NEW-W2b-064	A61	references/catalog.tsv	new catalog row
+NEW-W2b-065	S92	references/catalog.tsv	new catalog row
+NEW-W2b-066	S93	references/catalog.tsv	new catalog row
+NEW-W2b-067	S94	references/catalog.tsv	new catalog row
+NEW-W2b-068	A62	references/catalog.tsv	new catalog row
+NEW-W2b-069	A63	references/catalog.tsv	new catalog row
+NEW-W2b-070	A64	references/catalog.tsv	new catalog row
+NEW-W2b-071	A65	references/catalog.tsv	new catalog row
+NEW-W2b-072	A66	references/catalog.tsv	new catalog row
+NEW-W2b-073	S95	references/catalog.tsv	new catalog row
+NEW-W2b-074	A67	references/catalog.tsv	new catalog row
+NEW-W2b-075	S96	references/catalog.tsv	new catalog row
+NEW-W2b-076	S97	references/catalog.tsv	new catalog row
+NEW-W2b-077	S98	references/catalog.tsv	new catalog row
+NEW-W2b-078	S99	references/catalog.tsv	new catalog row
+NEW-W2b-079	S100	references/catalog.tsv	new catalog row
+NEW-W2b-080	S101	references/catalog.tsv	new catalog row
+NEW-W2b-081	E07	references/catalog.tsv	new catalog row
+NEW-W2b-082	E08	references/catalog.tsv	new catalog row
+NEW-W2b-083	E09	references/catalog.tsv	new catalog row
+NEW-W2b-084	E10	references/catalog.tsv	new catalog row
+NEW-W2b-085	S102	references/catalog.tsv	new catalog row
+NEW-W2b-086	S103	references/catalog.tsv	new catalog row
+NEW-W2b-087	S104	references/catalog.tsv	new catalog row
+NEW-W2b-088	S105	references/catalog.tsv	new catalog row
+NEW-W2b-089	S106	references/catalog.tsv	new catalog row
+NEW-W2b-090	S107	references/catalog.tsv	new catalog row
+NEW-W2b-091	S108	references/catalog.tsv	new catalog row
+NEW-W2b-092	S109	references/catalog.tsv	new catalog row
+NEW-W2b-093	S110	references/catalog.tsv	new catalog row
+NEW-W2b-094	S111	references/catalog.tsv	new catalog row
+NEW-W2b-095	S112	references/catalog.tsv	new catalog row
+NEW-W2b-096	S113	references/catalog.tsv	new catalog row
+NEW-W2b-097	S114	references/catalog.tsv	new catalog row
+NEW-W2b-098	S115	references/catalog.tsv	new catalog row
+NEW-W2b-099	S116	references/catalog.tsv	new catalog row
+NEW-W2b-100	A68	references/catalog.tsv	new catalog row
+NEW-W2b-101	S117	references/catalog.tsv	new catalog row
+NEW-W2b-102	S118	references/catalog.tsv	new catalog row
+NEW-W2b-103	E11	references/catalog.tsv	new catalog row
+NEW-W2b-104	S119	references/catalog.tsv	new catalog row
+NEW-W2b-105	S120	references/catalog.tsv	new catalog row
+NEW-W2b-106	S121	references/catalog.tsv	new catalog row
+NEW-W2b-107	S122	references/catalog.tsv	new catalog row
+NEW-W2b-108	E12	references/catalog.tsv	new catalog row
+NEW-W2b-109	S123	references/catalog.tsv	new catalog row
+NEW-W2b-110	S124	references/catalog.tsv	new catalog row
+NEW-W2b-111	S125	references/catalog.tsv	new catalog row
+NEW-W2b-112	S126	references/catalog.tsv	new catalog row
+NEW-W2b-113	S127	references/catalog.tsv	new catalog row
+NEW-W2b-114	S128	references/catalog.tsv	new catalog row
+NEW-W2b-115	S129	references/catalog.tsv	new catalog row
+NEW-W2b-116	S130	references/catalog.tsv	new catalog row
+NEW-W2b-117	S131	references/catalog.tsv	new catalog row
+NEW-W2b-118	S132	references/catalog.tsv	new catalog row
+NEW-W2b-119	S133	references/catalog.tsv	new catalog row
+NEW-W2b-120	S134	references/catalog.tsv	new catalog row
+NEW-W2b-121	S135	references/catalog.tsv	new catalog row
+NEW-W2b-122	S136	references/catalog.tsv	new catalog row
+NEW-W2b-123	S137	references/catalog.tsv	new catalog row
+NEW-W2b-124	S138	references/catalog.tsv	new catalog row
+NEW-W2b-125	S139	references/catalog.tsv	new catalog row
+NEW-W2b-126	E13	references/catalog.tsv	new catalog row
+NEW-W2b-127	E14	references/catalog.tsv	new catalog row
+NEW-W2b-128	N33	references/catalog.tsv	new catalog row
+NEW-W2b-129	N34	references/catalog.tsv	new catalog row
+NEW-W2b-130	N35	references/catalog.tsv	new catalog row
+NEW-W2b-131	N36	references/catalog.tsv	new catalog row
+NEW-W2b-132	N37	references/catalog.tsv	new catalog row
+NEW-W2b-133	N38	references/catalog.tsv	new catalog row
+NEW-W2b-134	N39	references/catalog.tsv	new catalog row
+NEW-W2b-135	S140	references/catalog.tsv	new catalog row
+NEW-W2b-136	S141	references/catalog.tsv	new catalog row
+NEW-W2b-137	S142	references/catalog.tsv	new catalog row
+NEW-W2b-138	S143	references/catalog.tsv	new catalog row
+NEW-W2b-139	S144	references/catalog.tsv	new catalog row
+NEW-W2b-140	S145	references/catalog.tsv	new catalog row
+NEW-W2c-01	S146	references/catalog.tsv	new catalog row
+NEW-W2c-02	A69	references/catalog.tsv	new catalog row
+NEW-W2c-03	S147	references/catalog.tsv	new catalog row
+NEW-W2c-04	S148	references/catalog.tsv	new catalog row
+NEW-W2c-05	S149	references/catalog.tsv	new catalog row
+NEW-W2c-06	A70	references/catalog.tsv	new catalog row
+NEW-W2c-07	S150	references/catalog.tsv	new catalog row
+NEW-W2c-08	S151	references/catalog.tsv	new catalog row
+NEW-W2c-09	S152	references/catalog.tsv	new catalog row
+NEW-W2c-10	S153	references/catalog.tsv	new catalog row
+NEW-W2c-11	S154	references/catalog.tsv	new catalog row
+NEW-W2c-12	S155	references/catalog.tsv	new catalog row
+NEW-W2c-13	S156	references/catalog.tsv	new catalog row
+NEW-W2c-14	S157	references/catalog.tsv	new catalog row
+NEW-W2c-15	S158	references/catalog.tsv	new catalog row
+NEW-W2c-16	S159	references/catalog.tsv	new catalog row
+NEW-W3-01	S70	references/catalog.tsv	same URL as S70 (not added again)
+NEW-W3-02	S71	references/catalog.tsv	same URL as S71 (not added again)
+NEW-W3-03	S69	references/catalog.tsv	same URL as S69 (not added again)
+NEW-W3-04	S112	references/catalog.tsv	same URL as S112 (not added again)
+NEW-W3-05	S113	references/catalog.tsv	same URL as S113 (not added again)
+NEW-W3-06	S160	references/catalog.tsv	new catalog row
+NEW-W6-01	A71	references/catalog.tsv	new catalog row
