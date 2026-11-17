@@ -76,12 +76,20 @@
     },
     {
       "id": "design-review-delta-2026-11-17",
-      "status": "claude_code_delta_design_review_branch_commit_not_published",
+      "status": "published_on_main_verified",
       "path": "research/2026-11-17-design-review.md",
       "reference_path": "references/shared-links-2026-11-17.md",
       "source": "sources/sync/2026-11-17-discussion.md",
       "evidence": "Item-level ledgers for the five sync commits aa1413d..280dc9a and the user's shared-link research cards, with design edits (PROPOSAL/OPEN) and a worktree validator run that maps the repository's absolute links to the worktree",
-      "caveat": "Branch commit only; the master verifies remote publication after fetch, rebase and push. Whitepaper not regenerated (2026-11-12 basis). No model, GPU or experiment was run"
+      "caveat": "Branch commit only; the master verifies remote publication after fetch, rebase and push. Whitepaper not regenerated (2026-11-12 basis). No model, GPU or experiment was run",
+      "publication": {
+        "review_commit": "37142e3ce1a0e33e8c48cdea0e506e6c3108af5a",
+        "post_merge_validation_commit": "f554c4765deb4061263a3bddcca56a9e417c9891",
+        "evidence": "GitHub remote main HEAD/ref, commit ancestry comparison (280dc9a...f554c47 ahead 4, behind 0), and published research/2026-11-17-design-review.md",
+        "scope": "2026-11-17 design delta, source ledger, references and docs/15 on main; no model implementation, GPU training, deployment or external sending",
+        "validation": "Existing 2026-11-17 main-checkout note reports tools/validate_docs.py errors 0 (184 files, 54 Markdown, 623 local links, 133 reference records). This sync checked metadata/JSON only and did NOT independently rerun the full validator.",
+        "caveat": "Historical source notes describing worktree-only status refer to the pre-merge stage and are intentionally preserved."
+      }
     },
     {
       "id": "compute-plan-2026-11-17",
