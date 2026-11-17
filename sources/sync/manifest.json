@@ -66,6 +66,29 @@
       "source": "2026-11-16 independent Sleep-time weekly latest_result (partially truncated); official arXiv abstracts and portions of HTML text cross-checked 2026-11-17",
       "evidence": "SoMem author-linked public GitHub repository existence verified; no full PDF/appendix reading, training, experiments or code execution",
       "caveat": "Adjacent external document memory and probabilistic finite-state theory, not direct continuous neural SBL"
+    },
+    {
+      "id": "user-request-2026-11-17-review-and-compute-plan",
+      "status": "user_request_verbatim_claude_code_session",
+      "path": "sources/sync/2026-11-17-discussion.md",
+      "evidence": "USER verbatim block typed in a Claude Code session and relayed by the master agent; not a complete conversation export",
+      "caveat": "The request asks for a re-review, a repository update and a plan; it does not authorize creating cloud instances, GPU runs, spending, whitepaper regeneration or external sending"
+    },
+    {
+      "id": "design-review-delta-2026-11-17",
+      "status": "claude_code_delta_design_review_branch_commit_not_published",
+      "path": "research/2026-11-17-design-review.md",
+      "reference_path": "references/shared-links-2026-11-17.md",
+      "source": "sources/sync/2026-11-17-discussion.md",
+      "evidence": "Item-level ledgers for the five sync commits aa1413d..280dc9a and the user's shared-link research cards, with design edits (PROPOSAL/OPEN) and a worktree validator run that maps the repository's absolute links to the worktree",
+      "caveat": "Branch commit only; the master verifies remote publication after fetch, rebase and push. Whitepaper not regenerated (2026-11-12 basis). No model, GPU or experiment was run"
+    },
+    {
+      "id": "compute-plan-2026-11-17",
+      "status": "cross_cutting_compute_plan_estimates_not_run",
+      "path": "docs/15-compute-plan.md",
+      "evidence": "ESTIMATE and NOT RUN; prices as of the 2026-11-17 lookup; no cloud instance created and no cost incurred",
+      "caveat": "Recommendations are PROPOSAL; decisions D-01, D-04 and D-12 stay OPEN until the user decides"
     }
   ],
   "source_excerpts": "sources/sync/2026-11-16-discussion.md",

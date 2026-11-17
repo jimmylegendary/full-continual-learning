@@ -1,0 +1,66 @@
+W5 공개 문서 확인 기록 (runcrate.ai 웹 문서. 키 없이 WebFetch·WebSearch만 사용)
+확인일: 2026-11-17. 인스턴스 생성·API 호출·키 파일 열기는 하지 않았다.
+표기: CONFIRMED = 페이지 원문에 있음(짧은 인용), NOT STATED = 해당 페이지에 없음, OPEN = 확인하지 못해 미결.
+이 기록은 W5 초안의 근거이며 저장소에는 docs/15 본문에 요약만 들어간다. 공개 문서는 바뀔 수 있다.
+
+[열람한 URL]
+ U1  https://www.runcrate.ai                                   (홈)
+ U2  https://www.runcrate.ai/pricing                            (가격·과금)
+ U3  https://www.runcrate.ai/compute                            (GPU 인스턴스 제품 페이지)
+ U4  https://www.runcrate.ai/docs                               (문서 목차)
+ U5  https://www.runcrate.ai/docs/cli/instances                 (CLI: instances create 옵션)
+ U6  https://www.runcrate.ai/docs/instances/overview.md         (GPU Instances 개요)
+ U7  https://www.runcrate.ai/storage                            (Storage 제품 페이지)
+ U8  https://www.runcrate.ai/docs/storage/overview.md           (Storage 개요)
+ U9  https://www.runcrate.ai/docs/examples/persistent-dev-environment
+ U10 https://www.runcrate.ai/docs/api-reference/introduction    (HTTP 404. API 레퍼런스 본문은 이번에 못 읽음)
+ 웹 검색 1건: "runcrate.ai ... max_runtime_minutes idle_shutdown_minutes" → runcrate 자체 API 레퍼런스는 검색에 나오지 않았다(다른 사업자 문서만 나옴).
+
+[항목별 확인 결과]
+
+1. VM 대 container
+ - U6 CONFIRMED: "GPU instances are full Linux containers with dedicated GPUs and SSH access." root 접근, 인스턴스마다 공개 IP("Each instance has a public IP address for direct SSH access").
+ - U3: "Instance type (VM vs. container): Not stated"(제품 페이지에는 구분이 없음).
+ - 스냅샷(2026-11-17, 마스터 조회): 192개 상품 중 vm 164개·container 28개, container는 전부 port_mapped=true.
+ - OPEN-1: 공개 문서는 전부 container로 서술하는데 상품 정보는 vm/container를 구분한다. 사용자에게 보이는 차이(Docker 사용 가능 여부·root·커널·드라이버 고정 여부)는 이번에 확인하지 못했다. ARCHIVE(같은 날 다른 세션 기록, 이번 재확인 안 함): VM에서 Ubuntu 22.04·driver 570.148.08(CUDA 12.8)·Docker --gpus 동작.
+ - port_mapped의 의미는 어느 페이지에도 없다(U6: "Ports and port mapping: Not stated" — 공개 IP로 서비스를 연다는 언급뿐). OPEN-2.
+
+2. 이미지 지정
+ - U3 CONFIRMED: 이미지는 템플릿("crate")으로 고른다. "Boot a crate, a ready image: Devbox, Finetune, or Inference." 템플릿 이름 예: ubuntu-devbox, ubuntu-train, ubuntu-inference. Finetune은 "with PyTorch and CUDA in place".
+ - U3 CONFIRMED: `launch_script` 옵션이 "runs as the instance comes up"(SDK·API).
+ - U6: "CUDA drivers, Python, pip, and common ML libraries come ready to use." 드라이버·CUDA 버전 선택은 NOT STATED.
+ - 사용자 정의 Docker 이미지(digest 지정)는 NOT STATED. OPEN-3: 고정 이미지(digest) 운영 절차는 VM에서 우리 이미지를 pull하는 방식에 의존하며 container 상품에서는 불가능할 수 있다.
+
+3. 영구 볼륨·스냅샷
+ - U7·U8 CONFIRMED: 볼륨 10–10,000GB, "$0.03 per GB a month"(일주일 단위 선불, 삭제 시 미사용 일수 환불). 인스턴스 terminate 뒤에도 유지("Volumes persist beyond instance termination"). /workspace에 마운트. 키울 수는 있어도 줄일 수 없다. 한 번에 실행 중인 인스턴스 하나에만 붙는다(U7). 볼륨의 region이 인스턴스 region을 제한하지 않는다(U7: "the volume's region never limits where you launch").
+ - U7 CONFIRMED: "It is your folder, not a backup." 인스턴스에서 파일을 지우면 볼륨에서도 지워진다. 잔액이 다음 주 요금을 못 덮으면 볼륨이 정지된다.
+ - 스냅샷: NOT STATED(U3·U7·U8).
+ - OPEN-4: 볼륨이 vm 상품에서도 붙는지(U6·U8은 container 기준), 볼륨 입출력 속도·부팅 시 파일 수에 따른 지연(U7: "Volumes with more files take longer to become ready at boot").
+
+4. 과금 단위
+ - U2 CONFIRMED: "Billed by the second on most GPUs; a few bill by the minute." 일부(예: H200 NVL)는 분 단위 올림이며 삭제 뒤 약 30초 teardown 포함. "Booting is never billed." 최소 과금 기간: NOT STATED(다만 U6: "Some machines have a minimum charge: Ending the instance earlier still bills the minimum at its hourly rate.", 스냅샷에는 L4 1개 상품이 minimum_billed_minutes=60).
+ - U6 CONFIRMED: 과금은 인스턴스가 "deployed"에 도달할 때 시작해 "terminated"에서 끝난다. "Failed launches before handover are not charged."
+ - U2 CONFIRMED: 선불 잔액 20–10,000 USD, 만료 없음. 잔액이 1.00 USD 아래로 내려가면 자동 충전을 시도하고 메일을 보내며 실행 중 인스턴스를 15분 뒤(또는 잔액 −10.00 USD에 도달하면 더 일찍) 삭제할 수 있다고 적혀 있다. → 공유 계정에서는 다른 프로젝트의 지출이 FCL run을 중단시킬 수 있다(운영 위험으로 docs/15에 반영).
+ - 월 약정: U2 "Prepay 1 to 12 months, up to 15% off ... can't be cancelled." 스냅샷 subscription_terms는 1/3/6/12개월에 5/8/11/15%. ARCHIVE는 0–8%라고 기록했으나 스냅샷·공개 문서와 다르다 → 스냅샷 수치를 쓴다.
+ - U5: 환경 월 예산에 도달하면 create가 실패한다("An owner or admin can raise it in the dashboard.").
+
+5. 자동 종료 필드
+ - U5 CONFIRMED(CLI): `--max-runtime` 5m–168h(7일), 실행이 시작된 시점부터 센다. `--idle-stop` 5m–24h, "the GPU stays under 5% with nobody connected"가 그 시간 지속되면 종료. 둘 다 생략하면 꺼져 있다. 종료는 terminate이며 "its local disk deleted". 자동 종료 설정을 바꾸면 변경 시점으로부터 2분보다 빨리 멈출 수 없다. `7d`·`30`·`30s` 형식은 거부된다.
+ - API 필드명(max_runtime_minutes, idle_shutdown_minutes): U10이 404라 공개 문서로는 확인하지 못했다. ARCHIVE 기록과 CLI 옵션이 같은 기능을 가리킨다. OPEN-5.
+ - 주의(우리 workload에 중요): idle-stop의 정의가 "GPU 5% 미만 + 접속자 없음"이라 batch=1 평가(GPU 사용률이 낮음)나 CPU·rsync 구간을 유휴로 오인해 유효한 run을 죽일 수 있다. docs/15는 idle_shutdown을 30–60분으로 길게 잡고 max_runtime을 실제 안전망으로 쓰도록 한다.
+ - 수동 종료의 디스크: U5는 max-runtime·idle-stop 종료에서 "local disk deleted"라 적었고 수동 delete는 서술하지 않았다. U6은 "Terminating an instance permanently deletes all local disk data."
+
+6. spot
+ - U6 CONFIRMED: spot 머신 개념이 있다("its host may take it back after a few minutes of notice", 알림 2–60분, 기본 꺼짐, 켜야 함, spot에서 job은 max_retries를 쓰지 않고 최대 5번 재실행). U2·U3에는 spot 언급이 없고 스냅샷 상품 정보에도 spot 필드가 없다. OPEN-6: FCL 계획은 spot을 쓰지 않는다(재개 비용·비교 환경 고정 때문).
+
+7. 데이터 전송·egress
+ - U2·U6·U7·U8 모두 NOT STATED. OPEN-7: 체크포인트는 수십 MB~1GB 규모라 영향이 작을 것으로 보지만 요금 유무는 확인하지 못했다.
+
+8. 기타 사실
+ - U3 CONFIRMED: 449회 실행(2026-09-19~10-18)의 launch→running 중앙값 4분 14초, 90%는 6분 50초 이내. (준비 시간 ESTIMATE의 근거. 부팅은 과금 안 됨)
+ - U3 CONFIRMED: region은 `--region`으로 선호를 주거나 생략하면 "the instance goes where your GPU is free."
+ - U6: 호스트는 datacenter와 community가 있고 community는 기본 꺼짐. 스냅샷의 host_tier는 192개 모두 datacenter.
+ - U6: 정지(stopped) 상태는 "Resources are still reserved"(일시 정지). ARCHIVE는 '중지는 terminate뿐'이라고 기록 → OPEN-8(과금 여부·로컬 디스크 보존 여부 미확인).
+
+[요약: OPEN 목록]
+ OPEN-1 vm/container의 실제 차이, OPEN-2 port_mapped 의미, OPEN-3 사용자 정의 이미지(digest), OPEN-4 볼륨의 vm 지원·속도, OPEN-5 API의 auto-terminate 필드명, OPEN-6 spot 사용 가능 범위, OPEN-7 egress 요금, OPEN-8 stopped 상태의 과금·디스크.

@@ -61,6 +61,10 @@
 
 S-HAI의 다중 grounding을 다중 schema 생성으로, Spens의 narrative Mistral+xRAG+LoRA와 별도 GPT-2 실험을 한 모델의 통합 성과로 바꾸지 않는다. CLS episodic adapter를 곧바로 추상 schema로 부르지 않는다.
 
+## 2026-11-17 델타 검토에서 추가한 후보
+
+[catalog.tsv](/home/jimmy/repos/full-continual-learning/references/catalog.tsv) 끝의 33행(S36–S46·A19–A38·E05·N32)은 2026-11-17 델타 설계 반영 감사가 추가한 후보다. 11-16~17 Sleep-time 선별 논문, 11-14·11-16 보충 참고문헌 파일에는 있었으나 catalog에 없던 논문, 사용자 공유 링크 카드에서 확정한 논문이다. 확인 수준은 각 행의 status를 따르며 전문 정독(fulltext-read)이 아니다. 사용자 공유 링크에서 확정한 5건은 읽은 범위와 함께 [shared-links-2026-11-17.md](/home/jimmy/repos/full-continual-learning/references/shared-links-2026-11-17.md)에 있다. 영향 가설 기록의 링크 전용 7건(가소성 손실·Hopfield·Attention·MoE·CoT·OpenAI 글·Levels of AGI)은 이번에 넣지 않았다(결정 대기).
+
 ## 재생성
 
 `python tools/export_references.py`는 TSV에서 JSON/BibTeX를 생성한다. TSV의 일부 제목은 PDF의 설명형 표제이며 `note`에서 이를 명시한다. 저자·DOI·venue를 확실히 모르면 가짜 metadata를 넣지 않는다. 생성 BibTeX는 문헌관리 초안으로, 출판 제출 전 공식 citation과 대조해야 한다.

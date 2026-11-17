@@ -1,0 +1,132 @@
+W2 - CRUD, 두 가지 '삭제', controller 대응표 (2026-11-17 델타 설계 반영 감사)
+=====================================================================================
+기준: jimmylegendary/full-continual-learning @280dc9a (읽기 전용). 줄 번호는 280dc9a 기준 `git show | cat -n`.
+증거 표기: USER(사용자 원문) / PROPOSAL / LITERATURE / ARCHIVE / OPEN / NOT RUN. 계산 추정은 ESTIMATE.
+성격: 문서 대 문서 대조다. 설계가 맞다는 증명이 아니다. 아래 대응표·용어안은 모두 PROPOSAL이다.
+USER 원문은 sources/sync/2026-11-16-discussion.md:8-20 의 블록뿐이다(원장 SYN-001~010). docs/14 의 "**USER:**" 줄(L5)은 재구성이다.
+현재 상태: 통합 모델 구현·학습 0회(Grade 0). 합성 Phase-0 는 통합 PoC 가 아니다.
+
+----------------------------------------------------------------------------------------------------
+1. 두 가지 '삭제'가 용어로 분리돼 있는가 (주제 (a))
+----------------------------------------------------------------------------------------------------
+판정: 분리돼 있지 않다 (원장 D14-006 status=conflict). 한 곳(docs/07:103)은 두 개념을 한 문장에 섞는다.
+
+1.1 두 개념의 비교
+
+| 구분 | 기능적 망각/보존 (docs/14 의 Delete/Retain) | source 삭제 (철회·재구성) |
+|---|---|---|
+| 정의 위치 | docs/14:51-75 (§4); 사용자 원문 SYN-004 "망각의 비용" | docs/07:114 (§8), docs/09:192 (UJ1 ⑨), :195 (보장 5), :196, :212 (P1-T13), :368 (D-06) |
+| 하는 일 | 유한 예산 아래 지식을 남기는 방식을 고른다: offload -> 압축·통합 -> 폐기. 기능 손실과 재접근·재학습 비용을 치른다 | source 원장에서 한 경험을 철회하고 committed snapshot 에서 남은 source 를 같은 순서로 재생해 state 를 재구성한다. 수정 = 삭제 + 같은 위치에 재삽입 |
+| 단위 | schema·artifact·버전·fast state 항목 | 경험 source(root ID) |
+| 왜 하나 | 무한히 늘어나는 지식의 저장·접근·통합 비용 | 출처 철회·정정(provenance), 사용자의 삭제 요구 |
+| 판정 척도 | 기능 손실 D^_t(a)(docs/14:68), 예산 B_active·B_total, 재방문·재학습 비용 | state 동등성(그 source 없이 처음부터 재생한 state 와 허용오차 안에서 같다), 삭제 전후 응답 변화 기록 |
+| gate 종류 | Efficacy (+ 보호 family) | Contract·Product |
+| 보장의 상한 | P4 부터 정책(offload·Sleep 통합), P5 에서 압축·폐기. 기능 손실 추정기는 미검증. 무제한 무망각 비주장 | P1 은 fast state 한정. 통합(Sleep) 뒤에는 "측정만". "삭제 완전 보장" 금지(docs/09:140, :251; docs/11:112) |
+| 가역성 | offload 는 가역, 폐기는 비가역 | 원장 철회는 재삽입으로 되돌릴 수 있다 |
+| 매니페스트 필드 | retention_policy | deletion_dependencies (docs/07:83) |
+
+1.2 혼용 지점 (근거)
+- docs/14:1 제목 "Delete/Retain", :16 행, :59 "Schema 폐기", :61 "Offload는 지식 삭제가 아니다" -> 용량 정책 쪽 뜻.
+- docs/07:103 "eviction은 삭제가 아니라 offload... 삭제는 §8의 최소 상태 회귀를 따른다" -> 앞 절은 용량 정책(eviction), 뒤 절은 source 삭제(§8). 같은 문장에서 뜻이 바뀐다.
+- docs/09 의 '삭제' 39회(28개 줄)는 모두 source 삭제 또는 그 의존성이다(P1-T13, UJ1 ⑨, P4 "삭제 요청의 영향은 측정", P5 "삭제 의존성").
+- research/2026-11-16-memory-evidence-read-supplement.md:26-29 는 한 제목 "Delete / Retain" 아래에 "삭제된 source"와 "비가역 폐기"를 함께 둔다.
+- research/2026-11-16-sleep-time-melete-integration.md:16·:30 도 "Delete/Retain"에서 원본 기록·파생 인덱스 계보와 offload 를 함께 말한다.
+- docs/08:9 "삭제/복구" 는 source 삭제 쪽이다. docs/08 에는 용량 정책으로서의 삭제를 평가하는 family 가 없다.
+
+1.3 상호작용 (둘을 섞으면 안 되는 이유)
+- 통합·압축·폐기는 replay 재구성의 전제(원장과 직전 snapshot)를 줄이므로 Retain 정책은 source 삭제의 보장 범위를 좁힌다. docs/09 가 "통합 뒤 삭제는 측정만"이라 한 이유다.
+- 사용자의 Delete 는 용량 정책(SYN-004)이다. UJ1 ⑨ 가 통과해도 사용자의 Delete 는 한 줄도 다루지 않은 것이다. 반대로 Delete/Retain 정책을 구현했다고 "삭제 요구를 지켰다"고 읽을 수도 없다.
+
+1.4 분리 용어안 (PROPOSAL)
+- 「기능적 망각/보존 (Delete/Retain)」: 용량 예산 아래 압축·통합·버전 정리·폐기를 골라 기능 손실과 재접근·재학습 비용을 치르는 정책. offload/eviction(위치 이동, 비파괴)은 이 정책의 첫 단계이며 따로 부른다.
+- 「source 삭제 (철회·재구성)」: provenance 철회와 남은 source replay 재구성. fast state 한정.
+- 쓰기 규칙: 새 글에서 '삭제' 단독 표기는 source 삭제만 뜻한다. CRUD 의 D 는 'Delete'로 쓰되 첫 등장에 「기능적 망각/보존」을 병기한다. schema·artifact 를 없애는 동작은 '폐기'다. 둘을 한 PASS 로 합치지 않는다.
+- 편집 위치: docs/07 §7 용어 정의(E14-01, E14-02), docs/09 P1-T13(E14-07), docs/08 §1(E14-03)·§2-2(E14-04), docs/14 §4 삽입 주석(E14-20). 비교 평가는 docs/08 제안 family F22.
+
+----------------------------------------------------------------------------------------------------
+2. CRUD 와 P1 규칙형 controller v0 · write 정책 · P3 accommodation · P4 Sleep·외부화 (주제 (b))
+----------------------------------------------------------------------------------------------------
+2.1 먼저 P1 controller v0 의 세 경로가 덮는 CRUD
+- fast(쓰기 없이 r=1) = Read (docs/09:121)
+- learn(surprise write 뒤 r=1) = Read + Update
+- deep(write 뒤 retrofit 블록 r=2) = Read + Update + 추가 계산
+=> P1 controller v0 는 CRUD 중 R·U 만 덮는다. C·D 는 덮지 않는다. "P1 controller v0 가 CRUD 를 구현했다"고 쓰면 안 된다.
+- write 정책 접점(Titans식 surprise write 대 항상-갱신)은 U 의 강도·허용(얼마나)을 고르는 정책이다. C 나 D 의 정책이 아니다.
+
+2.2 대응표 (열: CRUD 연산 | 처음 들어가는 phase 와 해상도 | 메커니즘 | 대조 arm | 평가 family | 등급 상한)
+
+[R] Read/Activate (사용자 SYN-005)
+| R-a 선택 없는 읽기 | P1 (가장 얇은 형태). 단일 expert(CMS fast level 1개), 후보 검색·적재·선택 없음 | controller v0 의 fast 경로가 committed state(NMM·CMS)를 그대로 읽음 | `noctl`(모든 질문 learn 경로), `ctx`(raw history = 원문 Read, 강한 참고 대조), `base`; 진단으로 wrong-schema state swap(P1-T11) | F01·F02·F03; 잘못된 기억을 읽을 때의 회귀(기억 유발 회귀)는 swap 과 원능력 probe | 2. "빠른 판단 성립"·"schema 이득" 금지 |
+| R-b 선택 Read | P2 진단용(제안): per-family experts 고정 + 선택 {oracle, random, 규칙 key}. P3 학습형: 문맥 head q^-(K slot)·전환·조합·보류 | docs/05 §4 의 학습형 v0(문맥 head + write gate + loop 수) 이상 | random gate, novelty-only routing, learned early exit, oracle(진단 상한) | F02·F04·F09·F15·F19 + 제안 F23 | P2 진단은 2(봉인 확증 시 3), P3 3 |
+| R-c 적재·검색 | P4 offload/reload(cold/warm-load), P5 retrieval·migration | docs/07 §7 residency, bundle export/import | 외부 frozen LLM+RAG(P5), 근거 확인 Read(WikiTrace·HiVe-Mem 형, PROPOSAL) | F12, F23(stale index) | P4 3, P5 4. external agent memory 결과를 neural schema 증거로 쓰지 않음 |
+
+[U] Update (in-place) (SYN-003, SYN-007)
+| U-a P1 | P1 | learn·deep 경로의 Titans식 surprise write(NMM)와 CMS fast level 분기 in-place 갱신. 정정 = 국소 갱신 + 부작용 측정(수정 메커니즘 없음) | `always`(write gate off), `fixed`(구조 파라미터 비학습), `flat`(단일 평면 fast memory), `noctl` | F01·F02·F03·F05·F06 + 보호 지표(최초 과제 재평가·ABA·원능력) | 2 |
+| U-b P2 | P2 | write 예산 u 격자, "어디"(layer·level) arm, 보호 영역 대조(slow 동결 대 fast 만 쓰기), (depth r, u) 2차원 | + 고정 depth, random gate; 제안 `ftall`(공유 파라미터 갱신) | F05·F06 확대, F07 최소, F11 | 3 (봉인 확증 시) |
+| U-c P3 | P3 | fit·친숙도 결합 선택적 write(확신 있게 맞은 곳은 보호), 학습된 neuromodulator 후보, 무엇·어디·얼마나·언제 분해 | surprise-only, 항상 쓰기, 고정 무작위 gate(같은 쓰기 예산) | F04·F09·F08 일부, 진단 F20 | 3 |
+| U-d P4 | P4 ("언제") | 공고화 시점·replay 예산, fast->slow teacher-student replay(Sleep v0) | replay-only, 같은 계산의 teacher distillation | F10 | 3 |
+
+[C] Create (새 expert 할당·분화) (SYN-008)
+| C-a | P1-P2: 없음(미약속). P1 은 fast level 1개라 분화가 없다. P2 의 level 2개 이상은 시간척도 분리이지 expert 분화가 아니다 | - | - | - | - |
+| C-b | P3 (accommodation 의 일부) | 새 구조 대 미세 조정, 예외 분리 저장. 후보 형태(PROPOSAL): B=0 초기화 CMS 분기의 추가(docs/05:100 의 함수 보존 초기화를 런타임 생성에 쓰는 것). 트리거 후보 셋을 대조: 오류 크기(STRUCTK25형), 구조적 새로움(docs/14), 검색 실패(사용자 원문 SYN-008) | `nocreate`(미세 조정만), `always-create`, `random-create`, `oracle-create`(진단 상한) | F04·F18·F19, 검색 실패 대 새로움 probe(표면만 위장된 기존 관계 대 진짜 새 관계) | 3. "schema 분화 성립" 선언 금지(docs/06:61) |
+| C-c | P4 | Sleep 뒤 분화 안정성(prototype 수축·lure 침입), version lineage 에 Create 이력 | replay-only | F10 | 3 |
+
+[D] Delete/Retain = 기능적 망각/보존 (SYN-004). source 삭제는 아래 별도 행
+| D-a 측정 면 | P1: 최초 과제 재평가·ABA·원능력 probe(= 망각 비용 지표만, 정책 없음). P2: savings(재학습 관측 수), family 별 negative transfer, 용량 제한 하 망각 곡선(제안) | decay·용량 한계에서의 망각 곡선 | `fixed`·`flat`·`always`(P1), 용량 2점(제안) | F05·F06 | P1-P3 은 측정만(정책 주장 없음) |
+| D-b 정책 면 | P4: offload/reload, Sleep 통합, version lineage, fast state eviction(docs/07:100-104의 기준 후보). P5: 압축·통합·폐기와 기능 손실 추정 D^, 예산 B_active·B_total | offload -> 압축·통합 -> 폐기 순서(docs/14:61) | P4: replay-only, offload-only, 최근성·빈도·무작위 eviction. P5: 압축, 통합, 폐기, D^ 기반 | F10·F12 + 제안 F22 | P4 3, P5 4. "삭제 완전 보장"·"무제한 무망각" 금지 |
+| (구분) source 삭제 | P1-T13 -> P4 측정만 -> P5 검증한 범위 | source 원장 철회 + 남은 source replay 재구성 | 삭제 동등성 테스트(자기 비교) | Contract·Product (family 아님) | fast state 한정 |
+
+2.2b 메커니즘별 CRUD 커버리지 (요청 목록 대응; 위 표의 뒤집어 읽기)
+| 메커니즘 (phase) | Read | Update | Create | Delete/Retain | 비고·대조 |
+|---|---|---|---|---|---|
+| P1 규칙형 controller v0 (익숙함 신호 두 임계값 -> fast/learn/deep, deep = r=2) | fast 경로 | learn·deep 경로(쓰기 여부와 깊이를 고름) | 없음 | 없음 | 경로 선택 정책이며 expert 선택이 아니다. 대조 `noctl` |
+| write 정책 접점 (Titans식 surprise write 대 항상-갱신; P1 부터) | - | 얼마나·언제 쓰나(강도·허용) | 없음 | 없음 | 대조 `always`·`fixed`·`flat`. P3 에서 무엇·어디·얼마나·언제로 분해 |
+| P3 accommodation + fit 결합 write gate (학습된 controller) | 문맥 head 의 전환·조합·보류 | fit 결합 선택적 write(확신 있게 맞은 곳 보호) | create/split: 새 구조 대 미세 조정, 예외 분리 저장 | 없음 | 대조 surprise-only, 제안 `nocreate`·`always-create`·`random-create`·`oracle-create` |
+| P4 Sleep·외부화 v0 | offload/reload·bundle import 뒤의 읽기(cold/warm) | "언제" = 공고화 시점(fast->slow replay) | Sleep 뒤 분화 안정성 점검 | offload·eviction·통합(P5 에서 압축·폐기). source 삭제는 별개이며 측정만 | 대조 replay-only, 제안 offload-only·eviction 정책 |
+
+2.3 해상도 규칙 점검
+- R·U 는 P1 부터 가장 얇은 형태가 있고 P2-P4 에서 올라간다. 규칙에 맞다.
+- C 는 P1-P2 에 없다. docs/09 §4 의 '정정·accommodation' 행과 같은 방식(P1 은 부작용 측정만, 메커니즘은 P3)이라 기존 구조와 일치하지만 CRUD 관점에서는 "한 글자(C)가 P3 까지 비어 있다"가 된다. 대안으로 P2 에 `adapters` 를 얇은 형태로 둘 것을 제안한다(experiment-placement 참조: 생성이 아니라 oracle ID 로 미리 만든 expert 의 선택과 용량 대조).
+- D 는 측정(P1)과 정책(P4)이 갈려 있다. 정책 phase 는 B01·감사 §5 #17 이 미해결이라 사용자 결정(CR1)이 필요하다.
+
+----------------------------------------------------------------------------------------------------
+3. controller 해상도 사다리와 CRUD (docs/05 §4 대 docs/09)
+----------------------------------------------------------------------------------------------------
+| 이름 | 내용 | CRUD |
+|---|---|---|
+| docs/09 규칙형 v0 (P1) | 익숙함 신호(NMM surprise·CMS 잔차)의 두 임계값으로 fast/learn/deep. 임계값은 dev 에서 정해 봉인. 학습된 판단이 아님(docs/09:121) | R·U |
+| docs/05 v0 (L80) | 문맥 head 가 K 개 schema slot 의 q^- 를 내고 실행 head 는 write gate 스칼라 하나와 loop 수 선택. 학습형 | R(선택)·U(gate) |
+| docs/05 v1 (L81) | token·block 계산 mask, depth source 선택, 학습된 halting | CRUD 밖(계산 배분) |
+| docs/05 v2 (L82) | schema 조합·분화 head, 레벨별·연결별 write 허용 u, eligibility 지연 귀속 | C(분화 head)·U(u) |
+| (대응 head 없음) | D 는 controller head 가 없다. 공고화 일정은 Sleep·offload 일정이 맡는다(docs/04:5 의 '통합') | D |
+
+발견 N-01 (이름 충돌, 근거 docs/05:78-84, docs/04:90, docs/09:121): docs/05 §4 의 'v0(첫 통합 모델)'은 학습된 문맥 head 를 가정하는데 docs/09 P1 의 'controller v0'는 규칙형이다. docs/04:90 은 "event/readiness 는 controller v1 이후"라며 docs/05 번호를 쓴다. 두 번호가 같은 이름으로 다른 것을 가리킨다.
+  제안(E14-10): docs/09 의 P1 controller 를 'v0-rule'로, docs/05 의 v0/v1/v2 를 'learned v0/v1/v2'(docs/09 P3 의 학습된 controller 사다리)로 읽는다는 주를 docs/05 §4 에 둔다. 번호 자체는 바꾸지 않는다.
+
+----------------------------------------------------------------------------------------------------
+4. 사용자 원문의 'low rank expert in-place update / create' 대 docs/05 CMS 분기(B_j=0 초기화)·NMM (주제 (b) 후반)
+----------------------------------------------------------------------------------------------------
+판정: partial (원장 SYN-007, SYN-008, D14-011, D14-014). 충돌은 아니다.
+
+| 요소 | docs/05 의 설계 | 사용자 원문·docs/14 | 관계 |
+|---|---|---|---|
+| 형태 | F_CMS(h)=F0(h)+sum_j g_j(h) B_j sigma(A_j h) (L98). 기반 + gate 된 low-rank 분기의 합 | W_eff=W_base+sum_i g_i(c) B_i A_i (docs/14:28) | 같은 모양이다. 단 docs/14 는 가중치 공간(LoRA형), docs/05 는 활성 공간 분기(sigma 포함) |
+| 색인 축 | j = CMS level, 곧 갱신 시간척도(docs/09: P1 fast level 1개, P2 2개 이상) | i = schema expert(기능 단위, 문맥으로 선택·할당) | 서로 다른 축이다. 같은 입력에 모든 level 이 시간척도별로 작동하는 것과 입력에 따라 다른 expert 를 고르는 것은 다르다 |
+| in-place update | fast level 분기(A_j, B_j)와 NMM fast state 를 test-time write 로 갱신(P1 write engine) | 같은 schema ID 의 파라미터를 계속 학습(docs/14:45) | 대응한다. P1 은 expert 가 하나라 'schema 선택 뒤 in-place'가 아니라 전역 in-place 다 |
+| Create | 대응 규칙 없음. B_j=0 초기화(L100)는 CMS 전환 시점의 함수 보존 기법이다 | 못 찾으면 새 low-rank expert 생성(SYN-008) | 같은 trick(B=0 으로 새 분기를 추가하면 생성 순간 함수가 변하지 않음)이 런타임 생성에도 자연스럽게 맞는다. 다만 gate 초기화·선택 규칙·A_j 초기화는 미정(OPEN). L100 은 "A_j/gate 까지 0 으로 만들어 gradient 를 막지 않는다"고 경고한다 |
+| NMM | Titans 계열 neural memory(fast weights, surprise 기반 갱신). sequence/binding 쪽 빠른 기억(L23의 느린/빠른 분해, L29 "FFN=모든 schema, sequence=모든 binding" 일반 법칙은 주장하지 않음) | docs/14:38 "기존 expert 또는 binding 의 국소적 빠른 update" | low-rank expert(schema 단위)는 CMS FFN 분기 쪽에, NMM state 갱신은 binding 갱신 쪽에 대응시키는 것이 문서 구조에 맞다. NMM 이 low-rank 라는 규정은 없으므로 NMM 을 expert 로 읽는 근거는 없다 |
+| low-rank 의 지위 | docs/06:137 "모든 schema 가 저랭크라는 명제"는 OPEN, docs/11:26 물리적 단위는 열린 문제 | 사용자는 low rank expert 를 '우리 솔루션'의 전제로 말했다(SYN-007) | 전제(우리가 택한 구현 단위) 대 보편 명제(모든 schema 가 저랭크)는 다르므로 충돌은 아니다. 다만 전제를 기록한 문장이 핵심 문서에 없다 |
+| P1 의 expert 수 | fast level 1개(= 전체가 expert 1개) | in-place update 대상 expert 가 여럿 | P1 에는 'expert 선택'이 없다. 선택은 P3 |
+
+근거 줄: docs/05:13·14·23·29·98·100, docs/06:61·137, docs/09:165-166·169, docs/11:26·34, docs/14:25-31·38·45, 사용자 원문 sources/sync/2026-11-16-discussion.md:17.
+편집: E14-11(docs/05 §5 해석 주), E14-12(docs/11 §2 USER 전제 인용), E14-17(docs/14:31 뒤 색인 축 주석).
+
+----------------------------------------------------------------------------------------------------
+5. 이 파일이 만든 사용자 확인 대기 후보 (master 취합용; 번호는 W6/master 가 부여)
+----------------------------------------------------------------------------------------------------
+CR1. Delete/Retain(기능적 망각/보존) 정책을 어느 phase 에 둘 것인가(B01·감사 §5 #17 미해결). 제안: 측정은 P1 부터(이미 있음), 정책은 P4(offload·Sleep) 후 P5(압축·폐기).
+CR2. 사용자 원문 "적합한 schema 를 못찾으면 create"를 docs/14 처럼 "구조적 새로움이 확인될 때만"으로 읽어도 되는가.
+CR3. low rank expert 를 schema 보관 단위의 기본 후보로 올릴지(docs/11 §2 OPEN 과의 관계).
+CR4. 두 가지 '삭제' 용어 분리안 수용 여부.
+CR5. 신규 arm(`ftall`, `adapters`)·신규 family(F22, F23) 채택과 번호.
+CR6. docs/05 §4 와 docs/09 의 controller v0 이름 정리(주만 달고 번호는 유지하는 안).

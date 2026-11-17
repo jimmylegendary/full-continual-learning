@@ -1,0 +1,67 @@
+W3 요약 - 11-16~11-17 연구 기록·참고문헌 델타 설계 반영 감사 (기준 커밋 280dc9a, 작성 2026-11-17)
+
+[0] 방법과 범위
+- 읽은 것(280dc9a 기준 git show/Read): AGENTS.md, SYNC_POLICY.md, README.md, research/2026-11-16-{sbl-tracking, impact-hypotheses, sleep-time-melete-integration, memory-evidence-read-supplement}.md, research/2026-11-17-sleep-time-melete-selected-addendum.md, references 3개(schema-decomposition-2026-11-14, schema-lifecycle-2026-11-16, 2026-11-16-sleep-time-melete)와 catalog.tsv·references/README.md, docs/14 전문, docs/13 전문, sources/sync/2026-11-16-discussion.md·manifest.json, 그리고 대조 문서 docs/03·04·05·07·08·09(전체)·11·12, research/2026-11-09-sbl-tracking.md, research/TRACKING_POLICY.md. 11-11 원문 검토는 Tian grep만(전문 미독).
+- 외부 확인(2026-11-17, WebFetch 페이지 추출이며 전문 정독 아님): 공식 arXiv abs 29쪽(SoMem, Recursive memory, WikiTrace, HiVe-Mem, ST26-01~08, TreeAgent, 2604.10589, MIRAS, S-LoRA, 2006.15078, GPM, ProRL, SupSup, WISE, PNN, 1706.03762, 1701.06538, 2201.11903, GEM, L2P, InfLoRA, LIMA), Recursive memory HTML 본문(219,468자 중 약 200,000자 범위), 학회·출판 페이지 4쪽(NeurIPS 2025 Yue, PMLR Locatello, PMLR Levels of AGI, Toy Models는 표제·게재처만), DOI 레지스트리(Crossref) 4건(Tian, Singh, Singh Correction, Loss of plasticity).
+- 열지 못한 것: nature.com·link.springer.com은 쿠키 인증 리디렉션(idp.*)이라 따라가지 않았다. Tian·Singh 서지는 Crossref로만 확인(official-search-checked 수준). Crossref 429/400 일부 재시도로 해소하거나 포기(bioRxiv 2024-10-27 미확인).
+- 하지 않은 것: 저장소 쓰기·checkout·fetch·push, runcrate API·키 파일·_scripts, 유료 API, 모델/가중치 다운로드, GPU, 설치. 임시 계산은 /tmp 아래 복사본에서만(편집 시뮬레이션과 validator 시험).
+
+[1] 원장 (W3-ledger.json)
+- 총 102건 = R16 연구 기록 88건 + REFST 문헌 14건.
+- R16 판정 분포: reflected 16, partial 47, not-reflected 10, conflict 3, out-of-scope 12.
+- REFST 판정 분포: not-reflected 11, conflict 3. (REFST-001~010 = ST26-01~10, 011~012 = 파일 수준 상태·범위 주장, 013~014 = 참고문헌 표에 없는 WikiTrace·HiVe-Mem)
+- 파일별 R16: 2026-11-16-sbl-tracking.md 26건(reflected 6, partial 10, not-reflected 5, conflict 1, out-of-scope 4); 2026-11-16-impact-hypotheses.md 8건(reflected 2, partial 3, not-reflected 1, out-of-scope 2); 2026-11-16-discussion.md 2건(reflected 1, partial 1); 2026-11-16-sleep-time-melete-integration.md 21건(reflected 5, partial 13, conflict 1, out-of-scope 2); 2026-11-16-memory-evidence-read-supplement.md 12건(reflected 2, partial 10); 2026-11-17-sleep-time-melete-selected-addendum.md 17건(partial 8, not-reflected 4, conflict 1, out-of-scope 4); 14-schema-lifecycle-crud-and-joint-paper.md 2건(partial 2). docs/14 §10(L141-143)=R16-087, docs/14 L133=R16-088 포함.
+- provenance 분포: ChatGPT-reconstruction 16, report-import 23, ChatGPT-proposal 38, literature-checked 25. USER-verbatim은 0건(이 범위의 사용자 원문은 sources/sync 블록 2개뿐이고 감사 대상 주장에는 없음). 영향 질문(impact-hypotheses)은 원문 블록이 없어 ChatGPT-reconstruction으로 둠.
+- 모든 인용(quote)은 280dc9a의 해당 줄에서 기계 대조해 일치함. 모든 항목의 introduced_in은 git blame으로 확인(56359c6, 534bbb5, 4d694ce, 280dc9a).
+
+[2] 주제별 판정 (a)-(e)
+(a) Sleep-time 8건·SoMem·recursive state capacity
+- 읽기 충분성 대 상태 갱신 충분성: 핵심 문서(01-12)에 용량·정보 수준의 구분이 없다(R16-080, R16-084 not-reflected, R16-083 partial). 복원 수준의 단서만 있다: docs/07:86(읽기 전용 복원 대 이어서 학습할 복원은 필요한 state가 다르다), docs/08:49(F12)·docs/09:250(reload 뒤 판단·후속 학습 일관성), 비핵심 docs/13:301(추론 복원 대 후속 학습 궤적 복원)과 docs/13:217-221(유한 용량 계수 한계, 읽기/갱신 구분 없음). UJ1의 정정→최초 과제 재평가(docs/09:192 단계 5-6)는 경험 갱신 뒤 읽기 보존의 최소형이나 자기 생성 token 되먹임과 압축 상태 비교는 없다.
+- depth 격자(P2, docs/09:224-227)와 H-COMPUTE(docs/08:13,118,176)에는 둘을 가르는 probe가 없다. 경고: 논문(arXiv:2611.13760)의 recursive는 token 시계 위의 상태 갱신이며 docs/07 §1의 recursion index(같은 관측의 내부 계산 깊이)가 아니다. 'recursive state capacity'라는 이름이 P2 depth 격자와 혼동될 위험이 있어 시계 구분 문장을 모든 편집에 넣었다.
+- 논문 본문 대조로 addendum 해석이 대체로 맞음을 확인하되 조건을 더 정확히 적었다: 사건 질의 오차는 log-확률(곱셈) 오차, Θ(log(1/ε))는 2-state, 생성 Θ(log(T/ε))는 nondegenerate 2-state·가중치 고정·결정적 갱신 전제, T 항 소멸은 비공개 상태(Cor 4.5) 또는 token당 KL 예산(eq 6.1), §6.3 자기회귀 적용은 가정부 조건부, §6.4가 2-state 초과를 열린 문제로 둠, schema·continual learning 언급 없음(ER-01, ER-19).
+- Sleep-time 8건: 비용·offload·Read·간섭 원칙은 대체로 reflected/partial. H-COMPUTE 총비용(online + Sleep·offload·warmup amortized)은 reflected(R16-052); 근거 재읽기·색인 재구축 비용 항은 비용식에 따로 없음(ER-21). P4 Sleep·외부화: F12와 P4 보장은 있고 stale index·원본→파생→version→색인 계보·압축 대 폐기의 구분은 없음(ER-04, ER-08). 로드맵에는 low-rank expert CRUD arm이 없고 docs/13·14와 로드맵의 연결은 이번 범위 밖의 별도 과제로 남김(R16-021, R16-049).
+- SoMem: 외부 근거 보존 재조직은 핵심 문서에 반영 없음. 이름 충돌 방지(MIRIX-2.0 AutoDream 대 A03 Dreaming)와 계보·색인 문안을 제안(ER-05, ER-08).
+(b) 증거 연계 read (WikiTrace·HiVe-Mem)
+- 반영 수준: 연구 보충 기록과 docs/14:133 한 줄에만 있다. docs/14 §5 본문의 Read 흐름(L79-94)에는 원본 근거를 되짚는 단계가 없고, docs/07 provenance는 입력 쪽(root, generated≠observed: docs/07:9,24,51-53, docs/09:200, docs/08 F07·F20·F21)은 reflected이나 읽기 시점의 증거 계보 확인과 색인 재구축은 없다(partial). 외부 agent memory를 neural schema 지속학습과 동일시한 문장은 찾지 못했다(위반 없음: AGENTS.md:9, README.md:93, docs/14:133). 다만 docs/03 §6 표에 외부 agent memory 범주가 없다.
+- 편집: ER-07(docs/14 §5 OPEN 주석), ER-08(docs/07 §7 증거 계보·색인), ER-09(docs/08 §4 근거 연계 외부 memory 대조 후보), ER-06(03 §6 범주 명시). 두 논문은 참고문헌 파일·catalog에도 없었다(R16-058, REFST-013/014 → NEW-W3-03/04).
+(c) 과장 점검
+- 핵심 문서 docs/03·11에는 11-16 SBL 보고와 impact-hypotheses가 거의 연결돼 있지 않다. 따라서 과장 사례는 없고 연결 공백만 있다(Tian은 03 §4가 [N25-N30]으로 이름 없이 인용; Singh·형식 SBL·후속 추적·영향 가드는 없음). 편집: ER-10(03 §4 Tian, 수치 미인용·활동 부분공간 대 update 공간 직교성 구분), ER-11(11 §7 후속 추적 P0/P1), ER-12(11 §8 영향·수상·AGI 주장 금지 가드), ER-06.
+- 연구 기록 내부의 과장·불일치 3건: (1) addendum §3(L41)이 docs/05·08·14 반영을 현재형으로 서술하나 280dc9a에서 05·08은 어떤 동기화 커밋에서도 바뀌지 않았고 14는 §10(8건)·L133만 갱신됨(R16-085 conflict; ER-19, ER-20). (2) Tian '신규 발견' 라벨은 저장소 기준 오류(R16-003 conflict; ER-13/14/15). (3) '8건 모두 개정일 독립 확인'은 Continual-ARC v3(2026-11-15) 누락으로 최신이 아님(R16-038 conflict; ER-17).
+- impact-hypotheses 자체는 조건부·재사용 금지 문장이 충분하고(L3, L18, L38) README:82·discussion.md:36이 반복한다. 성과로 읽힐 위험은 낮다. 영향 질문의 사용자 원문 블록은 없으므로 재구성임을 11 §8 가드에 명시했다(ER-12). discussion-import 수준 주장이 검증된 것처럼 쓰인 명시 사례는 찾지 못했다(README·manifest·references가 라벨을 유지).
+(d) 남은 정정 (Tian 신규성 중복)
+- 저장소 내부 근거로 확정: Tian et al.은 references/catalog.tsv N28(official-search-checked, 2026-01-29)과 research/2026-11-02-baseline.md:33에 첫 커밋 58613da(2026-11-09)부터 있고 docs/03 §4가 [N25-N30]으로 인용한다. 2026-11-09 기록(research/2026-11-09-sbl-tracking.md)과 2026-11-11 원문 검토(11편)에는 없다(grep 0건). 따라서 11/16 보고의 '신규 발견'은 저장소 기준 신규가 아님 -> 기존 N28의 재검토·상세화로 분류, 주간 신규 수에 산입 안 함.
+- 서지 대조(Crossref): Nature Communications 17, 2150, 2026-01-29, 저자 8명(Kaixi Tian, Zhiping Zhao, Yang Chen, Ningling Ge, Shenghao Cao, Xinyong Han, Jianwen Gu, Shan Yu) - 보고와 일치. bioRxiv 2024-10-27·수치·분석 코드는 미확인(report-import 유지). sources/sync의 정정 필요 절은 표시만 되고 닫히지 않았다(R16-035 partial) -> 처리 문안 ER-13(discussion.md), ER-14(sbl-tracking.md), ER-15(catalog N28 note 보강), ER-16(catalog S10 코드 주소 보강).
+(e) 카탈로그 누락
+- 세 참고문헌 파일(+WikiTrace·HiVe-Mem·impact-hypotheses 링크)의 논문을 URL·arXiv ID·제목으로 catalog.tsv(100행)와 대조: 이미 있는 것 = Goudar(S03), Function Vectors(S26), Nested Learning(A02), Tian(N28), S-HAI(S10), Yoshida(S06), Kumar(S08), Schema for ICL(S16), IP2-RSNN(S11). 없는 것 = 후보 행 36건(W3-catalog-candidates.tsv, NEW-W3-01~36).
+- 확인 수준 분포: metadata-checked 31, official-search-checked 3, discussion-import 2. metadata-checked = 이번에 공식 arXiv abs 또는 학회(PMLR·NeurIPS) 페이지를 직접 열어 제목·저자·날짜 확인; official-search-checked = Crossref/페이지 표제 수준(Singh, Toy Models, Loss of plasticity); discussion-import = Hopfield 1982, OpenAI 게시글(impact-hypotheses 링크만, 이번에도 열지 않음). fulltext-read 0건.
+- 우선순위: NEW-W3-01~14(11-16~17 선별 12건 + Singh + 형식 SBL), NEW-W3-15~29(schema-decomposition·schema-lifecycle 보충 파일 미등록분 15건), NEW-W3-30~36(P3: impact-hypotheses 링크 전용 7건, 포함 여부는 W6·사용자 판단). 제외: Google Research Nested Learning 블로그(R13; 논문은 A02), Yoshida·Kumar 등 이미 있는 행, Singh Correction(별도 행 대신 NEW-W3-14 note에 DOI 병기), TreeAgent(research에서 제외 기록, 참고문헌 파일에도 없음; 필요하면 NEW 추가 가능).
+- 제안 ID 접두는 note에 적음(S: SBL·표상·평가, A: 아키텍처·인접 메커니즘, E: 진화, N: 신경과학). 현재 최대 번호: S35, N31, A18(+A04-CODE), R11, E04.
+- 기존 행 보강(편집으로 제안): N28 note에 코드·서지 보강(ER-15), S10 note에 코드 주소(ER-16).
+
+[3] 편집 블록 (W3-edits.txt, 21개: INSERT_AFTER_LINE 19, REPLACE_SUBSTRING 2; ANCHOR_COUNT 전부 1)
+- 핵심 문서(docs/01-12) 12개: ER-01(07 §5 읽기/갱신 충분 상태), ER-02(08 F-CI 후보 family), ER-03(09 P2 후보 readout, 측정만), ER-04(09 P4 후보 readout, 측정만), ER-05(05 §11 용어 구분), ER-06(03 §6 외부 agent memory·형식 SBL 범주), ER-08(07 §7 증거 계보·색인), ER-09(08 §4 근거 연계 외부 memory 대조), ER-10(03 §4 Tian), ER-11(11 §7 후속 추적), ER-12(11 §8 영향 가드), ER-21(08 §6 비용 항 후보).
+- 동기화 산출물 주석(INSERT 전용) 7개: ER-07(docs/14 §5), ER-13(discussion.md), ER-14(sbl-tracking.md), ER-17(references/2026-11-16-sleep-time-melete.md), ER-18(memory-evidence-read-supplement.md), ER-19(addendum), ER-20(docs/14 §10). catalog.tsv 치환 2개: ER-15, ER-16.
+- 시험: 편집을 /tmp의 280dc9a 복사본에 기계 적용(21/21 성공)한 뒤 저장소 validator(절대 링크를 임시 ROOT로 치환해 실행)와 후보 36행 추가를 함께 돌려 새 오류 0건(링크 293->334, 참고 레코드 100->136). 남은 오류 3건은 임시 복사본에 whitepaper/가 없어서 생긴 것으로 편집과 무관.
+- 모든 블록은 PROPOSAL/OPEN/ARCHIVE 라벨을 갖고, docs/09 삽입은 기존 데모 시나리오·넓이/깊이 변화·보장·상한·종료 gate·미루는 것을 바꾸지 않으며 새 readout은 측정만·등급 상한을 명시한다(§3 상한 준수). 사용자 결정으로 읽힐 문장 없음.
+
+[4] 위험과 미확인
+- 출판사 본문 미열람: Tian·Singh의 수치·표본·코드는 report-import 그대로. Crossref 서지만 확인.
+- WebFetch는 소형 모델 추출이라 페이지 내용을 그대로 읽은 것이 아님. Recursive memory 본문은 마지막 약 19,000자 미확인. 전문 정독·코드 실행·재현은 0.
+- docs/13·14 등 동기화 산출물은 주석 INSERT만 제안. 로드맵과 docs/13·14(low-rank expert CRUD)의 연결 공백은 이번 범위 밖이라 편집하지 않았다(R16-021, R16-049, R16-053).
+- validator 주의(W6): tools/validate_docs.py는 절대 경로 링크가 스크립트 ROOT 아래에 있어야 통과한다. 워크트리(worktree)에서 돌리면 기존·신규 절대 링크가 모두 실패하므로 원 경로 기준으로 돌리거나 ROOT 치환 시험(/tmp/w3에서 사용한 방식)을 써야 한다.
+- 번호·위치 충돌: F-CI는 번호 미배정 이름이다. 다른 워커가 docs/08 F21 행 뒤·§4 비교군 L133·§6 L174, docs/07 §5·§7, docs/03 §4·§6, docs/11 §7·§8, docs/09 P2·P4 근처에 삽입하면 순서·번호를 W6가 정리해야 한다(앵커는 문자열이라 줄 번호 이동에는 영향 없음).
+- 공개 저장소에 ChatGPT 자동화 task/run ID가 이미 게시돼 있다(research/2026-11-16-sleep-time-melete-integration.md:5, sources/sync/manifest.json:107-108). 비밀은 아니나 새 문장에서는 반복하지 않았다. 유지·삭제는 사용자 판단.
+- 코드 링크는 arXiv 페이지에 표시된 것만 기록했고 저장소 내용·실행은 확인하지 않았다(MIRIX는 일반 MIRIX 저장소 링크로 2.0 대응 미확인, WISE는 EasyEdit 링크).
+
+[5] 사용자 결정 대기 후보 (W3 몫, 결정은 사용자)
+- D-W3-1: docs/09 P2·P4에 F-CI 측정 전용 후보 readout(측정만, gate 제외)을 둘지. 승인 전에는 OPEN 라벨 삽입으로만 둔다.
+- D-W3-2: catalog에 P3 후보 7행(impact-hypotheses 링크 전용: 가소성 손실 논문, Hopfield, Attention, MoE, CoT, OpenAI 게시글, Levels of AGI)을 넣을지.
+- D-W3-3: 공개 저장소에 적힌 자동화 task/run ID를 유지할지.
+
+[6] 산출 파일
+- (검토 작업 폴더)/W3-ledger.json
+- (검토 작업 폴더)/W3-edits.txt
+- (검토 작업 폴더)/W3-catalog-candidates.tsv
+- (검토 작업 폴더)/W3-summary.txt
+- (검토 작업 폴더)/W3-progress.log
+- (검토 작업 폴더)/W3.DONE

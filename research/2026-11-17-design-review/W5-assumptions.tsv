@@ -1,0 +1,76 @@
+kind	key	value	derived	basis_or_source
+model_spec	SmolLM2-135M	L=30 d=576 ffn=1536 H=9 KV=3 hd=64 V=49152	body=106.2M head=28.3M total=134.5M	huggingface.co/HuggingFaceTB/SmolLM2-135M config.json (2026-11-17 확인, 가중치 미다운로드)
+model_spec	SmolLM2-360M	L=32 d=960 ffn=2560 H=15 KV=5 hd=64 V=49152	body=314.6M head=47.2M total=361.8M	huggingface.co/HuggingFaceTB/SmolLM2-360M config.json (2026-11-17 확인, 가중치 미다운로드)
+model_spec	Qwen3-0.6B	L=28 d=1024 ffn=3072 H=16 KV=8 hd=128 V=151936	body=440.5M head=155.6M total=596.0M	huggingface.co/Qwen/Qwen3-0.6B config.json (2026-11-17 확인, 가중치 미다운로드)
+model_spec	Qwen3-1.7B	L=28 d=2048 ffn=6144 H=16 KV=8 hd=128 V=151936	body=1409.4M head=311.2M total=1720.6M	huggingface.co/Qwen/Qwen3-1.7B config.json (2026-11-17 확인, 가중치 미다운로드)
+model_spec_extra	Granite-4.0-350M-Base	GraniteMoeHybridForCausalLM(dense decoder), L=28 d=1024 ffn=2048 H=16 KV=4 V=100352, Apache-2.0, 한국어 포함 12개 언어, 약 15T token, 2025-10-28 (huggingface.co/ibm-granite/granite-4.0-350m-base)		공식 모델 카드·config.json(2026-11-17). 작업량 표에는 포함하지 않음
+model_spec_extra	Qwen3.5-0.8B-Base	Qwen3_5ForConditionalGeneration, 하이브리드(Gated DeltaNet 3 : gated attention 1) L=24 d=1024 V=248320, 비전 인코더 포함, Apache-2.0 (huggingface.co/Qwen/Qwen3.5-0.8B-Base)		공식 모델 카드·config.json(2026-11-17). 작업량 표에는 포함하지 않음
+gpu_ref	RTX6000Ada	bf16_dense=364.2 TFLOPS; bw=960 GB/s; vram=48 GB; ref_price=1.23 USD/h (2026-11-17 조회, 변동 가능)		NVIDIA Ada proviz whitepaper Table2 / RTX PRO Blackwell whitepaper Table4
+gpu_ref	L40S	bf16_dense=362.05 TFLOPS; bw=864 GB/s; vram=48 GB; ref_price=1.26 USD/h (2026-11-17 조회, 변동 가능)		NVIDIA L40S product page
+gpu_ref	A100_80G	bf16_dense=312.0 TFLOPS; bw=1935 GB/s; vram=80 GB; ref_price=1.73 USD/h (2026-11-17 조회, 변동 가능)		NVIDIA A100 datasheet (80GB PCIe)
+gpu_ref	H100	bf16_dense=989.5 TFLOPS; bw=3350 GB/s; vram=80 GB; ref_price=3.14 USD/h (2026-11-17 조회, 변동 가능)		NVIDIA H100 product page (SXM, with-sparsity 1979 / 2)
+gpu_ref	RTX5090	bf16_dense=209.5 TFLOPS; bw=1792 GB/s; vram=32 GB; ref_price=1.15 USD/h (2026-11-17 조회, 변동 가능)		NVIDIA RTX Blackwell whitepaper Table3
+gpu_ref	RTX5070Ti-Laptop(가정)	bf16_dense≈62 TFLOPS(AI TOPS 992/16 유도); bw≈672 GB/s(192-bit x 28 Gbps 유도); vram=12 GB		NVIDIA 노트북 비교 페이지(AI TOPS 992·12GB GDDR7·192-bit). 유도치이며 T04 실측 전 미확정
+assumption	obs_tok	25 | 40 | 70  (낙관|중앙|비관)		관측 1건의 자연어 token. 짧은 문장 렌더링 가정. T06 renderer로 실측해 교체
+assumption	q_tok	30 | 50 | 80  (낙관|중앙|비관)		질의+정답 token 가정
+assumption	pad	1.1 | 1.15 | 1.3  (낙관|중앙|비관)		길이 bucket 패딩 배수 가정
+assumption	k_train_mean	4.67 | 4.67 | 4.67  (낙관|중앙|비관)		
+assumption	k_eval_mean	3.5 | 3.5 | 3.5  (낙관|중앙|비관)		
+assumption	ep_per_run	32768 | 131072 | 524288  (낙관|중앙|비관)		중앙 131,072는 Melete J1의 2,048 step x batch 64 sample exposure(ARCHIVE melete@1d95136:docs/implementation/records/2026-10-21-neural-judgment-j1-diagnostics.md §1·§6). 규모 감각의 기준일 뿐 LLM retrofit 요구량이 아니다
+assumption	seeds	3 | 5 | 10  (낙관|중앙|비관)		D-05 미정(분산 기반 최소 n 또는 고정 소수). 범위로 둔다
+assumption	arms_trained	3 | 4 | 4  (낙관|중앙|비관)		docs/09 P1-T09: fixed는 학습 안 함, 나머지는 같은 학습 예산. noctl이 full 체크포인트를 재사용하면 3, 아니면 4
+assumption	deep_frac	0.1 | 0.15 | 0.25  (낙관|중앙|비관)		r=2 짧은 적응 학습(P1-T09). 비율은 가정
+assumption	n_blk	2 | 2 | 6  (낙관|중앙|비관)		r=2로 추가 적용하는 retrofit 블록 층 수. 낙관·중앙=retrofit 2층만, 비관=주변 층 포함 6층
+assumption	bwd	0.5 | 1.0 | 1.5  (낙관|중앙|비관)		task 가정: 입력 gradient backward ≈ 2·N·T(frozen이라 weight gradient 없음). 0.5=retrofit이 상단이라 통과 층 적음, 1.5=activation 재계산 포함
+assumption	omega	1.5 | 2.0 | 3.0  (낙관|중앙|비관)		새 모듈 inner-loop write의 FLOPs 배수(update 6p + update를 통과하는 outer gradient). FLOPs 보고용
+assumption	kappa	1.5 | 3.0 | 6.0  (낙관|중앙|비관)		retrofit layer 1개의 학습 시간이 일반 layer의 몇 배인가. NMM chunk 순차 inner loop를 PyTorch로 쓴 가정. 가설이며 T04에서 실측
+assumption	n_retro1	2 | 2 | 2  (낙관|중앙|비관)		docs/09 §4: sequence 1–2개·FFN 1–2개
+assumption	c_new	6 | 8 | 12  (낙관|중앙|비관)		retrofit layer 1개 새 파라미터 = c x d². NMM(qkv·out + 기억 MLP) + CMS 분기 ≈ 8d²를 중앙으로
+assumption	f_logit	0.1 | 0.2 | 0.5  (낙관|중앙|비관)		logit을 계산하는 위치 비율. 답 token 위주 손실이면 낮다. vocab가 큰 Qwen3에서 메모리·FLOPs에 영향
+assumption	f_trav	0.5 | 0.8 | 1.0  (낙관|중앙|비관)		gradient가 통과하는 층 비율(retrofit 위치 아래 층은 backward 불필요)
+assumption	tok_step	16384 | 16384 | 16384  (낙관|중앙|비관)		step당 token(메모리 추정 기준)
+assumption	e_gemm	0.7 | 0.55 | 0.4  (낙관|중앙|비관)		tensor core GEMM 달성 효율. hidden 576–2048, K 작은 GEMM이라 0.4–0.7
+assumption	sw	1.0 | 0.85 | 0.65  (낙관|중앙|비관)		eager·optimizer·데이터 로딩·로깅의 비효율 배수
+assumption	mfu_inf	0.45 | 0.35 | 0.2  (낙관|중앙|비관)		대형 batch 추론 MFU 20–45% 가정
+assumption	t_fixed_h	0.2 | 0.35 | 0.6  (낙관|중앙|비관)		환경 구성·이미지 pull·모델 다운로드·사전 점검. 부팅은 과금 안 됨(runcrate 가격 페이지). ARCHIVE: HF 16GB 다운로드 17초(이번에 재확인 안 함)
+assumption	retry	1.2 | 1.3 | 1.5  (낙관|중앙|비관)		task 예시 1.3–1.5x를 중앙·상한으로, 낙관 1.2x
+assumption	idle	0.05 | 0.1 | 0.25  (낙관|중앙|비관)		승인·감시 공백 등 유휴 과금 비율 가정
+assumption	sess_h	24 | 12 | 6  (낙관|중앙|비관)		인스턴스 1회 세션 상한(시간). 길면 준비를 상각하지만 한 번의 사고 손실이 커진다
+assumption	t_call_ms	8 | 20 | 40  (낙관|중앙|비관)		batch=1 forward 1회 지연. HF eager는 CPU가 kernel launch를 구동해 GPU가 놀기 쉽다. 8=CUDA graph/compile, 40=무거운 eager. 실측 필요
+assumption	t_write_ms	10 | 20 | 40  (낙관|중앙|비관)		관측 1건의 NMM chunk 순차 update 추가 지연. 가설(요청 단위 순차 갱신이라 batch를 키우기 어렵다)
+assumption	m_dec	3 | 4 | 6  (낙관|중앙|비관)		답 decode token 수
+assumption	procs	10 | 6 | 3  (낙관|중앙|비관)		12 vCPU main tier에서 병렬 session process의 유효 수(CPU·GPU time slice 경합 반영)
+assumption	W_dev	32 | 64 | 128  (낙관|중앙|비관)		dev world 수(D-05 미정)
+assumption	Q	2 | 4 | 8  (낙관|중앙|비관)		world당 질의 수
+assumption	W_seal	64 | 128 | 384  (낙관|중앙|비관)		sealed readout world 수. 95% 구간 ±5pp를 목표로 하면 독립 world 약 384(p=0.5)
+assumption	fam	3 | 3 | 3  (낙관|중앙|비관)		
+assumption	depths	3 | 3 | 4  (낙관|중앙|비관)		
+assumption	p2_tok	50000000.0 | 200000000.0 | 800000000.0  (낙관|중앙|비관)		P2 recurrence 적응 학습 run 당 token. 원논문 규모(수십억 token급으로 알려짐, 이번에 확인하지 않음)는 재현 대상이 아님(docs/09 P5 미루는 것)
+assumption	p2_arms	4 | 5 | 6  (낙관|중앙|비관)		
+assumption	p2_n_retro	4 | 6 | 8  (낙관|중앙|비관)		
+assumption	p2_n_core	4 | 6 | 8  (낙관|중앙|비관)		
+assumption	p2_rbar	1.75 | 2.0 | 2.5  (낙관|중앙|비관)		
+assumption	p2_W	64 | 128 | 384  (낙관|중앙|비관)		
+assumption	p2_spike_h	2 | 4 | 8  (낙관|중앙|비관)		
+assumption	p3_nq	20000 | 100000 | 400000  (낙관|중앙|비관)		
+assumption	p3_combo	6 | 9 | 12  (낙관|중앙|비관)		(r,u) 격자 조합 수(docs/08 §3)
+assumption	p3_trial	1 | 3 | 10  (낙관|중앙|비관)		RL·bandit형 시도 배수(docs/06 §6)
+assumption	p3_ft_x	1.0 | 2.0 | 4.0  (낙관|중앙|비관)		
+assumption	p3_arms	6 | 8 | 10  (낙관|중앙|비관)		
+assumption	p4_recipes	3 | 5 | 8  (낙관|중앙|비관)		
+assumption	p4_tok	20000000.0 | 100000000.0 | 400000000.0  (낙관|중앙|비관)		sleep run 당 replay token(가정)
+assumption	p5_tok	200000000.0 | 1000000000.0 | 4000000000.0  (낙관|중앙|비관)		P5 학습 run 당 token(가정)
+assumption	p5_runs	6 | 9 | 20  (낙관|중앙|비관)		arm x seed run 수
+assumption	p5_retro_frac	0.25 | 0.5 | 1.0  (낙관|중앙|비관)		전 층은 근거가 있을 때만(docs/09 §4)
+assumption	p5_soak_h	8 | 24 | 72  (낙관|중앙|비관)		UJ5 서빙 soak 시간
+assumption	p4_teacher	self(0.35) | x4(0.45) | 8B(0.20) 범주 표본		P4 teacher 크기 가정. self=fast state 모델 자신, x4=4배 큰 모델, 8B=Qwen3-8B급 외부 teacher
+assumption	sampling	낙관=10% 분위·중앙=중앙값·비관=90% 분위(나쁜 쪽 기준). 구간별 보간(배율형 가정은 로그 척도), 독립 표본 N=3000, seed=20261117		비관값 전부의 곱은 비현실적이라 표본의 P10/P50/P90을 범위로 쓴다. 가정끼리 독립으로 가정(상관 무시)
+formula	train_full	전체 학습 FLOPs ≈ 6·N·T		
+formula	train_retrofit	frozen base 위 retrofit FLOPs: 2·N_eff·T(전방) + 2·N_eff·T·bwd(입력 gradient) + 6·N_new·T·omega(새 모듈). N_eff = body + f_logit·head		
+formula	train_time	시간 = 기반 FLOPs/(peak·MFU) x [1 + (n_retro/L)(kappa-1)]		
+formula	infer	추론 FLOPs ≈ 2·N_eff·T (+ write 5%). 평가 시간은 FLOPs가 아니라 batch=1 지연(요청 x 평균 지연 / 병렬 process)이 지배		
+formula	mfu	MFU = e_gemm/(1 + t_elem/t_gemm) x sw. t_gemm = GEMM FLOPs/(peak·e_gemm), t_elem = non-GEMM HBM 왕복 bytes/BW		
+formula	billing	과금 시간 = n_instance·t_fixed + 순수 실행·retry·(1+idle). n_instance = ceil(실행·retry·(1+idle)/세션 상한)		
+formula	recurrence	depth 배수 = 1 + (r̄-1)·(n_core/L). r=2 deep 경로는 retrofit 블록 n_blk/L를 한 번 더 적용		
+formula	memory_train	가중치 2·N_total + 새 모듈 16·N_new(fp32 master·grad·Adam) + activation(층·token·(30d+6ffn)·0.5) + logits(f_logit·token·V·4·2) + 1.5GB		
+formula	memory_full_ft	16·N_total + activation(34d·L·token) + 1.5GB (P4 student 전체 갱신)		

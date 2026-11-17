@@ -1,0 +1,122 @@
+edit_id	worker	file	section	op	status	note
+E13-01	W1	docs/13-schema-decomposition-and-interference.md	## 문서의 지위	INSERT_AFTER_LINE	applied	
+E13-02	W1	docs/13-schema-decomposition-and-interference.md	## 1. 사용자 제안과 검토 결론	INSERT_AFTER_LINE	applied	
+E13-03	W1	docs/13-schema-decomposition-and-interference.md	## 1. 사용자 제안과 검토 결론	INSERT_AFTER_LINE	applied	
+E13-04	W1	docs/13-schema-decomposition-and-interference.md	## 3. Schema와 versioned artifact	INSERT_AFTER_LINE	applied	
+E13-05	W1	docs/13-schema-decomposition-and-interference.md	### 4.2 Post-training·RL·CoT	INSERT_AFTER_LINE	applied	
+E13-06	W1	docs/13-schema-decomposition-and-interference.md	## 5. 표현·활성화·변경의 분리	INSERT_AFTER_LINE	modified	기준 시점 명시: '핵심 설계 문서에 ... 진술이 없다'가 이 검토의 주석(E13-20·E13-25 등)이 들어간 뒤에는 거짓이 되므로 280dc9a 기준임을 적음
+E13-07	W1	docs/13-schema-decomposition-and-interference.md	## 6. 공통 계산 프레임워크	INSERT_AFTER_LINE	applied	
+E13-08	W1	docs/13-schema-decomposition-and-interference.md	### 7.1 선형 연합기억의 정확한 간섭	INSERT_AFTER_LINE	applied	
+E13-09	W1	docs/13-schema-decomposition-and-interference.md	### 7.2 비선형 모델의 국소 간섭	INSERT_AFTER_LINE	applied	
+E13-10	W1	docs/13-schema-decomposition-and-interference.md	### 7.2 비선형 모델의 국소 간섭	INSERT_AFTER_LINE	applied	
+E13-11	W1	docs/13-schema-decomposition-and-interference.md	### 7.3 정확한 보존의 충분조건	INSERT_AFTER_LINE	applied	
+E13-12	W1	docs/13-schema-decomposition-and-interference.md	### 7.4 보존과 retrieval 오류	INSERT_AFTER_LINE	applied	
+E13-13	W1	docs/13-schema-decomposition-and-interference.md	### 7.5 유한 용량의 한계	INSERT_AFTER_LINE	applied	
+E13-14	W1	docs/13-schema-decomposition-and-interference.md	## 8. 선행연구와 독창성 경계	INSERT_AFTER_LINE	modified	catalog 후보 행을 이 검토가 추가하므로 '없다'를 280dc9a 기준으로 한정
+E13-15	W1	docs/13-schema-decomposition-and-interference.md	### 9.1 공유 core와 선택적 쓰기	INSERT_AFTER_LINE	applied	
+E13-16	W1	docs/13-schema-decomposition-and-interference.md	### 9.2 Copy-on-write와 버전	INSERT_AFTER_LINE	applied	
+E13-17	W1	docs/13-schema-decomposition-and-interference.md	### 9.4 완전한 LLM 사전 분해는 선행조건이 아님	INSERT_AFTER_LINE	applied	
+E13-18	W1	references/schema-decomposition-2026-11-14.md	# Schema 분해·간섭 논의의 보충 참고문헌	INSERT_AFTER_LINE	modified	catalog 후보 행을 이 검토가 추가하므로 '없다'를 280dc9a 기준으로 한정
+E13-19	W1	docs/03-foundations.md	## 1. Schema의 운영적 정의	INSERT_AFTER_LINE	applied	
+E13-20	W1	docs/04-rhythms-and-orchestration.md	## 3. 조율을 위한 최소 분리	INSERT_AFTER_LINE	applied	
+E13-21	W1	docs/05-integrated-architecture.md	## 4. Schema controller의 입력과 출력	INSERT_AFTER_LINE	applied	
+E13-22	W1	docs/05-integrated-architecture.md	## 5. CMS 점진 전환의 기능 보존 제안	INSERT_AFTER_LINE	applied	
+E13-23	W1	docs/06-mathematical-framework.md	## 1. 상태와 시간	INSERT_AFTER_LINE	applied	
+E13-24	W1	docs/06-mathematical-framework.md	## 3. 빠른 업데이트	INSERT_AFTER_LINE	applied	
+E13-25	W1	docs/06-mathematical-framework.md	## 10. 아직 정리가 아닌 주장	INSERT_AFTER_LINE	applied	
+E13-26	W1	docs/07-state-and-storage.md	## 5. 외부화 단위	INSERT_AFTER_LINE	applied	
+E13-27	W1	docs/07-state-and-storage.md	## 6. Version 의미	INSERT_AFTER_LINE	applied	
+E13-28	W1	docs/09-roadmap.md	### P1 — 얇은 전체 여정 (MVP)	INSERT_AFTER_LINE	applied	
+E13-29	W1	docs/09-roadmap.md	### P1 — 얇은 전체 여정 (MVP)	INSERT_AFTER_LINE	applied	
+E13-30	W1	docs/11-research-agenda.md	## 1. Pretraining과 alignment 가설	INSERT_AFTER_LINE	applied	
+E13-31	W1	docs/11-research-agenda.md	## 3. 표현 보호와 확장	INSERT_AFTER_LINE	modified	catalog 후보 행을 이 검토가 추가하므로 '없다'를 280dc9a 기준으로 한정
+E13-32	W1	docs/11-research-agenda.md	## 8. 검증 없이 주장하지 않을 것	INSERT_AFTER_LINE	skipped	merged into E14-13 (docs/11 §8 무제한 무망각 비주장 문단이 중복; 비둘기집 근거와 해석 문장을 E14-13에 합침)
+E13-33	W1	docs/01-intent-and-charter.md	## 2. 명시적 사용자 목표	INSERT_AFTER_LINE	applied	
+E14-01	W2	docs/07-state-and-storage.md	## 7. 검색과 residency	REPLACE_SUBSTRING	applied	
+E14-02	W2	docs/07-state-and-storage.md	## 7. 검색과 residency	INSERT_AFTER_LINE	applied	
+E14-03	W2	docs/08-evaluation.md	## 1. 세 종류의 성공을 분리	INSERT_AFTER_LINE	applied	
+E14-04	W2	docs/08-evaluation.md	### 2-2. Melete 시기 피드백에서 온 추가 family (PROPOSAL)	INSERT_AFTER_LINE	modified	ER-02(F-CI 후보 family)를 합침: F-CI에 번호 F24를 주고 F22·F23과 같은 표에 넣음, OPEN 문구를 F22–F24로 확장
+E14-05	W2	docs/09-roadmap.md	### 1.1 사용자 제약과 이 로드맵의 반영	INSERT_AFTER_LINE	applied	
+E14-06	W2	docs/09-roadmap.md	## 4. Capability × phase 해상도 표	INSERT_AFTER_LINE	applied	
+E14-07	W2	docs/09-roadmap.md	### P1 — 얇은 전체 여정 (MVP)	INSERT_AFTER_LINE	modified	들여쓰기 4칸으로 바꿔 P1-T13 항목의 하위 항목으로 둠(2칸이면 형제 작업 항목처럼 읽힘)
+E14-08	W2	docs/09-roadmap.md	## 6. 회귀 gate 누적표	INSERT_AFTER_LINE	applied	
+E14-09	W2	docs/09-roadmap.md	## 10. 계산 자원과 결정 대기	INSERT_AFTER_LINE	modified	신규 family 번호에 F24(F-CI, ER-02에서 합침)를 포함
+E14-10	W2	docs/05-integrated-architecture.md	## 4. Schema controller의 입력과 출력	INSERT_AFTER_LINE	applied	
+E14-11	W2	docs/05-integrated-architecture.md	## 5. CMS 점진 전환의 기능 보존 제안	INSERT_AFTER_LINE	applied	
+E14-12	W2	docs/11-research-agenda.md	## 2. Schema의 물리적 단위	INSERT_AFTER_LINE	applied	
+E14-13	W2	docs/11-research-agenda.md	## 8. 검증 없이 주장하지 않을 것	INSERT_AFTER_LINE	modified	E13-32(무제한 무망각 비둘기집 근거)를 합침: 같은 위치·같은 비주장 문단의 중복 제거
+E14-14	W2	docs/10-evolution-policy.md	## 3. 후보 생성 계약	INSERT_AFTER_LINE	applied	
+E14-15	W2	docs/10-evolution-policy.md	### 8-1. 사용자 요청 산출물 정책	INSERT_AFTER_LINE	modified	단정 약화: 사용자가 공동논문이 B15의 논문과 별개라고 말하지 않았으므로 '별개인 세 번째 논문 후보'를 확인 대기로 바꿈
+E14-16	W2	docs/13-schema-decomposition-and-interference.md	## 10. 실험 계획 A–E	INSERT_AFTER_LINE	applied	
+E14-17	W2	docs/14-schema-lifecycle-crud-and-joint-paper.md	## 2. CRUD의 공통 단위	INSERT_AFTER_LINE	applied	
+E14-18	W2	docs/14-schema-lifecycle-crud-and-joint-paper.md	## 3. Update / Create: 어디를 바꾸는가	INSERT_AFTER_LINE	applied	
+E14-19	W2	docs/14-schema-lifecycle-crud-and-joint-paper.md	## 3. Update / Create: 어디를 바꾸는가	INSERT_AFTER_LINE	applied	
+E14-20	W2	docs/14-schema-lifecycle-crud-and-joint-paper.md	## 4. Delete / Retain: 무엇을 어떤 비용으로 남기는가	INSERT_AFTER_LINE	modified	ET-02(삭제의 세 번째 뜻: 가중치 삭제 학습)를 합침: 같은 앵커의 '삭제' 용어 주석 두 개를 하나로
+E14-21	W2	docs/14-schema-lifecycle-crud-and-joint-paper.md	## 4. Delete / Retain: 무엇을 어떤 비용으로 남기는가	INSERT_AFTER_LINE	applied	
+E14-22	W2	docs/14-schema-lifecycle-crud-and-joint-paper.md	## 5. Read / Activate: 무엇을 지금 쓰는가	INSERT_AFTER_LINE	applied	
+E14-23	W2	docs/14-schema-lifecycle-crud-and-joint-paper.md	## 7. Ali 공동논문 제안의 흐름	INSERT_AFTER_LINE	modified	catalog 후보 행을 이 검토가 추가하므로 '없다'를 280dc9a 기준으로 한정
+E14-24	W2	docs/14-schema-lifecycle-crud-and-joint-paper.md	### 제안문 초안 — 미발송	INSERT_AFTER_LINE	applied	
+E14-25	W2	docs/14-schema-lifecycle-crud-and-joint-paper.md	## 8. 결정적인 실험	INSERT_AFTER_LINE	applied	
+E14-26	W2	references/schema-lifecycle-2026-11-16.md	## 11/16 보고의 추가 확인 대상	INSERT_AFTER_LINE	modified	catalog 후보 행을 이 검토가 추가하므로 '없다'를 280dc9a 기준으로 한정하고 추가 내용을 적음
+E14-27	W2	docs/14-schema-lifecycle-crud-and-joint-paper.md	## 4. Delete / Retain: 무엇을 어떤 비용으로 남기는가	INSERT_AFTER_LINE	applied	
+ER-01	W3	docs/07-state-and-storage.md	## 5. 외부화 단위	INSERT_AFTER_LINE	applied	
+ER-02	W3	docs/08-evaluation.md	### 2-2. Melete 시기 피드백에서 온 추가 family (PROPOSAL)	INSERT_AFTER_LINE	skipped	merged into E14-04 (F-CI 행을 F24 번호로 같은 표에 넣고 설명 문단을 E14-04 블록 뒤에 둠; family 번호·표 순서 일관성)
+ER-03	W3	docs/09-roadmap.md	### P2 — 여러 구조와 고정 깊이로 넓히고 첫 확증	INSERT_AFTER_LINE	applied	
+ER-04	W3	docs/09-roadmap.md	### P4 — 세션을 넘는 경험 (Sleep·외부화 v0)	INSERT_AFTER_LINE	applied	
+ER-05	W3	docs/05-integrated-architecture.md	## 11. Sleep가 만들어야 할 변화	INSERT_AFTER_LINE	applied	
+ER-06	W3	docs/03-foundations.md	## 6. 표현 방식과 학습 지속성의 분리	INSERT_AFTER_LINE	applied	
+ER-07	W3	docs/14-schema-lifecycle-crud-and-joint-paper.md	## 5. Read / Activate: 무엇을 지금 쓰는가	INSERT_AFTER_LINE	applied	
+ER-08	W3	docs/07-state-and-storage.md	## 7. 검색과 residency	INSERT_AFTER_LINE	applied	
+ER-09	W3	docs/08-evaluation.md	## 4. 비교군	INSERT_AFTER_LINE	applied	
+ER-10	W3	docs/03-foundations.md	## 4. 실제 뇌에서 표현된다는 말의 네 수준	INSERT_AFTER_LINE	applied	
+ER-11	W3	docs/11-research-agenda.md	## 7. 우선 읽을 연구 연결	INSERT_AFTER_LINE	applied	
+ER-12	W3	docs/11-research-agenda.md	## 8. 검증 없이 주장하지 않을 것	INSERT_AFTER_LINE	applied	
+ER-13	W3	sources/sync/2026-11-16-discussion.md	## 보존 중 확인한 정정 필요	INSERT_AFTER_LINE	applied	
+ER-14	W3	research/2026-11-16-sbl-tracking.md	### 보존 시 식별한 중복 문제	INSERT_AFTER_LINE	applied	
+ER-15	W3	references/catalog.tsv	(TSV 행 N28)	REPLACE_SUBSTRING	applied	
+ER-16	W3	references/catalog.tsv	(TSV 행 S10)	REPLACE_SUBSTRING	applied	
+ER-17	W3	references/2026-11-16-sleep-time-melete.md	# 2026-11-16 Sleep-time 조사에서 선별한 FCL 인접 참고문헌	INSERT_AFTER_LINE	applied	
+ER-18	W3	research/2026-11-16-memory-evidence-read-supplement.md	## 이번 선별에서 제외한 인접 자료	INSERT_AFTER_LINE	applied	
+ER-19	W3	research/2026-11-17-sleep-time-melete-selected-addendum.md	## 2. Recurrence의 읽기 충분성과 상태 갱신 충분성은 다르다	INSERT_AFTER_LINE	modified	앵커를 목록의 마지막 항목(코드 bullet)으로 옮겨 bullet 목록을 쪼개지 않음; 시점 정정: '아직 반영돼 있지 않다'가 이 검토의 편집(ER-01·05·08 등)이 들어간 뒤에는 거짓이 되므로 280dc9a 기준으로 쓰고 이 검토가 넣은 후보 위치를 적음
+ER-20	W3	docs/14-schema-lifecycle-crud-and-joint-paper.md	## 10. 별도 Sleep-time 주간 보고와의 교차 검토 — 2026-11-16	INSERT_AFTER_LINE	applied	
+ER-21	W3	docs/08-evaluation.md	## 6. Metrics	INSERT_AFTER_LINE	applied	
+ET-01	W4	docs/13-schema-decomposition-and-interference.md	### 4.2 Post-training·RL·CoT	INSERT_AFTER_LINE	applied	
+ET-02	W4	docs/14-schema-lifecycle-crud-and-joint-paper.md	## 4. Delete / Retain: 무엇을 어떤 비용으로 남기는가	INSERT_AFTER_LINE	skipped	merged into E14-20 (same anchor and topic: 두 가지·세 가지 '삭제' 용어 구분을 하나의 주석으로 합침)
+ET-03	W4	docs/14-schema-lifecycle-crud-and-joint-paper.md	## 4. Delete / Retain: 무엇을 어떤 비용으로 남기는가	INSERT_AFTER_LINE	applied	
+ET-04	W4	docs/05-integrated-architecture.md	## 10. Vec2text에서의 전환	INSERT_AFTER_LINE	applied	
+ET-05	W4	docs/07-state-and-storage.md	## 6. Version 의미	INSERT_AFTER_LINE	applied	
+ET-06	W4	docs/03-foundations.md	## 6. 표현 방식과 학습 지속성의 분리	INSERT_AFTER_LINE	applied	
+ET-07	W4	research/2026-11-16-sbl-tracking.md	## 4. Symbolic / formal SBL	INSERT_AFTER_LINE	applied	
+ET-08	W4	docs/05-integrated-architecture.md	## 5. CMS 점진 전환의 기능 보존 제안	INSERT_AFTER_LINE	applied	
+ET-09	W4	docs/14-schema-lifecycle-crud-and-joint-paper.md	## 3. Update / Create: 어디를 바꾸는가	INSERT_AFTER_LINE	applied	
+EC-01	W5	docs/09-roadmap.md	## 10. 계산 자원과 결정 대기	INSERT_AFTER_LINE	applied	
+EC-02	W5	docs/09-roadmap.md	## 10. 계산 자원과 결정 대기	REPLACE_SUBSTRING	applied	
+EC-03	W5	docs/09-roadmap.md	## 10. 계산 자원과 결정 대기	REPLACE_SUBSTRING	applied	
+EC-04	W5	docs/09-roadmap.md	## 10. 계산 자원과 결정 대기	REPLACE_SUBSTRING	applied	
+EC-05	W5	docs/09-roadmap.md	## 10. 계산 자원과 결정 대기	REPLACE_SUBSTRING	modified	기존 추천 문장을 지우지 않고 '2026-11-12 추천(개정 대상)'으로 남긴 뒤 개정 추천을 덧붙임(결정 전의 기준선 보존)
+EC-06	W5	docs/09-roadmap.md	## 10. 계산 자원과 결정 대기	REPLACE_SUBSTRING	applied	
+EC-07	W5	docs/09-roadmap.md	## 10. 계산 자원과 결정 대기	REPLACE_SUBSTRING	applied	
+EC-08	W5	docs/09-roadmap.md	## 10. 계산 자원과 결정 대기	INSERT_AFTER_LINE	applied	
+EC-09	W5	docs/09-roadmap.md	## 11. 로드맵 재검토 규칙	INSERT_AFTER_LINE	modified	변경 기록 행을 둘로: 델타 감사 반영 행(W6)을 계산 계획 행(W5) 앞에 둠(같은 날짜의 두 작업을 각각 기록)
+EC-10	W5	docs/09-roadmap.md	### P1 — 얇은 전체 여정 (MVP)	INSERT_AFTER_LINE	applied	
+EC-11	W5	docs/08-evaluation.md	## 6. Metrics	INSERT_AFTER_LINE	applied	
+EC-12	W5	docs/10-evolution-policy.md	## 6. Budget와 자동화	INSERT_AFTER_LINE	applied	
+EC-13	W5	docs/13-schema-decomposition-and-interference.md	### E. System ONE의 계산 효율	INSERT_AFTER_LINE	applied	
+EC-14	W5	docs/14-schema-lifecycle-crud-and-joint-paper.md	## 8. 결정적인 실험	INSERT_AFTER_LINE	applied	
+EC-15	W5	README.md	## 읽는 순서	INSERT_AFTER_LINE	skipped	duplicate of EW6-02 (README 읽는 순서 표에 docs/15 행을 이미 넣음)
+EW6-01	W6	README.md	서두 문단	REPLACE_SUBSTRING	applied	정리 기준일을 2026-11-17(델타 설계 반영 감사·계산 계획)로 갱신하고 직전 기준일(2026-11-12)과 백서가 그 기준에 머문다는 점을 병기
+EW6-02	W6	README.md	## 읽는 순서	INSERT_AFTER_LINE	applied	docs/15 행 추가(W5의 EC-15와 같은 목적이라 이 행 하나만 둠)
+EW6-03	W6	README.md	## 읽는 순서	INSERT_AFTER_LINE	applied	검토 기록(research/2026-11-17-design-review.md) 행 추가
+EW6-04	W6	README.md	## 읽는 순서	REPLACE_SUBSTRING	applied	백서 행에 '2026-11-12 기준이며 11-14 이후 자료와 11-17 검토는 반영하지 않았다' 표시(기존 상대 링크는 그대로)
+EW6-05	W6	README.md	끝(새 절)	INSERT_AFTER_LINE	applied	'델타 설계 반영 감사와 계산 계획 — 2026-11-17' 절 추가: 추가 문서 표, NOT RUN 경계, 증거 표기 7종과 ESTIMATE
+EW6-06	W6	sources/sync/manifest.json	items	APPEND_ITEMS	applied	items 끝에 항목 3개 추가(user-request-…, design-review-delta-…, compute-plan-…). top-level 필드와 기존 항목은 바뀌지 않음(문자열 대조로 확인)
+EW6-07	W6	sources/sync/2026-11-17-discussion.md	(새 파일)	NEW_FILE	applied	2026-11-17 사용자 원문 블록·출처·해석 한계·이번 작업의 경계(SYNC_POLICY 형식)
+EW6-08	W6	sources/user-statements.md	## U-T11 — 이번 게시 요청	INSERT_AFTER_LINE	applied	
+EW6-09	W6	docs/09-roadmap.md	## 10. 계산 자원과 결정 대기	INSERT_AFTER_LINE	applied	
+EW6-10	W6	docs/09-roadmap.md	### 1.1 사용자 제약과 이 로드맵의 반영	INSERT_AFTER_LINE	applied	
+EW6-11	W6	references/README.md	## 재생성 앞	INSERT_BEFORE_HEADING	applied	델타 검토에서 추가한 catalog 후보 33행과 shared-links 파일 안내
+EW6-12	W6	references/shared-links-2026-11-17.md	(새 파일)	NEW_FILE	applied	사용자 공유 링크 카드에서 확정한 5건의 표(W4 초안, 앱 이름·카드 id 없음)
+EW6-13	W6	references/catalog.tsv	끝	APPEND_ROWS	applied	후보 33행 추가(S36–S46·A19–A38·E05·N32). W3-30–36(링크 전용 7행)은 결정 대기로 제외, NEW-W3-13과 NEW-W4-01은 같은 논문이라 W4 행 하나로 합침. 8열·ID 유일·URL 중복 없음 확인
+EW6-14	W6	docs/15-compute-plan.md	(새 파일)	NEW_FILE	applied	W5 초안 본문을 두되 '작업 지시' 문구 1곳을 이 계획의 가정으로 바꿈(번호 15는 01–14의 다음). 공개 안전성 검사 통과
+EW6-15	W6	EVIDENCE.md	끝(새 절)	INSERT_AFTER_LINE	applied	2026-11-17 검토의 범위(확인한 것·확인하지 않은 것·ESTIMATE 정의) 한 절
+EW6-16	W6	research/2026-11-17-design-review.md + research/2026-11-17-design-review/	(새 파일·폴더)	NEW_FILE	applied	종합 기록, 공개 사본(원장 JSON·TSV, 이 표, catalog 추가표, 워커별 정리본·편집 블록 원문)

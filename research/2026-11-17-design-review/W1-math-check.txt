@@ -1,0 +1,613 @@
+W1-math-check.txt
+docs/13 §7 수학 명제 점검 (기준 280dc9a, 2026-11-17 감사, 작성: 워커 W1)
+
+[읽는 법]
+- 줄 번호는 `git -C <repo> show 280dc9a:docs/13-schema-decomposition-and-interference.md | cat -n` 기준이다.
+- 증거 표기: 「직접 유도」는 PROPOSAL(검토 유도)이다. 「수치 확인」은 부록의 소규모 numpy 점검(CPU, 수 초, 모델·GPU 없음)이며 ESTIMATE가 아니라 항등식·부등식의 반례/성립 점검이다. 외부 문헌은 확인 수준을 적었다.
+- 판정 값: 정확 / 조건 보강 필요 / 틀림 / 검증 불가.
+- 이 점검은 docs/13 §7.1–§7.5만 본다(§10 실험 A–E는 W2 담당). 사용자 결정을 대신하지 않는다.
+
+==========================================================================
+[판정 한 줄 요약]
+7.1 정확 (명시된 전제 안에서). 보강 7항: η 범위, 정규화 step, key 크기, A 부정확 시 1차 교차항, 다단계, 감쇠, 직교 key 수 한계.
+7.2 조건 보강 필요. 식은 plain SGD 한 step + 선분 위 C¹일 때 정확. 보강: ReLU류 kink, Adam류 전처리, minibatch, 다단계, Γ_ij 해석.
+7.3 조건 보강 필요. 논리(귀납)는 정확. 보강: 제어 흐름 값 포함, 결정적 실행·수치 허용오차(noise floor), softmax는 항상 변함.
+7.4 조건 보강 필요. 부등식은 정확. 보강: R_correct·올바른 경로·δ 정의, 7.3 의존, soft mixture 별도 형태.
+7.5 정확 (무오류 회상 한정). 근사·확률적 회상은 별도 한계(rate-distortion, Fano)가 필요하다.
+틀림 0건, 검증 불가 0건.
+
+==========================================================================
+7.1 선형 연합기억의 정확한 간섭 (docs/13:161-175)
+
+(i) 문서 진술과 줄 번호
+- L163: key encoder 고정, v̂ = Mk, k_B ≠ 0.
+- L165: M' = M + η e_B k_B^T/||k_B||², e_B = v_B − M k_B.
+- L169: M'k_A − M k_A = η e_B (k_B^T k_A)/||k_B||².
+- L171: 직교 key면 A의 출력 유지, e_B = 0이면 변경 없음. A가 원래 정확하고 L_A = ½||v_A − Mk_A||²이면
+- L173: ΔL_A = (η²/2)||e_B||² (k_B^T k_A)²/||k_B||⁴.
+- L175: A가 원래 틀렸다면 도움이 될 수도 있다. key는 접근 표현이며 encoder 변경·비선형 전체 갱신에는 확대 불가.
+
+(ii) 직접 유도·검증
+- 대입: M'k_A − M k_A = η e_B (k_B^T k_A)/||k_B||². c := k_B^T k_A/||k_B||² 로 두면 = η c e_B. (수치 확인: 오차 1e-15)
+- B 자신: M'k_B = M k_B + η e_B ⇒ e_B' := v_B − M'k_B = (1 − η) e_B. η=1이면 e_B' = 0 (M'k_B = v_B), 0<η<2에서 수축, 0<η≤1에서 부호 반전(overshoot) 없음. (수치: 비율 |1−η| 일치, η=2.5에서 1.5배로 발산)
+- A가 정확(v_A = Mk_A): L_A(M)=0, v_A − M'k_A = −η c e_B ⇒ L_A(M') = ½η²c²||e_B||² = ΔL_A. 문서 식과 같다. 모든 η에서 항등식. (수치 확인)
+- A가 정확하지 않음(r_A = v_A − Mk_A ≠ 0): ΔL_A = −η c r_A^T e_B + ½η²c²||e_B||². 1차항이 있어 부호가 음수(도움)일 수 있다. (수치: 정확 A식은 +0.6589인데 실제는 +0.8686, 식과 일치; r_A를 c·e_B 방향으로 두면 −13.09)
+- key 정규화 없음: (k_B^T k_A)² = ||k_A||²||k_B||² cos²θ ⇒ ΔL_A = ½η²||e_B||² ||k_A||² cos²θ / ||k_B||². (수치: ||k_A||=3이면 33.41, ||k_B||=3이면 0.41; 단위 key 3.71)
+- 정규화 step의 정체: 이 update는 정규화 LMS(Widrow–Hoff delta rule을 ||k_B||²로 정규화)이며 η=1이면 {M: Mk_B = v_B}로의 Frobenius 최소 변경(Kaczmarz 사영)이다. plain SGD(step η_sgd, 손실 ½||v_B − Mk_B||²)는 η = η_sgd ||k_B||²에 해당.
+- 다단계: M_T = M + Σ_t η_t e_t k_t^T/||k_t||² (e_t는 그 시점 M 기준). A 출력 변화 = Σ_t η_t c_t e_t (벡터 합). 손실은 ½||Σ δ_t||²이며 per-step ½||δ_t||²의 합이 아니다. (수치: 22.91 vs 26.96)
+- 감쇠: M' = (1−α)M + 정규화 step ⇒ 직교 key에서도 M'k_A − Mk_A = −α M k_A. (수치: α=0.1에서 0.648 = α||Mk_A||)
+- 용량: 서로 직교하는 key는 d_k개 이하. 무작위 단위 key N개에 대해 E[Σ_a c_a²] = N/d_k. (수치: d_k=64에서 N=16/64/256 → 0.2455/0.9962/4.0115)
+
+(iii) 빠진 가정·조건
+ 1. η 범위 미명시 (0<η<2 수축, 0<η≤1 overshoot 없음; 식 자체는 모든 η에서 항등식).
+ 2. update가 ||k_B||² 정규화 LMS step이라는 전제(일반 SGD이면 η 환산). Titans식(surprise 가중·momentum·decay)은 다른 식이다(docs/06:29-35).
+ 3. 단일 step. 다단계 B 쓰기는 출력 변화의 벡터 합.
+ 4. A가 정확해야 η² 식. 아니면 1차 교차항.
+ 5. key 정규화 없으면 ||k_A||²/||k_B||² 의존. 「직교」만으로 간섭의 크기가 정해지지 않는다(근직교의 크기는 cos² × 크기비).
+ 6. 감쇠(forget gate)·momentum이 있으면 직교해도 A 출력이 변함 (docs/06 §3 식이 정확히 이 경우).
+ 7. 직교 key 수 ≤ d_k (docs/13 §7.5와 연결).
+ 8. 선형 읽기·제곱 손실·잡음 없음.
+
+(iv) 판정: 정확 (문서가 이미 밝힌 전제 — encoder 고정, A 정확, 비선형 확대 금지 — 안에서). 위 1–7 보강 권장.
+
+(v) docs/13 OPEN 주석 문안: W1-edits.txt E13-08.
+(vi) 핵심 문서 정리 문안: docs/06 신설 §11 명제 A (E13-25). 감쇠 누출은 docs/06 §3 주석(E13-24)과 docs/13 §9.1 주석(E13-15).
+
+==========================================================================
+7.2 비선형 모델의 국소 간섭 (docs/13:177-191)
+
+(i) 문서 진술과 줄 번호
+- L179-181: θ' = θ − η g_B인 SGD step에서 L_A가 구간에서 충분히 미분 가능하면 L_A(θ') − L_A(θ) = −η g_A^T g_B + (η²/2) g_B^T H_A(ξ) g_B, ξ는 구간의 점.
+- L183: gradient 직교는 곡률 항과 장기 변경을 제거하지 않는다. g_A≈0 최적점에서도 손실이 증가할 수 있다. GEM 연결은 국소 근사 범위.
+- L185-189: Γ_ij = E_{(x,c)~D_i}[ ||J_i(x,c) U_j||_F² ]. 국소 민감도이지 손실 증가 자체가 아니다. update 크기 또는 새 과제 개선량을 맞춰 비교. probe·작은 실제 update로 근사 가능.
+- L191: 모든 off-diagonal을 0으로 만드는 대신 무관한 기능 사이의 민감도를 줄인다.
+
+(ii) 직접 유도·검증
+- φ(s) := L_A(θ + sΔ), Δ = −η g_B. Taylor–Lagrange: φ(1) = φ(0) + φ'(0) + ½φ''(s*), s* ∈ (0,1). φ'(0) = ∇L_A(θ)^T Δ = −η g_A^T g_B, φ''(s) = Δ^T H_A(θ+sΔ) Δ = η² g_B^T H_A(θ+sΔ) g_B. 문서 식과 같다(ξ = θ + s*Δ). 필요 조건: φ ∈ C¹[0,1], φ'' 가 (0,1)에서 존재.
+- 매끄러운 경우(tanh 망, 무작위 Δ): 식을 만족하는 s* 존재 확인(s*≈0.396).
+- ReLU(구간별 선형) 반례: L_A(a) = ½(max(a,0) − 0.2)², a₀ = −0.3, Δ = +1. φ(1) − φ(0) − φ'(0) = 0.105. s ∈ (0,1)에서 ½φ''(s) ∈ {0, 0.5}(kink s=0.3 제외)이므로 어떤 단일 ξ도 0.105를 만들지 못한다. 올바른 형: φ(1) = φ(0) + φ'(0) + ∫₀¹ (1−s) φ''(s) ds + Σ_kink (1−s_k)[φ'(s_k+) − φ'(s_k−)] = … 0.245 + 0.7×(−0.2) = 0.105로 일치. (파라미터 공간에서 ReLU 망의 유한 표본 손실은 C¹조차 아닐 수 있다: ∂f/∂a_j = w_j x 1[a_j x>0]가 불연속.)
+- minibatch: 실현된 update에는 식이 정확. 기대값 (L_A 이차, g_A=0 최적점) E[ΔL_A] = ½η²(ḡ^T H ḡ + tr(HΣ)/b). (수치: b=1/8/64에서 MC 0.349/0.240/0.226 vs 식 0.348/0.240/0.226)
+- Adam류: Δ = −η P g (P: 상태 의존 대각 전처리). 첫 step ≈ −η sign(g). 1차항 −η g_A^T P g. (수치 예: g_A=(−1,−2), g_B=(10,−1): SGD 1차항 +8η(증가) vs sign 1차항 −η(감소))
+- 다단계: g_A(θ_k) = H_A(θ_k − θ*) ⇒ 시작점에서 g_A=0이어도 이후 g_A·g_B = −ηk g_B^T H_A g_B ≠ 0. 같은 방향 K step이면 ΔL_A = ½η²K² g_B^T H_A g_B (K²). (수치: K=1,2,4,8 → 0.0239, 0.0957, 0.3828, 1.5312) η→0 gradient flow에서는 경로 전체에서 g_A ⊥ g_B이면 dL_A/dt = −g_A·g_B = 0이라 L_A 불변.
+- g_A≈0 최적점에서 증가: PSD H_A이면 ΔL_A = (η²/2) g_B^T H_A g_B ≥ 0, g_B ∈ null(H_A)가 아니면 엄격히 > 0. 문서 진술 정확.
+- Γ_ij: U_j 정규직교이면 ||J U||_F² = Σ_m ||J u_m||². ||z||=1인 임의 update에 대해 ||J U z||² ≤ ||JU||_op² ≤ ||JU||_F² = Γ. 등방 z 평균은 Γ/rank U. (수치: max 3.19 ≤ Γ=4.15, 평균 2.08 ≈ Γ/2=2.08)
+  - 손실 상계 조건: 정확 적합(잔차 0)·제곱 손실·1차 선형화·update ∈ span U_j에서 ΔL_i ≈ ½||δf||² ≤ ½Γ||z||². (수치: 0.93, 1.41, 0.93 ≤ 2.08)
+  - 잔차 r ≠ 0: ΔL_i = r^T δf + ½||δf||² (선형 모델 제곱 손실에서 정확), |ΔL_i| ≤ ||r||√Γ||z|| + ½Γ||z||². (수치: ΔL=4.35 ≤ 7.48; 다른 z에서 −0.93, −1.5, −1.77 → 부호가 Γ로 정해지지 않음)
+  - 교차엔트로피: 출력 공간 곡률 H_ℓ(softmax 공분산)을 곱한 Gauss–Newton 꼴 E tr(U_j^T J_i^T H_{ℓ,i} J_i U_j)가 필요(표준 GN 근사; 후보).
+
+(iii) 빠진 가정·조건
+ 1. 선분 위 C¹·열린 선분 2회 미분 가능(단일점 ξ). ReLU류 kink 처리 필요.
+ 2. θ' = θ − η g_B는 momentum·weight decay·clipping·전처리 없는 plain SGD 한 step. (docs/13 §9.1이 momentum·decay를 따로 언급하나 §7.2는 전제로 쓰지 않았다.)
+ 3. g_B가 full-batch인지 minibatch인지: 실현된 update에는 정확, 기대값에는 tr(HΣ)/b 항.
+ 4. 다단계 불가: g_A(θ_k)가 변하고 곡률 항이 누적.
+ 5. g_A, H_A는 update 이전 θ에서 평가한 값이며 probe 집합 추정이면 표본 오차.
+ 6. Γ_ij: 정규직교 U_j(스케일), 출력 척도 정규화, 비대칭성, 「무관한 기능」의 정의.
+ 7. 「ξ는 구간의 점」은 s*가 A·θ·g_B에 의존하는 미지의 점이므로 상계에는 sup 구간 ||H|| 또는 평균 Hessian이 필요.
+
+(iv) 판정: 조건 보강 필요 (식 자체는 위 전제에서 정확하고, 문서의 정성적 결론 — 직교가 곡률·장기 변경을 못 막는다, 최적점에서도 증가 — 은 정확).
+
+(v) docs/13 OPEN 주석 문안: E13-09 (식), E13-10 (Γ_ij).
+(vi) 핵심 문서 정리 문안: docs/06 신설 §11 명제 B (E13-25). L_retention·L_forget의 구체형 후보로 보호 probe의 ΔL_i 또는 Γ_ij를 제안(OPEN; docs/06:67의 「retention 항 크기를 정할 문헌 측정도 거의 없다」와 연결).
+
+==========================================================================
+7.3 정확한 보존의 충분조건 (docs/13:193-205)
+
+(i) 문서 진술과 줄 번호
+- L195-197: 기존 기능 i의 전체 의존성 D_i(encoder·출력부·공유 기억·gate의 실제 결과·참조 버전·상태)를 유지하고 그 밖의 상태만 변경하라.
+- L199-203: 결정적 계산에서 ∀(x,c) ∈ C_i, f_after = f_before. 계산 그래프 순서의 귀납. 확률적 실행은 동일 난수 경로 또는 출력 분포 동일성. 모델이 스스로 발견한다는 보장 아님. PNN 관련.
+- L205: Router 파라미터 고정만으로는 부족. softmax에 새 schema를 추가하면 분모와 이전 선택 확률이 바뀔 수 있다.
+
+(ii) 직접 유도·검증
+- 계산 그래프 G(x,c)의 실행 부분 그래프와 그 노드가 읽는 값(파라미터·상태·입력·이전 노드 값, 제어 흐름 predicate 포함)의 집합 Read(x,c)를 두자. (1) 변경 전후 Read(x,c)의 모든 값이 bit 동일, (2) 연산이 같은 순수·결정 함수이면, 위상 순서 귀납으로 모든 노드 값과 출력이 같다. 제어 흐름을 정하는 값(router, halting, skip mask)은 Read에 들어가므로 (2)가 성립하면 실행 부분 그래프도 같다. 이 명제는 「순수 함수의 출력은 읽는 값에만 의존한다」의 명시형이라 논리적으로 자명하며, 가치는 D_i를 감사 가능한 목록으로 만드는 데 있다. 충분조건이지 필요조건은 아니다.
+- softmax: g_s = e^{z_s}/Σ_{s'} e^{z_{s'}}. 새 logit z*를 추가하면 g_s' = g_s (1 − g*'), g*' = e^{z*}/(Σ_old + e^{z*}) > 0 (z*가 유한하면 항상). 기존 gate끼리의 비율 g_s/g_t는 불변(IIA). (수치: z*=−5/0/2에서 모든 기존 gate가 0.9985/0.8197/0.3809배)
+- 정규화 없는 가산 분기(F0 + g B σ(A h), B=0): 새 분기의 기여가 정확히 0이므로 출력 동일. (수치: max|차이| = 0.0) — docs/05 §5의 B_j=0 초기화가 이 경우.
+- 수치 비결정성 (이 CPU 점검): float32 순차 합을 순서만 바꾸면 2.9e-4 차이(20000항), 같은 행을 batch 1과 256으로 계산하면 최대 2.6e-5 차이(512×512 float32 matmul). 외부 근거: He (Thinking Machines Lab) 「Defeating Nondeterminism in LLM Inference」 2025-09-10 — 서버 환경 LLM 추론의 비결정성의 주원인은 atomic add가 아니라 batch invariance 부재(kernel 결과가 batch 크기에 따라 달라짐)이며 batch invariance는 각 원소의 결과가 함께 처리되는 다른 원소 수와 무관한 성질이다 (요지 수준만 확인; 원문 정독 아님).
+
+(iii) 빠진 가정·조건
+ 1. 「경로가 읽는 모든 값」에 제어 흐름을 정하는 값과 실행 중 갱신되는 상태(KV, fast weight)를 포함.
+ 2. bit 동일성은 결정적 실행 전제: 부동소수점 비결합성, reduction 순서·kernel 선택(shape별 autotuning), batch 구성(batch invariance 부재), 혼합 정밀도 모드, 장치·라이브러리 버전·분산 병렬 reduction 순서.
+ 3. 따라서 보존 주장은 두 층: 상태 층(쓰기 집합 밖 tensor의 byte 동일 — 해시로 정확히 검사 가능; docs/07 §5 content_hashes), 출력 층(허용오차 τ; 하한 = noise floor ν: 변경 전 checkpoint를 batch 구성·순서·장치만 바꿔 재실행한 최대 편차). ν보다 강한 동일성은 약속하지 않는다. 결정 수준 지표(argmax 뒤집힘)는 변경 없는 재실행의 자기 뒤집힘 비율을 기준선으로 둔다.
+ 4. 확률적 실행: 같은 난수 경로(seed·소비 순서 포함) 또는 분포 동일성. (문서가 이미 언급)
+ 5. softmax 주장은 「바뀔 수 있다」가 아니라 유한 logit이면 항상 변한다. 보존되는 경우의 예: 기여가 정확히 0인 분기, 정규화 없는 gate가 보호 입력에서 0, 새 logit이 보호 입력에서 −∞로 마스크, top-1 선택에서 새 logit이 최대가 아니고 gate 값을 곱하지 않을 때.
+ 6. 「그 밖의 상태만 변경」에는 읽히지 않지만 이후 update에 쓰이는 상태(optimizer momentum, 감쇠, 정규화 통계)의 변경도 후속 쓰기를 통해 보호 상태에 닿을 수 있다(docs/13 §9.1과 연결).
+ 7. GPM류 입력 부분공간 직교 update는 7.1+7.3의 선형 층 + 층별 귀납의 근사 구현으로 읽을 수 있다(R08 원문 미확인).
+
+(iv) 판정: 조건 보강 필요 (논리는 정확. 수치 허용오차·제어 흐름 값 포함이 빠졌다).
+
+docs/09 P1 보장 (3)·(5)와의 연결 (docs/09:195, T10 :209, T13 :212, T05 :204):
+- 보장 (3) 「재시작 전후 같은 snapshot에서 응답이 허용오차 안에서 같다」, (5) 「삭제 뒤 state는 그 source 없이 같은 순서로 재생한 state와 허용오차 안에서 같다」는 출력·state 수준의 허용오차 주장이다. 7.3의 「정확한 동일성」은 이상화된 결정적 층위이고 구현 층위의 주장은 허용오차다. 이어지는 방식: (a) 상태 층은 byte 해시로 정확히 검사하고 (b) 출력 층의 τ는 noise floor ν 이상으로 봉인(T14)한다. 현재 로드맵에는 ν를 재는 절차가 없다 → docs/09 P1-T10 주석(E13-28).
+- 같은 장치·같은 batch 형태·결정적 모드에서는 ν가 0에 가까울 수 있으나 측정 전에는 가정하지 않는다. D-04가 CPU/노트북 GPU/클라우드를 오갈 수 있으므로 장치 간 복원은 ν>0이 예상된다.
+- docs/05 §5 / P1-T05의 함수 보존 검사(B_j=0)도 같은 층위: 기여 0은 정확하지만 다른 커널 경로로 계산하면 허용오차 수준이다.
+
+(v) docs/13 OPEN 주석 문안: E13-11. docs/05 주석 E13-22, docs/09 주석 E13-28·E13-29.
+(vi) 핵심 문서 정리 문안: docs/06 신설 §11 명제 C (E13-25).
+
+==========================================================================
+7.4 보존과 retrieval 오류 (docs/13:207-215)
+
+(i) 문서 진술과 줄 번호
+- L209-211: 손실이 [0,1]이고 잘못된 경로 확률이 δ이며 동일 입력 분포에서 항상 올바른 경로를 쓰는 위험이 R_correct이면 R_system ≤ R_correct + δ.
+- L213: 올바르게 고른 사건에서는 동작이 같고 틀린 사건의 추가 손실은 최대 1이기 때문. 실제 모델은 올바른 경로를 추론해야 한다.
+- L215: 성능 저하를 기억 내용 손상·선택 오류·공유 표현 drift·저장/재적재로 나눠 평가. versioning만으로 해결되지 않는다.
+
+(ii) 직접 유도·검증
+- W := {path(x) ≠ c(x,y)}, P(W) = δ. 올바른 경로를 고른 사건 W^c에서 두 시스템의 출력이 같다고 가정하면 ℓ = ℓ_c on W^c. R_system = E[ℓ_c 1_{W^c}] + E[ℓ 1_W] ≤ E[ℓ_c] + E[1_W · 1] = R_correct + δ (ℓ_c ≥ 0, ℓ ≤ 1). 증명 정확. (수치: hard routing δ=0.02/0.1/0.3에서 R_system 0.1218/0.1667/0.2779 ≤ 0.1309/0.2109/0.4109; R_correct=0, 틀린 경로 손실=1이면 R_system = δ로 tight)
+- soft mixture, 볼록·[0,1] 손실: ℓ(Σ q_s f_s) ≤ Σ q_s ℓ(f_s) ≤ q_c ℓ_c + (1−q_c) ≤ ℓ_c + (1−q_c) ⇒ R_soft ≤ R_correct + E[1−q_c]. (수치: Brier, 20000회 위반 0)
+- soft mixture, log 손실: −log Σ q_s p_s(y) ≤ −log q_c − log p_c(y) ⇒ R_soft ≤ R_correct + E[−log q_c(x)] (유계 손실 불필요). (수치: 20000회 위반 0)
+- 0-1 손실 + argmax 판독: 위 두 식이 성립하지 않는다. 반례: 정답 성분 p_c = (0.34, 0.33, 0.33)(argmax 정답), 오답 성분 p_w = (0,1,0), q_c = 0.99에서 혼합 (0.3366, 0.3367, 0.3267) → argmax 오답(손실 1 > R_c + 0.01). q_c=0.995에서 비로소 정답. (수치 확인)
+
+(iii) 빠진 가정·조건
+ 1. 「올바른 경로」c(x,y)와 R_correct의 정의: 어느 모델의 위험인가. (a) 같은 (갱신 후) 모델을 oracle routing으로 돌린 위험 → 부등식은 선택 오류 비용 상계일 뿐(거의 자명). (b) 갱신 전 모델의 위험 → 「올바르게 고른 사건에서 동작이 같다」가 7.3의 충분조건에 의존하므로 7.4는 7.3 위에 얹힌 분해이며 독립 정리가 아니다.
+ 2. δ: 같은 분포·같은 손실에서 P(path ≠ c)의 주변확률. c가 y에 의존하면 (x,y)의 결합 사건. 올바른 경로가 유일하지 않으면 reference 선택에 의존(상계가 느슨해짐).
+ 3. 손실 상한: [0, L_max]이면 δ·L_max. 로그 손실은 비유계라 그대로 쓸 수 없다.
+ 4. 「동작이 같다」는 경로 선택 외의 간섭(공유 상태 변화)이 없다는 뜻 → 7.3.
+ 5. soft mixture에서는 δ가 정의되지 않으며 위 (볼록/log) 대체 식이 필요. 0-1·argmax 판독에는 성립하지 않는다.
+ 6. 상계의 느슨함: 틀린 경로의 실제 손실이 1보다 훨씬 작을 수 있고 하한은 없다(틀린 경로가 우연히 더 좋을 수 있음).
+
+(iv) 판정: 조건 보강 필요 (부등식·증명은 정확).
+
+(v) docs/13 OPEN 주석 문안: E13-12.
+(vi) 핵심 문서 정리 문안: docs/06 신설 §11 명제 D (E13-25). docs/08 §4의 「oracle source selection은 diagnostic upper bound」(L140)와 같은 방침이며, 선택 오류와 내용 손상을 분리하는 진단 수식으로 쓸 수 있다.
+
+==========================================================================
+7.5 유한 용량의 한계 (docs/13:217-221)
+
+(i) 문서 진술과 줄 번호
+- L219: 학습 후 접근 가능한 총상태가 B비트이고 N>B개의 독립 이진 사실을 모든 조합에서 정확히 구별해야 한다면 2^N개 경험 조합을 2^B개 상태로 모두 구분할 수 없다. 다른 이력이 같은 상태로 합쳐진다.
+- L221: 유한 정밀도·유한 총상태·임의 독립 사실의 조건. 외부 저장 증가로 확장 가능하나 정보량 비용은 남는다. schema는 공통 구조를 공유해 필요한 정보를 줄인다. 무작위 예외는 무료로 압축하지 않는다.
+
+(ii) 직접 유도·검증
+- 이력 h ∈ {0,1}^N → 상태 s ∈ S, |S| ≤ 2^B. 모든 h에 대해 모든 N비트를 무오류로 회상하려면 회상 함수가 s로부터 h를 복원해야 하므로 h ↦ s가 단사여야 한다 ⇒ |S| ≥ 2^N ⇒ B ≥ N. N > B이면 불가능(비둘기집). 문서 진술 정확.
+- 확률적 상태·확률적 회상기: 무오류(확률 1)이면 서로 다른 h의 상태 지지집합이 겹치면 안 되므로 같은 결론(|S| ≥ 2^N). 결정적 사상은 필수 조건이 아니다.
+- 근사 회상(평균 비트 오류율 D): 균등 독립 비트 N개에서 log|S| ≥ N R(D) = N(1 − h₂(D)) (Bernoulli(1/2), Hamming 왜곡의 rate-distortion 함수; 표준 converse, 유한 N에서도 성립). 전체 벡터를 확률 1−ε로 맞히려면 Fano: H(W|S) ≤ 1 + εN ⇒ B ≥ H(S) ≥ I(W;S) ≥ (1−ε)N − 1. (수치: B/N = 0.25/0.5/0.75/0.9 → D_min 0.2145/0.1100/0.0417/0.0130; 비트 B개만 정확 저장하고 나머지는 추측하는 단순 방식은 오류율 0.375/0.25/0.125/0.05)
+- 유한 N 전수 점검: (N=4, B=2)에서 최적 부호의 평균 비트 오류 0.1875 (< 단순 방식 0.25, ≥ 극한 하한 0.1100). (N=3,B=2) 0.1667, (N=4,B=3) 0.1250은 단순 방식과 같다. 무오류는 B ≥ N일 때만 가능.
+
+(iii) 빠진 가정·조건
+ 1. 요구되는 것: (a) 2^N 조합이 모두 가능한 독립 사실, (b) |S| ≤ 2^B, (c) 모든 조합에서 무오류 회상. 문서의 「정확히 구별」이 (c)다. 결정적 사상은 요구되지 않는다(위 유도).
+ 2. 근사·확률적 회상(비트 오류율, 확률 1−ε)은 문서 명제의 범위 밖이며 Fano/rate-distortion의 별도 한계가 필요하다. 「다른 이력이 같은 상태로 합쳐진다」는 근사 회상에서는 합쳐진 이력이 해밍 근접이면 평균 오류가 작을 수 있으므로 곧 실패가 아니다.
+ 3. 구조 있는 사실: 필요 비트는 log₂(가능한 이력 수) (문서의 schema 서술과 일치).
+ 4. B의 정의: 접근 가능한 raw 비트 수(파라미터 수 × 정밀도 + fast state + 읽을 수 있는 외부 저장)의 상한. 실제로 함수로 읽어낼 수 있는 유효 용량이 아니다.
+ 5. 시간 축: 유한 상태로 끝없는 스트림(N → ∞)이면 어떤 정책이든 선택적 망각이 필요 → 「무망각」 목표의 상한 문구(docs/11 §8 주석 E13-32). 사용자 2026-11-16 원문 「재앙적 망각 없이」의 해석은 사용자 결정 사항이 아니며 docs/14 §1(비의도적 덮어쓰기로만 비용을 치르지 않기)과 양립한다.
+ 6. 관련 인접 결과: research/2026-11-17-sleep-time-melete-selected-addendum.md의 ST26-10(arXiv 2611.13760)은 확률적 유한 상태의 예측·생성 충분 상태 크기를 오차 기준별로 다룬다(이 감사는 그 논문 본문을 읽지 않았다). 7.5의 무오류 비둘기집과 척도가 다르다.
+
+(iv) 판정: 정확 (무오류·유한 상태·독립 사실 한정). 근사·확률적 회상은 별도 한계가 필요.
+
+(v) docs/13 OPEN 주석 문안: E13-13.
+(vi) 핵심 문서 정리 문안: docs/06 신설 §11 명제 E (E13-25), docs/11 §8 상한 문구 (E13-32).
+
+==========================================================================
+[점검하지 않은 것]
+- docs/13 §10(실험 A–E): W2 담당.
+- GPU·모델·유료 API 사용 없음. 외부 문헌의 본문은 읽지 않았다(SupSup arXiv 초록, Thinking Machines 글 요지만 확인).
+- 수치 점검은 항등식·부등식의 성립·반례 확인이며 모델 효용 근거가 아니다.
+- 비선형 신경망 전체에 대한 간섭 보장은 이 점검의 범위 밖이다(7.2는 국소 1–2차 근사).
+
+==========================================================================
+[부록 A] 수치 점검 코드 (실행: nice -n 10 python3 -I w1_math.py, python 3.14.3 / numpy 2.4.2, 호스트 CPU, 수 초, 종료 코드 0)
+==========================================================================
+"""W1 sanity checks for docs/13 section 7 (tiny numpy computations, seconds on CPU).
+Run: python3 -I /tmp/w1_scripts/w1_math.py
+"""
+import itertools
+import math
+import numpy as np
+
+np.set_printoptions(precision=6, suppress=True, linewidth=120)
+rng = np.random.default_rng(20261117)
+
+
+def hdr(t):
+    print("\n" + "=" * 78)
+    print(t)
+    print("=" * 78)
+
+
+# ---------------------------------------------------------------- 7.1
+hdr("CHECK 7.1  linear associative memory: M' = M + eta e_B k_B^T/||k_B||^2")
+dk, dv = 8, 5
+M = rng.standard_normal((dv, dk))
+kA = rng.standard_normal(dk)
+kB = rng.standard_normal(dk)
+vA = M @ kA                      # A stored exactly  (L_A(M)=0)
+vB = rng.standard_normal(dv)
+eB = vB - M @ kB
+c = (kB @ kA) / (kB @ kB)
+print("c = k_B.k_A/||k_B||^2 =", round(c, 6))
+print("eta | max|M'kA-MkA - eta*eB*c| | ||e_B'||/||e_B|| (expect |1-eta|) | dL_A exact | dL_A formula")
+for eta in [0.3, 1.0, 1.7, 2.0, 2.5]:
+    Mp = M + eta * np.outer(eB, kB) / (kB @ kB)
+    ident = np.max(np.abs((Mp @ kA - M @ kA) - eta * eB * c))
+    ratio = np.linalg.norm(vB - Mp @ kB) / np.linalg.norm(eB)
+    LA0 = 0.5 * np.sum((vA - M @ kA) ** 2)
+    LA1 = 0.5 * np.sum((vA - Mp @ kA) ** 2)
+    pred = 0.5 * eta ** 2 * np.sum(eB ** 2) * (kB @ kA) ** 2 / (kB @ kB) ** 2
+    print(f"{eta:4.1f} | {ident:.2e} | {ratio:.6f} | {LA1-LA0:.6e} | {pred:.6e}")
+
+print("\n-- A NOT exact: residual rA = vA' - M kA != 0")
+vA2 = vA + 0.4 * rng.standard_normal(dv)
+rA = vA2 - M @ kA
+for eta in [0.3, 1.0]:
+    Mp = M + eta * np.outer(eB, kB) / (kB @ kB)
+    LA0 = 0.5 * np.sum(rA ** 2)
+    LA1 = 0.5 * np.sum((vA2 - Mp @ kA) ** 2)
+    pred_inexact = -eta * c * (rA @ eB) + 0.5 * eta ** 2 * c ** 2 * np.sum(eB ** 2)
+    pred_exact_formula = 0.5 * eta ** 2 * np.sum(eB ** 2) * c ** 2
+    print(f"eta={eta}: dL_A exact={LA1-LA0:+.6f}  cross-term formula={pred_inexact:+.6f}  "
+          f"(exact-A formula would give {pred_exact_formula:+.6f})")
+# a case where the same update HELPS A
+rA_help = (kB @ kA > 0) * 1.0 * eB + 0.0  # residual aligned with e_B  => update helps
+vA3 = M @ kA + 0.8 * eB * np.sign(c)
+rA3 = vA3 - M @ kA
+Mp = M + 1.0 * np.outer(eB, kB) / (kB @ kB)
+print("A residual aligned with c*e_B -> dL_A =",
+      round(0.5*np.sum((vA3-Mp@kA)**2)-0.5*np.sum(rA3**2), 6), "(negative = helps)")
+
+print("\n-- norm dependence (not only orthogonality): dL_A = 0.5 eta^2 ||e_B||^2 ||k_A||^2 cos^2/||k_B||^2")
+for sA, sB in [(1, 1), (3, 1), (1, 3)]:
+    kA_ = sA * kA / np.linalg.norm(kA)
+    kB_ = sB * kB / np.linalg.norm(kB)
+    cos2 = ((kA_ @ kB_) / (np.linalg.norm(kA_) * np.linalg.norm(kB_))) ** 2
+    val = 0.5 * np.sum(eB ** 2) * (np.linalg.norm(kA_) ** 2) * cos2 / (np.linalg.norm(kB_) ** 2)
+    val2 = 0.5 * np.sum(eB ** 2) * (kB_ @ kA_) ** 2 / (kB_ @ kB_) ** 2
+    print(f"||kA||={sA}, ||kB||={sB}: {val:.6f} == {val2:.6f}")
+
+print("\n-- orthogonal key but weight decay alpha (M' = (1-alpha) M + step): A output still changes")
+kB_perp = kB - (kB @ kA) / (kA @ kA) * kA     # exactly orthogonal to kA
+eBp = vB - M @ kB_perp
+for alpha in [0.0, 0.01, 0.1]:
+    Mp = (1 - alpha) * M + 1.0 * np.outer(eBp, kB_perp) / (kB_perp @ kB_perp)
+    print(f"alpha={alpha}: ||M'kA - MkA|| = {np.linalg.norm(Mp@kA - M@kA):.6f}  (alpha*||M kA|| = {alpha*np.linalg.norm(M@kA):.6f})")
+
+print("\n-- multi-step: output change adds as VECTORS, loss is NOT the sum of per-step formulas")
+dk2 = 6
+M2 = rng.standard_normal((4, dk2))
+kA2 = rng.standard_normal(dk2); vA2_ = M2 @ kA2
+Mcur = M2.copy(); delta_total = np.zeros(4); per_step = 0.0
+for t in range(4):
+    kt = rng.standard_normal(dk2); vt = rng.standard_normal(4)
+    et = vt - Mcur @ kt
+    step = np.outer(et, kt) / (kt @ kt)
+    d = step @ kA2
+    per_step += 0.5 * np.sum(d ** 2)
+    delta_total += d
+    Mcur = Mcur + step
+LA_total = 0.5 * np.sum((vA2_ - Mcur @ kA2) ** 2)
+print(f"4 sequential B writes: dL_A(total)={LA_total:.6f}  vs  sum of per-step 0.5||delta_t||^2={per_step:.6f}  vs 0.5||sum delta_t||^2={0.5*np.sum(delta_total**2):.6f}")
+
+print("\n-- capacity: random unit keys in d_k dims; sum_a c_a^2 = ||K_A^T khat_B||^2 ~ N/d_k")
+dk3 = 64
+for N in [16, 64, 256]:
+    vals = []
+    for _ in range(300):
+        KA = rng.standard_normal((N, dk3)); KA /= np.linalg.norm(KA, axis=1, keepdims=True)
+        kb = rng.standard_normal(dk3); kb /= np.linalg.norm(kb)
+        vals.append(np.sum((KA @ kb) ** 2))
+    print(f"N={N:4d}, d_k={dk3}: mean sum c_a^2 = {np.mean(vals):.4f}  (N/d_k = {N/dk3:.4f})")
+
+# ---------------------------------------------------------------- 7.2
+hdr("CHECK 7.2  Lagrange-form Taylor identity / non-smooth / minibatch / Adam / multi-step / Gamma")
+print("-- (a) ReLU counter-example to the single-point Lagrange form")
+y = 0.2
+def LA(a):
+    return 0.5 * (max(a, 0.0) - y) ** 2
+a0, step = -0.3, 1.0
+phi = lambda s: LA(a0 + s * step)
+dphi0 = 0.0  # gradient is (relu(a)-y)*1[a>0] = 0 at a0<0
+lhs = phi(1.0) - phi(0.0) - dphi0
+print(f"phi(1)-phi(0)-phi'(0) = {lhs:.6f}")
+vals = set()
+for s in np.linspace(0.001, 0.999, 999):
+    if abs(s - 0.3) < 1e-3:
+        continue
+    h = 1e-4
+    d2 = (phi(s + h) - 2 * phi(s) + phi(s - h)) / h ** 2
+    vals.add(round(0.5 * d2, 3))
+print("values attained by 0.5*phi''(s), s in (0,1) off the kink:", sorted(vals))
+print("=> no single xi on the segment reproduces", round(lhs, 6), "(Lagrange form fails for a kinked loss)")
+# correct piecewise/integral form: int (1-s) phi'' ds + (1-s_k)*jump(phi')
+s_k = 0.3
+jump = (0.0 - y)          # phi' just right of kink: (relu - y) * 1 * step = (s-0.3... at kink relu=0) -> -0.2
+integ = 0.5 * (1 - s_k) ** 2
+print(f"integral form: {integ:.6f} + (1-s_k)*jump = {integ + (1 - s_k) * jump:.6f}")
+
+print("\n-- (a2) smooth case (tanh net): Taylor-Lagrange identity has a solution xi on the segment")
+D = 6
+W1 = rng.standard_normal((D, 3)); w2 = rng.standard_normal(D)
+XA = rng.standard_normal((20, 3)); yA = rng.standard_normal(20)
+def f(theta, X):
+    W1_ = theta[:D*3].reshape(D, 3); w2_ = theta[D*3:]
+    return np.tanh(X @ W1_.T) @ w2_
+def L_A(theta):
+    return 0.5 * np.mean((f(theta, XA) - yA) ** 2)
+theta = np.concatenate([W1.ravel(), w2])
+Delta = 0.5 * rng.standard_normal(theta.size)
+ph = lambda s: L_A(theta + s * Delta)
+h = 1e-4
+dph0 = (ph(h) - ph(-h)) / (2 * h)
+lhs = ph(1.0) - ph(0.0) - dph0
+d2 = lambda s: (ph(s + h) - 2 * ph(s) + ph(s - h)) / h ** 2
+ss = np.linspace(0.0, 1.0, 2001)
+g = np.array([0.5 * d2(min(max(s, h), 1 - h)) for s in ss]) - lhs
+idx = np.where(np.sign(g[:-1]) != np.sign(g[1:]))[0]
+print(f"phi(1)-phi(0)-phi'(0)={lhs:.6f}; sign change of 0.5*phi''(s)-lhs at s* ~ {ss[idx[0]] if len(idx) else None}")
+
+print("\n-- (b) full-batch vs minibatch on a quadratic L_A = 0.5 th^T H th at its optimum")
+P = 4
+Q = rng.standard_normal((P, P)); H = Q @ Q.T / P
+gbar = rng.standard_normal(P)
+Sig = np.diag(rng.uniform(0.5, 2.0, P))
+eta = 0.2
+for b in [1, 8, 64]:
+    n = 200000
+    noise = rng.multivariate_normal(np.zeros(P), Sig / b, size=n)
+    gB = gbar + noise
+    dL = 0.5 * eta ** 2 * np.einsum('ni,ij,nj->n', gB, H, gB)
+    pred = 0.5 * eta ** 2 * (gbar @ H @ gbar + np.trace(H @ Sig) / b)
+    print(f"batch b={b:3d}: E[dL_A] MC={dL.mean():.5f}  formula (g^T H g + tr(H Sigma)/b)*eta^2/2 = {pred:.5f}  "
+          f"full-batch-only term = {0.5*eta**2*(gbar@H@gbar):.5f}")
+
+print("\n-- (c) Adam-like first step: direction is sign(g_B), not g_B (first-order sign can flip)")
+gA = np.array([-1.0, -2.0]); gBv = np.array([10.0, -1.0])
+print("SGD  first-order dL_A = -eta*gA.gB      =", -(gA @ gBv), "(per eta)")
+print("Adam first-order dL_A = -eta*gA.sign(gB) =", -(gA @ np.sign(gBv)), "(per eta)")
+
+print("\n-- (d) multi-step: g_A=0 at start (A at optimum) but g_A(theta_k) != 0 afterwards")
+Hq = H
+th = np.zeros(P)
+gb = gbar / np.linalg.norm(gbar)
+for K in [1, 2, 4, 8]:
+    thK = -eta * K * gb
+    LAK = 0.5 * thK @ Hq @ thK
+    print(f"K={K}: L_A increase = {LAK:.5f} (= 0.5 eta^2 K^2 g^T H g = {0.5*eta**2*K**2*gb@Hq@gb:.5f}); "
+          f"g_A(theta_K).g_B = {(Hq@thK)@gb:+.5f}")
+
+print("\n-- (e) Gamma_ij = E||J_i U_j||_F^2 is an output sensitivity, not a loss bound")
+m, Pp, r = 3, 10, 2
+J = rng.standard_normal((m, Pp))
+U, _ = np.linalg.qr(rng.standard_normal((Pp, r)))
+Gam = np.linalg.norm(J @ U, 'fro') ** 2
+zs = rng.standard_normal((100000, r)); zs /= np.linalg.norm(zs, axis=1, keepdims=True)
+out2 = np.sum((zs @ (J @ U).T) ** 2, axis=1)
+print(f"Gamma = {Gam:.4f};  max_z ||J U z||^2 (||z||=1) = {out2.max():.4f} <= Gamma ;  E_z over isotropic z = {out2.mean():.4f} ~ Gamma/r = {Gam/r:.4f}")
+res = rng.standard_normal(m) * 2.0   # non-zero residual r_i = f - y
+ratios = []
+for z in zs[:5]:
+    df = J @ U @ z
+    dL = res @ df + 0.5 * df @ df          # exact for linear model, squared loss, residual r = f-y
+    bound = np.linalg.norm(res) * math.sqrt(Gam) + 0.5 * Gam
+    ratios.append((dL, bound))
+print("linear model, squared loss, ||z||=1: dL (first-order residual term + 0.5||df||^2) vs sqrt(Gamma)||r||+Gamma/2:",
+      [(round(a, 3), round(b, 3)) for a, b in ratios])
+zero_res_dL = [0.5 * np.sum((J @ U @ z) ** 2) for z in zs[:3]]
+print("zero residual: dL = 0.5||J U z||^2 <= Gamma/2 =", round(Gam / 2, 4), "; observed", [round(v, 4) for v in zero_res_dL])
+
+# ---------------------------------------------------------------- 7.3
+hdr("CHECK 7.3  exact preservation, softmax routers, floating point")
+print("-- softmax router: adding a new schema logit z* renormalises ALL old gates")
+z = np.array([1.0, 0.2, -0.5])
+g_old = np.exp(z) / np.exp(z).sum()
+for zs_ in [-5.0, 0.0, 2.0]:
+    z2 = np.append(z, zs_)
+    g_new = np.exp(z2) / np.exp(z2).sum()
+    print(f"z*={zs_:+.1f}: old gates {g_old} -> {g_new[:3]}  ratio g'/g = {g_new[:3]/g_old} == 1-g*' = {1-g_new[3]:.6f}; "
+          f"relative ratios among old gates unchanged: {np.allclose(g_new[0]/g_new[1], g_old[0]/g_old[1])}")
+print("-- zero-initialised additive branch (F0 + g*B*sigma(A h), B=0): output identical, no normaliser")
+h_ = rng.standard_normal(5); F0 = rng.standard_normal((5, 5))
+A_ = rng.standard_normal((4, 5)); B_ = np.zeros((5, 4)); gj = 0.7
+out0 = F0 @ h_
+out1 = F0 @ h_ + gj * B_ @ np.maximum(A_ @ h_, 0)
+print("max |after-before| =", np.max(np.abs(out1 - out0)), "(exactly 0)")
+
+print("\n-- float32 non-associativity and batch (in)variance on this CPU")
+x32 = rng.standard_normal(100000).astype(np.float32)
+s_fwd = np.float32(0); s_rev = np.float32(0)
+for v in x32[:20000]:
+    s_fwd += v
+for v in x32[:20000][::-1]:
+    s_rev += v
+print("sequential float32 sum fwd vs reverse order (20000 terms):", float(s_fwd), float(s_rev), "diff", float(s_fwd - s_rev))
+Wm = rng.standard_normal((512, 512)).astype(np.float32)
+Xb = rng.standard_normal((256, 512)).astype(np.float32)
+row_alone = (Xb[5:6] @ Wm)[0]
+row_in_batch = (Xb @ Wm)[5]
+row_in_small = (Xb[:7] @ Wm)[5]
+print("same row, batch=1 vs 256:  max abs diff =", float(np.max(np.abs(row_alone - row_in_batch))),
+      "| batch=1 vs 7: ", float(np.max(np.abs(row_alone - row_in_small))))
+print("(a zero diff here only says THIS BLAS/CPU path happened to be batch-invariant; GPU kernels select by shape)")
+
+# ---------------------------------------------------------------- 7.4
+hdr("CHECK 7.4  R_system <= R_correct + delta, soft mixtures")
+print("-- hard routing, loss in [0,1]: bound holds; tight when loss(correct)=0, loss(wrong)=1")
+n = 400000
+loss_correct = rng.beta(0.5, 4.0, n)
+loss_wrong = rng.beta(2.0, 1.0, n)
+for delta in [0.02, 0.1, 0.3]:
+    wrong = rng.random(n) < delta
+    Rsys = np.where(wrong, loss_wrong, loss_correct).mean()
+    Rc = loss_correct.mean()
+    print(f"delta={delta}: R_system={Rsys:.4f} <= R_correct+delta={Rc+delta:.4f}")
+print("tight case: R_correct=0, wrong loss=1  ->  R_system = delta exactly (delta=0.1:", 0.1, ")")
+
+print("\n-- soft mixture, 0-1 loss with argmax readout: the bound R_soft <= R_c + E[1-q_c] FAILS")
+pc = np.array([0.34, 0.33, 0.33])       # correct component: argmax=class 0 (true label 0) -> 0-1 loss 0
+pw = np.array([0.0, 1.0, 0.0])          # wrong component confident on class 1
+for qc in [0.6, 0.9, 0.99, 0.995]:
+    mix = qc * pc + (1 - qc) * pw
+    print(f"q_c={qc}: mixture={mix}, argmax={mix.argmax()} (true=0) -> 0-1 loss {0 if mix.argmax()==0 else 1}; bound R_c + (1-q_c) = {1-qc:.3f}")
+
+print("\n-- soft mixture, convex bounded loss (Brier): R_soft <= R_c + E[1-q_c] holds (Jensen)")
+K, C = 4, 5
+viol = 0
+for _ in range(20000):
+    q = rng.dirichlet(np.ones(K)); cidx = rng.integers(K)
+    P_ = rng.dirichlet(np.ones(C), size=K); yv = rng.integers(C)
+    onehot = np.eye(C)[yv]
+    brier = lambda p: 0.5 * np.sum((p - onehot) ** 2)   # in [0,1]
+    mix = q @ P_
+    lhs = brier(mix)
+    rhs = brier(P_[cidx]) + (1 - q[cidx])
+    viol += lhs > rhs + 1e-12
+print("violations over 20000 random draws:", viol)
+
+print("\n-- soft mixture, log-loss: R_soft <= R_c + E[-log q_c]  (unbounded loss; no [0,1] needed)")
+viol = 0
+for _ in range(20000):
+    q = rng.dirichlet(np.ones(K)); cidx = rng.integers(K)
+    P_ = rng.dirichlet(np.ones(C), size=K); yv = rng.integers(C)
+    lhs = -np.log(q @ P_[:, yv])
+    rhs = -np.log(P_[cidx, yv]) - np.log(q[cidx])
+    viol += lhs > rhs + 1e-12
+print("violations over 20000 random draws:", viol)
+
+# ---------------------------------------------------------------- 7.5
+hdr("CHECK 7.5  pigeonhole vs approximate recall (rate-distortion)")
+def h2(p):
+    return 0.0 if p in (0.0, 1.0) else -p*math.log2(p) - (1-p)*math.log2(1-p)
+def h2inv(v):
+    lo, hi = 0.0, 0.5
+    for _ in range(80):
+        mid = (lo + hi) / 2
+        if h2(mid) < v: lo = mid
+        else: hi = mid
+    return (lo + hi) / 2
+print("N independent uniform bits, B-bit state; zero-error recall needs B>=N (pigeonhole).")
+print("Allowing per-bit error rate D: Shannon bound  B >= N(1-h2(D))  =>  D_min(B/N) = h2^{-1}(1-B/N)  (asymptotic, iid uniform bits)")
+for ratio in [0.25, 0.5, 0.75, 0.9]:
+    print(f"B/N={ratio}: D_min = {h2inv(1-ratio):.4f}  per-bit accuracy <= {1-h2inv(1-ratio):.4f};  naive 'store B bits exactly, guess rest' accuracy = {(ratio + (1-ratio)/2):.4f}")
+print("Fano (exact whole-vector recall with prob >= 1-eps): B >= (1-eps)N - 1")
+print("\nBrute force, finite N: best deterministic encoder/decoder with 2^B states, average Hamming error")
+for N, B in [(3, 2), (4, 2), (4, 3)]:
+    words = np.array(list(itertools.product([0, 1], repeat=N)))
+    best = None
+    for centers in itertools.combinations(range(len(words)), 2 ** B):
+        cw = words[list(centers)]
+        d = (words[:, None, :] != cw[None, :, :]).sum(axis=2).min(axis=1)
+        avg = d.mean() / N
+        if best is None or avg < best[0]:
+            best = (avg, centers)
+    print(f"N={N}, B={B}: min avg per-bit error over all codes = {best[0]:.4f} (store-B-bits-exactly baseline = {(N-B)/(2*N):.4f}); zero-error possible only if B>=N: {B>=N}")
+print("\nDone.")
+
+==========================================================================
+[부록 B] 실행 출력 (그대로)
+==========================================================================
+
+==============================================================================
+CHECK 7.1  linear associative memory: M' = M + eta e_B k_B^T/||k_B||^2
+==============================================================================
+c = k_B.k_A/||k_B||^2 = 0.573979
+eta | max|M'kA-MkA - eta*eB*c| | ||e_B'||/||e_B|| (expect |1-eta|) | dL_A exact | dL_A formula
+ 0.3 | 7.77e-16 | 0.700000 | 6.588783e-01 | 6.588783e-01
+ 1.0 | 8.88e-16 | 0.000000 | 7.320870e+00 | 7.320870e+00
+ 1.7 | 1.78e-15 | 0.700000 | 2.115731e+01 | 2.115731e+01
+ 2.0 | 8.88e-16 | 1.000000 | 2.928348e+01 | 2.928348e+01
+ 2.5 | 1.33e-15 | 1.500000 | 4.575544e+01 | 4.575544e+01
+
+-- A NOT exact: residual rA = vA' - M kA != 0
+eta=0.3: dL_A exact=+0.868606  cross-term formula=+0.868606  (exact-A formula would give +0.658878)
+eta=1.0: dL_A exact=+8.019964  cross-term formula=+8.019964  (exact-A formula would give +7.320870)
+A residual aligned with c*e_B -> dL_A = -13.086475 (negative = helps)
+
+-- norm dependence (not only orthogonality): dL_A = 0.5 eta^2 ||e_B||^2 ||k_A||^2 cos^2/||k_B||^2
+||kA||=1, ||kB||=1: 3.711968 == 3.711968
+||kA||=3, ||kB||=1: 33.407711 == 33.407711
+||kA||=1, ||kB||=3: 0.412441 == 0.412441
+
+-- orthogonal key but weight decay alpha (M' = (1-alpha) M + step): A output still changes
+alpha=0.0: ||M'kA - MkA|| = 0.000000  (alpha*||M kA|| = 0.000000)
+alpha=0.01: ||M'kA - MkA|| = 0.064818  (alpha*||M kA|| = 0.064818)
+alpha=0.1: ||M'kA - MkA|| = 0.648176  (alpha*||M kA|| = 0.648176)
+
+-- multi-step: output change adds as VECTORS, loss is NOT the sum of per-step formulas
+4 sequential B writes: dL_A(total)=22.905288  vs  sum of per-step 0.5||delta_t||^2=26.959076  vs 0.5||sum delta_t||^2=22.905288
+
+-- capacity: random unit keys in d_k dims; sum_a c_a^2 = ||K_A^T khat_B||^2 ~ N/d_k
+N=  16, d_k=64: mean sum c_a^2 = 0.2455  (N/d_k = 0.2500)
+N=  64, d_k=64: mean sum c_a^2 = 0.9962  (N/d_k = 1.0000)
+N= 256, d_k=64: mean sum c_a^2 = 4.0115  (N/d_k = 4.0000)
+
+==============================================================================
+CHECK 7.2  Lagrange-form Taylor identity / non-smooth / minibatch / Adam / multi-step / Gamma
+==============================================================================
+-- (a) ReLU counter-example to the single-point Lagrange form
+phi(1)-phi(0)-phi'(0) = 0.105000
+values attained by 0.5*phi''(s), s in (0,1) off the kink: [0.0, np.float64(0.5)]
+=> no single xi on the segment reproduces 0.105 (Lagrange form fails for a kinked loss)
+integral form: 0.245000 + (1-s_k)*jump = 0.105000
+
+-- (a2) smooth case (tanh net): Taylor-Lagrange identity has a solution xi on the segment
+phi(1)-phi(0)-phi'(0)=1.384557; sign change of 0.5*phi''(s)-lhs at s* ~ 0.396
+
+-- (b) full-batch vs minibatch on a quadratic L_A = 0.5 th^T H th at its optimum
+batch b=  1: E[dL_A] MC=0.34901  formula (g^T H g + tr(H Sigma)/b)*eta^2/2 = 0.34785  full-batch-only term = 0.22435
+batch b=  8: E[dL_A] MC=0.24003  formula (g^T H g + tr(H Sigma)/b)*eta^2/2 = 0.23979  full-batch-only term = 0.22435
+batch b= 64: E[dL_A] MC=0.22641  formula (g^T H g + tr(H Sigma)/b)*eta^2/2 = 0.22628  full-batch-only term = 0.22435
+
+-- (c) Adam-like first step: direction is sign(g_B), not g_B (first-order sign can flip)
+SGD  first-order dL_A = -eta*gA.gB      = 8.0 (per eta)
+Adam first-order dL_A = -eta*gA.sign(gB) = -1.0 (per eta)
+
+-- (d) multi-step: g_A=0 at start (A at optimum) but g_A(theta_k) != 0 afterwards
+K=1: L_A increase = 0.02393 (= 0.5 eta^2 K^2 g^T H g = 0.02393); g_A(theta_K).g_B = -0.23925
+K=2: L_A increase = 0.09570 (= 0.5 eta^2 K^2 g^T H g = 0.09570); g_A(theta_K).g_B = -0.47850
+K=4: L_A increase = 0.38280 (= 0.5 eta^2 K^2 g^T H g = 0.38280); g_A(theta_K).g_B = -0.95700
+K=8: L_A increase = 1.53120 (= 0.5 eta^2 K^2 g^T H g = 1.53120); g_A(theta_K).g_B = -1.91400
+
+-- (e) Gamma_ij = E||J_i U_j||_F^2 is an output sensitivity, not a loss bound
+Gamma = 4.1523;  max_z ||J U z||^2 (||z||=1) = 3.1859 <= Gamma ;  E_z over isotropic z = 2.0786 ~ Gamma/r = 2.0761
+linear model, squared loss, ||z||=1: dL (first-order residual term + 0.5||df||^2) vs sqrt(Gamma)||r||+Gamma/2: [(np.float64(-0.933), np.float64(7.484)), (np.float64(4.351), np.float64(7.484)), (np.float64(-1.508), np.float64(7.484)), (np.float64(-1.765), np.float64(7.484)), (np.float64(-1.845), np.float64(7.484))]
+zero residual: dL = 0.5||J U z||^2 <= Gamma/2 = 2.0761 ; observed [np.float64(0.9311), np.float64(1.4097), np.float64(0.9343)]
+
+==============================================================================
+CHECK 7.3  exact preservation, softmax routers, floating point
+==============================================================================
+-- softmax router: adding a new schema logit z* renormalises ALL old gates
+z*=-5.0: old gates [0.597922 0.268664 0.133414] -> [0.597037 0.268266 0.133217]  ratio g'/g = [0.99852 0.99852 0.99852] == 1-g*' = 0.998520; relative ratios among old gates unchanged: True
+z*=+0.0: old gates [0.597922 0.268664 0.133414] -> [0.490115 0.220223 0.109359]  ratio g'/g = [0.819697 0.819697 0.819697] == 1-g*' = 0.819697; relative ratios among old gates unchanged: True
+z*=+2.0: old gates [0.597922 0.268664 0.133414] -> [0.227752 0.102336 0.050818]  ratio g'/g = [0.380906 0.380906 0.380906] == 1-g*' = 0.380906; relative ratios among old gates unchanged: True
+-- zero-initialised additive branch (F0 + g*B*sigma(A h), B=0): output identical, no normaliser
+max |after-before| = 0.0 (exactly 0)
+
+-- float32 non-associativity and batch (in)variance on this CPU
+sequential float32 sum fwd vs reverse order (20000 terms): 110.32628631591797 110.32657623291016 diff -0.0002899169921875
+same row, batch=1 vs 256:  max abs diff = 2.574920654296875e-05 | batch=1 vs 7:  2.574920654296875e-05
+(a zero diff here only says THIS BLAS/CPU path happened to be batch-invariant; GPU kernels select by shape)
+
+==============================================================================
+CHECK 7.4  R_system <= R_correct + delta, soft mixtures
+==============================================================================
+-- hard routing, loss in [0,1]: bound holds; tight when loss(correct)=0, loss(wrong)=1
+delta=0.02: R_system=0.1218 <= R_correct+delta=0.1309
+delta=0.1: R_system=0.1667 <= R_correct+delta=0.2109
+delta=0.3: R_system=0.2779 <= R_correct+delta=0.4109
+tight case: R_correct=0, wrong loss=1  ->  R_system = delta exactly (delta=0.1: 0.1 )
+
+-- soft mixture, 0-1 loss with argmax readout: the bound R_soft <= R_c + E[1-q_c] FAILS
+q_c=0.6: mixture=[0.204 0.598 0.198], argmax=1 (true=0) -> 0-1 loss 1; bound R_c + (1-q_c) = 0.400
+q_c=0.9: mixture=[0.306 0.397 0.297], argmax=1 (true=0) -> 0-1 loss 1; bound R_c + (1-q_c) = 0.100
+q_c=0.99: mixture=[0.3366 0.3367 0.3267], argmax=1 (true=0) -> 0-1 loss 1; bound R_c + (1-q_c) = 0.010
+q_c=0.995: mixture=[0.3383  0.33335 0.32835], argmax=0 (true=0) -> 0-1 loss 0; bound R_c + (1-q_c) = 0.005
+
+-- soft mixture, convex bounded loss (Brier): R_soft <= R_c + E[1-q_c] holds (Jensen)
+violations over 20000 random draws: 0
+
+-- soft mixture, log-loss: R_soft <= R_c + E[-log q_c]  (unbounded loss; no [0,1] needed)
+violations over 20000 random draws: 0
+
+==============================================================================
+CHECK 7.5  pigeonhole vs approximate recall (rate-distortion)
+==============================================================================
+N independent uniform bits, B-bit state; zero-error recall needs B>=N (pigeonhole).
+Allowing per-bit error rate D: Shannon bound  B >= N(1-h2(D))  =>  D_min(B/N) = h2^{-1}(1-B/N)  (asymptotic, iid uniform bits)
+B/N=0.25: D_min = 0.2145  per-bit accuracy <= 0.7855;  naive 'store B bits exactly, guess rest' accuracy = 0.6250
+B/N=0.5: D_min = 0.1100  per-bit accuracy <= 0.8900;  naive 'store B bits exactly, guess rest' accuracy = 0.7500
+B/N=0.75: D_min = 0.0417  per-bit accuracy <= 0.9583;  naive 'store B bits exactly, guess rest' accuracy = 0.8750
+B/N=0.9: D_min = 0.0130  per-bit accuracy <= 0.9870;  naive 'store B bits exactly, guess rest' accuracy = 0.9500
+Fano (exact whole-vector recall with prob >= 1-eps): B >= (1-eps)N - 1
+
+Brute force, finite N: best deterministic encoder/decoder with 2^B states, average Hamming error
+N=3, B=2: min avg per-bit error over all codes = 0.1667 (store-B-bits-exactly baseline = 0.1667); zero-error possible only if B>=N: False
+N=4, B=2: min avg per-bit error over all codes = 0.1875 (store-B-bits-exactly baseline = 0.2500); zero-error possible only if B>=N: False
+N=4, B=3: min avg per-bit error over all codes = 0.1250 (store-B-bits-exactly baseline = 0.1250); zero-error possible only if B>=N: False
+
+Done.

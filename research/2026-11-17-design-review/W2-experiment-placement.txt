@@ -1,0 +1,64 @@
+W2 - 실험 배치 (docs/13 §10 A-E, docs/14 §8) 설명
+=====================================================
+짝 파일: W2-experiment-placement.tsv (열 11개: 실험 | 묻는 질문 | F-family | 처음 들어가는 phase·해상도 | 이후 해상도 상승 | 필요한 arm·대조 | 결과 등급 상한 | 계산 규모 메모 | 근거 줄 | 충돌·주의 | 병합·중복)
+기준 @280dc9a. 모든 배치는 PROPOSAL/NOT RUN 이다. 계산 수치는 ESTIMATE 이고 seed 수 S 는 D-05(미정)라 기호로 둔다.
+
+0. 배치 원칙 (사용자 영구 규칙 '점진적 해상도'를 따른다)
+- 실험 전용·조사 전용 phase 를 만들지 않는다. 새 UJ 도 만들지 않는다. 각 실험은 기존 UJ 안의 판독(readout)이자 arm·조작축 추가다: A·E -> UJ2, CU -> UJ1·UJ3, D -> UJ4, R -> UJ3(+UJ5), C -> UJ1·UJ2.
+- 앞 phase 에는 가장 얇은 형태(계측·측정·Contract 테스트 1개)를 넣고, 새 arm 은 그 arm 이 의미를 갖는 phase 에서 처음 넣는다.
+- 앞 phase 의 시나리오는 회귀 gate 로 계속 돈다. 새 arm 은 앞 phase 의 종료 gate 항목을 바꾸지 않는다.
+- spike(예: Create 트리거 비교)는 해당 phase 의 앞쪽 작업이다.
+- 등급 상한은 docs/09 §3 을 넘지 않는다: P1 2, P2-P4 3, P5 4(운용 5).
+
+1. F-family 전체 목록 확인 (요청 사항)
+- docs/08 §2 표(L38-L49): F01 구조 전이, F02 표면 함정, F03 rapid binding, F04 새로운 구조, F05 예외·정정, F06 ABA 선택, F07 오염·반복, F08 지연 피드백, F09 불확실성, F10 consolidation, F11 계산 효율, F12 외부화 = F01-F12.
+- docs/08 §2-1(L83-L87): F13 관계 통합 추론, F14 다층 추상 전이, F15 사고 중 재선택, F16 통찰의 전이, F17 이력 분기. §2-2(L97-L100): F18 성급한 일반화와 해소, F19 가까운 새로움·먼 새로움, F20 반복 조회 자기증폭, F21 생성 단독 반복·선호 변화. 번호는 잠정(L93)이고 "승인된 gate 가 아니다"(L89).
+- H-SAMPLE(관측 수 감소; docs/01 §4)은 F01·F03 과 G-SAMPLE 로, H-COMPUTE(같은 정확도의 총 계산 감소)는 F11·docs/08 §3·§6 비용식·G-COMPUTE 로 판독한다. 이 배치표에서 CU·C 는 H-SAMPLE 쪽(G-SAMPLE+G-PROTECT 쌍), E(= System ONE)는 H-COMPUTE 쪽이다. 한쪽의 PASS 는 다른 쪽의 근거가 아니다(docs/08:13).
+- 즉 F11 은 있다. 전체는 F01-F21 이다. 그러나 docs/09 는 F01-F12 만 phase 에 배치한다(L46, L180). F13-F21 은 배치가 없다.
+- 이 실험들이 쓰는 후보 family: F13(D 의 새 schema 조합, B 의 조합 전이), F18·F19(Create 트리거), F20(R 의 자기증폭; 기존 docs/09:337 의 J2 행이 이미 'P3 자기증폭 진단'으로 둠).
+- 신규 제안: F22 보존 예산과 기능적 망각(D 실험), F23 Read 선택과 오선택(R 실험). 번호는 잠정이고 docs/08 §2-2 뒤에 둔다(E14-04). 다른 워커가 F22 이상을 제안했다면 W6 가 재번호한다.
+
+2. 한눈에 보는 배치표 (상세는 TSV)
+
+| 실험 | P1 (등급 2) | P2 (3) | P3 (3) | P4 (3) | P5 (4) |
+|---|---|---|---|---|---|
+| X13-A 간섭 분리 | 측정만: `fcl diff`·재평가·ABA·원능력 | 8셀 요인(쓰기 범위 x lure x 표면 거리), `ftall`·`adapters` | 학습 gate 대 oracle 대 random partition | - | 자연어·모델 2종 |
+| X13-B post-training | - | dev 사이드: Base/Instruct 2종(결정 필요) | - | - | 두 번째 base 의 Base/Instruct 쌍, 자체 SFT(결정 필요) |
+| X13-C 용량 | `full` 대 `flat` + bytes 기록 + 학습 정지 쌍보고 | `adapters`(oracle ID) 용량 일치, 용량 격자 3점 | 추론 ID: create 대 no-create 대 adapters | B_total·cold-load 포함 | 모델 2종 |
+| X13-D artifact | + resume 후 update 동등 Contract 1개 | rollback·다 session | offload/reload·lineage·migration 거부·F12 | | encoder/revision migration |
+| X13-E = System ONE | 경로 분포·계산량 측정만 | depth 격자 x S0/SE, (r,u) | controller 대 고정 depth 등 | SE 대 SES | 운영 지연 |
+| D14-CU | Update(2x2·정정·ABA) | 3 family·F07 최소 | Create(nocreate 등), 트리거 비교 | Sleep 뒤 분화 안정성 | - |
+| D14-D | 망각 측정 지표 | 용량 제한 망각 곡선·savings | - | offload-only 대 eviction 2-3종 | 압축·통합·폐기, D^ 타당성 |
+| D14-R | `ctx` 대 `full`, wrong-schema swap | oracle/random/key 선택(eval-only) | 학습 head 대 oracle·random, F20 | stale index | rag·evidence-read |
+| D14-Joint | = X13-C | = X13-C | | Sleep·index 포함 total | 운영 지표 |
+| D14-ReadEvidence | swap·원능력 | - | - | - | rag 변형 |
+
+3. P1 에 더하는 것 (모두 최소; 범위 절삭 순서에 영향 없음)
+(1) P1-T03 단위표에 active·total bytes 열을 기록만 추가(제약 없음). 근거: docs/14:21 의 활성/전체 저장 이원 조건, docs/13 §10 C.
+(2) P1-T10 에 'resume 후 같은 update 를 적용한 state 가 끊김 없는 실행과 같다' Contract 테스트 1개. 근거: docs/13 §10 D 의 "후속 학습 궤적의 복원", docs/07:86.
+(3) P1 보고서에 새 학습(G-SAMPLE)과 보존(G-PROTECT)을 항상 쌍으로 적는 서식. 근거: docs/13 §10 C 의 "Update 를 멈춰 망각만 줄인 모델을 성공으로 보지 않는다".
+P1 의 arm 7개(full + fixed·flat·always·noctl·ctx·base)와 종료 gate(1)-(5)는 바꾸지 않는다.
+
+4. 기존 phase 계획과 충돌·주의로 표시한 것
+- arm 공백: 공유 파라미터를 갱신하는 naive 순차 갱신 arm 이 로드맵에 없다(P1 arm 은 모두 base 고정). 간섭이 실제로 있다는 기준선이 없으면 X13-A·C 와 D14-CU 가 보존 이득을 보일 수 없다. 제안 `ftall`(P2). 또 성장 허용 대조(task 별 adapter·모델 복제)가 없다. 제안 `adapters`(P2, oracle ID 로 시작).
+- X13-B: docs/09 P5 '미루는 것'(pretraining·alignment 분화 가설)과 P1·P2 상한 이유 '소형 모델 1종'과 충돌한다. Base/Instruct 2종 사이드 판독을 넣으려면 상한 문구를 '모델 1계열'로 바꾸는 사용자 결정이 필요하다(D-12 연계).
+- D14-D: B01·감사 §5 #17(eviction·forgetting 의 phase 미결정)이 해결되지 않았다. P4 는 이미 Sleep·외부화·SE 대 SES 를 담고 있어 정책 비교 전부를 넣으면 과적재다. P4 에는 offload-only 대 eviction 2-3종, 압축·폐기는 P5 로 둔다.
+- D14-CU: Create 의 가장 얇은 형태가 P3 이다. docs/09 §4 의 '정정·accommodation' 행(P1 은 부작용 측정만, 메커니즘은 P3)과 같은 방식이라 기존 계획과 충돌하지 않는다.
+- budget meter: P1 의 단위표에 저장 항목이 없다(위 3-(1)).
+- F13-F21 미배치(위 1).
+- 다른 문서와의 겹침: 11-16 Sleep-time 교차 검토 §3.1-§3.4 의 실험 4개는 X13-A·C(§3.1·3.3), D14-R(§3.2), D14-D(§3.4)와 겹친다. 같은 arm 으로 합쳐 중복 계산하지 않는다(W3 담당).
+
+5. 계산 규모 메모의 표기 규칙 (계산 계획 담당 참조)
+- 기호: F_n 구조 family 수(P1 1, P2 3), S seed 수(D-05 미정; 계획용 가정 pilot 3-5, sealed 5 이상 - 사전 명세 아님, ESTIMATE), K 관측 격자 {0,1,3,10} = 4점, D depth 격자 {1,2,4} = 3점.
+- P1 기준선(docs/09): arm 7개. outer-loop 학습이 필요한 arm 4개(full, flat, always, noctl), 학습 없는 arm 3개(fixed, ctx, base). base 후보 SmolLM2-135M(134,515,008 parameters, D-01 추천).
+- 단위 run 비용은 P1-T04 실측 전 미상이다(docs/09:350). 아래 수는 run 개수이지 시간·비용이 아니다.
+- P2 신규 학습 run 합계(S=5, ESTIMATE): X13-A adapters 15 + X13-C 용량 격자 90 + X13-E depth 격자 135(1-loop 환산 315) + X13-B 사이드 20(결정 시) = 260 run(환산 440). 평가 episode 는 X13-A 만 상한 1,920, D14-R 180 등 수천 규모이며 대부분 소형 모델 추론이다.
+- P3(S=5): D14-CU 60 + learned controller 45-60 + R 학습 head 15 = 약 120-135 run.
+- P4(S=5): Sleep arm 45(D14-D 의 통합 변형과 겹침) + eviction 평가 약 225 episode.
+- P5: 두 번째 모델(D-12)·자연어 도메인에서 핵심 arm 을 복제하는 규모이며 모델 크기에 의존해 미산정.
+- 가장 무거운 축은 X13-E 의 depth 격자다(학습 비용이 depth 에 비례). 계산 계획은 이 행을 기준으로 삼고 X13-A·C·R 의 eval-only 부분은 CPU 에서 직렬 처리 가능하다는 점을 활용할 수 있다.
+
+6. 이 배치가 바꾸는 것 / 바꾸지 않는 것
+- 바꾸지 않는 것: docs/09 의 데모 시나리오 UJ1-UJ5, 종료 gate, '미루는 것', 등급 상한, P1 의 arm 7개·작업 단위 T01-T16.
+- 더하는 것: P1 에 계측 1열·Contract 테스트 1개·보고 서식 1개, P2 에 arm 2종(`ftall`, `adapters`)과 eval-only 선택 arm, P3 에 Create arm 4종, P4 에 eviction 2-3종, P5 에 압축·폐기와 근거 확인 Read.
+- 편집: E14-08(docs/09 §6-1 배치 표와 F13-F21 주), E14-06(§4-1 CRUD 대응), E14-04(docs/08 F22·F23), E14-16·E14-25(docs/13·docs/14 의 가리킴 주).

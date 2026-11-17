@@ -1,0 +1,78 @@
+phase	item	model	basis	tier_modal	runs_p50	tok_M_p50	pflop_p10	pflop_p50	pflop_p90	mem_gb_p50	mem_gb_p90	hours_p10	hours_p50	hours_p90	hours_modal	usd_p10	usd_p50	usd_p90	usd_modal	note
+P1	T04 spike(microbenchmark. 클라우드 1–2종은 비용 승인 뒤)	SmolLM2-135M	bench	main	2	0.000	0.000	0.000	0.000	5.2	6.2	2.54	3.70	5.61	3.56	5.18	7.55	11.32	7.23	host·노트북 실측이 먼저. 클라우드 실측은 사용자 승인 시에만
+P1	T09 retrofit 학습(arm x seed)	SmolLM2-135M	train-flop	main	20	38.851	83.898	386.709	1751.580	8.5	10.6	1.01	3.38	15.09	2.99	1.24	4.15	18.57	3.67	full·flat·always(+noctl) 학습, fixed·ctx·base 비학습. 단위: run
+P1	T09 deep(r=2) 적응 학습(full x seed)	SmolLM2-135M	train-flop	main	5	6.242	3.647	18.213	85.522	8.5	10.6	0.30	0.57	1.08	0.46	0.37	0.70	1.33	0.56	r=2는 retrofit 블록 1회 추가 적용
+P1	T09 retrofit 학습 노트북 12GB 대안(시간만, 비용 0)	SmolLM2-135M	train-flop	laptop	20	38.851	83.898	386.709	1751.580	8.5	10.6	1.66	7.65	36.75	6.84	0.00	0.00	0.00	0.00	노트북 사양은 AI TOPS에서 유도한 가정. mem>11GB이면 batch 축소 필요. 연결 끊김·재개 비용 별도
+P1	T07·T12 dev eval(7 arm. 지연 지배)	SmolLM2-135M	eval-latency	main	17748	0.000	0.292	0.835	2.250	1.8	1.8	0.38	0.71	1.43	0.61	0.47	0.87	1.76	0.75	runs=요청 수. 시간은 batch=1 session 지연 기준
+P1	T15 sealed readout(7 arm x seed x world x k)	SmolLM2-135M	eval-latency	main	64918	0.000	0.913	3.083	11.157	1.8	1.8	0.61	1.51	5.36	1.19	0.75	1.86	6.59	1.46	병렬 평가 process 수가 지배. runs=요청 수
+P1	T16 UJ1 E2E·회귀 gate(host CPU, 사용자 재현)	SmolLM2-135M	host-cpu	host	21	0.000	0.000	0.000	0.000	2.3	2.3	0.00	0.00	0.00	0.00	0.00	0.00	0.00	0.00	arm 7 x world 3 여정. host CPU 직렬, 클라우드 0
+P2	묶음 A spike(recurrence retrofit 가능성)	SmolLM2-135M	bench	main	3	0.000	0.000	0.000	0.000	8.7	10.8	2.42	4.36	8.51	4.35	2.98	5.36	10.47	5.35	실패 시 depth 축을 P3로 이월(docs/09)
+P2	묶음 D depth 격자 학습(arm x seed. family 3종 혼합)	SmolLM2-135M	train-flop	main	25	204.460	871.845	4007.520	17626.318	10.5	13.2	6.95	32.54	160.77	28.43	8.55	40.02	197.75	34.97	recurrence 평균 r̄·core 비율로 FLOPs 증가. 메모리 44GB 초과 시 large tier
+P2	묶음 D 노트북 12GB 대안(시간만, 비용 0)	SmolLM2-135M	train-flop	laptop	25	204.460	871.845	4007.520	17626.318	10.5	13.2	16.98	81.65	396.28	71.00	0.00	0.00	0.00	0.00	노트북 사양은 가정(유도). mem>11GB이면 batch 축소 필요
+P2	UJ2 배치 평가(family x depth x arm x seed)	SmolLM2-135M	eval-latency	main	607104	0.000	9.837	33.639	123.736	1.8	1.8	3.52	13.77	60.90	9.22	4.33	16.94	74.91	11.34	S0/SE quality–compute 곡선. runs=요청 수
+P3	controller teacher rollout((r,u) 조합 x 시행)	SmolLM2-135M	infer-flop	main	2.43e+06	691.570	27.345	171.782	1173.036	4.8	4.8	0.56	1.61	9.42	1.48	0.69	1.98	11.59	1.82	시행착오형 신호는 시도 횟수가 곧 비용(docs/06 §6). 배치 평가 구현 가정
+P3	학습된 controller 공동 미세조정	SmolLM2-135M	train-flop	main	10	73.956	174.818	472.494	1244.268	8.6	10.7	1.63	3.96	10.70	3.30	2.00	4.87	13.16	4.06	P1 mid token의 배수
+P3	UJ3 controller 대 고정 depth·novelty-only·random gate 판정(층화)	SmolLM2-135M	eval-latency	main	580608	0.000	8.127	27.236	98.172	1.8	1.8	3.23	12.68	54.42	9.33	3.98	15.59	66.94	11.48	난이도 층화 필수(docs/09 §5 P3 상한)
+P4	Sleep v0 replay·teacher distillation(recipe x seed)	SmolLM2-135M	train-flop	main	27	101.465	444.465	2772.254	17097.442	13.3	17.0	3.22	15.75	73.78	14.32	4.29	22.68	122.20	17.61	student 전체 갱신 가정(16 B/param). teacher: self·4x·8B급. 메모리 44GB 초과·8B teacher는 large tier
+P4	UJ4 SE 대 SES readout·F12 offload/reload(다세션)	SmolLM2-135M	eval-latency	main	653184	0.000	9.500	31.092	108.508	1.8	1.8	3.92	15.00	64.78	10.89	4.82	18.45	79.69	13.40	H-SAMPLE·H-COMPUTE 따로 판정
+P5	더 넓은 retrofit·두 번째/더 큰 모델·자연어 도메인 학습	SmolLM2-135M	train-flop	large_h100	9	946.355	1806.370	9108.233	44422.538	9.2	11.3	4.32	22.08	108.75	19.05	13.48	69.33	341.48	59.80	retrofit layer = L/4·L/2·전 층. 가장 싼 tier 선택
+P5	등급 4 readout(새 fresh cohort, 2 도메인)	SmolLM2-135M	eval-latency	main	129836	0.000	1.662	5.716	20.962	1.8	1.8	0.91	2.64	10.39	2.03	1.12	3.25	12.78	2.50	복제 확증
+P5	UJ5 실제 consumer 서빙 soak(latency·residency)	SmolLM2-135M	serve	main	1	0.000	0.000	0.000	0.000	2.3	2.3	9.33	27.62	82.33	26.75	11.47	33.97	101.26	32.90	consumer가 host의 agent라 GPU 끝점 접근 경로(SSH 터널 등)가 필요. 노트북은 12GB라 1B급 이하
+P1	T04 spike(microbenchmark. 클라우드 1–2종은 비용 승인 뒤)	SmolLM2-360M	bench	main	2	0.000	0.000	0.000	0.000	7.9	9.2	2.54	3.70	5.61	3.56	5.18	7.55	11.32	7.23	host·노트북 실측이 먼저. 클라우드 실측은 사용자 승인 시에만
+P1	T09 retrofit 학습(arm x seed)	SmolLM2-360M	train-flop	main	20	38.851	241.729	1106.208	5019.386	13.3	15.8	1.73	6.68	31.22	5.87	2.13	8.22	38.40	7.22	full·flat·always(+noctl) 학습, fixed·ctx·base 비학습. 단위: run
+P1	T09 deep(r=2) 적응 학습(full x seed)	SmolLM2-360M	train-flop	main	5	6.242	10.463	51.819	242.372	13.3	15.8	0.36	0.72	1.81	0.57	0.44	0.88	2.23	0.70	r=2는 retrofit 블록 1회 추가 적용
+P1	T09 retrofit 학습 노트북 12GB 대안(시간만, 비용 0)	SmolLM2-360M	train-flop	laptop	20	38.851	241.729	1106.208	5019.386	13.3	15.8	4.12	19.06	91.42	16.99	0.00	0.00	0.00	0.00	노트북 사양은 AI TOPS에서 유도한 가정. mem>11GB이면 batch 축소 필요. 연결 끊김·재개 비용 별도
+P1	T07·T12 dev eval(7 arm. 지연 지배)	SmolLM2-360M	eval-latency	main	17748	0.000	0.841	2.404	6.507	2.2	2.2	0.39	0.73	1.49	0.62	0.48	0.89	1.83	0.77	runs=요청 수. 시간은 batch=1 session 지연 기준
+P1	T15 sealed readout(7 arm x seed x world x k)	SmolLM2-360M	eval-latency	main	64918	0.000	2.630	8.833	32.206	2.2	2.2	0.63	1.58	5.69	1.25	0.77	1.95	6.99	1.53	병렬 평가 process 수가 지배. runs=요청 수
+P1	T16 UJ1 E2E·회귀 gate(host CPU, 사용자 재현)	SmolLM2-360M	host-cpu	host	21	0.000	0.000	0.000	0.000	2.7	2.7	0.00	0.00	0.00	0.00	0.00	0.00	0.00	0.00	arm 7 x world 3 여정. host CPU 직렬, 클라우드 0
+P2	묶음 A spike(recurrence retrofit 가능성)	SmolLM2-360M	bench	main	3	0.000	0.000	0.000	0.000	13.8	16.4	2.42	4.36	8.51	4.35	2.98	5.36	10.47	5.35	실패 시 depth 축을 P3로 이월(docs/09)
+P2	묶음 D depth 격자 학습(arm x seed. family 3종 혼합)	SmolLM2-360M	train-flop	main	25	204.460	2478.873	11318.489	49555.254	16.4	20.1	14.23	66.56	327.68	57.88	17.50	81.87	403.05	71.20	recurrence 평균 r̄·core 비율로 FLOPs 증가. 메모리 44GB 초과 시 large tier
+P2	묶음 D 노트북 12GB 대안(시간만, 비용 0)	SmolLM2-360M	train-flop	laptop	25	204.460	2478.873	11318.489	49555.254	16.4	20.1	41.33	199.82	955.81	172.68	0.00	0.00	0.00	0.00	노트북 사양은 가정(유도). mem>11GB이면 batch 축소 필요
+P2	UJ2 배치 평가(family x depth x arm x seed)	SmolLM2-360M	eval-latency	main	607104	0.000	28.023	95.825	352.695	2.2	2.2	3.69	14.50	63.97	9.71	4.54	17.84	78.68	11.94	S0/SE quality–compute 곡선. runs=요청 수
+P3	controller teacher rollout((r,u) 조합 x 시행)	SmolLM2-360M	infer-flop	main	2.43e+06	691.570	79.145	497.218	3423.924	5.2	5.2	0.95	3.89	27.05	3.62	1.17	4.78	33.27	4.45	시행착오형 신호는 시도 횟수가 곧 비용(docs/06 §6). 배치 평가 구현 가정
+P3	학습된 controller 공동 미세조정	SmolLM2-360M	train-flop	main	10	73.956	499.461	1349.349	3562.857	13.5	16.1	3.01	7.96	22.25	6.49	3.70	9.79	27.37	7.98	P1 mid token의 배수
+P3	UJ3 controller 대 고정 depth·novelty-only·random gate 판정(층화)	SmolLM2-360M	eval-latency	main	580608	0.000	23.407	78.338	282.382	2.2	2.2	3.44	13.47	57.95	9.93	4.23	16.56	71.28	12.21	난이도 층화 필수(docs/09 §5 P3 상한)
+P4	Sleep v0 replay·teacher distillation(recipe x seed)	SmolLM2-360M	train-flop	main	27	101.465	1259.308	6903.122	35552.535	24.4	24.4	5.97	31.09	148.95	30.87	8.53	45.41	226.35	37.97	student 전체 갱신 가정(16 B/param). teacher: self·4x·8B급. 메모리 44GB 초과·8B teacher는 large tier
+P4	UJ4 SE 대 SES readout·F12 offload/reload(다세션)	SmolLM2-360M	eval-latency	main	653184	0.000	27.111	89.217	311.823	2.2	2.2	4.16	15.99	69.08	11.60	5.11	19.66	84.97	14.26	H-SAMPLE·H-COMPUTE 따로 판정
+P5	더 넓은 retrofit·두 번째/더 큰 모델·자연어 도메인 학습	SmolLM2-360M	train-flop	large_h100	9	946.355	5250.346	26794.290	128759.961	15.2	18.4	8.77	47.68	234.23	41.30	27.53	149.72	735.47	129.69	retrofit layer = L/4·L/2·전 층. 가장 싼 tier 선택
+P5	등급 4 readout(새 fresh cohort, 2 도메인)	SmolLM2-360M	eval-latency	main	129836	0.000	4.785	16.467	60.833	2.2	2.2	0.95	2.79	11.06	2.14	1.17	3.43	13.61	2.64	복제 확증
+P5	UJ5 실제 consumer 서빙 soak(latency·residency)	SmolLM2-360M	serve	main	1	0.000	0.000	0.000	0.000	2.7	2.7	9.33	27.62	82.33	26.75	11.47	33.97	101.26	32.90	consumer가 host의 agent라 GPU 끝점 접근 경로(SSH 터널 등)가 필요. 노트북은 12GB라 1B급 이하
+P1	T04 spike(microbenchmark. 클라우드 1–2종은 비용 승인 뒤)	Qwen3-0.6B	bench	main	2	0.000	0.000	0.000	0.000	9.6	12.5	2.54	3.70	5.61	3.56	5.18	7.55	11.32	7.23	host·노트북 실측이 먼저. 클라우드 실측은 사용자 승인 시에만
+P1	T09 retrofit 학습(arm x seed)	Qwen3-0.6B	train-flop	main	20	38.851	341.216	1571.317	7098.060	16.3	21.9	2.26	9.29	44.03	8.04	2.78	11.43	54.16	9.89	full·flat·always(+noctl) 학습, fixed·ctx·base 비학습. 단위: run
+P1	T09 deep(r=2) 적응 학습(full x seed)	Qwen3-0.6B	train-flop	main	5	6.242	14.945	75.155	350.399	16.3	21.9	0.40	0.82	2.42	0.66	0.49	1.01	2.97	0.81	r=2는 retrofit 블록 1회 추가 적용
+P1	T09 retrofit 학습 노트북 12GB 대안(시간만, 비용 0)	Qwen3-0.6B	train-flop	laptop	20	38.851	341.216	1571.317	7098.060	16.3	21.9	6.00	27.58	132.99	24.49	0.00	0.00	0.00	0.00	노트북 사양은 AI TOPS에서 유도한 가정. mem>11GB이면 batch 축소 필요. 연결 끊김·재개 비용 별도
+P1	T07·T12 dev eval(7 arm. 지연 지배)	Qwen3-0.6B	eval-latency	main	17748	0.000	1.238	3.537	9.531	2.7	2.7	0.37	0.69	1.36	0.59	0.46	0.84	1.68	0.73	runs=요청 수. 시간은 batch=1 session 지연 기준
+P1	T15 sealed readout(7 arm x seed x world x k)	Qwen3-0.6B	eval-latency	main	64918	0.000	3.868	13.064	47.305	2.7	2.7	0.59	1.43	5.04	1.13	0.73	1.76	6.19	1.40	병렬 평가 process 수가 지배. runs=요청 수
+P1	T16 UJ1 E2E·회귀 gate(host CPU, 사용자 재현)	Qwen3-0.6B	host-cpu	host	21	0.000	0.000	0.000	0.000	3.2	3.2	0.00	0.00	0.00	0.00	0.00	0.00	0.00	0.00	arm 7 x world 3 여정. host CPU 직렬, 클라우드 0
+P2	묶음 A spike(recurrence retrofit 가능성)	Qwen3-0.6B	bench	main	3	0.000	0.000	0.000	0.000	16.9	22.5	2.42	4.36	8.51	4.35	2.98	5.36	10.47	5.35	실패 시 depth 축을 P3로 이월(docs/09)
+P2	묶음 D depth 격자 학습(arm x seed. family 3종 혼합)	Qwen3-0.6B	train-flop	main	25	204.460	3430.565	15821.096	69236.402	20.7	27.9	20.82	97.91	486.54	84.18	25.60	120.43	598.45	103.54	recurrence 평균 r̄·core 비율로 FLOPs 증가. 메모리 44GB 초과 시 large tier
+P2	묶음 D 노트북 12GB 대안(시간만, 비용 0)	Qwen3-0.6B	train-flop	laptop	25	204.460	3430.565	15821.096	69236.402	20.7	27.9	62.37	301.31	1465.93	260.40	0.00	0.00	0.00	0.00	노트북 사양은 가정(유도). mem>11GB이면 batch 축소 필요
+P2	UJ2 배치 평가(family x depth x arm x seed)	Qwen3-0.6B	eval-latency	main	607104	0.000	42.254	144.181	531.108	2.7	2.7	3.36	13.00	57.58	8.72	4.13	15.99	70.82	10.73	S0/SE quality–compute 곡선. runs=요청 수
+P3	controller teacher rollout((r,u) 조합 x 시행)	Qwen3-0.6B	infer-flop	main	2.43e+06	691.570	115.853	732.527	4981.432	5.7	5.7	1.20	5.58	38.98	5.10	1.47	6.86	47.94	6.28	시행착오형 신호는 시도 횟수가 곧 비용(docs/06 §6). 배치 평가 구현 가정
+P3	학습된 controller 공동 미세조정	Qwen3-0.6B	train-flop	main	10	73.956	686.963	1871.938	4930.429	16.6	22.2	4.08	11.15	31.89	9.00	5.02	13.71	39.22	11.07	P1 mid token의 배수
+P3	UJ3 controller 대 고정 depth·novelty-only·random gate 판정(층화)	Qwen3-0.6B	eval-latency	main	580608	0.000	34.344	115.705	414.034	2.7	2.7	3.04	11.84	50.88	8.73	3.74	14.56	62.58	10.74	난이도 층화 필수(docs/09 §5 P3 상한)
+P4	Sleep v0 replay·teacher distillation(recipe x seed)	Qwen3-0.6B	train-flop	main	27	101.465	1823.633	9863.586	48226.638	27.0	27.0	7.84	41.88	203.37	42.61	11.88	61.81	297.01	52.41	student 전체 갱신 가정(16 B/param). teacher: self·4x·8B급. 메모리 44GB 초과·8B teacher는 large tier
+P4	UJ4 SE 대 SES readout·F12 offload/reload(다세션)	Qwen3-0.6B	eval-latency	main	653184	0.000	40.315	131.559	457.855	2.7	2.7	3.68	14.03	60.55	10.19	4.53	17.25	74.48	12.53	H-SAMPLE·H-COMPUTE 따로 판정
+P5	더 넓은 retrofit·두 번째/더 큰 모델·자연어 도메인 학습	Qwen3-0.6B	train-flop	large_h100	9	946.355	6413.464	32398.084	154347.420	18.2	24.2	12.26	65.83	331.91	56.81	38.48	206.71	1042.21	178.38	retrofit layer = L/4·L/2·전 층. 가장 싼 tier 선택
+P5	등급 4 readout(새 fresh cohort, 2 도메인)	Qwen3-0.6B	eval-latency	main	129836	0.000	7.041	24.426	88.294	2.7	2.7	0.87	2.49	9.72	1.92	1.07	3.06	11.96	2.36	복제 확증
+P5	UJ5 실제 consumer 서빙 soak(latency·residency)	Qwen3-0.6B	serve	main	1	0.000	0.000	0.000	0.000	3.2	3.2	9.33	27.62	82.33	26.75	11.47	33.97	101.26	32.90	consumer가 host의 agent라 GPU 끝점 접근 경로(SSH 터널 등)가 필요. 노트북은 12GB라 1B급 이하
+P1	T04 spike(microbenchmark. 클라우드 1–2종은 비용 승인 뒤)	Qwen3-1.7B	bench	main	2	0.000	0.000	0.000	0.000	17.4	20.7	2.54	3.70	5.61	3.56	5.18	7.55	11.32	7.23	host·노트북 실측이 먼저. 클라우드 실측은 사용자 승인 시에만
+P1	T09 retrofit 학습(arm x seed)	Qwen3-1.7B	train-flop	main	20	38.851	1099.718	5046.296	22867.890	28.8	35.2	4.74	21.29	100.96	18.33	5.83	26.19	124.18	22.54	full·flat·always(+noctl) 학습, fixed·ctx·base 비학습. 단위: run
+P1	T09 deep(r=2) 적응 학습(full x seed)	Qwen3-1.7B	train-flop	main	5	6.242	47.868	238.799	1123.219	28.8	35.2	0.55	1.35	5.00	1.06	0.68	1.67	6.15	1.30	r=2는 retrofit 블록 1회 추가 적용
+P1	T09 retrofit 학습 노트북 12GB 대안(시간만, 비용 0)	Qwen3-1.7B	train-flop	laptop	20	38.851	1099.718	5046.296	22867.890	28.8	35.2	16.46	76.81	367.59	68.17	0.00	0.00	0.00	0.00	노트북 사양은 AI TOPS에서 유도한 가정. mem>11GB이면 batch 축소 필요. 연결 끊김·재개 비용 별도
+P1	T07·T12 dev eval(7 arm. 지연 지배)	Qwen3-1.7B	eval-latency	main	17748	0.000	3.827	10.978	29.540	4.9	4.9	0.37	0.69	1.36	0.59	0.46	0.84	1.68	0.73	runs=요청 수. 시간은 batch=1 session 지연 기준
+P1	T15 sealed readout(7 arm x seed x world x k)	Qwen3-1.7B	eval-latency	main	64918	0.000	11.985	40.351	146.174	4.9	4.9	0.59	1.43	5.04	1.13	0.73	1.76	6.19	1.40	병렬 평가 process 수가 지배. runs=요청 수
+P1	T16 UJ1 E2E·회귀 gate(host CPU, 사용자 재현)	Qwen3-1.7B	host-cpu	host	21	0.000	0.000	0.000	0.000	5.4	5.4	0.00	0.00	0.00	0.00	0.00	0.00	0.00	0.00	arm 7 x world 3 여정. host CPU 직렬, 클라우드 0
+P2	묶음 A spike(recurrence retrofit 가능성)	Qwen3-1.7B	bench	main	3	0.000	0.000	0.000	0.000	31.0	37.6	2.42	4.36	8.51	4.35	2.98	5.36	10.47	5.35	실패 시 depth 축을 P3로 이월(docs/09)
+P2	묶음 D depth 격자 학습(arm x seed. family 3종 혼합)	Qwen3-1.7B	train-flop	main	25	204.460	11387.101	52432.756	230024.348	37.8	47.2	35.72	182.39	923.91	192.98	56.94	270.72	1333.89	237.36	recurrence 평균 r̄·core 비율로 FLOPs 증가. 메모리 44GB 초과 시 large tier
+P2	묶음 D 노트북 12GB 대안(시간만, 비용 0)	Qwen3-1.7B	train-flop	laptop	25	204.460	11387.101	52432.756	230024.348	37.8	47.2	173.06	838.86	4091.93	724.75	0.00	0.00	0.00	0.00	노트북 사양은 가정(유도). mem>11GB이면 batch 축소 필요
+P2	UJ2 배치 평가(family x depth x arm x seed)	Qwen3-1.7B	eval-latency	main	607104	0.000	131.225	446.489	1650.851	4.9	4.9	3.36	13.00	57.58	8.72	4.13	15.99	70.82	10.73	S0/SE quality–compute 곡선. runs=요청 수
+P3	controller teacher rollout((r,u) 조합 x 시행)	Qwen3-1.7B	infer-flop	main	2.43e+06	691.570	358.768	2257.745	15445.656	7.9	7.9	2.85	16.74	121.62	15.54	3.51	20.59	149.60	19.11	시행착오형 신호는 시도 횟수가 곧 비용(docs/06 §6). 배치 평가 구현 가정
+P3	학습된 controller 공동 미세조정	Qwen3-1.7B	train-flop	main	10	73.956	2274.448	6151.166	16218.407	29.9	36.4	8.97	25.50	73.39	20.53	11.03	31.36	90.27	25.25	P1 mid token의 배수
+P3	UJ3 controller 대 고정 depth·novelty-only·random gate 판정(층화)	Qwen3-1.7B	eval-latency	main	580608	0.000	106.587	357.096	1283.498	4.9	4.9	3.04	11.84	50.88	8.73	3.74	14.56	62.58	10.74	난이도 층화 필수(docs/09 §5 P3 상한)
+P4	Sleep v0 replay·teacher distillation(recipe x seed)	Qwen3-1.7B	train-flop	large_h100	27	101.465	5256.900	27768.194	131750.139	61.0	61.0	7.72	39.57	189.14	35.21	24.23	124.26	593.89	110.57	student 전체 갱신 가정(16 B/param). teacher: self·4x·8B급. 메모리 44GB 초과·8B teacher는 large tier
+P4	UJ4 SE 대 SES readout·F12 offload/reload(다세션)	Qwen3-1.7B	eval-latency	main	653184	0.000	123.938	407.779	1419.833	4.9	4.9	3.68	14.03	60.55	10.19	4.53	17.25	74.48	12.53	H-SAMPLE·H-COMPUTE 따로 판정
+P5	더 넓은 retrofit·두 번째/더 큰 모델·자연어 도메인 학습	Qwen3-1.7B	train-flop	large_h100	9	946.355	22516.234	113132.152	544476.678	35.8	45.7	29.11	156.36	787.66	135.43	91.41	490.97	2473.25	425.26	retrofit layer = L/4·L/2·전 층. 가장 싼 tier 선택
+P5	등급 4 readout(새 fresh cohort, 2 도메인)	Qwen3-1.7B	eval-latency	main	129836	0.000	21.842	75.260	274.879	4.9	4.9	0.87	2.49	9.72	1.92	1.07	3.06	11.96	2.36	복제 확증
+P5	UJ5 실제 consumer 서빙 soak(latency·residency)	Qwen3-1.7B	serve	main	1	0.000	0.000	0.000	0.000	5.4	5.4	9.33	27.62	82.33	26.75	11.47	33.97	101.26	32.90	consumer가 host의 agent라 GPU 끝점 접근 경로(SSH 터널 등)가 필요. 노트북은 12GB라 1B급 이하
+P2	참고선 Qwen3-8B + raw history(D-08)	Qwen3-8B(참고선)	infer-flop	main	6876	1.409	7.602	23.109	75.034	19.0	19.0	0.32	0.57	0.99	0.47	0.40	0.70	1.22	0.58	bf16 16.4GB라 48GB에 적재. 참고선이며 대조군 아님

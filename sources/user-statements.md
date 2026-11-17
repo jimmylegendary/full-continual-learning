@@ -132,3 +132,15 @@ depth attention
 ## U-T11 — 이번 게시 요청
 
 > 내 github repo에 full-continual-learning이라고 repo를 만들었는데 우리 논의 한 모든 내용(기반 이론들, references도 모두 포함)해서 해당 repo에 올려줘
+
+## U-T12 — CRUD 관점과 공동논문 목적 (2026-11-16 동기화 블록)
+
+원문은 [2026-11-16-discussion.md](/home/jimmy/repos/full-continual-learning/sources/sync/2026-11-16-discussion.md)의 「사용자 원문: CRUD와 공동논문 목적」 블록에 있다. 위 U-T01–U-T11과 달리 동기화 작업이 직접 확보한 블록이라 여기에 옮기지 않고 위치만 적는다. 발화일은 확인하지 못했다.
+
+## U-T13 — 지속 동기화 요청 (2026-11-16 동기화 블록)
+
+원문은 같은 파일의 「사용자 원문: 지속 동기화」 블록(한 문장)이다. 위치만 적는다.
+
+## U-T14 — 재검토·저장소 반영·runcrate 계산 계획 (2026-11-17)
+
+원문은 [2026-11-17-discussion.md](/home/jimmy/repos/full-continual-learning/sources/sync/2026-11-17-discussion.md)의 「사용자 원문」 블록에 있다. Claude Code 세션에서 입력한 요청이며 위치만 적는다.

@@ -37,4 +37,6 @@
 
 **TreeAgent**([arXiv:2611.13946](https://arxiv.org/abs/2611.13946), 2026-11-10)는 JSON/HTML/YAML의 계층형 입력을 잘라 읽는 외부 memory agent 관련 연구이므로 neural schema의 직접 근거로 세지 않았다. 제목이 불명확한 다른 Recursive Memory 언급은 논문 버전·범위가 확인되지 않아 이관하지 않았다. 원 자동화 보고 전체가 확보됐다고 주장하지 않는다.
 
+**OPEN (2026-11-17 검토):** 위 '제목이 불명확한 다른 Recursive Memory 언급'이 [2026-11-17-sleep-time-melete-selected-addendum.md](/home/jimmy/repos/full-continual-learning/research/2026-11-17-sleep-time-melete-selected-addendum.md)의 arXiv:2611.13760(Recursive memory for prediction and generation)과 같은 대상인지는 원 보고를 확보하지 못해 확인할 수 없다. 같은 대상이라고 가정하지 않는다. TreeAgent(arXiv:2611.13946)는 공식 abs에서 표제 'TreeAgent: Structure-Aware Memory Agent for Processing Long Hierarchical Data', 2026-11-10 v1임을 확인했다. HiVe-Mem arXiv 페이지의 Comments에 코드 링크(github.com/ViktorAxelsen/HiVe-Mem)가 표시된다(저장소 내용·실행 미확인이므로 위 '코드 미검증'은 유지한다). WikiTrace 페이지에는 ACL Rolling Review(2026-10 cycle) 심사 중이라는 저자 표기가 있다(채택이 아니다).
+
 관련: [Schema CRUD·Ali 공동연구안](../docs/14-schema-lifecycle-crud-and-joint-paper.md), [평가 명세](../docs/08-evaluation.md), [동기화 기록](../sources/sync/manifest.json).

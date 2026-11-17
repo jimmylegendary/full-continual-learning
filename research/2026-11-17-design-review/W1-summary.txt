@@ -1,0 +1,50 @@
+W1-summary.txt
+docs/13 (Schema 정의·분해·변경 간섭) §1–§9·§11 + references/schema-decomposition-2026-11-14.md 델타 설계 반영 감사
+기준 커밋 280dc9a, 감사일 2026-11-17, 작성: 워커 W1. 저장소에는 쓰지 않았다(읽기 전용, git show 기준).
+
+[규모]
+- 원장 112항목 = D13 94 + REF13 18 (W1-ledger.json). introduced_in은 전부 aa1413d(2026-11-14), docs/13·참고문헌 파일은 이후 커밋에서 수정되지 않았다.
+- 판정 분포: reflected 29 / partial 50 / not-reflected 26 / conflict 5 / out-of-scope 2.
+  - 절별(reflected/partial/not-reflected/conflict/out-of-scope): 지위 3/3/0/0/1, §1 1/6/1/1/0, §2 9/2/0/0/0, §3 3/4/0/2/0, §4 1/6/4/0/0, §5 1/4/0/0/0, §6 1/3/0/0/0, §7 0/12/8/0/0, §8 0/2/4/0/0, §9 7/1/0/1/0, §11 0/3/0/0/0, 참고문헌 3/4/9/1/1.
+  - conflict 5건: D13-009(가설 1 vs U-T06 원문), D13-030(φ), D13-031(binding/B), D13-085(감쇠·momentum 누출), REF13-015(R 식별자 충돌).
+- provenance: ChatGPT-proposal 75, report-import 19, ChatGPT-reconstruction 9, literature-checked 9, USER-verbatim 0, shared-link-card 0. docs/13 내용에 대한 사용자 원문 블록이 저장소에 없다.
+- 편집 블록 33개(전부 INSERT_AFTER_LINE, 라벨 OPEN 25 / PROPOSAL 8, USER 0): docs/13 17, references/schema-decomposition 1, docs/01 1, docs/03 1, docs/04 1, docs/05 2, docs/06 3, docs/07 2, docs/09 2, docs/11 3. 앵커는 전부 git show 280dc9a:<FILE> | grep -c -F 로 1회 확인.
+
+[§7 수학 판정]
+7.1 정확(명시 전제 안에서) / 7.2 조건 보강 필요 / 7.3 조건 보강 필요 / 7.4 조건 보강 필요 / 7.5 정확(무오류 회상 한정). 틀림 0, 검증 불가 0. 직접 유도와 numpy 점검은 W1-math-check.txt.
+
+[핵심 발견]
+1. §7의 다섯 명제는 틀리지 않지만 전제가 부족하다.
+   - 7.1: η 범위(0<η<2 수축, ≤1 overshoot 없음), 정규화 LMS step, key 크기비, A 부정확 시 1차 교차항, 다단계는 벡터 합, 감쇠가 있으면 직교해도 A가 변함, 직교 key는 d_k개 이하.
+   - 7.2: 단일점 ξ는 선분 위 C¹·열린 선분 2회 미분 가능일 때만(ReLU 반례 수치 확인), plain SGD 한 step 한정(Adam은 방향이 g_B가 아님), minibatch 기대값에 tr(HΣ)/b 항, 다단계는 K²로 누적, Γ_ij는 출력 민감도이며 정확 적합·제곱 손실·1차 선형화에서만 손실 상계.
+   - 7.3: 귀납은 순수 함수에 대해 참. bit 동일성은 결정적 실행이 전제. softmax는 새 logit(유한)을 넣으면 기존 gate가 항상 (1−g*')배로 변한다.
+   - 7.4: 부등식은 정확. R_correct·올바른 경로·δ의 정의가 필요하고 7.3 위에 얹힌 분해이며, soft mixture에는 볼록/log 손실 대체 식이 필요(0-1+argmax 반례).
+   - 7.5: 비둘기집은 무오류 회상에서만 참(확률적 상태도 같은 한계). 근사·확률적 회상은 rate–distortion/Fano 별도 한계.
+2. 핵심 설계 문서 01–12에는 interference·catastrophic forgetting·superposition·간섭 개념이 거의 없다(04:70의 oscillator 가설 문장뿐). docs/13의 중심 구분(중첩 ≠ 유해한 간섭, 표현·활성화·변경 분리)과 §7 명제 5건이 설계 본문에 통합돼 있지 않다. 문안은 docs/06 신설 §11(E13-25)과 각 문서 주석으로 제안했다.
+3. docs/13 §1의 「사용자 제안」과 가설 1–4는 사용자 원문이 아니라 ChatGPT 재구성이다(sources/user-statements.md·sources/sync/ 확인). 원문이 있는 U-T06은 「하나의 schema → sub-schema 분화」인데 가설 1은 「여러 schema의 엉킴」이라 표현이 충돌한다. 가설 3–4(중첩→망각, 분해→지속학습)의 인과 원문은 없고 2026-11-16 원문은 지속학습의 목적(「재앙적 망각 없이」)만 말한다. DERIVATION 라벨은 SYNC_POLICY의 증거 표기 목록에 없다.
+4. 기호·용어 충돌이 광범위하다: φ(06 fast binding state vs 13 artifact 신경 상태), θ(06 θ_k vs 13 공유/전체), b(06 통신·종료 정책 vs 13 binding), B(13 binding vs 05 CMS B_j vs 14 LoRA vs 13 §7.5 비트 수), C·D·Q·𝒜(06/14와 충돌), k(06 schema 색인 vs 13 key), e(06 경험 vs 13 오차). 13 내부에서도 D와 v가 겹친다. 06 기호를 기준으로 한 대응표를 06 §1 주석(E13-23)에, 5-tuple ↔ 07 §5 manifest 대응을 E13-04·E13-26에 제안했다. B(binding 인터페이스)와 「다른 schema의 의존 버전」에 해당하는 manifest 필드는 없다.
+5. 06 §3 빠른 업데이트 식에서 감쇠 (1−α_t)와 momentum β_t가 γ_{t,k}로 gate되지 않아 γ_{t,k}=0인 schema도 바뀐다. 13 §9.1(「momentum·weight decay·공유 통계도 검사」)과 충돌하므로 격리 주장의 범위 주석(E13-24)과 P1-T11 「바뀌면 안 되는 state 집합」에 이 항목을 넣는 검사(E13-29)를 제안했다.
+6. §7.3의 「정확한 동일성」과 docs/09 P1 보장 (3)·(5)의 「허용오차 안에서 같다」는 층위가 다르다. GPU 비결합성·kernel 선택·batch invariance 부재 때문에 bit 동일성은 보장되지 않는다(이 CPU 점검: float32 합 순서 차이 2.9e-4, 같은 행의 batch 1 대 256 차이 2.6e-5). 상태 층(byte 해시, 정확)과 출력 층(허용오차 ≥ 변경 없는 checkpoint의 noise floor ν)을 나누고 ν를 T14 봉인 전에 재자는 주석(E13-28)을 제안했다.
+7. §8 독창성 경계와 참고문헌: (a) SupSup 초록(이 감사에서 확인)은 task identity 추론과 task identity 없는 학습을 다루므로 「task ID를 사람이 미리 나누지 않고」는 경계로 부족하다. (b) 격리·projection 계열 4건과 표준 지속학습 계열(EWC·PackNet/HAT·O-LoRA/InfLoRA·Expert Gate류, 이름만, 미확인)이 catalog와 핵심 문서에 없다. (c) 보충의 R01–R13 식별자가 catalog의 R01–R11(리듬/가소성)과 충돌한다. R01=S03(이미 fulltext-read)·R03=S26·R13은 블로그(논문은 A02), R05는 제목이 없다. references/README.md에서 연결되지 않는다.
+8. §9 구현 제안은 대체로 반영돼 있다: g^read≠g^write(04:66, 06 §5), copy-on-write와 수정/분기/조합(07 §2·§6, 09 P1-T10·P4, 05:60), Sleep 공유 변경(05 §11, 09 P4·보호 지표 자동 중단), 사전 분해 불필요(05 §5, 09 P1, 11 §1). 빠진 것: 공유(slow) 변경 전용 검증 경로 작업 단위, 증류로 artifact 이전, 쓰기 격리의 의존성 완결성 검사.
+9. docs/13:34의 「Melete는 … 제한한다」는 설계 목표를 현재형으로 쓴 서술이다(NOT RUN, 등급 0). 주어 Melete가 System ONE인지 옛 Melete인지도 불명확하다(E13-03).
+10. 2026-11-16 사용자 원문의 지속학습 목적이 헌장(docs/01 U01–U12)과 로드맵 §1.2에 연결돼 있지 않다(E13-33). 또한 §7.5에 따라 유한 상태에서 독립 사실의 무한 무망각은 약속할 수 없으므로 docs/11 §8 상한 문구를 제안했다(E13-32).
+
+[사용자 확인이 필요한 것] (결정이 아니라 확인 요청이며 해결 전까지 OPEN)
+- U1. docs/13 가설 1–2(「여러 schema 엉킴」, 「가지치기·분리」)가 U-T06(「하나의 schema → sub-schema 분화」)과 같은 가설인가, 수정된 가설인가. 2026-11-14 대화 원문을 확보할 수 있는가.
+- U2. docs/13에서 「Melete」(L34·L97·L149)는 통합 System ONE/FCL을 가리키는가, 외부 memory였던 Melete를 가리키는가.
+- U3. 2026-11-16 원문 「재앙적 망각 없이 학습」을 헌장 목표(U13)로 올릴지 U03·U10·보호 family에 묶을지. 유한 용량(§7.5)을 고려해 「무망각」을 선택적·점진적 망각 정책(docs/14 §1)으로 읽어도 되는지.
+- U4(선택). P1 「허용오차」를 noise floor ν 기준으로 봉인하는 방식(E13-28)을 로드맵 변경으로 받아들일지(설계 담당 판단 사항이며 사용자 승인 대상이 아닐 수 있음).
+
+[남은 OPEN]
+- R05 제목·서지 확정, R06·R08–R11 확인 수준 재확인, SupSup·GPM·WISE·PNN 본문 정독, EWC·PackNet·HAT·O-LoRA·InfLoRA·Expert Gate의 서지 확인(이 감사는 이름만 비교 후보로 적었다).
+- §7.2: ReLU·Adam·minibatch·다단계 확장의 정식 정리, Γ_ij의 정규화·「무관한 기능」 정의.
+- noise floor ν 측정을 어느 작업 단위(P1-T04 spike 등)에 넣을지, ν 값.
+- docs/14 §3(in-place 기본)과 docs/13 §9.2(copy-on-write)의 서술 일치 확인, docs/14의 schema=low-rank 모듈 서술과 docs/03:9(schema=측정 가능한 성질)의 긴장(docs/14 담당 워커와 조율).
+- ST26-10(arXiv 2611.13760) 본문 미확인(§7.5와의 척도 비교는 초록 수준).
+- E13-32·E13-33은 docs/14·11-16 원문을 다루는 다른 워커 블록과 중복될 수 있어 W6 병합 판단 필요.
+
+[작업 환경·정직한 한계]
+- 읽기 전용(git show 280dc9a). 저장소·checkout에 쓰지 않았다. 외부 조회 2건: SupSup arXiv 초록, Thinking Machines 2025-09-10 글(둘 다 요지 수준; 본문 정독 아님).
+- 호스트 자원 압박 hook이 Bash 호출을 두 번 차단해 Read 위주로 진행했고 이후 소규모 호출만 했다. 무거운 실행·GPU·유료 API·키 파일 접근 없음.
+- 읽지 않은 것: docs/10·12 전문, sbl-fulltext-review 전반(§4 근처만), docs/14 외 research/2026-11-16 문서들. 수치 점검은 항등식·부등식 성립/반례 확인이며 모델 효용 근거가 아니다.

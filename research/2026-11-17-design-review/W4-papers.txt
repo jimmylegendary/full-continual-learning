@@ -1,0 +1,161 @@
+W4-papers.txt  --  사용자 공유 링크 카드 -> 실제 논문 확정 결과 (작성 2026-11-17, 워커 W4)
+공개용 정리본: 카드 id·앱 이름·공유 단축 링크는 'T1…' 번호와 설명으로 바꿨다(대응표는 공개하지 않는다).
+기준 저장소: full-continual-learning @ 280dc9a (읽기 전용).
+
+================================================================
+0. 방법과 확인 수준
+================================================================
+- 카드 목록: 사용자 공유 링크 카드 98건을 읽기 전용으로 조회했다(사본은 낡지 않았다).
+- 카드 링크가 단축 링크이면 리디렉션 헤더를 따라 실제 대상을 확인했다. 대상이 로그인 벽 뒤의 SNS이면 본문을 열 수 없었다(아래 T2, T5).
+- arXiv 식별자·제목·저자·최초 제출일·버전은 arxiv.org/abs/<id> HTML(citation_* meta, Submission history, Comments, abstract)을 직접 파싱해 확인했다. 이는 모두 "metadata-checked"에 해당한다.
+- 본문 정독은 alphaXiv가 돌려준 PDF 추출 텍스트(페이지 단위)로 했다. 읽은 절을 논문별로 적었고, fulltext-read(본문·Methods·부록 전부)는 어느 논문에도 주장하지 않는다.
+- 학회 채택 주장은 학회 공식 페이지로 확인될 때만 "확인됨"으로 쓴다.
+- 읽은 것만 읽었다고 쓴다. 코드 실행·재현·수치 재계산은 하지 않았다(NOT RUN).
+- 사용한 도구: 읽기 전용 카드 조회, curl(공개 HTML), WebFetch, WebSearch, alphaXiv MCP(discover_papers, get_paper_content, answer_pdf_queries). PDF 파일은 내려받지 않았다(downloads 디렉터리에는 확인용 HTML만 있음).
+
+요약표
+| # | 카드 | 확정 식별자 | 확정 제목 | 첫 저자 | 최초 제출/게시 | 확인 수준 | 280dc9a 중복 |
+| P1 | T1 | arXiv 2604.10589 [cs.AI] | Working Paper: Towards Schema-based Learning from a Category-Theoretic Perspective | Pablo de los Riscos (3명) | 2026-04-12 v1 | metadata-checked + 부분 정독 | 부분 중복 (동기화 기록에 discussion-import) |
+| P2 | T2 | arXiv 2611.10866 [cs.LG, cs.CL] | The Surprising Effectiveness of Deleting Weights in LLM Post-Training (방법명 Deletion Tuning) | Jack Lu (6명) | 2026-11-07 v1 | metadata-checked + 부분 정독 | 없음 |
+| P3 | T3 | arXiv 2610.15095 [cs.LG] | Swarm Telepathy: Prefill-Free KV-Cache Transfer Across Families (SwaT) | Abdulrahman Alabdulkareem (6명) | 2026-10-10 v1 | metadata-checked + 부분 정독 | 없음 |
+| P4 | T4 | 논문 아님: Hugging Face Community Article | Bring Your Own Expert! Extending MoE Models with New Domain Expertise | Henrik Klagges 외 9명(TNG) | 2026-11-10 | 게시 페이지 metadata-checked + 블로그 전문 정독 | 없음 |
+| P5 | T5 | arXiv 2610.39302 [cs.AI, cs.CV, stat.ML] | Proving and Improving the Platonic Representation Hypothesis with JEPAs | Randall Balestriero (2명) | 2026-10-29 v1 | metadata-checked (초록만); 카드 원문은 열람 불가라 내용 일치로 대응 | 없음 |
+
+카드 분류에서 "FCL 연구"는 6장이다. P1~P5와 아래 P6(논문 미확정 1건)이다.
+
+================================================================
+P1. 범주론 관점의 스키마 기반 학습 (카드 T1, 2026-11-11 생성)
+================================================================
+- 카드 링크: 단축 링크 -> 리디렉션 -> https://arxiv.org/pdf/2604.10589 (Location 헤더를 직접 확인)
+- 식별자: arXiv:2604.10589, 주 분류 cs.AI. DOI(arXiv 발급) 10.48550/arXiv.2604.10589.
+- 제목: "Working Paper: Towards Schema-based Learning from a Category-Theoretic Perspective"
+- 저자(3명): Pablo de los Riscos(첫 저자; arXiv meta는 "Riscos, Pablo de los"), Fernando J. Corbacho, Michael A. Arbib.
+  소속(PDF 첫 쪽): Cognodata I+D 및 Universidad Autonoma de Madrid(de los Riscos, Corbacho), University of California San Diego(Arbib).
+- 최초 제출: 2026-04-12 11:26:49 UTC (v1, 223 KB). 2026-11-17 시점 Submission history에는 v1만 있다. Comments: "43 pages, 3 figures". journal-ref 없음.
+- 확인 수준: metadata-checked. 본문은 부분 정독: 초록, 목차, §1 Introduction, §2 Design Principles 전체(2.1–2.6), §3 도입부와 정의 3.1.1(schema 타입 객체)·Remark 3.1 앞부분·정의 3.1.2(기본 연산자)·정의 3.1.10(Add)·3.1.11(Del), §3.2의 정의 3.2.4(vertical 연산자 Transform·Update)와 Remark 3.3, §5.2의 Definition 5.2.1·Remark 5.1 앞부분, §7 전체(7.1–7.6), §8·§8.1.
+  미독: §3.1.3–3.1.9(Comb·Encap·Ref·Ctx 등 연산자 세부), §3.2.1–3.2.3·3.2.5–3.2.7, §3.3, §4 Workflow, §5.1, §5.2.2–5.2.4, §5.3, §6, 부록 A·B(수렴 분석). fulltext-read를 주장하지 않는다.
+- 읽어서 확인한 내용(LITERATURE, 논문 귀속):
+  * 구조: schema를 syntactic free multicategory Sch_syn, implementation functor(Grothendieck 구성으로 Sch_impl), Giry monad의 Kleisli 범주에 대한 semantic 범주 Sch_sem 세 층으로 나누고, 그 위에 workflow(duoidal), Mind(관측·결정·잠재 변수, 내부 예측 모델, memory와 cognitive module), Body, ArchCat, World 층을 둔다(초록, §1).
+  * schema 객체의 정의(정의 3.1.1): 객체는 도메인·코도메인 쌍으로 정해지는 schema 타입 {S_P(지각), S_M(운동), S_G(목표·평가), S_Pred(예측), S_Abs(추상)}이다. 예측 schema는 관측 O·결정 D·잠재 H·목표 G의 곱 사이의 사상이다. 저자는 abstract schema의 형식화가 아직 진행 중이라고 쓴다. 즉 schema는 타입(무엇을 무엇으로 사상하는가)으로 정의되며, 여러 경험에 걸친 재사용이나 새 사례의 학습 비용 감소라는 기능적 정의가 아니다.
+  * 연산자(정의 3.1.2, 3.1.10, 3.1.11): 기본 연산자 O = {null, Comb(직렬·병렬), Encap, Ref, Ctx, Add, Del}. Add는 schema 집합에 새 schema를 더하고 Del은 집합에서 schema를 제거하며(Del: "syntactic elimination or deactivation of a schema within a family"), Del은 중립·멱등·교환 법칙을 만족하는 집합 연산이다. Ref는 schema를 더 작거나 구체적인 둘로 분해하고, Encap은 두 schema에서 추상 schema를 만들며, Ctx는 다른 schema의 조건 충족 여부로 활성화를 조절한다. 구현 층(정의 3.2.4)에는 syntactic schema를 고정한 채 표현 언어·파라미터만 바꾸는 vertical 연산자 Transform·Update가 있고, 구조 연산자는 horizontal 사상으로 올라간다(Remark 3.3).
+  * 설계 원칙(§2.1): knowledge와 learning을 modular·hierarchical·factorized하게 관리해 catastrophic forgetting/interference를 막고, "changes in one schema should only affect, at most, with minimal changes in other schemas"라고 선언한다. §2.5는 memory를 수동적이지만 구조화된 기질로, cognitive module을 memory를 읽고 쓰는 능동 처리로 엄격히 나눈다. §2.6은 monolithic 모델의 scaling만으로는 일반지능에 이를 수 없다는 입장을 밝힌다(입장 진술이며 실험 없음).
+  * memory subsystem은 (Data_M, Ops_M, write_M, read_M)로 정의되고 Ops_M의 예시에 store, retrieve, aggregate, forget이 있다(Definition 5.2.1).
+  * 저자 자체 평가: "The primary contribution of this paper is not a closed or finalized formal system, but a coherent structural program"(§1). §7 전체가 진행 중 항목이다(7.1: add·delete operator와 맞는 schema 집합의 정의, abstract schema 정의, 기본 연산자 성질의 증명, Implementation category 논의 등). §7.5의 서술은 "guiding principles and proof objectives rather than fully closed theorems"이고 부록 A·B의 수렴 결과는 "exploratory"로 표시된다. §7.6 "Agents and LLMs workflows"는 항목 제목만 있고, §8 Conclusion은 작성 전 문구 상태이며, §8.1에는 LLM agent의 위치에 관한 메모만 있다.
+  * 신경망 학습 실험·벤치마크·코드는 제시되지 않는다.
+- 중복 여부 (280dc9a): 부분 중복.
+  * research/2026-11-16-sbl-tracking.md:15(표), :50–52(§4 Symbolic / formal SBL). 커밋 56359c6(2026-11-16)이 넣음. 본문은 "이번에도 이를 새로 검증하지 않았다"고 적음.
+  * references/schema-lifecycle-2026-11-16.md:24 (표 한 줄, discussion-import). 같은 커밋 56359c6.
+  * references/catalog.tsv에는 없음. 핵심 설계 문서 docs/03·06에서는 언급 없음.
+- 따라서 W4가 더하는 것: 메타데이터 확정(첫 저자 철자, 날짜, 버전, 쪽수), 본문 일부 정독 결과(미완 상태, schema 타입 정의, Add/Del/Update 연산자, memory·cognition 분리 가정), 설계 위치 연결.
+- 설계 연결: TI-01, TI-10. docs/03 §1·§6(operational 정의, symbolic 비교점), docs/06 §1·§5, docs/13 §3(schema 대 artifact 구분)과 문제의식이 비슷하지만 같은 것으로 보지 않는다. docs/14 §3–§5의 CRUD 어휘(Update/Create·Delete/Retain·Read/Activate)와는 Add·Del·Update 연산자 구분이 닮았으나 논문의 Del은 의존성·기능 손실을 다루지 않는 집합 연산이다(ET-09).
+
+================================================================
+P2. AI 지속학습의 '삭제 튜닝' (카드 T2, 2026-11-12 03:01 KST 생성)
+================================================================
+- 카드 링크: SNS 공유 링크(로그인 벽, 열람 불가). 카드 요약이 "뉴욕대·캘거리대", "1만 개 중 5개꼴", "NeurIPS 2026", "Deletion Tuning"을 명시한다.
+- 대응 방법: WebSearch + alphaXiv 검색으로 후보를 찾고, 요약의 모든 단서를 논문과 대조했다. 방법명 Deletion Tuning, 가중치 0.05% 미만(= 1만 개 중 5개 미만), 수학(GSM8K·SimpleRL-Zoo)·도구 사용(ToolAlpaca), 이전 과제 망각 감소, 뉴욕대(NYU)·캘거리대(University of Calgary) 소속이 모두 일치한다.
+- 식별자: arXiv:2611.10866, 주 분류 cs.LG, 교차 cs.CL.
+- 제목(arXiv v1): "The Surprising Effectiveness of Deleting Weights in LLM Post-Training"
+- 저자(6명, 첫 두 명 equal contribution): Jack Lu(첫 저자), Zhenbang Yang, Mike Lasby, Tejas Pote, Yani Ioannou, Mengye Ren. 소속(PDF 첫 쪽): New York University(Lu, Yang, Ren), University of Calgary(Lasby, Pote, Ioannou).
+- 최초 제출: 2026-11-07 17:33:20 UTC (v1, 121 KB). v1만 있음. Comments: "NeurIPS 2026"(arXiv 표기, 저자 기재). journal-ref 없음.
+- NeurIPS 2026 주장의 확인 상태:
+  * 확인됨(학회 공식 사이트 기준): https://neurips.cc/virtual/2026/poster/154971 가 "NeurIPS Poster" 페이지로 존재하고 저자 6명이 같다. 2026-12-09(수) 10:00–13:00 AEDT, "Hall 1-4 #S1917"(Sydney 가상 사이트 경로).
+  * 같은 페이지의 제목은 "The Surprising Effectiveness of Deleting Weights in LLM Reasoning and Adaptation"이고 방법명은 Bit-Mask Tuning(BMT)이다. arXiv v1의 제목·방법명(Deletion Tuning)과 다르다. 인용 시 어느 판본의 수치인지 적어야 한다.
+  * 같은 사이트의 'NeurIPS 2026 Papers' 목록 페이지(https://neurips.cc/virtual/2026/loc/sydney/papers.html, 1.2 MB)에도 이 논문(poster/154971)이 있다. 그 목록에는 benchmark·position 성격의 논문도 섞여 있어 트랙 구분은 표시되지 않는다.
+  * 미확인: 그 페이지가 main conference인지 workshop인지 구분을 표시하지 않는다. 페이지가 연결한 OpenReview 포럼(forum id 9Z9V0zY5As)은 브라우저 검증 화면에 막혀 열람하지 못했다(NOT CHECKED). 저자 프로젝트 페이지도 NeurIPS 2026이라 적지만 이는 저자 보고다.
+- 코드: https://github.com/agentic-learning-ai-lab/deleting-weights (공개, MIT, 존재만 확인; 실행하지 않음).
+- 확인 수준: metadata-checked. 본문은 부분 정독(alphaXiv 추출 p.1–10, 12, 15, 19 / 22쪽): 초록, §1, §2, §3, §4, §5.1–5.5, §6(Limitations and Future Work). 미독: p.11(그림 3 부근), §5.6·5.7, 부록 A–H 대부분.
+- 읽어서 확인한 내용(LITERATURE, 논문 귀속):
+  * 방법: 사전학습 가중치는 고정하고 MLP gate projection 가중치마다 trainable logit 하나를 둔다. 학습 중에는 sigmoid(alpha*G) 연속 mask를 쓰고 alpha를 선형으로 키워 hard threshold로 만든다. 배포 시 logit이 양수인 가중치는 유지, 음수이면 0이다. 새 값은 쓰지 않으므로 adapter는 가중치당 1비트다. 초기화는 Wanda 점수에 기반한다. 희소도 목표는 없다.
+  * 결과: GRPO·SFT·on-policy distillation에서 "가장 큰 backbone"에서 full fine-tuning(FFT)과 같은 정확도다(예: Llama8B GSM8K 83.55 대 FFT 83.24, Qwen7B SimpleRL-Zoo 52.32 대 51.89, Qwen3-30B-A3B 58.54 대 58.43). 작은 모델에서는 FFT의 90–99%(Llama1B GSM8K 54.44 대 60.50). 모든 GRPO 실행에서 삭제 비율이 0.05% 미만. mask는 zstd 압축 후 Llama1B 1.0 MB, Llama8B 8.4 MB(FFT 30,633 MB).
+  * 보존: Llama 1B/3B/8B의 단일 GRPO(GSM8K) 실행에서 base 정책 대비 forward KL이 0.05 이하이고 6개 prior-task(HellaSwag, MMLU, TruthfulQA, WinoGrande, IFEval, HumanEval) 평균 정확도가 base의 1점 이내였다. FFT는 1.3–3.1점, LoRA·MTH는 최대 5.4점 아래였다. forward KL이 망각을 예측한다는 것은 선행연구(Shenfeld 외 2026b)의 결과를 인용한 것이고, 삭제가 forward KL을 낮게 유지해 망각이 적다는 설명은 저자의 가설(hypothesize)이다.
+  * 한계(저자 기술): "Because Deletion Tuning forgets little, a natural next test is continual learning over a sequence of tasks." 즉 과제를 순차로 배우는 지속학습은 시험되지 않았다. 학습 중에는 가중치마다 logit을 두므로 LoRA보다 메모리를 더 쓴다. 과제별 mask의 합집합으로 skill을 합치는 방안은 미시험 아이디어로만 적혀 있다.
+  * 하드웨어: H200 GPU(1B~3B는 1장, 큰 모델은 FSDP 다중 GPU), SFT·사후 분석은 L40S.
+- 카드 요약과의 대조: 카드의 "전체 재학습에 버금가는 수학·도구 사용 성능 향상과 기존 지식 망각 감소"는 본문과 일치한다. 카드가 말하지 않은 것: 망각 측정이 단일 실행·Llama 계열 한정이고 순차 지속학습은 시험되지 않았다는 점.
+- 중복 여부 (280dc9a): 없음. 인접 기존 항목: docs/13:230 Supermasks in Superposition[R10](고정 기반의 task별 mask), references/schema-decomposition-2026-11-14.md R08·R10, references/2026-11-16-sleep-time-melete.md ST26-06(MaLoRA)·ST26-07(LoRA capacity).
+- 설계 연결: TI-02, TI-03, TI-04.
+
+================================================================
+P3. MIT '스웜 텔레파시' (카드 T3, 2026-11-03 생성)
+================================================================
+- 카드 링크: 단축 링크 -> 리디렉션 -> https://www.aitimes.com/news/articleView.html?idxno=216860 (AI타임스, 입력 2026-11-01 15:58, 박찬 기자). 기사는 arxiv.org/pdf/2610.15095 링크를 걸고 "온라인 아카이브"에 올린 것이라 쓴다. 기사는 저자 이름·학회 채택을 적지 않는다.
+- 식별자: arXiv:2610.15095, 주 분류 cs.LG.
+- 제목: "Swarm Telepathy: Prefill-Free KV-Cache Transfer Across Families" (약칭 SwaT)
+- 저자(6명): Abdulrahman Alabdulkareem(첫 저자, 교신), Irene Tenison, Yang Zhang, Yada Zhu, Boris Katz, Dan Gutfreund. 소속(PDF 첫 쪽): MIT CSAIL(Alabdulkareem, Tenison, Katz), MIT-IBM Computing Research Lab(Zhang, Zhu, Gutfreund). arXiv 초록 페이지에는 소속이 없다.
+- 최초 제출: 2026-10-10 18:09:19 UTC (v1, 313 KB). v1만 있음. Comments·journal-ref 없음. 카드와 기사는 학회 채택을 주장하지 않는다.
+- 코드: https://github.com/Ar-Kareem/SwaT (공개, MIT, 존재만 확인; 실행하지 않음).
+- 확인 수준: metadata-checked. 본문은 부분 정독(alphaXiv 추출 p.1–8: 초록~결론, 한계·윤리 포함). 부록은 미독.
+- 읽어서 확인한 내용(LITERATURE, 논문 귀속):
+  * 방법: 발신 모델과 수신 모델을 모두 고정하고, 약 300M 파라미터 transformer mapper(블록 B=7~9, 폭 1024)를 쌍마다 따로 학습한다. mapper는 발신 모델의 KV cache를 cross-attention으로 읽어 수신 모델 layer group별 KV cache를 예측한다. 목적함수는 수신 모델 native cache에 대한 RMS 정규화 MSE와, 고정 수신 모델을 통과한 next-token NLL이다. 학습 데이터는 영어 텍스트 44M unique token(PG-19·WikiText-103·여러 QA 학습 분할)이고 초록은 "<50M tokens and <1 GPU-day"라고 쓴다.
+  * 평가: 6개 모델 계열(Qwen 3, Llama 3, Gemma 2/3, Ministral 3, Granite 3, SmolLM3, 3B~32B)의 10개 계열 간 쌍, 17개 벤치마크에서 수신 모델 자체 점수 대비 평균 보존율이 소형 발신->대형 수신에서 90% 이상(표 2). 초록의 "평균 40% 높은 정확도, 평균 4배 빠른 wall-clock"은 KV 압축(AM)과 결합한 SwaT와 텍스트 요약(T2T)을 3개 모델 쌍·5개 예산·7개 데이터셋에서 비교한 값이다(표 3의 개별 점수는 +14.9~+19.0점).
+  * 한계(저자 기술): 발신-수신 쌍마다 mapper가 필요하다(n개 계열이면 n(n-1)개). 반복 전달·여러 메시지 집계는 다루지 않고 한 번의 handoff만 평가한다. KV cache는 텍스트만큼 조합되지 않고 열화될 수 있다. 윤리 절: 현재 구현은 발신자의 텍스트가 있어야 하며, cache에 텍스트에 없는 정보가 담길 수 있어 감사 가능성·안전성은 향후 과제다.
+  * 동기 부여로 Platonic Representation Hypothesis를 인용한다(P5와 같은 가설 계열).
+- 중복 여부 (280dc9a): 없음. 이름이 비슷한 별도 연구가 있다: arXiv 2609.32259 "Prefill-Free Cross-Family KV Cache Transfer for Heterogeneous Multi-Agent LLMs"(alphaXiv 검색 목록 기준, 미검증). 같은 논문으로 혼동하지 않는다.
+- 설계 연결: TI-05, TI-06. H4 text interface(docs/05 §10, docs/12 §1)와 migration adapter 후보(docs/07 §6).
+
+================================================================
+P4. LoRA 병합 대신 Expert 추가 (카드 T4, 2026-11-15 생성) -- 11-13 이후 새로 들어온 FCL 카드
+================================================================
+- 카드 링크: 단축 링크 -> 리디렉션 -> 커뮤니티 재게시글(자동 조회는 HTTP 403). 즉 카드의 직접 출처는 재게시글이며, 원 출처는 TNG의 Hugging Face 게시물이다.
+- 원 출처 확인 경로: WebSearch가 CASRAI 뉴스 정리(2026-11-15)를 찾고, 그 글이 Hugging Face 블로그 링크를 준다. 블로그 HTML(title, og:url, canonical, "Community Article Published November 10, 2026")을 직접 확인했다.
+- 결론: 논문이 아니다. arXiv 번호·동료 심사·논문 PDF가 없고, 코드와 expert checkpoint 링크도 없다.
+- 제목: "Bring Your Own Expert! Extending MoE Models with New Domain Expertise"
+- URL: https://huggingface.co/blog/tngtech/bring-your-own-expert-extending-moe-models-with-ne
+- 저자(9명, 표시 순): Henrik Klagges, Robert Dahlke, Henry Fischer, Christoph Herb, Fabian Klemm, Simon Ohler, Andreas Rabenstein, Lars Reimann, Mirko Stappert. 조직 tngtech. 게시일 2026-11-10 (Community Article).
+- 확인 수준: 게시 페이지 metadata-checked + 블로그 전문 정독(소개, Why Not Just Fine-Tune, How It Works, Training, Results, Combining Experts, Comparison with LoRA, Future Work, Conclusion). 참고문헌 목록은 읽지 않았다.
+- 읽어서 확인한 내용(저자 보고; 동료 심사 없음):
+  * 방법: Qwen3.5-35B-A3B-Base의 가중치를 고정하고 층마다 새 expert와 새 router row만 학습한다(expert당 약 125M 파라미터). cold-start 문제(새 expert가 쓸모없어 router가 일찍 꺼 버림)를 막으려고 새 expert·router row를 가장 활성화되는 기존 expert와 router row로 초기화하고 router를 잠시 고정한다. 학습 후 expert 텐서를 이어 붙이며 표준 HF checkpoint이다.
+  * 학습: The Stack v1(dedup)의 Rust·Haskell 부분집합, NeMo AutoModel, 길이 4096, 8×B200 노드 data parallel, 도메인당 약 반나절.
+  * 결과: Rust pass@1 0.62->0.73, Haskell 0.32->0.51, 일반 능력 7개 과제 집계 base 0.80, +Rust 0.78, +Haskell 0.80. 독립 학습한 두 expert를 합친 checkpoint는 Rust 0.70, Haskell 0.50, 일반은 baseline 수준. 합친 모델의 router row를 50/50 혼합 데이터로 잠깐 재학습하면 균형이 회복됐다고 한다.
+  * LoRA 비교: 같은 base·데이터에서 최적 LoRA는 Rust 0.74, Haskell 0.48. 두 LoRA를 평균하면 Rust 0.67, Haskell 0.36으로 base에 가까워지고, 합산은 base보다 나빠졌다고 한다.
+  * 저자가 적은 미해결: continued pretraining 단계에서만 시험했고 full post-training 뒤 유지 여부는 모른다. 두 개 프로그래밍 언어만 시험했다. expert를 단순 추가하면 expert parallelism과 load balancing을 해칠 수 있다.
+- 중복 여부 (280dc9a): 없음 (Bring Your Own Expert, BYOE, tngtech 검색 0건). 인접 기존 항목: references/2026-11-16-sleep-time-melete.md ST26-06(MaLoRA)·ST26-07(LoRA capacity utilization), docs/14 §2–§4.
+- 설계 연결: TI-07, TI-08.
+
+================================================================
+P5. 르쿤 JEPA vs LLM 주장 (카드 T5, 2026-11-04 생성) -- 인접(약한 관련)
+================================================================
+- 카드 링크: SNS 공유 링크(로그인 벽, 열람 불가). 카드 요약: "LLM 다음 토큰 예측은 비효율적", "JEPA가 데이터 샘플을 42배 줄이고 0.1B 모델이 72B LLM을 앞선다", "수학적 증명".
+- 대응 방법: 카드 요약의 수치가 arXiv 2610.39302 초록에 그대로 있다("Good views need 42 times fewer training samples than next-token prediction ... a 109M-parameter text JEPA aligns with DINOv2 and CLIP's image encoders better than every language model we evaluated, up to 72B parameters"). Threads 원문을 읽지는 못했으므로 "내용 일치로 대응(추정)"이다.
+- 식별자: arXiv:2610.39302, 주 분류 cs.AI, 교차 cs.CV·stat.ML.
+- 제목: "Proving and Improving the Platonic Representation Hypothesis with JEPAs"
+- 저자(2명): Randall Balestriero(첫 저자), Yann LeCun. 최초 제출 2026-10-29 03:49:53 UTC (v1, 3,665 KB). v1만 있음. Comments 없음. 소속은 alphaXiv 표기(Brown University, New York University, Advanced Machine Intelligence Labs)이며 arXiv 초록 페이지에는 없다.
+- 확인 수준: metadata-checked(초록 전문 직접 확인). 본문은 읽지 않았다.
+- 초록이 주장하는 내용(저자 주장): JEPA를 여러 모달리티에 따로 학습하면 양성 쌍이 같은 장면의 두 관측(good views)이고 불일치가 제한될 때 표현이 회전 하나 차이로 같아진다는 정리, next-token 예측은 bad views의 JEPA라는 해석, 표본 42배·109M 대 72B의 정렬(alignment) 지표 비교. 평가 지표는 cross-modal representation alignment이며 지속학습·schema 효용·생성·추론이 아니다.
+- 후속 비판 1건 확인: arXiv:2611.16182 (Xin Li, 2026-11-12) "Same-State Pairs Make One JEPA Proof of the Platonic Representation Hypothesis Vacuous". 초록만 읽었고 판정하지 않는다.
+- 중복 여부 (280dc9a): 없음. JEPA·Platonic 검색 0건(whitepaper 포함).
+- 설계 연결: TI-09 (out-of-scope).
+
+================================================================
+P6. 논문 미확정 1건: AI에게 1900년 이전 과학 지식만 학습 (카드 T6, 2026-11-17 04:57 KST 생성)
+================================================================
+- 카드에 요약이 없고(제목과 링크만), YouTube 페이지에서 설명을 읽지 못했다. 제목은 pre-1900 데이터만으로 학습한 LM 실험을 가리키는 것으로 보인다. 공개 사례로는 독립 연구자의 GPT-1900(블로그)이 검색되지만 이 영상이 그것인지는 확인하지 못했다. 논문이 아니므로 확정 대상에서 제외했다.
+- FCL과의 관계는 docs/11 §4(통찰의 운영적 정의), docs/08 F16(통찰의 전이)에서만 인접한다. 연결 근거가 없어 원장·편집안에 올리지 않는다. 필요하면 영상 설명 또는 카드 요약을 사용자가 확인한 뒤 재검토한다.
+
+================================================================
+E. 11-13 이후 새로 들어온 카드에 대한 정리
+================================================================
+- 기준: 2026-11-13 00:00 KST 이후 생성되었거나 갱신된 카드. 해당 카드는 73장(모두 생성일 기준 신규; 갱신만 된 기존 카드는 없음).
+- 그중 FCL 연구 카드는 2장: T4(P4, 직접), T6(P6, 미확정). 나머지는 skill·도구 16장, 무관 55장이다(분류표는 비공개). 11-13 이전 25장은 FCL 연구 4장(P1·P2·P3·P5), skill·도구 3장, 무관 18장이다.
+- 이전 검토(11-13)의 FCL 카드 3건(T1, T2, T3)에는 새 판본이 없다. 세 arXiv 항목 모두 2026-11-17 현재 v1만 목록에 있다.
+
+================================================================
+F. 계산 계획 담당자(runcrate 계획)에게 도움이 될 수 있는 원문 보고 수치 (ESTIMATE 아님, 모두 저자 보고)
+================================================================
+- Deletion Tuning(P2): H200 GPU, 1B~3B 모델은 GPU 1장, 더 큰 모델은 FSDP 다중 GPU. SFT와 사후 분석은 L40S. 학습 중 메모리는 FFT보다 적고 LoRA보다 많다(가중치마다 logit).
+- SwaT(P3): mapper 약 300M 파라미터, 학습 44M token, 쌍당 "<1 GPU-day", 어떤 GPU인지는 본문 정독 범위에서 확인하지 못했다.
+- BYOE(P4): 8×B200 노드, 도메인 expert 하나에 약 반나절, expert당 약 125M 학습 파라미터(35B 모델).
+- 위 세 보고는 서로 다른 목적의 실험이며 FCL P1(소형 retrofit)의 계산량 추정에 직접 쓰지 않는다. 계산 계획은 docs/15가 다룬다.
+
+================================================================
+G. 확인용 원본 사본의 SHA-256 (2026-11-17 내려받음; (검토 작업 폴더)/W4-downloads 아래; 신뢰하지 않는 데이터로 다루고 실행하지 않았다)
+================================================================
+8f445e923767da5cb28b5c88a7f97e743d1a34e9d9a1eddfcdf424236aa30f5a  html1/arxiv-2604.10589.html
+5c51237b97670d9090ab0159dbb5dfce16002556232852d4a13d942dd72f6101  html1/arxiv-2610.15095.html
+d268569faf9c410875e0e693d73ca779135b3dc9911db929249d2f8ab0ddf123  html1/arxiv-2610.39302.html
+57771efb76ef24262c8f13a16d088e2fcb8cd6956bdc01fe9784c86aa80cc4e4  html1/arxiv-2611.10866.html
+a1a2f89022a609cff78bbe9808cec420a80f4d2ccdbe84f946a97f127b0d7f7e  html1/arxiv-2611.16182.html
+aab1c758e4be64c2dc1ec3d357eb72ba39fbf6f07af3e84e3780a7d087577d1e  html1/hf-byoe.html
+757082b99694bf4709fe504650afb24d4edb14c688a91ed2e226085e24092b81  html1/neurips-154971.html
+alphaXiv 추출 텍스트(P1)는 도구 결과 파일에 있으며 사본을 만들지 않았다.
+c7a47f5733c4b467ff451426e47079516cbbf0fc3a218269538571f84c89707f  html1/neurips-papers-sydney.html

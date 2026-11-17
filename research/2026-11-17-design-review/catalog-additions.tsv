@@ -1,0 +1,42 @@
+final_id	candidate_id	status	title	disposition
+S36	NEW-W3-01	metadata-checked	Can LLM Agents Organize Their Own Memory? (SoMem)	added
+A19	NEW-W3-02	metadata-checked	Recursive memory for prediction and generation	added
+S37	NEW-W3-03	metadata-checked	Don't Just Trust Your Memory: Evidence-Linked Memory Reduces Memory-Induced Degradation in LLM Agents (WikiTrace)	added
+S38	NEW-W3-04	metadata-checked	HiVe-Mem: Interleaving Horizontal Memory Expansion and Vertical Evidence Composition for Multimodal Agents	added
+E05	NEW-W3-05	metadata-checked	Discovering Effective Agent Memory Designs through Program Evolution (MAPE)	added
+S39	NEW-W3-06	metadata-checked	MIRIX-2.0: Multi-Agent Memory System	added
+S40	NEW-W3-07	metadata-checked	Coding Agent Memory Post-Training II: Unlocking the Memory Potential of Pre-trained File Operations for Long-Horizon Tasks via On-Policy Distillation (CAMP-II)	added
+S41	NEW-W3-08	metadata-checked	Continual-ARC: Measuring Skill Acquisition over a Working Lifetime	added
+S42	NEW-W3-09	metadata-checked	MemCredit: From Relevance to Utility for Decision-Time Memory in Long-Horizon Web Agents	added
+A20	NEW-W3-10	metadata-checked	A Margin Perspective on LoRA: Robustness to Catastrophic Forgetting and Adapter Merging (MaLoRA)	added
+A21	NEW-W3-11	metadata-checked	Maximizing Capacity Utilization of LoRA Adapters for Mitigating the Learning-Forgetting Trade-off	added
+A22	NEW-W3-12	metadata-checked	Evolving Infra: Agent-Adaptive LLM Serving at Scale	added
+S43	NEW-W4-01	metadata-checked	Working Paper: Towards Schema-based Learning from a Category-Theoretic Perspective	added (NEW-W3-13과 같은 논문: W4 행을 씀)
+N32	NEW-W3-14	official-search-checked	Explicitly acquired interrelations among mental schema reduces cognitive load and facilitates emergence of novel responses in mice and artificial neural networks	added
+S44	NEW-W3-15	official-search-checked	Toy Models of Superposition	added
+A23	NEW-W3-16	metadata-checked	LIMA: Less Is More for Alignment	added
+A24	NEW-W3-17	metadata-checked	Does Reinforcement Learning Really Incentivize Reasoning Capacity in LLMs Beyond the Base Model?	added
+A25	NEW-W3-18	metadata-checked	ProRL: Prolonged Reinforcement Learning Expands Reasoning Boundaries in Large Language Models	added
+A26	NEW-W3-19	metadata-checked	Gradient Episodic Memory for Continual Learning	added
+A27	NEW-W3-20	metadata-checked	Gradient Projection Memory for Continual Learning	added
+A28	NEW-W3-21	metadata-checked	Progressive Neural Networks	added
+A29	NEW-W3-22	metadata-checked	Supermasks in Superposition	added
+A30	NEW-W3-23	metadata-checked	WISE: Rethinking the Knowledge Memory for Lifelong Model Editing of Large Language Models	added
+S45	NEW-W3-24	metadata-checked	Challenging Common Assumptions in the Unsupervised Learning of Disentangled Representations	added
+A31	NEW-W3-25	metadata-checked	It's All Connected: A Journey Through Test-Time Memorization, Attentional Bias, Retention, and Online Optimization (MIRAS)	added
+A32	NEW-W3-26	metadata-checked	S-LoRA: Serving Thousands of Concurrent LoRA Adapters	added
+A33	NEW-W3-27	metadata-checked	Learning to Prompt for Continual Learning	added
+A34	NEW-W3-28	metadata-checked	InfLoRA: Interference-Free Low-Rank Adaptation for Continual Learning	added
+A35	NEW-W3-29	metadata-checked	Continual Learning from the Perspective of Compression	added
+A36	NEW-W4-02	metadata-checked	The Surprising Effectiveness of Deleting Weights in LLM Post-Training	added
+A37	NEW-W4-03	metadata-checked	Swarm Telepathy: Prefill-Free KV-Cache Transfer Across Families	added
+A38	NEW-W4-04	metadata-checked	Bring Your Own Expert! Extending MoE Models with New Domain Expertise	added
+S46	NEW-W4-05	metadata-checked	Proving and Improving the Platonic Representation Hypothesis with JEPAs	added
+S43	NEW-W3-13	metadata-checked	Working Paper: Towards Schema-based Learning from a Category-Theoretic Perspective	merged into NEW-W4-01 (같은 논문)
+-	NEW-W3-30	official-search-checked	Loss of plasticity in deep continual learning	not added (영향 가설 기록의 링크 전용; 결정 대기)
+-	NEW-W3-31	discussion-import	Hopfield 1982 (제목·서지 미확인)	not added (영향 가설 기록의 링크 전용; 결정 대기)
+-	NEW-W3-32	metadata-checked	Attention Is All You Need	not added (영향 가설 기록의 링크 전용; 결정 대기)
+-	NEW-W3-33	metadata-checked	Outrageously Large Neural Networks: The Sparsely-Gated Mixture-of-Experts Layer	not added (영향 가설 기록의 링크 전용; 결정 대기)
+-	NEW-W3-34	metadata-checked	Chain-of-Thought Prompting Elicits Reasoning in Large Language Models	not added (영향 가설 기록의 링크 전용; 결정 대기)
+-	NEW-W3-35	discussion-import	Learning to reason with LLMs (OpenAI 게시글)	not added (영향 가설 기록의 링크 전용; 결정 대기)
+-	NEW-W3-36	metadata-checked	Position: Levels of AGI for Operationalizing Progress on the Path to AGI	not added (영향 가설 기록의 링크 전용; 결정 대기)

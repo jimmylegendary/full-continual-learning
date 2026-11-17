@@ -40,6 +40,8 @@ full continual learning repo에 대화내용과 정보를 항상 update해둬
 
 11/16 보고는 Tian의 영장류 schema 연구를 처음 발견한 것으로 표현했지만, 현재 대화의 이전 SBL 개괄 답변에도 이미 소개가 있다. 원 보고의 출처는 유지하면서 신규성 표시를 확정하지 않는다. 이는 대화 간 중복 판정이며 논문의 내용·날짜를 새로 검증한 작업은 아니다.
 
+**처리 (2026-11-17 검토):** 저장소 안에서 확인되는 사실로 판정한다. Tian et al.은 [catalog.tsv](/home/jimmy/repos/full-continual-learning/references/catalog.tsv) N28(Tian et al.; 2026-01-29, official-search-checked)과 [2026-11-02-baseline.md](/home/jimmy/repos/full-continual-learning/research/2026-11-02-baseline.md) 33행에 첫 커밋(2026-11-09)부터 있고 [03-foundations.md](/home/jimmy/repos/full-continual-learning/docs/03-foundations.md) §4가 [N25–N30]으로 인용한다. 2026-11-09 주간 기록과 2026-11-11 원문 검토 11편에는 이 논문이 없다. 따라서 11/16 보고의 '신규 발견' 표시는 저장소 기준으로 신규가 아니며 기존 N28의 재검토·상세화로 분류하고 주간 신규 발견 수에 넣지 않는다. 서지만 DOI 레지스트리(Crossref)로 대조했다. Nature Communications 17, 2150, 2026-01-29, 저자 8명이며 보고와 일치한다. 이전 bioRxiv 2024-10-27, 원문 수치, 분석 코드는 확인하지 못해 보고 이관으로 남긴다.
+
 ## 이번 작업의 경계
 
 대상 HEAD를 읽고 기존 지침을 확인했다. 문서와 동기화 정책만 추가하며 코드·학습·배포·외부 메시지 발송은 수행하지 않는다. 원 논문의 전문 및 무관한 개인 자료를 게시하지 않는다. 부분 원문과 재구성 요약을 전체 문자 단위 원문이라고 표현하지 않는다.

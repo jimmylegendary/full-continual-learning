@@ -2,7 +2,7 @@
 
 **경험이 다음에 무엇을 이해하고, 얼마나 생각하며, 무엇을 어떻게 배울지까지 바꾸는 하나의 모델.**
 
-이 저장소는 Melete를 출발점으로 논의한 schema-based learning(SBL), 지속학습, 빠른 적응, 가변 깊이 추론, 뇌 리듬에서 영감을 얻은 조율, 기존 LLM의 점진적 retrofit을 통합하는 연구 기반이다. 정리 기준일: **2026-11-12**(설계 반영 감사와 로드맵 재구성).
+이 저장소는 Melete를 출발점으로 논의한 schema-based learning(SBL), 지속학습, 빠른 적응, 가변 깊이 추론, 뇌 리듬에서 영감을 얻은 조율, 기존 LLM의 점진적 retrofit을 통합하는 연구 기반이다. 정리 기준일: **2026-11-17**(델타 설계 반영 감사·계산 계획). 직전 기준일은 2026-11-12(설계 반영 감사와 로드맵 재구성)이며, 백서는 그 기준에 머문다.
 
 추가 논의 **2026-11-14**: [Schema 정의·분해·변경 간섭](docs/13-schema-decomposition-and-interference.md) — schema/artifact 구분, LLM과의 통합 가설, 보존의 수학적 조건, 실험 A–E 및 [보충 참고문헌](references/schema-decomposition-2026-11-14.md). 연구 제안의 문서화이며 구현·효용 검증 완료가 아니다.
 
@@ -35,10 +35,12 @@
 | [후속 가설과 미해결 질문](docs/11-research-agenda.md) | pretraining/alignment, schema 분화, insight |
 | [Schema 정의·분해·변경 간섭](docs/13-schema-decomposition-and-interference.md) | LLM과 System ONE의 공통 설명, 표현/활성화/변경 분리, 조건부 수학 명제, 실험 A–E |
 | [기존 Melete와 이관 경계](docs/12-melete-lineage.md) | H1–H5와 이전 실험을 어떻게 보존할지 |
+| [15-compute-plan.md](/home/jimmy/repos/full-continual-learning/docs/15-compute-plan.md) | 계산 계획(횡단 문서): 로드맵 P1–P5가 쓰는 계산 자원 등급·시간·비용 추정(ESTIMATE / NOT RUN), 클라우드 GPU(runcrate) 사용 방식, 결정 D-04 개정 추천(PROPOSAL, 결정 대기). 별도 인프라 phase가 아니다 |
 | [주간 SBL 조사 기록](research/2026-11-09-sbl-tracking.md) | 대화에서 보고된 최신 연구와 수치의 출처 상태 |
 | [2026-11-11-sbl-fulltext-review.md](research/2026-11-11-sbl-fulltext-review.md) | 신경망 SBL 구현 11편 원문 검토: 외부 요약 정정, 공통 공백, FCL 설계의 시작점 |
 | [2026-11-12-design-audit.md](research/2026-11-12-design-audit.md) | 설계 반영 감사: 사용자 진술 202개 포함 325항목 원장, 반영 판정, 설계 문서 편집 70개, 사용자 확인·열린 결정·남은 문헌 정독 |
-| [README.md](whitepaper/README.md) | 시각화 설계 백서(웹 https://fcl-system-one-whitepaper.vercel.app): 17절 본문 + 결정 브리프·직관 설명·전문가 델타·지식 그래프·피드백 원장 탐색기 |
+| [2026-11-17-design-review.md](/home/jimmy/repos/full-continual-learning/research/2026-11-17-design-review.md) | 델타 설계 반영 감사: 11-12 감사 이후 동기화 자료(docs/13·14, 11-16·17 기록)와 사용자 공유 링크 카드의 항목별 원장, 반영한 편집, 사용자 확인·열린 결정의 갱신 |
+| [README.md](whitepaper/README.md) | 시각화 설계 백서(웹 https://fcl-system-one-whitepaper.vercel.app): 17절 본문 + 결정 브리프·직관 설명·전문가 델타·지식 그래프·피드백 원장 탐색기. **2026-11-12 기준이며 11-14 이후 자료와 11-17 검토는 반영하지 않았다** |
 | [전체 참고문헌](references/README.md) | 뇌과학·SBL·아키텍처·평가·진화 문헌 및 코드 |
 | [원문·출처 아카이브 안내](sources/README.md) | 대화 원문/주제별 재구성/파일 출처의 차이 |
 | [증거·누락·검증 범위](EVIDENCE.md) | 확인된 것, 재확인하지 않은 것, 이번 작업의 범위 |
@@ -94,3 +96,17 @@
 
 
 2026-11-17 보충 선별: [SoMem과 recursive state capacity](research/2026-11-17-sleep-time-melete-selected-addendum.md) — 앞선 Sleep-time 주간 보고에서 이미 공개됐던 두 연구를 추가 검토. 외부 근거 기반 memory 재조직과 recurrent 상태의 현재 예측/미래 갱신 충분성을 구분하며, [참고문헌](references/2026-11-16-sleep-time-melete.md)에 기록한다. 새로운 neural SBL 성능의 입증이 아니라 **인접 연구·실험 가설 / NOT RUN**이다.
+
+
+## 델타 설계 반영 감사와 계산 계획 — 2026-11-17
+
+사용자 요청(원문과 이번 작업의 경계는 [2026-11-17-discussion.md](/home/jimmy/repos/full-continual-learning/sources/sync/2026-11-17-discussion.md))에 따라 2026-11-12 감사 이후 들어온 자료(ChatGPT 동기화 커밋 5개의 docs/13·14, 11-16·17 기록, 사용자 공유 링크 연구 카드)를 설계 반영 기준으로 다시 검토했다. 로드맵 P1–P5에 계산 자원을 붙이는 계획(클라우드 GPU runcrate 포함)도 세웠다.
+
+| 추가 문서 | 내용 |
+|---|---|
+| [2026-11-17-design-review.md](/home/jimmy/repos/full-continual-learning/research/2026-11-17-design-review.md) | 검토 방법·수치, 반드시 볼 10개 주제의 판정과 반영 위치, 반영한 편집, 사용자 결정 대기의 갱신 |
+| [README.md](/home/jimmy/repos/full-continual-learning/research/2026-11-17-design-review/README.md) | 이 검토의 공개 사본: 항목별 원장(JSON·TSV), 적용한 편집 목록, 정리본, 워커별 편집 블록 원문 |
+| [15-compute-plan.md](/home/jimmy/repos/full-continual-learning/docs/15-compute-plan.md) | 계산 계획(횡단 문서). 수치는 ESTIMATE / NOT RUN이고 결정은 사용자 몫 |
+| [shared-links-2026-11-17.md](/home/jimmy/repos/full-continual-learning/references/shared-links-2026-11-17.md) | 사용자 공유 링크 카드에서 확정한 논문과 확인 수준 |
+
+이번 작업은 문서와 계획의 변경이다. 모델 학습, GPU 실행, 클라우드 인스턴스 생성, 비용 지출, 백서 재생성, 외부 발송은 0회다. 새로 들어간 설계 문장은 PROPOSAL·OPEN이고 계산 수치는 ESTIMATE / NOT RUN이다. 백서는 갱신하지 않았으므로 2026-11-12 기준이다. [SYNC_POLICY.md](/home/jimmy/repos/full-continual-learning/SYNC_POLICY.md)는 위 증거 표기 5종에 USER-HYPOTHESIS·NOT RUN을 더해 7종을 쓰고, 이번 검토는 계산 추정에 ESTIMATE를 더했다. 이 검토가 문서에 단 주석의 '없다·반영돼 있지 않다'는 기준 커밋 280dc9a의 상태이며 편집이 들어간 뒤에는 달라질 수 있다.

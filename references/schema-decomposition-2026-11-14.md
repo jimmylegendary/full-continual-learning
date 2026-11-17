@@ -4,6 +4,8 @@
 
 기존 [catalog.tsv](catalog.tsv)는 덮어쓰지 않는다. 아래 R 번호는 이 보충 문서 안에서만 사용하는 식별자다.
 
+**OPEN (2026-11-17 검토):** (1) **식별자 충돌:** [README.md](/home/jimmy/repos/full-continual-learning/references/README.md)와 [catalog.tsv](/home/jimmy/repos/full-continual-learning/references/catalog.tsv)의 `R`은 리듬/가소성 계열(R01–R11)이고 [04-rhythms-and-orchestration.md](/home/jimmy/repos/full-continual-learning/docs/04-rhythms-and-orchestration.md)도 R01–R11을 그 뜻으로 쓴다. 이 보충의 R01–R13은 다른 문헌이므로 docs/13 본문의 [R01]은 catalog의 R01(LFP 생물물리)로 읽힐 수 있다. 인용할 때 「schema-decomposition R01」처럼 문서명을 붙이거나 접두사를 바꾼다. (2) **catalog와의 대응:** 이 보충의 R01(Goudar)은 catalog S03, R03(Function Vectors)은 S26과 같은 논문이다. R01은 catalog에서 이미 `fulltext-read`(2026-11-11 원문 검토의 GOUDAR23)이므로 아래 `discussion-import`보다 높다. R13은 블로그 글이고 같은 연구의 논문은 catalog A02(arXiv 2512.24695)이므로 주장 인용은 A02를 쓴다. R02·R04–R12는 280dc9a 기준 catalog에 없었다(이 검토가 그중 일부를 후보 행으로 올렸다). (3) R05는 제목이 적혀 있지 않아 서지가 불완전하다(링크 해시만). (4) 확인 수준 이름 `official-body-checked`는 README의 목록에 없고, 이 보충은 README의 읽기 경로에서 연결되지 않는다(루트 README와 docs/13에서만 연결). (5) R06·R08–R11의 확인 수준은 이 검토에서 재확인하지 않았다. R10(SupSup)은 arXiv 초록에서 task identity 추론과 task identity 없는 학습을 다룬다는 점만 확인했다(docs/13 §8 주석).
+
 ## 확인 수준
 
 - `discussion-import`: 직전 대화의 제목·공식 링크·관련 주장 범위를 보존. 이번 게시에서 재정독·최신 버전 검증을 하지 않음.

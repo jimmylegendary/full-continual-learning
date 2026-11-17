@@ -1,0 +1,48 @@
+section	tier	rank	gpu	gpu_count	region	location	deployment	port_mapped	vcpu	ram_gb	disk_gb	rate_usd_h	vram_gb	bf16_dense_tflops	spec_src	mem_bw_gbs	musd_per_peak_tflops_h	eff_tflops_135m_est	musd_per_eff_tflops_h_135m_est	min_billed_minutes	reason
+choose	3-main	1	RTX6000Ada	1	us/midwest	US Midwest	vm	False	12	72	350	1.23	48	364.2	NV-ADA-WP	960	3.38	55	22.36		48GB급 VM. 시간당 최저가권(RTX 6000 Ada·L40S는 같은 AD102 계열). 메모리 헤드룸·12 vCPU·72GB RAM·직접 SSH·Docker 사용 가능(VM, ARCHIVE)
+alt	3-main	2	L40S	1	kansascity-usa-1	Kansas City, KS, United States	vm	False	12	72	625	1.26	48	362.05	NV-L40S-PAGE	864	3.48	51	24.71		48GB급 VM. 시간당 최저가권(RTX 6000 Ada·L40S는 같은 AD102 계열). 메모리 헤드룸·12 vCPU·72GB RAM·직접 SSH·Docker 사용 가능(VM, ARCHIVE)
+alt	3-main	3	L40S	1	desmoines-usa-1	Des Moines, IA, United States	vm	False	12	72	625	1.26	48	362.05	NV-L40S-PAGE	864	3.48	51	24.71		48GB급 VM. 시간당 최저가권(RTX 6000 Ada·L40S는 같은 AD102 계열). 메모리 헤드룸·12 vCPU·72GB RAM·직접 SSH·Docker 사용 가능(VM, ARCHIVE)
+alt	3-main	4	RTX6000Ada	1	kansascity-usa-1	Kansas City, KS, United States	vm	False	12	80	350	1.39	48	364.2	NV-ADA-WP	960	3.82	55	25.27		48GB급 VM. 시간당 최저가권(RTX 6000 Ada·L40S는 같은 AD102 계열). 메모리 헤드룸·12 vCPU·72GB RAM·직접 SSH·Docker 사용 가능(VM, ARCHIVE)
+alt	3-main	10	A6000	1	desmoines-usa-1	Des Moines, IA, United States	vm	False	12	64	256	0.82	48	154.8	NV-RTXPRO-WP	768	5.30	34	24.12		예산 대안: 같은 48GB, 시간당 최저. BF16 154.8 TFLOPS라 벽시계는 Ada 계열의 약 2.4배. 비용/FLOP은 비슷하나 준비 비중이 큰 짧은 run에서 유리할 수 있음(실측 전 가설)
+alt	3-main	11	A6000	1	wichita-usa-1	Wichita, KS, United States	vm	False	12	64	256	0.82	48	154.8	NV-RTXPRO-WP	768	5.30	34	24.12		예산 대안: 같은 48GB, 시간당 최저. BF16 154.8 TFLOPS라 벽시계는 Ada 계열의 약 2.4배. 비용/FLOP은 비슷하나 준비 비중이 큰 짧은 run에서 유리할 수 있음(실측 전 가설)
+alt	3-main	20	RTX5090	1	pl/1	Gdańsk, Poland	vm	False	48	88	200	1.83	32	209.5	NV-RTXBW-WP	1792	8.74	59	31.02		vCPU 48·RAM 88GB: 병렬 평가 process가 많은 readout용 대안. 32GB·디스크 200GB로 작음, 폴란드 지역
+choose	4-large	1	H100	1	us/aus/1	Austin, TX, United States	container	True	19	207	164	3.14	80	989.5	NV-H100-PAGE	3350	3.17	174	18.05		연산 지배 대형 run(P5 1–2B 학습, P4 전체 student 갱신)에서 유효 FLOP당 최저가 후보. container·port_mapped라 우리 이미지(digest) 고정 불가·디스크 약 160–175GB: 비교 등급 run에는 VM 사용
+alt	4-large	2	H100	1	desmoines-usa-1	Des Moines, IA, United States	vm	False	20	128	1250	3.91	80	989.5	NV-H100-PAGE	3350	3.95	174	22.47		VM H100: 이미지 digest 고정 가능, RAM 128GB·디스크 1.25TB. container보다 시간당 약 25% 비쌈
+choose	4-large	3	A100_80G	1	kansascity-usa-1	Kansas City, KS, United States	vm	False	16	160	1000	1.73	80	312.0	NV-A100-DS	1935	5.54	77	22.47		A100 80GB VM: 메모리 80GB가 필요하고 연산 지배가 아닌 일(8B teacher·참고선·큰 batch 추론)에서 시간당 최저가
+alt	4-large	4	A100_80G	1	beltsville-usa-1	Beltsville, MD, United States	vm	False	16	160	1000	1.73	80	312.0	NV-A100-DS	1935	5.54	77	22.47		A100 80GB VM: 메모리 80GB가 필요하고 연산 지배가 아닌 일(8B teacher·참고선·큰 batch 추론)에서 시간당 최저가
+alt	4-large	6	H200_nvl	1	gb/bhx	Worcester, United Kingdom	vm	False	15	267	1000	4.67	141	835.5	NV-H200-PAGE	4800	5.59	198	23.59		141GB·4.8TB/s. 8B 이상 전체 갱신 등 80GB를 넘는 경우에만. 이 계획의 P1–P5 범위에서는 필요 없음
+alt	4-large	7	H200_nvl	1	de/fra/2	Frankfurt, Germany	vm	False	15	267	1000	4.67	141	835.5	NV-H200-PAGE	4800	5.59	198	23.59		141GB·4.8TB/s. 8B 이상 전체 갱신 등 80GB를 넘는 경우에만. 이 계획의 P1–P5 범위에서는 필요 없음
+avoid	-	0	A100	1	calgary-canada-1	Calgary, Canada	vm	False	14	117	1700	1.99	40	312.0	NV-A100-DS	1555	6.38	69	28.84		A100 40GB listing. 같은 BF16 312 TFLOPS에 메모리는 절반인데 시간당 최저 1.99 > A100 80GB 최저 1.73
+avoid	-	0	A100	1	mumbai-india-1	Mumbai, India	vm	False	30	200	512	2.85	40	312.0	NV-A100-DS	1555	9.13	69	41.30		A100 40GB listing. 같은 BF16 312 TFLOPS에 메모리는 절반인데 시간당 최저 1.99 > A100 80GB 최저 1.73
+avoid	-	0	V100	1	newyork-usa-1	New York, NY, United States	vm	False	8	30	250	3.35			미확인						뉴욕 프리미엄: 같은 V100 비-뉴욕 최저 0.36 대 3.35 (x9.3)
+avoid	-	0	V100_32G	1	newyork-usa-1	New York, NY, United States	vm	False	8	30	250	3.35			미확인						뉴욕 프리미엄: 같은 V100_32G 비-뉴욕 최저 0.4 대 3.35 (x8.4)
+avoid	-	0	A4000	1	newyork-usa-1	New York, NY, United States	vm	False	8	45	250	1.15			미확인						뉴욕 프리미엄: 같은 A4000 비-뉴욕 최저 0.22 대 1.15 (x5.2)
+avoid	-	0	RTX4090	1	de/fra/3	Frankfurt, Germany	container	True	10	10	2000	0.58	24	165.2	NV-RTXBW-WP	1008	3.51	40	14.50		container·RAM 10GB·vCPU 10: 병렬 평가 process(프로세스당 RAM 약 2–3GB)와 HF 적재에 부족. 이미지 digest 고정도 불가
+avoid	-	0	RTX5090	1	us/aus/1	Austin, TX, United States	container	True	7	15	398	1.15	32	209.5	NV-RTXBW-WP	1792	5.49	59	19.49		container·RAM 15GB·vCPU 7: 병렬 평가 process(프로세스당 RAM 약 2–3GB)와 HF 적재에 부족. 이미지 digest 고정도 불가
+avoid	-	0	RTX4090	1	de/fra/3	Frankfurt, Germany	container	True	11	20	2000	0.58	24	165.2	NV-RTXBW-WP	1008	3.51	40	14.50		container·RAM 20GB·vCPU 11: 병렬 평가 process(프로세스당 RAM 약 2–3GB)와 HF 적재에 부족. 이미지 digest 고정도 불가
+avoid	-	0	RTX6000Ada	4	kansascity-usa-1	Kansas City, KS, United States	vm	False	52	320	1400	5.56	48	364.2	NV-ADA-WP	960	3.82	55	25.27		다장 노드: GPU당 단가가 1장과 같아(5.56/4=1.39) 가격 이득이 없고 소형 모델은 1장으로 충분
+avoid	-	0	B200	1	sydney-australia-2	Sydney, Australia	vm	False	26	360	2800	10	180	2250.0	NV-B200-DERIVED	8000	4.44	409	24.45		listing 1개·시드니·1장 10 USD/h. 소형 모델은 활용률이 낮아 이득이 없고 가용성 위험
+avoid	-	0	GH200	1	dulles-usa-3	Dulles, VA, United States	vm	False	64	432	4096	3.28			미확인						GH200: CPU 아키텍처(Grace=Arm 가능성)가 상품 정보에 없어 확인 불가 → wheel·이미지 호환 위험(OPEN)
+avoid	-	0	V100	1	us/tx	Texas, United States	vm	False	12	52	382	0.36			미확인						V100: BF16 하드웨어 미지원(FP16만). bf16 retrofit 학습의 비교 환경으로 부적합. 공식 수치 미조회
+market	-	0	A10	1	dulles-usa-1	Dulles, VA, United States	vm	False	30	200	1400	1.85			미확인						GPU 종류별 1장 최저가(뉴욕 제외 우선)
+market	-	0	A100	1	calgary-canada-1	Calgary, Canada	vm	False	14	117	1700	1.99	40	312.0	NV-A100-DS	1555	6.38	69	28.84		GPU 종류별 1장 최저가(뉴욕 제외 우선)
+market	-	0	A100_80G	1	kansascity-usa-1	Kansas City, KS, United States	vm	False	16	160	1000	1.73	80	312.0	NV-A100-DS	1935	5.54	77	22.47		GPU 종류별 1장 최저가(뉴욕 제외 우선)
+market	-	0	A40	1	losangeles-usa-1	Los Angeles, CA, United States	vm	False	24	120	1400	2.66			미확인						GPU 종류별 1장 최저가(뉴욕 제외 우선)
+market	-	0	A4000	1	oslo-norway-1	Oslo, Norway	vm	False	4	21	100	0.22			미확인						GPU 종류별 1장 최저가(뉴욕 제외 우선)
+market	-	0	A5000	1	newyork-usa-1	New York, NY, United States	vm	False	8	45	250	2.04			미확인						GPU 종류별 1장 최저가(뉴욕 제외 우선)
+market	-	0	A6000	1	us/las/1	Las Vegas, NV, United States	container	True	5	94	221	0.57	48	154.8	NV-RTXPRO-WP	768	3.68	34	16.76		GPU 종류별 1장 최저가(뉴욕 제외 우선)
+market	-	0	B200	1	sydney-australia-2	Sydney, Australia	vm	False	26	360	2800	10	180	2250.0	NV-B200-DERIVED	8000	4.44	409	24.45		GPU 종류별 1장 최저가(뉴욕 제외 우선)
+market	-	0	GH200	1	dulles-usa-3	Dulles, VA, United States	vm	False	64	432	4096	3.28			미확인						GPU 종류별 1장 최저가(뉴욕 제외 우선)
+market	-	0	H100	1	us/aus/1	Austin, TX, United States	container	True	19	207	164	3.14	80	989.5	NV-H100-PAGE	3350	3.17	174	18.05		GPU 종류별 1장 최저가(뉴욕 제외 우선)
+market	-	0	H200	1	us/blt/1	Beltsville, MD, United States	container	True	15	176	629	5.22	141	989.5	NV-H200-PAGE	4800	5.28	215	24.28		GPU 종류별 1장 최저가(뉴욕 제외 우선)
+market	-	0	H200_nvl	1	gb/bhx	Worcester, United Kingdom	vm	False	15	267	1000	4.67	141	835.5	NV-H200-PAGE	4800	5.59	198	23.59		GPU 종류별 1장 최저가(뉴욕 제외 우선)
+market	-	0	L4	1	it/fr	Frosinone, Italy	vm	False	4	32	100	0.58			미확인					60	GPU 종류별 1장 최저가(뉴욕 제외 우선)
+market	-	0	L40	1	kansascity-usa-1	Kansas City, KS, United States	vm	False	14	72	625	1.26	48		NV-L40S-PAGE	864					GPU 종류별 1장 최저가(뉴욕 제외 우선)
+market	-	0	L40S	1	kansascity-usa-1	Kansas City, KS, United States	vm	False	12	72	625	1.26	48	362.05	NV-L40S-PAGE	864	3.48	51	24.71		GPU 종류별 1장 최저가(뉴욕 제외 우선)
+market	-	0	RTX3090	1	de/fra/3	Frankfurt, Germany	container	True	31	31	2000	0.41	24	71.2	NV-RTXBW-WP	936	5.76	23	17.83		GPU 종류별 1장 최저가(뉴욕 제외 우선)
+market	-	0	RTX4090	1	de/fra/3	Frankfurt, Germany	container	True	11	20	2000	0.58	24	165.2	NV-RTXBW-WP	1008	3.51	40	14.50		GPU 종류별 1장 최저가(뉴욕 제외 우선)
+market	-	0	RTX5090	1	us/aus/1	Austin, TX, United States	container	True	7	30	390	1.15	32	209.5	NV-RTXBW-WP	1792	5.49	59	19.49		GPU 종류별 1장 최저가(뉴욕 제외 우선)
+market	-	0	RTX6000Ada	1	us/midwest	US Midwest	vm	False	12	72	350	1.23	48	364.2	NV-ADA-WP	960	3.38	55	22.36		GPU 종류별 1장 최저가(뉴욕 제외 우선)
+market	-	0	RTXPro6000	1	us/sea/1	Seattle, WA, United States	container	True	31	188	357	2.28	96	503.8	NV-RTXPRO-WP	1792	4.53	92	24.78		GPU 종류별 1장 최저가(뉴욕 제외 우선)
+market	-	0	V100	1	us/tx	Texas, United States	vm	False	12	52	382	0.36			미확인						GPU 종류별 1장 최저가(뉴욕 제외 우선)
+market	-	0	V100_32G	1	us/tx	Texas, United States	vm	False	8	85	350	0.4			미확인						GPU 종류별 1장 최저가(뉴욕 제외 우선)

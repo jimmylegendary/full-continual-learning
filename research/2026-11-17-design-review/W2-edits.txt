@@ -1,0 +1,452 @@
+W2-edits.txt - 델타 설계 반영 감사(2026-11-17) W2 편집 블록
+기준: jimmylegendary/full-continual-learning @280dc9a (읽기 전용). W6가 기계적으로 적용한다.
+
+[개수 요약]
+- 편집 블록 27개 (E14-01 ~ E14-27). OP별: REPLACE_SUBSTRING 1, INSERT_AFTER_LINE 26.
+- 핵심 문서(docs/01-12) 15개: docs/05-integrated-architecture.md 2, docs/07-state-and-storage.md 2, docs/08-evaluation.md 2, docs/09-roadmap.md 5, docs/10-evolution-policy.md 2, docs/11-research-agenda.md 2. (REPLACE_SUBSTRING 1, INSERT 14; REPLACE는 짧은 용어 한정 1건뿐)
+- ChatGPT 동기화 파일 12개는 모두 INSERT_AFTER_LINE 주석: docs/13-schema-decomposition-and-interference.md 1, docs/14-schema-lifecycle-crud-and-joint-paper.md 10, references/schema-lifecycle-2026-11-16.md 1. 해당 파일의 기존 문장은 지우거나 바꾸지 않는다.
+- 새 파일·이동·이름 변경·삭제 없음. 모든 ANCHOR_COUNT=1을 이 파일 생성 시 `git show 280dc9a:<FILE>`로 줄 단위 검증했다(SECTION은 앵커 줄의 직전 heading과 일치).
+- 핵심 문서 편집 파일별: docs/05 2, docs/07 2, docs/08 2, docs/09 5, docs/10 2, docs/11 2 (docs/01·03·04·06·12 편집 없음).
+
+[적용 규칙]
+- INSERT_AFTER_LINE: ANCHOR 문자열이 든 줄 바로 뒤에 NEW_TEXT를 넣는다. NEW_TEXT가 '|'로 시작하면(표 행) 빈 줄 없이 바로 붙이고, 들여쓴 '  - '로 시작하면(bullet) 빈 줄 없이 붙이며, 그 밖에는 앞뒤에 빈 줄 하나씩을 둔다.
+- 같은 ANCHOR 줄 뒤에 여러 블록이 겹치지 않는다(앵커 줄이 모두 다르다). 단 E14-06이 새로 만드는 '### 4-1'과 E14-08이 새로 만드는 '### 6-1'은 다른 블록의 NEW_TEXT가 가리키는 절이다(E14-04·E14-16·E14-25·E14-09가 §4-1·§6-1을 참조).
+- 다른 워커의 편집과 앵커 줄이 겹치면 W6가 순서를 정한다. 특히 docs/09 §1.1 표(E14-05), §4(E14-06), §6(E14-08), §10(E14-09), docs/05 §4(E14-10), docs/14 §7(E14-23·24)을 확인할 것.
+- 'U-T12'(E14-05)와 'F22·F23'(E14-04), '§4-1'·'§6-1'(E14-06·08)은 가칭·잠정 번호다. 일관성 문제가 있으면 W6가 재번호하고 참조를 함께 고친다.
+- LEDGER가 '없음(교차 발견 N-01)'인 E14-10은 원장 항목이 아니라 감사 중 발견한 이름 충돌이다(W2-summary 참조).
+
+=== EDIT E14-01 ===
+FILE: docs/07-state-and-storage.md
+SECTION: ## 7. 검색과 residency
+OP: REPLACE_SUBSTRING
+ANCHOR: eviction은 삭제가 아니라 offload·재구성 가능 상태로의 이동을 기본으로 한다. 삭제는 §8의 최소 상태 회귀를 따른다.
+ANCHOR_COUNT: 1
+LABEL: PROPOSAL (2026-11-17 검토). 근거: docs/07:103, docs/09 P1-T13, docs/14:51-75
+LEDGER: D14-006, D14-033, D14-034, SYN-004
+OVERTURNS: docs/07:103의 '삭제' 두 곳을 용어 한정한다: 첫 문장의 '삭제'(= 폐기)는 '폐기'로, 둘째 문장의 '삭제'(= §8의 source 삭제)는 'source 삭제'로 쓴다. 의미 변경이 아니라 용어 한정이다.
+NEW_TEXT:
+<<<
+eviction은 폐기가 아니라 offload·재구성 가능 상태로의 이동을 기본으로 한다. source 삭제(철회·재구성)는 §8의 최소 상태 회귀를 따르고, 용량 정책으로서의 압축·통합·폐기(기능적 망각/보존)는 아래 용어 구분과 [08-evaluation.md](/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md) §2-2의 제안 family F22를 따른다.
+>>>
+
+=== EDIT E14-02 ===
+FILE: docs/07-state-and-storage.md
+SECTION: ## 7. 검색과 residency
+OP: INSERT_AFTER_LINE
+ANCHOR: **OPEN:** 기준 후보 중 무엇이 쓰기 gate의 학습 가능한 신호가 되는지는 정하지 않았다.
+ANCHOR_COUNT: 1
+LABEL: PROPOSAL (2026-11-17 검토). 사용자 Delete 발언은 USER이고 이 구분표는 재구성·제안이다
+LEDGER: D14-006, D14-030, D14-032, D14-033, D14-034, D14-037, D14-040, D14-042, SYN-004
+OVERTURNS: 없음 (새 용어 구분의 추가. 위 eviction 기준 후보와 OPEN은 그대로 둔다)
+NEW_TEXT:
+<<<
+**PROPOSAL (2026-11-17 검토, 용어 구분):** 새 문서 [14-schema-lifecycle-crud-and-joint-paper.md](/home/jimmy/repos/full-continual-learning/docs/14-schema-lifecycle-crud-and-joint-paper.md) §4는 용량 예산 아래의 Delete/Retain을 다루고, 이 계약과 [09-roadmap.md](/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md) P1-T13은 source 삭제를 다룬다. 같은 '삭제'라는 말이 다른 두 일을 가리키므로 아래처럼 구분한다. 사용자의 Delete는 "무한히 증가하는 지식에 대해서 망각의 비용을 어떻게 치뤄야할지"이며([2026-11-16-discussion.md](/home/jimmy/repos/full-continual-learning/sources/sync/2026-11-16-discussion.md), **USER**) 아래 표의 '기능적 망각/보존' 줄에 해당한다.
+
+| 용어 | 뜻 | 평가 | 보장의 상한 |
+|---|---|---|---|
+| eviction·offload | 활성 집합이나 GPU에서 내려 외부로 옮긴다. 내용은 남고 재적재할 수 있다(위 bullet) | F12, cold/warm-load 비용 | 위치만 바뀐다. reload 뒤 판단·후속 학습의 일관성을 잰다 |
+| 기능적 망각/보존 (Delete/Retain) | 예산 아래 압축·통합·버전 정리·폐기를 골라 기능 손실과 재접근·재학습 비용을 치르는 정책 | Efficacy: [08-evaluation.md](/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md) F10·F12·제안 F22, 보호 family | P4부터 정책, P5에서 압축·폐기. 기능 손실 추정기는 미검증. 무제한 무망각은 주장하지 않는다 |
+| source 삭제 (철회·재구성) | source 원장에서 한 경험을 철회하고 committed snapshot에서 남은 source를 같은 순서로 재생해 state를 재구성한다. provenance 철회이며 용량 정책이 아니다 | Contract·Product(§8 삭제 동등, UJ1 ⑨) | P1은 fast state 한정. 통합(Sleep)·압축 뒤에는 '측정만'. '삭제 완전 보장'은 쓰지 않는다 |
+
+쓰기 규칙: 새 글에서 '삭제' 단독 표기는 source 삭제만 뜻한다. CRUD의 D는 'Delete'로 쓰고 첫 등장에 '기능적 망각/보존'을 병기한다. schema·artifact를 없애는 동작은 '폐기'라고 쓴다. 통합·압축·폐기는 replay 재구성의 전제(원장과 직전 snapshot)를 줄이므로 보존 정책은 source 삭제의 보장 범위를 좁힌다. 매니페스트의 `retention_policy`와 `deletion_dependencies`가 이 두 축을 각각 담는다. eviction 기준 후보에 '없어졌을 때의 기능 손실'([14-schema-lifecycle-crud-and-joint-paper.md](/home/jimmy/repos/full-continual-learning/docs/14-schema-lifecycle-crud-and-joint-paper.md) §4)을 더할 수 있으나 쓰기 gate의 신호로 쓸지는 위 OPEN을 따른다.
+>>>
+
+=== EDIT E14-03 ===
+FILE: docs/08-evaluation.md
+SECTION: ## 1. 세 종류의 성공을 분리
+OP: INSERT_AFTER_LINE
+ANCHOR: **Product:** 실제 입력→추론→학습→재개→재시작→삭제/복구 사용자 여정이 동작하는가.
+ANCHOR_COUNT: 1
+LABEL: PROPOSAL (2026-11-17 검토). 근거: docs/08:9, docs/09 P1-T13, docs/14 §4
+LEDGER: D14-006, D14-075, SYN-004
+OVERTURNS: 없음 (Product의 '삭제'를 source 삭제로 한정하고 Delete/Retain 평가의 위치를 덧붙인다)
+NEW_TEXT:
+<<<
+**PROPOSAL (2026-11-17 검토):** 위 Product의 '삭제'는 source 삭제(철회·재구성)이며 Contract·Product gate로 본다([09-roadmap.md](/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md) P1-T13). 사용자의 CRUD 중 Delete(무한히 증가하는 지식에서 망각의 비용)는 이 gate가 아니라 Efficacy에서 잰다. 새 학습(G-SAMPLE)과 기존 유효 기능의 보존(G-PROTECT)을 항상 쌍으로 보고하고, 예산 아래 보존 정책 비교는 §2-2 뒤의 제안 family F22로 둔다. 두 가지를 한 PASS로 합치지 않는다. 용어는 [07-state-and-storage.md](/home/jimmy/repos/full-continual-learning/docs/07-state-and-storage.md) §7의 구분을 따른다.
+>>>
+
+=== EDIT E14-04 ===
+FILE: docs/08-evaluation.md
+SECTION: ### 2-2. Melete 시기 피드백에서 온 추가 family (PROPOSAL)
+OP: INSERT_AFTER_LINE
+ANCHOR: **ARCHIVE:** F17의 이력 의존 측정과 F18–F20은 Melete N0의 D5
+ANCHOR_COUNT: 1
+LABEL: PROPOSAL (2026-11-17 검토). 근거: docs/14 §8 D·R 실험, docs/08 §2의 F01–F21 전수 확인
+LEDGER: D14-038, D14-039, D14-052, D14-071, D14-072, D14-076, SYN-004, SYN-005
+OVERTURNS: 없음 (F01–F21 목록과 docs/09 §4의 F01–F12 배치 사이의 차이를 밝히고 F22·F23 후보를 추가한다)
+NEW_TEXT:
+<<<
+**PROPOSAL (2026-11-17 검토; family 번호 잠정):** 아래 두 후보는 [14-schema-lifecycle-crud-and-joint-paper.md](/home/jimmy/repos/full-continual-learning/docs/14-schema-lifecycle-crud-and-joint-paper.md) §8의 D·R 실험에 대응한다. 전체 family는 §2 표의 F01–F12, §2-1의 F13–F17, §2-2의 F18–F21이며 [09-roadmap.md](/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md) §4는 F01–F12만 phase에 배치한다. F13–F21의 배치는 [09-roadmap.md](/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md) §6-1에 제안했다.
+
+| Family | 조작 | 측정 |
+|---|---|---|
+| F22 보존 예산과 기능적 망각 | 같은 활성·전체 저장 예산에서 무작위·최근성·빈도 정책, offload-only, 압축·통합·폐기를 비교한다 | 기능 손실 추정치와 실제 손실의 차이, 재방문 정확도, savings(재학습 관측 수), 재접근 지연(cold/warm). 새 학습 지표와 함께 보고해 학습 정지로 얻은 보존을 가려낸다 |
+| F23 Read 선택과 오선택 | 같은 expert 집합에서 oracle·학습 gate·random·stale index를 바꾸고 expert 내용은 고정한다 | 선택 오류와 내용 손상의 분리, 표면 유사·구조 반대 lure에서의 오선택, 잘못 읽은 기억이 만든 기존 문제 회귀, 반복 조회 자기증폭(F20과 함께) |
+
+**OPEN:** F22·F23은 승인된 gate가 아니다. F10·F12와 겹치는 측정은 합치고 번호는 사용자 확인 뒤 확정한다. source 삭제는 family가 아니라 Contract·Product gate다(§1).
+>>>
+
+=== EDIT E14-05 ===
+FILE: docs/09-roadmap.md
+SECTION: ### 1.1 사용자 제약과 이 로드맵의 반영
+OP: INSERT_AFTER_LINE
+ANCHOR: | B20 (11-12) | 설계에 집중하고, 준 피드백이 반영됐는지 확인하고, 시각화 백서를 만든다 | 이 개정과 이 표 |
+ANCHOR_COUNT: 1
+LABEL: USER (사용자 원문은 따옴표 안의 발췌) + PROPOSAL(오른쪽 열). 원문 위치 sources/sync/2026-11-16-discussion.md:8-20. ID U-T12는 가칭(W6가 일관성에 맞게 부여)
+LEDGER: SYN-001, SYN-002, SYN-003, SYN-004, SYN-005, SYN-006, SYN-007, SYN-008, SYN-009, SYN-010, D14-002, D14-066
+OVERTURNS: 없음 (표에 행 하나를 더한다. 기존 행과 로드맵 본문은 그대로다)
+NEW_TEXT:
+<<<
+| U-T12 (11-16 기록; 발화일 미확인) | 지속학습의 목적을 "무한한 시간동안 경험하는것을 재앙적 망각 없이 학습"으로 두고, 생각할 점을 CRUD에 빗대 간섭 없는 새 지식 학습(Update), 무한히 증가하는 지식에서 망각의 비용(Delete), 현재 문맥에 쓸 지식 가져오기(Read)로 나눈다. 해법은 "Schemal based learning의 조절"로 "기존 지식(low rank expert)에 대한 in place update"를 하고 "적합한 schema를 못찾으면 create"로 새 low rank expert를 만드는 것이며, 목적은 Ali에게 joint paper 상세를 제안하는 것이다([2026-11-16-discussion.md](/home/jimmy/repos/full-continual-learning/sources/sync/2026-11-16-discussion.md)의 사용자 원문; ID는 가칭) | §4-1 CRUD 대응(PROPOSAL): Read·Update는 P1 규칙형 controller v0의 fast·learn·deep부터, Create는 P3 accommodation부터, Delete(기능적 망각/보존)는 측정이 P1 망각 평가부터이고 정책은 P4부터다. 공동논문은 로드맵 밖이며 주장 상한은 §3 등급을 따른다 |
+>>>
+
+=== EDIT E14-06 ===
+FILE: docs/09-roadmap.md
+SECTION: ## 4. Capability × phase 해상도 표
+OP: INSERT_AFTER_LINE
+ANCHOR: | 결과 등급 상한 | 2 개발 pilot | 3 한정 확증 | 3 | 3 | 4 (운용은 관측한 coverage 안에서 5) |
+ANCHOR_COUNT: 1
+LABEL: PROPOSAL (2026-11-17 검토). 근거: 사용자 CRUD 발언(sources/sync/2026-11-16-discussion.md), docs/14, docs/05 §4·§5, docs/09 §4·§5
+LEDGER: SYN-002, SYN-003, SYN-004, SYN-005, SYN-007, SYN-008, SYN-009, D14-003, D14-004, D14-005, D14-006, D14-007, D14-016, D14-017, D14-018, D14-019, D14-020, D14-024, D14-025, D14-031, D14-035, D14-036, D14-044, D14-046, D14-047, D14-049, D14-054, D14-055, D14-061, D14-066
+OVERTURNS: 없음 (읽는 방법의 추가. §4 표와 §5 phase 계획의 내용은 바꾸지 않는다). 'controller v0가 CRUD를 구현한다'는 오독만 막는다
+NEW_TEXT:
+<<<
+### 4-1. CRUD 관점 대응 (2026-11-17 검토 추가, PROPOSAL)
+
+**PROPOSAL.** 사용자가 지속학습의 점검 축으로 든 Update·Delete·Read(Create는 해법 안에서 등장, §1.1 U-T12)를 위 표의 phase에 대응시킨다. 기존 §4·§5의 데모 시나리오·넓이/깊이·보장·종료 gate·미루는 것은 바꾸지 않는다. 표의 기존 항목은 읽는 방법이고, 'P2 진단용 선택'·`nocreate` 등 새 arm과 F22·F23은 사용자 결정 전의 후보이며 §6-1·§10에 올렸다.
+
+먼저 P1 규칙형 controller v0의 세 경로가 덮는 CRUD를 적는다. fast(쓰기 없이 r=1)는 Read, learn(surprise write 뒤 r=1)은 Read + Update, deep(write 뒤 r=2)은 Read + Update + 추가 계산이다. Create와 Delete는 덮지 않는다. write 정책 접점(Titans식 surprise write 대 항상-갱신)은 Update의 강도·허용을 고르는 정책이며 Create·Delete의 정책이 아니다.
+
+| CRUD 연산 | 처음 들어가는 phase와 해상도 | 메커니즘 | 대조 arm | 평가 family | 등급 상한 |
+|---|---|---|---|---|---|
+| Read/Activate | P1: 선택 없는 읽기(단일 expert, fast 경로). P2: 진단용 선택(oracle·random·규칙 key). P3: 학습된 문맥 head q^-(전환·조합·보류). P4: offload/reload. P5: retrieval·migration | NMM·CMS 읽기 → 문맥 head → 외부 store | `noctl`, `ctx`(raw history), `base`; P2 random gate; P3 novelty-only routing·learned early exit; oracle(진단 상한); P5 외부 frozen LLM+RAG | F01·F02·F03, F04·F09·F15·F19, F12, 제안 F23 | P1 2 → P3 3 → P5 4 |
+| Update(in-place) | P1: learn·deep 경로의 surprise write와 CMS fast level 갱신, 정정은 국소 갱신. P2: write 예산 u 격자, "어디"(layer·level), 보호 영역 대조. P3: fit 결합 선택적 write. P4: "언제" = Sleep 공고화 | Titans식 surprise write, 선택적 write gate, fast→slow replay | `always`, `fixed`, `flat`, `noctl`; P2 slow 동결 대 fast만 쓰기·random gate; P3 surprise-only gate; P4 replay-only | F01·F02·F03·F05·F06, F07, F09, F10 | 2 → 3 |
+| Create(새 expert 할당·분화) | P1–P2: 없음(미약속; fast level 1개). P3: accommodation(새 구조 대 미세 조정, 예외 분리 저장) | 후보: B=0 초기화 CMS 분기의 추가([05-integrated-architecture.md](/home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md) §5). 트리거 후보: 오류 크기, 구조적 새로움, 검색 실패(사용자 원문) | `nocreate`(미세 조정만), `always-create`, `random-create`, `oracle-create`(진단 상한) | F04·F18·F19 | 3. '분화 성립' 선언 금지 |
+| Delete/Retain(기능적 망각/보존) | 측정: P1 최초 과제 재평가·ABA·원능력 probe, P2 savings·용량 제한 망각 곡선. 정책: P4 offload/reload·Sleep 통합·eviction, P5 압축·통합·폐기 | offload → 압축·통합 → 폐기, 기능 손실 추정 | replay-only, offload-only, 최근성·빈도 eviction, P5 압축·폐기 | F05·F06(측정), F10·F12, 제안 F22 | P1–P3 측정만, P4 3, P5 4. '삭제 완전 보장'·'무제한 무망각'은 쓰지 않는다 |
+| (구분) source 삭제 | P1-T13 → P4 측정만 → P5 검증한 범위 | source 원장 철회 + 남은 source replay 재구성 | 삭제 동등성(자기 비교) | Contract·Product | fast state 한정 |
+
+controller 사다리와의 대응: [05-integrated-architecture.md](/home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md) §4의 문맥 head(q^-)는 Read, write gate와 레벨별 write 허용 u는 Update, 조합·분화 head는 Create에 해당한다. Delete/Retain에는 대응 head가 없고 Sleep·offload 일정이 맡는다. 두 가지 '삭제'의 구분은 [07-state-and-storage.md](/home/jimmy/repos/full-continual-learning/docs/07-state-and-storage.md) §7을 따른다. 배치가 정해지지 않은 항목(Delete/Retain 정책의 첫 phase 등)은 §10의 결정 후보에 올렸다.
+>>>
+
+=== EDIT E14-07 ===
+FILE: docs/09-roadmap.md
+SECTION: ### P1 — 얇은 전체 여정 (MVP)
+OP: INSERT_AFTER_LINE
+ANCHOR: **P1-T13 source 수정·삭제 (얇게).**
+ANCHOR_COUNT: 1
+LABEL: PROPOSAL (2026-11-17 검토). 근거: docs/09 P1-T13, docs/14 §4, docs/07 §7
+LEDGER: D14-006, D14-033, D14-034, SYN-004
+OVERTURNS: 없음 (P1-T13의 정의·완료 판정은 그대로다. 같은 말 '삭제'가 다른 개념을 가리키는 것을 막는 주를 덧붙인다)
+NEW_TEXT:
+<<<
+  - **용어 주의 (2026-11-17 검토, PROPOSAL):** 이 작업의 '삭제'는 source 삭제(철회·재구성)다. [14-schema-lifecycle-crud-and-joint-paper.md](/home/jimmy/repos/full-continual-learning/docs/14-schema-lifecycle-crud-and-joint-paper.md) §4의 Delete/Retain(예산 아래 압축·통합·폐기로 기능 손실을 치르는 기능적 망각/보존)과 다른 개념이며 P1은 후자의 정책을 약속하지 않는다. P1의 망각 평가(최초 과제 재평가·ABA·원능력)는 후자의 비용을 재는 측정이다. 구분표는 [07-state-and-storage.md](/home/jimmy/repos/full-continual-learning/docs/07-state-and-storage.md) §7, CRUD 대응은 §4-1을 본다.
+>>>
+
+=== EDIT E14-08 ===
+FILE: docs/09-roadmap.md
+SECTION: ## 6. 회귀 gate 누적표
+OP: INSERT_AFTER_LINE
+ANCHOR: | P5 | UJ1, UJ2, UJ3, UJ4 | UJ5 실제 consumer 연결 |
+ANCHOR_COUNT: 1
+LABEL: PROPOSAL / NOT RUN (2026-11-17 검토). 근거: docs/13 §10 A–E, docs/14 §8, docs/08 §2의 F01–F21, docs/09 §3·§4·§5
+LEDGER: D14-003, X13-001, X13-002, X13-003, X13-004, X13-005, X13-006, X13-007, X13-008, X13-009, X13-010, X13-011, X13-013, X13-014, X13-015, X13-017, X13-018, X13-019, D14-009, D14-022, D14-026, D14-052, D14-056, D14-064, D14-070, D14-071, D14-072, D14-073, D14-074, D14-075
+OVERTURNS: 없음 (새 절의 추가. 기존 데모 시나리오·종료 gate·미루는 것·등급 상한은 바꾸지 않는다). 실험 B는 §5 P5 '미루는 것'과 충돌하므로 배치를 결정 후보로 남긴다
+NEW_TEXT:
+<<<
+### 6-1. 간섭·CRUD 실험의 배치 (2026-11-17 검토 추가, PROPOSAL / NOT RUN)
+
+[13-schema-decomposition-and-interference.md](/home/jimmy/repos/full-continual-learning/docs/13-schema-decomposition-and-interference.md) §10의 실험 A–E와 [14-schema-lifecycle-crud-and-joint-paper.md](/home/jimmy/repos/full-continual-learning/docs/14-schema-lifecycle-crud-and-joint-paper.md) §8의 CU·D·R·Joint·System ONE을 기존 phase의 UJ 안의 판독으로 배치한다. 실험 전용 phase나 새 UJ를 만들지 않는다. 앞 phase에는 가장 얇은 형태(계측·측정·Contract 테스트 1개)를 넣고, 새 arm은 그 arm이 의미를 갖는 phase에서 처음 넣는다. §3의 등급 상한과 §5의 데모 시나리오·종료 gate·미루는 것은 바꾸지 않는다. seed 수(D-05)가 정해지기 전에는 계산 규모 수치를 이 문서에 쓰지 않는다.
+
+| 실험 | P1(등급 2) | P2(3) | P3(3) | P4(3) | P5(4) | 새 arm |
+|---|---|---|---|---|---|---|
+| A 간섭 분리 | `fcl diff`·재평가·ABA·원능력으로 간섭 판독만 | 쓰기 범위(local/shared) × lure × 표면 거리 | 학습 gate 대 oracle 대 random partition | – | 자연어·모델 2종 | `ftall`, `adapters` |
+| B post-training | – | (제안·결정 전) dev 사이드: 같은 계열 Base/Instruct 2종 | – | – | (제안·결정 전) 두 번째 base의 Base/Instruct 쌍 | `--base-ckpt` 축 |
+| C 용량(= Joint) | `full` 대 `flat` + bytes 기록 + 새 학습·보존 쌍 보고 | `adapters`(oracle ID) 용량 일치 | 추론 ID: create 대 no-create | B_total·cold-load 포함 | 모델 2종 | `adapters` |
+| D artifact | + resume 후 update 동등 Contract 1개 | rollback·다 session | offload/reload·lineage·F12 | – | migration | `weights-only`(음성 대조) |
+| E(= System ONE) | 경로 분포·계산량 측정만 | depth 격자 × S0/SE | controller 대 고정 depth | SE 대 SES | 운영 지연 | (기존) |
+| CU | Update(2×2·정정·ABA) | 3 family | Create 대 no-create | Sleep 뒤 분화 안정성 | – | `nocreate` 등 |
+| D(보존·망각) | 망각 측정 지표만 | 용량 제한 망각 곡선 | – | offload-only 대 eviction | 압축·폐기 | `evict-*` |
+| R | `ctx` 대 `full`, wrong-schema swap | oracle/random/key 선택 | 학습 head | stale index | rag·근거 확인 Read | `sel-*` |
+
+**주의·결정 후보.** (1) 공유 파라미터를 갱신하는 순차 갱신 arm(`ftall`)과 task별 oracle adapter(`adapters`)가 arm 표에 없다. P1의 arm 7개는 바꾸지 않고 P2에 추가하는 안이다. (2) 실험 B는 §5 P5 '미루는 것'과 P1·P2 상한 이유 '모델 1종'과 충돌하므로 표의 B 행은 제안일 뿐이며 사용자 결정(D-12 연계) 전에는 §5의 phase 계획에 넣지 않는다. (3) P1에 더하는 것은 계측 열(active·total bytes, 기록만) 1개, resume 후 update 동등 Contract 테스트 1개, 새 학습과 보존의 쌍 보고 서식뿐이며 범위 절삭 순서에 영향이 없다. (4) family 배치: [08-evaluation.md](/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md) §2·§2-1·§2-2에는 F01–F21이 있으나 §4의 benchmark family 행은 F01–F12만 배치한다. 이 실험들이 쓰는 F13(관계 통합 추론)·F18·F19·F20은 P3에 둔다(F20은 §9의 J2 행과 같다). F14–F17·F21의 배치는 이번 검토의 범위 밖이다.
+>>>
+
+=== EDIT E14-09 ===
+FILE: docs/09-roadmap.md
+SECTION: ## 10. 계산 자원과 결정 대기
+OP: INSERT_AFTER_LINE
+ANCHOR: 비용이 드는 선택은 D-01(크기 상향)·D-04·D-10·D-12이고
+ANCHOR_COUNT: 1
+LABEL: PROPOSAL / OPEN (2026-11-17 검토). 모두 사용자 결정 대기이며 승인된 값이 아니다
+LEDGER: D14-006, D14-021, D14-063, D14-077, X13-003, X13-010, X13-014, SYN-004, SYN-008, SYN-009
+OVERTURNS: 없음 (§10의 D-01–D-14는 그대로다. 번호 없는 결정 후보 목록을 덧붙인다)
+NEW_TEXT:
+<<<
+**결정 후보 (2026-11-17 CRUD·간섭 검토, PROPOSAL; D-번호는 사용자 결정 목록에 오를 때 부여):**
+- Delete/Retain(기능적 망각/보존)의 정책을 어느 phase에 둘지. 제안: 측정은 P1부터(이미 있음), 정책은 P4(offload·Sleep)에서 얇게, 압축·폐기는 P5. B01과 [2026-11-12-design-audit.md](/home/jimmy/repos/full-continual-learning/research/2026-11-12-design-audit.md) §5 #17이 미해결로 남긴 질문이다. 비용: P4 작업량 증가.
+- 사용자 원문 "적합한 schema를 못찾으면 create"를 [14-schema-lifecycle-crud-and-joint-paper.md](/home/jimmy/repos/full-continual-learning/docs/14-schema-lifecycle-crud-and-joint-paper.md) §3처럼 '구조적 새로움이 확인될 때만 create'로 읽어도 되는지. 비용: 없음.
+- low-rank expert를 schema 보관 단위의 기본 후보로 올릴지([11-research-agenda.md](/home/jimmy/repos/full-continual-learning/docs/11-research-agenda.md) §2의 열린 문제와의 관계). 비용: 없음.
+- 두 가지 '삭제'(기능적 망각/보존 대 source 삭제) 용어 구분의 수용([07-state-and-storage.md](/home/jimmy/repos/full-continual-learning/docs/07-state-and-storage.md) §7). 비용: 없음.
+- 신규 arm(`ftall`, `adapters`, `sel-*`)과 신규 family(F22·F23)의 채택, 실험 B(Base/Instruct)의 도입. 비용: P2 계산 증가, 가중치 다운로드(D-01·D-12와 연동).
+- expert 수·rank·검색 key·분화 기준·retention budget·압축 손실·commit 단위·정답 접근권([14-schema-lifecycle-crud-and-joint-paper.md](/home/jimmy/repos/full-continual-learning/docs/14-schema-lifecycle-crud-and-joint-paper.md) §9)은 아직 결정 항목이 아니다. self-evolution 탐색 변수에 넣을지는 [10-evolution-policy.md](/home/jimmy/repos/full-continual-learning/docs/10-evolution-policy.md) §3을 따른다.
+>>>
+
+=== EDIT E14-10 ===
+FILE: docs/05-integrated-architecture.md
+SECTION: ## 4. Schema controller의 입력과 출력
+OP: INSERT_AFTER_LINE
+ANCHOR: **OPEN:** K·loop 격자·학습 신호는 pilot에서 정한다.
+ANCHOR_COUNT: 1
+LABEL: OPEN (2026-11-17 검토). 근거: docs/05:78-84, docs/04:90, docs/09:121
+LEDGER: 없음(교차 발견 N-01; W2-summary 참조)
+OVERTURNS: 없음 (본문은 바꾸지 않는다). docs/05 'v0(첫 통합 모델)'와 docs/09 P1 규칙형 controller v0의 이름 충돌만 정리한다
+NEW_TEXT:
+<<<
+**OPEN (2026-11-17 검토, 이름 정리):** 이 절의 v0/v1/v2는 학습된 controller의 사다리다. [09-roadmap.md](/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md)의 P1 'controller v0'는 익숙함 신호의 두 임계값으로 fast·learn·deep을 고르는 규칙형이며 학습된 문맥 head가 없다. 두 'v0'는 다른 것이다. 이 절의 v0는 로드맵 P3의 학습된 controller의 첫 단계로 읽고 P1 규칙형은 'v0-rule'로 부른다. [04-rhythms-and-orchestration.md](/home/jimmy/repos/full-continual-learning/docs/04-rhythms-and-orchestration.md)의 'controller v1 이후'도 이 절의 번호다. 번호는 바꾸지 않는다. CRUD 관점에서는 문맥 head(q^-)가 Read, write gate와 레벨별 write 허용 u가 Update, 조합·분화 head(v2)가 Create에 대응한다([09-roadmap.md](/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md) §4-1).
+>>>
+
+=== EDIT E14-11 ===
+FILE: docs/05-integrated-architecture.md
+SECTION: ## 5. CMS 점진 전환의 기능 보존 제안
+OP: INSERT_AFTER_LINE
+ANCHOR: Nested Learning에는 pretrained MLP 초기화와 추가 학습 논의가 있다.
+ANCHOR_COUNT: 1
+LABEL: PROPOSAL / OPEN (2026-11-17 검토). 사용자 발언은 USER이고 대응 해석은 PROPOSAL이다
+LEDGER: SYN-007, SYN-008, D14-005, D14-007, D14-011, D14-014, D14-015, D14-020
+OVERTURNS: 없음 (F_CMS 식과 B_j=0 초기화 서술은 그대로다. 사용자의 low-rank expert와의 관계를 주로 덧붙인다)
+NEW_TEXT:
+<<<
+**PROPOSAL (2026-11-17 검토, low-rank expert와의 관계):** 사용자는 기존 지식을 low rank expert로 두고 in place update하며 적합한 schema가 없으면 새 expert를 create한다고 했다([2026-11-16-discussion.md](/home/jimmy/repos/full-continual-learning/sources/sync/2026-11-16-discussion.md), **USER**). 위 F_CMS의 분기 `B_j sigma(A_j h)`는 같은 모양(기반 + gate된 low-rank 분기의 합)이지만 색인 축이 다르다. j는 갱신 시간척도(level)이고, schema expert는 문맥으로 선택·할당되는 기능 단위다([14-schema-lifecycle-crud-and-joint-paper.md](/home/jimmy/repos/full-continual-learning/docs/14-schema-lifecycle-crud-and-joint-paper.md) §2). P1은 fast level이 1개라 expert가 하나이므로 expert 선택은 P3 이후다. in-place update는 분기와 NMM state의 test-time write에 대응한다. NMM은 sequence 쪽 빠른 기억(binding)이며 low-rank라는 규정이 없어 expert로 읽지 않는다. Create의 가장 자연스러운 후보는 새 분기를 B=0으로 추가해 생성 순간의 함수를 보존하는 것이지만 gate·`A_j` 초기화와 선택 규칙은 미정이다(**OPEN**; 위의 'gate까지 0으로 만들지 않는다' 주의가 그대로 적용된다). low-rank가 schema의 단위라는 것은 구현 전제이고 보편 명제가 아니다([06-mathematical-framework.md](/home/jimmy/repos/full-continual-learning/docs/06-mathematical-framework.md) §10, [11-research-agenda.md](/home/jimmy/repos/full-continual-learning/docs/11-research-agenda.md) §2).
+>>>
+
+=== EDIT E14-12 ===
+FILE: docs/11-research-agenda.md
+SECTION: ## 2. Schema의 물리적 단위
+OP: INSERT_AFTER_LINE
+ANCHOR: 한 schema가 MLP 하나인지, low-rank subspace인지, recurrent trajectory인지, 여러 모듈의 조합인지 열린 문제다.
+ANCHOR_COUNT: 1
+LABEL: USER (따옴표 안의 발췌, sources/sync/2026-11-16-discussion.md:17) + OPEN (이 문단의 해석)
+LEDGER: SYN-007, SYN-008, D14-002, D14-011, D14-060
+OVERTURNS: 없음 (열린 문제를 닫지 않는다. 사용자가 low-rank expert를 해법의 전제로 말했다는 사실과 OPEN 표시를 연결한다)
+NEW_TEXT:
+<<<
+**USER 전제와 OPEN (2026-11-17 검토):** 사용자는 해법을 설명하며 "기존 지식(low rank expert)에 대한 in place update"와 "적합한 schema를 못찾으면 create"로 "새로운 low rank expert를 생성"한다고 했다([2026-11-16-discussion.md](/home/jimmy/repos/full-continual-learning/sources/sync/2026-11-16-discussion.md), **USER**). 이것은 우리가 택한 구현 단위의 서술이며 위의 열린 문제를 닫지 않는다. low-rank expert를 기본 후보로 두고 MLP·subspace·trajectory·모듈 조합과 같은 평가(재사용·전이·수정·보존)로 비교한다. [06-mathematical-framework.md](/home/jimmy/repos/full-continual-learning/docs/06-mathematical-framework.md) §10의 '모든 schema가 저랭크라는 명제'는 여전히 OPEN이다. CMS 분기·NMM과의 관계는 [05-integrated-architecture.md](/home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md) §5를 본다.
+>>>
+
+=== EDIT E14-13 ===
+FILE: docs/11-research-agenda.md
+SECTION: ## 8. 검증 없이 주장하지 않을 것
+OP: INSERT_AFTER_LINE
+ANCHOR: 삭제 요구가 모든 consolidated weights에서 완전 제거됨.
+ANCHOR_COUNT: 1
+LABEL: PROPOSAL (2026-11-17 검토). 근거: docs/14 §1·§4, docs/13 §7.5, 사용자 CRUD 발언
+LEDGER: D14-008, D14-010, SYN-001
+OVERTURNS: 없음 (비주장 목록의 추가. 기존 항목은 그대로다)
+NEW_TEXT:
+<<<
+**PROPOSAL (2026-11-17 검토):** 다음도 검증 없이 주장하지 않는다. 유한한 상태와 용량으로 무한한 경험을 재앙적 망각 없이 학습한다는 것(무제한 무망각; [13-schema-decomposition-and-interference.md](/home/jimmy/repos/full-continual-learning/docs/13-schema-decomposition-and-interference.md) §7.5, [14-schema-lifecycle-crud-and-joint-paper.md](/home/jimmy/repos/full-continual-learning/docs/14-schema-lifecycle-crud-and-joint-paper.md) §1·§4), 압축·통합·폐기가 기능 손실 없이 이뤄진다는 것, 기능 손실 추정이 미래 분포에서 정확하다는 것, 외부 agent memory 연구의 개선을 neural schema 지속학습의 증거로 읽는 것이다. 위 '삭제 요구가 ... 완전 제거됨'은 source 삭제(철회·재구성)를 뜻하며 기능적 망각/보존과 구분한다([07-state-and-storage.md](/home/jimmy/repos/full-continual-learning/docs/07-state-and-storage.md) §7).
+>>>
+
+=== EDIT E14-14 ===
+FILE: docs/10-evolution-policy.md
+SECTION: ## 3. 후보 생성 계약
+OP: INSERT_AFTER_LINE
+ANCHOR: 초기 탐색은 update policy, CMS schedule, depth read, rank/capacity, routing 등 한정된 영역부터 한다.
+ANCHOR_COUNT: 1
+LABEL: OPEN (2026-11-17 검토). 근거: docs/14 §9, docs/10 §3·§5·§6
+LEDGER: D14-030, D14-077
+OVERTURNS: 없음 (탐색 영역 목록은 그대로다. 아직 탐색 변수가 아닌 항목을 밝힌다)
+NEW_TEXT:
+<<<
+**OPEN (2026-11-17 검토):** [14-schema-lifecycle-crud-and-joint-paper.md](/home/jimmy/repos/full-continual-learning/docs/14-schema-lifecycle-crud-and-joint-paper.md) §9가 열어 둔 expert 수·rank·검색 key·분화 기준·retention budget·압축 손실·commit 단위 중 rank/capacity와 routing만 위 영역에 걸린다. 분화 기준·보존 예산·압축 손실은 아직 탐색 변수가 아니며 사용자 승인 전에는 search space에 넣지 않는다(§6). 정답 접근권은 §5의 evaluator 독립성에 따른다.
+>>>
+
+=== EDIT E14-15 ===
+FILE: docs/10-evolution-policy.md
+SECTION: ### 8-1. 사용자 요청 산출물 정책
+OP: INSERT_AFTER_LINE
+ANCHOR: B16의 superpowers 사용 지시를 FCL 작업에도 적용하는지는 사용자 확인이 필요하다.
+ANCHOR_COUNT: 1
+LABEL: OPEN (2026-11-17 검토). 사용자 발언은 USER(따옴표 안), 나머지는 해석
+LEDGER: SYN-010, D14-065
+OVERTURNS: 없음 (OPEN 목록에 항목 하나를 더한다)
+NEW_TEXT:
+<<<
+**OPEN (2026-11-17 검토):** 2026-11-16에 사용자는 "ali에게 joint paper에 대한 상세한 내용을 제안할거라서" 내용과 흐름을 만들어야 한다고 했다([2026-11-16-discussion.md](/home/jimmy/repos/full-continual-learning/sources/sync/2026-11-16-discussion.md), **USER**). 이는 위 B15의 논문과 별개인 세 번째 논문 후보다. Melete 논문·FCL 논문·공동논문 중 무엇이 주 논문인지는 사용자 확인이 필요하다. 공동논문의 주장은 달성한 gate의 범위로 제한하며([09-roadmap.md](/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md) §3), 현재 등급은 0(구현·학습 0회)이라 제안문은 설계 단계 문구로 쓴다. 제안문 초안의 상한 점검은 [14-schema-lifecycle-crud-and-joint-paper.md](/home/jimmy/repos/full-continual-learning/docs/14-schema-lifecycle-crud-and-joint-paper.md) §7의 주석을 본다. 외부 발송과 연락은 이 저장소 문서화의 범위가 아니다.
+>>>
+
+=== EDIT E14-16 ===
+FILE: docs/13-schema-decomposition-and-interference.md
+SECTION: ## 10. 실험 계획 A–E
+OP: INSERT_AFTER_LINE
+ANCHOR: 모든 실험은 **NOT RUN / PROPOSAL**이다. 현행 phase·전체 사용자 여정과 독립 평가 정책 안에서 배치한다.
+ANCHOR_COUNT: 1
+LABEL: OPEN (2026-11-17 검토). 근거: docs/09 §6-1(제안)
+LEDGER: X13-001
+OVERTURNS: 없음 (이 절의 내용은 그대로다. 배치 제안의 위치를 가리키는 주석이다)
+NEW_TEXT:
+<<<
+**OPEN (2026-11-17 검토):** A–E의 phase 배치 제안은 [09-roadmap.md](/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md) §6-1에 있다. A·E는 UJ2, C는 UJ1·UJ2, D는 UJ1·UJ4의 판독으로 얇게 시작하고, B는 P5 '미루는 것'과 충돌해 사용자 결정이 필요하다. A·C의 핵심 비교(공유 파라미터를 갱신하는 arm, task별 adapter)는 현재 arm 표에 없다. 이 배치는 구현·실행을 뜻하지 않는다.
+>>>
+
+=== EDIT E14-17 ===
+FILE: docs/14-schema-lifecycle-crud-and-joint-paper.md
+SECTION: ## 2. CRUD의 공통 단위
+OP: INSERT_AFTER_LINE
+ANCHOR: 위 식은 설명용 후보이고, 모든 expert를 동시에 활성화하거나
+ANCHOR_COUNT: 1
+LABEL: OPEN (2026-11-17 검토). 근거: docs/05:98-100, docs/09 P1·P2 retrofit 행, docs/07:73-84
+LEDGER: D14-011, D14-014, D14-015, D14-051
+OVERTURNS: 없음 (docs/14 본문은 그대로다. 식의 색인 축 주석)
+NEW_TEXT:
+<<<
+**OPEN (2026-11-17 검토):** 위 식의 i(schema expert)와 [05-integrated-architecture.md](/home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md) §5의 j(CMS level)는 같은 축이 아니다. 형태(기반 + gate된 low-rank 합)는 같으나 j는 갱신 시간척도, i는 문맥으로 선택·할당되는 기능 단위다. 식도 이 문서는 가중치 공간, docs/05는 활성 공간 분기(σ 포함)다. P1은 fast level이 1개라 expert 집합이 없다. artifact의 '검색 표현'(index) 버전과 회귀 기록은 [07-state-and-storage.md](/home/jimmy/repos/full-continual-learning/docs/07-state-and-storage.md) §5의 manifest에 아직 필드가 없다.
+>>>
+
+=== EDIT E14-18 ===
+FILE: docs/14-schema-lifecycle-crud-and-joint-paper.md
+SECTION: ## 3. Update / Create: 어디를 바꾸는가
+OP: INSERT_AFTER_LINE
+ANCHOR: 검색 실패와 실제 구조적 새로움을 구별한다.
+ANCHOR_COUNT: 1
+LABEL: OPEN (2026-11-17 검토). 사용자 발언은 USER(따옴표 안, sources/sync/2026-11-16-discussion.md:17)
+LEDGER: D14-021, D14-002, SYN-008
+OVERTURNS: 없음 (docs/14 본문은 그대로다). '구조적 새로움이 확인될 때만 create'가 사용자 원문 트리거의 정제이며 사용자 확인 전의 PROPOSAL임을 밝힌다
+NEW_TEXT:
+<<<
+**OPEN (2026-11-17 검토):** 사용자 원문은 "문맥에 따라 적합한 schema를 못찾으면 create로 진행해서 새로운 low rank expert를 생성함"이다([2026-11-16-discussion.md](/home/jimmy/repos/full-continual-learning/sources/sync/2026-11-16-discussion.md), **USER**). 위 문단은 이를 '구조적 새로움이 확인될 때만 create'로 좁힌다. 검색이 놓친 경우를 가려내는 보수적 정제이지만 사용자가 확인한 해석이 아니며, 서로 다른 세 트리거(사용자 원문의 '못 찾음', 이 문서의 '구조적 새로움', STRUCTK25의 오류 크기: [05-integrated-architecture.md](/home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md) §4)가 남는다. 사용자 확인 전에는 셋을 같은 예산에서 비교하는 대조로 두고 어느 하나를 기본으로 확정하지 않는다([09-roadmap.md](/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md) §4-1).
+>>>
+
+=== EDIT E14-19 ===
+FILE: docs/14-schema-lifecycle-crud-and-joint-paper.md
+SECTION: ## 3. Update / Create: 어디를 바꾸는가
+OP: INSERT_AFTER_LINE
+ANCHOR: 제안 문장: **새로운 경험을 전체 파라미터에 쓰는 대신
+ANCHOR_COUNT: 1
+LABEL: OPEN (2026-11-17 검토, 결과 등급 상한 점검). 근거: docs/09 §3, README.md의 현재 상태
+LEDGER: D14-028
+OVERTURNS: 없음 (제안 문장은 그대로 두고 옮길 때의 문안만 제안한다)
+NEW_TEXT:
+<<<
+**OPEN (2026-11-17 검토, 결과 등급 상한):** 위 제안 문장은 현재형 선언이라 문장 단독으로 읽으면 구현된 기제처럼 보인다. 현재 구현·학습은 0회(등급 0)이고 선택적 쓰기와 용량 할당은 로드맵 P3의 설계 대상이다([09-roadmap.md](/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md) §3·§4). 논문·편지에 옮길 때는 이렇게 쓴다: "새로운 경험을 전체 파라미터에 쓰는 대신 적합한 schema 후보에 선택적으로 쓰는 방식을 설계한다. 기존 구조가 맞으면 in-place adaptation을, 수용할 구조가 없으면 용량 할당을 하는 정책을 같은 예산의 대조와 비교해 검증할 계획이다(NOT RUN)."
+>>>
+
+=== EDIT E14-20 ===
+FILE: docs/14-schema-lifecycle-crud-and-joint-paper.md
+SECTION: ## 4. Delete / Retain: 무엇을 어떤 비용으로 남기는가
+OP: INSERT_AFTER_LINE
+ANCHOR: Offload는 지식 삭제가 아니다.
+ANCHOR_COUNT: 1
+LABEL: OPEN (2026-11-17 검토, 용어). 근거: docs/07:103·:114, docs/09 P1-T13, 사용자 Delete 발언(USER)
+LEDGER: D14-006, D14-033, D14-034
+OVERTURNS: 없음 (docs/14 본문은 그대로다). 위 '지식 삭제'가 source 삭제와 다른 뜻임을 밝힌다
+NEW_TEXT:
+<<<
+**OPEN (2026-11-17 검토, 용어):** 이 절의 Delete/Retain은 예산 아래 기능 손실을 치르는 기능적 망각/보존이다. 핵심 문서의 '삭제'(UJ1 ⑨, P1-T13)는 source 원장 철회와 남은 source replay 재구성이며 다른 개념이다. 위 '지식 삭제'는 후자가 아니라 폐기를 뜻한다. 구분표와 쓰기 규칙은 [07-state-and-storage.md](/home/jimmy/repos/full-continual-learning/docs/07-state-and-storage.md) §7, 평가 위치는 [08-evaluation.md](/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md) §1·§2-2(제안 F22)를 본다. 통합·압축·폐기는 replay 재구성의 전제를 줄이므로 이 절의 정책은 source 삭제의 보장 범위를 좁힌다.
+>>>
+
+=== EDIT E14-21 ===
+FILE: docs/14-schema-lifecycle-crud-and-joint-paper.md
+SECTION: ## 4. Delete / Retain: 무엇을 어떤 비용으로 남기는가
+OP: INSERT_AFTER_LINE
+ANCHOR: 제안 문장: **지식 증가 비용을 암묵적 덮어쓰기로만 치르지 않는다.
+ANCHOR_COUNT: 1
+LABEL: OPEN (2026-11-17 검토, 결과 등급 상한 점검). 근거: docs/09 §3·§4·§7, docs/14:71
+LEDGER: D14-043
+OVERTURNS: 없음 (제안 문장은 그대로 두고 옮길 때의 문안만 제안한다)
+NEW_TEXT:
+<<<
+**OPEN (2026-11-17 검토, 결과 등급 상한):** 위 제안 문장은 현재형 선언이다. 관리 정책은 P4(offload·Sleep 통합)–P5(압축·폐기)에서 비로소 평가되고 기능 손실 추정기($\widehat D_t(a)$)는 검증되지 않았다. 옮길 때는 이렇게 쓴다: "지식 증가 비용을 암묵적 덮어쓰기로만 치르지 않도록, 위치·표현 크기·기능 가치를 관리하고 피할 수 없는 손실은 평가 가능한 선택적 망각으로 다루는 정책을 설계한다. 기능 손실 추정기는 아직 검증하지 않았다(NOT RUN)."
+>>>
+
+=== EDIT E14-22 ===
+FILE: docs/14-schema-lifecycle-crud-and-joint-paper.md
+SECTION: ## 5. Read / Activate: 무엇을 지금 쓰는가
+OP: INSERT_AFTER_LINE
+ANCHOR: 제안 문장: **원문을 매번 길게 넣는 대신
+ANCHOR_COUNT: 1
+LABEL: OPEN (2026-11-17 검토, 결과 등급 상한 점검). 근거: docs/09 §1.3·§3·§7
+LEDGER: D14-053
+OVERTURNS: 없음 (제안 문장은 그대로 두고 옮길 때의 문안만 제안한다). 문장의 '대신'이 함의하는 토큰·계산 절감 주장을 약화한다
+NEW_TEXT:
+<<<
+**OPEN (2026-11-17 검토, 결과 등급 상한):** 위 제안 문장의 '대신'은 토큰·계산 절감을 함의한다. '계산 절감'은 등급 3 이전에 쓸 수 없고([09-roadmap.md](/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md) §3), raw history를 넣는 `ctx` 대조는 P1부터 있으며 사전 명세한 예산에서 `ctx`가 같거나 낫다면 그 경로를 유지한다([09-roadmap.md](/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md) §7). 학습된 선택은 P3, 외부 retrieval은 P5다. 옮길 때는 이렇게 쓴다: "원문을 매번 넣는 방식(raw-history 대조)과 같은 토큰·계산 예산에서 비교하는 것을 전제로, 현재 문맥에 적합한 신경 계산 기능을 검색·활성화하고 판단용 읽기와 학습용 참조를 구분하는 방법을 설계한다. 토큰·계산 절감은 아직 주장하지 않는다(NOT RUN)."
+>>>
+
+=== EDIT E14-23 ===
+FILE: docs/14-schema-lifecycle-crud-and-joint-paper.md
+SECTION: ## 7. Ali 공동논문 제안의 흐름
+OP: INSERT_AFTER_LINE
+ANCHOR: 6. **검증:** task ID 없는 구조 전이·재방문·새 관계 등장, 동일 활성/전체 자원에서 비교.
+ANCHOR_COUNT: 1
+LABEL: OPEN (2026-11-17 검토, 결과 등급 상한 점검). 근거: docs/09 §3·§7, docs/10:134, 감사 §6.2
+LEDGER: D14-004, D14-059, D14-060, D14-061, D14-062, D14-063, D14-064
+OVERTURNS: 없음 (§7 본문은 그대로다). 공통 단위(항목 2)를 확정형에서 가설로, 정책 공동학습(항목 5)을 일정 있는 약속에서 일정 없는 질문으로 약화하는 문안을 제안한다
+NEW_TEXT:
+<<<
+**OPEN (2026-11-17 검토, 결과 등급 상한 점검):** 현재 통합 모델 구현·학습은 0회(등급 0)이고 합성 Phase-0는 통합 PoC가 아니다. 등급 0에서는 '설계됨'·'NOT RUN'만 쓸 수 있다([09-roadmap.md](/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md) §3). 위 6항목 중 아래는 문장 단독으로 읽으면 상한을 넘는다.
+- 2 공통 단위: 가설이 확정형으로 적혔다. "공통 단위(가설): 여러 과제에 재사용될 수 있다고 가정하는 low-rank expert(schema 후보). 재사용·기능적 역할·학습 효용이 실험으로 확인되기 전에는 schema라고 부르지 않는다."
+- 5 공동 연구 질문: 정책 공동학습은 로드맵 P1–P5에 일정이 없다. "탐색 후보(일정 없음): 기존 expert의 수정 가능 조건, 기능 거리와 분화·압축 기준. 미래 효용을 통한 정책 공동학습은 현재 로드맵 밖의 장기 질문이다."
+- 주의: 3은 기능 손실 기반 retention의 추정기가 미검증이므로 '설계 후보'로 쓴다. 4의 MIRAS(arXiv 2504.13173)는 catalog에 없다. 이번 검토에서 발췌 확인한 범위에서 MIRAS의 retention은 순환 memory 갱신의 retention gate(학습과 기존 상태 유지의 균형을 정하는 정규화)이며 schema·artifact 단위의 보존 예산이나 폐기를 다룬 것이 아니다. '관점을 연결한다'는 가설로 쓰고 MIRAS가 이 문제를 이미 다룬다고 읽히지 않게 한다([schema-lifecycle-2026-11-16.md](/home/jimmy/repos/full-continual-learning/references/schema-lifecycle-2026-11-16.md)). 6은 전체 저장 자원의 일치가 budget meter에 없고 결과가 합성 family·소형 모델 범위이므로 그 범위를 적는다.
+- 정책은 단순 대조(같은 계산·쓰기 예산의 고정·무구조·항상-갱신, raw history `ctx`)보다 나은 때에만 필요성을 주장한다([09-roadmap.md](/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md) §7).
+>>>
+
+=== EDIT E14-24 ===
+FILE: docs/14-schema-lifecycle-crud-and-joint-paper.md
+SECTION: ### 제안문 초안 — 미발송
+OP: INSERT_AFTER_LINE
+ANCHOR: > Continual learning을 schema의 생명주기로 다루고자 합니다.
+ANCHOR_COUNT: 1
+LABEL: OPEN (2026-11-17 검토, 미발송 초안의 상한 점검). Ali 관심 개념은 USER(sources/user-statements.md U-T09)
+LEDGER: D14-062, D14-066, D14-067, D14-068, D14-069, SYN-010
+OVERTURNS: 없음 (초안은 그대로 두고 수정 문안을 제안만 한다. 사용자 승인 전에는 바꾸지 않는다). 둘째·셋째 문장의 현재형 선언과 일정 없는 약속을 약화하는 문안이다
+NEW_TEXT:
+<<<
+**OPEN (2026-11-17 검토, 미발송 초안의 상한 점검):** 위 초안은 발송하지 않았다. 둘째·셋째 문장("학습하고… 갱신하며… 할당합니다", "관리하되… 평가합니다")은 구현된 능력처럼 읽히고, 압축·통합·폐기는 로드맵에 일정이 없으며(P4 상한은 '삭제 보장 없음'), 초안에는 현재 상태(구현·실험 0회)와 단순 대조를 두겠다는 약속이 없다. 사용자가 승인하기 전에는 위 초안을 바꾸지 않는다. 수정 문안 제안:
+
+> Continual learning을 schema의 생명주기(Update·Create, Delete·Retain, Read·Activate)로 다루는 연구를 설계하고 있습니다. 아직 구현과 실험을 하지 않은 설계 단계입니다. 경험에서 재사용 가능한 관계 구조를 low-rank expert(schema 후보)로 학습·갱신하고 수용하기 어려운 경험에는 새 expert를 할당하는 방법을 제안하며, 이 구조가 실제로 재사용되는지는 실험으로 확인할 계획입니다. 증가하는 지식은 offload·압축·통합·폐기로 관리하는 정책을 설계 중이며 기능 손실과 저장·접근·학습 비용을 분리해 평가하려 합니다. 현재 문맥과 목표에 맞는 expert를 검색·활성화하는 정책까지 결합해, Nested Learning 및 MIRAS의 관점과 함께, 같은 계산·쓰기 예산의 단순한 대조(raw history 포함)보다 장기적인 새 학습 능력과 유효 지식의 보존을 개선할 수 있는지 검증하고자 합니다. 단순한 방법이 같거나 낫다면 그 범위에서 복잡한 구조의 필요성은 주장하지 않겠습니다.
+
+Ali가 관심 있다고 전해진 loop transformer·MoD·MoR·depth attention 축([user-statements.md](/home/jimmy/repos/full-continual-learning/sources/user-statements.md) U-T09)은 이 초안에 없다. 넣을지는 사용자 판단이다(**OPEN**).
+>>>
+
+=== EDIT E14-25 ===
+FILE: docs/14-schema-lifecycle-crud-and-joint-paper.md
+SECTION: ## 8. 결정적인 실험
+OP: INSERT_AFTER_LINE
+ANCHOR: **추가 Read 대조군 (PROPOSAL / NOT RUN):**
+ANCHOR_COUNT: 1
+LABEL: OPEN (2026-11-17 검토, 배치). 근거: docs/09 §6-1(제안), docs/08 §2-2(제안 F22·F23)
+LEDGER: D14-070, D14-071, D14-072, D14-073, D14-074, D14-075, D14-076
+OVERTURNS: 없음 (docs/14 본문은 그대로다. 배치·arm·family 제안의 위치를 가리키는 주석이다)
+NEW_TEXT:
+<<<
+**OPEN (2026-11-17 검토, 배치):** 이 절의 CU·D·R·Joint·System ONE은 [09-roadmap.md](/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md) §6-1에 기존 phase의 판독으로 배치했다(System ONE은 [13-schema-decomposition-and-interference.md](/home/jimmy/repos/full-continual-learning/docs/13-schema-decomposition-and-interference.md) §10 E와 같은 실험이고 Joint는 C와 합쳤다). D(보존 정책 비교)와 R(선택 오류)에는 대응하는 family가 없어 [08-evaluation.md](/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md) §2-2 뒤에 F22·F23을 제안했다. 이 절의 비교가 성립하려면 공유 파라미터를 갱신하는 arm(`ftall`)과 task별 oracle adapter(`adapters`)가 arm 표에 필요하다. 'D'의 '삭제'는 기능적 망각/보존이며 source 삭제와 다르다([07-state-and-storage.md](/home/jimmy/repos/full-continual-learning/docs/07-state-and-storage.md) §7).
+>>>
+
+=== EDIT E14-26 ===
+FILE: references/schema-lifecycle-2026-11-16.md
+SECTION: ## 11/16 보고의 추가 확인 대상
+OP: INSERT_AFTER_LINE
+ANCHOR: 정확한 발행일·개정일·저자·venue·읽은 범위는 후속 실제 접근에서 확인한다.
+ANCHOR_COUNT: 1
+LABEL: OPEN + LITERATURE(발췌 확인) (2026-11-17 검토). 근거: references/catalog.tsv·README.md 대조(280dc9a), 공개 PDF 발췌(arXiv 2504.13173, 2006.15078)
+LEDGER: REF14-002, REF14-003, REF14-004, REF14-005, REF14-006, REF14-007, REF14-008, REF14-009, REF14-010, REF14-011, REF14-012
+OVERTURNS: 없음 (이 파일의 표는 그대로다. catalog 미등재 현황과 이번에 확인한 서지 두 건을 밝힌다)
+NEW_TEXT:
+<<<
+**OPEN (2026-11-17 검토):** 위 두 표 중 MIRAS·S-LoRA·WISE·Learning to Prompt·InfLoRA·압축 관점 논문과 Singh 외·정정·Category-theoretic SBL 항목은 [catalog.tsv](/home/jimmy/repos/full-continual-learning/references/catalog.tsv)와 [README.md](/home/jimmy/repos/full-continual-learning/references/README.md)에 아직 등재돼 있지 않다(WISE는 [schema-decomposition-2026-11-14.md](/home/jimmy/repos/full-continual-learning/references/schema-decomposition-2026-11-14.md)에만 있다). Tian 외 코드와 S-HAI 코드 링크도 catalog에 없다. 이번 검토에서 두 항목의 서지를 공개 PDF 발췌로 확인했다(전문 정독·재현 아님). MIRAS(arXiv 2504.13173)는 "It's All Connected: A Journey Through Test-Time Memorization, Attentional Bias, Retention, and Online Optimization"(Behrouz, Razaviyayn, Zhong, Mirrokni; arXiv v1 2025-04-17)이며 그 retention은 순환 memory 갱신의 retention gate다. 압축 관점 논문(arXiv 2006.15078)은 "Continual Learning from the Perspective of Compression"(He, Lin; ICML 2020 Lifelong Learning Workshop; arXiv v1 2020-06-26)이다. 나머지 항목은 서지(제목·저자·식별자) 확정 전에는 설계 근거로 쓰지 않는다. [14-schema-lifecycle-crud-and-joint-paper.md](/home/jimmy/repos/full-continual-learning/docs/14-schema-lifecycle-crud-and-joint-paper.md) §7의 MIRAS 서술은 위 범위로 한정한다.
+>>>
+
+=== EDIT E14-27 ===
+FILE: docs/14-schema-lifecycle-crud-and-joint-paper.md
+SECTION: ## 4. Delete / Retain: 무엇을 어떤 비용으로 남기는가
+OP: INSERT_AFTER_LINE
+ANCHOR: 이는 기억 관리 동작 a의 손실 추정치다.
+ANCHOR_COUNT: 1
+LABEL: LITERATURE(He & Lin 2020, arXiv 2006.15078, 공개 PDF 발췌 확인) + OPEN (2026-11-17 검토)
+LEDGER: D14-038, REF14-007
+OVERTURNS: 없음 (docs/14 본문은 그대로다). 위 식을 새 정의처럼 읽는 것을 막는 선행 정의 주석이다
+NEW_TEXT:
+<<<
+**LITERATURE / OPEN (2026-11-17 검토, 선행 정의):** 위 $\widehat D_t(a)$의 꼴(손실 증가의 양수 부분의 기댓값)은 He와 Lin의 [Continual Learning from the Perspective of Compression](https://arxiv.org/abs/2006.15078)(ICML 2020 Lifelong Learning Workshop)이 forgetting을 '순차 학습한 모델로 이전 데이터를 압축할 때 description length의 증가'로 정의한 식 $F=\max(L(x|\theta_j)-L(x|\theta_i),0)$와 같은 형태다. 새 정의로 주장하지 않는다. 차이는 평가 대상이 이전 데이터가 아니라 기억 관리 동작 a를 적용한 뒤의 상태이고 분포가 과거 표본이 아니라 추정 분포 $\widehat Q_t$라는 점이다. 그 논문은 forgetting이 음수가 되지 않도록 max를 쓴다고 적었으므로, 손실이 줄어드는 압축·폐기를 0으로 처리하는 성질도 같다. 확인 범위는 공개 PDF 본문 발췌이며 재현은 하지 않았다.
+>>>

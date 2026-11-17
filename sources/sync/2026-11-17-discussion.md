@@ -1,0 +1,39 @@
+# 2026-11-17 요청 동기화 출처와 범위
+
+이 문서는 2026-11-17에 사용자가 입력한 요청의 원문과 이번 작업의 범위를 보존하는 기록이다. 형식은 [2026-11-16-discussion.md](/home/jimmy/repos/full-continual-learning/sources/sync/2026-11-16-discussion.md)와 [SYNC_POLICY.md](/home/jimmy/repos/full-continual-learning/SYNC_POLICY.md)를 따른다. 아래 블록은 문구를 그대로 옮겼다. 다른 세션의 모든 메시지를 export한 것이 아니다.
+
+## 사용자 원문: 재검토·저장소 반영·runcrate 계산 계획
+
+```text
+오늘 날짜 기준으로 다시 검토해봐. 그리고 full continual learning repo도 업데이트해서 반영. 그리고 지금 우리 host에 runcrate 사용환경 있을거야. melete를 앞으로 만들고 학습시 사용한다면 어떻게 쓸 수 있을지, 비용효율을 위해서 너무 과도한 사양이 아닌, 그렇다고 minimum으로 품질이나 효율을 떨어트리지 않으면서 쓴다면 어떻게 쓸 수 있을지 계획해봐
+```
+
+출처: Claude Code 세션에서 사용자가 입력하고 마스터 agent가 작업 지시에 전달한 원문이다. 전체 대화 export가 아니다. ChatGPT의 hourly 「FCL 연구 기록 동기화」 작업이 읽을 수 있는 대화가 아니므로, 이 내용은 이번 branch 커밋으로만 저장소에 들어온다.
+
+원문은 요청 8개로 나뉜다. 항목별 원장은 검토 기록 [2026-11-17-design-review.md](/home/jimmy/repos/full-continual-learning/research/2026-11-17-design-review.md)의 원장(U17-01–U17-08)에 있다.
+
+| 요청 | 사용자가 말한 것 | 처리 |
+|---|---|---|
+| 재검토 | 오늘 날짜(2026-11-17) 기준으로 다시 검토 | 11-12 감사 이후의 자료를 항목 단위 원장으로 대조한 델타 감사 |
+| 저장소 반영 | full continual learning repo를 업데이트해서 반영 | 설계 문서 편집·검토 기록·참고문헌·README |
+| 계획 | host의 runcrate 사용환경에서, 과도한 사양도 최소 사양도 피하며, melete를 만들고 학습할 때 어떻게 쓸지 | 횡단 문서 [15-compute-plan.md](/home/jimmy/repos/full-continual-learning/docs/15-compute-plan.md)와 로드맵 §10의 D-04 개정 추천 |
+
+## 해석과 한계
+
+- **사용자 기대와 확인:** 사용자는 host에 runcrate 사용환경이 "있을거야"라고 했다. 이는 사용자의 기대다. 계획 작업에서 읽기 전용으로 사용환경의 존재와 상태를 조회했으며, 조회 결과의 세부(계정·잔액·내부 식별자)는 공개 저장소에 싣지 않는다.
+- **"melete"의 해석(PROPOSAL, 사용자 확인 대기):** 이 저장소에서 앞으로 만들고 학습시킬 모델은 Melete의 후속인 통합 모델 System ONE이다. 계산 계획은 로드맵 P1–P5의 학습을 대상으로 썼다. 사용자가 말한 "melete"가 그 모델을 뜻하는지, 별도의 Melete 신경 기억 실험까지 포함하는지는 사용자가 말하지 않았다.
+- **계획과 실행의 구분:** "계획해봐"는 계획 요청이다. 클라우드 인스턴스 생성, 비용 발생, 모델 다운로드는 사용자가 승인한 것이 아니다. 계산 계획의 수치는 ESTIMATE이고 실행은 NOT RUN이다.
+- **결정은 사용자 몫:** 계획이 낸 추천은 PROPOSAL이다. 로드맵 §10의 D-01·D-04·D-12 등은 이번 요청으로 결정되지 않았고 OPEN을 유지한다.
+
+## 대응 문서
+
+- [2026-11-17-design-review.md](/home/jimmy/repos/full-continual-learning/research/2026-11-17-design-review.md): 검토 기록. 방법, 수치, 핵심 발견, 반영한 편집, 사용자 결정 대기.
+- [15-compute-plan.md](/home/jimmy/repos/full-continual-learning/docs/15-compute-plan.md): 로드맵 P1–P5에 자원을 붙이는 계산 계획.
+- [09-roadmap.md](/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md#10-계산-자원과-결정-대기): §10 계산 자원과 결정 대기(D-04 개정 추천), §11 변경 기록.
+- [shared-links-2026-11-17.md](/home/jimmy/repos/full-continual-learning/references/shared-links-2026-11-17.md): 사용자 공유 링크 카드에서 확정한 논문의 reference 목록.
+
+## 이번 작업의 경계
+
+문서와 계획만 바꿨다. 모델 학습, GPU 실행, 클라우드 인스턴스 생성, 비용 지출, 백서 재생성, 외부 발송은 0회다. 변경은 branch 커밋이며 push와 병합은 마스터가 한다. 기존 파일의 이동·이름 변경·삭제는 없다. ChatGPT 동기화 문서는 기존 문장을 바꾸지 않고 삽입 주석만 넣었다.
+
+저장소 전체 validator는 worktree에서 실행했다. 문서가 `/home/jimmy/repos/full-continual-learning/…` 절대 경로로 링크하므로, 다른 위치의 checkout에서 `tools/validate_docs.py`를 그대로 돌리면 그 링크가 모두 미해결로 나온다. 이 한계와 대응은 검토 기록에 적었다. 원 논문의 전문·그림과 개인 정보, 인증정보는 게시하지 않았다.
