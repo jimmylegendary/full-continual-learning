@@ -1,10 +1,10 @@
 # SPENS24, HWU20 — 해마–피질 공고화와 schema 의존 부호화
 
-> 2026-11-11 SBL 원문 검토 워크플로에서 worker가 쓴 보고를 마스터가 원문 대조로 검수해 옮겼다. 종합은 [2026-11-11-sbl-fulltext-review.md](/home/jimmy/repos/full-continual-learning/research/2026-11-11-sbl-fulltext-review.md)에 있다.
+> 2026-11-11 SBL 원문 검토 워크플로에서 worker가 쓴 보고를 마스터가 원문 대조로 검수해 옮겼다. 종합은 [2026-11-11-sbl-fulltext-review.md](../2026-11-11-sbl-fulltext-review.md)에 있다.
 >
-> `fcl-sbl-fulltext-20261111/...` 경로는 저장소 밖 호스트 작업 폴더다. 원문은 저작권 때문에 저장소에 넣지 않았다. 판본과 해시는 [evidence.json](/home/jimmy/repos/full-continual-learning/research/2026-11-11-sbl-fulltext/evidence.json)에 있다.
+> `fcl-sbl-fulltext-20261111/...` 경로는 저장소 밖 호스트 작업 폴더다. 원문은 저작권 때문에 저장소에 넣지 않았다. 판본과 해시는 [evidence.json](evidence.json)에 있다.
 >
-> 표기: 필드 1–10·12는 별도 표기가 없으면 원문 사실(LITERATURE, 위치 병기)이다. 일부 문장은 우리 산술·추론(PROPOSAL), 코드 독해(CODE), 그림 판독(FIGURE-READ)인데 표시가 빠져 있다. 그 목록은 [W7-remediation.md](/home/jimmy/repos/full-continual-learning/research/2026-11-11-sbl-fulltext/W7-remediation.md) §2.4에 있다. 필드 11은 PROPOSAL이다.
+> 표기: 필드 1–10·12는 별도 표기가 없으면 원문 사실(LITERATURE, 위치 병기)이다. 일부 문장은 우리 산술·추론(PROPOSAL), 코드 독해(CODE), 그림 판독(FIGURE-READ)인데 표시가 빠져 있다. 그 목록은 [W7-remediation.md](W7-remediation.md) §2.4에 있다. 필드 11은 PROPOSAL이다.
 
 ---
 

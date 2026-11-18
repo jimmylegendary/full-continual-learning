@@ -12,7 +12,7 @@
 
 **ARCHIVE:** 이전 N0/N1 prototype은 8개 cue에서 3채널의 후속 결과를 예측하는 과제였고, 이것이 암묵적 조건부 판단을 측정한다는 연결은 검증되지 않았다고 사후 검토에서 정리됐다. 교정은 조건별 선택·미관측 조합·반례·복귀를 주 endpoint로 정의하는 것이었다 ([2026-10-15-neural-review-postmortem.md](https://github.com/jimmylegendary/melete/blob/1d95136c3a64580ec25bc588c96c191eecb85b41/docs/implementation/records/2026-10-15-neural-review-postmortem.md)).
 
-**PROPOSAL:** FCL의 주 판단 지표는 조건별 선택(보류 포함)의 정답·보호·복귀다. 결과값 예측 오차(MSE 등)는 보조 지표이며 조건부 판단의 성공으로 대체하지 않는다. 평가 설계는 [08-evaluation.md](/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md)를 따른다.
+**PROPOSAL:** FCL의 주 판단 지표는 조건별 선택(보류 포함)의 정답·보호·복귀다. 결과값 예측 오차(MSE 등)는 보조 지표이며 조건부 판단의 성공으로 대체하지 않는다. 평가 설계는 [08-evaluation.md](08-evaluation.md)를 따른다.
 
 ## 2. 명시적 사용자 목표
 
@@ -31,7 +31,7 @@
 | U11 | 뇌파에서 더 본질적인 상태 의존적 조율을 탐구한다 | 단순한 주기 가변화나 Hz→token 직접 대응으로 축소하지 않는다 |
 | U12 | 이론·수식·실험 PoC·단계별 MVP·self-evolution을 함께 진행한다 | 공개 문서 게시와 모델 구현/성공은 다르다 |
 
-**OPEN (2026-11-17 검토):** 위 U01–U12에는 2026-11-16 사용자 원문의 지속학습 목적, 곧 「무한한 시간동안 경험하는것을 재앙적 망각 없이 학습 하는 것」([2026-11-16-discussion.md](/home/jimmy/repos/full-continual-learning/sources/sync/2026-11-16-discussion.md))이 별도 항목으로 없다. [13-schema-decomposition-and-interference.md](/home/jimmy/repos/full-continual-learning/docs/13-schema-decomposition-and-interference.md) §1·§11과 [14-schema-lifecycle-crud-and-joint-paper.md](/home/jimmy/repos/full-continual-learning/docs/14-schema-lifecycle-crud-and-joint-paper.md)가 이 목적을 쓰지만 헌장 표와 [09-roadmap.md](/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md) §1.2의 U01–U12 경로에는 연결돼 있지 않다. 헌장에 U13으로 올릴지 기존 U03·U10과 보호 family에 묶을지는 사용자 확인이 필요하다(결정 대기).
+**OPEN (2026-11-17 검토):** 위 U01–U12에는 2026-11-16 사용자 원문의 지속학습 목적, 곧 「무한한 시간동안 경험하는것을 재앙적 망각 없이 학습 하는 것」([2026-11-16-discussion.md](../sources/sync/2026-11-16-discussion.md))이 별도 항목으로 없다. [13-schema-decomposition-and-interference.md](13-schema-decomposition-and-interference.md) §1·§11과 [14-schema-lifecycle-crud-and-joint-paper.md](14-schema-lifecycle-crud-and-joint-paper.md)가 이 목적을 쓰지만 헌장 표와 [09-roadmap.md](09-roadmap.md) §1.2의 U01–U12 경로에는 연결돼 있지 않다. 헌장에 U13으로 올릴지 기존 U03·U10과 보호 family에 묶을지는 사용자 확인이 필요하다(결정 대기).
 
 ## 3. 여섯 층위의 의도
 
@@ -55,7 +55,7 @@ Looping은 반복 연산, MoD/MoR은 계산 배분, depth attention은 중간 �
 
 **USER (B04, 2026-10-05):** 관심·수준·편향은 모델이 경험으로 형성한 자체 상태다. 외부에서 주어진 사용자 프로필이나 고정 규칙이 아니다.
 
-**PROPOSAL:** 모델 상태에 '관심'(무엇을 더 배우려 하는가)과 '수준'(현재 어디까지 이해하는가)을 편향·정책과 같은 층위의 학습 상태로 둔다. 둘은 읽기·쓰기·계산 깊이를 정하는 신호이며, 초기 seed 값은 manifest에 명시하고 경험으로 형성된 효과와 따로 평가한다. 정의와 측정은 [04-rhythms-and-orchestration.md](/home/jimmy/repos/full-continual-learning/docs/04-rhythms-and-orchestration.md)의 학습 가능성 항을 따른다.
+**PROPOSAL:** 모델 상태에 '관심'(무엇을 더 배우려 하는가)과 '수준'(현재 어디까지 이해하는가)을 편향·정책과 같은 층위의 학습 상태로 둔다. 둘은 읽기·쓰기·계산 깊이를 정하는 신호이며, 초기 seed 값은 manifest에 명시하고 경험으로 형성된 효과와 따로 평가한다. 정의와 측정은 [04-rhythms-and-orchestration.md](04-rhythms-and-orchestration.md)의 학습 가능성 항을 따른다.
 
 **ARCHIVE:** Melete도 관심·편향·수준을 자체 경험으로 형성된 상태로 두고 familiarity·관심·학습 가능성·surprise를 하나의 임계값으로 합치지 않는다고 정리했다 ([2026-10-15-neural-judgment-roadmap.md](https://github.com/jimmylegendary/melete/blob/1d95136c3a64580ec25bc588c96c191eecb85b41/docs/superpowers/plans/2026-10-15-neural-judgment-roadmap.md)).
 

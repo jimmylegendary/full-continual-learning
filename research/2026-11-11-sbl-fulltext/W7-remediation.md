@@ -1,8 +1,8 @@
 # 보완 — STRUCTK25 원문 정독, 위치 보완, 표기 점검, 재집계
 
-> 2026-11-11 SBL 원문 검토 워크플로에서 worker가 쓴 보고를 마스터가 원문 대조로 검수해 옮겼다. 종합은 [2026-11-11-sbl-fulltext-review.md](/home/jimmy/repos/full-continual-learning/research/2026-11-11-sbl-fulltext-review.md)에 있다.
+> 2026-11-11 SBL 원문 검토 워크플로에서 worker가 쓴 보고를 마스터가 원문 대조로 검수해 옮겼다. 종합은 [2026-11-11-sbl-fulltext-review.md](../2026-11-11-sbl-fulltext-review.md)에 있다.
 >
-> `fcl-sbl-fulltext-20261111/...` 경로는 저장소 밖 호스트 작업 폴더다. 원문은 저작권 때문에 저장소에 넣지 않았다. 판본과 해시는 [evidence.json](/home/jimmy/repos/full-continual-learning/research/2026-11-11-sbl-fulltext/evidence.json)에 있다.
+> `fcl-sbl-fulltext-20261111/...` 경로는 저장소 밖 호스트 작업 폴더다. 원문은 저작권 때문에 저장소에 넣지 않았다. 판본과 해시는 [evidence.json](evidence.json)에 있다.
 >
 > 이 문서는 리더 검증(FAIL) 뒤의 보완 보고다. STRUCTK25 원문 확보, ELDER26·MICONI25·SWAMI23 위치 보완, 표기 점검, TEM20 재집계, CHU25 쪽수 확인을 담는다. §2의 줄번호는 정정·머리말을 붙이기 전 원 보고 기준이다.
 

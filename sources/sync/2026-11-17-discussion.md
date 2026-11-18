@@ -1,6 +1,6 @@
 # 2026-11-17 요청 동기화 출처와 범위
 
-이 문서는 2026-11-17에 사용자가 입력한 요청의 원문과 이번 작업의 범위를 보존하는 기록이다. 형식은 [2026-11-16-discussion.md](/home/jimmy/repos/full-continual-learning/sources/sync/2026-11-16-discussion.md)와 [SYNC_POLICY.md](/home/jimmy/repos/full-continual-learning/SYNC_POLICY.md)를 따른다. 아래 블록은 문구를 그대로 옮겼다. 다른 세션의 모든 메시지를 export한 것이 아니다.
+이 문서는 2026-11-17에 사용자가 입력한 요청의 원문과 이번 작업의 범위를 보존하는 기록이다. 형식은 [2026-11-16-discussion.md](2026-11-16-discussion.md)와 [SYNC_POLICY.md](../../SYNC_POLICY.md)를 따른다. 아래 블록은 문구를 그대로 옮겼다. 다른 세션의 모든 메시지를 export한 것이 아니다.
 
 ## 사용자 원문: 재검토·저장소 반영·runcrate 계산 계획
 
@@ -10,13 +10,13 @@
 
 출처: Claude Code 세션에서 사용자가 입력하고 마스터 agent가 작업 지시에 전달한 원문이다. 전체 대화 export가 아니다. ChatGPT의 hourly 「FCL 연구 기록 동기화」 작업이 읽을 수 있는 대화가 아니므로, 이 내용은 이번 branch 커밋으로만 저장소에 들어온다.
 
-원문은 요청 8개로 나뉜다. 항목별 원장은 검토 기록 [2026-11-17-design-review.md](/home/jimmy/repos/full-continual-learning/research/2026-11-17-design-review.md)의 원장(U17-01–U17-08)에 있다.
+원문은 요청 8개로 나뉜다. 항목별 원장은 검토 기록 [2026-11-17-design-review.md](../../research/2026-11-17-design-review.md)의 원장(U17-01–U17-08)에 있다.
 
 | 요청 | 사용자가 말한 것 | 처리 |
 |---|---|---|
 | 재검토 | 오늘 날짜(2026-11-17) 기준으로 다시 검토 | 11-12 감사 이후의 자료를 항목 단위 원장으로 대조한 델타 감사 |
 | 저장소 반영 | full continual learning repo를 업데이트해서 반영 | 설계 문서 편집·검토 기록·참고문헌·README |
-| 계획 | host의 runcrate 사용환경에서, 과도한 사양도 최소 사양도 피하며, melete를 만들고 학습할 때 어떻게 쓸지 | 횡단 문서 [15-compute-plan.md](/home/jimmy/repos/full-continual-learning/docs/15-compute-plan.md)와 로드맵 §10의 D-04 개정 추천 |
+| 계획 | host의 runcrate 사용환경에서, 과도한 사양도 최소 사양도 피하며, melete를 만들고 학습할 때 어떻게 쓸지 | 횡단 문서 [15-compute-plan.md](../../docs/15-compute-plan.md)와 로드맵 §10의 D-04 개정 추천 |
 
 ## 해석과 한계
 
@@ -27,10 +27,10 @@
 
 ## 대응 문서
 
-- [2026-11-17-design-review.md](/home/jimmy/repos/full-continual-learning/research/2026-11-17-design-review.md): 검토 기록. 방법, 수치, 핵심 발견, 반영한 편집, 사용자 결정 대기.
-- [15-compute-plan.md](/home/jimmy/repos/full-continual-learning/docs/15-compute-plan.md): 로드맵 P1–P5에 자원을 붙이는 계산 계획.
-- [09-roadmap.md](/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md#10-계산-자원과-결정-대기): §10 계산 자원과 결정 대기(D-04 개정 추천), §11 변경 기록.
-- [shared-links-2026-11-17.md](/home/jimmy/repos/full-continual-learning/references/shared-links-2026-11-17.md): 사용자 공유 링크 카드에서 확정한 논문의 reference 목록.
+- [2026-11-17-design-review.md](../../research/2026-11-17-design-review.md): 검토 기록. 방법, 수치, 핵심 발견, 반영한 편집, 사용자 결정 대기.
+- [15-compute-plan.md](../../docs/15-compute-plan.md): 로드맵 P1–P5에 자원을 붙이는 계산 계획.
+- [09-roadmap.md](../../docs/09-roadmap.md#10-계산-자원과-결정-대기): §10 계산 자원과 결정 대기(D-04 개정 추천), §11 변경 기록.
+- [shared-links-2026-11-17.md](../../references/shared-links-2026-11-17.md): 사용자 공유 링크 카드에서 확정한 논문의 reference 목록.
 
 ## 이번 작업의 경계
 

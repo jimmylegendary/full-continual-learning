@@ -146,6 +146,21 @@
       "source": "GitHub main commit c373c620e71512e54953514002d170dfa1d9e7da and its recursive tree, plus targeted prior conversation search on 2026-11-18",
       "evidence": "605 root-absolute /home/jimmy/repos/full-continual-learning/ Markdown links in 19 Markdown files redirected to repository-relative paths; target existence checked against GitHub tree; research prose and quoted user messages unchanged.",
       "caveat": "No newly accessible research conversation or weekly report beyond existing committed 2026-11-18 documents; this is a link-integrity correction, not new scientific verification. No model/GPU experiment, cloud, deployment or external sending."
+    },
+    {
+      "id": "remaining-worktree-links-repair-2026-11-18",
+      "status": "documentation_link_repair_no_research_claim",
+      "path": "sources/sync/manifest.json",
+      "related_paths": [
+        "docs/",
+        "references/",
+        "research/",
+        "sources/sync/",
+        "whitepaper/README.md"
+      ],
+      "source": "2026-11-18 GitHub main ef855141e92965e1f4b6d1e468c7de438ae51cc9; complete recursive repository tree and all 69 Markdown files; targeted recent-conversation search",
+      "evidence": "Detected 399 remaining worktree-absolute Markdown links in 36 files after the previous 605-link repair. Rewrote only link destinations as repository-relative paths; every rewritten destination exists in the GitHub recursive tree. No affected links inside fenced source/user text. No newly accessible FCL research content found.",
+      "caveat": "Documentation-link repair only; existing user statements, research claims and original discussion history unchanged. External URLs, fragment anchors and the complete repository validator were not independently verified; no model implementation, GPU experiments, cloud spending, deployment or external messages."
     }
   ],
   "source_excerpts": "sources/sync/2026-11-16-discussion.md",
@@ -187,6 +202,19 @@
       "json": "manifest parsed and serialized successfully",
       "model_implementation_or_experiments": "NOT RUN",
       "remote_publication": "To be checked after Git branch update"
+    },
+    "incremental_remaining_link_repair_2026_11_18": {
+      "base_commit": "ef855141e92965e1f4b6d1e468c7de438ae51cc9",
+      "markdown_files_scanned": 69,
+      "files_rewritten": 36,
+      "worktree_absolute_markdown_links_rewritten": 399,
+      "link_target_paths": "399 of 399 verified against the remote GitHub recursive tree; no missing paths",
+      "fenced_text": "All 399 transformed links were outside triple-backtick fenced blocks; user original text not rewritten",
+      "staged_tree_diff": "36 existing Markdown blobs changed; no added or deleted files prior to manifest edit",
+      "repository_wide_validator": "NOT RUN: local git clone inaccessible because github.com DNS resolution failed; only this specific root-absolute link class and tree targets audited across all Markdown files",
+      "external_urls_and_fragment_anchors": "NOT EXHAUSTIVELY VALIDATED",
+      "new_research_conversation": "No new accessible content after the already-published 2026-11-18 blueprint/ET work and the 605-link repair; personal-context search did not recover new discussion",
+      "model_implementation_or_experiments": "NOT RUN"
     }
   },
   "coverage_limits": [
@@ -196,7 +224,8 @@
     "Sleep-time source output was partially truncated on retrieval; only accessible and verified report items imported",
     "Independent Sleep-time report was accessible only via topical prior-conversation excerpt, not a complete report; 2 additional related works cross-checked independently.",
     "2026-11-17 additional selection derived from partially accessible independent weekly report; SoMem and Recursive memory preprints were first published 2026-11-09/10, not new 2026-11-17 releases.",
-    "Two user messages formerly unavailable as verbatim source for docs/13 and the impact note are now directly preserved; this is not a full chat export, and their per-message timestamps are unavailable."
+    "Two user messages formerly unavailable as verbatim source for docs/13 and the impact note are now directly preserved; this is not a full chat export, and their per-message timestamps are unavailable.",
+    "2026-11-18 follow-up scanned accessible current and prior discussions but found no additional research changes after the published blueprint/ET design. Documentation repair is not a scientific update."
   ],
   "source_reports": [
     {

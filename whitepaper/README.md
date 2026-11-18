@@ -8,12 +8,12 @@
 
 | 파일 | 내용 |
 |---|---|
-| [index.html](/home/jimmy/repos/full-continual-learning/whitepaper/site/index.html) | 본문. 17절 6부로 나뉜다: 들어가며(2분 요약·읽는 법), 1부 왜·어디서 왔나(목적·계보·피드백 반영 추적·문헌), 2부 어떻게 동작하나(통합 구조·수학 명세·상태 계약), 3부 어떻게 검증하고 나아가나(평가·로드맵·진화 정책·열린 질문), 4부 다른 눈으로 보기(전문가 델타·지식 그래프), 부록 |
-| [brief.html](/home/jimmy/repos/full-continual-learning/whitepaper/site/pages/brief.html) | 결정권자용 한 장(eli50) |
-| [intuition.html](/home/jimmy/repos/full-continual-learning/whitepaper/site/pages/intuition.html) | 처음 보는 사람용 직관 설명(eli15) |
-| [expert.html](/home/jimmy/repos/full-continual-learning/whitepaper/site/pages/expert.html) | 분야 전문가용 델타와 약점 공개(eli-guru) |
-| [graph.html](/home/jimmy/repos/full-continual-learning/whitepaper/site/pages/graph.html) | 문서 코퍼스 35개의 지식 그래프. 노드 494개·연결 1,841개이며 graphify 0.9.106으로 만들었다 |
-| [ledger.html](/home/jimmy/repos/full-continual-learning/whitepaper/site/pages/ledger.html) | 피드백 원장 325항목 탐색기. 데이터는 [2026-11-12-design-audit](/home/jimmy/repos/full-continual-learning/research/2026-11-12-design-audit/README.md)의 원장 JSON이다 |
+| [index.html](site/index.html) | 본문. 17절 6부로 나뉜다: 들어가며(2분 요약·읽는 법), 1부 왜·어디서 왔나(목적·계보·피드백 반영 추적·문헌), 2부 어떻게 동작하나(통합 구조·수학 명세·상태 계약), 3부 어떻게 검증하고 나아가나(평가·로드맵·진화 정책·열린 질문), 4부 다른 눈으로 보기(전문가 델타·지식 그래프), 부록 |
+| [brief.html](site/pages/brief.html) | 결정권자용 한 장(eli50) |
+| [intuition.html](site/pages/intuition.html) | 처음 보는 사람용 직관 설명(eli15) |
+| [expert.html](site/pages/expert.html) | 분야 전문가용 델타와 약점 공개(eli-guru) |
+| [graph.html](site/pages/graph.html) | 문서 코퍼스 35개의 지식 그래프. 노드 494개·연결 1,841개이며 graphify 0.9.106으로 만들었다 |
+| [ledger.html](site/pages/ledger.html) | 피드백 원장 325항목 탐색기. 데이터는 [2026-11-12-design-audit](../research/2026-11-12-design-audit/README.md)의 원장 JSON이다 |
 
 ## 다시 만들기와 배포
 
@@ -46,4 +46,4 @@
 
 ## 제3자 구성요소
 
-[vis-network.min.js](/home/jimmy/repos/full-continual-learning/whitepaper/pages/vendor/vis-network.min.js)는 vis-network이며 Apache-2.0과 MIT의 이중 라이선스다. 라이선스 전문은 같은 폴더의 [LICENSE-vis-network-APACHE-2.0.txt](/home/jimmy/repos/full-continual-learning/whitepaper/pages/vendor/LICENSE-vis-network-APACHE-2.0.txt)와 [LICENSE-vis-network-MIT.txt](/home/jimmy/repos/full-continual-learning/whitepaper/pages/vendor/LICENSE-vis-network-MIT.txt)에 있다.
+[vis-network.min.js](pages/vendor/vis-network.min.js)는 vis-network이며 Apache-2.0과 MIT의 이중 라이선스다. 라이선스 전문은 같은 폴더의 [LICENSE-vis-network-APACHE-2.0.txt](pages/vendor/LICENSE-vis-network-APACHE-2.0.txt)와 [LICENSE-vis-network-MIT.txt](pages/vendor/LICENSE-vis-network-MIT.txt)에 있다.

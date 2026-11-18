@@ -45,7 +45,7 @@
 
 활동한 모든 부분을 학습할 필요가 없다. 간단한 정정은 이해는 쉬워도 즉시 기록해야 한다. 낯선 소문은 계산이 많이 필요해도 강하게 쓰면 안 될 수 있다. 익숙함, 적용성, 신뢰도, 변동성, epistemic uncertainty, aleatoric noise, 결과 중요도는 구별할 후보 신호다.
 
-**PROPOSAL (2026-11-17 검토; [13-schema-decomposition-and-interference.md](/home/jimmy/repos/full-continual-learning/docs/13-schema-decomposition-and-interference.md) §5):** 위 동작 표는 docs/13 §5의 세 분리와 이렇게 겹쳐 읽을 수 있다. 활성화 분리 ≈ Activate/read·Switch, 변경 분리 ≈ Write·Protect/expand(+Eligibility)이고 표현 분리는 동작이 아니라 표현의 성질이다. docs/13은 표현 분리·활성화 분리만으로는 보존 보장이 없고 변경 분리는 쓰기가 닿는 **전체 의존성**(optimizer 상태·공유 통계·감쇠 포함)을 명시해야 가능하다고 본다(docs/13 §7.3). 이 표의 Write·Protect/expand에는 그 의존성 조건이 아직 없다(OPEN).
+**PROPOSAL (2026-11-17 검토; [13-schema-decomposition-and-interference.md](13-schema-decomposition-and-interference.md) §5):** 위 동작 표는 docs/13 §5의 세 분리와 이렇게 겹쳐 읽을 수 있다. 활성화 분리 ≈ Activate/read·Switch, 변경 분리 ≈ Write·Protect/expand(+Eligibility)이고 표현 분리는 동작이 아니라 표현의 성질이다. docs/13은 표현 분리·활성화 분리만으로는 보존 보장이 없고 변경 분리는 쓰기가 닿는 **전체 의존성**(optimizer 상태·공유 통계·감쇠 포함)을 명시해야 가능하다고 본다(docs/13 §7.3). 이 표의 Write·Protect/expand에는 그 의존성 조건이 아직 없다(OPEN).
 
 **USER (B04, 2026-10-05):** 너무 동떨어진 내용은 흘려듣는다. 예: 초등학생과 미적분, 반도체를 모르는 운동선수(관심이 있으면 자기 수준의 다음 내용을 찾음), 2007년 비권위자의 스마트폰 제안, 2008 금융위기 전 비권위자의 폭락 예측. 질문은 threshold 이하의 surprise만 학습 대상인지, 관심·편향·방향성은 학습 대상 결정에 어떻게 들어가는지, 학습량과 충격도는 하나인지였다.
 
@@ -53,7 +53,7 @@
 
 **ARCHIVE:** Melete v0.2는 admission 신호를 관심·현재 목표 관련성·연결 가능성·출처 기대·해석 경향·낯섦/예측 불일치로 따로 읽고, 선택을 ignore(최소 encounter trace만), defer(연결이 어려운 이유·anchor·재검토 조건 보존), seek_bridge, reflect, assimilate/restructure로 나눠 선택마다 남길 상태를 정했다 ([experience-system.md](https://github.com/jimmylegendary/melete/blob/1d95136c3a64580ec25bc588c96c191eecb85b41/docs/design/experience-system.md) §6). 이후 연구 기록은 '관심 밖 입력에는 얕은 기록·보류, 연결 가능성이 생기면 bridge 탐색, 반복된 변화 근거에는 적극적 재구조화'를 비교하자고 정리했다 ([2026-10-09-learning-foundations.md](https://github.com/jimmylegendary/melete/blob/1d95136c3a64580ec25bc588c96c191eecb85b41/docs/research/2026-10-09-learning-foundations.md)). 둘 다 제품 가설이며 검증된 규칙이 아니다.
 
-**OPEN:** [neuroscience-origin.md](/home/jimmy/repos/full-continual-learning/sources/neuroscience-origin.md)는 '연결점이 없으면 학습이 불가능하다'는 단정을 채택하지 않았다. 흘려듣기를 불가능이 아니라 학습 대상 제외·보류로 읽는 것이 사용자 의도에 맞는지 사용자 확인이 필요하다. 평가는 [08-evaluation.md](/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md)의 '가까운 새로움·먼 새로움' family 후보(F19)로 다룬다.
+**OPEN:** [neuroscience-origin.md](../sources/neuroscience-origin.md)는 '연결점이 없으면 학습이 불가능하다'는 단정을 채택하지 않았다. 흘려듣기를 불가능이 아니라 학습 대상 제외·보류로 읽는 것이 사용자 의도에 맞는지 사용자 확인이 필요하다. 평가는 [08-evaluation.md](08-evaluation.md)의 '가까운 새로움·먼 새로움' family 후보(F19)로 다룬다.
 
 ## 4. Eligibility의 제안식
 
@@ -89,7 +89,7 @@ D. Phase-coordinated: C에 상대 위상/주기적 창을 더함.
 
 - **A 고정 CMS:** 첫 통합 모델의 기본값이자 모든 비교의 대조군이다.
 - **B 주파수 적응:** update 빈도만 가변인 최소 변형이다. 첫 recursive 모델 이후 A와 같은 budget으로 비교한다.
-- **C event/readiness:** eligibility·선택적 write·준비 상태 기반 통신이다. controller v1([05-integrated-architecture.md](/home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md) §4) 이후에 시작한다.
+- **C event/readiness:** eligibility·선택적 write·준비 상태 기반 통신이다. controller v1([05-integrated-architecture.md](05-integrated-architecture.md) §4) 이후에 시작한다.
 - **D 위상 조율:** 핵심 질문이 D 대 C이므로 C가 안정된 뒤에만 시작한다. §5의 "단계 번호와 동치" 검사를 통과하지 못하면 중단한다.
 
 각 단계는 앞 단계를 대체하지 않고 대조군으로 남긴다. D가 시작되기 전에는 위상·oscillator를 구현의 필수 요소로 약속하지 않는다.

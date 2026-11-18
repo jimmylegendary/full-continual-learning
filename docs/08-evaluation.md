@@ -8,7 +8,7 @@
 
 **Product:** 실제 입력→추론→학습→재개→재시작→삭제/복구 사용자 여정이 동작하는가.
 
-**PROPOSAL (2026-11-17 검토):** 위 Product의 '삭제'는 source 삭제(철회·재구성)이며 Contract·Product gate로 본다([09-roadmap.md](/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md) P1-T13). 사용자의 CRUD 중 Delete(무한히 증가하는 지식에서 망각의 비용)는 이 gate가 아니라 Efficacy에서 잰다. 새 학습(G-SAMPLE)과 기존 유효 기능의 보존(G-PROTECT)을 항상 쌍으로 보고하고, 예산 아래 보존 정책 비교는 §2-2 뒤의 제안 family F22로 둔다. 두 가지를 한 PASS로 합치지 않는다. 용어는 [07-state-and-storage.md](/home/jimmy/repos/full-continual-learning/docs/07-state-and-storage.md) §7의 구분을 따른다.
+**PROPOSAL (2026-11-17 검토):** 위 Product의 '삭제'는 source 삭제(철회·재구성)이며 Contract·Product gate로 본다([09-roadmap.md](09-roadmap.md) P1-T13). 사용자의 CRUD 중 Delete(무한히 증가하는 지식에서 망각의 비용)는 이 gate가 아니라 Efficacy에서 잰다. 새 학습(G-SAMPLE)과 기존 유효 기능의 보존(G-PROTECT)을 항상 쌍으로 보고하고, 예산 아래 보존 정책 비교는 §2-2 뒤의 제안 family F22로 둔다. 두 가지를 한 PASS로 합치지 않는다. 용어는 [07-state-and-storage.md](07-state-and-storage.md) §7의 구분을 따른다.
 
 Contract PASS나 unit tests 개수는 efficacy/P1 completion을 대신하지 않는다. 효용 미검증 kernel을 기본 consumer 경로로 자동 승격하지 않는다.
 
@@ -31,7 +31,7 @@ Contract PASS나 unit tests 개수는 efficacy/P1 completion을 대신하지 않
 
 **USER (B11, 2026-10-11):** 학습 방법 검증이 가장 중요하다. 조합들이 검증됐는가, 수준은?
 
-**PROPOSAL:** 조합마다 검증 수준을 한 표에 표기한다. NOT RUN(설계만), CONTRACT(상태·누수·재생 검사 통과), PILOT(사전 정의 대조 대비 개발 결과이며 확증 아님), CONFIRMED(fresh locked cohort에서 사전 gate 통과). 낮은 수준의 결과를 높은 수준의 문구로 쓰지 않는다. 현재 통합 모델의 조합은 구현·학습이 없으므로 모두 NOT RUN이다([VALIDATION.md](/home/jimmy/repos/full-continual-learning/VALIDATION.md)의 검증하지 않은 것 참조).
+**PROPOSAL:** 조합마다 검증 수준을 한 표에 표기한다. NOT RUN(설계만), CONTRACT(상태·누수·재생 검사 통과), PILOT(사전 정의 대조 대비 개발 결과이며 확증 아님), CONFIRMED(fresh locked cohort에서 사전 gate 통과). 낮은 수준의 결과를 높은 수준의 문구로 쓰지 않는다. 현재 통합 모델의 조합은 구현·학습이 없으므로 모두 NOT RUN이다([VALIDATION.md](../VALIDATION.md)의 검증하지 않은 것 참조).
 
 ## 2. 핵심 benchmark family
 
@@ -52,7 +52,7 @@ Contract PASS나 unit tests 개수는 efficacy/P1 completion을 대신하지 않
 
 **LITERATURE (GOUDAR23, 원문 검토 §4.4 표면 대 구조, W2-chu25-goudar23.md:333):** 구조는 같고 표면만 다르거나 표면은 같고 구조가 다른 lure로 두 요인을 분리한 논문은 읽은 11편에서 찾지 못했다. GOUDAR23은 오히려 학습 속도가 자극 코사인 유사도에 크게 의존함을 보인다(문제 3의 trial 수가 유사도 1에서 약 7, 0에서 약 175, 그림 판독).
 
-**PROPOSAL ([2026-11-11-sbl-fulltext-review.md](/home/jimmy/repos/full-continual-learning/research/2026-11-11-sbl-fulltext-review.md#5-fcl-설계의-시작점-proposal) §5 출발점 5):** F01(구조 같고 표면 다름)과 F02(표면 같고 구조 다름)를 표면 유사도 단계별로 함께 측정해 두 요인을 분리한다.
+**PROPOSAL ([2026-11-11-sbl-fulltext-review.md](../research/2026-11-11-sbl-fulltext-review.md#5-fcl-설계의-시작점-proposal) §5 출발점 5):** F01(구조 같고 표면 다름)과 F02(표면 같고 구조 다름)를 표면 유사도 단계별로 함께 측정해 두 요인을 분리한다.
 
 **LITERATURE (CHU25·SWAMI23·KUMAR26·MICONI25, W2-chu25-goudar23.md:123, W6-swami23-metadata-gap.md:56, W4-tem20-kumar26.md:353,398, W3-elder26-miconi25.md:313-316):** 문헌에는 GOUDAR23·CHU25의 trial-to-criterion 곡선(CHU25는 5문제·10 seed에서 새 문제 학습 trial이 약 710에서 455로, 그림 판독), SWAMI23 LIALT의 example형(예시 1개 + 새 토큰), KUMAR26의 1회 노출 용량 곡선(reservoir 1024유닛에서 12쌍 중 약 7.8), MICONI25의 list-linking·sham 대조가 있다. MICONI25의 실제 설계는 ABCD+EFGH이고 연결쌍 D>E를 4 trial 제시한다(초록의 예시와 다름).
 
@@ -62,7 +62,7 @@ SBL의 ‘대부분 이론’은 이 현상들처럼 조작 가능한 질문으�
 
 ### 2-1. SBL 이론별 검증 질문과 추가 family (PROPOSAL)
 
-**USER (U-T06):** schema based learning이 얘기하는 대부분의 이론들이 적용되고 검증되어야 한다. **PROPOSAL:** [03-foundations.md](/home/jimmy/repos/full-continual-learning/docs/03-foundations.md) §2의 13개 이론을 아래처럼 조작 가능한 질문과 family에 대응한다. 대응은 AI 과제에서의 현상 재현이며 실제 뇌 알고리즘의 증명이 아니다.
+**USER (U-T06):** schema based learning이 얘기하는 대부분의 이론들이 적용되고 검증되어야 한다. **PROPOSAL:** [03-foundations.md](03-foundations.md) §2의 13개 이론을 아래처럼 조작 가능한 질문과 family에 대응한다. 대응은 AI 과제에서의 현상 재현이며 실제 뇌 알고리즘의 증명이 아니다.
 
 | 이론 | 조작 가능한 질문 | family | 필수 대조 |
 |---|---|---|---|
@@ -85,7 +85,7 @@ SBL의 ‘대부분 이론’은 이 현상들처럼 조작 가능한 질문으�
 - **F13 관계 통합 추론:** A–B와 B–C를 다른 시점에 관측시킨 뒤 A–C를 묻는다. held-out 조합 정확도와 재활성화 제거 시 손실을 잰다.
 - **F14 다층 추상 전이:** 같은 사례군을 사건·역할·관계·원리 수준으로 재표현해 제공하는 조건을 만들고, 새 표면의 같은 관계(F01)와 다른 도메인의 같은 원리(03 §3 원리 분류)에서 관측 수 곡선을 비교한다. 대조는 같은 양의 사례를 단일 수준으로만 학습한 모델이다.
 - **F15 사고 중 재선택:** 첫 loop에서 그럴듯하지만 틀린 schema가 선택되도록 유도 단서를 넣은 입력을 주고 loop 중 전환·조합·보류 비율, 최종 정답, loop 수, 추가 비용을 잰다. 대조는 첫 선택 고정과 oracle schema(상한 진단)다.
-- **F16 통찰의 전이:** 깊은 loop 뒤에 (i) 같은 문제 재제시 정확도(암기), (ii) 구조를 공유하는 새 사례의 정확도와 C*_ε 변화(전이), (iii) 형성된 표현을 제거했을 때 (ii)만 선택적으로 감소하는지를 잰다. self-consistency와 반복된 confidence 증가는 통찰의 증거로 세지 않는다([11-research-agenda.md](/home/jimmy/repos/full-continual-learning/docs/11-research-agenda.md) §4).
+- **F16 통찰의 전이:** 깊은 loop 뒤에 (i) 같은 문제 재제시 정확도(암기), (ii) 구조를 공유하는 새 사례의 정확도와 C*_ε 변화(전이), (iii) 형성된 표현을 제거했을 때 (ii)만 선택적으로 감소하는지를 잰다. self-consistency와 반복된 confidence 증가는 통찰의 증거로 세지 않는다([11-research-agenda.md](11-research-agenda.md) §4).
 - **F17 이력 분기:** 같은 초기 모델에 서로 다른 경험 이력 H_a, H_b를 준 뒤 같은 입력에서의 schema 선택 분포 q^-, 요구 정확도까지의 loop 수, update 정책 출력의 분기를 잰다. 대조는 같은 이력의 순서 섞기, 같은 이력의 다른 seed, 이력 없음이다. 이득이 이력별 과제에서 비대칭인지 교차 전이 행렬로 본다. 사실 정보는 같고 이력만 다른 두 상태에서 이력에 맞는 판단 차이와 반례 뒤에도 바뀌지 않는 맹목적 고집을 구분해 잰다(B14/H1, §2-2).
 
 **OPEN:** 추가 family의 생성기·world 수·split은 benchmark set v0(§6)에서 정한다. 이 항목들은 승인된 gate가 아니다.
@@ -103,7 +103,7 @@ SBL의 ‘대부분 이론’은 이 현상들처럼 조작 가능한 질문으�
 
 **ARCHIVE:** F17의 이력 의존 측정과 F18–F20은 Melete N0의 D5(자기 이력의 다른 편향)·D3(성급한 일반화와 수정)·D4(가까운 새로움)·D7(자기증폭)에, F21은 J2 측정 계획에 대응한다 ([2026-10-12-neural-validation.md](https://github.com/jimmylegendary/melete/blob/1d95136c3a64580ec25bc588c96c191eecb85b41/docs/superpowers/plans/2026-10-12-neural-validation.md), [2026-10-15-neural-judgment-roadmap.md](https://github.com/jimmylegendary/melete/blob/1d95136c3a64580ec25bc588c96c191eecb85b41/docs/superpowers/plans/2026-10-15-neural-judgment-roadmap.md)). J2는 J1 미통과로 실행되지 않았다.
 
-**PROPOSAL (2026-11-17 검토; family 번호 잠정):** 아래 세 후보 중 F22·F23은 [14-schema-lifecycle-crud-and-joint-paper.md](/home/jimmy/repos/full-continual-learning/docs/14-schema-lifecycle-crud-and-joint-paper.md) §8의 D·R 실험에 대응하고, F24(F-CI)는 [2026-11-17-sleep-time-melete-selected-addendum.md](/home/jimmy/repos/full-continual-learning/research/2026-11-17-sleep-time-melete-selected-addendum.md)의 상태 용량 논의에서 왔다. 전체 family는 §2 표의 F01–F12, §2-1의 F13–F17, §2-2의 F18–F21이며 [09-roadmap.md](/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md) §4는 F01–F12만 phase에 배치한다. F13–F21의 배치는 [09-roadmap.md](/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md) §6-1에 제안했다.
+**PROPOSAL (2026-11-17 검토; family 번호 잠정):** 아래 세 후보 중 F22·F23은 [14-schema-lifecycle-crud-and-joint-paper.md](14-schema-lifecycle-crud-and-joint-paper.md) §8의 D·R 실험에 대응하고, F24(F-CI)는 [2026-11-17-sleep-time-melete-selected-addendum.md](../research/2026-11-17-sleep-time-melete-selected-addendum.md)의 상태 용량 논의에서 왔다. 전체 family는 §2 표의 F01–F12, §2-1의 F13–F17, §2-2의 F18–F21이며 [09-roadmap.md](09-roadmap.md) §4는 F01–F12만 phase에 배치한다. F13–F21의 배치는 [09-roadmap.md](09-roadmap.md) §6-1에 제안했다.
 
 | Family | 조작 | 측정 |
 |---|---|---|
@@ -113,7 +113,7 @@ SBL의 ‘대부분 이론’은 이 현상들처럼 조작 가능한 질문으�
 
 **OPEN:** F22·F23·F24는 승인된 gate가 아니다. F10·F12와 겹치는 측정은 합치고 번호는 사용자 확인 뒤 확정한다. source 삭제는 family가 아니라 Contract·Product gate다(§1).
 
-**OPEN (2026-11-17 검토, PROPOSAL / NOT RUN):** F24는 읽기에 충분한 상태와 갱신에 충분한 상태의 필요 용량이 다를 수 있다는 arXiv:2611.13760의 조건부 결과(유한 상태 HMM 모형 기준)에서 온 후보다. 그 논문은 schema와 지속학습을 다루지 않으므로 이 family의 결과를 schema 간섭·망각의 근거로 쓰지 않는다. 승인된 gate가 아니며 생성기·world 수·split은 benchmark set v0(§6)에서 정한다. 배경: [07-state-and-storage.md](/home/jimmy/repos/full-continual-learning/docs/07-state-and-storage.md) §5, [2026-11-17-sleep-time-melete-selected-addendum.md](/home/jimmy/repos/full-continual-learning/research/2026-11-17-sleep-time-melete-selected-addendum.md).
+**OPEN (2026-11-17 검토, PROPOSAL / NOT RUN):** F24는 읽기에 충분한 상태와 갱신에 충분한 상태의 필요 용량이 다를 수 있다는 arXiv:2611.13760의 조건부 결과(유한 상태 HMM 모형 기준)에서 온 후보다. 그 논문은 schema와 지속학습을 다루지 않으므로 이 family의 결과를 schema 간섭·망각의 근거로 쓰지 않는다. 승인된 gate가 아니며 생성기·world 수·split은 benchmark set v0(§6)에서 정한다. 배경: [07-state-and-storage.md](07-state-and-storage.md) §5, [2026-11-17-sleep-time-melete-selected-addendum.md](../research/2026-11-17-sleep-time-melete-selected-addendum.md).
 
 ## 3. 대표 실험: 경험이 숙고를 직관으로 바꾸는가
 
@@ -135,11 +135,11 @@ SE/SES의 quality–compute 곡선이 왼쪽으로 이동해야 모델 내부의
 4. memory lesion과 구조 shuffled experience에서 이득이 선택적으로 사라진다(§5).
 5. 모든 측정이 실제 입력→모델 응답 경로(실제 CLI와 실제 pretrained 모델)에서 얻어졌다. mock·fake는 진단용이며 PoC 근거가 아니다.
 
-FAIL·INCONCLUSIVE도 같은 틀로 기록한다. 합성 Phase-0([README.md](/home/jimmy/repos/full-continual-learning/experiments/phase0/README.md))은 이 PoC의 선행 증거가 아니라 진입 근거다.
+FAIL·INCONCLUSIVE도 같은 틀로 기록한다. 합성 Phase-0([README.md](../experiments/phase0/README.md))은 이 PoC의 선행 증거가 아니라 진입 근거다.
 
 **LITERATURE (HWU20, 원문 검토 §4.4 계산량, W1-spens24-hwu20.md:332):** 같은 품질의 추론 계산량을 잰 논문은 읽은 11편에서 찾지 못해 F11과 SE/SES의 quality–compute 곡선 이동에는 문헌 기준값이 없다. HWU20의 절감도 학습 epoch이다.
 
-**PROPOSAL (원문 검토 §5 출발점 6):** 고정 depth grid의 품질–계산 곡선을 controller보다 먼저 얻는다. controller의 후보 신호와 문헌 지지 수준은 [06-mathematical-framework.md](/home/jimmy/repos/full-continual-learning/docs/06-mathematical-framework.md) §6에 있다.
+**PROPOSAL (원문 검토 §5 출발점 6):** 고정 depth grid의 품질–계산 곡선을 controller보다 먼저 얻는다. controller의 후보 신호와 문헌 지지 수준은 [06-mathematical-framework.md](06-mathematical-framework.md) §6에 있다.
 
 ## 4. 비교군
 
@@ -156,7 +156,7 @@ FAIL·INCONCLUSIVE도 같은 틀로 기록한다. 합성 Phase-0([README.md](/ho
 
 **PROPOSAL (원문 검토 §4.1·§5 출발점 2·8):** schema 기제를 쓰는 모든 실험은 같은 계산·갱신 예산의 고정/무구조/항상-갱신 대조를 의무로 둔다. 쓰기 gate는 항상 쓰기, surprise만, 고정 무작위 gate를 같은 쓰기 예산에서, replay는 novelty×familiarity 배분을 같은 총 replay 계산의 고정 예산과 비교한다.
 
-**LITERATURE (HWU20·GOUDAR23·ELDER26, W1-spens24-hwu20.md:311, W2-chu25-goudar23.md:364, W3-elder26-miconi25.md:98):** 이런 대조에서 단순한 쪽이 비슷하거나 더 높았던 사례가 읽은 논문에 있다(수치는 [03-foundations.md](/home/jimmy/repos/full-continual-learning/docs/03-foundations.md) §7). **ARCHIVE (S23, 2026-11-09-sbl-tracking.md:64):** 반대 방향의 보고도 있다. 고정 scaffold + 새 readout만으로는 같은 이득이 없었다고 하나 이번에 정독하지 않은 원보고 범위다.
+**LITERATURE (HWU20·GOUDAR23·ELDER26, W1-spens24-hwu20.md:311, W2-chu25-goudar23.md:364, W3-elder26-miconi25.md:98):** 이런 대조에서 단순한 쪽이 비슷하거나 더 높았던 사례가 읽은 논문에 있다(수치는 [03-foundations.md](03-foundations.md) §7). **ARCHIVE (S23, 2026-11-09-sbl-tracking.md:64):** 반대 방향의 보고도 있다. 고정 scaffold + 새 readout만으로는 같은 이득이 없었다고 하나 이번에 정독하지 않은 원보고 범위다.
 
 ## 5. 인과적 개입
 
@@ -176,7 +176,7 @@ Retrained ablation과 같은 checkpoint의 inference lesion은 다른 질문이�
 
 판단: family별 accuracy/MSE/utility, both-correct condition pairs, calibration, proper scoring, abstention risk/coverage.
 
-**PROPOSAL (U-T09 목표 2, 헌장 4층):** 경험이 만든 편향(결과 이전 조건부 prior q^-, [06-mathematical-framework.md](/home/jimmy/repos/full-continual-learning/docs/06-mathematical-framework.md) §2)을 이득과 해악으로 나눠 잰다. 편향 이득: schema 일치 사례에서 추가 loop·write 전 첫 시도의 정확도와 필요한 loop 수. 편향 해악: schema 불일치 사례에서 첫 시도가 일치 답을 내는 비율(conformity), 반례 관측 k개 뒤의 정답 전환(아래 "수정" 지표의 correction latency), 반례 뒤 유지 비율. 둘 다 같은 모델에서 q^-를 균등화한 변형과 쌍으로 보고한다. 편향 이득만 보고하거나 불일치 사례 없이 일치 사례 평균만 보고하지 않는다.
+**PROPOSAL (U-T09 목표 2, 헌장 4층):** 경험이 만든 편향(결과 이전 조건부 prior q^-, [06-mathematical-framework.md](06-mathematical-framework.md) §2)을 이득과 해악으로 나눠 잰다. 편향 이득: schema 일치 사례에서 추가 loop·write 전 첫 시도의 정확도와 필요한 loop 수. 편향 해악: schema 불일치 사례에서 첫 시도가 일치 답을 내는 비율(conformity), 반례 관측 k개 뒤의 정답 전환(아래 "수정" 지표의 correction latency), 반례 뒤 유지 비율. 둘 다 같은 모델에서 q^-를 균등화한 변형과 쌍으로 보고한다. 편향 이득만 보고하거나 불일치 사례 없이 일치 사례 평균만 보고하지 않는다.
 
 수정: correction latency, false update, unrelated regression, ABA recovery, backward/forward transfer.
 
@@ -188,11 +188,11 @@ Retrained ablation과 같은 checkpoint의 inference lesion은 다른 질문이�
 
 효율: p50/p95 latency, TTFT, decode tokens/s, FLOPs, active parameter/layer 수, memory residency, energy가 측정되면 별도.
 
-**OPEN (2026-11-17 검토, PROPOSAL):** 비용식에 따로 둘 수 있는 후보 항은 같은 오차 기준에서의 state 크기·정밀도, external storage, update FLOPs, 질의 시점 근거 재읽기 비용(원본 근거를 다시 읽는 token·지연), 색인·view 재구축 비용이다. 또 adapter류 expert의 용량 활용(예: effective rank)은 rank 사용률이 곧 schema 형성은 아니라는 주의와 함께 같은 저장·학습 예산 비교의 보조 지표로만 둔다. H-COMPUTE의 같은 정확도는 계속 현재 질의 정확도 기준이며, 갱신 뒤 읽기 보존(F-CI)은 병기하되 H-COMPUTE 정의나 gate를 바꾸지 않는다([2026-11-17-sleep-time-melete-selected-addendum.md](/home/jimmy/repos/full-continual-learning/research/2026-11-17-sleep-time-melete-selected-addendum.md)).
+**OPEN (2026-11-17 검토, PROPOSAL):** 비용식에 따로 둘 수 있는 후보 항은 같은 오차 기준에서의 state 크기·정밀도, external storage, update FLOPs, 질의 시점 근거 재읽기 비용(원본 근거를 다시 읽는 token·지연), 색인·view 재구축 비용이다. 또 adapter류 expert의 용량 활용(예: effective rank)은 rank 사용률이 곧 schema 형성은 아니라는 주의와 함께 같은 저장·학습 예산 비교의 보조 지표로만 둔다. H-COMPUTE의 같은 정확도는 계속 현재 질의 정확도 기준이며, 갱신 뒤 읽기 보존(F-CI)은 병기하되 H-COMPUTE 정의나 gate를 바꾸지 않는다([2026-11-17-sleep-time-melete-selected-addendum.md](../research/2026-11-17-sleep-time-melete-selected-addendum.md)).
 
 비용식: encoder + router + core loops + depth read + memory reads/writes/backward + retrieval/offload + output decoder. Online cost와 Sleep/학습 amortized cost를 둘 다 공개한다. Gradient는 공짜 forward가 아니며 batch·sequence length·hardware·warm/cold state를 맞춘다.
 
-**PROPOSAL (2026-11-17, [15-compute-plan.md](/home/jimmy/repos/full-continual-learning/docs/15-compute-plan.md) §7.4):** H-COMPUTE·quality–compute처럼 시간·계산량을 비교하는 측정은 한 비교 안에서 GPU 상품·driver·torch·dtype·TF32/deterministic 설정·batch 크기를 고정하고 기록한다. 장치가 다른 run을 섞지 않는다. **ARCHIVE:** Melete J1에서 host CPU 실행이 저장된 GPU 실행을 재현하는 점검의 확률 차이가 수치 guard(절대 1e-6)를 넘은 사례(448개 중 2개, 판단 범주는 모두 같음)가 있다(melete@1d95136:docs/implementation/records/2026-10-21-neural-judgment-j1-diagnostics.md). 이 저장소에서 새로 실행한 값이 아니다.
+**PROPOSAL (2026-11-17, [15-compute-plan.md](15-compute-plan.md) §7.4):** H-COMPUTE·quality–compute처럼 시간·계산량을 비교하는 측정은 한 비교 안에서 GPU 상품·driver·torch·dtype·TF32/deterministic 설정·batch 크기를 고정하고 기록한다. 장치가 다른 run을 섞지 않는다. **ARCHIVE:** Melete J1에서 host CPU 실행이 저장된 GPU 실행을 재현하는 점검의 확률 차이가 수치 guard(절대 1e-6)를 넘은 사례(448개 중 2개, 판단 범주는 모두 같음)가 있다(melete@1d95136:docs/implementation/records/2026-10-21-neural-judgment-j1-diagnostics.md). 이 저장소에서 새로 실행한 값이 아니다.
 
 과거 제안된 80% fast coverage / 1pp 품질 margin / fast p95 5배 개선은 **proposal**이었다. 사용자 승인된 gate나 달성값이 아니다. 통합 모델의 목표치는 pilot variability와 실용 요구를 바탕으로 prospective하게 확정한다.
 

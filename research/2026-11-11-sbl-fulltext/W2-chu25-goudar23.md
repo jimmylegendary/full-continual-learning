@@ -1,10 +1,10 @@
 # CHU25, GOUDAR23 — RNN 동역학 schema
 
-> 2026-11-11 SBL 원문 검토 워크플로에서 worker가 쓴 보고를 마스터가 원문 대조로 검수해 옮겼다. 종합은 [2026-11-11-sbl-fulltext-review.md](/home/jimmy/repos/full-continual-learning/research/2026-11-11-sbl-fulltext-review.md)에 있다.
+> 2026-11-11 SBL 원문 검토 워크플로에서 worker가 쓴 보고를 마스터가 원문 대조로 검수해 옮겼다. 종합은 [2026-11-11-sbl-fulltext-review.md](../2026-11-11-sbl-fulltext-review.md)에 있다.
 >
-> `fcl-sbl-fulltext-20261111/...` 경로는 저장소 밖 호스트 작업 폴더다. 원문은 저작권 때문에 저장소에 넣지 않았다. 판본과 해시는 [evidence.json](/home/jimmy/repos/full-continual-learning/research/2026-11-11-sbl-fulltext/evidence.json)에 있다.
+> `fcl-sbl-fulltext-20261111/...` 경로는 저장소 밖 호스트 작업 폴더다. 원문은 저작권 때문에 저장소에 넣지 않았다. 판본과 해시는 [evidence.json](evidence.json)에 있다.
 >
-> 표기는 본문 첫머리의 범례([L]·[P]·[O]·[A])를 따른다. CHU25 쪽수는 NeurIPS 사이트 7103–7121과 DOI 등록처·Crossref·OpenAlex 7922–7940이 충돌해 미해결이다([W7-remediation.md](/home/jimmy/repos/full-continual-learning/research/2026-11-11-sbl-fulltext/W7-remediation.md) §3).
+> 표기는 본문 첫머리의 범례([L]·[P]·[O]·[A])를 따른다. CHU25 쪽수는 NeurIPS 사이트 7103–7121과 DOI 등록처·Crossref·OpenAlex 7922–7940이 충돌해 미해결이다([W7-remediation.md](W7-remediation.md) §3).
 
 ---
 

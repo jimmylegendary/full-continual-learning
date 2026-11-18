@@ -8,7 +8,7 @@
 
 느린 schema 파라미터 θ_k, fast binding/adaptation state φ_{k,t}, controller ψ, 작업 hidden h_{t,r}, depth bank D_{t,r}, committed memory M_t와 tentative memory M~_{t,r}를 둔다. 이산 k는 선택의 예시이며 schema 본체가 기호라는 뜻은 아니다. 분산 mixture나 continuous routing으로 일반화할 수 있다.
 
-**OPEN (2026-11-17 검토; [13-schema-decomposition-and-interference.md](/home/jimmy/repos/full-continual-learning/docs/13-schema-decomposition-and-interference.md) §3·§5–§7, [14-schema-lifecycle-crud-and-joint-paper.md](/home/jimmy/repos/full-continual-learning/docs/14-schema-lifecycle-crud-and-joint-paper.md) §2·§5, [05-integrated-architecture.md](/home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md) §5와의 기호 충돌):** 같은 기호가 다른 뜻으로 쓰인다. 통합 문서에서는 아래 대응을 먼저 정한다(결정이 아니라 정리 과제).
+**OPEN (2026-11-17 검토; [13-schema-decomposition-and-interference.md](13-schema-decomposition-and-interference.md) §3·§5–§7, [14-schema-lifecycle-crud-and-joint-paper.md](14-schema-lifecycle-crud-and-joint-paper.md) §2·§5, [05-integrated-architecture.md](05-integrated-architecture.md) §5와의 기호 충돌):** 같은 기호가 다른 뜻으로 쓰인다. 통합 문서에서는 아래 대응을 먼저 정한다(결정이 아니라 정리 과제).
 
 | 기호 | 이 문서 | 다른 문서 |
 |---|---|---|
@@ -23,7 +23,7 @@
 | k | schema 색인 k | 13 §7.1: key 벡터 k_A·k_B (13은 schema 색인으로 s를 쓴다) |
 | e | 경험 e_t=(x_t,y_t,c_t,source_t) | 13 §7.1: 오차 벡터 e_B |
 
-13 §3의 φ_s^(v)는 이 문서의 (θ_k, φ_{k,t})를 함께 포함하는 상위 개념이며 version 첨자다. 06 기호가 §2–§5의 식과 [09-roadmap.md](/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md)에 이미 쓰이므로 06을 기준으로 두고 새 문서에서 대응표를 병기하는 방향이 변경이 가장 작다(검토 제안).
+13 §3의 φ_s^(v)는 이 문서의 (θ_k, φ_{k,t})를 함께 포함하는 상위 개념이며 version 첨자다. 06 기호가 §2–§5의 식과 [09-roadmap.md](09-roadmap.md)에 이미 쓰이므로 06을 기준으로 두고 새 문서에서 대응표를 병기하는 방향이 변경이 가장 작다(검토 제안).
 
 ## 2. 결과 이전 선택과 이후 책임 추정
 
@@ -37,7 +37,7 @@ $$\gamma_{t,k}\propto q^-_{t,k}\,p_{\theta_k,\phi_{k,t}}(y_t\mid x_t).$$
 
 q^-는 판단에, γ는 관측 후 attribution/update에 사용한다. 평가용 future label·latent cause를 learner/controller에 제공하지 않는다. 같은 likelihood가 성립하는 구조들은 현재 관측만으로 구별 불가능할 수 있다.
 
-**USER (U-T09):** 주어진 schema에 따른 빠른, 편향된 추론을 원한다. **PROPOSAL:** 편향은 오류를 고집하는 성향이 아니라 결과 이전의 조건부 prior q^-_{t,k}가 경험으로 한쪽에 집중된 정도다. 집중도는 H(q^-_t) = -sum_k q^-_{t,k} log q^-_{t,k}로 둔다(작을수록 편향이 강하다). 유용한 편향은 schema 일치 사례에서 H(q^-)가 작고 정답률이 유지되며 필요한 계산이 줄어드는 경우다. 해로운 편향은 불일치 사례에서도 H(q^-)가 작아 γ_{t,k}가 관측 쪽으로 옮겨가지 못하는 경우다. 따라서 편향은 H(q^-) 자체를 최소화하는 목표가 아니라 [08-evaluation.md](/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md) §6의 편향 이득·해악 지표로 보고한다. **OPEN:** continuous routing이나 분산 mixture에서는 엔트로피 대신 유효 schema 수 같은 대체 척도를 정한다.
+**USER (U-T09):** 주어진 schema에 따른 빠른, 편향된 추론을 원한다. **PROPOSAL:** 편향은 오류를 고집하는 성향이 아니라 결과 이전의 조건부 prior q^-_{t,k}가 경험으로 한쪽에 집중된 정도다. 집중도는 H(q^-_t) = -sum_k q^-_{t,k} log q^-_{t,k}로 둔다(작을수록 편향이 강하다). 유용한 편향은 schema 일치 사례에서 H(q^-)가 작고 정답률이 유지되며 필요한 계산이 줄어드는 경우다. 해로운 편향은 불일치 사례에서도 H(q^-)가 작아 γ_{t,k}가 관측 쪽으로 옮겨가지 못하는 경우다. 따라서 편향은 H(q^-) 자체를 최소화하는 목표가 아니라 [08-evaluation.md](08-evaluation.md) §6의 편향 이득·해악 지표로 보고한다. **OPEN:** continuous routing이나 분산 mixture에서는 엔트로피 대신 유효 schema 수 같은 대체 척도를 정한다.
 
 ## 3. 빠른 업데이트
 
@@ -51,7 +51,7 @@ $$\phi_{k,t+1}=(1-\alpha_t)\phi_{k,t}+m_{k,t}.$$
 
 이 식은 Titans에서 영감을 얻은 후보이지 모든 HOPE/Titans 구현의 동일 식이라는 뜻은 아니다. α는 decay/retention 표기의 선택이다. 입력별 계수의 범위·norm·root budget을 사전 명시한다. 작은 학습률이 안정성 전체를 보장하지 않는다.
 
-**OPEN (2026-11-17 검토; [13-schema-decomposition-and-interference.md](/home/jimmy/repos/full-continual-learning/docs/13-schema-decomposition-and-interference.md) §7.1·§9.1):** 위 식에서 감쇠 $(1-\alpha_t)$와 momentum $\beta_t$는 $\gamma_{t,k}$로 gate되지 않는다. $\gamma_{t,k}=0$이어도 $\phi_{k,t+1}=(1-\alpha_t)\phi_{k,t}+\beta_tm_{k,t-1}$이므로 선택되지 않은 schema $k$의 상태가 바뀐다. docs/13 §7.1의 선형 연합기억에서도 감쇠가 있으면 key가 직교해도 다른 항목의 출력이 $-\alpha\,Mk$만큼 변한다. 쓰기 격리를 주장하는 실험은 감쇠·momentum을 쓰기 gate $u$에 포함하거나 격리 범위에서 제외해야 한다. 식의 수정이 아니라 약속 범위에 대한 주석이다.
+**OPEN (2026-11-17 검토; [13-schema-decomposition-and-interference.md](13-schema-decomposition-and-interference.md) §7.1·§9.1):** 위 식에서 감쇠 $(1-\alpha_t)$와 momentum $\beta_t$는 $\gamma_{t,k}$로 gate되지 않는다. $\gamma_{t,k}=0$이어도 $\phi_{k,t+1}=(1-\alpha_t)\phi_{k,t}+\beta_tm_{k,t-1}$이므로 선택되지 않은 schema $k$의 상태가 바뀐다. docs/13 §7.1의 선형 연합기억에서도 감쇠가 있으면 key가 직교해도 다른 항목의 출력이 $-\alpha\,Mk$만큼 변한다. 쓰기 격리를 주장하는 실험은 감쇠·momentum을 쓰기 gate $u$에 포함하거나 격리 범위에서 제외해야 한다. 식의 수정이 아니라 약속 범위에 대한 주석이다.
 
 **USER (B08, 2026-10-09):** 학습은 적은 data로 빠른 일반화의 오류(overfitting)를 유도하고 시간축 continual learning으로 그 오류가 상황에 맞게 사라지게 하는 것이다. GD→SGD→Adam→Muon 같은 일반 optimizer가 맞는지 묻고, backward·SGD 수준의 근간 학습 방법을 조사·고찰하라고 했다.
 
@@ -59,7 +59,7 @@ $$\phi_{k,t+1}=(1-\alpha_t)\phi_{k,t}+m_{k,t}.$$
 
 **ARCHIVE:** Melete는 모델 구조·기억의 상태/시간척도·학습 목표·credit assignment/update rule·optimizer를 서로 다른 축으로 두고 SGD/Adam 교체만으로 암묵지 학습을 만들었다고 부르지 않는다고 했다 ([neural-basis.md](https://github.com/jimmylegendary/melete/blob/1d95136c3a64580ec25bc588c96c191eecb85b41/docs/design/neural-basis.md)). 같은 분리를 정리하며 SGD/Adam/Muon은 신용 정보를 이용해 갱신을 만드는 방법이고, 큰 data에서의 성공이 알고리즘의 대량 data 요구를 뜻하지는 않는다고 기록했다 ([2026-10-09-learning-foundations.md](https://github.com/jimmylegendary/melete/blob/1d95136c3a64580ec25bc588c96c191eecb85b41/docs/research/2026-10-09-learning-foundations.md)). 같은 문서는 'overfitting'(특정 표본에 맞춰 전이가 약해짐)과 '성급한 일반화'(근거가 적은 규칙의 넓은 적용)를 구분해 측정하고, 오류 자체를 높이는 목적함수는 적응 목적을 표현하지 못한다고 했다.
 
-**OPEN:** B08의 '오류를 유도한다'를 '빠른 가설 생성의 부작용을 허용하고 시간축 반례로 줄인다'로 읽는 것은 Melete 문서의 해석이며 사용자 확인이 필요하다. 근간 학습 규칙(국소 신용·forward 계열·뇌 모사)의 조사는 [11-research-agenda.md](/home/jimmy/repos/full-continual-learning/docs/11-research-agenda.md)의 후보 지도에 둔다.
+**OPEN:** B08의 '오류를 유도한다'를 '빠른 가설 생성의 부작용을 허용하고 시간축 반례로 줄인다'로 읽는 것은 Melete 문서의 해석이며 사용자 확인이 필요하다. 근간 학습 규칙(국소 신용·forward 계열·뇌 모사)의 조사는 [11-research-agenda.md](11-research-agenda.md)의 후보 지도에 둔다.
 
 **LITERATURE (SWAMI23, W6-swami23-metadata-gap.md:47):** 선택적 갱신의 출발점은 보호/쓰기 규칙이다. leave-one-out 조건부확률과 p_surprise로 확신 있게 맞은 위치(anchor)는 보호하고 틀린 위치만 다시 묶으며, 임계값은 저자가 정한 값(LIALT 0.1, dax 1/16)이다.
 
@@ -67,7 +67,7 @@ $$\phi_{k,t+1}=(1-\alpha_t)\phi_{k,t}+m_{k,t}.$$
 
 **ARCHIVE (S21 GNM, 2026-11-09-sbl-tracking.md:29,39; 확인 깊이 official-search-checked):** 무엇을 쓸지를 자연어 지시로 학습하는 neural memory write이며 write-gradient 차단 ablation에서 선택적 기억의 개선이 크게 감소했다고 보고됐다. 추상 schema discovery의 직접 증거는 아니다.
 
-**PROPOSAL ([2026-11-11-sbl-fulltext-review.md](/home/jimmy/repos/full-continual-learning/research/2026-11-11-sbl-fulltext-review.md#5-fcl-설계의-시작점-proposal) §4.2·§5 출발점 2):** MICONI25식 학습된 neuromodulator를 SWAMI23식 규칙보다 강한 후보로 둔다. §5의 u(write 대상·허용)는 "어디에", η(강도)는 "얼마나", §1의 level clock s_l은 "언제"에 대응시키고 "무엇을"은 쓸 증거의 선택으로 두어 하나의 gate로 합치지 않고 따로 시험하며, 대조군은 항상 쓰기, surprise만, 고정 무작위 gate를 같은 쓰기 예산에서 비교한다. 구현이나 채택 결정이 아니다.
+**PROPOSAL ([2026-11-11-sbl-fulltext-review.md](../research/2026-11-11-sbl-fulltext-review.md#5-fcl-설계의-시작점-proposal) §4.2·§5 출발점 2):** MICONI25식 학습된 neuromodulator를 SWAMI23식 규칙보다 강한 후보로 둔다. §5의 u(write 대상·허용)는 "어디에", η(강도)는 "얼마나", §1의 level clock s_l은 "언제"에 대응시키고 "무엇을"은 쓸 증거의 선택으로 두어 하나의 gate로 합치지 않고 따로 시험하며, 대조군은 항상 쓰기, surprise만, 고정 무작위 gate를 같은 쓰기 예산에서 비교한다. 구현이나 채택 결정이 아니다.
 
 ## 4. 느린 schema 학습: 적응 후 새 사례 일반화
 
@@ -167,7 +167,7 @@ $$C_\epsilon^*(M_{after})<C_\epsilon^*(M_{before})$$
 
 ## 11. 변경 간섭·보존의 조건부 명제 (docs/13 §7 연결, 2026-11-17 검토)
 
-**PROPOSAL / 직접 유도 (2026-11-17; 모델 구현·학습·효용 검증은 NOT RUN이고 소규모 numpy 수치 점검만 수행).** 아래는 [13-schema-decomposition-and-interference.md](/home/jimmy/repos/full-continual-learning/docs/13-schema-decomposition-and-interference.md) §7의 명제를 전제와 함께 다시 쓴 것이다. 독창적 정리나 범용 LLM의 무망각 증명이 아니며 [08-evaluation.md](/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md)의 보호 family 판정을 대신하지 않는다. 기호는 이 문서의 것과 다를 수 있다(§1 기호 충돌 주석).
+**PROPOSAL / 직접 유도 (2026-11-17; 모델 구현·학습·효용 검증은 NOT RUN이고 소규모 numpy 수치 점검만 수행).** 아래는 [13-schema-decomposition-and-interference.md](13-schema-decomposition-and-interference.md) §7의 명제를 전제와 함께 다시 쓴 것이다. 독창적 정리나 범용 LLM의 무망각 증명이 아니며 [08-evaluation.md](08-evaluation.md)의 보호 family 판정을 대신하지 않는다. 기호는 이 문서의 것과 다를 수 있다(§1 기호 충돌 주석).
 
 **명제 A (선형 연합기억의 1-step 간섭).** 전제: $\hat v=Mk$, key $k_A,k_B\ne0$과 encoder 고정, 제곱 손실, 단일 step, 감쇠·momentum 없음. $M'=M+\eta e_Bk_B^\top/\|k_B\|^2$, $e_B=v_B-Mk_B$이면 (i) $v_B-M'k_B=(1-\eta)e_B$ (B 자신은 $0<\eta<2$에서 수축하고 $0<\eta\le1$에서 overshoot이 없다), (ii) $M'k_A-Mk_A=\eta c\,e_B$, $c=k_B^\top k_A/\|k_B\|^2$, (iii) A가 정확했다면($v_A=Mk_A$) $\Delta L_A=\tfrac12\eta^2c^2\|e_B\|^2$이고, 잔차 $r_A=v_A-Mk_A\ne0$이면 $\Delta L_A=-\eta c\,r_A^\top e_B+\tfrac12\eta^2c^2\|e_B\|^2$이다. 영향이 0인 것은 key가 직교할 때뿐이며 서로 직교하는 key는 $d_k$개 이하다. 여러 B 쓰기의 영향은 출력 변화 벡터의 합이다.
 
@@ -177,4 +177,4 @@ $$C_\epsilon^*(M_{after})<C_\epsilon^*(M_{before})$$
 
 **명제 D (선택 오류와 보존의 분해).** 손실이 $[0,1]$이고 올바른 경로 $c(x,y)$와 그 경로의 위험 $R_{\mathrm{correct}}$가 정의돼 있고 올바른 경로를 고른 사건에서 두 시스템의 출력이 같으면 $R_{\mathrm{system}}\le R_{\mathrm{correct}}+\delta$, $\delta=P(\text{경로}\ne c)$이다. soft mixture에서는 볼록·$[0,1]$ 손실에서 $\delta$ 대신 $\mathbb E[1-q_c]$, log 손실에서 $\mathbb E[-\log q_c]$를 쓰며 0-1 손실·argmax 판독에서는 성립하지 않는다.
 
-**명제 E (유한 용량).** 독립 이진 사실 $N$개의 모든 조합을 $B$비트 상태로 **무오류** 회상하려면 $B\ge N$이다(결정적·확률적 상태 모두). 근사 회상은 별도 한계를 따른다(비트 오류율 $D$: $B\ge N(1-h_2(D))$, 전체 벡터 성공확률 $1-\epsilon$: $B\ge(1-\epsilon)N-1$). 따라서 유한 상태에서 독립 사실의 무제한 무망각 보존은 약속하지 않으며 [09-roadmap.md](/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md) §3의 등급 문구도 같은 상한을 따른다.
+**명제 E (유한 용량).** 독립 이진 사실 $N$개의 모든 조합을 $B$비트 상태로 **무오류** 회상하려면 $B\ge N$이다(결정적·확률적 상태 모두). 근사 회상은 별도 한계를 따른다(비트 오류율 $D$: $B\ge N(1-h_2(D))$, 전체 벡터 성공확률 $1-\epsilon$: $B\ge(1-\epsilon)N-1$). 따라서 유한 상태에서 독립 사실의 무제한 무망각 보존은 약속하지 않으며 [09-roadmap.md](09-roadmap.md) §3의 등급 문구도 같은 상한을 따른다.

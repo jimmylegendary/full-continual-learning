@@ -1,12 +1,12 @@
 # ELDER26, MICONI25 — 가소성 수준 schema와 지식 재조립
 
-> 2026-11-11 SBL 원문 검토 워크플로에서 worker가 쓴 보고를 마스터가 원문 대조로 검수해 옮겼다. 종합은 [2026-11-11-sbl-fulltext-review.md](/home/jimmy/repos/full-continual-learning/research/2026-11-11-sbl-fulltext-review.md)에 있다.
+> 2026-11-11 SBL 원문 검토 워크플로에서 worker가 쓴 보고를 마스터가 원문 대조로 검수해 옮겼다. 종합은 [2026-11-11-sbl-fulltext-review.md](../2026-11-11-sbl-fulltext-review.md)에 있다.
 >
-> `fcl-sbl-fulltext-20261111/...` 경로는 저장소 밖 호스트 작업 폴더다. 원문은 저작권 때문에 저장소에 넣지 않았다. 판본과 해시는 [evidence.json](/home/jimmy/repos/full-continual-learning/research/2026-11-11-sbl-fulltext/evidence.json)에 있다.
+> `fcl-sbl-fulltext-20261111/...` 경로는 저장소 밖 호스트 작업 폴더다. 원문은 저작권 때문에 저장소에 넣지 않았다. 판본과 해시는 [evidence.json](evidence.json)에 있다.
 >
-> 표기: 필드 1–10·12는 별도 표기가 없으면 원문 사실(LITERATURE, 위치 병기)이다. 일부 문장은 우리 산술·추론(PROPOSAL), 코드 독해(CODE), 그림 판독(FIGURE-READ)인데 표시가 빠져 있다. 그 목록은 [W7-remediation.md](/home/jimmy/repos/full-continual-learning/research/2026-11-11-sbl-fulltext/W7-remediation.md) §2.4에 있다. 필드 11은 PROPOSAL이다.
+> 표기: 필드 1–10·12는 별도 표기가 없으면 원문 사실(LITERATURE, 위치 병기)이다. 일부 문장은 우리 산술·추론(PROPOSAL), 코드 독해(CODE), 그림 판독(FIGURE-READ)인데 표시가 빠져 있다. 그 목록은 [W7-remediation.md](W7-remediation.md) §2.4에 있다. 필드 11은 PROPOSAL이다.
 >
-> 정정: MICONI25 수치표 ID를 MN1–MN10으로 바꿨다(TEM20 주장 ID와의 충돌 방지). ELDER26 "데이터 증가" 문장을 코드 기준으로 고쳤다. ELDER26의 주장표는 필드 10이 아니라 "주장표" 절에 있고, 필드 10 자리에는 코드와 논문 차이가 있다. ELDER26 필드 3·4·6·8과 MICONI25 필드 3의 위치 보완·정정은 [W7-remediation.md](/home/jimmy/repos/full-continual-learning/research/2026-11-11-sbl-fulltext/W7-remediation.md) §2.1–2.2에 있다.
+> 정정: MICONI25 수치표 ID를 MN1–MN10으로 바꿨다(TEM20 주장 ID와의 충돌 방지). ELDER26 "데이터 증가" 문장을 코드 기준으로 고쳤다. ELDER26의 주장표는 필드 10이 아니라 "주장표" 절에 있고, 필드 10 자리에는 코드와 논문 차이가 있다. ELDER26 필드 3·4·6·8과 MICONI25 필드 3의 위치 보완·정정은 [W7-remediation.md](W7-remediation.md) §2.1–2.2에 있다.
 
 ---
 

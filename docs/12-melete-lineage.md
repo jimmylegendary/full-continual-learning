@@ -28,7 +28,7 @@ H5: LLM output을 다시 넣어 compatibility/surprise를 평가하고 input/out
 
 **ARCHIVE:** J0(2026-10-15)는 학습 후보 없이 측정 계약만 검증했고 두 v2 실행이 contract_pass=true, efficacy는 not_evaluated였다. 최초 j0-v1 PASS는 whole-branch review에서 return fixture의 의미 불일치로 철회돼 v2로 대체됐다 ([2026-10-15-conditional-judgment-j0-feedback.md](https://github.com/jimmylegendary/melete/blob/1d95136c3a64580ec25bc588c96c191eecb85b41/docs/implementation/records/2026-10-15-conditional-judgment-j0-feedback.md)). 위는 모두 과거 문서의 보고 이력이며 이 repository에서 새로 실행한 값이 아니다.
 
-**OPEN:** 이 결과들이 통합 모델의 학습 규칙 선택에 어떤 제약을 주는지는 [11-research-agenda.md](/home/jimmy/repos/full-continual-learning/docs/11-research-agenda.md)의 학습 규칙 후보 지도가 정해지면 다시 본다.
+**OPEN:** 이 결과들이 통합 모델의 학습 규칙 선택에 어떤 제약을 주는지는 [11-research-agenda.md](11-research-agenda.md)의 학습 규칙 후보 지도가 정해지면 다시 본다.
 
 ## 3. J1 개발·진단 기록
 
@@ -55,7 +55,7 @@ Evidence log, source/revision, snapshot, recompile/resume, budget, root 중복 �
 
 **ARCHIVE:** 이번에 이관하지 않은 Melete 연구 자산은 다음과 같다. (1) 기초 학습 방법 대장(12계열 50개 비교 항목)과 제품 적합 순위·13개 조합 atlas ([2026-10-09-learning-method-catalog.md](https://github.com/jimmylegendary/melete/blob/1d95136c3a64580ec25bc588c96c191eecb85b41/docs/research/2026-10-09-learning-method-catalog.md), [2026-10-09-learning-atlas-mechanisms.md](https://github.com/jimmylegendary/melete/blob/1d95136c3a64580ec25bc588c96c191eecb85b41/docs/implementation/records/2026-10-09-learning-atlas-mechanisms.md)). (2) latent/graph 상태를 LLM에 전달하는 방법의 전수 조사 ([2026-09-27-readout-survey.md](https://github.com/jimmylegendary/melete/blob/1d95136c3a64580ec25bc588c96c191eecb85b41/docs/research/2026-09-27-readout-survey.md)). (3) 조건부 판단 측정 계약 J0의 설계·결과 기록. atlas는 문헌·API·수식 검토이며 학습 실행·채택이 아니다.
 
-**OPEN:** 이 자산이 FCL 문서에 없다는 것은 학습 방법의 ELI 그림·제품 적합 순위·조합 정리 요구(B09)가 FCL에서 충족되지 않았다는 뜻이다. 이관 여부와 통합 모델 기준의 재검토는 다음 작업에서 파일별로 판단하며, [11-research-agenda.md](/home/jimmy/repos/full-continual-learning/docs/11-research-agenda.md)의 학습 규칙 후보 지도로 통합한다.
+**OPEN:** 이 자산이 FCL 문서에 없다는 것은 학습 방법의 ELI 그림·제품 적합 순위·조합 정리 요구(B09)가 FCL에서 충족되지 않았다는 뜻이다. 이관 여부와 통합 모델 기준의 재검토는 다음 작업에서 파일별로 판단하며, [11-research-agenda.md](11-research-agenda.md)의 학습 규칙 후보 지도로 통합한다.
 
 ## 5. 과거 private repository 링크
 

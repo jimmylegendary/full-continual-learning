@@ -19,7 +19,7 @@
 
 Tian의 영장류 schema 연구는 현재 대화의 더 이른 SBL 개괄 답변에서도 이미 언급되어 있다. 따라서 11/16 보고의 '처음 발견'이라는 분류는 대화 전체를 기준으로 확정할 수 없다. **기존 언급 논문의 재검토/상세화 후보**로 처리하고, 주간 신규 발견 수에 중복 산입하지 않는다. 제목·연구 내용을 삭제하거나 새 발표로 바꾸지 않으며, DOI/버전 대조는 후속 검증 대상으로 남긴다.
 
-**처리 (2026-11-17 검토):** 위 중복은 저장소 내부 근거로 확정된다. catalog N28과 [2026-11-02-baseline.md](/home/jimmy/repos/full-continual-learning/research/2026-11-02-baseline.md) 33행에 이미 있어(첫 커밋 2026-11-09) 신규 발견이 아니며 2026-11-09 기록과 2026-11-11 원문 검토에는 없다. DOI 레지스트리 대조로 서지(Nature Communications 17, 2150, 2026-01-29)는 일치한다. 분석 코드 주소와 이전 bioRxiv 2024-10-27은 보고 이관으로 남는다. 자세한 처리는 [2026-11-16-discussion.md](/home/jimmy/repos/full-continual-learning/sources/sync/2026-11-16-discussion.md)에 있다.
+**처리 (2026-11-17 검토):** 위 중복은 저장소 내부 근거로 확정된다. catalog N28과 [2026-11-02-baseline.md](2026-11-02-baseline.md) 33행에 이미 있어(첫 커밋 2026-11-09) 신규 발견이 아니며 2026-11-09 기록과 2026-11-11 원문 검토에는 없다. DOI 레지스트리 대조로 서지(Nature Communications 17, 2150, 2026-01-29)는 일치한다. 분석 코드 주소와 이전 bioRxiv 2024-10-27은 보고 이관으로 남는다. 자세한 처리는 [2026-11-16-discussion.md](../sources/sync/2026-11-16-discussion.md)에 있다.
 
 ## 2. Tian et al. — continuous neural activity의 신경과학 근거
 
@@ -53,7 +53,7 @@ Pablo de los Riscos, Fernando J. Corbacho, Michael A. Arbib의 [Working Paper: T
 
 Schema의 추상 구조·구현·확률적 의미·실행 및 memory read/write를 형식화하는 연구로 설명되었다. Neural continuous schema 형성의 실험 증거나 학습 benchmark·정량 ablation·공식 코드가 확인됐다고 주장하지 않았다. 이번에도 이를 새로 검증하지 않았다. CRUD 개념 정리에 참고할 후보이지 모델 성능의 근거가 아니다.
 
-**LITERATURE (2026-11-17 확인):** 위 논문의 제목·저자 3명·최초 제출(2026-04-12 v1)은 arXiv 초록 페이지에서 확인했고 2026-11-17 현재 목록에는 v1만 있다. 본문은 초록·목차·§1·§2·§3 일부·§5.2 일부·§7·§8만 읽었다. 저자 스스로 '닫힌 형식 체계가 아니라 구조적 프로그램'이라 밝힌 미완 working paper이며 신경망 학습 실험·코드는 없다. 이 논문의 Add·Del·Update 연산자가 CRUD 어휘의 형식적 선례라는 점과 그 한계는 [14-schema-lifecycle-crud-and-joint-paper.md](/home/jimmy/repos/full-continual-learning/docs/14-schema-lifecycle-crud-and-joint-paper.md) §3에, schema 정의와의 차이는 [03-foundations.md](/home/jimmy/repos/full-continual-learning/docs/03-foundations.md) §6에 적었다. 위 '이번에도 이를 새로 검증하지 않았다'는 서술은 이 확인 범위만큼 갱신한다.
+**LITERATURE (2026-11-17 확인):** 위 논문의 제목·저자 3명·최초 제출(2026-04-12 v1)은 arXiv 초록 페이지에서 확인했고 2026-11-17 현재 목록에는 v1만 있다. 본문은 초록·목차·§1·§2·§3 일부·§5.2 일부·§7·§8만 읽었다. 저자 스스로 '닫힌 형식 체계가 아니라 구조적 프로그램'이라 밝힌 미완 working paper이며 신경망 학습 실험·코드는 없다. 이 논문의 Add·Del·Update 연산자가 CRUD 어휘의 형식적 선례라는 점과 그 한계는 [14-schema-lifecycle-crud-and-joint-paper.md](../docs/14-schema-lifecycle-crud-and-joint-paper.md) §3에, schema 정의와의 차이는 [03-foundations.md](../docs/03-foundations.md) §6에 적었다. 위 '이번에도 이를 새로 검증하지 않았다'는 서술은 이 확인 범위만큼 갱신한다.
 
 ## 5. Hybrid 및 인접 연구의 당시 추적 상태
 

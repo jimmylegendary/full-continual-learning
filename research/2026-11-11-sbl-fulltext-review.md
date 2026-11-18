@@ -55,8 +55,8 @@
   10. 외부 요약 주장 판정
   11. FCL 연결
   12. 재현성
-- 원문 파일과 추출 본문은 저작권 때문에 저장소에 넣지 않았다. 호스트 작업 폴더 `fcl-sbl-fulltext-20261111/`에 보존돼 있다. 저장소에는 판본·경로·SHA-256만 [evidence.json](/home/jimmy/repos/full-continual-learning/research/2026-11-11-sbl-fulltext/evidence.json)으로 남겼다.
-- 논문별 상세 기록은 [README.md](/home/jimmy/repos/full-continual-learning/research/2026-11-11-sbl-fulltext/README.md)에서 시작한다.
+- 원문 파일과 추출 본문은 저작권 때문에 저장소에 넣지 않았다. 호스트 작업 폴더 `fcl-sbl-fulltext-20261111/`에 보존돼 있다. 저장소에는 판본·경로·SHA-256만 [evidence.json](2026-11-11-sbl-fulltext/evidence.json)으로 남겼다.
+- 논문별 상세 기록은 [README.md](2026-11-11-sbl-fulltext/README.md)에서 시작한다.
 
 ## 2. 외부 요약 검증 결과
 
@@ -164,7 +164,7 @@
   - 오류가 크면 새 schema를 만들고, 작으면 기존 schema를 미세 조정한다(§3.2.1에도 같은 서술).
 - **지속학습(§5.2):** forgetting·효율적 적응·지식 융합을 열린 문제로 든다. 그러나 schema가 학습 규칙을 제어하는 연결은 다루지 않는다. 지속학습이 초점인 schema 모델은 SMART(Gao 2021) 한 행뿐이다(Table 4, 수치 없음).
 - **주의:** 참고문헌·인용 오류 3건을 확인했다(W7 §1.3). 이 리뷰를 통한 2차 인용은 원논문을 보기 전에 단정하지 않는다.
-- 상세: [W7-remediation.md](/home/jimmy/repos/full-continual-learning/research/2026-11-11-sbl-fulltext/W7-remediation.md)
+- 상세: [W7-remediation.md](2026-11-11-sbl-fulltext/W7-remediation.md)
 
 **SPECTRUM26** — schema를 별도 저장소가 아니라 분산 표현의 추상화 regime으로 보자는 Perspective다.
 - fit에 따라 integration(변화 거의 없음), assimilation(작은 변화), accommodation(큰 변화·더 많은 계산)으로 나눈다. 정성적 규칙이며 데이터는 없다.
@@ -331,12 +331,12 @@ accommodation은 FCL이 직접 채워야 할 공백이다.
 
 | 후보 | 이유 | 식별자 상태 |
 |---|---|---|
-| Shan, Minni 외, *Separating the what and how...*, arXiv 2510.20709 (NeurIPS 2025) | 문맥 추론이 계산과 학습을 동시에 gate. 갭에 가장 가까움 | worker가 §1–4·Discussion 정독. [catalog.tsv](/home/jimmy/repos/full-continual-learning/references/catalog.tsv) S35 |
+| Shan, Minni 외, *Separating the what and how...*, arXiv 2510.20709 (NeurIPS 2025) | 문맥 추론이 계산과 학습을 동시에 gate. 갭에 가장 가까움 | worker가 §1–4·Discussion 정독. [catalog.tsv](../references/catalog.tsv) S35 |
 | SMART (Gao et al., 2021) | 지속학습을 직접 다루는 schema 모델(schematic memory persistence/transience) | STRUCTK25 참고문헌에서 발견. DOI 미확인 |
 | Kobayashi et al. 2025, arXiv 2512.20605 | transformer 내부 schema로 계층적 행동 제어(SPECTRUM26 ref 96) | 미확인 |
 | Lanzillotta, Samiei, Precup, Pascanu 2026, arXiv 2607.05609 | "To Retain or to Adapt?" 지속학습 일반화 | 미확인 |
 | Stoianov et al. 2022 | generative replay와 지속학습 | STRUCTK25 참고문헌, 미확인 |
-| Spens & Burgess 2026 compressive RAG ([catalog.tsv](/home/jimmy/repos/full-continual-learning/references/catalog.tsv) S07) | SPENS24의 후속. 두 실험 계열을 섞지 않고 비교 | 기존 목록 |
+| Spens & Burgess 2026 compressive RAG ([catalog.tsv](../references/catalog.tsv) S07) | SPENS24의 후속. 두 실험 계열을 섞지 않고 비교 | 기존 목록 |
 
 ## 8. 미해결
 

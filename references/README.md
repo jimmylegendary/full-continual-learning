@@ -4,7 +4,7 @@
 
 ## 확인 수준
 
-- `fulltext-read`: 원문 본문·Methods·부록을 읽고 주장과 수치를 위치와 함께 대조했다. 읽은 판본(VoR/accepted manuscript/preprint)과 해시는 [evidence.json](/home/jimmy/repos/full-continual-learning/research/2026-11-11-sbl-fulltext/evidence.json)에 있다. 코드 실행이나 결과 재현은 아니다.
+- `fulltext-read`: 원문 본문·Methods·부록을 읽고 주장과 수치를 위치와 함께 대조했다. 읽은 판본(VoR/accepted manuscript/preprint)과 해시는 [evidence.json](../research/2026-11-11-sbl-fulltext/evidence.json)에 있다. 코드 실행이나 결과 재현은 아니다.
 - `metadata-checked`: 이번 이관에서 공식 arXiv/학회/저널 metadata를 확인했다. 전체 본문 수치의 독립 재검증은 아니다.
 - `official-search-checked`: 공식 원문 검색 결과에서 제목/식별자 확인.
 - `discussion-import`: 이전 대화/PDF의 참고문헌과 보고를 보존. 이번 작업에서는 재확인하지 않았다.
@@ -34,7 +34,7 @@
 
 ### 신경망 SBL 구현 원문 검토 (2026-11-11)
 
-11편을 원문으로 읽고 외부 요약을 검증했다. 종합은 [2026-11-11-sbl-fulltext-review.md](/home/jimmy/repos/full-continual-learning/research/2026-11-11-sbl-fulltext-review.md)에 있다.
+11편을 원문으로 읽고 외부 요약을 검증했다. 종합은 [2026-11-11-sbl-fulltext-review.md](../research/2026-11-11-sbl-fulltext-review.md)에 있다.
 
 - 생성 모델 공고화: S31 [Spens & Burgess 2024](https://doi.org/10.1038/s41562-023-01799-z)
 - schema 의존 부호화와 neuromodulation: S32 [Hwu & Krichmar 2020](https://doi.org/10.1007/s00422-019-00808-7)
@@ -63,7 +63,7 @@ S-HAI의 다중 grounding을 다중 schema 생성으로, Spens의 narrative Mist
 
 ## 2026-11-17 델타 검토에서 추가한 후보
 
-[catalog.tsv](/home/jimmy/repos/full-continual-learning/references/catalog.tsv) 끝의 33행(S36–S46·A19–A38·E05·N32)은 2026-11-17 델타 설계 반영 감사가 추가한 후보다. 11-16~17 Sleep-time 선별 논문, 11-14·11-16 보충 참고문헌 파일에는 있었으나 catalog에 없던 논문, 사용자 공유 링크 카드에서 확정한 논문이다. 확인 수준은 각 행의 status를 따르며 전문 정독(fulltext-read)이 아니다. 사용자 공유 링크에서 확정한 5건은 읽은 범위와 함께 [shared-links-2026-11-17.md](/home/jimmy/repos/full-continual-learning/references/shared-links-2026-11-17.md)에 있다. 영향 가설 기록의 링크 전용 7건(가소성 손실·Hopfield·Attention·MoE·CoT·OpenAI 글·Levels of AGI)은 이번에 넣지 않았다(결정 대기).
+[catalog.tsv](catalog.tsv) 끝의 33행(S36–S46·A19–A38·E05·N32)은 2026-11-17 델타 설계 반영 감사가 추가한 후보다. 11-16~17 Sleep-time 선별 논문, 11-14·11-16 보충 참고문헌 파일에는 있었으나 catalog에 없던 논문, 사용자 공유 링크 카드에서 확정한 논문이다. 확인 수준은 각 행의 status를 따르며 전문 정독(fulltext-read)이 아니다. 사용자 공유 링크에서 확정한 5건은 읽은 범위와 함께 [shared-links-2026-11-17.md](shared-links-2026-11-17.md)에 있다. 영향 가설 기록의 링크 전용 7건(가소성 손실·Hopfield·Attention·MoE·CoT·OpenAI 글·Levels of AGI)은 이번에 넣지 않았다(결정 대기).
 
 ## 재생성
 

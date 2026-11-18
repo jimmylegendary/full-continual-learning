@@ -1,20 +1,20 @@
 # 델타 설계 반영 감사와 계산 계획: 11-12 감사 뒤의 자료는 설계에 들어갔는가 (2026-11-17)
 
-**요청 (USER, 2026-11-17):** 「오늘 날짜 기준으로 다시 검토해봐. 그리고 full continual learning repo도 업데이트해서 반영. 그리고 지금 우리 host에 runcrate 사용환경 있을거야. melete를 앞으로 만들고 학습시 사용한다면 어떻게 쓸 수 있을지, 비용효율을 위해서 너무 과도한 사양이 아닌, 그렇다고 minimum으로 품질이나 효율을 떨어트리지 않으면서 쓴다면 어떻게 쓸 수 있을지 계획해봐」 원문과 항목별 해석은 [2026-11-17-discussion.md](/home/jimmy/repos/full-continual-learning/sources/sync/2026-11-17-discussion.md)와 원장 U17-01–U17-08에 있다.
+**요청 (USER, 2026-11-17):** 「오늘 날짜 기준으로 다시 검토해봐. 그리고 full continual learning repo도 업데이트해서 반영. 그리고 지금 우리 host에 runcrate 사용환경 있을거야. melete를 앞으로 만들고 학습시 사용한다면 어떻게 쓸 수 있을지, 비용효율을 위해서 너무 과도한 사양이 아닌, 그렇다고 minimum으로 품질이나 효율을 떨어트리지 않으면서 쓴다면 어떻게 쓸 수 있을지 계획해봐」 원문과 항목별 해석은 [2026-11-17-discussion.md](../sources/sync/2026-11-17-discussion.md)와 원장 U17-01–U17-08에 있다.
 
 **답 (요청 3개).**
 
 | 요청 | 결과 | 어디 |
 |---|---|---|
-| 재검토 | 11-12 감사(커밋 2ecf3e0) 이후 들어온 자료를 항목 단위 원장 434개로 대조했다. 판정은 reflected 106 / partial 181 / not-reflected 76 / conflict 16 / out-of-scope 22 / 결정 대기 33이다. 사용자 원문(USER)으로 확인되는 항목은 20개뿐이고 나머지는 ChatGPT의 제안·재구성·보고 이관이다. 설계 본문에 중복·충돌·누락이 있는 곳은 편집 주석으로 표시했다 | §2–§3, [ledger-delta.json](/home/jimmy/repos/full-continual-learning/research/2026-11-17-design-review/ledger-delta.json) |
-| 저장소 반영 | 편집 블록 105개 중 86개를 적용하고 15개를 고쳐 적용했고 4개를 제외했다(3개는 다른 블록에 합쳤고 1개는 중복). 통합 담당(W6)의 편집 16개(README·manifest·출처·참고문헌·계산 계획 등)를 더했다. 설계 문서 12개에 주석·후보를 넣고 새 문서 docs/15를 만들었다. 문서·계획만 바꿨고 학습·GPU·비용·백서 재생성·외부 발송은 0회다 | §4, [edits-applied.tsv](/home/jimmy/repos/full-continual-learning/research/2026-11-17-design-review/edits-applied.tsv) |
-| runcrate 계획 | 횡단 문서 [15-compute-plan.md](/home/jimmy/repos/full-continual-learning/docs/15-compute-plan.md)를 만들었다. 별도 인프라 phase가 아니라 P1–P5에 자원을 붙인다. 판단 기준은 시간당 가격이 아니라 유효 실험 1건의 총비용이다. 모든 수치는 ESTIMATE이고 NOT RUN이며 결정은 사용자 몫이다 | §6, §7 |
+| 재검토 | 11-12 감사(커밋 2ecf3e0) 이후 들어온 자료를 항목 단위 원장 434개로 대조했다. 판정은 reflected 106 / partial 181 / not-reflected 76 / conflict 16 / out-of-scope 22 / 결정 대기 33이다. 사용자 원문(USER)으로 확인되는 항목은 20개뿐이고 나머지는 ChatGPT의 제안·재구성·보고 이관이다. 설계 본문에 중복·충돌·누락이 있는 곳은 편집 주석으로 표시했다 | §2–§3, [ledger-delta.json](2026-11-17-design-review/ledger-delta.json) |
+| 저장소 반영 | 편집 블록 105개 중 86개를 적용하고 15개를 고쳐 적용했고 4개를 제외했다(3개는 다른 블록에 합쳤고 1개는 중복). 통합 담당(W6)의 편집 16개(README·manifest·출처·참고문헌·계산 계획 등)를 더했다. 설계 문서 12개에 주석·후보를 넣고 새 문서 docs/15를 만들었다. 문서·계획만 바꿨고 학습·GPU·비용·백서 재생성·외부 발송은 0회다 | §4, [edits-applied.tsv](2026-11-17-design-review/edits-applied.tsv) |
+| runcrate 계획 | 횡단 문서 [15-compute-plan.md](../docs/15-compute-plan.md)를 만들었다. 별도 인프라 phase가 아니라 P1–P5에 자원을 붙인다. 판단 기준은 시간당 가격이 아니라 유효 실험 1건의 총비용이다. 모든 수치는 ESTIMATE이고 NOT RUN이며 결정은 사용자 몫이다 | §6, §7 |
 
 ## 1. 방법
 
 - **범위.** ChatGPT hourly 「FCL 연구 기록 동기화」 작업의 커밋 5개(aa1413d..280dc9a, 2026-11-14~11-17)가 추가·수정한 15개 파일(docs/13·14, SYNC_POLICY.md, research/2026-11-16·17-*, references 3개, sources/sync/*, README·AGENTS 수정), 사용자 공유 링크 연구 카드, 2026-11-17 사용자 원문이다. 11-12 감사 때의 설계 문서 01–12와 로드맵은 대조 대상이다.
 - **입력 커밋.** 280dc9a(= 원격 main, 2026-11-17). 작업은 별도 worktree의 branch `design/2026-11-17-review`에서 했고 push·rebase·병합은 하지 않았다.
-- **판정 기준.** 원장의 status는 감사 시점(편집 반영 전)의 판정이다: reflected(반영·일치), partial(일부), not-reflected(반영 위치 없음), conflict(다른 문서·원문·현재 상태와 충돌하거나 낡음), out-of-scope(설계 반영 대상이 아닌 관찰), pending(사용자 결정 대기). 증거 라벨은 USER·USER-HYPOTHESIS·PROPOSAL·LITERATURE·ARCHIVE·OPEN·NOT RUN이고 계산 추정은 ESTIMATE다. USER 원문은 [2026-11-16-discussion.md](/home/jimmy/repos/full-continual-learning/sources/sync/2026-11-16-discussion.md)의 블록 2개와 11-17 블록뿐이다. ChatGPT의 정리는 재구성이다. 편집 블록의 '없다·반영돼 있지 않다'는 기준 커밋 280dc9a의 상태이며 이 검토의 편집이 들어간 뒤에는 달라질 수 있다.
+- **판정 기준.** 원장의 status는 감사 시점(편집 반영 전)의 판정이다: reflected(반영·일치), partial(일부), not-reflected(반영 위치 없음), conflict(다른 문서·원문·현재 상태와 충돌하거나 낡음), out-of-scope(설계 반영 대상이 아닌 관찰), pending(사용자 결정 대기). 증거 라벨은 USER·USER-HYPOTHESIS·PROPOSAL·LITERATURE·ARCHIVE·OPEN·NOT RUN이고 계산 추정은 ESTIMATE다. USER 원문은 [2026-11-16-discussion.md](../sources/sync/2026-11-16-discussion.md)의 블록 2개와 11-17 블록뿐이다. ChatGPT의 정리는 재구성이다. 편집 블록의 '없다·반영돼 있지 않다'는 기준 커밋 280dc9a의 상태이며 이 검토의 편집이 들어간 뒤에는 달라질 수 있다.
 - **워커 구성.** 병렬 워커 6명이다.
 
 | 워커 | 몫 | 산출 |
@@ -26,7 +26,7 @@
 | W5 | runcrate 계산 계획 | docs/15 본문, 추정 TSV 7개, 편집 15 |
 | W6 | 통합: 동기화 정책·사용자 원문·대기 항목 감사, 편집 적용, 원장 병합, 기록 | 원장 SYNC·U17·PEND·C15 83, 이 문서 |
 
-- **검증 도구와 한계.** 저장소 쓰기는 W6만 했다. 편집 블록은 Edit 도구와 같은 규칙(앵커가 현재 본문에 정확히 한 번 있어야 함)을 지키는 적용 스크립트(저장소 밖)로 넣었다. 블록 105개의 본문을 손으로 다시 입력하면 전사 오류 위험이 커서 스크립트를 썼고, 합치거나 고친 블록은 [edits-applied.tsv](/home/jimmy/repos/full-continual-learning/research/2026-11-17-design-review/edits-applied.tsv)에 이유를 적었다. `tools/validate_docs.py`는 `/home/jimmy/repos/full-continual-learning/…` 절대 링크를 다른 위치의 checkout에서 모두 미해결로 판정하므로(§3 남은 정정) 접두를 worktree로 바꿔 해석하는 wrapper로 같은 검사를 했다.
+- **검증 도구와 한계.** 저장소 쓰기는 W6만 했다. 편집 블록은 Edit 도구와 같은 규칙(앵커가 현재 본문에 정확히 한 번 있어야 함)을 지키는 적용 스크립트(저장소 밖)로 넣었다. 블록 105개의 본문을 손으로 다시 입력하면 전사 오류 위험이 커서 스크립트를 썼고, 합치거나 고친 블록은 [edits-applied.tsv](2026-11-17-design-review/edits-applied.tsv)에 이유를 적었다. `tools/validate_docs.py`는 `/home/jimmy/repos/full-continual-learning/…` 절대 링크를 다른 위치의 checkout에서 모두 미해결로 판정하므로(§3 남은 정정) 접두를 worktree로 바꿔 해석하는 wrapper로 같은 검사를 했다.
 
 ## 2. 수치
 
@@ -49,28 +49,28 @@
 
 - **USER 원문**: SYN 10 + SYNC 2 + U17 8 = 20개. docs/13 내용에 대한 사용자 원문 블록은 저장소에 없다(D13의 USER-verbatim 0).
 - **편집**: W1–W5 블록 105개 = 적용 86 + 수정 적용 15 + 제외 4. W6 편집 16개(EW6-01–16)는 모두 적용. 원장 항목 중 편집이 걸린 것은 307개다.
-- **새 파일**: docs/15, sources/sync/2026-11-17-discussion.md, references/shared-links-2026-11-17.md, 이 문서와 폴더 research/2026-11-17-design-review/의 안내 [README.md](/home/jimmy/repos/full-continual-learning/research/2026-11-17-design-review/README.md). references/catalog.tsv에 후보 33행(100 → 133행)을 더했다.
+- **새 파일**: docs/15, sources/sync/2026-11-17-discussion.md, references/shared-links-2026-11-17.md, 이 문서와 폴더 research/2026-11-17-design-review/의 안내 [README.md](2026-11-17-design-review/README.md). references/catalog.tsv에 후보 33행(100 → 133행)을 더했다.
 
 ## 3. 핵심 발견
 
 반드시 볼 10개 주제의 판정·근거·반영 위치다. 근거 항목 id는 원장에서 찾는다.
 
 1. **두 가지 「삭제」: 분리돼 있지 않다(conflict, D14-006).** docs/07 §7은 한 문장에서 eviction(용량 정책)과 '삭제'(= §8의 source 삭제)를 섞고, docs/09의 '삭제' 39회는 모두 source 삭제인데, docs/14·증거 연계 보충·Sleep-time 교차 검토는 Delete/Retain 아래에 '삭제된 source'를 함께 둔다. 사용자의 Delete는 "무한히 증가하는 지식에 대해서 망각의 비용을 어떻게 치뤄야할지"(USER)로 source 삭제가 아니다. 평가 gate도 다르다(Efficacy 대 Contract·Product). 학습 방법으로서의 가중치 삭제(공유 링크 논문 T2)는 세 번째 뜻이다.
-   → [07-state-and-storage.md](/home/jimmy/repos/full-continual-learning/docs/07-state-and-storage.md) §7(E14-01 용어 한정, E14-02 구분표·쓰기 규칙), [08-evaluation.md](/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md) §1(E14-03), [09-roadmap.md](/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md) P1-T13 주(E14-07), [14-schema-lifecycle-crud-and-joint-paper.md](/home/jimmy/repos/full-continual-learning/docs/14-schema-lifecycle-crud-and-joint-paper.md) §4(E14-20: 세 뜻을 한 주석으로 합침). 결정 대기: N-2.
+   → [07-state-and-storage.md](../docs/07-state-and-storage.md) §7(E14-01 용어 한정, E14-02 구분표·쓰기 규칙), [08-evaluation.md](../docs/08-evaluation.md) §1(E14-03), [09-roadmap.md](../docs/09-roadmap.md) P1-T13 주(E14-07), [14-schema-lifecycle-crud-and-joint-paper.md](../docs/14-schema-lifecycle-crud-and-joint-paper.md) §4(E14-20: 세 뜻을 한 주석으로 합침). 결정 대기: N-2.
 2. **CRUD와 controller: P1 규칙형 controller v0는 Read·Update만 덮는다(partial).** fast는 Read, learn은 Read+Update, deep은 Read+Update+추가 계산이다. Create는 P3 accommodation부터, Delete/Retain은 측정이 P1부터이고 정책은 P4부터라고 대응시켰다(제안). 사용자의 low-rank expert in-place update·create와 docs/05의 CMS 분기(B_j=0)는 형태(기반 + gate된 low-rank 합)가 같지만 색인 축이 다르다(j는 갱신 시간척도, 사용자의 expert는 문맥으로 선택·할당되는 기능 단위). NMM은 binding이라 expert로 읽지 않는다. 사용자 원문의 "적합한 schema를 못찾으면 create"는 docs/14가 '구조적 새로움이 확인될 때만 create'로 좁혀 충돌한다(conflict, D14-021). docs/05 §4의 v0(학습형 head)와 docs/09 P1의 규칙형 v0는 이름이 같다.
-   → [09-roadmap.md](/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md) §1.1의 U-T12 행(E14-05)과 §4-1 CRUD 대응(E14-06), [05-integrated-architecture.md](/home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md) §4 이름 정리(E14-10: P1 규칙형을 'v0-rule'로 부름)·§5 low-rank expert 관계(E14-11), [11-research-agenda.md](/home/jimmy/repos/full-continual-learning/docs/11-research-agenda.md) §2(E14-12), [14-schema-lifecycle-crud-and-joint-paper.md](/home/jimmy/repos/full-continual-learning/docs/14-schema-lifecycle-crud-and-joint-paper.md) §3(E14-18). 결정 대기: N-4, D-14.
+   → [09-roadmap.md](../docs/09-roadmap.md) §1.1의 U-T12 행(E14-05)과 §4-1 CRUD 대응(E14-06), [05-integrated-architecture.md](../docs/05-integrated-architecture.md) §4 이름 정리(E14-10: P1 규칙형을 'v0-rule'로 부름)·§5 low-rank expert 관계(E14-11), [11-research-agenda.md](../docs/11-research-agenda.md) §2(E14-12), [14-schema-lifecycle-crud-and-joint-paper.md](../docs/14-schema-lifecycle-crud-and-joint-paper.md) §3(E14-18). 결정 대기: N-4, D-14.
 3. **docs/13의 정의·수학 §7.1–7.5: 틀린 명제는 없지만 전제가 부족하다.** 직접 유도와 소규모 numpy 점검(모델 효용 근거가 아님)의 판정은 7.1 정확(전제 보강) / 7.2 조건 보강 필요 / 7.3 조건 보강 필요 / 7.4 조건 보강 필요 / 7.5 정확(무오류 회상 한정)이고 틀림 0, 검증 불가 0이다. 보강한 조건: 7.2는 ReLU 반례·plain SGD 한 step 한정(Adam은 방향이 다름)·minibatch 기대값의 노이즈 항·다단계 K² 누적, 7.3은 bit 동일성이 결정적 실행을 전제하므로 상태 층(byte 해시)과 출력 층(허용오차 ≥ noise floor ν)을 나눌 것, 7.4는 soft mixture에서 δ가 정의되지 않으므로 볼록 손실의 대체 식이 필요함, 7.5는 근사 회상에 rate–distortion·Fano의 별도 한계가 있음. 정의 쪽에서는 §1의 「사용자 제안」과 가설 1–4가 사용자 원문이 아니라 재구성이고(D13의 USER-verbatim 0), 가설 1(여러 schema가 엉킴)이 원문이 있는 U-T06(하나의 schema → sub-schema 분화)과 표현이 충돌한다(D13-009). 설계 본문과의 연결에서는 docs/06 §3의 빠른 업데이트 식이 감쇠·momentum을 γ로 gate하지 않아 γ=0인 schema도 바뀌므로 docs/13 §9.1의 격리 주장과 충돌한다.
-   → [13-schema-decomposition-and-interference.md](/home/jimmy/repos/full-continual-learning/docs/13-schema-decomposition-and-interference.md) 주석 17(E13-01–E13-17), [06-mathematical-framework.md](/home/jimmy/repos/full-continual-learning/docs/06-mathematical-framework.md) 기호 대응표(E13-23)·감쇠 주(E13-24)·신설 §11 명제 A–E(E13-25), [09-roadmap.md](/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md) P1-T10 허용오차·noise floor(E13-28)와 P1-T11 검사 후보(E13-29), docs/01·03·04·05·07·11의 대응 주석. 결정 대기: N-7, N-9.
+   → [13-schema-decomposition-and-interference.md](../docs/13-schema-decomposition-and-interference.md) 주석 17(E13-01–E13-17), [06-mathematical-framework.md](../docs/06-mathematical-framework.md) 기호 대응표(E13-23)·감쇠 주(E13-24)·신설 §11 명제 A–E(E13-25), [09-roadmap.md](../docs/09-roadmap.md) P1-T10 허용오차·noise floor(E13-28)와 P1-T11 검사 후보(E13-29), docs/01·03·04·05·07·11의 대응 주석. 결정 대기: N-7, N-9.
 4. **실험 배치: 새 phase 없이 기존 UJ의 판독으로 넣는다.** 실험 A·E는 UJ2, C는 UJ1·UJ2, D는 UJ1·UJ4, CU는 UJ1·UJ3, R은 UJ3의 판독이다. P1에 더하는 것은 계측 열 1개, resume 후 update 동등 Contract 테스트 1개, 새 학습과 보존의 쌍 보고 서식 1개뿐이다. 새 arm(`ftall`, `adapters`, `sel-*`)은 P2, Create arm 4종은 P3, eviction 2–3종은 P4에서 처음 넣는다. docs/08에는 F01–F21이 있으나 docs/09는 F01–F12만 배치한다. 충돌: 실험 B(post-training 분기)는 P5 '미루는 것'과 모델 1종 상한에 걸리고, D의 정책 비교는 11-12 감사 §5 #17이 미결로 남긴 질문이다. 가장 무거운 축은 실험 E의 depth 격자다. 계산 규모는 docs/15 §5.3·§6에서 ESTIMATE로 가늠했다.
-   → [09-roadmap.md](/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md) §6-1(E14-08), [08-evaluation.md](/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md) §2-2의 제안 family F22·F23·F24(E14-04), docs/13 §10·docs/14 §8의 위치 주석(E14-16·E14-25·EC-13·EC-14). 결정 대기: N-5.
+   → [09-roadmap.md](../docs/09-roadmap.md) §6-1(E14-08), [08-evaluation.md](../docs/08-evaluation.md) §2-2의 제안 family F22·F23·F24(E14-04), docs/13 §10·docs/14 §8의 위치 주석(E14-16·E14-25·EC-13·EC-14). 결정 대기: N-5.
 5. **Ali 공동논문 초안의 상한: 초안은 현재 설계 단계(등급 0)보다 강하게 읽힌다.** 16항목 점검에서 상한을 넘는 표현 7건(제안 문장 3개, 흐름의 공통 단위와 공동 연구 질문, 제안문 둘째·셋째 문장), 주의 4건, 적합 5건, 누락된 문구 4건(현재 상태 0회, 단순 대조 약속, 등급 약속, 깊이 축)이다. MIRAS의 retention은 공개 PDF 발췌 범위에서 순환 memory 갱신의 retention gate이며 schema·artifact 단위의 보존 예산이 아니므로 '이미 다뤘다'로 읽히지 않게 한정했다. 초안은 바꾸지 않았고 수정 문안은 삽입 주석으로만 냈다. 초안은 미발송이며 이 검토도 발송하지 않았다. 사용자가 U-T09에서 전한 Ali의 관심 축(loop·MoD·MoR·depth attention)은 초안에 없다.
-   → [14-schema-lifecycle-crud-and-joint-paper.md](/home/jimmy/repos/full-continual-learning/docs/14-schema-lifecycle-crud-and-joint-paper.md) §3·§4·§5·§7 주석(E14-19, E14-21–E14-24), docs/10 §8-1(E14-15), [schema-lifecycle-2026-11-16.md](/home/jimmy/repos/full-continual-learning/references/schema-lifecycle-2026-11-16.md)(E14-26). 결정 대기: N-6.
+   → [14-schema-lifecycle-crud-and-joint-paper.md](../docs/14-schema-lifecycle-crud-and-joint-paper.md) §3·§4·§5·§7 주석(E14-19, E14-21–E14-24), docs/10 §8-1(E14-15), [schema-lifecycle-2026-11-16.md](../references/schema-lifecycle-2026-11-16.md)(E14-26). 결정 대기: N-6.
 6. **Sleep-time·SoMem·recursive state capacity: 핵심 문서에 반영이 없다(not-reflected).** 읽기에 충분한 상태와 이후 갱신에 충분한 상태를 가르는 구분이 docs/01–12에 없고, 복원 수준의 단서(docs/07 §5의 읽기 전용 복원 대 이어서 학습할 복원, F12, P4 보장)만 있다. arXiv:2611.13760의 recursive는 token 시계 위의 상태 갱신이라 docs/07 §1의 recursion index가 아니므로 이름 혼동을 막는 시계 구분 문장을 모든 편집에 넣었다. 연구 기록의 해석은 대체로 맞고, 논문 본문 대조로 조건을 더 정확히 적었다(사건 질의 오차는 log-확률 오차, Θ(log(1/ε))는 2-state, 생성 하한은 nondegenerate 2-state·가중치 고정·결정적 갱신 전제, §6.4가 2-state 초과를 열린 문제로 둠). 논문은 schema·continual learning을 다루지 않는다. SoMem은 외부 문서 memory의 근거 보존 재조직이며 MIRIX-2.0의 AutoDream·A03의 Dreaming과 이름만 비슷하다.
-   → [07-state-and-storage.md](/home/jimmy/repos/full-continual-learning/docs/07-state-and-storage.md) §5 읽기 충분 상태(ER-01)·§7 증거 계보와 색인 재구축(ER-08), [08-evaluation.md](/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md) F24 연속 갱신 뒤 읽기 보존(E14-04에 합침)·§6 비용 항 후보(ER-21), [09-roadmap.md](/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md) P2·P4의 후보 readout(ER-03·ER-04: 측정만, 종료 gate·등급 판정 제외), [05-integrated-architecture.md](/home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md) §11 용어 구분(ER-05). 결정 대기: N-5.
+   → [07-state-and-storage.md](../docs/07-state-and-storage.md) §5 읽기 충분 상태(ER-01)·§7 증거 계보와 색인 재구축(ER-08), [08-evaluation.md](../docs/08-evaluation.md) F24 연속 갱신 뒤 읽기 보존(E14-04에 합침)·§6 비용 항 후보(ER-21), [09-roadmap.md](../docs/09-roadmap.md) P2·P4의 후보 readout(ER-03·ER-04: 측정만, 종료 gate·등급 판정 제외), [05-integrated-architecture.md](../docs/05-integrated-architecture.md) §11 용어 구분(ER-05). 결정 대기: N-5.
 7. **증거 연계 read(WikiTrace·HiVe-Mem): 연구 보충 기록과 docs/14의 한 줄에만 있다(partial).** docs/14 §5 본문의 Read 흐름에는 원본 근거를 되짚는 단계가 없고, docs/07의 provenance는 입력 쪽(root, generated≠observed)만 반영돼 있다. 외부 agent memory를 neural schema 지속학습과 동일시한 문장은 찾지 못했다. 두 논문은 저자 초록 수준의 확인이며 재현하지 않았다.
-   → [03-foundations.md](/home/jimmy/repos/full-continual-learning/docs/03-foundations.md) §6 범주 명시(ER-06), [14-schema-lifecycle-crud-and-joint-paper.md](/home/jimmy/repos/full-continual-learning/docs/14-schema-lifecycle-crud-and-joint-paper.md) §5(ER-07), docs/07 §7(ER-08), docs/08 §4 강한 참고 대조 후보(ER-09).
+   → [03-foundations.md](../docs/03-foundations.md) §6 범주 명시(ER-06), [14-schema-lifecycle-crud-and-joint-paper.md](../docs/14-schema-lifecycle-crud-and-joint-paper.md) §5(ER-07), docs/07 §7(ER-08), docs/08 §4 강한 참고 대조 후보(ER-09).
 8. **과장 점검: 설계 본문에는 과장이 없고 연결 공백이 있으며, 연구 기록 안에 정정이 필요한 곳이 있다.** docs/03·11에는 11-16 SBL 보고와 영향 가설이 거의 연결돼 있지 않다. 영향 가설 기록은 조건부·재사용 금지 문장이 충분하다. 정정 필요: 보충 선별 기록 §3이 docs/05·08·14 반영을 현재형으로 서술했으나 280dc9a에서 05·08은 바뀌지 않았다(R16-085), 'Tian 신규 발견'은 저장소 기준 신규가 아니다(R16-003), '8건 모두 개정일 독립 확인'은 Continual-ARC v3(2026-11-15)를 놓쳤다(R16-038). docs/13 §1의 'Melete는 … 제한한다'(L34)와 docs/14의 제안 문장은 설계 목표를 현재형으로 쓴 것이라 등급 0 문구로 읽어야 한다.
-   → docs/13(E13-03), docs/14(E14-19·E14-21·E14-22), [2026-11-17-sleep-time-melete-selected-addendum.md](/home/jimmy/repos/full-continual-learning/research/2026-11-17-sleep-time-melete-selected-addendum.md)(ER-19), docs/11 §8 영향 가드(ER-12)와 무제한 무망각 비주장(E14-13).
+   → docs/13(E13-03), docs/14(E14-19·E14-21·E14-22), [2026-11-17-sleep-time-melete-selected-addendum.md](2026-11-17-sleep-time-melete-selected-addendum.md)(ER-19), docs/11 §8 영향 가드(ER-12)와 무제한 무망각 비주장(E14-13).
 9. **남은 정정.** (a) Tian: 저장소 기준 신규가 아님을 확정했다(catalog N28, 11-02 baseline 33행, 첫 커밋 11-09). 서지는 Crossref로 대조했다(Nature Communications 17, 2150, 2026-01-29, 저자 8명). 처리: ER-13·ER-14·ER-15·ER-16. (b) Continual-ARC 최신 버전: ER-17. (c) 증거 라벨 어휘가 문서마다 다르다(SYNC-07): SYNC_POLICY 7종, README·AGENTS 5종, docs/13은 DERIVATION을 더 쓴다 → README 새 절에 7종과 ESTIMATE를 적었다. (d) README 정리 기준일(2026-11-12)과 백서 기준(SYNC-16·SYNC-22) → 갱신·표시했다. (e) `tools/validate_docs.py`는 `/home/jimmy/repos/full-continual-learning/…` 절대 링크를 다른 위치의 checkout에서 모두 미해결로 판정한다(기준 커밋에서 192건, SYNC-34). 11-12 감사의 '오류 0건'은 main checkout 위치에서만 성립한다. 도구는 고치지 않았다(개선안은 결정 대기 N-10). (f) manifest의 base_commit은 첫 동기화 기준으로 남아 있다(SYNC-23, 항목만 추가). (g) manifest에 외부 자동화의 task·run 식별자가 공개돼 있다(SYNC-26, 손대지 않음, 결정 대기 N-10). (h) 기호 충돌(φ·θ·b·B·C·D·Q·k·e): 06 기호를 기준으로 한 대응표를 넣었다(E13-23). (i) catalog 누락 33건을 후보 행으로 올렸고 보충 파일의 R 식별자가 catalog의 R01–R11과 충돌함을 표시했다(E13-18).
 10. **대기 항목: 해소된 것은 하나도 없다.** 11-12 감사 §5의 사용자 확인 19건은 변화 없음 14 / 영향 있음 5 / 해소 0, docs/09 §10의 D-01–D-14는 변화 없음 10 / 영향 있음 4 / 해소 0다. 근거 원문은 11-16 블록 2개와 11-17 요청뿐이며 판정은 §7이다.
 
@@ -80,43 +80,43 @@
 
 | 문서 | 편집 | 편집 id |
 |---|---:|---|
-| [01-intent-and-charter.md](/home/jimmy/repos/full-continual-learning/docs/01-intent-and-charter.md) | 1 | E13-33 |
-| [03-foundations.md](/home/jimmy/repos/full-continual-learning/docs/03-foundations.md) | 4 | E13-19, ER-06, ER-10, ET-06 |
-| [04-rhythms-and-orchestration.md](/home/jimmy/repos/full-continual-learning/docs/04-rhythms-and-orchestration.md) | 1 | E13-20 |
-| [05-integrated-architecture.md](/home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md) | 7 | E13-21, E13-22, E14-10, E14-11, ER-05, ET-04, ET-08 |
-| [06-mathematical-framework.md](/home/jimmy/repos/full-continual-learning/docs/06-mathematical-framework.md) | 3 | E13-23, E13-24, E13-25 |
-| [07-state-and-storage.md](/home/jimmy/repos/full-continual-learning/docs/07-state-and-storage.md) | 7 | E13-26, E13-27, E14-01, E14-02, ER-01, ER-08, ET-05 |
-| [08-evaluation.md](/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md) | 5 | E14-03, E14-04, ER-09, ER-21, EC-11 |
-| [09-roadmap.md](/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md) | 21 | E13-28, E13-29, E14-05, E14-06, E14-07, E14-08, E14-09, ER-03, ER-04, EC-01, EC-02, EC-03, EC-04, EC-05, EC-06, EC-07, EC-08, EC-09, EC-10, EW6-09, EW6-10 |
-| [10-evolution-policy.md](/home/jimmy/repos/full-continual-learning/docs/10-evolution-policy.md) | 3 | E14-14, E14-15, EC-12 |
-| [11-research-agenda.md](/home/jimmy/repos/full-continual-learning/docs/11-research-agenda.md) | 6 | E13-30, E13-31, E14-12, E14-13, ER-11, ER-12 |
-| [13-schema-decomposition-and-interference.md](/home/jimmy/repos/full-continual-learning/docs/13-schema-decomposition-and-interference.md) (ChatGPT 동기화 문서: 삽입 주석만) | 20 | E13-01, E13-02, E13-03, E13-04, E13-05, E13-06, E13-07, E13-08, E13-09, E13-10, E13-11, E13-12, E13-13, E13-14, E13-15, E13-16, E13-17, E14-16, ET-01, EC-13 |
-| [14-schema-lifecycle-crud-and-joint-paper.md](/home/jimmy/repos/full-continual-learning/docs/14-schema-lifecycle-crud-and-joint-paper.md) (ChatGPT 동기화 문서: 삽입 주석만) | 15 | E14-17, E14-18, E14-19, E14-20, E14-21, E14-22, E14-23, E14-24, E14-25, E14-27, ER-07, ER-20, ET-03, ET-09, EC-14 |
-| [EVIDENCE.md](/home/jimmy/repos/full-continual-learning/EVIDENCE.md) | 1 | EW6-15 |
-| [README.md](/home/jimmy/repos/full-continual-learning/README.md) | 5 | EW6-01, EW6-02, EW6-03, EW6-04, EW6-05 |
-| [15-compute-plan.md](/home/jimmy/repos/full-continual-learning/docs/15-compute-plan.md) | 1 | EW6-14 |
-| [2026-11-16-sleep-time-melete.md](/home/jimmy/repos/full-continual-learning/references/2026-11-16-sleep-time-melete.md) (ChatGPT 동기화 문서: 삽입 주석만) | 1 | ER-17 |
-| [README.md](/home/jimmy/repos/full-continual-learning/references/README.md) | 1 | EW6-11 |
-| [catalog.tsv](/home/jimmy/repos/full-continual-learning/references/catalog.tsv) | 3 | ER-15, ER-16, EW6-13 |
-| [schema-decomposition-2026-11-14.md](/home/jimmy/repos/full-continual-learning/references/schema-decomposition-2026-11-14.md) (ChatGPT 동기화 문서: 삽입 주석만) | 1 | E13-18 |
-| [schema-lifecycle-2026-11-16.md](/home/jimmy/repos/full-continual-learning/references/schema-lifecycle-2026-11-16.md) (ChatGPT 동기화 문서: 삽입 주석만) | 1 | E14-26 |
-| [shared-links-2026-11-17.md](/home/jimmy/repos/full-continual-learning/references/shared-links-2026-11-17.md) | 1 | EW6-12 |
-| [2026-11-16-memory-evidence-read-supplement.md](/home/jimmy/repos/full-continual-learning/research/2026-11-16-memory-evidence-read-supplement.md) (ChatGPT 동기화 문서: 삽입 주석만) | 1 | ER-18 |
-| [2026-11-16-sbl-tracking.md](/home/jimmy/repos/full-continual-learning/research/2026-11-16-sbl-tracking.md) (ChatGPT 동기화 문서: 삽입 주석만) | 2 | ER-14, ET-07 |
-| [2026-11-17-sleep-time-melete-selected-addendum.md](/home/jimmy/repos/full-continual-learning/research/2026-11-17-sleep-time-melete-selected-addendum.md) (ChatGPT 동기화 문서: 삽입 주석만) | 1 | ER-19 |
-| [2026-11-16-discussion.md](/home/jimmy/repos/full-continual-learning/sources/sync/2026-11-16-discussion.md) (ChatGPT 동기화 문서: 삽입 주석만) | 1 | ER-13 |
-| [2026-11-17-discussion.md](/home/jimmy/repos/full-continual-learning/sources/sync/2026-11-17-discussion.md) | 1 | EW6-07 |
-| [manifest.json](/home/jimmy/repos/full-continual-learning/sources/sync/manifest.json) | 1 | EW6-06 |
-| [user-statements.md](/home/jimmy/repos/full-continual-learning/sources/user-statements.md) | 1 | EW6-08 |
+| [01-intent-and-charter.md](../docs/01-intent-and-charter.md) | 1 | E13-33 |
+| [03-foundations.md](../docs/03-foundations.md) | 4 | E13-19, ER-06, ER-10, ET-06 |
+| [04-rhythms-and-orchestration.md](../docs/04-rhythms-and-orchestration.md) | 1 | E13-20 |
+| [05-integrated-architecture.md](../docs/05-integrated-architecture.md) | 7 | E13-21, E13-22, E14-10, E14-11, ER-05, ET-04, ET-08 |
+| [06-mathematical-framework.md](../docs/06-mathematical-framework.md) | 3 | E13-23, E13-24, E13-25 |
+| [07-state-and-storage.md](../docs/07-state-and-storage.md) | 7 | E13-26, E13-27, E14-01, E14-02, ER-01, ER-08, ET-05 |
+| [08-evaluation.md](../docs/08-evaluation.md) | 5 | E14-03, E14-04, ER-09, ER-21, EC-11 |
+| [09-roadmap.md](../docs/09-roadmap.md) | 21 | E13-28, E13-29, E14-05, E14-06, E14-07, E14-08, E14-09, ER-03, ER-04, EC-01, EC-02, EC-03, EC-04, EC-05, EC-06, EC-07, EC-08, EC-09, EC-10, EW6-09, EW6-10 |
+| [10-evolution-policy.md](../docs/10-evolution-policy.md) | 3 | E14-14, E14-15, EC-12 |
+| [11-research-agenda.md](../docs/11-research-agenda.md) | 6 | E13-30, E13-31, E14-12, E14-13, ER-11, ER-12 |
+| [13-schema-decomposition-and-interference.md](../docs/13-schema-decomposition-and-interference.md) (ChatGPT 동기화 문서: 삽입 주석만) | 20 | E13-01, E13-02, E13-03, E13-04, E13-05, E13-06, E13-07, E13-08, E13-09, E13-10, E13-11, E13-12, E13-13, E13-14, E13-15, E13-16, E13-17, E14-16, ET-01, EC-13 |
+| [14-schema-lifecycle-crud-and-joint-paper.md](../docs/14-schema-lifecycle-crud-and-joint-paper.md) (ChatGPT 동기화 문서: 삽입 주석만) | 15 | E14-17, E14-18, E14-19, E14-20, E14-21, E14-22, E14-23, E14-24, E14-25, E14-27, ER-07, ER-20, ET-03, ET-09, EC-14 |
+| [EVIDENCE.md](../EVIDENCE.md) | 1 | EW6-15 |
+| [README.md](../README.md) | 5 | EW6-01, EW6-02, EW6-03, EW6-04, EW6-05 |
+| [15-compute-plan.md](../docs/15-compute-plan.md) | 1 | EW6-14 |
+| [2026-11-16-sleep-time-melete.md](../references/2026-11-16-sleep-time-melete.md) (ChatGPT 동기화 문서: 삽입 주석만) | 1 | ER-17 |
+| [README.md](../references/README.md) | 1 | EW6-11 |
+| [catalog.tsv](../references/catalog.tsv) | 3 | ER-15, ER-16, EW6-13 |
+| [schema-decomposition-2026-11-14.md](../references/schema-decomposition-2026-11-14.md) (ChatGPT 동기화 문서: 삽입 주석만) | 1 | E13-18 |
+| [schema-lifecycle-2026-11-16.md](../references/schema-lifecycle-2026-11-16.md) (ChatGPT 동기화 문서: 삽입 주석만) | 1 | E14-26 |
+| [shared-links-2026-11-17.md](../references/shared-links-2026-11-17.md) | 1 | EW6-12 |
+| [2026-11-16-memory-evidence-read-supplement.md](2026-11-16-memory-evidence-read-supplement.md) (ChatGPT 동기화 문서: 삽입 주석만) | 1 | ER-18 |
+| [2026-11-16-sbl-tracking.md](2026-11-16-sbl-tracking.md) (ChatGPT 동기화 문서: 삽입 주석만) | 2 | ER-14, ET-07 |
+| [2026-11-17-sleep-time-melete-selected-addendum.md](2026-11-17-sleep-time-melete-selected-addendum.md) (ChatGPT 동기화 문서: 삽입 주석만) | 1 | ER-19 |
+| [2026-11-16-discussion.md](../sources/sync/2026-11-16-discussion.md) (ChatGPT 동기화 문서: 삽입 주석만) | 1 | ER-13 |
+| [2026-11-17-discussion.md](../sources/sync/2026-11-17-discussion.md) | 1 | EW6-07 |
+| [manifest.json](../sources/sync/manifest.json) | 1 | EW6-06 |
+| [user-statements.md](../sources/user-statements.md) | 1 | EW6-08 |
 
 - **합친 블록**: E13-32 → E14-13(무제한 무망각 비주장), ER-02 → E14-04(F-CI에 F24 번호를 주고 F22·F23과 한 표에), ET-02 → E14-20('삭제' 용어 주석). 제외: EC-15(README 행은 EW6-02로 이미 넣음).
 - **고친 블록 15개**: 기준 시점 한정(E13-06·E13-14·E13-18·E13-31·E14-23·E14-26·ER-19: catalog 후보 행과 이 검토의 주석이 들어간 뒤에도 문장이 참이도록 '280dc9a 기준'을 적음), 단정 약화(E14-15: 공동논문이 B15 논문과 별개라는 단정을 확인 대기로), 번호·구조(E14-04, E14-07 들여쓰기, E14-09), 합침(E14-13, E14-20), 기준선 보존(EC-05), 변경 기록(EC-09).
-- **W6 편집 16개**: README(기준일·읽는 순서 행 3개·백서 기준 표시·새 절), manifest 항목 3개, 11-17 대화 출처, user-statements의 U-T12–U-T14 위치 표시, docs/09 §1.1의 U-T14 행·§10의 영향 갱신, 참고문헌 안내·catalog 33행·shared-links 파일, docs/15, EVIDENCE.md 한 절, 이 기록. 전부 [edits-applied.tsv](/home/jimmy/repos/full-continual-learning/research/2026-11-17-design-review/edits-applied.tsv)에 있다.
-- **새 설계 문서**: [15-compute-plan.md](/home/jimmy/repos/full-continual-learning/docs/15-compute-plan.md)(번호 15는 01–14의 다음). 로드맵 P1–P5의 데모 시나리오·넓이/깊이 변화·성립하는 보장과 상한·종료 gate·미루는 것은 바뀌지 않았고 ESTIMATE를 게이트로 올리지 않았다.
+- **W6 편집 16개**: README(기준일·읽는 순서 행 3개·백서 기준 표시·새 절), manifest 항목 3개, 11-17 대화 출처, user-statements의 U-T12–U-T14 위치 표시, docs/09 §1.1의 U-T14 행·§10의 영향 갱신, 참고문헌 안내·catalog 33행·shared-links 파일, docs/15, EVIDENCE.md 한 절, 이 기록. 전부 [edits-applied.tsv](2026-11-17-design-review/edits-applied.tsv)에 있다.
+- **새 설계 문서**: [15-compute-plan.md](../docs/15-compute-plan.md)(번호 15는 01–14의 다음). 로드맵 P1–P5의 데모 시나리오·넓이/깊이 변화·성립하는 보장과 상한·종료 gate·미루는 것은 바뀌지 않았고 ESTIMATE를 게이트로 올리지 않았다.
 
 ## 5. 사용자 공유 링크 카드 재검토 결과
 
-사용자가 공유한 링크 카드 98장을 읽기 전용으로 다시 분류했다(11-13 이후 새로 들어온 카드 73장 포함). FCL 연구 6장, skill·도구 19장, 무관 73장이다. 카드 id·앱 이름·공유 단축 링크는 공개하지 않고 'T1…'로 부른다. 원문 확인은 공식 arXiv 초록 페이지·학회 사이트·저자 게시 페이지의 제목·저자·날짜·버전 확인과 일부 본문 정독이며 전문 정독·코드 실행·수치 재현은 아니다. 상세는 [W4-papers.txt](/home/jimmy/repos/full-continual-learning/research/2026-11-17-design-review/W4-papers.txt)와 [shared-links-2026-11-17.md](/home/jimmy/repos/full-continual-learning/references/shared-links-2026-11-17.md)에 있다.
+사용자가 공유한 링크 카드 98장을 읽기 전용으로 다시 분류했다(11-13 이후 새로 들어온 카드 73장 포함). FCL 연구 6장, skill·도구 19장, 무관 73장이다. 카드 id·앱 이름·공유 단축 링크는 공개하지 않고 'T1…'로 부른다. 원문 확인은 공식 arXiv 초록 페이지·학회 사이트·저자 게시 페이지의 제목·저자·날짜·버전 확인과 일부 본문 정독이며 전문 정독·코드 실행·수치 재현은 아니다. 상세는 [W4-papers.txt](2026-11-17-design-review/W4-papers.txt)와 [shared-links-2026-11-17.md](../references/shared-links-2026-11-17.md)에 있다.
 
 | 카드 | 확정 대상 | 확인 수준 | 설계 연결 | catalog |
 |---|---|---|---|---|
@@ -129,7 +129,7 @@
 
 - skill·도구 카드 19장은 사용 후보 3 / 보류 10 / 불필요 6으로 판정했다. 이들은 FCL 설계가 아니라 다른 작업 환경의 문제이므로 이 저장소에는 목록을 싣지 않았다. 무관 73장은 일괄 불필요다. 이전 검토(11-13)의 FCL 카드 3건(T1–T3)에는 새 판본이 없다.
 
-## 6. 계산 계획 요약 ([15-compute-plan.md](/home/jimmy/repos/full-continual-learning/docs/15-compute-plan.md))
+## 6. 계산 계획 요약 ([15-compute-plan.md](../docs/15-compute-plan.md))
 
 - **성격.** P1–P5에 자원을 붙이는 횡단 문서이며 별도 인프라 phase가 아니다. 어떤 자원을 쓰든 phase 종료 gate의 E2E는 사용자가 재현할 수 있는 환경(host CPU와 노트북)에서 실제 `fcl` CLI·실제 pretrained 가중치로 돈다. 클라우드에서만 도는 gate는 gate로 인정하지 않는다. 가격은 2026-11-17 조회 시점이며 변동 가능하다.
 - **판단 기준.** 시간당 가격이 아니라 유효 실험 1건(manifest 해시가 맞고 budget 일치 검사를 통과한 (arm × seed) 결과 하나)의 총비용이다. 사용자의 두 제약은 이렇게 옮겼다: '과도한 사양이 아닌'은 연산이 아니라 메모리·운영 이유가 없는 H100급을 기본으로 쓰지 않는 것, 'minimum으로 품질·효율을 떨어트리지 않으면서'는 OOM 재실행·재현 못 하는 gate·seed·arm 축소로 인한 근거 약화를 최소의 비용으로 세는 것.
@@ -221,4 +221,4 @@ N-11을 credential gating 5항목으로 적는다. **용도:** FCL P1-T04 클라
 - 원장 판정은 문서 대 문서의 대조다. 설계가 맞다는 증명이 아니고, 새로 들어간 문장은 PROPOSAL·OPEN이다. 백서는 2026-11-12 기준 그대로다.
 - 사용자 결정은 하나도 대신하지 않았다. 11-17 요청의 '계획해봐'는 비용 승인이 아니다.
 - **검증 결과(worktree, 기준 280dc9a 위 branch):** wrapper(저장소의 절대 링크 접두를 worktree로 바꿔 해석하는 검증기, 저장소 밖에 둠): errors 0, 파일 184·markdown 54·로컬 링크 623·참고문헌 133. 원본 `tools/validate_docs.py`: errors 512이고 전부 `/home/jimmy/repos/full-continual-learning/…` 접두 절대 링크다(기준선 192에서 새 문서·주석의 절대 링크만큼 늘었고 다른 종류는 0). 병합 뒤 main checkout에서 돌리면 풀릴 것으로 보이나 이번에는 실행하지 않았다(NOT RUN). JSON 2개(manifest·ledger-delta) 파싱 통과, TSV 12개의 열 수 일치, catalog.tsv 8열·ID 유일(133). 기존 파일의 삭제·이름 변경 0(`git diff --diff-filter=DR 280dc9a`가 비어 있음). 공개 안전성 스캔은 추가 14,707줄에서 금지 패턴(작업 폴더·.claude 경로, 키 이름, 이메일·IP 형태, private 저장소 경로, 앱 이름, 상품 식별자 192개, 잔액, 카드 id 98개)이 0건이다. 원 논문의 긴 인용은 없다(제목과 한 문장 이하의 짧은 발췌뿐).
-- **마스터 병합 뒤 확인(2026-11-17):** 원격 main이 280dc9a에서 움직이지 않아 rebase 없이 fast-forward로 병합하고 `37142e3`까지 push했다. main checkout에서 원본 `tools/validate_docs.py`를 돌린 결과 errors 0(파일 184·markdown 54·로컬 링크 623·참고문헌 133)이다. 미해결 참고 ID 3개(N29–N31)는 [2026-11-02-baseline.md](/home/jimmy/repos/full-continual-learning/research/2026-11-02-baseline.md)부터 있던 것이다. 리더 검증 8개 중 7개가 통과했고, 실패 1개는 커밋 끝줄의 모델 표기(작업 지시는 Opus 5.5, 실제 작성 워커는 Sonnet 5.5)였다. 실제 작성 모델 표기가 정확하다고 보아 커밋을 고치지 않았다.
+- **마스터 병합 뒤 확인(2026-11-17):** 원격 main이 280dc9a에서 움직이지 않아 rebase 없이 fast-forward로 병합하고 `37142e3`까지 push했다. main checkout에서 원본 `tools/validate_docs.py`를 돌린 결과 errors 0(파일 184·markdown 54·로컬 링크 623·참고문헌 133)이다. 미해결 참고 ID 3개(N29–N31)는 [2026-11-02-baseline.md](2026-11-02-baseline.md)부터 있던 것이다. 리더 검증 8개 중 7개가 통과했고, 실패 1개는 커밋 끝줄의 모델 표기(작업 지시는 Opus 5.5, 실제 작성 워커는 Sonnet 5.5)였다. 실제 작성 모델 표기가 정확하다고 보아 커밋을 고치지 않았다.
