@@ -1,6 +1,6 @@
 # docs/19 단계별 논문 계획의 부록: 색인·새 참고문헌·조사 출처 (2026-11-18)
 
-**상태 라벨:** 설계 작업 기록의 부록(PROPOSAL / OPEN / NOT RUN)이다. [19-paper-plan.md](/home/jimmy/repos/full-continual-learning/docs/19-paper-plan.md) 초안 끝의 세 부록을 공개 문서에서 떼어 이곳에 둔다. 초안 원문이므로 가칭(DC-·F-NEW-·NEW-로 시작하는 번호)을 그대로 두었고, 최종 번호는 [id-map.tsv](/home/jimmy/repos/full-continual-learning/research/2026-11-18-blueprint-et-design/id-map.tsv)와 [2026-11-18-blueprint-et-design.md](/home/jimmy/repos/full-continual-learning/research/2026-11-18-blueprint-et-design.md)의 대응표에 있다. 작성일 2026-11-18.
+**상태 라벨:** 설계 작업 기록의 부록(PROPOSAL / OPEN / NOT RUN)이다. [19-paper-plan.md](../../docs/19-paper-plan.md) 초안 끝의 세 부록을 공개 문서에서 떼어 이곳에 둔다. 초안 원문이므로 가칭(DC-·F-NEW-·NEW-로 시작하는 번호)을 그대로 두었고, 최종 번호는 [id-map.tsv](../../research/2026-11-18-blueprint-et-design/id-map.tsv)와 [2026-11-18-blueprint-et-design.md](../../research/2026-11-18-blueprint-et-design.md)의 대응표에 있다. 작성일 2026-11-18.
 
 ## 부록 A. 색인
 

@@ -1,6 +1,6 @@
 # ET 대상·시간캡슐 기반 모델·사료 조사: 2026-11-18 조사 기록의 부록 (W2c)
 
-**상태 라벨:** 조사 기록(LITERATURE 확인 수준 표기, 선택과 추천은 PROPOSAL). 2026-11-18 기준. 읽기 전용 조사이고 구현·학습·GPU 실행·비용 지출은 0회(NOT RUN)다. 이 글은 [17-einstein-test.md](/home/jimmy/repos/full-continual-learning/docs/17-einstein-test.md)의 대상 묶음 절과 [2026-11-18-blueprint-et-design.md](/home/jimmy/repos/full-continual-learning/research/2026-11-18-blueprint-et-design.md)의 재료다. ET의 운영 정의·rubric·단별 상한은 docs/17, P0 실행 설계는 [18-poc-nonparametric.md](/home/jimmy/repos/full-continual-learning/docs/18-poc-nonparametric.md), 비용은 [15-compute-plan.md](/home/jimmy/repos/full-continual-learning/docs/15-compute-plan.md)가 소유한다. 여기서는 대상과 자료와 모델의 사실만 낸다.
+**상태 라벨:** 조사 기록(LITERATURE 확인 수준 표기, 선택과 추천은 PROPOSAL). 2026-11-18 기준. 읽기 전용 조사이고 구현·학습·GPU 실행·비용 지출은 0회(NOT RUN)다. 이 글은 [17-einstein-test.md](../../docs/17-einstein-test.md)의 대상 묶음 절과 [2026-11-18-blueprint-et-design.md](../../research/2026-11-18-blueprint-et-design.md)의 재료다. ET의 운영 정의·rubric·단별 상한은 docs/17, P0 실행 설계는 [18-poc-nonparametric.md](../../docs/18-poc-nonparametric.md), 비용은 [15-compute-plan.md](../../docs/15-compute-plan.md)가 소유한다. 여기서는 대상과 자료와 모델의 사실만 낸다.
 
 ## 한눈에 보기
 

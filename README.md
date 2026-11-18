@@ -35,16 +35,16 @@
 | [후속 가설과 미해결 질문](docs/11-research-agenda.md) | pretraining/alignment, schema 분화, insight |
 | [Schema 정의·분해·변경 간섭](docs/13-schema-decomposition-and-interference.md) | LLM과 System ONE의 공통 설명, 표현/활성화/변경 분리, 조건부 수학 명제, 실험 A–E |
 | [기존 Melete와 이관 경계](docs/12-melete-lineage.md) | H1–H5와 이전 실험을 어떻게 보존할지 |
-| [15-compute-plan.md](/home/jimmy/repos/full-continual-learning/docs/15-compute-plan.md) | 계산 계획(횡단 문서): 로드맵 P1–P5가 쓰는 계산 자원 등급·시간·비용 추정(ESTIMATE / NOT RUN), 클라우드 GPU(runcrate) 사용 방식, 결정 D-04 개정 추천(PROPOSAL, 결정 대기). 별도 인프라 phase가 아니다. 2026-11-18 갱신: P0(NP)·P6(ET)와 논문별 묶음표 |
-| [16-ideal-blueprint.md](/home/jimmy/repos/full-continual-learning/docs/16-ideal-blueprint.md) | 이상 청사진(PROPOSAL): feature 그룹과 feature별 설계, flow FL-1~FL-6, feature × phase(P0–P6) 해상도 표. P0 비모수 대역은 요청된 POC이며 최종형이 아니다 |
-| [17-einstein-test.md](/home/jimmy/repos/full-continual-learning/docs/17-einstein-test.md) | 경험 조건부 발견 시험(ET, 아인슈타인 테스트의 운영 정의): ET-0~ET-4(+ET-3p), 입력 stream과 입력 tier, 누수·사후 편향 통제, 발견 곡선, 단별 결과 등급 상한(PROPOSAL / NOT RUN) |
-| [18-poc-nonparametric.md](/home/jimmy/repos/full-continual-learning/docs/18-poc-nonparametric.md) | P0(NP) 비모수 POC 설계·검증 계획: gradient 학습 0회의 System ONE-NP, 검증 V0 목록, suite S-A~S-D, 실행 행렬(ESTIMATE / NOT RUN) |
-| [19-paper-plan.md](/home/jimmy/repos/full-continual-learning/docs/19-paper-plan.md) | 단계별 논문 계획(PAPER-0~6와 0b): 주장·제목·초록 초안(결과는 자리표시자)과 논문별 실험 설계 |
-| [2026-11-18-blueprint-et-design.md](/home/jimmy/repos/full-continual-learning/research/2026-11-18-blueprint-et-design.md) | 2026-11-18 설계 작업 기록: 방법, 조사 출처와 확인 수준, 마스터 결정, 가칭 대응표, 사용자 결정 대기, NOT RUN 선언 |
+| [15-compute-plan.md](docs/15-compute-plan.md) | 계산 계획(횡단 문서): 로드맵 P1–P5가 쓰는 계산 자원 등급·시간·비용 추정(ESTIMATE / NOT RUN), 클라우드 GPU(runcrate) 사용 방식, 결정 D-04 개정 추천(PROPOSAL, 결정 대기). 별도 인프라 phase가 아니다. 2026-11-18 갱신: P0(NP)·P6(ET)와 논문별 묶음표 |
+| [16-ideal-blueprint.md](docs/16-ideal-blueprint.md) | 이상 청사진(PROPOSAL): feature 그룹과 feature별 설계, flow FL-1~FL-6, feature × phase(P0–P6) 해상도 표. P0 비모수 대역은 요청된 POC이며 최종형이 아니다 |
+| [17-einstein-test.md](docs/17-einstein-test.md) | 경험 조건부 발견 시험(ET, 아인슈타인 테스트의 운영 정의): ET-0~ET-4(+ET-3p), 입력 stream과 입력 tier, 누수·사후 편향 통제, 발견 곡선, 단별 결과 등급 상한(PROPOSAL / NOT RUN) |
+| [18-poc-nonparametric.md](docs/18-poc-nonparametric.md) | P0(NP) 비모수 POC 설계·검증 계획: gradient 학습 0회의 System ONE-NP, 검증 V0 목록, suite S-A~S-D, 실행 행렬(ESTIMATE / NOT RUN) |
+| [19-paper-plan.md](docs/19-paper-plan.md) | 단계별 논문 계획(PAPER-0~6와 0b): 주장·제목·초록 초안(결과는 자리표시자)과 논문별 실험 설계 |
+| [2026-11-18-blueprint-et-design.md](research/2026-11-18-blueprint-et-design.md) | 2026-11-18 설계 작업 기록: 방법, 조사 출처와 확인 수준, 마스터 결정, 가칭 대응표, 사용자 결정 대기, NOT RUN 선언 |
 | [주간 SBL 조사 기록](research/2026-11-09-sbl-tracking.md) | 대화에서 보고된 최신 연구와 수치의 출처 상태 |
 | [2026-11-11-sbl-fulltext-review.md](research/2026-11-11-sbl-fulltext-review.md) | 신경망 SBL 구현 11편 원문 검토: 외부 요약 정정, 공통 공백, FCL 설계의 시작점 |
 | [2026-11-12-design-audit.md](research/2026-11-12-design-audit.md) | 설계 반영 감사: 사용자 진술 202개 포함 325항목 원장, 반영 판정, 설계 문서 편집 70개, 사용자 확인·열린 결정·남은 문헌 정독 |
-| [2026-11-17-design-review.md](/home/jimmy/repos/full-continual-learning/research/2026-11-17-design-review.md) | 델타 설계 반영 감사: 11-12 감사 이후 동기화 자료(docs/13·14, 11-16·17 기록)와 사용자 공유 링크 카드의 항목별 원장, 반영한 편집, 사용자 확인·열린 결정의 갱신 |
+| [2026-11-17-design-review.md](research/2026-11-17-design-review.md) | 델타 설계 반영 감사: 11-12 감사 이후 동기화 자료(docs/13·14, 11-16·17 기록)와 사용자 공유 링크 카드의 항목별 원장, 반영한 편집, 사용자 확인·열린 결정의 갱신 |
 | [README.md](whitepaper/README.md) | 시각화 설계 백서(웹 https://fcl-system-one-whitepaper.vercel.app): 17절 본문 + 결정 브리프·직관 설명·전문가 델타·지식 그래프·피드백 원장 탐색기. **2026-11-12 기준이며 11-14 이후 자료와 11-17 검토는 반영하지 않았다** |
 | [전체 참고문헌](references/README.md) | 뇌과학·SBL·아키텍처·평가·진화 문헌 및 코드 |
 | [원문·출처 아카이브 안내](sources/README.md) | 대화 원문/주제별 재구성/파일 출처의 차이 |
@@ -106,18 +106,18 @@
 
 ## 델타 설계 반영 감사와 계산 계획 — 2026-11-17
 
-사용자 요청(원문과 이번 작업의 경계는 [2026-11-17-discussion.md](/home/jimmy/repos/full-continual-learning/sources/sync/2026-11-17-discussion.md))에 따라 2026-11-12 감사 이후 들어온 자료(ChatGPT 동기화 커밋 5개의 docs/13·14, 11-16·17 기록, 사용자 공유 링크 연구 카드)를 설계 반영 기준으로 다시 검토했다. 로드맵 P1–P5에 계산 자원을 붙이는 계획(클라우드 GPU runcrate 포함)도 세웠다.
+사용자 요청(원문과 이번 작업의 경계는 [2026-11-17-discussion.md](sources/sync/2026-11-17-discussion.md))에 따라 2026-11-12 감사 이후 들어온 자료(ChatGPT 동기화 커밋 5개의 docs/13·14, 11-16·17 기록, 사용자 공유 링크 연구 카드)를 설계 반영 기준으로 다시 검토했다. 로드맵 P1–P5에 계산 자원을 붙이는 계획(클라우드 GPU runcrate 포함)도 세웠다.
 
 | 추가 문서 | 내용 |
 |---|---|
-| [2026-11-17-design-review.md](/home/jimmy/repos/full-continual-learning/research/2026-11-17-design-review.md) | 검토 방법·수치, 반드시 볼 10개 주제의 판정과 반영 위치, 반영한 편집, 사용자 결정 대기의 갱신 |
-| [README.md](/home/jimmy/repos/full-continual-learning/research/2026-11-17-design-review/README.md) | 이 검토의 공개 사본: 항목별 원장(JSON·TSV), 적용한 편집 목록, 정리본, 워커별 편집 블록 원문 |
-| [15-compute-plan.md](/home/jimmy/repos/full-continual-learning/docs/15-compute-plan.md) | 계산 계획(횡단 문서). 수치는 ESTIMATE / NOT RUN이고 결정은 사용자 몫 |
-| [shared-links-2026-11-17.md](/home/jimmy/repos/full-continual-learning/references/shared-links-2026-11-17.md) | 사용자 공유 링크 카드에서 확정한 논문과 확인 수준 |
+| [2026-11-17-design-review.md](research/2026-11-17-design-review.md) | 검토 방법·수치, 반드시 볼 10개 주제의 판정과 반영 위치, 반영한 편집, 사용자 결정 대기의 갱신 |
+| [README.md](research/2026-11-17-design-review/README.md) | 이 검토의 공개 사본: 항목별 원장(JSON·TSV), 적용한 편집 목록, 정리본, 워커별 편집 블록 원문 |
+| [15-compute-plan.md](docs/15-compute-plan.md) | 계산 계획(횡단 문서). 수치는 ESTIMATE / NOT RUN이고 결정은 사용자 몫 |
+| [shared-links-2026-11-17.md](references/shared-links-2026-11-17.md) | 사용자 공유 링크 카드에서 확정한 논문과 확인 수준 |
 
-이번 작업은 문서와 계획의 변경이다. 모델 학습, GPU 실행, 클라우드 인스턴스 생성, 비용 지출, 백서 재생성, 외부 발송은 0회다. 새로 들어간 설계 문장은 PROPOSAL·OPEN이고 계산 수치는 ESTIMATE / NOT RUN이다. 백서는 갱신하지 않았으므로 2026-11-12 기준이다. [SYNC_POLICY.md](/home/jimmy/repos/full-continual-learning/SYNC_POLICY.md)는 위 증거 표기 5종에 USER-HYPOTHESIS·NOT RUN을 더해 7종을 쓰고, 이번 검토는 계산 추정에 ESTIMATE를 더했다. 이 검토가 문서에 단 주석의 '없다·반영돼 있지 않다'는 기준 커밋 280dc9a의 상태이며 편집이 들어간 뒤에는 달라질 수 있다.
+이번 작업은 문서와 계획의 변경이다. 모델 학습, GPU 실행, 클라우드 인스턴스 생성, 비용 지출, 백서 재생성, 외부 발송은 0회다. 새로 들어간 설계 문장은 PROPOSAL·OPEN이고 계산 수치는 ESTIMATE / NOT RUN이다. 백서는 갱신하지 않았으므로 2026-11-12 기준이다. [SYNC_POLICY.md](SYNC_POLICY.md)는 위 증거 표기 5종에 USER-HYPOTHESIS·NOT RUN을 더해 7종을 쓰고, 이번 검토는 계산 추정에 ESTIMATE를 더했다. 이 검토가 문서에 단 주석의 '없다·반영돼 있지 않다'는 기준 커밋 280dc9a의 상태이며 편집이 들어간 뒤에는 달라질 수 있다.
 
 
 ## 이상 청사진·비모수 POC·단계별 계획·아인슈타인 테스트 설계 — 2026-11-18
 
-사용자 요청(원문과 이번 작업의 경계는 [2026-11-18-discussion.md](/home/jimmy/repos/full-continual-learning/sources/sync/2026-11-18-discussion.md))에 따라 이상 청사진, 학습 없는 비모수 POC(P0(NP)), 단계별 구현·논문 계획, runcrate 실험 계획, 아인슈타인 테스트(경험 조건부 발견 시험) 설계를 문서로 썼다. 위 읽는 순서 표의 docs/16–19와 조사 기록, 개정한 [09-roadmap.md](/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md)·[15-compute-plan.md](/home/jimmy/repos/full-continual-learning/docs/15-compute-plan.md)가 그 결과다. 이번 작업은 문서와 계획의 변경이다. 구현, 모델 학습, GPU 실행, 클라우드 인스턴스 생성, 비용 지출, 백서 재생성, 외부 발송은 0회다. 새 설계 문장은 PROPOSAL·OPEN이고 수치는 ESTIMATE / NOT RUN이다. 백서는 갱신하지 않았으므로 2026-11-12 기준이다.
+사용자 요청(원문과 이번 작업의 경계는 [2026-11-18-discussion.md](sources/sync/2026-11-18-discussion.md))에 따라 이상 청사진, 학습 없는 비모수 POC(P0(NP)), 단계별 구현·논문 계획, runcrate 실험 계획, 아인슈타인 테스트(경험 조건부 발견 시험) 설계를 문서로 썼다. 위 읽는 순서 표의 docs/16–19와 조사 기록, 개정한 [09-roadmap.md](docs/09-roadmap.md)·[15-compute-plan.md](docs/15-compute-plan.md)가 그 결과다. 이번 작업은 문서와 계획의 변경이다. 구현, 모델 학습, GPU 실행, 클라우드 인스턴스 생성, 비용 지출, 백서 재생성, 외부 발송은 0회다. 새 설계 문장은 PROPOSAL·OPEN이고 수치는 ESTIMATE / NOT RUN이다. 백서는 갱신하지 않았으므로 2026-11-12 기준이다.

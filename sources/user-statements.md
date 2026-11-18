@@ -135,7 +135,7 @@ depth attention
 
 ## U-T12 — CRUD 관점과 공동논문 목적 (2026-11-16 동기화 블록)
 
-원문은 [2026-11-16-discussion.md](/home/jimmy/repos/full-continual-learning/sources/sync/2026-11-16-discussion.md)의 「사용자 원문: CRUD와 공동논문 목적」 블록에 있다. 위 U-T01–U-T11과 달리 동기화 작업이 직접 확보한 블록이라 여기에 옮기지 않고 위치만 적는다. 발화일은 확인하지 못했다.
+원문은 [2026-11-16-discussion.md](../sources/sync/2026-11-16-discussion.md)의 「사용자 원문: CRUD와 공동논문 목적」 블록에 있다. 위 U-T01–U-T11과 달리 동기화 작업이 직접 확보한 블록이라 여기에 옮기지 않고 위치만 적는다. 발화일은 확인하지 못했다.
 
 ## U-T13 — 지속 동기화 요청 (2026-11-16 동기화 블록)
 
@@ -143,8 +143,8 @@ depth attention
 
 ## U-T14 — 재검토·저장소 반영·runcrate 계산 계획 (2026-11-17)
 
-원문은 [2026-11-17-discussion.md](/home/jimmy/repos/full-continual-learning/sources/sync/2026-11-17-discussion.md)의 「사용자 원문」 블록에 있다. Claude Code 세션에서 입력한 요청이며 위치만 적는다.
+원문은 [2026-11-17-discussion.md](../sources/sync/2026-11-17-discussion.md)의 「사용자 원문」 블록에 있다. Claude Code 세션에서 입력한 요청이며 위치만 적는다.
 
 ## U-T15 — 이상 청사진·비모수 POC·단계별 구현과 논문·runcrate 실험 계획·아인슈타인 테스트 (2026-11-18)
 
-원문은 [2026-11-18-discussion.md](/home/jimmy/repos/full-continual-learning/sources/sync/2026-11-18-discussion.md)의 「사용자 원문」 블록에 있다. Claude Code 세션에서 입력한 요청이며 위치만 적는다.
+원문은 [2026-11-18-discussion.md](../sources/sync/2026-11-18-discussion.md)의 「사용자 원문」 블록에 있다. Claude Code 세션에서 입력한 요청이며 위치만 적는다.

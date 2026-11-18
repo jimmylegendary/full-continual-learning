@@ -1,6 +1,6 @@
 # docs/09 로드맵 개정의 부록: 색인·새 참고문헌·조사 출처 (2026-11-18)
 
-**상태 라벨:** 설계 작업 기록의 부록(PROPOSAL / OPEN / NOT RUN)이다. [09-roadmap.md](/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md)를 개정한 역할의 변경 요약 끝에 있던 세 부록을 이곳에 둔다. 초안 원문이므로 가칭(DC-·NEW-로 시작하는 번호)을 그대로 두었고, 최종 번호는 [id-map.tsv](/home/jimmy/repos/full-continual-learning/research/2026-11-18-blueprint-et-design/id-map.tsv)와 [2026-11-18-blueprint-et-design.md](/home/jimmy/repos/full-continual-learning/research/2026-11-18-blueprint-et-design.md)의 대응표에 있다. 작성일 2026-11-18.
+**상태 라벨:** 설계 작업 기록의 부록(PROPOSAL / OPEN / NOT RUN)이다. [09-roadmap.md](../../docs/09-roadmap.md)를 개정한 역할의 변경 요약 끝에 있던 세 부록을 이곳에 둔다. 초안 원문이므로 가칭(DC-·NEW-로 시작하는 번호)을 그대로 두었고, 최종 번호는 [id-map.tsv](../../research/2026-11-18-blueprint-et-design/id-map.tsv)와 [2026-11-18-blueprint-et-design.md](../../research/2026-11-18-blueprint-et-design.md)의 대응표에 있다. 작성일 2026-11-18.
 
 ## 부록 A. 색인
 
@@ -37,7 +37,7 @@
 
 ### 가칭 목록
 
-이 역할이 붙인 결정 번호는 D-15~D-38(24행)이고, 가칭과 최종 번호의 대응 전부는 [id-map.tsv](/home/jimmy/repos/full-continual-learning/research/2026-11-18-blueprint-et-design/id-map.tsv)에 있다. 통합 담당이 W2b·W5·W6의 후보를 D-39~D-47로 이어 붙였다.
+이 역할이 붙인 결정 번호는 D-15~D-38(24행)이고, 가칭과 최종 번호의 대응 전부는 [id-map.tsv](../../research/2026-11-18-blueprint-et-design/id-map.tsv)에 있다. 통합 담당이 W2b·W5·W6의 후보를 D-39~D-47로 이어 붙였다.
 
 ## 부록 B. 새 참고문헌
 

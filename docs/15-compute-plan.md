@@ -2,13 +2,13 @@
 
 **상태 라벨:** 이 문서는 **PROPOSAL**과 **ESTIMATE**(계산 추정, **NOT RUN**)다. 사용자가 승인한 비용·사양·일정이 아니며, 어떤 인스턴스도 만들지 않았고 GPU·유료 API·가중치 다운로드도 쓰지 않았다. 사용자가 한 말(**USER**)은 §1에 날짜와 함께 따로 적었다. 과거 기록(**ARCHIVE**)은 이번에 재확인하지 않았다. 미해결은 **OPEN**이다. 작성: 2026-11-17.
 
-**무엇인가.** [09-roadmap.md](/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md)의 P1–P5에 계산 자원을 붙이는 **횡단 문서**다. 별도의 "인프라 phase"를 만들지 않으며, 기존 phase의 데모 시나리오(UJ1–UJ5)·넓이/깊이 변화·성립하는 보장과 상한·종료 gate·미루는 것을 바꾸지 않는다. 어떤 자원을 쓰든 phase 종료 gate의 E2E는 실제 `fcl` CLI·실제 pretrained 가중치로 돌아야 하고(규칙), 이 문서는 그 일을 어디서 얼마에 돌릴지만 정한다.
+**무엇인가.** [09-roadmap.md](../docs/09-roadmap.md)의 P1–P5에 계산 자원을 붙이는 **횡단 문서**다. 별도의 "인프라 phase"를 만들지 않으며, 기존 phase의 데모 시나리오(UJ1–UJ5)·넓이/깊이 변화·성립하는 보장과 상한·종료 gate·미루는 것을 바꾸지 않는다. 어떤 자원을 쓰든 phase 종료 gate의 E2E는 실제 `fcl` CLI·실제 pretrained 가중치로 돌아야 하고(규칙), 이 문서는 그 일을 어디서 얼마에 돌릴지만 정한다.
 
 **가격.** 모든 가격은 **2026-11-17 조회 시점이며 변동 가능하다.** 아래 표의 "시간당 가격"은 그날의 상품 목록 값이고 생성 시점에 마스터가 다시 확인한다.
 
-**결정은 사용자 몫이다.** 비용은 사용자 결정 gate이며 §9(계정·예산)와 [09-roadmap.md](/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md) §10의 D-04가 그 자리다. 이 문서는 결정을 대신하지 않는다.
+**결정은 사용자 몫이다.** 비용은 사용자 결정 gate이며 §9(계정·예산)와 [09-roadmap.md](../docs/09-roadmap.md) §10의 D-04가 그 자리다. 이 문서는 결정을 대신하지 않는다.
 
-**2026-11-18 갱신.** 이 문서는 2026-11-17의 수치와 표를 그대로 두고, 2026-11-18의 새 로드맵(P0(NP)–P6(ET)과 논문 PAPER-0~6)에 맞춰 계산을 더했다. 더한 것은 「2026-11-18 갱신」 표기의 문장·표·절이다: 오늘 스냅샷(§4.7), P0·P6의 자원 배정(§5.4), P0의 frozen LLM serving과 실행 행렬 비용(§6.7), 시간캡슐 기반 확보 3안(§6.8), 시간캡슐 기반 retrofit과 ET run(§6.9), P1–P5의 ET 단·NP arm 추가분과 P1 base 비교(§6.10), **PAPER-k 묶음표**(§6.11), 결정 후보(§10-1). 모든 새 수치는 ESTIMATE이고 NOT RUN이다. phase 정의는 [09-roadmap.md](/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md), P0 실행 행렬은 [18-poc-nonparametric.md](/home/jimmy/repos/full-continual-learning/docs/18-poc-nonparametric.md), stream 규모와 ET 단은 [17-einstein-test.md](/home/jimmy/repos/full-continual-learning/docs/17-einstein-test.md)가 소유한다. 이 문서는 그 값을 입력으로 받아 token·GPU-시간·비용을 계산하고, [19-paper-plan.md](/home/jimmy/repos/full-continual-learning/docs/19-paper-plan.md)는 PAPER-k 묶음표로 이 문서를 가리킨다. 계산 자원은 여전히 별도의 인프라 phase가 아니라 phase에 붙는 횡단 자원이다.
+**2026-11-18 갱신.** 이 문서는 2026-11-17의 수치와 표를 그대로 두고, 2026-11-18의 새 로드맵(P0(NP)–P6(ET)과 논문 PAPER-0~6)에 맞춰 계산을 더했다. 더한 것은 「2026-11-18 갱신」 표기의 문장·표·절이다: 오늘 스냅샷(§4.7), P0·P6의 자원 배정(§5.4), P0의 frozen LLM serving과 실행 행렬 비용(§6.7), 시간캡슐 기반 확보 3안(§6.8), 시간캡슐 기반 retrofit과 ET run(§6.9), P1–P5의 ET 단·NP arm 추가분과 P1 base 비교(§6.10), **PAPER-k 묶음표**(§6.11), 결정 후보(§10-1). 모든 새 수치는 ESTIMATE이고 NOT RUN이다. phase 정의는 [09-roadmap.md](../docs/09-roadmap.md), P0 실행 행렬은 [18-poc-nonparametric.md](../docs/18-poc-nonparametric.md), stream 규모와 ET 단은 [17-einstein-test.md](../docs/17-einstein-test.md)가 소유한다. 이 문서는 그 값을 입력으로 받아 token·GPU-시간·비용을 계산하고, [19-paper-plan.md](../docs/19-paper-plan.md)는 PAPER-k 묶음표로 이 문서를 가리킨다. 계산 자원은 여전히 별도의 인프라 phase가 아니라 phase에 붙는 횡단 자원이다.
 
 
 ## 0. 이번에 한 것과 하지 않은 것
@@ -45,7 +45,7 @@
 | 비용효율 | 시간당 가격이 아니라 **유효한 실험 1건을 끝내는 총비용**(§2) |
 
 
-**USER (2026-11-18):** 이번 갱신의 직접 근거는 아래 한 줄이다(원문은 [2026-11-18-discussion.md](/home/jimmy/repos/full-continual-learning/sources/sync/2026-11-18-discussion.md)).
+**USER (2026-11-18):** 이번 갱신의 직접 근거는 아래 한 줄이다(원문은 [2026-11-18-discussion.md](../sources/sync/2026-11-18-discussion.md)).
 
 - 「당연히 runcrate사용한 실험계획(필요한 단계에서)도 포함되어야함」
 
@@ -340,7 +340,7 @@ P5에 1.7B를 두 번째 모델로 쓰면 P5는 $141–2,537(P50 $548), 360M이�
 
 **PROPOSAL.** 두 가지를 구분한다.
 
-1. **E2E·회귀 gate**([09-roadmap.md](/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md) §5·§6의 UJ1–UJ5): 사용자가 자기 환경에서 재현할 수 있어야 한다. 그래서 **host CPU(+노트북)** 에서 돈다. 클라우드에서 만든 작은 체크포인트(수십 MB~수 GB)를 host로 가져와 실제 `fcl` CLI·실제 pretrained 가중치·실제 runtime 프로세스 재시작으로 돌린다. 클라우드 GPU에서만 도는 gate는 사용자가 재현할 수 없으므로 gate로 인정하지 않는다.
+1. **E2E·회귀 gate**([09-roadmap.md](../docs/09-roadmap.md) §5·§6의 UJ1–UJ5): 사용자가 자기 환경에서 재현할 수 있어야 한다. 그래서 **host CPU(+노트북)** 에서 돈다. 클라우드에서 만든 작은 체크포인트(수십 MB~수 GB)를 host로 가져와 실제 `fcl` CLI·실제 pretrained 가중치·실제 runtime 프로세스 재시작으로 돌린다. 클라우드 GPU에서만 도는 gate는 사용자가 재현할 수 없으므로 gate로 인정하지 않는다.
 2. **학습·대량 readout**: 연산·시간이 많이 드는 일은 가장 싼 적합한 tier에서 돌린다.
 
 **장치가 다르면 숫자가 다르다.** GPU에서 학습한 체크포인트를 CPU에서 재현하면 수치가 조금 달라진다(§7.4의 Melete J1 사례: CPU와 CUDA의 확률 차이가 1e-6 수준이었고 판단 범주는 모두 같았지만 원래의 수치 guard는 충족하지 못했다). 그래서 "재시작 전후 응답이 허용오차 안에서 같다"(P1-T10) 같은 Contract gate의 허용오차는 **장치 종류별로 선언**하고, 같은 장치에서 재시작 전후를 비교한다. OPEN-12.
@@ -367,7 +367,7 @@ SmolLM2-135M 기준 P50이며 비용은 클라우드 과금만이다. 근거 숫
 
 ### 5.3 실험 A–E·결정적 실험의 자리
 
-[13-schema-decomposition-and-interference.md](/home/jimmy/repos/full-continual-learning/docs/13-schema-decomposition-and-interference.md) §10의 실험 A–E와 [14-schema-lifecycle-crud-and-joint-paper.md](/home/jimmy/repos/full-continual-learning/docs/14-schema-lifecycle-crud-and-joint-paper.md) §8의 결정적 실험은 별도 phase가 아니라 기존 phase의 작업이다. 자원 규모를 가늠하는 참고다(NOT RUN).
+[13-schema-decomposition-and-interference.md](../docs/13-schema-decomposition-and-interference.md) §10의 실험 A–E와 [14-schema-lifecycle-crud-and-joint-paper.md](../docs/14-schema-lifecycle-crud-and-joint-paper.md) §8의 결정적 실험은 별도 phase가 아니라 기존 phase의 작업이다. 자원 규모를 가늠하는 참고다(NOT RUN).
 
 | 실험 | 들어갈 phase | 규모 가늠 (ESTIMATE) |
 |---|---|---|
@@ -521,7 +521,7 @@ MFU 가정의 폭이 크므로(e_gemm 0.4–0.7, sw 0.65–1.0 → 중앙의 약
 
 ### 6.7 2026-11-18 갱신: P0의 작업량과 비용 (frozen LLM serving, NP-1 hook, 실행 행렬)
 
-**ESTIMATE / NOT RUN.** P0는 gradient 학습이 0회이고 frozen 공개 가중치 LLM과 비모수 기억으로 전체 flow를 돈다([18-poc-nonparametric.md](/home/jimmy/repos/full-continual-learning/docs/18-poc-nonparametric.md)). 그래서 비용은 학습 FLOPs가 아니라 **호출 수와 서빙 처리량**이 정한다. 입력은 docs/18의 P0 실행 행렬(16행, low / base / high)이다. 이 행렬의 low / base / high를 이 문서의 P10 / P50 / P90에 대응시켜 같은 분위 함수(§6.1)로 표본을 뽑았다. 한 행의 호출 수·입력 token·출력 token은 같은 분위로 함께 움직인다(world 수가 함께 커지기 때문이다).
+**ESTIMATE / NOT RUN.** P0는 gradient 학습이 0회이고 frozen 공개 가중치 LLM과 비모수 기억으로 전체 flow를 돈다([18-poc-nonparametric.md](../docs/18-poc-nonparametric.md)). 그래서 비용은 학습 FLOPs가 아니라 **호출 수와 서빙 처리량**이 정한다. 입력은 docs/18의 P0 실행 행렬(16행, low / base / high)이다. 이 행렬의 low / base / high를 이 문서의 P10 / P50 / P90에 대응시켜 같은 분위 함수(§6.1)로 표본을 뽑았다. 한 행의 호출 수·입력 token·출력 token은 같은 분위로 함께 움직인다(world 수가 함께 커지기 때문이다).
 
 **공식 (frozen LLM 서빙).** prefill 처리율 = MFU_pf x 피크 FLOPS / (2N), decode 처리율(sequence 1개) = 메모리 효율 x 대역폭 / (2N 바이트), 동시 sequence c개이면 min(c x decode, prefill 처리율). 한 행의 시간 = (입력 token / prefill + 출력 token / decode) x (NP-1 hook이면 hook 배수) + (호출 수 x 호출 고정 지연 + 임베딩 호출 x 임베딩 지연) / 병렬 process 수. 과금 시간은 §6.1과 같이 재시도·유휴·준비를 곱한다. host 행은 CPU 처리율 가정으로 벽시계만 계산한다(비용 0). NP-1 hook 행은 R02(host), R12, R13(노트북), R14다.
 
@@ -598,7 +598,7 @@ runcrate 행의 합계(실행 행렬 base)는 호출 약 3.03M건(low 1.48M, hig
 
 읽는 법. (1) 기본 가정은 HF eager 서빙이고 동시 sequence가 적다. continuous batching 서버로 바꾸면 비용이 약 45%가 된다(동시 sequence를 4배로 한 가정이며 측정이 아니다). 단 서버형 실행이 「같은 CLI·session 프로토콜·runtime 경로」와 동등함을 보이는 일(OPEN-11)과 NP-1 hook 호환이 먼저다. (2) 4B급은 주 모델(8B급)을 바꾸는 것이 아니라 복제·보조 run의 선택지다. 8B 행의 모델 크기만 반으로 두었고 호출·token 수는 그대로다. (3) 모델·서빙을 바꾸는 결정은 D-46이다.
 
-**ET-3p run 1회 (시간캡슐 4B–13B급 HF bf16, runcrate 48GB급).** 실행 행렬의 R15는 [17-einstein-test.md](/home/jimmy/repos/full-continual-learning/docs/17-einstein-test.md)의 ET-3p 규모(stream 항목 330 / 900 / 2,400개, checkpoint 7 / 14 / 28, checkpoint당 probe 6개)를 입력으로 쓴다([18-poc-nonparametric.md](/home/jimmy/repos/full-continual-learning/docs/18-poc-nonparametric.md) §6.3). 아래 비용은 그 규모의 값이며 위 실행 행렬의 R15 행과 같다.
+**ET-3p run 1회 (시간캡슐 4B–13B급 HF bf16, runcrate 48GB급).** 실행 행렬의 R15는 [17-einstein-test.md](../docs/17-einstein-test.md)의 ET-3p 규모(stream 항목 330 / 900 / 2,400개, checkpoint 7 / 14 / 28, checkpoint당 probe 6개)를 입력으로 쓴다([18-poc-nonparametric.md](../docs/18-poc-nonparametric.md) §6.3). 아래 비용은 그 규모의 값이며 위 실행 행렬의 R15 행과 같다.
 
 | 규모 | 과금 시간 h | 비용 USD |
 |---|---|---|
@@ -609,7 +609,7 @@ ET-3p의 host 소형판은 R04(시간캡슐 1.7B급, CPU)이고 벽시계 P50 �
 
 ### 6.8 2026-11-18 갱신: 시간캡슐 기반 확보 3안 (P4–P6)
 
-**ESTIMATE / NOT RUN.** 시간캡슐 기반(ET-3·ET-4)을 확보하는 안은 셋이다. 규모의 사실(크기·corpus·학습 token)은 조사 기록 [2026-11-18-blueprint-et-design.md](/home/jimmy/repos/full-continual-learning/research/2026-11-18-blueprint-et-design.md)의 시간캡슐 모델 현황표에서 가져왔고 비용은 이 문서가 계산한다.
+**ESTIMATE / NOT RUN.** 시간캡슐 기반(ET-3·ET-4)을 확보하는 안은 셋이다. 규모의 사실(크기·corpus·학습 token)은 조사 기록 [2026-11-18-blueprint-et-design.md](../research/2026-11-18-blueprint-et-design.md)의 시간캡슐 모델 현황표에서 가져왔고 비용은 이 문서가 계산한다.
 
 | 안 | 내용 | 가정한 모델 |
 |---|---|---|
@@ -682,7 +682,7 @@ ET-3p의 host 소형판은 R04(시간캡슐 1.7B급, CPU)이고 벽시계 P50 �
 
 ### 6.11 PAPER-k 묶음표 (2026-11-18)
 
-**ESTIMATE / NOT RUN.** 논문마다 실행 수, 자원 tier, 시간, 비용이다. 논문의 실험 설계는 [19-paper-plan.md](/home/jimmy/repos/full-continual-learning/docs/19-paper-plan.md)가 소유하고, 그 표는 이 이름(PAPER-k 묶음표)으로 이 절을 가리킨다. 이 표의 실행 수는 docs/19가 아니라 docs/18의 P0 실행 행렬과 docs/09의 phase별 ET 단 대응(MD-B)을 근거로 잡았다. 비용은 실행 행렬·stream 규모의 low / base / high를 이 문서의 P10 / P50 / P90에 대응시킨 값이다. P1–P5는 11-17의 135M 경로(§6.4)에 NP arm 재실행과 ET 단 추가분(§6.10)을 더했고, PAPER-5·6은 시간캡슐 기반(TypewriterLM 7.24B로 대표, 확보 안 1)의 retrofit·서빙·ET run을 더했다. 사용한 가정 전체는 [2026-11-18-blueprint-et-design.md](/home/jimmy/repos/full-continual-learning/research/2026-11-18-blueprint-et-design.md)의 부록 TSV(assumptions)에 있다.
+**ESTIMATE / NOT RUN.** 논문마다 실행 수, 자원 tier, 시간, 비용이다. 논문의 실험 설계는 [19-paper-plan.md](../docs/19-paper-plan.md)가 소유하고, 그 표는 이 이름(PAPER-k 묶음표)으로 이 절을 가리킨다. 이 표의 실행 수는 docs/19가 아니라 docs/18의 P0 실행 행렬과 docs/09의 phase별 ET 단 대응(MD-B)을 근거로 잡았다. 비용은 실행 행렬·stream 규모의 low / base / high를 이 문서의 P10 / P50 / P90에 대응시킨 값이다. P1–P5는 11-17의 135M 경로(§6.4)에 NP arm 재실행과 ET 단 추가분(§6.10)을 더했고, PAPER-5·6은 시간캡슐 기반(TypewriterLM 7.24B로 대표, 확보 안 1)의 retrofit·서빙·ET run을 더했다. 사용한 가정 전체는 [2026-11-18-blueprint-et-design.md](../research/2026-11-18-blueprint-et-design.md)의 부록 TSV(assumptions)에 있다.
 
 | 논문 | phase | ET 단 | 실행(근거) | 자원 tier | 과금 시간 h | 비용 USD | 비고 |
 |---|---|---|---|---|---|---|---|
@@ -714,7 +714,7 @@ ET-3p의 host 소형판은 R04(시간캡슐 1.7B급, CPU)이고 벽시계 P50 �
 | ⑦ 결과 회수 | 모든 (arm x seed) 결과·log·ledger·state bundle을 host로 가져와 hash를 확인한다. 회수 확인 전에는 terminate하지 않는다 | |
 | ⑧ id로 terminate | 마스터가 id로 종료한다. max_runtime은 안전망일 뿐이며 정상 경로는 수동 종료다 | |
 | ⑨ 목록 0개 확인 | 인스턴스 목록을 조회해 0개임을 확인한다. 남으면 시간 과금이 계속된다 | |
-| ⑩ 실제 비용을 원장에 기록 | 과금 시작·종료 시각, 시간당 가격, 합계를 run ID에 묶어 쓴다. **실패·취소·재시도 포함**이고 예정 상한을 실행 비용으로 쓰지 않는다([10-evolution-policy.md](/home/jimmy/repos/full-continual-learning/docs/10-evolution-policy.md) §6) | 예상 대 실제 |
+| ⑩ 실제 비용을 원장에 기록 | 과금 시작·종료 시각, 시간당 가격, 합계를 run ID에 묶어 쓴다. **실패·취소·재시도 포함**이고 예정 상한을 실행 비용으로 쓰지 않는다([10-evolution-policy.md](../docs/10-evolution-policy.md) §6) | 예상 대 실제 |
 
 **예산이 예상의 1.5배를 넘으면 정지하고 보고한다.** 같은 run의 반복 실패, 평가 결함, 비재현도 중단 조건이다(docs/10 §6, docs/09 §7).
 
@@ -735,7 +735,7 @@ ET-3p의 host 소형판은 R04(시간캡슐 1.7B급, CPU)이고 벽시계 P50 �
 
 ### 7.4 비교 환경 고정 (H-COMPUTE·quality–compute)
 
-**PROPOSAL.** [08-evaluation.md](/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md) §6은 batch·sequence length·hardware·warm/cold state를 맞추라고 한다. 이를 확장해 **한 비교 안에서 GPU 상품(listing), driver, torch, dtype, TF32·deterministic 설정, batch 크기를 고정하고 원장에 기록한다.** 시간·계산량 비교는 장치가 다른 run을 섞지 않는다.
+**PROPOSAL.** [08-evaluation.md](../docs/08-evaluation.md) §6은 batch·sequence length·hardware·warm/cold state를 맞추라고 한다. 이를 확장해 **한 비교 안에서 GPU 상품(listing), driver, torch, dtype, TF32·deterministic 설정, batch 크기를 고정하고 원장에 기록한다.** 시간·계산량 비교는 장치가 다른 run을 섞지 않는다.
 
 **ARCHIVE 근거** (둘 다 private 저장소이므로 인용은 짧게):
 - melete@1d95136:docs/implementation/records/2026-10-21-neural-judgment-j1-diagnostics.md — host CPU 실행(Python 3.14.3·Torch 2.9.1+cpu)이 저장된 GPU 실행(Python 3.12.3·Torch 2.9.1+cu128)의 예측을 재현하는 점검에서 G-pair의 확률 차이가 최대 1.37e-6, 448개 중 2개가 절대 1e-6 기준을 넘어 수치 guard가 FAIL이었다(판단 범주 1,792개는 모두 같았다). 장치·런타임·flag를 맞춘 GPU 재현은 최대 4.5e-8~2.4e-7로 통과했다. 원인을 단일 요인으로 확정하지 않았다고 적혀 있다.
@@ -757,7 +757,7 @@ ET-3p의 host 소형판은 R04(시간캡슐 1.7B급, CPU)이고 벽시계 P50 �
 
 ## 8. 보정 절차: P1-T04 실측으로 추정을 고친다
 
-**PROPOSAL.** 이 추정의 폭이 큰 이유는 MFU·지연·kappa 가정 때문이며 모두 T04에서 잴 수 있다. [09-roadmap.md](/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md) P1-T04(spike: base model·자원)의 완료 판정은 바꾸지 않고 측정 항목만 더한다.
+**PROPOSAL.** 이 추정의 폭이 큰 이유는 MFU·지연·kappa 가정 때문이며 모두 T04에서 잴 수 있다. [09-roadmap.md](../docs/09-roadmap.md) P1-T04(spike: base model·자원)의 완료 판정은 바꾸지 않고 측정 항목만 더한다.
 
 **1단계: host와 노트북 실측(무료).** 모델 135M·360M(가능하면 0.6B)에 대해 (a) batch=1 forward 지연(HF eager 대 compile), (b) frozen 기반 + 최소 retrofit stub(T05)의 학습 step 시간과 최대 메모리(step당 8k·16k token), (c) 관측 1건의 test-time write 지연, (d) host CPU의 학습·추론 처리율을 잰다. 결과로 t_call·t_write·kappa·e_gemm·sw·f_trav·tok_step을 교체한다.
 
@@ -804,7 +804,7 @@ ET-3p의 host 소형판은 R04(시간캡슐 1.7B급, CPU)이고 벽시계 P50 �
 
 ### 10-1. 2026-11-18 갱신: 결정 후보와 요약 표
 
-모두 **OPEN**이며 결정자는 사용자다. 번호는 [09-roadmap.md](/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md) §10의 결정 번호다. 이미 있는 결정과 겹치는 후보는 그 번호(D-20·D-29·N-11)를 쓰고 같은 번호의 행이 여럿일 수 있다([id-map.tsv](/home/jimmy/repos/full-continual-learning/research/2026-11-18-blueprint-et-design/id-map.tsv)).
+모두 **OPEN**이며 결정자는 사용자다. 번호는 [09-roadmap.md](../docs/09-roadmap.md) §10의 결정 번호다. 이미 있는 결정과 겹치는 후보는 그 번호(D-20·D-29·N-11)를 쓰고 같은 번호의 행이 여럿일 수 있다([id-map.tsv](../research/2026-11-18-blueprint-et-design/id-map.tsv)).
 
 | ID | 결정 | 선택지 | 추천 | 비용 발생 | 결정자 |
 |---|---|---|---|---|---|
@@ -866,5 +866,5 @@ ET-3p의 host 소형판은 R04(시간캡슐 1.7B급, CPU)이고 벽시계 P50 �
 
 | 날짜 | 변경 | 이유 | 영향 |
 |---|---|---|---|
-| 2026-11-17 | 이 문서 신설(초안, PROPOSAL/ESTIMATE/NOT RUN) | 사용자 요청: runcrate 클라우드 GPU를 과하지도 모자라지도 않게 쓰는 계획. 판단 기준을 시간당 가격이 아니라 유효 실험 1건의 총비용으로 | 새 문서. [09-roadmap.md](/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md) §10 자원 표·D-04·D-01·D-12·§11 개정안은 별도 편집으로 제안(전부 OPEN). phase·데모·gate·상한·미루는 것은 바뀌지 않음 |
+| 2026-11-17 | 이 문서 신설(초안, PROPOSAL/ESTIMATE/NOT RUN) | 사용자 요청: runcrate 클라우드 GPU를 과하지도 모자라지도 않게 쓰는 계획. 판단 기준을 시간당 가격이 아니라 유효 실험 1건의 총비용으로 | 새 문서. [09-roadmap.md](../docs/09-roadmap.md) §10 자원 표·D-04·D-01·D-12·§11 개정안은 별도 편집으로 제안(전부 OPEN). phase·데모·gate·상한·미루는 것은 바뀌지 않음 |
 | 2026-11-18 | 「2026-11-18 갱신」 표기의 문장·표·절을 더함(§4.7, §5.4, §6.7–§6.11, §10-1, OPEN-18~24). 11-17의 수치와 표는 고치지 않았다 | 새 로드맵(P0(NP)–P6(ET), 논문 PAPER-0~6)에 맞춰 계산 자원을 붙임. 사용자 요청: runcrate를 쓰는 실험 계획 포함. 오늘 스냅샷(177개, 가격 거의 그대로) 반영 | P0·시간캡슐 확보·ET·PAPER-k 비용이 새로 생김(ESTIMATE / NOT RUN). 새 결정 후보 D-46·D-47(나머지 후보는 D-20·D-29·N-11에 합쳤다). 11-17의 D-04 개정 추천과 N-11은 유지 |

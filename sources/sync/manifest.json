@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "repository": "jimmylegendary/full-continual-learning",
-  "sync_date": "2026-11-17",
+  "sync_date": "2026-11-18",
   "timezone": "Asia/Seoul",
   "base_commit": "aa1413d42904a937041d676fd8406b3bb5f7b0fd",
   "source_scope": "Accessible current conversation and completed 2026-11-16 Sleep-time Compute automation result; not a complete export of prior/future chats",
@@ -125,6 +125,27 @@
       ],
       "evidence": "USER verbatim block typed in a Claude Code session and relayed by the master agent; not a complete conversation export",
       "caveat": "The request asks for design and planning documents; it does not authorize implementation, training, GPU runs, cloud instances, spending, large downloads or external sending. The 1901/1904 wording is recorded as written, not reconciled with history"
+    },
+    {
+      "id": "local-links-relativized-2026-11-18",
+      "status": "documentation_link_repair_no_research_claim",
+      "path": "README.md",
+      "related_paths": [
+        "EVIDENCE.md",
+        "docs/09-roadmap.md",
+        "docs/15-compute-plan.md",
+        "docs/16-ideal-blueprint.md",
+        "docs/17-einstein-test.md",
+        "docs/18-poc-nonparametric.md",
+        "docs/19-paper-plan.md",
+        "research/2026-11-18-blueprint-et-design.md",
+        "research/2026-11-18-blueprint-et-design/",
+        "sources/sync/2026-11-18-discussion.md",
+        "sources/user-statements.md"
+      ],
+      "source": "GitHub main commit c373c620e71512e54953514002d170dfa1d9e7da and its recursive tree, plus targeted prior conversation search on 2026-11-18",
+      "evidence": "605 root-absolute /home/jimmy/repos/full-continual-learning/ Markdown links in 19 Markdown files redirected to repository-relative paths; target existence checked against GitHub tree; research prose and quoted user messages unchanged.",
+      "caveat": "No newly accessible research conversation or weekly report beyond existing committed 2026-11-18 documents; this is a link-integrity correction, not new scientific verification. No model/GPU experiment, cloud, deployment or external sending."
     }
   ],
   "source_excerpts": "sources/sync/2026-11-16-discussion.md",
@@ -156,6 +177,16 @@
       "document_checks": "new relative Markdown links, JSON parse and basic content anchors checked; repository-wide validator NOT RUN",
       "external_literature_verification": "NOT RUN; no new external scientific claims",
       "model_implementation_or_experiments": "NOT RUN"
+    },
+    "incremental_link_repair_2026_11_18": {
+      "base_commit": "c373c620e71512e54953514002d170dfa1d9e7da",
+      "absolute_link_targets": "All rewritten targets checked against remote recursive GitHub tree; individual hash anchors and external URLs not exhaustively checked",
+      "files_rewritten": 19,
+      "absolute_links_rewritten": 605,
+      "validator": "Repository-wide tools/validate_docs.py NOT RUN (no full working tree checkout)",
+      "json": "manifest parsed and serialized successfully",
+      "model_implementation_or_experiments": "NOT RUN",
+      "remote_publication": "To be checked after Git branch update"
     }
   },
   "coverage_limits": [

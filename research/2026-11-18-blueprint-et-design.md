@@ -2,25 +2,25 @@
 
 **상태 라벨:** 설계 작업 기록. 새 설계 문장은 PROPOSAL·OPEN이고 계산 수치는 ESTIMATE / NOT RUN이다. 구현·학습·GPU 실행·비용 지출은 0회다. 작성일 2026-11-18.
 
-**요청 (USER, 2026-11-18):** 원문은 [2026-11-18-discussion.md](/home/jimmy/repos/full-continual-learning/sources/sync/2026-11-18-discussion.md)의 「사용자 원문」 블록에 있다(U-T15). 요청은 7개다.
+**요청 (USER, 2026-11-18):** 원문은 [2026-11-18-discussion.md](../sources/sync/2026-11-18-discussion.md)의 「사용자 원문」 블록에 있다(U-T15). 요청은 7개다.
 
 **답 (요청 7개).**
 
 | 요청 | 결과 | 어디 |
 |---|---|---|
-| 청사진 | 이상형 System ONE의 feature 32개(8그룹), flow 6개(FL-1~FL-6)와 전체 그림, feature × phase(P0–P6) 해상도 표(칸마다 NP 대역과 학습 모듈을 구분), 사용자 요구 대응표. P0(NP)는 요청된 POC 대역이며 최종형이 아니다. 전부 PROPOSAL이다 | [16-ideal-blueprint.md](/home/jimmy/repos/full-continual-learning/docs/16-ideal-blueprint.md) |
-| POC 검증 | P0(NP) = System ONE-NP. gradient 학습 0회, frozen 공개 가중치 LLM과 비모수 schema 기억(NP-0 텍스트, NP-1 잠재, 선택 NP-2). 검증 V0-1~V0-17, suite S-A~S-D, 작업 P0-T01~T21, 실행 행렬 R01~R16(ESTIMATE). 전부 NOT RUN이다 | [18-poc-nonparametric.md](/home/jimmy/repos/full-continual-learning/docs/18-poc-nonparametric.md), [09-roadmap.md](/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md)의 P0(NP) 절 |
-| 단계별 구현 | phase 7개 P0(NP)–P6(ET). 매 phase 종료는 실제 `fcl` CLI와 실제 의존성으로 끝까지 도는 전체 제품(UJ0–UJ6)이고 앞 phase 시나리오는 회귀 gate다. 결과 등급 상한과 점진적 해상도 자체 점검표, 결정 D-15~D-47을 더했다 | [09-roadmap.md](/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md) |
-| 단계별 논문 | PAPER-0, 0b, 1–6. 영어·한국어 작업 제목, 반증 가능한 주장 50개(C0-1~C6-4), 초록 초안(결과는 자리표시자), negative-result판, 투고 후보, docs/14 Ali 공동논문 초안과의 대응 | [19-paper-plan.md](/home/jimmy/repos/full-continual-learning/docs/19-paper-plan.md) |
-| runcrate 실험 계획 | P0 실행 행렬의 token·GPU-시간·비용(P10 / P50 / P90, ESTIMATE), 시간캡슐 기반 확보 3안, 시간캡슐 retrofit과 ET run, P1 base 크기 비교, 논문별 「PAPER-k 묶음표」, 2026-11-18 상품 목록 반영. 인스턴스 생성과 비용 지출은 0회다 | [15-compute-plan.md](/home/jimmy/repos/full-continual-learning/docs/15-compute-plan.md)의 2026-11-18 갱신 |
-| 실험 설계(환경·증명·대조·data) | 논문별 설계 표 5줄(실험 환경, 학습 data, test data, 비교 대조, 객관 증명). P0는 「학습 없음」과 기억에 넣는 경험 data를 적었다. 판정 규칙은 형식과 확정 시점만 쓰고 임계값은 dev pilot 뒤 사용자가 승인한다 | [19-paper-plan.md](/home/jimmy/repos/full-continual-learning/docs/19-paper-plan.md), [18-poc-nonparametric.md](/home/jimmy/repos/full-continual-learning/docs/18-poc-nonparametric.md) §4–§11, [17-einstein-test.md](/home/jimmy/repos/full-continual-learning/docs/17-einstein-test.md) §10 |
-| 아인슈타인 테스트 | 운영 정의 「경험 조건부 발견 시험」(ET), 사다리 ET-0~ET-4(+ET-3p)와 단별 등급 상한·문구, stream 설계와 입력 tier, 누수·사후 편향 통제, 발견 곡선, rubric, 대상 추천(주력 Einstein 1905, pilot Planck 1900·Chadwick 1932, 대안 일반상대성 1915·Turing 1936), 공개 시간캡슐 모델 현황 | [17-einstein-test.md](/home/jimmy/repos/full-continual-learning/docs/17-einstein-test.md), 부록 [et-targets-research.md](/home/jimmy/repos/full-continual-learning/research/2026-11-18-blueprint-et-design/et-targets-research.md) |
+| 청사진 | 이상형 System ONE의 feature 32개(8그룹), flow 6개(FL-1~FL-6)와 전체 그림, feature × phase(P0–P6) 해상도 표(칸마다 NP 대역과 학습 모듈을 구분), 사용자 요구 대응표. P0(NP)는 요청된 POC 대역이며 최종형이 아니다. 전부 PROPOSAL이다 | [16-ideal-blueprint.md](../docs/16-ideal-blueprint.md) |
+| POC 검증 | P0(NP) = System ONE-NP. gradient 학습 0회, frozen 공개 가중치 LLM과 비모수 schema 기억(NP-0 텍스트, NP-1 잠재, 선택 NP-2). 검증 V0-1~V0-17, suite S-A~S-D, 작업 P0-T01~T21, 실행 행렬 R01~R16(ESTIMATE). 전부 NOT RUN이다 | [18-poc-nonparametric.md](../docs/18-poc-nonparametric.md), [09-roadmap.md](../docs/09-roadmap.md)의 P0(NP) 절 |
+| 단계별 구현 | phase 7개 P0(NP)–P6(ET). 매 phase 종료는 실제 `fcl` CLI와 실제 의존성으로 끝까지 도는 전체 제품(UJ0–UJ6)이고 앞 phase 시나리오는 회귀 gate다. 결과 등급 상한과 점진적 해상도 자체 점검표, 결정 D-15~D-47을 더했다 | [09-roadmap.md](../docs/09-roadmap.md) |
+| 단계별 논문 | PAPER-0, 0b, 1–6. 영어·한국어 작업 제목, 반증 가능한 주장 50개(C0-1~C6-4), 초록 초안(결과는 자리표시자), negative-result판, 투고 후보, docs/14 Ali 공동논문 초안과의 대응 | [19-paper-plan.md](../docs/19-paper-plan.md) |
+| runcrate 실험 계획 | P0 실행 행렬의 token·GPU-시간·비용(P10 / P50 / P90, ESTIMATE), 시간캡슐 기반 확보 3안, 시간캡슐 retrofit과 ET run, P1 base 크기 비교, 논문별 「PAPER-k 묶음표」, 2026-11-18 상품 목록 반영. 인스턴스 생성과 비용 지출은 0회다 | [15-compute-plan.md](../docs/15-compute-plan.md)의 2026-11-18 갱신 |
+| 실험 설계(환경·증명·대조·data) | 논문별 설계 표 5줄(실험 환경, 학습 data, test data, 비교 대조, 객관 증명). P0는 「학습 없음」과 기억에 넣는 경험 data를 적었다. 판정 규칙은 형식과 확정 시점만 쓰고 임계값은 dev pilot 뒤 사용자가 승인한다 | [19-paper-plan.md](../docs/19-paper-plan.md), [18-poc-nonparametric.md](../docs/18-poc-nonparametric.md) §4–§11, [17-einstein-test.md](../docs/17-einstein-test.md) §10 |
+| 아인슈타인 테스트 | 운영 정의 「경험 조건부 발견 시험」(ET), 사다리 ET-0~ET-4(+ET-3p)와 단별 등급 상한·문구, stream 설계와 입력 tier, 누수·사후 편향 통제, 발견 곡선, rubric, 대상 추천(주력 Einstein 1905, pilot Planck 1900·Chadwick 1932, 대안 일반상대성 1915·Turing 1936), 공개 시간캡슐 모델 현황 | [17-einstein-test.md](../docs/17-einstein-test.md), 부록 [et-targets-research.md](../research/2026-11-18-blueprint-et-design/et-targets-research.md) |
 
 ## 1. 방법
 
 - **범위.** 새 문서 4개(docs/16–19), 개정 문서 2개(docs/09·15), 이 기록, 출처 기록·사용자 진술 목록·manifest·README·참고문헌 catalog의 좁은 추가다. 구현·학습·GPU 실행·비용 지출은 하지 않았다.
 - **입력 커밋.** d1b855f(= 원격 main, 2026-11-18). 작업은 별도 worktree의 branch `design/2026-11-18-blueprint`에서 했고 push·fetch·rebase·병합은 하지 않았다. 원격 main은 작업 중 움직이지 않았다(조회 기록만 했다).
-- **작업 지시.** 마스터 agent가 작업 지시문(저장소 밖의 지시. 사용자 원문, 배경 사실, 마스터 결정, 역할별 수용 항목을 담았다)과 마스터 결정 MD-1118-A~P(아래 §2)를 정했다. 이 결정은 AI agent의 설계 뼈대이며 사용자 결정이 아니다. 조사 결과가 뼈대와 어긋나면 워커가 혼자 고치지 않고 근거와 함께 보고하게 했고, 대상 추천(MD-H)만 조사로 수정하게 했다. 지시문의 배경 사실 중 외부 조사 요약은 마스터가 빠른 웹 검색으로 본 2차 출처였고, 담당 워커가 1차 출처로 확인해 틀린 것을 고쳤다(W2c가 10건, [et-targets-research.md](/home/jimmy/repos/full-continual-learning/research/2026-11-18-blueprint-et-design/et-targets-research.md) §7).
+- **작업 지시.** 마스터 agent가 작업 지시문(저장소 밖의 지시. 사용자 원문, 배경 사실, 마스터 결정, 역할별 수용 항목을 담았다)과 마스터 결정 MD-1118-A~P(아래 §2)를 정했다. 이 결정은 AI agent의 설계 뼈대이며 사용자 결정이 아니다. 조사 결과가 뼈대와 어긋나면 워커가 혼자 고치지 않고 근거와 함께 보고하게 했고, 대상 추천(MD-H)만 조사로 수정하게 했다. 지시문의 배경 사실 중 외부 조사 요약은 마스터가 빠른 웹 검색으로 본 2차 출처였고, 담당 워커가 1차 출처로 확인해 틀린 것을 고쳤다(W2c가 10건, [et-targets-research.md](../research/2026-11-18-blueprint-et-design/et-targets-research.md) §7).
 - **역할 9개와 순서.** 작업 지시문의 9개 역할을 워커 6명이 나눠 맡았다. 1단계 W1·W2a·W2b·W2c·W3가 초안을 쓰고, 2단계 W4·W5·W6이 1단계 초안을 읽고 쓰고, 3단계 W7이 통합했다. 단계 순서는 역할별 완료 표시 파일과 공용 시계로 지켰다. 같은 단계의 워커는 서로의 초안을 읽지 못하게 했고, 어긋남은 소유자 기준(지시문 §3-2)으로 W7이 맞췄다.
 
 | 역할 | 맡은 일 | 산출 | 상태 |
@@ -42,7 +42,7 @@
 
 ## 2. 마스터 결정 MD-1118-A~P
 
-작업 지시문의 §2를 공개용으로 옮긴 것이다. 모두 마스터 agent의 설계 결정이고 PROPOSAL이다. 사용자가 말한 것은 [2026-11-18-discussion.md](/home/jimmy/repos/full-continual-learning/sources/sync/2026-11-18-discussion.md)의 원문뿐이다. 사용자 확인이 필요한 해석은 §6에 올렸다.
+작업 지시문의 §2를 공개용으로 옮긴 것이다. 모두 마스터 agent의 설계 결정이고 PROPOSAL이다. 사용자가 말한 것은 [2026-11-18-discussion.md](../sources/sync/2026-11-18-discussion.md)의 원문뿐이다. 사용자 확인이 필요한 해석은 §6에 올렸다.
 
 | ID | 결정 | 내용 |
 |---|---|---|
@@ -53,7 +53,7 @@
 | MD-1118-E | P0 검증 suite | suite S-A는 조건부 판단 세계(자연어 렌더링, docs/09 P1-T06의 세계 생성기 설계와 docs/08의 관련 family를 재사용). suite S-B는 미시 발견 세계(ET-0, 원형 4종: 숨은 변수·새 개념 도입 / 먼 영역에서의 유추 전이 / 두 이론의 충돌을 공통 가정의 수정으로 통합 / 분류 체계의 빈칸 예측, 지표는 docs/11 §4의 통찰 정의와 F13·F16을 먼저 재사용). suite S-C는 재분장 역사 사례(ET-1, 탐색). suite S-D(선택)는 frozen LLM 내부의 schema 중첩 관찰 분석(Base 대 post-training 변형 비교, docs/13의 가설의 무학습 관찰판). ET-3p run은 suite가 아니라 P0 끝의 실제 실행 1회다 |
 | MD-1118-F | P0 대조군 | 모두 같은 frozen LLM과 같은 token·호출·저장 예산을 쓴다. 기억 없음, 전체 이력 long-context, dense RAG, 요약 기억, 통찰·전략 기억 계열, 개념 기억 계열, 생명주기 없는 평면 schema, controller 없음(항상 fast / 항상 deep), Sleep 없음, wrong-schema swap(인과 개입), oracle schema(진단 상한). 문헌의 방법 이름은 실제로 확인한 것만 쓴다. docs/09 §3의 「고정·무구조·항상-갱신」 대조는 NP에서 「기억 없음·평면 기억·항상 쓰기」로 대응시킨다 |
 | MD-1118-G | ET 운영 정의의 원칙 | W(≤T0)는 T0까지의 모든 연구 결과(동료 연구 포함)이며 시간캡슐 기반 모델의 사전학습 지식이 맡는다. P_pre(≤T0)는 대상 인물이 그때까지 했을 법한 입력(형성기), P_post(T0..T1)는 연구기 입력이며 발견 진술 자체는 뺀다. 「입력」은 그 인물이 우리 시스템을 자기 AI로 썼다면 넣었을 법한 것(READ / OBSERVE / NOTE / QUESTION / DISCUSS / TRY)이고 그 인물이 겪은 경험의 stream과 같은 것으로 본다. 두 해석(인물의 경험을 받는 학습자 / 인물과 대화하는 동반 AI)의 차이와 기본 선택은 문서에 밝히고 사용자 확인 대기로 올린다. 시간순으로 넣고 checkpoint마다 중립 probe로 발견 정도를 채점해 「어떤 data까지 넣었을 때 발견이 나오는가」의 곡선을 얻는다. 입력 tier는 A(날짜 있는 1차 사료만), B(+회고 자료의 조심스러운 재구성), C(+사료 제약 아래 합성한 「했을 법한」 입력). 입력 내재 수준을 같은 rubric으로 채점해 시스템 출력이 입력의 되풀이인지 넘어선 것인지 구분한다. 사후 편향 감사(항목마다 날짜가 t 이하인 출처, 정답 누설도 채점, 누설 항목을 뺀 실험)와 대조 stream(없음, 순서 섞기, 같은 시기 비발견자, 무관한 인물, 핵심 입력 제거)을 둔다. 기본은 open-loop이고 closed-loop는 OPEN이다. T0 이후의 세계 지식 W(T0..t)는 기반 모델을 다시 학습하지 않고 System ONE의 지속학습 입력으로 넣는 안을 기본으로 검토한다 |
-| MD-1118-H | ET 대상 추천(잠정안, 조사로 수정) | 공개 시간캡슐 모델의 지식 마감에 맞춰 고르는 쪽을 기본으로 했다. 주력 후보 Einstein 1905(T0 = 1900 말, 기반 후보 pre-1900 공개 모델), 후보 일반상대성 1915(T0 = 1911–1913, 마감 1913 공개 모델), 후보 1930년 이후의 발견(마감 1929–1946 공개 모델), 후순위 이른 시기 대상(자체 사전학습이 필요하며 ET-1 재료로는 사용). 개발용(pilot) 대상과 봉인된 주력 대상을 나누고, 최종 추천은 기준표(직관 의존도, 날짜 있는 과정 기록의 양과 신뢰도, 지식 마감이 맞는 공개 시간캡슐 모델, T0 이전 corpus 확보, 채점 객관성, 누수 통제 가능성, 언어, 저작권)로 정한다. 조사 결과는 [17-einstein-test.md](/home/jimmy/repos/full-continual-learning/docs/17-einstein-test.md)와 이 기록의 부록에 있다 |
+| MD-1118-H | ET 대상 추천(잠정안, 조사로 수정) | 공개 시간캡슐 모델의 지식 마감에 맞춰 고르는 쪽을 기본으로 했다. 주력 후보 Einstein 1905(T0 = 1900 말, 기반 후보 pre-1900 공개 모델), 후보 일반상대성 1915(T0 = 1911–1913, 마감 1913 공개 모델), 후보 1930년 이후의 발견(마감 1929–1946 공개 모델), 후순위 이른 시기 대상(자체 사전학습이 필요하며 ET-1 재료로는 사용). 개발용(pilot) 대상과 봉인된 주력 대상을 나누고, 최종 추천은 기준표(직관 의존도, 날짜 있는 과정 기록의 양과 신뢰도, 지식 마감이 맞는 공개 시간캡슐 모델, T0 이전 corpus 확보, 채점 객관성, 누수 통제 가능성, 언어, 저작권)로 정한다. 조사 결과는 [17-einstein-test.md](../docs/17-einstein-test.md)와 이 기록의 부록에 있다 |
 | MD-1118-I | 누수 통제 원칙 | 현대 LLM은 역사적 발견을 이미 알므로 ET-0·1·2에서는 같은 frozen LLM 안의 arm 사이 상대 효과만 주장하고, 「발견했다」는 절대 주장은 시간캡슐 기반(ET-3·4)에서만 한다. ET-1에는 모델이 원 사례를 알아보는지 재는 오염 probe를 붙인다. ET-3p·ET-3·ET-4에서 시스템 안의 모든 생성·판정·검색은 시간캡슐 모델만 쓴다(현대 임베딩 모델도 누수 경로이므로 검색은 시간캡슐 모델의 hidden state나 어휘 기반 방법으로 한다). 현대 모델은 시스템 밖(채점 보조, stream 구성 보조)에서만 쓰고 사람이 누수를 감사하며, stream 구성에 쓰면 입력 tier C 표시와 누설도 채점을 붙인다. 시간캡슐 모델 자체의 누수(후대 판본·주석·OCR 메타데이터, 현대 모델로 만든 SFT data)를 점검 항목으로 둔다 |
 | MD-1118-J | 논문 | phase마다 1편이다. 영어 제목과 초록(결과 자리는 대괄호 자리표시자), 한국어 제목과 요약을 쓴다. 주장은 반증 가능하게 쓰고 실험·지표·대조·판정 규칙에 연결한다. 가설이 틀렸을 때의 논문(negative-result판)도 준비한다. docs/14의 Ali 공동논문 초안과의 대응을 표로 밝힌다. 외부 발송·연락은 범위 밖이다. 선택 논문 PAPER-0b(ET 절차·benchmark 논문)는 계획만 쓰고 낼지는 사용자 결정이다. 문구는 docs/09 §3의 등급별 규칙을 따르고 초록은 필요 등급을 채워 PASS한 경우의 문장으로 쓰되 등급에 못 미치면 pilot 문구나 negative-result판으로 바꾼다. 상세도는 PAPER-0·0b·1은 실험 설계까지 자세히, PAPER-2·3은 중간, PAPER-4·5·6은 제목·논지·주장의 형식·초록 뼈대와 목표·gate·선택지·결정 대기 항목까지다 |
 | MD-1118-K | 구현 위치(제안, 사용자 결정) | 공개 저장소의 `fcl/` 패키지에 두고 Melete에서 파일 단위로 골라 옮긴다. 옮기기 전에 비공개 내용을 점검한다 |
@@ -61,9 +61,9 @@
 | MD-1118-M | P0 검증 항목의 최소 집합 | schema 형태 기억 대 사례·검색 기억(2×2 표면/구조), 분해 대 단일 기억(A → B → A 재방문), context gating(Read)과 wrong-schema swap, 생명주기(in-place update 대 create, version 되돌리기, eviction, source 삭제 계약), 익숙함 기반 경로 선택(H-COMPUTE의 NP판), 적은 사례의 성급한 일반화와 수정(H-SAMPLE의 NP판), 관심·수준 admission(흘려듣기), Sleep-NP, 발견(ET-0)과 입력량에 대한 용량–반응, 잠재 artifact(NP-1)의 저장·재적재·합성, (선택) suite S-D 관찰 분석, ET-3p(절차가 끝까지 도는가, 결과 주장 없음) |
 | MD-1118-N | 공통 척도와 가설 | 발견 수준: L0 없음 / L1 긴장 인식 / L2 재구성 가설 / L3 원리 진술과 핵심 관계의 유도(정량) / L4 원리에서 새 예측을 도출(역사적 발견의 예측과 일치) / L5 논문 수준의 체계화. H-DISCOVER(PROPOSAL): 「T0까지의 세계 지식을 가진 기반 위에서, 한 인물의 경험 stream을 schema로 쌓고 미해결 불일치를 보존했다가 재조합·재구조화하는 시스템은, 같은 기반에 같은 자료를 기억 없이 또는 평면 기억으로 준 경우보다 (i) 더 적은 입력에서 (ii) 더 높은 발견 수준에 이르고, (iii) 그 차이는 stream의 내용에 특이적이다(대조 stream에서는 나오지 않는다).」 헌장 docs/01 §4의 두 중심 명제에 없는 세 번째 명제이므로 헌장 개정이 아니라 PROPOSAL·OPEN으로 표기한다 |
 | MD-1118-O | 대역 교체 원칙과 base 일치 규칙 | 모든 phase에 모든 feature가 있고 형태가 NP 대역이거나 학습 모듈일 뿐이다. capability 표의 칸은 NP 대역과 학습 모듈을 구분해 쓴다. 모든 비교는 같은 base에서 하고 NP arm은 그 phase의 base 모델로 다시 돈다. base의 언어 능력이 필요한 NP-0이 작은 base에서 성립하지 않으면 그 사실을 보고하고 NP-1을 대조로 쓴다. P0는 주 모델(8B급) 말고도 P1 base급(135M급)에서 NP-1 arm이 성립하는지를 계획에 넣는다. P1 base를 135M급으로 둘지 1.7B–4B급으로 올릴지, hold 경로를 P1 controller v0에도 넣을지는 비용과 함께 결정 후보다 |
-| MD-1118-P | 등급 상한 | P0의 최대 결과 등급은 주장 단위로 3이다. docs/09 §3의 「실제 갱신」은 P0에서 「실제 비모수 state 쓰기」로 읽는다(OPEN, 사용자 확인). suite S-A·S-B의 개별 주장이 봉인 manifest·fresh locked cohort·같은 예산 대조·구조 family 2종 이상·사전 명세 seed·독립 검토를 모두 채울 때만 3을 시도하고 그 밖의 P0 주장은 2 이하다. ET-1·ET-3p는 탐색이다. ET 단별 상한과 문구는 [17-einstein-test.md](/home/jimmy/repos/full-continual-learning/docs/17-einstein-test.md)의 표 하나가 정한다. 논문의 핵심 주장에 필요한 등급이 phase 상한보다 높으면 두 안을 나란히 쓴다(그 phase에 등급 3 조건을 채우는 작업을 더하거나, pilot 문구의 논문으로 낸다) |
+| MD-1118-P | 등급 상한 | P0의 최대 결과 등급은 주장 단위로 3이다. docs/09 §3의 「실제 갱신」은 P0에서 「실제 비모수 state 쓰기」로 읽는다(OPEN, 사용자 확인). suite S-A·S-B의 개별 주장이 봉인 manifest·fresh locked cohort·같은 예산 대조·구조 family 2종 이상·사전 명세 seed·독립 검토를 모두 채울 때만 3을 시도하고 그 밖의 P0 주장은 2 이하다. ET-1·ET-3p는 탐색이다. ET 단별 상한과 문구는 [17-einstein-test.md](../docs/17-einstein-test.md)의 표 하나가 정한다. 논문의 핵심 주장에 필요한 등급이 phase 상한보다 높으면 두 안을 나란히 쓴다(그 phase에 등급 3 조건을 채우는 작업을 더하거나, pilot 문구의 논문으로 낸다) |
 
-MD-1118-B의 phase와 ET 단 대응(기본안. 개정 로드맵이 바꾼 곳은 [09-roadmap.md](/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md)가 기준이다).
+MD-1118-B의 phase와 ET 단 대응(기본안. 개정 로드맵이 바꾼 곳은 [09-roadmap.md](../docs/09-roadmap.md)가 기준이다).
 
 | phase | 제품 한 줄 | ET (판정 대상) | ET (탐색·회귀) |
 |---|---|---|---|
@@ -81,20 +81,20 @@ MD-1118-B의 phase와 ET 단 대응(기본안. 개정 로드맵이 바꾼 곳은
 
 | 영역 | 담당 | 읽은 것 | 확인 수준 | 위치 |
 |---|---|---|---|---|
-| Einstein test의 출처·판본·비판, 참고 영상 | W2c | 잡지 인터뷰 기사, 2026-02 발언 보도, 2026-05·2026-10 보도, 학술 의견 글(CACM 2쪽 전문), 비판 글, Talkie 보고서의 재인용. 참고 영상은 존재와 제목만 | 학술 의견 글은 직접, 보도는 요약, 영상 내용은 미확인(needs-resolution) | [et-targets-research.md](/home/jimmy/repos/full-continual-learning/research/2026-11-18-blueprint-et-design/et-targets-research.md) §5 |
-| 시간캡슐 언어모델 현황 | W2c | GPT-1900 계열 블로그와 모델·데이터 카드, TypewriterLM 논문 v2 일부와 HF 메타데이터, Talkie-1930 보고서·카드·README, Ranke-4B README·사전 공개 노트 앞부분·HF API, TimeCapsuleLLM, 그 밖 2종은 목록 수준 | 대부분 직접, 일부 부분 열람, 2종은 2차 | [et-targets-research.md](/home/jimmy/repos/full-continual-learning/research/2026-11-18-blueprint-et-design/et-targets-research.md) §1 |
-| ET 대상 후보와 데이터 계획 | W2c | 후보 16개, 추천 5개의 W(≤T0)·W(T0..t)·인물 사료·비발견자 사료 | 역사 일반지식과 백과 열람 수준. 개별 사료 열람은 미확인 | [et-targets-research.md](/home/jimmy/repos/full-continual-learning/research/2026-11-18-blueprint-et-design/et-targets-research.md) §2–§4 |
+| Einstein test의 출처·판본·비판, 참고 영상 | W2c | 잡지 인터뷰 기사, 2026-02 발언 보도, 2026-05·2026-10 보도, 학술 의견 글(CACM 2쪽 전문), 비판 글, Talkie 보고서의 재인용. 참고 영상은 존재와 제목만 | 학술 의견 글은 직접, 보도는 요약, 영상 내용은 미확인(needs-resolution) | [et-targets-research.md](../research/2026-11-18-blueprint-et-design/et-targets-research.md) §5 |
+| 시간캡슐 언어모델 현황 | W2c | GPT-1900 계열 블로그와 모델·데이터 카드, TypewriterLM 논문 v2 일부와 HF 메타데이터, Talkie-1930 보고서·카드·README, Ranke-4B README·사전 공개 노트 앞부분·HF API, TimeCapsuleLLM, 그 밖 2종은 목록 수준 | 대부분 직접, 일부 부분 열람, 2종은 2차 | [et-targets-research.md](../research/2026-11-18-blueprint-et-design/et-targets-research.md) §1 |
+| ET 대상 후보와 데이터 계획 | W2c | 후보 16개, 추천 5개의 W(≤T0)·W(T0..t)·인물 사료·비발견자 사료 | 역사 일반지식과 백과 열람 수준. 개별 사료 열람은 미확인 | [et-targets-research.md](../research/2026-11-18-blueprint-et-design/et-targets-research.md) §2–§4 |
 | Einstein 1905 논문 4편 | W2a | 백과 문서의 서지, 공개 영어 번역 본문 조회(정독 아님), 총설의 해당 줄 | 2차와 번역 조회. 서지의 DOI는 해석하지 않음 | doc17-appendices.md |
-| 선행 연구 140건과 투고처 | W2b | arXiv 초록 페이지, DOI·도서 레지스트리, 학회·학술지 공식 페이지. PDF 발췌 3건 | metadata-checked 수준. 2026-06 이후 preprint는 심사 전 | [related-work.md](/home/jimmy/repos/full-continual-learning/research/2026-11-18-blueprint-et-design/related-work.md) |
+| 선행 연구 140건과 투고처 | W2b | arXiv 초록 페이지, DOI·도서 레지스트리, 학회·학술지 공식 페이지. PDF 발췌 3건 | metadata-checked 수준. 2026-06 이후 preprint는 심사 전 | [related-work.md](../research/2026-11-18-blueprint-et-design/related-work.md) |
 | frozen LLM 후보와 NP 문헌 | W3 | 모델 카드 3종, arXiv 초록 7건, host의 llama.cpp 도움말과 Python 패키지 설치 여부(로컬 확인), 비공개 Melete 저장소의 고정 커밋 파일 목록·머리글(읽기 전용) | 카드 직접, 초록 수준, 로컬 확인 | doc18-appendices.md |
 | 계산 입력 | W6 | Qwen3-4B 설정 파일, 2026-11-17 공개 입력표, runcrate 상품 목록의 종류·가격(공개 열만) | 직접 | doc15-appendices.md |
 | 저장소 문서 | W1·W3·W4·W5 | docs/01–15, 2026-11-12·17 기록, 사용자 진술 원문 | 저장소 본문 | 각 부록 C |
 
-새 참고문헌은 163행을 [catalog.tsv](/home/jimmy/repos/full-continual-learning/references/catalog.tsv)에 더했다. status는 metadata-checked 150 / official-search-checked 6 / needs-resolution 7이다(needs-resolution에는 DOI를 해석하지 않은 Einstein 1905 논문 4편을 낮춰 넣은 것이 포함된다). 같은 URL의 가칭 5개는 먼저 온 행으로 합쳤다. 기존 133행과 URL 또는 arXiv 번호가 겹친 행은 없었다.
+새 참고문헌은 163행을 [catalog.tsv](../references/catalog.tsv)에 더했다. status는 metadata-checked 150 / official-search-checked 6 / needs-resolution 7이다(needs-resolution에는 DOI를 해석하지 않은 Einstein 1905 논문 4편을 낮춰 넣은 것이 포함된다). 같은 URL의 가칭 5개는 먼저 온 행으로 합쳤다. 기존 133행과 URL 또는 arXiv 번호가 겹친 행은 없었다.
 
 ## 4. 가칭 → 최종 번호 대응
 
-워커는 가칭(DC-Wn-nn, F-NEW-Wn-a, NEW-Wn-nn)으로 후보를 냈고 통합 담당이 최종 번호를 붙였다. 대응 전부는 [id-map.tsv](/home/jimmy/repos/full-continual-learning/research/2026-11-18-blueprint-et-design/id-map.tsv)에 있고(가칭, 최종, 정의된 곳, 메모) 아래는 요약이다. 공개 문서(docs/09·15–19)에는 최종 번호만 쓰고, 부록의 초안 원문에는 가칭을 남겼다(참고문헌 표는 최종 번호와 가칭을 함께 적었다).
+워커는 가칭(DC-Wn-nn, F-NEW-Wn-a, NEW-Wn-nn)으로 후보를 냈고 통합 담당이 최종 번호를 붙였다. 대응 전부는 [id-map.tsv](../research/2026-11-18-blueprint-et-design/id-map.tsv)에 있고(가칭, 최종, 정의된 곳, 메모) 아래는 요약이다. 공개 문서(docs/09·15–19)에는 최종 번호만 쓰고, 부록의 초안 원문에는 가칭을 남겼다(참고문헌 표는 최종 번호와 가칭을 함께 적었다).
 
 ### 4.1 사용자 결정 후보(가칭 54개 → 번호 36개)
 
@@ -141,7 +141,7 @@ D-15~D-38은 로드맵 개정 담당(W4)이 붙였고, W2b·W5·W6의 후보는 
 
 ### 4.2 새 평가 family 후보(가칭 8개 → F25~F31)
 
-[16-ideal-blueprint.md](/home/jimmy/repos/full-continual-learning/docs/16-ideal-blueprint.md)의 가칭과 [18-poc-nonparametric.md](/home/jimmy/repos/full-continual-learning/docs/18-poc-nonparametric.md)의 가칭이 같은 후보로 보여 하나로 합쳤다. 이 후보들은 docs/08에 등록하지 않았고(docs/08은 고치지 않았다) 등록은 사용자 결정이다(N-5와 연결).
+[16-ideal-blueprint.md](../docs/16-ideal-blueprint.md)의 가칭과 [18-poc-nonparametric.md](../docs/18-poc-nonparametric.md)의 가칭이 같은 후보로 보여 하나로 합쳤다. 이 후보들은 docs/08에 등록하지 않았고(docs/08은 고치지 않았다) 등록은 사용자 결정이다(N-5와 연결).
 
 | 최종 번호 | 가칭 | 정의된 곳 | 한 줄 |
 |---|---|---|---|
@@ -167,7 +167,7 @@ D-15~D-38은 로드맵 개정 담당(W4)이 붙였고, W2b·W5·W6의 후보는 
 
 ## 5. 정합 점검 기록
 
-소유자 기준(작업 지시 §3-2)으로 문서 사이를 맞췄다. 고친 것, 일치를 확인한 것, 맞추지 못해 OPEN으로 둔 것을 [consistency.tsv](/home/jimmy/repos/full-continual-learning/research/2026-11-18-blueprint-et-design/consistency.tsv)에 문서·위치·내용·기준 문서로 남겼고 아래에 옮겼다. 뜻을 바꾸는 수정은 하지 않았다.
+소유자 기준(작업 지시 §3-2)으로 문서 사이를 맞췄다. 고친 것, 일치를 확인한 것, 맞추지 못해 OPEN으로 둔 것을 [consistency.tsv](../research/2026-11-18-blueprint-et-design/consistency.tsv)에 문서·위치·내용·기준 문서로 남겼고 아래에 옮겼다. 뜻을 바꾸는 수정은 하지 않았다.
 
 | 문서 | 위치 | 무엇을 | 기준 문서 |
 |---|---|---|---|
@@ -201,7 +201,7 @@ D-15~D-38은 로드맵 개정 담당(W4)이 붙였고, W2b·W5·W6의 후보는 
 
 ## 6. 사용자 결정 대기
 
-비용이 드는 선택은 결정 전에 실행하지 않는다. 이번 작업으로 해소된 결정은 없다. 아래 새 결정은 전부 OPEN이고 추천은 PROPOSAL이다. 번호와 내용의 기준은 [09-roadmap.md](/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md) §10이다.
+비용이 드는 선택은 결정 전에 실행하지 않는다. 이번 작업으로 해소된 결정은 없다. 아래 새 결정은 전부 OPEN이고 추천은 PROPOSAL이다. 번호와 내용의 기준은 [09-roadmap.md](../docs/09-roadmap.md) §10이다.
 
 ### 6.1 이번 작업에서 새로 생긴 결정 D-15~D-47 (33개)
 
@@ -263,7 +263,7 @@ D-15~D-38은 로드맵 개정 담당(W4)이 붙였고, W2b·W5·W6의 후보는 
 | 「아인슈타인이라면 했을 법한 입력」의 뜻 | 인물의 경험 stream을 받는 학습자(L)가 기본, 대화하는 동반 AI(C)는 변형 | D-30 |
 | 원문의 「1901~1904」·「1904년 발견」과 역사의 1905 | 사용자 원문을 고치지 않고 구성요소별 발견 시점으로 T1을 정의. 「1904」는 오기(Y1)인지 입력 구간의 끝(Y2)인지 | D-28 |
 | 대상 인물·발견·T0 | 추천 묶음은 PROPOSAL이며 사용자가 고른 것이 아니다 | D-28 |
-| 「증면」 | 「증명」으로 읽었다. 원문은 고치지 않았다 | [2026-11-18-discussion.md](/home/jimmy/repos/full-continual-learning/sources/sync/2026-11-18-discussion.md) |
+| 「증면」 | 「증명」으로 읽었다. 원문은 고치지 않았다 | [2026-11-18-discussion.md](../sources/sync/2026-11-18-discussion.md) |
 
 이 밖에 2026-11-17 검토의 기존 결정(D-01, D-04, D-05, D-09, D-12, D-14, N-1~N-11)과 2026-11-12 감사 §5의 사용자 확인 #1~#19는 이번 요청으로 바뀌지 않았고 대기 중이다.
 

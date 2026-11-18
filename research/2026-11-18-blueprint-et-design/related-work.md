@@ -1,6 +1,6 @@
 # 선행 연구 지형과 논문별 차별점: 2026-11-18 조사 기록의 부록 (W2b)
 
-**상태 라벨:** 이 문서는 **조사 기록**이다. 외부 문헌의 내용은 **LITERATURE**이고 읽은 범위를 확인 수준으로 적었다(본문 정독이 아니라 arXiv 초록 페이지·서지 레지스트리·공식 페이지 수준이다). 「우리가 다르게 주장하는 것」과 「반드시 보여야 하는 대조 실험」은 **PROPOSAL**이며 [19-paper-plan.md](/home/jimmy/repos/full-continual-learning/docs/19-paper-plan.md)의 주장 Ck-n과 판정 규칙이 확정하기 전의 후보다. 이 조사로 실행한 학습·GPU·유료 API·모델 다운로드는 0회(**NOT RUN**)다. 작성: 2026-11-18.
+**상태 라벨:** 이 문서는 **조사 기록**이다. 외부 문헌의 내용은 **LITERATURE**이고 읽은 범위를 확인 수준으로 적었다(본문 정독이 아니라 arXiv 초록 페이지·서지 레지스트리·공식 페이지 수준이다). 「우리가 다르게 주장하는 것」과 「반드시 보여야 하는 대조 실험」은 **PROPOSAL**이며 [19-paper-plan.md](../../docs/19-paper-plan.md)의 주장 Ck-n과 판정 규칙이 확정하기 전의 후보다. 이 조사로 실행한 학습·GPU·유료 API·모델 다운로드는 0회(**NOT RUN**)다. 작성: 2026-11-18.
 
 ## 한눈에 보기
 
@@ -25,7 +25,7 @@
 2. **NP-1(잠재 artifact)은 약해질 수 있다는 증거가 이미 있다.** steering을 기억으로 쓰면 저장된 사실은 거의 쓰이지 않는다는 보고(S54)와 추상 개념에는 불변 선형 표현이 없다는 보고(S55)가 있다. PAPER-0은 NP-1이 실패하는 판(negative-result판)을 사전에 함께 준비한다.
 3. **ET의 빈칸은 stream 설계다(확인한 범위에서).** 법칙·가설 발견 benchmark는 많지만 한 인물의 경험 stream을 시간순으로 넣고 checkpoint마다 발견 곡선을 얻고 대조 stream으로 특이성을 보는 설계는 보지 못했다. 가장 가까운 것은 진행적 정보 공개(S56)와 출판 이전 서지 복원(S57)이다. 「보지 못했다」는 「없다」가 아니다.
 4. **누수 통제의 방향은 선행과 같다.** 시간 정합 언어모델(S58)과 오염 감사(S59, S60)가 같은 문제를 다룬다. 외부 증거가 컷오프를 지켜도 모델이 컷오프 이후 사실을 회상한다는 보고가 있어 MD-I의 「시스템 안 모든 생성·판정·검색은 시간캡슐 모델만」과 같은 방향의 근거가 된다.
-5. **aha 자기보고 신호는 통찰의 증거로 쓰지 않는다.** 추론 중 aha 전환은 드물고 정확도를 거의 올리지 못한다는 분석(S61)이 [11-research-agenda.md](/home/jimmy/repos/full-continual-learning/docs/11-research-agenda.md) §4의 통찰 정의와 같은 방향이다.
+5. **aha 자기보고 신호는 통찰의 증거로 쓰지 않는다.** 추론 중 aha 전환은 드물고 정확도를 거의 올리지 못한다는 분석(S61)이 [11-research-agenda.md](../../docs/11-research-agenda.md) §4의 통찰 정의와 같은 방향이다.
 6. **투고처.** ICML 2027 전체 논문 마감은 2027-01-22(공식 Dates 페이지), ICLR 2027은 2026-09-25에 이미 마감, NeurIPS는 2026년부터 Datasets and Benchmarks 트랙을 Evaluations and Datasets 트랙으로 개칭했고 2027 공지는 확인하지 못했다. 상시 접수 TMLR는 기술적 정확성 중심이다(§6).
 
 **한계.** 본문 정독이 없다(세 편만 PDF 발췌 페이지를 일부 읽었다). 초록 요지는 열람 도구의 요약을 거쳤고 저자 보고 수치는 그대로 옮기지 않거나 「저자 보고」로 표시했다. 2026-06 이후 preprint는 심사 전이다. 목록에서 제목만 보고 열지 못한 후보는 §7에 「미확인」으로 모았다.
@@ -50,7 +50,7 @@ catalog status의 전문 정독 표시는 쓰지 않았다(본문을 읽지 않�
 
 ## 1. 논문별 차별점 표
 
-논문의 논지 후보는 마스터 결정 MD-B(phase별 제품과 ET 단), MD-J, MD-N을 따른다. 주장 번호 Ck-n과 판정 규칙은 [19-paper-plan.md](/home/jimmy/repos/full-continual-learning/docs/19-paper-plan.md)가 소유하므로 여기서는 쓰지 않는다. 표의 「우리가 다르게 주장하는 것」은 그 논문의 논지에서 선행 연구와 갈라지는 지점의 후보이고, 「반드시 보여야 하는 대조 실험」은 그 차별점을 보이는 데 빠지면 안 되는 대조다. 모든 대조는 같은 base 모델·같은 token·호출·저장 예산에서 돈다(MD-F). phase와 ET 단의 대응은 MD-B 표를 따른다.
+논문의 논지 후보는 마스터 결정 MD-B(phase별 제품과 ET 단), MD-J, MD-N을 따른다. 주장 번호 Ck-n과 판정 규칙은 [19-paper-plan.md](../../docs/19-paper-plan.md)가 소유하므로 여기서는 쓰지 않는다. 표의 「우리가 다르게 주장하는 것」은 그 논문의 논지에서 선행 연구와 갈라지는 지점의 후보이고, 「반드시 보여야 하는 대조 실험」은 그 차별점을 보이는 데 빠지면 안 되는 대조다. 모든 대조는 같은 base 모델·같은 token·호출·저장 예산에서 돈다(MD-F). phase와 ET 단의 대응은 MD-B 표를 따른다.
 
 ### 1-1. PAPER-0 (P0(NP), ET-0 판정 · ET-1·ET-3p 탐색)
 
@@ -73,7 +73,7 @@ catalog status의 전문 정독 표시는 쓰지 않았다(본문을 읽지 않�
 
 | 가장 가까운 선행 연구 | 그 연구가 보인 것(초록 수준) | 우리가 다르게 주장하는 것(PROPOSAL) | 반드시 보여야 하는 대조 실험 |
 |---|---|---|---|
-| Einstein test 제안과 공개 시간캡슐 모델 | 「W2c 조사 기록」이 소유한다. 여기서는 재서술하지 않는다. 공개된 실행 절차(protocol)가 없다는 비판은 보도 기준이었으나, W2c가 학술 의견 글(CACM, 2026-05)이 절차 골격을 제시하고 기술 사양은 일부러 비웠다는 것을 직접 확인했다([et-targets-research.md](/home/jimmy/repos/full-continual-learning/research/2026-11-18-blueprint-et-design/et-targets-research.md) §5). 이 조사에서 직접 연 것은 1913년 컷오프 7B급 모델(TypewriterLM)의 arXiv 초록 페이지뿐이다 | 개념 시험을 실행 가능한 운영 정의로 만든다(입력 tier·대조 stream·곡선·감사) | W2c가 확인한 시간캡슐 모델의 컷오프 누수 probe 결과를 인용한다 |
+| Einstein test 제안과 공개 시간캡슐 모델 | 「W2c 조사 기록」이 소유한다. 여기서는 재서술하지 않는다. 공개된 실행 절차(protocol)가 없다는 비판은 보도 기준이었으나, W2c가 학술 의견 글(CACM, 2026-05)이 절차 골격을 제시하고 기술 사양은 일부러 비웠다는 것을 직접 확인했다([et-targets-research.md](../../research/2026-11-18-blueprint-et-design/et-targets-research.md) §5). 이 조사에서 직접 연 것은 1913년 컷오프 7B급 모델(TypewriterLM)의 arXiv 초록 페이지뿐이다 | 개념 시험을 실행 가능한 운영 정의로 만든다(입력 tier·대조 stream·곡선·감사) | W2c가 확인한 시간캡슐 모델의 컷오프 누수 probe 결과를 인용한다 |
 | NewtonBench S76, LLM-SRBench S77 | 반사실 법칙 이동(NewtonBench)과 친숙한 방정식의 비친숙 변환·합성 문제(LLM-SRBench)로 암기를 억제. 최상위 방법도 기호 정확도가 낮다고 보고 | ET-1 재분장은 역사 원형의 구조를 보존하고 이름·상수·표면을 바꾸며 오염 probe를 붙인다. 평가 단위가 단발 문제 해결이 아니라 경험 stream의 누적 효과(용량–반응)다 | 같은 모델의 기억 없음·평면 기억 arm, 원 사례를 알아보는지 재는 오염 probe, 변환 기반 재분장과의 비교(선택) |
 | SciGame S78, SciLaws-Bench S79 | 문헌에서 원형·반사실 환경 쌍을 만들고 prior-only 프로토콜로 사전 지식과 증거를 가름. 컷오프 이후 논문의 temporal collection. 발표된 방정식의 구조 변형(parallel world)으로 회상을 차단하고 적합도가 곧 타당성은 아니라고 보고 | ET-2(컷오프 이후 실제 사례)와 같은 방향이지만 입력이 환경 질의가 아니라 인물 stream이고 시간순 checkpoint로 곡선을 얻는다 | prior-only와 같은 「입력 stream 없음」 arm, 적합도가 아닌 예측 기반 하위 과제 |
 | ProjectionBench S56, Reconstruction S57 | 논문의 기술적 세부를 단계적으로 공개하며 가설을 평가(원 결론의 원자 주장 유사도). 출판 이전 서지만으로 아이디어를 복원하고 시간 인용 컷오프·익명 참조 ID·고정 서지로 누출을 막음 | 가장 가까운 stream형 설계. 차이는 인물 경험의 시간순 입력, 입력 내재 수준 채점, 대조 stream 특이성, 핵심 입력 제거, 중립 probe 작성 규칙 | 정보 공개량–발견 수준 곡선(용량–반응), stream 섞기·무관 인물·핵심 입력 제거, 입력 자체의 정답 누설도 채점 |
@@ -95,7 +95,7 @@ catalog status의 전문 정독 표시는 쓰지 않았다(본문을 읽지 않�
 | low-rank 지속학습: O-LoRA A46, LoRA Learns Less A47, InfLoRA A34(catalog) | 과제별 직교 부분공간, LoRA는 덜 배우고 덜 잊음 | 사용자 해법(low rank expert의 in-place update, 못 찾으면 create)은 P1에서 NMM·CMS 형태로 구현된다 | 단일 low-rank 대 분리 expert(flat 대 structured) |
 | 비모수 라우팅+모수 adapter: CaLLM A48, Latent-LoRA A49, Factorized Skill Memory A50, TILA-CT A51 | 입력을 프로토타입에 맞춰 adapter를 고르는 비모수 라우팅, GMM 기반 gradient-free 라우팅, 주소 지정 망각이 실행 망각보다 먼저 온다는 보고 | context gating을 한 모델 안 CMS 분기·controller로 학습하고 NP 라우팅을 영구 대조로 둔다 | 프로토타입 매칭 라우팅 arm 대 학습 gating, 주소 실패와 실행 실패의 분리 진단(wrong-schema swap) |
 
-**차별점이 약해지는 조건.** 필요한 결과 등급(3)이 P1 상한(2)보다 높은 주장은 MD-P의 두 안(등급 3 조건을 채우는 작업을 P1에 더하기 / pilot 문구 논문)을 [19-paper-plan.md](/home/jimmy/repos/full-continual-learning/docs/19-paper-plan.md)가 나란히 쓴다.
+**차별점이 약해지는 조건.** 필요한 결과 등급(3)이 P1 상한(2)보다 높은 주장은 MD-P의 두 안(등급 3 조건을 채우는 작업을 P1에 더하기 / pilot 문구 논문)을 [19-paper-plan.md](../../docs/19-paper-plan.md)가 나란히 쓴다.
 
 ### 1-4. PAPER-2 (P2, 구조 family × depth)
 
@@ -162,7 +162,7 @@ catalog status의 전문 정독 표시는 쓰지 않았다(본문을 읽지 않�
 
 ## 2. frozen LLM 위의 기억·경험 학습 방법 (P0 대조군 후보)
 
-MD-F의 대조군(기억 없음, 전체 이력 long-context, dense RAG, 요약 기억, 통찰·전략 기억 계열, 개념 기억 계열, 생명주기 없는 평면 schema, controller 없음, Sleep 없음, wrong-schema swap, oracle schema)에 대응하는 문헌 후보다. 최종 구성은 [18-poc-nonparametric.md](/home/jimmy/repos/full-continual-learning/docs/18-poc-nonparametric.md)가 정한다. 방법 이름은 위에서 확인한 것만 썼다. 모두 가중치를 갱신하지 않는 방법이거나 그렇지 않으면 표에 따로 적었다.
+MD-F의 대조군(기억 없음, 전체 이력 long-context, dense RAG, 요약 기억, 통찰·전략 기억 계열, 개념 기억 계열, 생명주기 없는 평면 schema, controller 없음, Sleep 없음, wrong-schema swap, oracle schema)에 대응하는 문헌 후보다. 최종 구성은 [18-poc-nonparametric.md](../../docs/18-poc-nonparametric.md)가 정한다. 방법 이름은 위에서 확인한 것만 썼다. 모두 가중치를 갱신하지 않는 방법이거나 그렇지 않으면 표에 따로 적었다.
 
 | 계열 | 확인한 방법 | 저장 대상과 갱신 | P0 대조 arm 후보(MD-F 대응) | 주의 |
 |---|---|---|---|---|
@@ -182,7 +182,7 @@ MD-F의 대조군(기억 없음, 전체 이력 long-context, dense RAG, 요약 �
 
 ## 3. 발견 benchmark와 AI 과학자 시스템
 
-각 항목이 무엇을 재는지, 지식 마감·오염을 어떻게 다루는지, 우리 ET와의 차이를 적었다. ET의 정의와 rubric은 [17-einstein-test.md](/home/jimmy/repos/full-continual-learning/docs/17-einstein-test.md)가 소유한다. 「차이」 칸은 이 조사에서 확인한 범위의 비교이며 「없다」의 증명이 아니다.
+각 항목이 무엇을 재는지, 지식 마감·오염을 어떻게 다루는지, 우리 ET와의 차이를 적었다. ET의 정의와 rubric은 [17-einstein-test.md](../../docs/17-einstein-test.md)가 소유한다. 「차이」 칸은 이 조사에서 확인한 범위의 비교이며 「없다」의 증명이 아니다.
 
 ### 3-1. 역사 재발견 전통과 고전 발견 시스템
 
@@ -287,7 +287,7 @@ catalog에는 N17(structure-mapping 요약 페이지), N19(전문가·초보자�
 | structure-mapping 1차 논문 | Gentner 1983 N33 (서지만 확인, N17의 이론) | PAPER-0의 표면/구조 2×2: 구조 대응으로 전이하는가 | N17과 같은 이론이다. catalog N17을 보강하는 1차 출처로 둔다 |
 | 표면 대 구조 유사성 | Gentner·Rattermann·Forbus 1993 N34 (서지만 확인) | 검색은 표면 유사에, 추론 건전성은 구조에 좌우된다는 구분. 사례 검색 기억이 표면 lure에 끌리는지 예측 | 초록을 읽지 않았다. 구분의 정확한 표현은 원문 확인 필요 |
 | schema 유도와 유추 전이 | Gick·Holyoak 1983 N35 (서지만 확인) | 사례 수(k=1·3·10)에 따른 schema 형성과 전이의 인지과학 선행 | 초록 미확인 |
-| representational change | Knoblich 등 1999 N36 (서지만 확인) | 통찰을 제약 완화·덩어리 분해로 보는 이론. 발견 수준 L2(재구성 가설)의 근거 | [11-research-agenda.md](/home/jimmy/repos/full-continual-learning/docs/11-research-agenda.md) §4의 통찰 정의와 맞춘다. 인간 문제 해결 연구를 모델 신호로 직접 옮기지 않는다 |
+| representational change | Knoblich 등 1999 N36 (서지만 확인) | 통찰을 제약 완화·덩어리 분해로 보는 이론. 발견 수준 L2(재구성 가설)의 근거 | [11-research-agenda.md](../../docs/11-research-agenda.md) §4의 통찰 정의와 맞춘다. 인간 문제 해결 연구를 모델 신호로 직접 옮기지 않는다 |
 | 통찰의 신경과학 | Kounios·Beeman 2014 N37 (서지만 확인) | 통찰의 측정·상관에 대한 리뷰. rubric 설계의 배경 | 초록 미확인 |
 | 인큐베이션 | Sio·Ormerod 2009 N38 (서지만 확인) | Sleep·잠복 효과(PAPER-4, ET-1)의 인간 선행 | 효과 방향과 크기는 메타분석 초록을 읽지 않아 미확인 |
 | 이상–위기–혁명 | Kuhn 1962 N39 (서지 미확인) | 긴장 원장(BF-F1)의 과학철학적 배경 | catalog status는 needs-resolution이다 |
@@ -296,7 +296,7 @@ catalog에는 N17(structure-mapping 요약 페이지), N19(전문가·초보자�
 | 통찰 신호의 한계 | Illusion of Insight S61 | aha 자기보고는 통찰의 증거가 아니다 | 의미 있는 전환은 rubric과 객관 하위 과제로 채점 |
 | 개념 재편·표현 구성 | 개념 재편 기하 S98, ULTRADISCOVERY S99 | 재구조화(BF-F4) 지표 후보 | 지표의 타당성은 미검증 |
 
-**사용자 가설(schema로 LLM과 System ONE을 함께 설명)의 문헌 지지 수준.** 이 조사에서 확인한 것은 (i) LLM의 ICL을 잠재 개념 추론으로 설명하는 이론(S145), (ii) task vector·function vector가 과제 정보를 담는다는 보고, (iii) 그 vector가 입력 변화에 불변이 아니며 추상 개념에는 불변 선형 표현이 없다는 반론(S55)이다. 「schema가 분리되지 않고 엉켜 학습되어 간섭이 재앙적 망각을 낳는다」는 가설을 직접 시험한 문헌은 보지 못했다. 이 가설은 USER-HYPOTHESIS로 남고 논문별 증거 수준은 [19-paper-plan.md](/home/jimmy/repos/full-continual-learning/docs/19-paper-plan.md)가 정한다.
+**사용자 가설(schema로 LLM과 System ONE을 함께 설명)의 문헌 지지 수준.** 이 조사에서 확인한 것은 (i) LLM의 ICL을 잠재 개념 추론으로 설명하는 이론(S145), (ii) task vector·function vector가 과제 정보를 담는다는 보고, (iii) 그 vector가 입력 변화에 불변이 아니며 추상 개념에는 불변 선형 표현이 없다는 반론(S55)이다. 「schema가 분리되지 않고 엉켜 학습되어 간섭이 재앙적 망각을 낳는다」는 가설을 직접 시험한 문헌은 보지 못했다. 이 가설은 USER-HYPOTHESIS로 남고 논문별 증거 수준은 [19-paper-plan.md](../../docs/19-paper-plan.md)가 정한다.
 
 ## 6. 투고처 후보
 
@@ -346,7 +346,7 @@ catalog에는 N17(structure-mapping 요약 페이지), N19(전문가·초보자�
 | DC-W2b-03 | 심사 전 preprint 의존 정책 | 제출 4주 전에 §1의 가장 가까운 선행 연구를 재조회하는 gate를 둘지 | 둔다 | 없음 | 사용자 |
 | DC-W2b-04 | PAPER-0b의 투고 성격 | 평가·데이터 트랙형(예: NeurIPS의 Evaluations and Datasets) / 저널형(TMLR) / 일반 ML 본 트랙 | 2027 회차 공지 뒤 평가·데이터 트랙형을 우선 검토 | 없음 | 사용자 |
 
-**다음 행동.** W5는 §1의 표를 [19-paper-plan.md](/home/jimmy/repos/full-continual-learning/docs/19-paper-plan.md)의 「선행 연구와 차별점」으로 가져가고 주장 Ck-n과 판정 규칙을 붙인다. W3는 §2의 대조군 후보와 구현 출처 정보를 [18-poc-nonparametric.md](/home/jimmy/repos/full-continual-learning/docs/18-poc-nonparametric.md)의 대조군 구성에 쓴다. W2a는 §3-8의 빌릴 설계 목록을 [17-einstein-test.md](/home/jimmy/repos/full-continual-learning/docs/17-einstein-test.md)의 누수·대조 stream 절과 맞춘다.
+**다음 행동.** W5는 §1의 표를 [19-paper-plan.md](../../docs/19-paper-plan.md)의 「선행 연구와 차별점」으로 가져가고 주장 Ck-n과 판정 규칙을 붙인다. W3는 §2의 대조군 후보와 구현 출처 정보를 [18-poc-nonparametric.md](../../docs/18-poc-nonparametric.md)의 대조군 구성에 쓴다. W2a는 §3-8의 빌릴 설계 목록을 [17-einstein-test.md](../../docs/17-einstein-test.md)의 누수·대조 stream 절과 맞춘다.
 
 ## 부록 A. 색인
 
@@ -411,7 +411,7 @@ S52, S53, S54, S55, S56, S57, S58, S59, S60, S61, S62, S63, S64, S65, S66, S67, 
 
 ## 부록 B. 새 참고문헌
 
-[catalog.tsv](/home/jimmy/repos/full-continual-learning/references/catalog.tsv)의 8열 형식이다(id, title, category, date_note, url, code_url, status, note). id는 통합 때 catalog의 최종 번호로 바꿨고 괄호에 가칭을 남겼다. 모든 행은 본문 정독 표시가 아닌 status 값을 쓴다. url이 빈 행은 needs-resolution이다. catalog의 기존 133행과 arXiv ID로 대조해 중복이 없음을 확인했다.
+[catalog.tsv](../../references/catalog.tsv)의 8열 형식이다(id, title, category, date_note, url, code_url, status, note). id는 통합 때 catalog의 최종 번호로 바꿨고 괄호에 가칭을 남겼다. 모든 행은 본문 정독 표시가 아닌 status 값을 쓴다. url이 빈 행은 needs-resolution이다. catalog의 기존 133행과 arXiv ID로 대조해 중복이 없음을 확인했다.
 
 | id | title | category | date_note | url | code_url | status | note |
 |---|---|---|---|---|---|---|---|

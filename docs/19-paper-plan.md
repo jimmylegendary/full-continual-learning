@@ -1,15 +1,15 @@
 # 19. 단계별 논문 계획: phase마다 낼 논문의 주장·제목·초록·실험 설계
 
-**상태 라벨:** 이 문서는 **PROPOSAL**이다. 논문의 주장·제목·초록·실험 설계는 모두 계획이고 실행한 것이 없다(**NOT RUN**). 초록의 결과 자리는 전부 [자리표시자]이며 이 문서에는 결과 수치·모델 성능·효과 크기가 없다. 판정 규칙은 형식과 확정 시점만 적었고 임계값·최소 효과·seed 수는 dev pilot의 분산으로 봉인 전에 정해 사용자가 승인한다(D-05). 계산 규모와 비용은 이 문서가 아니라 [15-compute-plan.md](/home/jimmy/repos/full-continual-learning/docs/15-compute-plan.md)의 「PAPER-k 묶음표」가 ESTIMATE로 가진다. 사용자가 승인한 논문 전략이나 투고 결정이 아니며 결정 후보는 §13이다. 외부 발송·연락은 하지 않았고 [14-schema-lifecycle-crud-and-joint-paper.md](/home/jimmy/repos/full-continual-learning/docs/14-schema-lifecycle-crud-and-joint-paper.md)의 공동논문 제안문은 미발송 그대로다. 작성: 2026-11-18.
+**상태 라벨:** 이 문서는 **PROPOSAL**이다. 논문의 주장·제목·초록·실험 설계는 모두 계획이고 실행한 것이 없다(**NOT RUN**). 초록의 결과 자리는 전부 [자리표시자]이며 이 문서에는 결과 수치·모델 성능·효과 크기가 없다. 판정 규칙은 형식과 확정 시점만 적었고 임계값·최소 효과·seed 수는 dev pilot의 분산으로 봉인 전에 정해 사용자가 승인한다(D-05). 계산 규모와 비용은 이 문서가 아니라 [15-compute-plan.md](../docs/15-compute-plan.md)의 「PAPER-k 묶음표」가 ESTIMATE로 가진다. 사용자가 승인한 논문 전략이나 투고 결정이 아니며 결정 후보는 §13이다. 외부 발송·연락은 하지 않았고 [14-schema-lifecycle-crud-and-joint-paper.md](../docs/14-schema-lifecycle-crud-and-joint-paper.md)의 공동논문 제안문은 미발송 그대로다. 작성: 2026-11-18.
 
 ## 한눈에 보기
 
-**무엇인가.** 사용자 요청의 한 부분에 대한 계획이다(**USER**, 위치는 [2026-11-18-discussion.md](/home/jimmy/repos/full-continual-learning/sources/sync/2026-11-18-discussion.md)의 「사용자 원문」 블록): 「각 단계별(최초 poc포함)논문을 쓴다면 어떤 주장을 할것이고 논문 제목, 초록을 어떻게 할지」. phase 하나가 끝날 때마다 그 phase의 전체 제품(실제 `fcl` CLI에서 끝까지 도는 제품)을 보고하는 논문을 한 편씩 쓴다. P0(NP)부터 P6(ET)까지 PAPER-0~6이고, 절차·benchmark를 따로 내는 선택 논문 PAPER-0b가 있다. 모든 논문은 같은 제품의 해상도가 올라가는 보고이며 한 계층만 보이는 논문, mock만 쓰는 논문, 조사만 하는 논문은 없다.
+**무엇인가.** 사용자 요청의 한 부분에 대한 계획이다(**USER**, 위치는 [2026-11-18-discussion.md](../sources/sync/2026-11-18-discussion.md)의 「사용자 원문」 블록): 「각 단계별(최초 poc포함)논문을 쓴다면 어떤 주장을 할것이고 논문 제목, 초록을 어떻게 할지」. phase 하나가 끝날 때마다 그 phase의 전체 제품(실제 `fcl` CLI에서 끝까지 도는 제품)을 보고하는 논문을 한 편씩 쓴다. P0(NP)부터 P6(ET)까지 PAPER-0~6이고, 절차·benchmark를 따로 내는 선택 논문 PAPER-0b가 있다. 모든 논문은 같은 제품의 해상도가 올라가는 보고이며 한 계층만 보이는 논문, mock만 쓰는 논문, 조사만 하는 논문은 없다.
 
 **읽는 법 세 가지.**
 
-- 초록은 「필요한 결과 등급을 채워 PASS한 경우」의 문장이다. 등급에 못 미치면 그 주장은 pilot 문구로 바꾸고, FAIL이면 negative-result판(논문마다 제목과 주장을 준비했다)으로 낸다. 문구 규칙은 [09-roadmap.md](/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md) §3과 [17-einstein-test.md](/home/jimmy/repos/full-continual-learning/docs/17-einstein-test.md) §3.2의 단별 문구 표를 따른다.
-- 주장 Ck-n은 반증 가능하게 쓰고 대응 실험·지표·대조·판정 규칙의 형식·필요 등급을 붙였다. PAPER-0의 주장은 [18-poc-nonparametric.md](/home/jimmy/repos/full-continual-learning/docs/18-poc-nonparametric.md)의 V0-n을 가리킨다.
+- 초록은 「필요한 결과 등급을 채워 PASS한 경우」의 문장이다. 등급에 못 미치면 그 주장은 pilot 문구로 바꾸고, FAIL이면 negative-result판(논문마다 제목과 주장을 준비했다)으로 낸다. 문구 규칙은 [09-roadmap.md](../docs/09-roadmap.md) §3과 [17-einstein-test.md](../docs/17-einstein-test.md) §3.2의 단별 문구 표를 따른다.
+- 주장 Ck-n은 반증 가능하게 쓰고 대응 실험·지표·대조·판정 규칙의 형식·필요 등급을 붙였다. PAPER-0의 주장은 [18-poc-nonparametric.md](../docs/18-poc-nonparametric.md)의 V0-n을 가리킨다.
 - 상세도는 PAPER-0·0b·1이 실험 설계까지, PAPER-2·3이 중간, PAPER-4·5·6이 제목·논지·주장의 형식·초록 뼈대와 목표·gate·선택지·결정 대기다. 먼 phase의 모델 이름·규모·수치는 쓰지 않았다.
 
 | 논문 | phase | 작업 제목(영어) | 주장 | 필요 등급 대 phase 상한 | 상세도 |
@@ -28,17 +28,17 @@
 | 항목 | 내용 |
 |---|---|
 | 지위 | 논문 계획은 설계 문서의 한 부분이다. 실행하기 전에는 어떤 주장도 결과가 아니다. 논문을 쓰겠다는 약속이나 투고 일정의 승인도 아니다 |
-| 증거 표기 | USER(원문이 있는 문장만) / USER-HYPOTHESIS / PROPOSAL / LITERATURE / ARCHIVE / OPEN / NOT RUN / ESTIMATE. 선행 연구는 LITERATURE이고 확인 수준은 [2026-11-18-blueprint-et-design.md](/home/jimmy/repos/full-continual-learning/research/2026-11-18-blueprint-et-design.md)의 선행 연구 표(W2b 조사)를 따른다 |
+| 증거 표기 | USER(원문이 있는 문장만) / USER-HYPOTHESIS / PROPOSAL / LITERATURE / ARCHIVE / OPEN / NOT RUN / ESTIMATE. 선행 연구는 LITERATURE이고 확인 수준은 [2026-11-18-blueprint-et-design.md](../research/2026-11-18-blueprint-et-design.md)의 선행 연구 표(W2b 조사)를 따른다 |
 | 초록 | 영어 180~250단어와 한국어 요약. 결과 자리는 모두 [자리표시자]이고 수치·성능·효과 크기를 쓰지 않는다. 필요 등급을 채워 PASS한 경우의 문장으로 쓰고, 등급에 못 미치면 pilot 문구로, FAIL이면 negative-result판으로 바꾼다 |
 | 주장 Ck-n | 반증 가능한 문장 하나에 대응 실험·지표·대조·판정 규칙의 형식·필요 결과 등급을 붙인다. PAPER-0b의 주장은 C0b-n이다. phase별 가설 번호는 만들지 않는다(Melete 시기의 H1~H5와 겹친다) |
 | 판정 규칙 | 형식과 확정 시점만 쓴다. 예: world 단위 paired bootstrap의 95% 구간이 0을 넘고 최소 효과 [δ]를 넘으면 PASS. [δ]·seed 수·임계값은 dev pilot의 분산으로 봉인 전에 정하고 사용자가 승인한다. 결과를 본 뒤 고치지 않는다 |
 | 결과 상태 | PASS·FAIL·INCONCLUSIVE·BLOCKED·NOT RUN. 통계적으로 유의하지 않음은 동등성이 아니다 |
-| 등급과 문구 | 등급은 phase가 아니라 주장 단위로 부여한다([09-roadmap.md](/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md) §3). ET 단별 상한과 쓸 수 있는 문구는 [17-einstein-test.md](/home/jimmy/repos/full-continual-learning/docs/17-einstein-test.md) §3.2의 표 하나가 기준이고 여기서 값을 다시 쓰지 않는다. ET-0·1·2에서는 같은 frozen LLM 안의 arm 사이의 상대 효과만 주장하고 「발견했다」는 시간캡슐 기반의 봉인 단(ET-4)에서만 쓴다 |
+| 등급과 문구 | 등급은 phase가 아니라 주장 단위로 부여한다([09-roadmap.md](../docs/09-roadmap.md) §3). ET 단별 상한과 쓸 수 있는 문구는 [17-einstein-test.md](../docs/17-einstein-test.md) §3.2의 표 하나가 기준이고 여기서 값을 다시 쓰지 않는다. ET-0·1·2에서는 같은 frozen LLM 안의 arm 사이의 상대 효과만 주장하고 「발견했다」는 시간캡슐 기반의 봉인 단(ET-4)에서만 쓴다 |
 | 이름 | 새 phase는 P0(NP)·P6(ET)로 쓴다. 2026-11-03 계획의 P0는 「옛(11-03) P0」다. experiments/phase0의 「Phase-0」, 추적 우선순위 「P0~P2」와 무관하다. 「tier」는 NP 단(NP-0·1·2)·입력 tier(A·B·C)·자원 tier(1~4)로 한정해 쓴다. suite는 「suite S-A」~「suite S-D」로 쓴다 |
 | 소유 경계 | feature·flow는 docs/16, ET의 정의·지표·상한·rubric은 docs/17, V0·suite·대조군·실행 행렬은 docs/18, phase 정의와 종료 gate는 docs/09, 계산은 docs/15가 소유한다. 이 문서는 이름으로 가리키고 값을 복제하지 않는다. 계산은 「PAPER-k 묶음표」라는 이름으로만 가리킨다 |
 | 논문과 phase | 논문은 phase 종료 제품의 보고다. 앞 phase의 NP arm은 영구 대조군이므로 뒤 논문은 같은 base로 다시 돈 NP arm과 비교한다(MD-1118-O). 학습 모듈은 같은 예산의 NP arm보다 나을 때만 필요하다고 주장한다 |
 
-**가설 문장.** 헌장([01-intent-and-charter.md](/home/jimmy/repos/full-continual-learning/docs/01-intent-and-charter.md) §4)의 두 중심 명제와 이 계획이 쓰는 세 번째 명제 후보다.
+**가설 문장.** 헌장([01-intent-and-charter.md](../docs/01-intent-and-charter.md) §4)의 두 중심 명제와 이 계획이 쓰는 세 번째 명제 후보다.
 
 - **H-SAMPLE:** 관련 경험에서 배운 구조가 새로운 대상·표현을 가진 과제에 대한 목표 성능까지의 관측 수를 줄인다.
 - **H-COMPUTE:** 경험과 통합 이후 새로운 구조 공유 사례에서 같은 정확도를 얻는 데 필요한 총 계산이 줄어든다.
@@ -46,7 +46,7 @@
 
 ## 2. 전체 표: phase × 논문 × 핵심 주장 × 가설 × ET 단 × 계산
 
-「계산」 칸은 값을 쓰지 않고 [15-compute-plan.md](/home/jimmy/repos/full-continual-learning/docs/15-compute-plan.md)의 「PAPER-k 묶음표」(논문마다 실행 수·자원 tier·시간·비용)를 이름으로 가리킨다. ET 단 칸의 「판정」은 그 phase에서 판정 대상인 단이고 「탐색」은 등급 2 이하로만 보고하는 단이다([17-einstein-test.md](/home/jimmy/repos/full-continual-learning/docs/17-einstein-test.md) §3.1).
+「계산」 칸은 값을 쓰지 않고 [15-compute-plan.md](../docs/15-compute-plan.md)의 「PAPER-k 묶음표」(논문마다 실행 수·자원 tier·시간·비용)를 이름으로 가리킨다. ET 단 칸의 「판정」은 그 phase에서 판정 대상인 단이고 「탐색」은 등급 2 이하로만 보고하는 단이다([17-einstein-test.md](../docs/17-einstein-test.md) §3.1).
 
 | phase | 논문 | 핵심 주장(요약) | 가설 | ET 단 | 계산 |
 |---|---|---|---|---|---|
@@ -61,7 +61,7 @@
 
 ## 3. PAPER-0 (P0(NP): System ONE-NP) — 자세히
 
-P0(NP)는 사용자가 요청한 POC다(**USER** 원문 「모델 학습없이 non parameter 기반의 무언가로 POC검증을 먼저 해보자」, 위치는 [2026-11-18-discussion.md](/home/jimmy/repos/full-continual-learning/sources/sync/2026-11-18-discussion.md)). 외부 frozen LLM을 쓰는 대역이며 최종형이 아니다([05-integrated-architecture.md](/home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md) §3, [09-roadmap.md](/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md) §1.3). 이 논문도 그 한계를 제목·초록·한계 절에서 밝힌다. 동시에 실제 LLM·실제 저장·실제 CLI로 도는 완결 제품이며 mock이나 조사 단계가 아니다.
+P0(NP)는 사용자가 요청한 POC다(**USER** 원문 「모델 학습없이 non parameter 기반의 무언가로 POC검증을 먼저 해보자」, 위치는 [2026-11-18-discussion.md](../sources/sync/2026-11-18-discussion.md)). 외부 frozen LLM을 쓰는 대역이며 최종형이 아니다([05-integrated-architecture.md](../docs/05-integrated-architecture.md) §3, [09-roadmap.md](../docs/09-roadmap.md) §1.3). 이 논문도 그 한계를 제목·초록·한계 절에서 밝힌다. 동시에 실제 LLM·실제 저장·실제 CLI로 도는 완결 제품이며 mock이나 조사 단계가 아니다.
 
 ### 3-1. 제목과 논지
 
@@ -73,7 +73,7 @@ P0(NP)는 사용자가 요청한 POC다(**USER** 원문 「모델 학습없이 n
 
 ### 3-2. 주장
 
-PAPER-0의 주장은 [18-poc-nonparametric.md](/home/jimmy/repos/full-continual-learning/docs/18-poc-nonparametric.md)의 V0-n을 가리킨다. 대조 arm의 정의는 docs/18 §7, 판정 규칙의 형식 A~F는 docs/18 §4.3이 소유하고 여기서는 번호만 쓴다. 모든 비교는 같은 frozen LLM·같은 revision·같은 backend에서 돈다. 필요 등급 「3 시도」는 docs/09 §3의 등급 3 조건(봉인 manifest, fresh locked cohort, 같은 예산의 대조, 구조 family 2종 이상(lure 포함), 사전 명세 충분 seed, 독립 검토)을 모두 채울 때만 3이고 하나라도 못 채우면 2다.
+PAPER-0의 주장은 [18-poc-nonparametric.md](../docs/18-poc-nonparametric.md)의 V0-n을 가리킨다. 대조 arm의 정의는 docs/18 §7, 판정 규칙의 형식 A~F는 docs/18 §4.3이 소유하고 여기서는 번호만 쓴다. 모든 비교는 같은 frozen LLM·같은 revision·같은 backend에서 돈다. 필요 등급 「3 시도」는 docs/09 §3의 등급 3 조건(봉인 manifest, fresh locked cohort, 같은 예산의 대조, 구조 family 2종 이상(lure 포함), 사전 명세 충분 seed, 독립 검토)을 모두 채울 때만 3이고 하나라도 못 채우면 2다.
 
 | Ck-n | 주장(반증 가능) | 대응 | 지표·대조 | 판정 규칙 형식 | 필요 등급 |
 |---|---|---|---|---|---|
@@ -90,11 +90,11 @@ PAPER-0의 주장은 [18-poc-nonparametric.md](/home/jimmy/repos/full-continual-
 | C0-11 | function·task vector를 schema artifact로 무학습 저장·재적재·합성할 수 있다. 재시작 뒤 효과가 보존되고 새 개체로 전이되며 제거·교체할 때만 효과가 선택적으로 사라진다. 성립은 hook이 되는 backend에서만 시험하고 소형 base급 모델에서의 성립은 소규모 탐색이다 | V0-13, V0-16 | 재적재 뒤 주입 효과, 새 개체 zero-shot 정확도, 합성 과제, 무작위 방향·다른 조건 vector 대조 | A + B | V0-13 3 시도, V0-16 2 |
 | C0-12 | 생성물(추상화·재조합 후보)은 관측으로 승격되지 않고 독립 근거로 세어지지 않으며(계약), 틀린 추상화를 반복 조회해도 고착이나 drift 없이 독립 반례 뒤 회복한다(효용, 탐색) | V0-17 | 근거 목록의 생성물 건수(0), 고착률, 회복 속도 | C + A | 계약 1, 효용 2 |
 | C0-13 | (선택) frozen LLM 내부에서 Base와 같은 계열의 post-training 변형은 task vector의 분리도·교차 주입 간섭·부분공간 겹침이 다르다. 사용자 가설의 무학습 관찰판이며 인과·가중치 수준의 주장을 하지 않는다 | V0-14 | 과제 분리도, 교차 주입 간섭 행렬, 무작위 방향 대조 | E | 2 이하 |
-| C0-14 | 공개 시간캡슐 모델 위에서 NP 시스템이 stream 투입·checkpoint probe·곡선 보고·누수 감사를 끝까지 수행한다(절차 계약). 발견 여부는 주장하지 않는다 | V0-15 | [17-einstein-test.md](/home/jimmy/repos/full-continual-learning/docs/17-einstein-test.md) §10.3의 계약 gate EC-1~EC-7과 docs/18이 더하는 두 항목 | F | 1(탐색, 결과 주장 없음) |
+| C0-14 | 공개 시간캡슐 모델 위에서 NP 시스템이 stream 투입·checkpoint probe·곡선 보고·누수 감사를 끝까지 수행한다(절차 계약). 발견 여부는 주장하지 않는다 | V0-15 | [17-einstein-test.md](../docs/17-einstein-test.md) §10.3의 계약 gate EC-1~EC-7과 docs/18이 더하는 두 항목 | F | 1(탐색, 결과 주장 없음) |
 
 **논문 본문에서 앞세우는 주장.** C0-1·C0-2·C0-3·C0-4·C0-7(구조 전이·간섭·인과·생명주기·표본 효율), C0-6·C0-9(경로 선택·Sleep), C0-10(ET-0 발견), C0-11(잠재 artifact)이다. C0-5·C0-8·C0-12·C0-13·C0-14는 보조 결과 또는 부록이다. 한 논문에 담기에 넓다고 판단되면 둘로 나눌 수 있다(D-42).
 
-**이길 때와 이기지 못할 때의 문구.** 이겨도 쓸 수 있는 말은 「이 합성 family·이 모델·이 seed 집합에서 같은 frozen LLM·같은 예산의 대조 대비 우위(PASS)」까지다(등급 3 조건을 채운 경우). 통합 모델이 필요하다거나 가중치 수준의 schema 형성이 입증됐다는 말은 쓰지 않는다([18-poc-nonparametric.md](/home/jimmy/repos/full-continual-learning/docs/18-poc-nonparametric.md) §1.3, §14.2). 등급 조건을 채우지 못한 주장은 「이 pilot 범위에서 관측했다」로 쓰고 구간을 병기한다. 이기지 못하면 negative-result판(§3-8)으로 낸다.
+**이길 때와 이기지 못할 때의 문구.** 이겨도 쓸 수 있는 말은 「이 합성 family·이 모델·이 seed 집합에서 같은 frozen LLM·같은 예산의 대조 대비 우위(PASS)」까지다(등급 3 조건을 채운 경우). 통합 모델이 필요하다거나 가중치 수준의 schema 형성이 입증됐다는 말은 쓰지 않는다([18-poc-nonparametric.md](../docs/18-poc-nonparametric.md) §1.3, §14.2). 등급 조건을 채우지 못한 주장은 「이 pilot 범위에서 관측했다」로 쓰고 구간을 병기한다. 이기지 못하면 negative-result판(§3-8)으로 낸다.
 
 ### 3-3. 초록
 
@@ -116,7 +116,7 @@ PAPER-0의 주장은 [18-poc-nonparametric.md](/home/jimmy/repos/full-continual-
 
 ### 3-5. 선행 연구와 차별점
 
-선행 연구 표는 [2026-11-18-blueprint-et-design.md](/home/jimmy/repos/full-continual-learning/research/2026-11-18-blueprint-et-design.md)의 W2b 조사 §1-1을 따른다. 확인 수준은 초록 수준이며 제출 전에 재조회한다(D-40).
+선행 연구 표는 [2026-11-18-blueprint-et-design.md](../research/2026-11-18-blueprint-et-design.md)의 W2b 조사 §1-1을 따른다. 확인 수준은 초록 수준이며 제출 전에 재조회한다(D-40).
 
 - 가장 가까운 것은 비모수 군집 기억(Bayesian Cheatsheet `S52`)과 갱신·대체·맥락 분기·새 schema 생성 판정에 version·provenance를 더한 기억(MINDSET `S53`)이다. 생명주기 판정과 version 자체가 새롭다고 쓰지 않는다. 이 논문이 다르게 주장하는 것은 구조 전이의 인과 개입 평가(C0-1·C0-3), 같은 예산 대조(생명주기 없는 평면 기억 포함), 경로 선택·Sleep·source 삭제 계약을 한 제품에서 끝까지 도는 것이다.
 - 통찰·전략·개념 기억(ExpeL `S62`, Dynamic Cheatsheet `S63`, ReasoningBank `S64`, ArcMemo `S66`)은 대조 arm(`insight`·`concept`)의 선행이고, 저장된 추상이 오류를 재생산한다는 보고(`S67`)는 C0-12의 근거다.
@@ -166,7 +166,7 @@ PAPER-0의 주장은 [18-poc-nonparametric.md](/home/jimmy/repos/full-continual-
 
 ## 4. PAPER-0b (선택: ET 절차·benchmark 논문) — 자세히
 
-P0(NP) 직후에 낼 수 있는 동반 논문 후보다. 낼지는 사용자 결정이다(D-38). 사용자 원문의 「최종적으로는 아인슈타인 테스트 통과를 목표로 함」(**USER**)에서 출발한 경험 조건부 발견 시험(ET)의 운영 정의가 이 논문의 중심이다. ET의 정의·stream 설계·rubric·누수 통제·통과 기준은 [17-einstein-test.md](/home/jimmy/repos/full-continual-learning/docs/17-einstein-test.md)가 소유하고 이 논문은 그것을 절차·benchmark로 보고한다. 「아인슈타인 테스트 통과」라는 문구는 쓰지 않는다(공개된 실행 절차가 없는 시험을 운영 정의로 바꿔 시험하는 것이므로, D-34).
+P0(NP) 직후에 낼 수 있는 동반 논문 후보다. 낼지는 사용자 결정이다(D-38). 사용자 원문의 「최종적으로는 아인슈타인 테스트 통과를 목표로 함」(**USER**)에서 출발한 경험 조건부 발견 시험(ET)의 운영 정의가 이 논문의 중심이다. ET의 정의·stream 설계·rubric·누수 통제·통과 기준은 [17-einstein-test.md](../docs/17-einstein-test.md)가 소유하고 이 논문은 그것을 절차·benchmark로 보고한다. 「아인슈타인 테스트 통과」라는 문구는 쓰지 않는다(공개된 실행 절차가 없는 시험을 운영 정의로 바꿔 시험하는 것이므로, D-34).
 
 ### 4-1. 제목과 논지
 
@@ -180,7 +180,7 @@ P0(NP) 직후에 낼 수 있는 동반 논문 후보다. 낼지는 사용자 결
 
 | Ck-n | 주장(반증 가능) | 대응 실험 | 지표·대조 | 판정 규칙 형식 | 필요 등급 |
 |---|---|---|---|---|---|
-| C0b-1 | ET 절차(기반 모델 지정 → stream 투입 → checkpoint probe → 발견 곡선 보고 → 누수 감사)가 실제 `fcl` CLI에서 ET-0·ET-1·ET-3p 모두 끝까지 돈다 | [17-einstein-test.md](/home/jimmy/repos/full-continual-learning/docs/17-einstein-test.md) §10.3의 계약 gate EC-1~EC-7, V0-15 | 감사·시간 필터·모델 사용 규칙·상태 해시·채점·보고·원장의 체크리스트 | C·F(계약형·절차형, 통계 없음) | 1 |
+| C0b-1 | ET 절차(기반 모델 지정 → stream 투입 → checkpoint probe → 발견 곡선 보고 → 누수 감사)가 실제 `fcl` CLI에서 ET-0·ET-1·ET-3p 모두 끝까지 돈다 | [17-einstein-test.md](../docs/17-einstein-test.md) §10.3의 계약 gate EC-1~EC-7, V0-15 | 감사·시간 필터·모델 사용 규칙·상태 해시·채점·보고·원장의 체크리스트 | C·F(계약형·절차형, 통계 없음) | 1 |
 | C0b-2 | (민감도) ET-0 benchmark의 발견 수준 곡선은 강도를 아는 기준 arm들(진단 상한 `oracle`, 하한 `base`, 평면 기억, schema 기억)을 순서대로 가르고 `base`는 floor에, `oracle`은 ceiling에 붙지 않는다 | V0-12의 arm 묶음 | 발견 수준 곡선(최초 발견 시점·최고 수준·곡선 아래 면적), ceiling·floor | A + B | 3 시도 |
 | C0b-3 | (stream 특이성 검출력) 같은 구성자·같은 규칙으로 만든 대조 stream(없음·순서 섞기·결론이 다른 stream·무관 stream·핵심 입력 제거)에서 시스템 곡선이 대상 stream보다 낮고, 그 차이는 입력 내재 수준을 통제해도 남는다. 대조에서도 같은 곡선이 나오면 benchmark는 stream 특이성을 재지 못하는 것이다 | ET-0 세계의 대조 stream | 특이성 지표(구성요소·seed 짝의 차), 입력 내재 대비 초과, 오발견율 | A | ET-0 3 시도 |
 | C0b-4 | (채점 신뢰도) 입력 stream 자체를 같은 rubric으로 채점한 입력 내재 수준을 쓰면 요약 기억 arm의 출력이 입력을 옮겨 적은 것으로 판정되어 되풀이와 초월이 구분되고, 맹검 채점자 간 일치도는 [κ_min] 이상이다 | docs/17 §7.5·§9.6 | 채점자 간 일치도, 입력 내재 수준 대 출력 수준 | A(일치도 하한) | 2 |
@@ -188,7 +188,7 @@ P0(NP) 직후에 낼 수 있는 동반 논문 후보다. 낼지는 사용자 결
 | C0b-6 | (재분장 보존성) ET-1 재분장 사례는 원 사례의 구조 구성요소를 보존하면서(평가자 대조), 모델이 원 사례를 알아보는 오염 probe 정확도는 [임계] 이하다 | suite S-C | 구성요소 보존 점검, 오염 probe 정확도 | B | 2 |
 | C0b-7 | 공개 시간캡슐 모델 위 pilot 대상 하나에서 NP 시스템이 절차를 완주하고 감사·채점·원장 기록이 계약을 통과한다. 발견 곡선은 기술 보고로만 싣고 발견 여부를 주장하지 않는다 | ET-3p run(V0-15) | 계약 체크리스트, 누설도 채점 결과, 입력 내재 수준 | F | 1(탐색) |
 
-**문구.** ET-0 결과는 「이 합성 family·이 frozen LLM·이 seed 집합에서 같은 예산의 대조 대비 …」까지, ET-1은 「오염 probe 수치([값])와 함께 arm 사이 상대 차이를 관측했다」까지, ET-3p는 「절차가 끝까지 돌았고 감사·채점·원장 기록이 계약을 통과했다」까지다. 「발견했다」·「재현했다」·「확증」·「성공」은 쓰지 않는다([17-einstein-test.md](/home/jimmy/repos/full-continual-learning/docs/17-einstein-test.md) §3.2).
+**문구.** ET-0 결과는 「이 합성 family·이 frozen LLM·이 seed 집합에서 같은 예산의 대조 대비 …」까지, ET-1은 「오염 probe 수치([값])와 함께 arm 사이 상대 차이를 관측했다」까지, ET-3p는 「절차가 끝까지 돌았고 감사·채점·원장 기록이 계약을 통과했다」까지다. 「발견했다」·「재현했다」·「확증」·「성공」은 쓰지 않는다([17-einstein-test.md](../docs/17-einstein-test.md) §3.2).
 
 ### 4-3. 초록
 
@@ -210,10 +210,10 @@ P0(NP) 직후에 낼 수 있는 동반 논문 후보다. 낼지는 사용자 결
 
 ### 4-5. 선행 연구와 차별점
 
-[2026-11-18-blueprint-et-design.md](/home/jimmy/repos/full-continual-learning/research/2026-11-18-blueprint-et-design.md)의 W2b 조사 §1-2를 따른다(초록 수준, 제출 전 재조회).
+[2026-11-18-blueprint-et-design.md](../research/2026-11-18-blueprint-et-design.md)의 W2b 조사 §1-2를 따른다(초록 수준, 제출 전 재조회).
 
 - 반사실 법칙 이동과 변환·합성으로 암기를 막는 법칙 발견 benchmark(NewtonBench `S76`, LLM-SRBench `S77`), 원형·반사실 쌍과 prior-only 프로토콜(SciGame `S78`), 단계적 정보 공개(ProjectionBench `S56`)와 출판 이전 서지 복원(Reconstruction `S57`)이 가장 가깝다. 확인한 범위에서 인물 경험 stream의 시간순 투입·checkpoint 곡선·대조 stream 특이성·입력 내재 수준·항목별 사후 편향 감사를 한 절차로 묶은 것은 보지 못했다(「없다」의 주장이 아니다).
-- 누수 통제는 시간 정합 모델(`S58`)과 오염 감사(`S59`, `S60`)와 같은 방향이다. Einstein test의 출처·공개 시간캡슐 모델·공식 제안의 절차 골격과 우리 ET의 차이는 [17-einstein-test.md](/home/jimmy/repos/full-continual-learning/docs/17-einstein-test.md) §4와 W2c 조사 기록이 소유한다.
+- 누수 통제는 시간 정합 모델(`S58`)과 오염 감사(`S59`, `S60`)와 같은 방향이다. Einstein test의 출처·공개 시간캡슐 모델·공식 제안의 절차 골격과 우리 ET의 차이는 [17-einstein-test.md](../docs/17-einstein-test.md) §4와 W2c 조사 기록이 소유한다.
 
 ### 4-6. 그림·표 계획
 
@@ -255,7 +255,7 @@ P0(NP) 직후에 낼 수 있는 동반 논문 후보다. 낼지는 사용자 결
 
 ## 5. PAPER-1 (P1: 소형 retrofit 모델) — 자세히
 
-P1의 제품은 소형 pretrained 모델에 NMM(Titans식 기억)·CMS 분기를 retrofit하고 규칙형 controller v0(fast·learn·deep)를 둔 하나의 모델이며, 실제 `fcl` CLI에서 UJ1 전체 여정을 처음부터 끝까지 돈다([09-roadmap.md](/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md) §5 P1). 「P1은 MVP」라는 사용자 전역 규칙과의 관계는 P0(NP)가 뼈대와 전체 여정을 먼저 세우고 P1이 첫 학습 해상도가 된다는 해석이며 사용자 확인 대기다.
+P1의 제품은 소형 pretrained 모델에 NMM(Titans식 기억)·CMS 분기를 retrofit하고 규칙형 controller v0(fast·learn·deep)를 둔 하나의 모델이며, 실제 `fcl` CLI에서 UJ1 전체 여정을 처음부터 끝까지 돈다([09-roadmap.md](../docs/09-roadmap.md) §5 P1). 「P1은 MVP」라는 사용자 전역 규칙과의 관계는 P0(NP)가 뼈대와 전체 여정을 먼저 세우고 P1이 첫 학습 해상도가 된다는 해석이며 사용자 확인 대기다.
 
 ### 5-1. 제목과 논지
 
@@ -267,7 +267,7 @@ P1의 제품은 소형 pretrained 모델에 NMM(Titans식 기억)·CMS 분기를
 
 ### 5-2. 주장
 
-arm 이름은 [09-roadmap.md](/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md) §5 P1의 정의를 따른다(`full`, `fixed`, `flat`, `always`, `noctl`, `ctx`, `base`). NP arm은 P0의 `np0`·`np1`을 같은 base로 다시 돌린다.
+arm 이름은 [09-roadmap.md](../docs/09-roadmap.md) §5 P1의 정의를 따른다(`full`, `fixed`, `flat`, `always`, `noctl`, `ctx`, `base`). NP arm은 P0의 `np0`·`np1`을 같은 base로 다시 돌린다.
 
 | Ck-n | 주장(반증 가능) | 대응 실험 | 지표·대조 | 판정 규칙 형식 | 필요 등급 |
 |---|---|---|---|---|---|
@@ -279,7 +279,7 @@ arm 이름은 [09-roadmap.md](/home/jimmy/repos/full-continual-learning/docs/09-
 | C1-6 | retrofit은 함수를 보존한다: 초기 출력이 base와 허용오차 안에서 같고 학습 뒤 원능력 probe가 base 대비 한도 [ε] 안에 있다 | P1-T05·T09 | 일반 텍스트 perplexity, 비세계 질문 | B | 2 |
 | C1-7 | (탐색) 규칙형 controller v0의 경로 분포와 계산량을 보고한다. `noctl` 대비 같은 품질에서의 계산 차이는 탐색이며 H-COMPUTE의 시험이 아니다(경로가 r∈{1,2}뿐) | UJ1 ④ | 경로 분포, 호출·FLOPs 추정(측정만) | E | 2 이하 |
 
-**문구.** 상한 2에서 쓸 수 있는 말은 「이 pilot 범위에서 사전 명세 대조를 통과(미달)했다」와 구간 병기까지다. 「schema 이득」·「개선했다」·「일반화」·「빠른 판단 성립」·「계산 절감」은 쓰지 않는다. 이름만 같은 간이 구현을 원본 HOPE·Titan-Llama 재현이라고 부르지 않고 설계 차이와 생략된 학습을 적는다([09-roadmap.md](/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md) §3의 문구 규칙 2).
+**문구.** 상한 2에서 쓸 수 있는 말은 「이 pilot 범위에서 사전 명세 대조를 통과(미달)했다」와 구간 병기까지다. 「schema 이득」·「개선했다」·「일반화」·「빠른 판단 성립」·「계산 절감」은 쓰지 않는다. 이름만 같은 간이 구현을 원본 HOPE·Titan-Llama 재현이라고 부르지 않고 설계 차이와 생략된 학습을 적는다([09-roadmap.md](../docs/09-roadmap.md) §3의 문구 규칙 2).
 
 ### 5-3. 초록
 
@@ -301,7 +301,7 @@ arm 이름은 [09-roadmap.md](/home/jimmy/repos/full-continual-learning/docs/09-
 
 ### 5-5. 선행 연구, 그림·표, 타당성 위협
 
-**선행 연구와 차별점.** [2026-11-18-blueprint-et-design.md](/home/jimmy/repos/full-continual-learning/research/2026-11-18-blueprint-et-design.md)의 W2b 조사 §1-3을 따른다(초록 수준).
+**선행 연구와 차별점.** [2026-11-18-blueprint-et-design.md](../research/2026-11-18-blueprint-et-design.md)의 W2b 조사 §1-3을 따른다(초록 수준).
 
 - 가장 가까운 것은 기억 모듈 retrofit 계열(Titans A01, Titan-Llama A04, Nested Learning A02: catalog)과 대청크 test-time 학습·기억 최적화(ATLAS `A39`, LaCT `A40`)다. 이 논문이 다르게 주장하는 것은 장기 문맥 LM 성능이 아니라 구조를 공유하는 새 사례의 표본 효율과 망각이며 같은 base의 NP arm을 영구 대조로 둔다는 점이다.
 - 「메모리 slot 갱신 대 low-rank 갱신」은 slot 기반 지속학습(Sparse Memory Finetuning `A42`, Memory Layers at Scale `A41`)과 표현 drift 비교(`A43`)가 가장 가깝다. 비모수 라우팅 + 모수 adapter(CaLLM `A48`, Factorized Skill Memory `A50`)와 비교해 context gating을 한 모델 안 CMS 분기·controller로 구현한다는 점이 다르다.
@@ -333,7 +333,7 @@ arm 이름은 [09-roadmap.md](/home/jimmy/repos/full-continual-learning/docs/09-
 
 ### 5-6. 필요 등급과 phase 상한이 어긋나는 경우: 두 안
 
-PAPER-1이 앞세울 주장은 「구조 공유 새 사례에서 학습 모듈이 대조보다 낫다」(schema 이득)다. 이 문구는 등급 3부터 쓸 수 있는데 P1의 최대 등급은 2다([09-roadmap.md](/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md) §3). MD-1118-P에 따라 두 안을 나란히 쓰고 사용자 결정 후보로 올린다(D-38).
+PAPER-1이 앞세울 주장은 「구조 공유 새 사례에서 학습 모듈이 대조보다 낫다」(schema 이득)다. 이 문구는 등급 3부터 쓸 수 있는데 P1의 최대 등급은 2다([09-roadmap.md](../docs/09-roadmap.md) §3). MD-1118-P에 따라 두 안을 나란히 쓰고 사용자 결정 후보로 올린다(D-38).
 
 | 구분 | (a) P1에 등급 3 조건을 채우는 작업을 더한다 | (b) pilot 문구의 논문으로 낸다 |
 |---|---|---|
@@ -349,7 +349,7 @@ PAPER-1이 앞세울 주장은 「구조 공유 새 사례에서 학습 모듈�
 |---|---|
 | 영어 제목 | Equal-Budget Controls Were Not Beaten: A Negative Pilot Result for Titans-Style Memory Retrofitted into a Small Language Model |
 | 한국어 제목 | 같은 예산의 대조를 이기지 못했다: 소형 모델에 이식한 Titans식 기억의 음성 pilot 결과 |
-| 주장 | 이 pilot에서 `full`은 `fixed`·`flat`·`always`나 P0의 NP arm과 구분되지 않았다. 병목을 write 정책, 학습 예산, retrofit 범위(부분 layer), 세계 난이도(ceiling·floor), controller 임계 중 어디에 두는지 분리해 보고한다. 학습 모듈은 같은 예산의 NP arm보다 나을 때만 필요하다는 원칙에 따라 NP를 유지하고, 학습 모듈 확대(P2) 전에 사용자 결정을 받는다([09-roadmap.md](/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md) §7) |
+| 주장 | 이 pilot에서 `full`은 `fixed`·`flat`·`always`나 P0의 NP arm과 구분되지 않았다. 병목을 write 정책, 학습 예산, retrofit 범위(부분 layer), 세계 난이도(ceiling·floor), controller 임계 중 어디에 두는지 분리해 보고한다. 학습 모듈은 같은 예산의 NP arm보다 나을 때만 필요하다는 원칙에 따라 NP를 유지하고, 학습 모듈 확대(P2) 전에 사용자 결정을 받는다([09-roadmap.md](../docs/09-roadmap.md) §7) |
 
 ### 5-8. 투고 후보와 앞 논문에 대한 의존
 
@@ -358,7 +358,7 @@ PAPER-1이 앞세울 주장은 「구조 공유 새 사례에서 학습 모듈�
 
 ## 6. PAPER-2 (P2: 구조 family × depth) — 중간
 
-P2의 제품은 같은 CLI에서 구조 family를 3종으로 넓히고 고정 depth 격자(`--depth`)를 더해 경험 전(S0)·후(SE)의 quality–compute 곡선을 처음 재고 P1의 핵심 대조에 대한 첫 한정 확증(등급 3)을 시도하는 제품이다(UJ2, [09-roadmap.md](/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md) §5 P2). 앞 phase의 UJ1은 회귀 gate로 그대로 통과한다.
+P2의 제품은 같은 CLI에서 구조 family를 3종으로 넓히고 고정 depth 격자(`--depth`)를 더해 경험 전(S0)·후(SE)의 quality–compute 곡선을 처음 재고 P1의 핵심 대조에 대한 첫 한정 확증(등급 3)을 시도하는 제품이다(UJ2, [09-roadmap.md](../docs/09-roadmap.md) §5 P2). 앞 phase의 UJ1은 회귀 gate로 그대로 통과한다.
 
 ### 6-1. 제목과 논지
 
@@ -409,7 +409,7 @@ P2의 제품은 같은 CLI에서 구조 family를 3종으로 넓히고 고정 de
 
 ## 7. PAPER-3 (P3: 학습된 controller·선택적 write·accommodation) — 중간
 
-P3의 제품은 P1의 규칙형 controller v0를 학습된 controller로 바꿔 모델이 문맥·경험에 따라 스스로 고르게 하는 제품이다. 문맥 수준(어떤 구조를 적용·전환·조합·수정할지)과 실행 수준(어느 token·block·depth source, write 횟수·강도, 종료)의 controller, fit·친숙도와 결합한 선택적 write, accommodation을 넣는다(UJ3, [09-roadmap.md](/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md) §5 P3).
+P3의 제품은 P1의 규칙형 controller v0를 학습된 controller로 바꿔 모델이 문맥·경험에 따라 스스로 고르게 하는 제품이다. 문맥 수준(어떤 구조를 적용·전환·조합·수정할지)과 실행 수준(어느 token·block·depth source, write 횟수·강도, 종료)의 controller, fit·친숙도와 결합한 선택적 write, accommodation을 넣는다(UJ3, [09-roadmap.md](../docs/09-roadmap.md) §5 P3).
 
 ### 7-1. 제목과 논지
 
@@ -460,7 +460,7 @@ P3의 제품은 P1의 규칙형 controller v0를 학습된 controller로 바꿔 
 
 ## 8. PAPER-4 (P4: Sleep·세션 간 경험·외부화) — 뼈대
 
-먼 phase이므로 제목·논지·주장의 형식·초록 뼈대를 쓰고 실험 설계는 목표·gate·선택지·결정 대기로 쓴다. 모델 이름·규모·수치는 쓰지 않는다. P4의 제품은 경험이 세션을 넘어 남게 하는 제품이다(UJ4, [09-roadmap.md](/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md) §5 P4): Sleep(fast → slow 공고화), 외부화 v0(bundle export/import·offload/reload·version lineage), 다세션 이력.
+먼 phase이므로 제목·논지·주장의 형식·초록 뼈대를 쓰고 실험 설계는 목표·gate·선택지·결정 대기로 쓴다. 모델 이름·규모·수치는 쓰지 않는다. P4의 제품은 경험이 세션을 넘어 남게 하는 제품이다(UJ4, [09-roadmap.md](../docs/09-roadmap.md) §5 P4): Sleep(fast → slow 공고화), 외부화 v0(bundle export/import·offload/reload·version lineage), 다세션 이력.
 
 ### 8-1. 제목과 논지
 
@@ -545,7 +545,7 @@ P5의 제품은 검증된 범위를 넓히고 실제 consumer에 연결하는 �
 | 학습 data | 목표: 두 번째 base와 시간캡슐 기반에 대한 retrofit 학습과 자연어 혼합 도메인 경험. 선택지: 혼합 도메인의 구성, 시간캡슐 기반 retrofit의 학습 규모. 결정 대기: 자연어 도메인 data의 출처·라이선스 |
 | test data | 목표: 새 fresh cohort(두 번째 base·혼합 도메인), 실제 consumer 과제, ET-3 pilot 대상. 선택지: consumer 과제 구성. 결정 대기: pilot 대상(docs/17의 추천 묶음에서 사용자가 결정) |
 | 비교 대조 | 각 base의 NP arm, 외부 frozen LLM + RAG(consumer 접점의 대조군), 앞 논문의 대조 arm, ET-3의 대조 arm·대조 stream |
-| 객관 증명 | 등급 4 readout(두 모델·자연어 혼합 도메인·새 fresh cohort의 사전 명세·봉인), 운용 coverage 보고, 독립 검토. 선택지: P5를 범위 확대와 연결·운용으로 나눌지(P4 종료 재검토). 결정 대기: 실험 B(Base와 post-training, [13-schema-decomposition-and-interference.md](/home/jimmy/repos/full-continual-learning/docs/13-schema-decomposition-and-interference.md) §10 B)를 P5에 둘지(N-5) |
+| 객관 증명 | 등급 4 readout(두 모델·자연어 혼합 도메인·새 fresh cohort의 사전 명세·봉인), 운용 coverage 보고, 독립 검토. 선택지: P5를 범위 확대와 연결·운용으로 나눌지(P4 종료 재검토). 결정 대기: 실험 B(Base와 post-training, [13-schema-decomposition-and-interference.md](../docs/13-schema-decomposition-and-interference.md) §10 B)를 P5에 둘지(N-5) |
 
 ### 9-5. 선행 연구, 위협, negative-result판, 투고·의존
 
@@ -558,7 +558,7 @@ P5의 제품은 검증된 범위를 넓히고 실제 consumer에 연결하는 �
 
 ## 10. PAPER-6 (P6(ET): 역사 ET 최종) — 뼈대
 
-P6의 제품은 사용자가 CLI에서 기반 모델을 지정하고 인물 stream을 시간순으로 투입하며 checkpoint마다 발견 곡선을 보고 봉인 대상 판정 보고를 받는 제품이다(UJ6). 평가만 하는 phase가 아니라 입력 경로(READ·OBSERVE·NOTE·QUESTION·DISCUSS·TRY), 시간 필터·누수 감사, T0 이후 세계 지식의 지속학습 입력, 곡선 보고기를 갖춘 제품의 해상도 상승이다. 대상 묶음과 시간캡슐 기반의 선택은 [17-einstein-test.md](/home/jimmy/repos/full-continual-learning/docs/17-einstein-test.md)의 대상 묶음 절과 사용자 결정이 소유하고 여기서 이름을 고르지 않는다.
+P6의 제품은 사용자가 CLI에서 기반 모델을 지정하고 인물 stream을 시간순으로 투입하며 checkpoint마다 발견 곡선을 보고 봉인 대상 판정 보고를 받는 제품이다(UJ6). 평가만 하는 phase가 아니라 입력 경로(READ·OBSERVE·NOTE·QUESTION·DISCUSS·TRY), 시간 필터·누수 감사, T0 이후 세계 지식의 지속학습 입력, 곡선 보고기를 갖춘 제품의 해상도 상승이다. 대상 묶음과 시간캡슐 기반의 선택은 [17-einstein-test.md](../docs/17-einstein-test.md)의 대상 묶음 절과 사용자 결정이 소유하고 여기서 이름을 고르지 않는다.
 
 ### 10-1. 제목과 논지
 
@@ -572,7 +572,7 @@ P6의 제품은 사용자가 CLI에서 기반 모델을 지정하고 인물 stre
 
 | Ck-n | 주장(형식) | 대응 | 판정 규칙 형식 | 필요 등급 |
 |---|---|---|---|---|
-| C6-1 | 봉인 주력 대상 묶음·시간캡슐 기반·입력 tier에서 사전 명세 판정 PC-1~PC-10([17-einstein-test.md](/home/jimmy/repos/full-continual-learning/docs/17-einstein-test.md) §10.1)을 통과한다. 통과 문구는 범위 태그가 붙은 문장뿐이다 | UJ6 ET-4 | docs/17 §10.1의 형식(값은 봉인 전 확정) | 3(4는 OPEN) |
+| C6-1 | 봉인 주력 대상 묶음·시간캡슐 기반·입력 tier에서 사전 명세 판정 PC-1~PC-10([17-einstein-test.md](../docs/17-einstein-test.md) §10.1)을 통과한다. 통과 문구는 범위 태그가 붙은 문장뿐이다 | UJ6 ET-4 | docs/17 §10.1의 형식(값은 봉인 전 확정) | 3(4는 OPEN) |
 | C6-2 | 대조 stream(없음·순서 섞기·같은 시기 비발견자·무관 인물·핵심 입력 제거)에서는 같은 곡선이 나오지 않는다(H-DISCOVER의 stream 특이성) | 대조 stream 곡선 | A | 3 |
 | C6-3 | 최초 발견 시점이 같은 기반의 기억 없음·평면 기억·NP arm보다 이르고 최고 수준·곡선 아래 면적이 높으며 입력 내재 수준을 넘는다 | 발견 곡선 지표 | A + B | 3 |
 | C6-4 | 누설 제거 변형에서도 C6-1~C6-3이 성립하고 오발견율과 새로움 검사(기반의 지식 W에서 검색되지 않음)를 통과한다 | 누수 감사, 새로움 검사 | B | 3 |
@@ -608,7 +608,7 @@ P6의 제품은 사용자가 CLI에서 기반 모델을 지정하고 인물 stre
 
 ## 11. docs/14 §7 Ali 공동논문 초안과의 대응표
 
-[14-schema-lifecycle-crud-and-joint-paper.md](/home/jimmy/repos/full-continual-learning/docs/14-schema-lifecycle-crud-and-joint-paper.md) §7은 Ali 공동논문 제안의 흐름 6항목이고 §8은 결정적 실험이다. 그 제안문 초안은 **미발송**이며 이 계획은 그것을 바꾸지도 보내지도 않았다. 아래 대응은 이 계획의 논문이 그 항목을 어디서 다루는지만 보인다. 대응된다고 해서 공동논문 상한이 올라가는 것은 아니다. docs/14의 2026-11-17 OPEN 점검(공통 단위는 가설, 정책 공동학습은 로드맵 밖, retention 추정기는 미검증, MIRAS는 관점 연결 가설로만, 전체 저장 자원 일치는 budget meter에 없음)을 그대로 따른다.
+[14-schema-lifecycle-crud-and-joint-paper.md](../docs/14-schema-lifecycle-crud-and-joint-paper.md) §7은 Ali 공동논문 제안의 흐름 6항목이고 §8은 결정적 실험이다. 그 제안문 초안은 **미발송**이며 이 계획은 그것을 바꾸지도 보내지도 않았다. 아래 대응은 이 계획의 논문이 그 항목을 어디서 다루는지만 보인다. 대응된다고 해서 공동논문 상한이 올라가는 것은 아니다. docs/14의 2026-11-17 OPEN 점검(공통 단위는 가설, 정책 공동학습은 로드맵 밖, retention 추정기는 미검증, MIRAS는 관점 연결 가설로만, 전체 저장 자원 일치는 budget meter에 없음)을 그대로 따른다.
 
 | docs/14 §7 항목 | 내용 | 이 계획의 대응(논문·주장) | 해상도와 상한 |
 |---|---|---|---|
@@ -621,7 +621,7 @@ P6의 제품은 사용자가 CLI에서 기반 모델을 지정하고 인물 stre
 | 5. 공동 연구 질문 | 기존 expert의 수정 가능 조건, 기능 거리와 분화·압축 기준, 정책 공동학습 | 탐색 후보(일정 없음): PAPER-3·PAPER-4의 후속 질문. 정책 공동학습은 로드맵 밖의 장기 질문 | 이 계획에 주장을 두지 않는다 |
 | 6. 검증 | task ID 없는 구조 전이·재방문·새 관계, 동일 활성/전체 자원 비교 | PAPER-0 C0-1·C0-2·C0-7(NP), PAPER-1 C1-1·C1-2, PAPER-2 C2-1, 자원 일치는 PAPER-2·3의 total cost | 전체 저장 자원의 일치는 budget meter에 없어 범위를 적는다. 결과는 합성 family·소형 모델 범위 |
 
-docs/14 §8의 결정적 실험은 [09-roadmap.md](/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md) §6-1이 이미 기존 phase의 판독으로 배치했다. 이 계획의 논문에서는 다음 자리에 놓인다.
+docs/14 §8의 결정적 실험은 [09-roadmap.md](../docs/09-roadmap.md) §6-1이 이미 기존 phase의 판독으로 배치했다. 이 계획의 논문에서는 다음 자리에 놓인다.
 
 | docs/14 §8 | 이 계획의 자리 | 비고 |
 |---|---|---|
@@ -636,7 +636,7 @@ Ali가 관심 있다고 전해진 loop transformer·MoD·MoR·depth attention �
 
 ## 12. 「schema로 LLM과 System ONE을 함께 설명한다」는 사용자 가설의 논문별 증거 수준
 
-**가설의 원문과 지위.** 사용자의 해법 개념과 가설은 [2026-11-schema-user-verbatim.md](/home/jimmy/repos/full-continual-learning/sources/sync/2026-11-schema-user-verbatim.md)의 USER 원문에 있고, 「LLM은 schema가 분리되지 않고 엉켜 학습되었고 그 간섭이 재앙적 망각을 낳으므로 분해된 형태의 지속학습이 망각을 없애거나 늦춘다」는 **USER-HYPOTHESIS**다. 과학적 입증이 아니라 사용자의 검증 대상 가설이다. [13-schema-decomposition-and-interference.md](/home/jimmy/repos/full-continual-learning/docs/13-schema-decomposition-and-interference.md) §1의 검토는 핵심을 중첩 제거에서 유해한 변경 간섭의 제어로 고쳤고 post-training 전체를 schema 분리 하나로 설명하는 것은 확정 결론이 아니라 경쟁 가설이라고 적었다. feature와의 연결(BF-B3·B4·E1·G4)은 [16-ideal-blueprint.md](/home/jimmy/repos/full-continual-learning/docs/16-ideal-blueprint.md) §7.2에 있다. 망각은 없앤다고 약속하지 않고 늦추는 데까지만 쓴다.
+**가설의 원문과 지위.** 사용자의 해법 개념과 가설은 [2026-11-schema-user-verbatim.md](../sources/sync/2026-11-schema-user-verbatim.md)의 USER 원문에 있고, 「LLM은 schema가 분리되지 않고 엉켜 학습되었고 그 간섭이 재앙적 망각을 낳으므로 분해된 형태의 지속학습이 망각을 없애거나 늦춘다」는 **USER-HYPOTHESIS**다. 과학적 입증이 아니라 사용자의 검증 대상 가설이다. [13-schema-decomposition-and-interference.md](../docs/13-schema-decomposition-and-interference.md) §1의 검토는 핵심을 중첩 제거에서 유해한 변경 간섭의 제어로 고쳤고 post-training 전체를 schema 분리 하나로 설명하는 것은 확정 결론이 아니라 경쟁 가설이라고 적었다. feature와의 연결(BF-B3·B4·E1·G4)은 [16-ideal-blueprint.md](../docs/16-ideal-blueprint.md) §7.2에 있다. 망각은 없앤다고 약속하지 않고 늦추는 데까지만 쓴다.
 
 | 논문 | 다루는 부분 | 증거의 종류 | 최대 증거 수준 | 쓸 수 있는 문구 | 다루지 못하는 것 |
 |---|---|---|---|---|---|
@@ -653,7 +653,7 @@ Ali가 관심 있다고 전해진 loop transformer·MoD·MoR·depth attention �
 
 ## 13. 사용자 결정 후보 (번호는 docs/09 §10의 결정 번호)
 
-형식은 [09-roadmap.md](/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md) §10 결정표의 열을 따른다. 다른 문서의 후보와 겹치면 docs/09 §10에서 한 행으로 합쳐져 있어 번호가 같을 수 있다([id-map.tsv](/home/jimmy/repos/full-continual-learning/research/2026-11-18-blueprint-et-design/id-map.tsv)). 비용 칸은 새로 생기는 비용의 유무만 쓴다(금액은 「PAPER-k 묶음표」).
+형식은 [09-roadmap.md](../docs/09-roadmap.md) §10 결정표의 열을 따른다. 다른 문서의 후보와 겹치면 docs/09 §10에서 한 행으로 합쳐져 있어 번호가 같을 수 있다([id-map.tsv](../research/2026-11-18-blueprint-et-design/id-map.tsv)). 비용 칸은 새로 생기는 비용의 유무만 쓴다(금액은 「PAPER-k 묶음표」).
 
 | ID | 결정 | 선택지 | 추천 | 비용 발생 | 결정자 |
 |---|---|---|---|---|---|
@@ -685,4 +685,4 @@ Ali가 관심 있다고 전해진 loop transformer·MoD·MoR·depth attention �
 
 ---
 
-**조사 기록:** 초안 끝의 색인(정의 위치와 초안의 가칭), 새 참고문헌, 조사 출처는 [doc19-appendices.md](/home/jimmy/repos/full-continual-learning/research/2026-11-18-blueprint-et-design/doc19-appendices.md)에 있다. 작업 방법, 마스터 결정, 사용자 결정 대기, NOT RUN 선언은 [2026-11-18-blueprint-et-design.md](/home/jimmy/repos/full-continual-learning/research/2026-11-18-blueprint-et-design.md)에 있다.
+**조사 기록:** 초안 끝의 색인(정의 위치와 초안의 가칭), 새 참고문헌, 조사 출처는 [doc19-appendices.md](../research/2026-11-18-blueprint-et-design/doc19-appendices.md)에 있다. 작업 방법, 마스터 결정, 사용자 결정 대기, NOT RUN 선언은 [2026-11-18-blueprint-et-design.md](../research/2026-11-18-blueprint-et-design.md)에 있다.

@@ -4,7 +4,7 @@
 
 ## 한눈에 보기
 
-**정의.** 이상형 System ONE은 경험에서 재사용 가능한 schema를 형성하고 조건별로 분해해 version으로 보존하며(BF-B), 현재 문맥에 맞는 schema를 context gating으로 가져다 쓰고(Read) 익숙함·불일치·모호함에 따라 fast / learn / deep / hold 경로로 답한다(BF-C, BF-D). 한 경험에서 즉시 배우되 반례로 고치고 새 구조가 필요하면 분기하거나 만들며(BF-E1, BF-E2), Sleep에서 통합·재조합·정리한다(BF-E3). 설명되지 않는 불일치를 버리지 않고 보존했다가 재조합·재구조화해 새 원리에 이른다(BF-F). 이 모두가 하나의 모델 안에서 일어난다. 출발점은 헌장 [01-intent-and-charter.md](/home/jimmy/repos/full-continual-learning/docs/01-intent-and-charter.md) §1의 한 문장이다: 「경험에서 재사용 가능한 연속적인 schema를 형성하고, 그 schema가 현재 입력의 해석과 계산 경로, 필요한 학습을 제어하며, 깊은 사고의 성과가 미래의 빠른 판단으로 전환되는 하나의 System ONE.」
+**정의.** 이상형 System ONE은 경험에서 재사용 가능한 schema를 형성하고 조건별로 분해해 version으로 보존하며(BF-B), 현재 문맥에 맞는 schema를 context gating으로 가져다 쓰고(Read) 익숙함·불일치·모호함에 따라 fast / learn / deep / hold 경로로 답한다(BF-C, BF-D). 한 경험에서 즉시 배우되 반례로 고치고 새 구조가 필요하면 분기하거나 만들며(BF-E1, BF-E2), Sleep에서 통합·재조합·정리한다(BF-E3). 설명되지 않는 불일치를 버리지 않고 보존했다가 재조합·재구조화해 새 원리에 이른다(BF-F). 이 모두가 하나의 모델 안에서 일어난다. 출발점은 헌장 [01-intent-and-charter.md](../docs/01-intent-and-charter.md) §1의 한 문장이다: 「경험에서 재사용 가능한 연속적인 schema를 형성하고, 그 schema가 현재 입력의 해석과 계산 경로, 필요한 학습을 제어하며, 깊은 사고의 성과가 미래의 빠른 판단으로 전환되는 하나의 System ONE.」
 
 **feature 그룹.** 32개(§3)를 여덟 그룹으로 묶었다.
 
@@ -40,7 +40,7 @@ flowchart TD
     H12 --> H10
 ```
 
-**최종 목표와의 관계.** 사용자의 최종 목표는 아인슈타인 테스트 통과이고(USER, §7.1) 이 저장소의 운영 정의는 경험 조건부 발견 시험(ET)이다. 이 문서에서는 BF-F1~F5와 FL-5가 그 목표의 시스템 쪽 대응이다. ET 단의 정의·상한·절차는 [17-einstein-test.md](/home/jimmy/repos/full-continual-learning/docs/17-einstein-test.md)가 소유한다.
+**최종 목표와의 관계.** 사용자의 최종 목표는 아인슈타인 테스트 통과이고(USER, §7.1) 이 저장소의 운영 정의는 경험 조건부 발견 시험(ET)이다. 이 문서에서는 BF-F1~F5와 FL-5가 그 목표의 시스템 쪽 대응이다. ET 단의 정의·상한·절차는 [17-einstein-test.md](../docs/17-einstein-test.md)가 소유한다.
 
 **phase 해상도.** P0(NP)부터 P6(ET)까지 모든 phase가 같은 feature 32개를 갖고, 달라지는 것은 형태다. P0(NP)에서는 비모수 대역(stand-in)이고 뒤 phase에서 학습 모듈로 하나씩 바뀐다. 모든 phase는 실제 `fcl` CLI와 실제 의존성으로 끝까지 도는 전체 제품이다(§4).
 
@@ -60,17 +60,17 @@ flowchart TD
 
 ### 1.1 지위
 
-이 문서는 FCL(System ONE)이 갖출 feature와 그것들이 어떤 flow로 동작하는지를 **이상형 기준**으로 그린 청사진이다. 이상형은 phase·비용·구현 가능성으로 깎기 전에 목표로 삼는 모습이다. Melete 시기에 사용자가 제한 없는 이상적 청사진을 먼저 정하고 그 위에서 단계별로 가치를 더하자고 한 요구(B02, 2026-10-05, [09-roadmap.md](/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md) §1.1에 요약된 재구성)와 같은 순서다. 이 문서는 이상형(§3, §5, §6)과 phase별 해상도(§4)를 분리해서 쓴다.
+이 문서는 FCL(System ONE)이 갖출 feature와 그것들이 어떤 flow로 동작하는지를 **이상형 기준**으로 그린 청사진이다. 이상형은 phase·비용·구현 가능성으로 깎기 전에 목표로 삼는 모습이다. Melete 시기에 사용자가 제한 없는 이상적 청사진을 먼저 정하고 그 위에서 단계별로 가치를 더하자고 한 요구(B02, 2026-10-05, [09-roadmap.md](../docs/09-roadmap.md) §1.1에 요약된 재구성)와 같은 순서다. 이 문서는 이상형(§3, §5, §6)과 phase별 해상도(§4)를 분리해서 쓴다.
 
 | 하는 것 | 하지 않는 것 |
 |---|---|
 | feature 32개의 이름과 정의, 공통 이름(경로·CRUD 판정·발견 수준), flow 6개, feature × phase 해상도 표, 사용자 요구와의 대응, 기존 문서와의 관계, OPEN과 결정 후보 | 구현·학습·GPU 실행·비용 지출. 모두 0회이고 이 문서에 성능·효과 수치는 없다(NOT RUN) |
 | 기존 문서를 이름과 링크로 가리킨다 | 기존 문서를 대체하거나 고치지 않는다. 어긋난 곳은 OPEN으로 표기한다 |
-| feature·flow·경로·CRUD 판정의 이름과 의미를 정의한다 | phase 정의·종료 gate([09-roadmap.md](/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md)), ET 단·상한·rubric([17-einstein-test.md](/home/jimmy/repos/full-continual-learning/docs/17-einstein-test.md)), P0의 상세와 검증 항목([18-poc-nonparametric.md](/home/jimmy/repos/full-continual-learning/docs/18-poc-nonparametric.md)), 논문 주장([19-paper-plan.md](/home/jimmy/repos/full-continual-learning/docs/19-paper-plan.md)), 비용 수치([15-compute-plan.md](/home/jimmy/repos/full-continual-learning/docs/15-compute-plan.md))는 정의하지 않고 이름으로 가리킨다 |
+| feature·flow·경로·CRUD 판정의 이름과 의미를 정의한다 | phase 정의·종료 gate([09-roadmap.md](../docs/09-roadmap.md)), ET 단·상한·rubric([17-einstein-test.md](../docs/17-einstein-test.md)), P0의 상세와 검증 항목([18-poc-nonparametric.md](../docs/18-poc-nonparametric.md)), 논문 주장([19-paper-plan.md](../docs/19-paper-plan.md)), 비용 수치([15-compute-plan.md](../docs/15-compute-plan.md))는 정의하지 않고 이름으로 가리킨다 |
 
 ### 1.2 P0(NP)는 대역이며 최종형이 아니다
 
-**P0(NP)는 사용자가 요청한 POC 대역(stand-in)이며 최종형이 아니다.** 사용자는 모델 학습 없이 non parameter 기반의 무언가로 POC 검증을 먼저 해보자고 했다(USER, §7.1). 그래서 P0(NP)는 고정(frozen) 공개 가중치 LLM과 비모수 schema 기억으로 전체 flow를 실제 `fcl` CLI에서 끝까지 돈다. 그러나 이것은 외부 frozen LLM을 쓰는 대역이고, 하나의 통합 모델이라는 최종 목표(헌장 U05, [05-integrated-architecture.md](/home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md) §3, docs/09 §1.3)를 대신하지 않는다.
+**P0(NP)는 사용자가 요청한 POC 대역(stand-in)이며 최종형이 아니다.** 사용자는 모델 학습 없이 non parameter 기반의 무언가로 POC 검증을 먼저 해보자고 했다(USER, §7.1). 그래서 P0(NP)는 고정(frozen) 공개 가중치 LLM과 비모수 schema 기억으로 전체 flow를 실제 `fcl` CLI에서 끝까지 돈다. 그러나 이것은 외부 frozen LLM을 쓰는 대역이고, 하나의 통합 모델이라는 최종 목표(헌장 U05, [05-integrated-architecture.md](../docs/05-integrated-architecture.md) §3, docs/09 §1.3)를 대신하지 않는다.
 
 - 가중치 수준의 schema 형성, 간섭 해소, 통합 모델의 내부 depth 효율은 P0로 주장하지 않는다.
 - P0는 mock이나 조사 단계가 아니다. 실제 LLM·실제 저장·실제 CLI로 도는 완결 제품이다.
@@ -79,7 +79,7 @@ flowchart TD
 
 ### 1.3 근거 표기
 
-[SYNC_POLICY.md](/home/jimmy/repos/full-continual-learning/SYNC_POLICY.md)의 표기를 따른다.
+[SYNC_POLICY.md](../SYNC_POLICY.md)의 표기를 따른다.
 
 | 표기 | 이 문서에서의 쓰임 |
 |---|---|
@@ -105,7 +105,7 @@ ESTIMATE(계획용 규모와 비용)는 쓰지 않는다. 수치는 docs/15가 �
 
 ### 1.5 이상형이 지키는 불변식
 
-[AGENTS.md](/home/jimmy/repos/full-continual-learning/AGENTS.md)의 규칙에서 온 것이다. 어느 feature도 이것을 깨지 않는다.
+[AGENTS.md](../AGENTS.md)의 규칙에서 온 것이다. 어느 feature도 이것을 깨지 않는다.
 
 - **하나의 통합 모델.** 별도 작은 System1 + 외부 LLM 설계로 사용자 정정(U-T07)을 되돌리지 않는다. 외부 frozen LLM 경로는 대조군과 P0 대역으로만 둔다.
 - **관측과 생성물을 섞지 않는다.** 모델이 만든 해석·추상화·재조합 후보·귀결·보고는 독립 관측 증거가 아니다(BF-A3, FL-4, FL-5).
@@ -116,11 +116,11 @@ ESTIMATE(계획용 규모와 비용)는 쓰지 않는다. 수치는 docs/15가 �
 
 ## 2. 공통 이름: 경로·CRUD 판정·발견 수준·가설
 
-이 절의 이름은 이 문서가 정의하고 다른 문서([09-roadmap.md](/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md), [17-einstein-test.md](/home/jimmy/repos/full-continual-learning/docs/17-einstein-test.md), [18-poc-nonparametric.md](/home/jimmy/repos/full-continual-learning/docs/18-poc-nonparametric.md), [19-paper-plan.md](/home/jimmy/repos/full-continual-learning/docs/19-paper-plan.md))는 이름으로 가리킨다. 정의를 다른 문서에 복제하지 않는다. 아래는 모두 **PROPOSAL**이다.
+이 절의 이름은 이 문서가 정의하고 다른 문서([09-roadmap.md](../docs/09-roadmap.md), [17-einstein-test.md](../docs/17-einstein-test.md), [18-poc-nonparametric.md](../docs/18-poc-nonparametric.md), [19-paper-plan.md](../docs/19-paper-plan.md))는 이름으로 가리킨다. 정의를 다른 문서에 복제하지 않는다. 아래는 모두 **PROPOSAL**이다.
 
 ### 2.1 경로 이름: fast / learn / deep / hold
 
-경로는 **한 요청의 계산 패턴**이다. 요청마다 BF-C2가 하나를 고른다. fast·learn·deep은 [09-roadmap.md](/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md) §2의 규칙형 controller v0가 이미 쓰는 이름이고 hold는 이 청사진이 더한 네 번째 경로다.
+경로는 **한 요청의 계산 패턴**이다. 요청마다 BF-C2가 하나를 고른다. fast·learn·deep은 [09-roadmap.md](../docs/09-roadmap.md) §2의 규칙형 controller v0가 이미 쓰는 이름이고 hold는 이 청사진이 더한 네 번째 경로다.
 
 | 경로 | 한 줄 정의 | 읽기 | 쓰기 | 계산 깊이 | 고르는 상황(PROPOSAL) |
 |---|---|---|---|---|---|
@@ -129,18 +129,18 @@ ESTIMATE(계획용 규모와 비용)는 쓰지 않는다. 수치는 docs/15가 �
 | deep | 반복 계산을 더 하고 답한다. 필요하면 쓰기 판정(update·branch·create)이 따른다 | 있음 | 필요 시 | 더 깊음(NP 대역에서는 숙의 반복 수·호출 수로 잰다) | 낯설거나 구조 합성이 필요하다 |
 | hold | 답과 쓰기를 확정하지 않고 보류한다. 추가 관측·질문을 요청하거나 긴장 원장(BF-F1)에 기록한다 | 있음 | 없음(긴장 항목만 기록) | 최소 | 근거가 부족하거나 모호함이 높거나 입력이 너무 멀다 |
 
-- **docs/05 §4 경로 A/B/C와의 대응(OPEN):** [05-integrated-architecture.md](/home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md) §4의 낯선 입력 처리 경로 A(빠른 쓰기 뒤 같은 입력 재읽기)는 learn, B(쓰기 없이 가장 가까운 기존 schema의 잠정 답)는 fast의 한 변형, C(보류하고 추가 관측 요청)는 hold에 대응한다고 읽는다. 세 경로 비교는 docs/05 §4가 정한 대로 F04·F19 family에서 같은 관측·쓰기 예산으로 한다. 이 대응은 이름 정리이며 사용자가 확인한 것이 아니다.
-- **deep의 정의 차이:** [09-roadmap.md](/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md) §2의 P1 규칙형 deep은 write 뒤 retrofit 블록을 한 번 더 적용한 r=2로 답하는 것이다. 이 표의 deep은 이상형 정의라서 쓰기는 필요할 때만 따르고 깊이는 반복 중 재선택(BF-D3)과 halting(BF-C3)이 정한다. P1의 정의는 docs/09가 기준이다.
+- **docs/05 §4 경로 A/B/C와의 대응(OPEN):** [05-integrated-architecture.md](../docs/05-integrated-architecture.md) §4의 낯선 입력 처리 경로 A(빠른 쓰기 뒤 같은 입력 재읽기)는 learn, B(쓰기 없이 가장 가까운 기존 schema의 잠정 답)는 fast의 한 변형, C(보류하고 추가 관측 요청)는 hold에 대응한다고 읽는다. 세 경로 비교는 docs/05 §4가 정한 대로 F04·F19 family에서 같은 관측·쓰기 예산으로 한다. 이 대응은 이름 정리이며 사용자가 확인한 것이 아니다.
+- **deep의 정의 차이:** [09-roadmap.md](../docs/09-roadmap.md) §2의 P1 규칙형 deep은 write 뒤 retrofit 블록을 한 번 더 적용한 r=2로 답하는 것이다. 이 표의 deep은 이상형 정의라서 쓰기는 필요할 때만 따르고 깊이는 반복 중 재선택(BF-D3)과 halting(BF-C3)이 정한다. P1의 정의는 docs/09가 기준이다.
 - **hold는 P1의 규칙형 controller v0에 없다.** hold를 P1에 넣을지는 결정 후보 D-21다. 넣지 않으면 P1 대조(`noctl` 등)와 P0(NP)의 경로 집합이 달라지므로 비교 때 hold를 뺀 부분집합으로 맞춘다(OPEN).
-- 신호가 하나의 임계값으로 합쳐지지 않는다는 원칙은 유지한다. 익숙함·관심·학습 가능성·surprise를 한 값으로 합치지 않는다([01-intent-and-charter.md](/home/jimmy/repos/full-continual-learning/docs/01-intent-and-charter.md) §3 4층, [04-rhythms-and-orchestration.md](/home/jimmy/repos/full-continual-learning/docs/04-rhythms-and-orchestration.md) §3).
+- 신호가 하나의 임계값으로 합쳐지지 않는다는 원칙은 유지한다. 익숙함·관심·학습 가능성·surprise를 한 값으로 합치지 않는다([01-intent-and-charter.md](../docs/01-intent-and-charter.md) §3 4층, [04-rhythms-and-orchestration.md](../docs/04-rhythms-and-orchestration.md) §3).
 
 ### 2.2 CRUD 판정 이름: read / update / branch / create / hold / evict
 
-CRUD 판정은 **schema 상태에 대한 결정**이다. 한 요청에서 경로 하나와 판정 여러 개가 함께 나올 수 있다. 사용자의 CRUD 관점(USER, [2026-11-16-discussion.md](/home/jimmy/repos/full-continual-learning/sources/sync/2026-11-16-discussion.md) 「사용자 원문: CRUD와 공동논문 목적」)을 판정 이름으로 풀어 쓴 것이며, 판정 방식(CRP식 사전, 정합도 우도)은 PROPOSAL이고 「못 찾으면 create」의 해석은 결정 대기 N-4([2026-11-17-design-review.md](/home/jimmy/repos/full-continual-learning/research/2026-11-17-design-review.md) §7.3)다.
+CRUD 판정은 **schema 상태에 대한 결정**이다. 한 요청에서 경로 하나와 판정 여러 개가 함께 나올 수 있다. 사용자의 CRUD 관점(USER, [2026-11-16-discussion.md](../sources/sync/2026-11-16-discussion.md) 「사용자 원문: CRUD와 공동논문 목적」)을 판정 이름으로 풀어 쓴 것이며, 판정 방식(CRP식 사전, 정합도 우도)은 PROPOSAL이고 「못 찾으면 create」의 해석은 결정 대기 N-4([2026-11-17-design-review.md](../research/2026-11-17-design-review.md) §7.3)다.
 
 | 판정 | 뜻 | schema 상태 변화 | 가역성 | 트리거 후보 | 사용자 CRUD와 기존 문서 |
 |---|---|---|---|---|---|
-| read | 상태를 바꾸지 않고 활성화해 쓴다 | 없음(읽기 기록만) | 해당 없음 | 익숙함이 높다 | Read. 판단용 읽기 집합과 학습용 참조 집합을 구분한다([14-schema-lifecycle-crud-and-joint-paper.md](/home/jimmy/repos/full-continual-learning/docs/14-schema-lifecycle-crud-and-joint-paper.md) §5) |
+| read | 상태를 바꾸지 않고 활성화해 쓴다 | 없음(읽기 기록만) | 해당 없음 | 익숙함이 높다 | Read. 판단용 읽기 집합과 학습용 참조 집합을 구분한다([14-schema-lifecycle-crud-and-joint-paper.md](../docs/14-schema-lifecycle-crud-and-joint-paper.md) §5) |
 | update | 같은 schema의 상태를 제자리(in-place)에서 고친다. 새 binding 학습과 같은 조건의 오류 교정을 포함한다 | 같은 ID, 새 commit | rollback으로 복원 | 구조는 맞고 대상·역할·조건이 새롭거나 같은 조건의 판단이 틀렸다는 근거 | Update(USER: in place update) |
 | branch | 다른 조건에서도 유효한 구조를 덮어쓰지 않고 같은 계열의 별도 version으로 공존시킨다 | 새 version(부모 연결) | 두 갈래 모두 보존 | 새 조건과 옛 조건이 모두 유효하다(A→B→A) | docs/14 §3의 「분기·조건부 변환」, docs/13 §9.2의 「분기」. create와 나눈 이름은 이 문서의 제안이다(D-25) |
 | create | 수용할 기존 구조가 없을 때 새 schema를 할당한다 | 새 schema ID | 폐기·evict 가능 | USER: 적합한 schema를 못 찾는다. 후보: 구조적 새로움, 오류 크기 | Create(USER: 못 찾으면 create). 세 트리거의 비교는 N-4 |
@@ -148,17 +148,17 @@ CRUD 판정은 **schema 상태에 대한 결정**이다. 한 요청에서 경로
 | evict | 보존 예산 때문에 활성 집합에서 내린다. 기본은 offload이고 압축·통합·폐기는 기능 손실을 평가한 뒤에 한다 | 위치 또는 표현 변경 | offload는 가역, 폐기는 비가역 | 예산 초과, 낮은 사용·의존 | Delete/Retain(기능적 망각/보존). source 삭제(BF-G3)와 다르다 |
 
 - **경로와 판정의 관계:** fast는 read, learn은 read와 update(필요하면 branch), deep은 read와 update·branch·create(반복 중 재선택으로 달라진다), hold는 read와 hold다. evict는 요청 경로가 아니라 보존 예산과 Sleep이 낸다(FL-4, FL-6).
-- **「삭제」 용어:** 새 글의 「삭제」 단독 표기는 source 삭제(BF-G3)만 뜻한다. CRUD의 D는 Delete라고 쓰고 첫 등장에 기능적 망각/보존을 병기한다. schema를 없애는 동작은 폐기다([07-state-and-storage.md](/home/jimmy/repos/full-continual-learning/docs/07-state-and-storage.md) §7).
+- **「삭제」 용어:** 새 글의 「삭제」 단독 표기는 source 삭제(BF-G3)만 뜻한다. CRUD의 D는 Delete라고 쓰고 첫 등장에 기능적 망각/보존을 병기한다. schema를 없애는 동작은 폐기다([07-state-and-storage.md](../docs/07-state-and-storage.md) §7).
 
 ### 2.3 발견 수준 L0–L5와 가설 H-DISCOVER
 
-아래 두 문장은 작업 기록 [2026-11-18-blueprint-et-design.md](/home/jimmy/repos/full-continual-learning/research/2026-11-18-blueprint-et-design.md)에 적힌 2026-11-18 마스터 결정 MD-1118-N의 문장을 글자 그대로 쓴 것이다. 모든 문서가 같은 문장을 쓴다. 대상별 세부 rubric과 채점은 [17-einstein-test.md](/home/jimmy/repos/full-continual-learning/docs/17-einstein-test.md)가 정한다.
+아래 두 문장은 작업 기록 [2026-11-18-blueprint-et-design.md](../research/2026-11-18-blueprint-et-design.md)에 적힌 2026-11-18 마스터 결정 MD-1118-N의 문장을 글자 그대로 쓴 것이다. 모든 문서가 같은 문장을 쓴다. 대상별 세부 rubric과 채점은 [17-einstein-test.md](../docs/17-einstein-test.md)가 정한다.
 
 > **발견 수준 (PROPOSAL):** L0 없음 / L1 긴장 인식(기존 설명이 안 맞는 지점을 스스로 짚는다) / L2 재구성 가설(핵심 가정의 수정이나 새 개념을 질적으로 제안한다) / L3 원리 진술과 핵심 관계의 유도(정량) / L4 원리에서 새 예측을 도출한다(역사적 발견의 예측과 일치) / L5 논문 수준의 체계화.
 
 > **H-DISCOVER (PROPOSAL):** 「T0까지의 세계 지식을 가진 기반 위에서, 한 인물의 경험 stream을 schema로 쌓고 미해결 불일치를 보존했다가 재조합·재구조화하는 시스템은, 같은 기반에 같은 자료를 기억 없이 또는 평면 기억으로 준 경우보다 (i) 더 적은 입력에서 (ii) 더 높은 발견 수준에 이르고, (iii) 그 차이는 stream의 내용에 특이적이다(대조 stream에서는 나오지 않는다).」
 
-H-DISCOVER는 [01-intent-and-charter.md](/home/jimmy/repos/full-continual-learning/docs/01-intent-and-charter.md) §4의 두 중심 명제(H-SAMPLE·H-COMPUTE)에 없는 세 번째 명제다. 헌장을 개정한 것이 아니라 **PROPOSAL**·**OPEN**으로 표기한다(헌장 반영 여부는 D-26). 발견 수준은 [11-research-agenda.md](/home/jimmy/repos/full-continual-learning/docs/11-research-agenda.md) §4의 통찰 정의(더 오래 생각한 사실이 아니라 새로운 관계·표현·적용 조건을 형성하고 새 사례에서 재사용하는 변화)와 맞춘다. 암기·self-consistency·반복된 confidence 증가·저차원화 자체는 형성의 증거가 아니다.
+H-DISCOVER는 [01-intent-and-charter.md](../docs/01-intent-and-charter.md) §4의 두 중심 명제(H-SAMPLE·H-COMPUTE)에 없는 세 번째 명제다. 헌장을 개정한 것이 아니라 **PROPOSAL**·**OPEN**으로 표기한다(헌장 반영 여부는 D-26). 발견 수준은 [11-research-agenda.md](../docs/11-research-agenda.md) §4의 통찰 정의(더 오래 생각한 사실이 아니라 새로운 관계·표현·적용 조건을 형성하고 새 사례에서 재사용하는 변화)와 맞춘다. 암기·self-consistency·반복된 confidence 증가·저차원화 자체는 형성의 증거가 아니다.
 
 아래 표는 이 청사진의 feature·flow가 어느 수준의 출력을 만드는 자리인지를 나타낸다(PROPOSAL). 시스템은 자기 출력의 수준을 스스로 매기지 않는다. 수준은 분리된 evaluator가 rubric으로 채점한다(BF-H3).
 
@@ -172,26 +172,26 @@ H-DISCOVER는 [01-intent-and-charter.md](/home/jimmy/repos/full-continual-learni
 
 ### 2.4 시계
 
-token position·experience/root·recursion index·optimizer step·CMS level clock·wall time은 서로 다른 시계다([07-state-and-storage.md](/home/jimmy/repos/full-continual-learning/docs/07-state-and-storage.md) §1). 이 청사진은 시계를 섞지 않는다. 특히 FL-3의 반복 계산은 recursion index만 올리고 token position과 경험 수를 올리지 않으며, FL-4의 Sleep 재생은 새 경험이 아니다. NP 대역에서는 recursion이 없으므로 숙의 반복 수·생성 token·LLM 호출 수로 깊이를 잰다(구조적 recursion은 P2부터).
+token position·experience/root·recursion index·optimizer step·CMS level clock·wall time은 서로 다른 시계다([07-state-and-storage.md](../docs/07-state-and-storage.md) §1). 이 청사진은 시계를 섞지 않는다. 특히 FL-3의 반복 계산은 recursion index만 올리고 token position과 경험 수를 올리지 않으며, FL-4의 Sleep 재생은 새 경험이 아니다. NP 대역에서는 recursion이 없으므로 숙의 반복 수·생성 token·LLM 호출 수로 깊이를 잰다(구조적 recursion은 P2부터).
 
 ### 2.5 이름과 ID 규칙
 
 | 이름 | 뜻 | 정의하는 곳 |
 |---|---|---|
-| P0(NP)~P6(ET) | phase 일곱 개. 모든 phase가 실제 `fcl` CLI에서 끝까지 도는 전체 제품이다 | [09-roadmap.md](/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md) |
-| NP-0 / NP-1 / NP-2 | NP 단: 비모수 대역 세 종류(텍스트 artifact / 잠재 artifact / 닫힌 꼴 선형 expert) | [18-poc-nonparametric.md](/home/jimmy/repos/full-continual-learning/docs/18-poc-nonparametric.md) |
-| ET-0~ET-4, ET-3p | ET 단: 경험 조건부 발견 시험의 해상도 사다리와 상한 | [17-einstein-test.md](/home/jimmy/repos/full-continual-learning/docs/17-einstein-test.md) |
+| P0(NP)~P6(ET) | phase 일곱 개. 모든 phase가 실제 `fcl` CLI에서 끝까지 도는 전체 제품이다 | [09-roadmap.md](../docs/09-roadmap.md) |
+| NP-0 / NP-1 / NP-2 | NP 단: 비모수 대역 세 종류(텍스트 artifact / 잠재 artifact / 닫힌 꼴 선형 expert) | [18-poc-nonparametric.md](../docs/18-poc-nonparametric.md) |
+| ET-0~ET-4, ET-3p | ET 단: 경험 조건부 발견 시험의 해상도 사다리와 상한 | [17-einstein-test.md](../docs/17-einstein-test.md) |
 | 입력 tier A/B/C | 인물 stream 입력의 사료 수준 | docs/17 |
-| 자원 tier 1–4 | 계산 자원 등급 | [15-compute-plan.md](/home/jimmy/repos/full-continual-learning/docs/15-compute-plan.md) |
+| 자원 tier 1–4 | 계산 자원 등급 | [15-compute-plan.md](../docs/15-compute-plan.md) |
 | suite S-A~S-D, V0-n, UJ0 | P0의 검증 suite, 검증 항목, 사용자 여정 | docs/18 |
-| PAPER-k, Ck-n | phase별 논문과 주장 | [19-paper-plan.md](/home/jimmy/repos/full-continual-learning/docs/19-paper-plan.md) |
+| PAPER-k, Ck-n | phase별 논문과 주장 | [19-paper-plan.md](../docs/19-paper-plan.md) |
 | BF-xn, FL-n, 경로 4종, CRUD 판정 6종 | feature, flow, 경로, 판정 | 이 문서 |
 
 「tier」는 뜻이 셋이므로 언제나 NP 단·입력 tier·자원 tier로 한정해 쓴다. 이 저장소에는 이미 다른 「P0」·「P6」이 있다. 2026-11-03 계획의 이름은 언제나 「옛(11-03) P0」처럼 쓰고, 이 문서의 P0(NP)는 experiments/phase0의 「Phase-0」, research/2026-11-09의 추적 우선순위 「P0–P2」와 무관하다. 이 문서에서 처음 나오는 곳에서는 P0(NP)·P6(ET)로 쓰고 이후에는 P0·P6으로 줄인다.
 
 ## 3. feature 목록
 
-이상형 System ONE이 갖출 feature 32개다(**PROPOSAL**). ID와 번호는 한 번 정하면 바꾸지 않는다. 다른 문서는 이 ID를 이름으로 가리킨다. 처음 정한 31개(A 3, B 5, C 3, D 3, E 4, F 5, G 4, H 4)에 BF-D4 하나를 더했다. 더한 이유는 BF-C2의 hold 경로와 [08-evaluation.md](/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md) F09(여러 schema가 구별되지 않을 때의 보류·유용한 질문)가 사용자에게 닿는 자리, 곧 응답 쪽 feature가 목록에 없었기 때문이다(D-24).
+이상형 System ONE이 갖출 feature 32개다(**PROPOSAL**). ID와 번호는 한 번 정하면 바꾸지 않는다. 다른 문서는 이 ID를 이름으로 가리킨다. 처음 정한 31개(A 3, B 5, C 3, D 3, E 4, F 5, G 4, H 4)에 BF-D4 하나를 더했다. 더한 이유는 BF-C2의 hold 경로와 [08-evaluation.md](../docs/08-evaluation.md) F09(여러 schema가 구별되지 않을 때의 보류·유용한 질문)가 사용자에게 닿는 자리, 곧 응답 쪽 feature가 목록에 없었기 때문이다(D-24).
 
 | ID | 이름 | 한 줄 정의 | 주 flow |
 |---|---|---|---|
@@ -230,14 +230,14 @@ token position·experience/root·recursion index·optimizer step·CMS level cloc
 
 **목록의 경계 (PROPOSAL):**
 
-- 개발 시간척도의 self-evolution(후보 계보·권한 사다리, [10-evolution-policy.md](/home/jimmy/repos/full-continual-learning/docs/10-evolution-policy.md))은 제품 feature가 아니라 개발 절차다. 청사진은 그 접점으로 BF-H2(증거 원장)와 BF-H3(평가 harness)만 둔다. 온라인 상태 학습·Sleep·코드를 고치는 development evolution은 시간척도와 권한이 다르며 섞지 않는다([01-intent-and-charter.md](/home/jimmy/repos/full-continual-learning/docs/01-intent-and-charter.md) §3 5층).
-- 아인슈타인 테스트(경험 조건부 발견 시험, ET)는 feature가 아니라 이 feature들을 시험하는 절차다. 시스템 쪽에서 ET가 쓰는 것은 BF-A1(날짜·출처가 붙은 인물 stream 입력), BF-F1~F5(발견 흐름), BF-H3(checkpoint probe·채점)이다. ET 단의 정의·상한·rubric은 [17-einstein-test.md](/home/jimmy/repos/full-continual-learning/docs/17-einstein-test.md)가 소유한다.
+- 개발 시간척도의 self-evolution(후보 계보·권한 사다리, [10-evolution-policy.md](../docs/10-evolution-policy.md))은 제품 feature가 아니라 개발 절차다. 청사진은 그 접점으로 BF-H2(증거 원장)와 BF-H3(평가 harness)만 둔다. 온라인 상태 학습·Sleep·코드를 고치는 development evolution은 시간척도와 권한이 다르며 섞지 않는다([01-intent-and-charter.md](../docs/01-intent-and-charter.md) §3 5층).
+- 아인슈타인 테스트(경험 조건부 발견 시험, ET)는 feature가 아니라 이 feature들을 시험하는 절차다. 시스템 쪽에서 ET가 쓰는 것은 BF-A1(날짜·출처가 붙은 인물 stream 입력), BF-F1~F5(발견 흐름), BF-H3(checkpoint probe·채점)이다. ET 단의 정의·상한·rubric은 [17-einstein-test.md](../docs/17-einstein-test.md)가 소유한다.
 - ET가 시스템에 거는 제약이 하나 있다. 시간캡슐 기반 run(ET-3p 이후)에서는 시스템 안의 모든 생성·판정·검색이 시간캡슐 모델만 쓴다. 현대 임베딩 모델은 현대 지식이 유사도에 섞여 들어가는 누수 경로이기 때문이다. 그래서 BF-B3의 검색과 BF-C1의 정합 판정은 기반 모델의 hidden state나 어휘 기반 방법으로도 구성할 수 있어야 한다(상세는 docs/17·18).
 - 모든 feature는 모든 phase에 존재한다. 달라지는 것은 형태다. P0(NP)에서는 비모수 대역(stand-in)이고 뒤 phase에서 학습 모듈로 하나씩 바뀐다. 이 규칙의 예외는 BF-H4 하나이며 §4 아래에 따로 적었다.
 
 ## 4. feature × phase 해상도 표
 
-**PROPOSAL.** 이 표는 §3의 feature가 phase마다 어떤 형태로 존재하는지를 보인다. phase의 정의·종료 gate·결과 등급 상한은 [09-roadmap.md](/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md)가 소유하고, 이 표는 그 정의를 바꾸지 않고 feature 쪽에서 읽은 것이다. 표와 docs/09 §4의 capability × phase 표가 어긋나면 docs/09 §4가 기준이고 이 표를 고친다(OPEN).
+**PROPOSAL.** 이 표는 §3의 feature가 phase마다 어떤 형태로 존재하는지를 보인다. phase의 정의·종료 gate·결과 등급 상한은 [09-roadmap.md](../docs/09-roadmap.md)가 소유하고, 이 표는 그 정의를 바꾸지 않고 feature 쪽에서 읽은 것이다. 표와 docs/09 §4의 capability × phase 표가 어긋나면 docs/09 §4가 기준이고 이 표를 고친다(OPEN).
 
 **phase 읽기용 요약(정의는 docs/09).**
 
@@ -253,7 +253,7 @@ token position·experience/root·recursion index·optimizer step·CMS level cloc
 
 **칸 읽는 법 (마스터 결정 MD-1118-O).**
 
-- 칸 형식은 `NP: … / 학습: …`이다. NP는 P0(NP)의 비모수 대역이고(이름만 쓴다. 상세는 [18-poc-nonparametric.md](/home/jimmy/repos/full-continual-learning/docs/18-poc-nonparametric.md)) 학습은 그 phase에서 처음 들어오거나 깊어지는 학습 모듈이다.
+- 칸 형식은 `NP: … / 학습: …`이다. NP는 P0(NP)의 비모수 대역이고(이름만 쓴다. 상세는 [18-poc-nonparametric.md](../docs/18-poc-nonparametric.md)) 학습은 그 phase에서 처음 들어오거나 깊어지는 학습 모듈이다.
 - **모든 phase에 모든 feature가 있다.** 빈 칸은 없다. 「NP 유지」는 P0의 대역이 그 phase의 base 모델로 다시 돌아 영구 대조군으로 남는다는 뜻이다. 학습 모듈은 같은 예산의 NP 대역보다 나을 때만 필요하다고 주장한다.
 - NP 대역은 그 phase의 base 모델로 다시 돈다(MD-1118-O의 base 일치 규칙). base가 작아 NP-0(텍스트 artifact)가 성립하지 않으면 그 사실을 보고하고 NP-1(잠재 artifact)을 대조로 쓴다. 이 규칙의 상세는 docs/18이다.
 - 「학습: 없음」은 그 phase에 학습 모듈이 아직 없다는 뜻이다. feature는 NP 대역으로 존재한다. 「학습: 유지」는 앞 칸의 학습 모듈이 그대로라는 뜻이다. 이 두 가지는 docs/09 §4의 「없음(미약속)」 칸에 달 개정 주석(학습 모듈은 없음, NP 대역 유지)과 같은 말이다.
@@ -307,7 +307,7 @@ token position·experience/root·recursion index·optimizer step·CMS level cloc
 
 ### 4.6 F 발견·통찰
 
-발견 feature가 각 phase에서 어느 ET 단으로 시험되는지(판정 대상과 탐색·회귀)는 [09-roadmap.md](/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md)와 [17-einstein-test.md](/home/jimmy/repos/full-continual-learning/docs/17-einstein-test.md)가 정한다. 시험 단이 올라가도 BF-F의 이상형 정의는 바뀌지 않는다.
+발견 feature가 각 phase에서 어느 ET 단으로 시험되는지(판정 대상과 탐색·회귀)는 [09-roadmap.md](../docs/09-roadmap.md)와 [17-einstein-test.md](../docs/17-einstein-test.md)가 정한다. 시험 단이 올라가도 BF-F의 이상형 정의는 바뀌지 않는다.
 
 | BF | P0(NP) | P1 | P2 | P3 | P4 | P5 | P6(ET) |
 |---|---|---|---|---|---|---|---|
@@ -335,7 +335,7 @@ token position·experience/root·recursion index·optimizer step·CMS level cloc
 | BF-H3 | 뼈대: 별도 evaluator + NP: wrong-schema swap, oracle schema, 평면·무기억 대조 / 학습: 없음 | NP 유지 / 학습: arm 7개(full·fixed·flat·always·noctl·ctx·base)·2×2·망각 평가 | NP 유지 / 학습: 구조 family 3종, 고정 depth 대조 | NP 유지 / 학습: 표현 제거·교체 개입, 학습된 controller 대조 | NP 유지 / 학습: replay-only·teacher 대조 | NP 유지 / 학습: 두 번째 모델·자연어 도메인 | NP 유지 / 학습: 봉인 주력 대상 readout(docs/17) |
 | BF-H4 | 없음(미약속). CLI 사용자만 consumer | 없음(미약속) | 없음(미약속) | 없음(미약속) | 없음(미약속. 방식·시점은 D-11) | 뼈대: codex·prime agent의 실제 연결(진입 조건은 docs/09 §7) | 뼈대: 유지 |
 
-**BF-H4의 예외 (OPEN):** [09-roadmap.md](/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md) §4는 외부 consumer·agent 연결을 P1–P4에서 「없음(미약속)」으로 둔다. 「모든 phase에 모든 feature가 있다」는 원칙과 이 칸이 어긋난다. 외부 agent 연결은 모델 제품의 소비자를 넓히는 넓이 확장이고 진입 조건이 핵심 대조의 등급 3 PASS이므로(docs/09 §7), 이 표는 BF-H4만 P0–P4를 「없음(미약속)」으로 두고 이를 유일한 예외로 표시한다. P0–P4에서는 `fcl` CLI와 같은 session 프로토콜의 사용자(사람과 evaluator)가 consumer다. 예외를 두지 않고 P0부터 얇은 접점을 둘지는 D-11이다.
+**BF-H4의 예외 (OPEN):** [09-roadmap.md](../docs/09-roadmap.md) §4는 외부 consumer·agent 연결을 P1–P4에서 「없음(미약속)」으로 둔다. 「모든 phase에 모든 feature가 있다」는 원칙과 이 칸이 어긋난다. 외부 agent 연결은 모델 제품의 소비자를 넓히는 넓이 확장이고 진입 조건이 핵심 대조의 등급 3 PASS이므로(docs/09 §7), 이 표는 BF-H4만 P0–P4를 「없음(미약속)」으로 두고 이를 유일한 예외로 표시한다. P0–P4에서는 `fcl` CLI와 같은 session 프로토콜의 사용자(사람과 evaluator)가 consumer다. 예외를 두지 않고 P0부터 얇은 접점을 둘지는 D-11이다.
 
 ### 4.9 phase별로 처음 들어오는 학습 모듈 (요약)
 
@@ -355,7 +355,7 @@ token position·experience/root·recursion index·optimizer step·CMS level cloc
 
 ## 5. 동작 flow FL-1 ~ FL-6
 
-**PROPOSAL.** 여섯 flow는 §3의 feature가 어떤 순서로 맞물려 도는지를 보인다. flow마다 mermaid 그림 하나와 단계 표(단계마다 입력·판단·출력·기록)를 둔다. flow는 이상형의 동작이며 phase마다 같은 flow가 더 높은 해상도로 돈다. P0(NP)에서도 여섯 flow가 모두 돈다. 형태는 비모수 대역이다(§4). 기호 q^-, γ, (a,u,η,b)는 [06-mathematical-framework.md](/home/jimmy/repos/full-continual-learning/docs/06-mathematical-framework.md) §2·§5를 따른다.
+**PROPOSAL.** 여섯 flow는 §3의 feature가 어떤 순서로 맞물려 도는지를 보인다. flow마다 mermaid 그림 하나와 단계 표(단계마다 입력·판단·출력·기록)를 둔다. flow는 이상형의 동작이며 phase마다 같은 flow가 더 높은 해상도로 돈다. P0(NP)에서도 여섯 flow가 모두 돈다. 형태는 비모수 대역이다(§4). 기호 q^-, γ, (a,u,η,b)는 [06-mathematical-framework.md](../docs/06-mathematical-framework.md) §2·§5를 따른다.
 
 ### FL-1 입력 1건 처리 (각성)
 
@@ -392,7 +392,7 @@ flowchart TD
 | ⑧ 응답 형성 | 해석 결과, 신호, 경로 | 답할 만큼 확신하는가. 아니면 보류·추가 관측 요청·복수 가능성 제시 | 응답(생성물 표지)과 확신 표시 | 응답과 trace 요약 | BF-D4, BF-A3 |
 | ⑨ 결과·정정 귀속 | 나중에 도착하는 결과·정정·피드백(지연 가능) | 현재 활성 schema가 아니라 원래 관련 사건과 경로로 귀속(eligibility) | FL-2의 입력(불일치 신호) | 귀속 기록 | BF-E1, BF-H2 |
 
-③의 admit 뒤에 오는 reflect·assimilate·restructure는 ⑥ 이후의 경로와 FL-2의 판정으로 구현된다. admission의 선택지 구분은 Melete v0.2의 기록(ARCHIVE, [04-rhythms-and-orchestration.md](/home/jimmy/repos/full-continual-learning/docs/04-rhythms-and-orchestration.md) §3)에서 가져왔고 검증된 규칙이 아니다. 「학습 대상에서 빼거나 보류한다」는 풀이는 사용자 확인 대기다(11-12 감사 §5 #10, 아래 §7).
+③의 admit 뒤에 오는 reflect·assimilate·restructure는 ⑥ 이후의 경로와 FL-2의 판정으로 구현된다. admission의 선택지 구분은 Melete v0.2의 기록(ARCHIVE, [04-rhythms-and-orchestration.md](../docs/04-rhythms-and-orchestration.md) §3)에서 가져왔고 검증된 규칙이 아니다. 「학습 대상에서 빼거나 보류한다」는 풀이는 사용자 확인 대기다(11-12 감사 §5 #10, 아래 §7).
 
 ### FL-2 불일치와 조절
 
@@ -427,7 +427,7 @@ flowchart TD
 | ⑦ 최초 질의로의 재활성화 | 원래 root와 최초 입력, commit된 상태 | 새 root를 만들지 않고 같은 입력을 다시 읽어 중단 지점부터 재개. 이미 반영한 증거를 다시 쓰지 않는다 | 갱신 뒤 응답, 재개 위치(token position t, recursion index r) | 재개 위치, 무효화한 cache | BF-D1, BF-G1 |
 | ⑧ 부작용 측정 | 갱신 전후 상태 | 최초 과제 재평가·이전 조건 재방문(ABA)·원능력 probe로 무관한 기능이 상하지 않았는지 | 부작용 보고 | 보호 지표 값 | BF-H3 |
 
-⑦은 [07-state-and-storage.md](/home/jimmy/repos/full-continual-learning/docs/07-state-and-storage.md) §3의 갱신 후 재개 계약과 Melete 시기의 H5(출력을 다시 넣어 compatibility·surprise를 평가하고 최초 query로 recompile·resume)에 대응한다. 생성물은 학습 신호로 쓸 수 있지만 독립 관측으로 세지 않는다.
+⑦은 [07-state-and-storage.md](../docs/07-state-and-storage.md) §3의 갱신 후 재개 계약과 Melete 시기의 H5(출력을 다시 넣어 compatibility·surprise를 평가하고 최초 query로 recompile·resume)에 대응한다. 생성물은 학습 신호로 쓸 수 있지만 독립 관측으로 세지 않는다.
 
 ### FL-3 깊이: 반복 계산과 halting
 
@@ -455,11 +455,11 @@ flowchart TD
 | ⑥ halting 판정 | 기대 효용 대 비용, 남은 예산 | 추가 반복의 기대 이득이 비용보다 큰가. 익숙함만으로 멈추지 않는다. 예산에 닿으면 멈추고 hold | 계속 / 종료 / hold | 종료 사유, 반복 수, 계산량 | BF-C3 |
 | ⑦ 응답 형성 | 최종 작업 상태 | 답할 만큼 확신하는가, 보류인가 | 응답 또는 보류 | 응답과 trace 요약 | BF-D4 |
 
-깊어지는 동안에도 쓰기가 필요하면 FL-2의 ⑤⑥을 거친다. 쉬운 사례만 조기 종료한 평균과 구분하는 것은 평가의 일이다([08-evaluation.md](/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md) F11·F15).
+깊어지는 동안에도 쓰기가 필요하면 FL-2의 ⑤⑥을 거친다. 쉬운 사례만 조기 종료한 평균과 구분하는 것은 평가의 일이다([08-evaluation.md](../docs/08-evaluation.md) F11·F15).
 
 ### FL-4 Sleep: 재생·통합·재조합·정리
 
-오프라인에서 경험을 다시 보고 fast 기억을 slow schema로 옮기며 조각을 재조합하고 저장을 정리하는 흐름이다. 재생은 새 경험이 아니다. 외부 agent memory의 offline 재조직(문서·그래프·색인을 고치는 연산)은 이 Sleep과 이름이 비슷해도 fast→slow 공고화가 아니며 별도 비교 정책으로 따로 보고한다([05-integrated-architecture.md](/home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md) §11).
+오프라인에서 경험을 다시 보고 fast 기억을 slow schema로 옮기며 조각을 재조합하고 저장을 정리하는 흐름이다. 재생은 새 경험이 아니다. 외부 agent memory의 offline 재조직(문서·그래프·색인을 고치는 연산)은 이 Sleep과 이름이 비슷해도 fast→slow 공고화가 아니며 별도 비교 정책으로 따로 보고한다([05-integrated-architecture.md](../docs/05-integrated-architecture.md) §11).
 
 ```mermaid
 flowchart TD
@@ -487,7 +487,7 @@ flowchart TD
 
 ### FL-5 발견
 
-설명되지 않는 것에서 새 원리가 나오는 흐름이다: 긴장(미해결 불일치) 원장 → 잠복 → 후보 원리 → 귀결 도출과 근거 대조 → 통찰 사건 → 재구조화 → 보고. 통찰의 정의는 [11-research-agenda.md](/home/jimmy/repos/full-continual-learning/docs/11-research-agenda.md) §4(새로운 관계·표현·적용 조건을 형성하고 새 사례에서 재사용하는 변화)와 [08-evaluation.md](/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md)의 F13(관계 통합 추론)·F16(통찰의 전이)에 맞춘다. 이 flow의 직접 근거가 되는 문헌은 확인하지 못했다. 구조는 PROPOSAL이고 효용은 NOT RUN이다(H-DISCOVER는 §2.3).
+설명되지 않는 것에서 새 원리가 나오는 흐름이다: 긴장(미해결 불일치) 원장 → 잠복 → 후보 원리 → 귀결 도출과 근거 대조 → 통찰 사건 → 재구조화 → 보고. 통찰의 정의는 [11-research-agenda.md](../docs/11-research-agenda.md) §4(새로운 관계·표현·적용 조건을 형성하고 새 사례에서 재사용하는 변화)와 [08-evaluation.md](../docs/08-evaluation.md)의 F13(관계 통합 추론)·F16(통찰의 전이)에 맞춘다. 이 flow의 직접 근거가 되는 문헌은 확인하지 못했다. 구조는 PROPOSAL이고 효용은 NOT RUN이다(H-DISCOVER는 §2.3).
 
 ```mermaid
 flowchart TD
@@ -517,7 +517,7 @@ flowchart TD
 
 ### FL-6 상태
 
-commit·snapshot·version·offload/reload·삭제의 흐름이다. 저장·해시 검사 통과와 판단 효용 통과를 별도로 보고한다. 최소 상태 회귀([07-state-and-storage.md](/home/jimmy/repos/full-continual-learning/docs/07-state-and-storage.md) §8)는 같은 입력의 재전송, 같은 ID의 다른 payload, interrupted update, restart, branch rollback, source 삭제, offload/reload, 모델 revision mismatch, concurrent writes다.
+commit·snapshot·version·offload/reload·삭제의 흐름이다. 저장·해시 검사 통과와 판단 효용 통과를 별도로 보고한다. 최소 상태 회귀([07-state-and-storage.md](../docs/07-state-and-storage.md) §8)는 같은 입력의 재전송, 같은 ID의 다른 payload, interrupted update, restart, branch rollback, source 삭제, offload/reload, 모델 revision mismatch, concurrent writes다.
 
 ```mermaid
 flowchart TD
@@ -546,7 +546,7 @@ flowchart TD
 | ⑨ 보존 예산과 evict | 예산, 사용·의존·기능 손실 추정 | offload 우선, 압축·통합, 폐기는 기능 손실 평가 뒤 | 정리된 저장 | evict 기록 | BF-G4 |
 | ⑩ 재시작 복원 | 저장된 bundle, 새 프로세스 | runtime 프로세스를 실제로 종료·재기동해 같은 입력에 같은 응답이 나오는가 | 복원된 상태 | 복원 검증 결과 | BF-G1, BF-H3 |
 
-세 가지 「삭제」(source 삭제 / 기능적 망각·보존 / 가중치 삭제 학습)는 서로 다른 일이다. ⑧은 source 삭제, ⑨는 기능적 망각/보존이며 가중치 삭제 학습은 update 경로의 비교 후보일 뿐 둘 중 어느 쪽의 근거도 아니다([14-schema-lifecycle-crud-and-joint-paper.md](/home/jimmy/repos/full-continual-learning/docs/14-schema-lifecycle-crud-and-joint-paper.md) §4).
+세 가지 「삭제」(source 삭제 / 기능적 망각·보존 / 가중치 삭제 학습)는 서로 다른 일이다. ⑧은 source 삭제, ⑨는 기능적 망각/보존이며 가중치 삭제 학습은 update 경로의 비교 후보일 뿐 둘 중 어느 쪽의 근거도 아니다([14-schema-lifecycle-crud-and-joint-paper.md](../docs/14-schema-lifecycle-crud-and-joint-paper.md) §4).
 
 ## 6. feature 상세
 
@@ -555,8 +555,8 @@ flowchart TD
 읽는 법은 다음과 같다.
 
 - **이상형 메커니즘 후보:** phase·비용·구현 가능성으로 깎기 전의 후보다. 하나로 정하지 않았고 후보끼리 같은 예산의 대조로 비교한다. 문헌에 구현된 기제가 없는 곳은 그렇게 적는다.
-- **근거:** 문헌 ID는 [catalog.tsv](/home/jimmy/repos/full-continual-learning/references/catalog.tsv)의 ID이고 확인 수준은 catalog의 status를 따른다. 대부분 metadata-checked 이하라서 제목·초록 수준의 인접 근거이며 본문 주장을 옮긴 것이 아니다. docs/NN §x는 이 저장소의 해당 문서 절이다. 근거 문헌이 없는 feature는 그렇게 적었다.
-- **P0 비모수 대역:** 이름만 쓴다(NP-0·NP-1·NP-2, 규칙형 controller, Sleep-NP 등). 상세·검증 항목·실행 행렬은 [18-poc-nonparametric.md](/home/jimmy/repos/full-continual-learning/docs/18-poc-nonparametric.md)가 정한다. **P0(NP)는 사용자가 요청한 POC 대역이며 최종형이 아니다.**
+- **근거:** 문헌 ID는 [catalog.tsv](../references/catalog.tsv)의 ID이고 확인 수준은 catalog의 status를 따른다. 대부분 metadata-checked 이하라서 제목·초록 수준의 인접 근거이며 본문 주장을 옮긴 것이 아니다. docs/NN §x는 이 저장소의 해당 문서 절이다. 근거 문헌이 없는 feature는 그렇게 적었다.
+- **P0 비모수 대역:** 이름만 쓴다(NP-0·NP-1·NP-2, 규칙형 controller, Sleep-NP 등). 상세·검증 항목·실행 행렬은 [18-poc-nonparametric.md](../docs/18-poc-nonparametric.md)가 정한다. **P0(NP)는 사용자가 요청한 POC 대역이며 최종형이 아니다.**
 - **phase별 해상도:** §4 표의 요약이다. 어긋나면 §4가 기준이다.
 
 ### 6.1 A 경험 입력
@@ -639,7 +639,7 @@ flowchart TD
 
 ### 6.6 F 발견·통찰
 
-이 그룹은 [05-integrated-architecture.md](/home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md)에 대응 구성요소가 거의 없는 새 feature 묶음이다. 헌장 U01–U12에도 발견 항목이 없다(U04의 「통찰」만 있다). 직접 근거가 되는 문헌은 확인하지 못했고 구조는 PROPOSAL이다(D-26, OP16-3).
+이 그룹은 [05-integrated-architecture.md](../docs/05-integrated-architecture.md)에 대응 구성요소가 거의 없는 새 feature 묶음이다. 헌장 U01–U12에도 발견 항목이 없다(U04의 「통찰」만 있다). 직접 근거가 되는 문헌은 확인하지 못했고 구조는 PROPOSAL이다(D-26, OP16-3).
 
 | ID | 목적 | 입력 → 출력 | 유지하는 상태 | 이상형 메커니즘 후보 |
 |---|---|---|---|---|
@@ -691,11 +691,11 @@ flowchart TD
 
 ## 7. 사용자 요구 대응표
 
-사용자가 말한 것이 이 청사진의 어느 feature·flow에 있는지를 모은다. **USER**는 원문이 있는 문장에만 붙이고 원문 위치를 단다. 오른쪽의 해석은 모두 **PROPOSAL**이다. Melete 시기의 관점은 저장소에서 2026-11-12 감사 원장([ledger-melete.json](/home/jimmy/repos/full-continual-learning/research/2026-11-12-design-audit/ledger-melete.json))의 재구성 항목이므로 원장 ID와 「재구성」을 붙이고 풀이는 PROPOSAL로 쓴다.
+사용자가 말한 것이 이 청사진의 어느 feature·flow에 있는지를 모은다. **USER**는 원문이 있는 문장에만 붙이고 원문 위치를 단다. 오른쪽의 해석은 모두 **PROPOSAL**이다. Melete 시기의 관점은 저장소에서 2026-11-12 감사 원장([ledger-melete.json](../research/2026-11-12-design-audit/ledger-melete.json))의 재구성 항목이므로 원장 ID와 「재구성」을 붙이고 풀이는 PROPOSAL로 쓴다.
 
 ### 7.1 2026-11-18 요청
 
-원문 위치: [2026-11-18-discussion.md](/home/jimmy/repos/full-continual-learning/sources/sync/2026-11-18-discussion.md)의 「사용자 원문」 블록(USER). 이 문서가 맡은 것은 첫 문장이다.
+원문 위치: [2026-11-18-discussion.md](../sources/sync/2026-11-18-discussion.md)의 「사용자 원문」 블록(USER). 이 문서가 맡은 것은 첫 문장이다.
 
 | 사용자 원문 (USER) | 이 문서의 자리 | 해석 (PROPOSAL) |
 |---|---|---|
@@ -708,23 +708,23 @@ flowchart TD
 
 | 사용자 요구 | 원문 위치 (USER) | feature | flow | 이 청사진의 해석 (PROPOSAL) / 상태 |
 |---|---|---|---|---|
-| 「경험/지식은 schema의 형태로 학습되고」 | [2026-11-schema-user-verbatim.md](/home/jimmy/repos/full-continual-learning/sources/sync/2026-11-schema-user-verbatim.md) §1 | BF-B1, BF-B2, BF-E1, BF-E3 | FL-1, FL-2, FL-4 | 경험은 fast 결합 기억에 즉시 들어가고 Sleep에서 slow schema로 통합된다. schema의 정의는 docs/13 §2 |
+| 「경험/지식은 schema의 형태로 학습되고」 | [2026-11-schema-user-verbatim.md](../sources/sync/2026-11-schema-user-verbatim.md) §1 | BF-B1, BF-B2, BF-E1, BF-E3 | FL-1, FL-2, FL-4 | 경험은 fast 결합 기억에 즉시 들어가고 Sleep에서 slow schema로 통합된다. schema의 정의는 docs/13 §2 |
 | 「schema는 versioning을 하고 외부로 offload 및 retrieval해서」 | 같은 파일 §1 | BF-B5, BF-G2, BF-G4, BF-B3 | FL-6 | version(BF-B5), offload/reload(BF-G2), retrieval은 BF-B3의 후보 검색 단계. 외부화 v0은 P4, retrieval은 P5(docs/09) |
 | 「context gating에 따라 알맞는 schema를 가져다 쓴다」 | 같은 파일 §1 | BF-B3, BF-C2, BF-D1 | FL-1 ⑤ | 후보 검색과 gating을 분리하고 판단용 읽기와 학습용 참조를 구분한다 |
 | 「schema가 분리되지 않고 엉키설키로 엮힌 상태로 학습이 되었고」, 「schema가 분리된, decompostion된 형태로 continual learning을 하게되면 catastropic forgetting 없이 또는 최대한 뒤로 늦추면서 학습이 가능하다」 | 같은 파일 §1 (USER-HYPOTHESIS. 과학적 입증이 아니라 사용자의 검증 대상 가설) | BF-B3, BF-B4, BF-E1, BF-G4 | FL-2 | 분해된 형태의 지속학습은 BF-B3·B5·E1의 설계 목표다. 망각을 없앤다고 약속하지 않고 늦추는 데까지만 쓴다(docs/13 §1·§7.5). 증명은 docs/13 §10의 실험 A–E와 docs/19 |
-| 「Continual learning의 목적은 - 무한한 시간동안 경험하는것을 재앙적 망각 없이 학습 하는 것」 | [2026-11-16-discussion.md](/home/jimmy/repos/full-continual-learning/sources/sync/2026-11-16-discussion.md) 「사용자 원문: CRUD와 공동논문 목적」 | BF-B3, BF-B5, BF-E1, BF-G4 | FL-2, FL-6 | 청사진 전체의 목적 조건이다. 헌장 U13으로 올릴지는 N-8(결정 대기) |
+| 「Continual learning의 목적은 - 무한한 시간동안 경험하는것을 재앙적 망각 없이 학습 하는 것」 | [2026-11-16-discussion.md](../sources/sync/2026-11-16-discussion.md) 「사용자 원문: CRUD와 공동논문 목적」 | BF-B3, BF-B5, BF-E1, BF-G4 | FL-2, FL-6 | 청사진 전체의 목적 조건이다. 헌장 U13으로 올릴지는 N-8(결정 대기) |
 | 「1. 간섭없이 새로운 지식을 학습 -> Update」, 「기존 지식(low rank expert)에 대한 in place update를 진행함」 | 같은 블록 | BF-E1, BF-B4, BF-B3 | FL-2 ④⑤ | update 판정. 감쇠·momentum·optimizer 상태까지 쓰기 gate에 넣어야 쓰기 격리를 주장할 수 있다(docs/06 §3 OPEN) |
 | 「문맥에 따라 적합한 schema를 못찾으면 create로 진행해서 새로운 low rank expert를 생성함」 | 같은 블록 | BF-E2, BF-B4 | FL-2 ④ | create 판정. 이 문서는 트리거를 검색 실패와 구조적 새로움으로 나눠 기록하고 기본값은 정하지 않는다(N-4). 새 expert의 low-rank 형태는 구현 전제이고 보편 명제가 아니다(docs/11 §2) |
 | 「2. 무한히 증가하는 지식에 대해서 망각의 비용을 어떻게 치뤄야할지 -> Delete」 | 같은 블록 | BF-G4, BF-B4(evict), BF-E3 | FL-4 ⑦, FL-6 ⑨ | evict 판정(기능적 망각/보존). source 삭제(BF-G3)와 다르다. 어느 phase에서 정책을 둘지는 N-3 |
 | 「3. 현재 입력된 문맥에 활용할 지식을 어떻게 잘 가져올지 -> Read」 | 같은 블록 | BF-B3, BF-D1, BF-C2 | FL-1 ⑤ | read 판정. 잘못 읽은 기억이 만든 회귀(F23 후보)를 따로 본다 |
-| 「주어진 문맥에 대해서 schema를 찾고 익숙한건 매우 빠르게 schema기반 답변을 하고 익숙하지 않으면 그 정도에 따라 rapid learning을 해서 schema update하고 답변하고 더 익숙하지 않으면 정도에 따라 더 깊은 loop을 타서 답변 하는것」 | [user-statements.md](/home/jimmy/repos/full-continual-learning/sources/user-statements.md) U-T07 | BF-C1, BF-C2, BF-D2, BF-E1 | FL-1 ⑥, FL-3 | 익숙함 → fast, 덜 익숙함 → learn, 더 낯섦 → deep으로 읽는다. 경로 hold는 원문에 없는 추가이며 D-21다 |
+| 「주어진 문맥에 대해서 schema를 찾고 익숙한건 매우 빠르게 schema기반 답변을 하고 익숙하지 않으면 그 정도에 따라 rapid learning을 해서 schema update하고 답변하고 더 익숙하지 않으면 정도에 따라 더 깊은 loop을 타서 답변 하는것」 | [user-statements.md](../sources/user-statements.md) U-T07 | BF-C1, BF-C2, BF-D2, BF-E1 | FL-1 ⑥, FL-3 | 익숙함 → fast, 덜 익숙함 → learn, 더 낯섦 → deep으로 읽는다. 경로 hold는 원문에 없는 추가이며 D-21다 |
 | 「입력 문맥에 대한 schema판단 mlp나 구조를 넣어서 만들어야 하고」 | 같은 U-T07 | BF-B3, BF-C2 | FL-1 ⑤⑥ | 규칙형 controller에서 학습된 controller로(docs/09 D-14). 11-12 감사 §5 #8(다중 신호로의 일반화 수용)은 결정 대기 |
 | 「seq layer는 titan llama로 retrofitting하고」, 「ffn쪽은 cms(model needs sleep의 방법으로)로 점진적 교체」 | 같은 U-T07 | BF-B1, BF-B2, BF-E3 | FL-4 | 학습 모듈의 형태다. P1부터 들어오고 P0(NP)는 대역이다. 「model needs sleep의 방법」의 해석은 11-12 감사 §5 #9 |
 | 「이후 외부로 schema를 offload하고 versioning및 retrieval가능하게 해서」 | 같은 U-T07 | BF-G2, BF-B5, BF-B3 | FL-6 | 상태 경계는 P1부터 설계하고 외부화 v0은 P4다(docs/09 §4) |
 
 ### 7.3 헌장 U01–U12
 
-[01-intent-and-charter.md](/home/jimmy/repos/full-continual-learning/docs/01-intent-and-charter.md) §2의 목표가 청사진 어디에 있는지다. 헌장 U05는 하나의 통합 모델이며 별도 작은 System1 + 외부 LLM 설계는 최종형이 아니다.
+[01-intent-and-charter.md](../docs/01-intent-and-charter.md) §2의 목표가 청사진 어디에 있는지다. 헌장 U05는 하나의 통합 모델이며 별도 작은 System1 + 외부 LLM 설계는 최종형이 아니다.
 
 | 목표 | feature | flow | 청사진에서의 자리 (PROPOSAL) |
 |---|---|---|---|
@@ -743,7 +743,7 @@ flowchart TD
 
 ### 7.4 Melete H1–H5와 세 가설
 
-Melete 시기의 H1–H5([12-melete-lineage.md](/home/jimmy/repos/full-continual-learning/docs/12-melete-lineage.md) §1)는 틀렸다고 확인되기 전까지 유지하는 basis이며 통합 모델의 메커니즘으로 다시 정의돼 계승된다(docs/09 §1.1 B14 행). H-SAMPLE·H-COMPUTE(헌장 §4)와 H-DISCOVER(§2.3)는 이 저장소의 중심 명제다. 번호가 겹치지 않도록 이 표의 H1–H5는 언제나 Melete 시기의 가설이다.
+Melete 시기의 H1–H5([12-melete-lineage.md](../docs/12-melete-lineage.md) §1)는 틀렸다고 확인되기 전까지 유지하는 basis이며 통합 모델의 메커니즘으로 다시 정의돼 계승된다(docs/09 §1.1 B14 행). H-SAMPLE·H-COMPUTE(헌장 §4)와 H-DISCOVER(§2.3)는 이 저장소의 중심 명제다. 번호가 겹치지 않도록 이 표의 H1–H5는 언제나 Melete 시기의 가설이다.
 
 | 가설 | feature | flow | 청사진에서의 자리 (PROPOSAL) |
 |---|---|---|---|
@@ -758,7 +758,7 @@ Melete 시기의 H1–H5([12-melete-lineage.md](/home/jimmy/repos/full-continual
 
 ### 7.5 Melete 시기 관점 (재구성)
 
-원장 ID와 인용은 [ledger-melete.json](/home/jimmy/repos/full-continual-learning/research/2026-11-12-design-audit/ledger-melete.json)에서 가져왔다. 재구성이며 사용자 원문이 아니다. 풀이는 PROPOSAL이다.
+원장 ID와 인용은 [ledger-melete.json](../research/2026-11-12-design-audit/ledger-melete.json)에서 가져왔다. 재구성이며 사용자 원문이 아니다. 풀이는 PROPOSAL이다.
 
 | 원장 ID | 재구성된 문장 (2026-10-05 B04, 2026-10-09 B08) | feature | flow | 이 청사진의 풀이 (PROPOSAL) / 상태 |
 |---|---|---|---|---|
@@ -775,17 +775,17 @@ Melete 시기의 H1–H5([12-melete-lineage.md](/home/jimmy/repos/full-continual
 
 | 문서 | 관계 | 이 청사진이 가져온 것 | 차이·충돌 (OPEN) |
 |---|---|---|---|
-| [05-integrated-architecture.md](/home/jimmy/repos/full-continual-learning/docs/05-integrated-architecture.md) | 구성요소 정의(Titans·CMS·Sleep·loop·MoD/MoR·depth read·controller). 이 청사진의 BF-B1·B2·C2·C3·D1~D3·E3가 대응 | 네 가지 상태(§2), 개념도의 입력부·core·출력부·schema read·depth bank·외부 저장소(§3), 문맥 head·실행 head(§4) | docs/05 §3은 별도 fast model을 최종 제품으로 전제하지 않는다고 쓴다. P0(NP)는 외부 frozen LLM과 비모수 기억을 쓰는 대역이라 겉으로 어긋난다. P0는 사용자가 요청한 POC 대역이며 최종형이 아니라고 명시했다(OP16-1). docs/05에 대응 구성요소가 없는 feature는 BF-F1~F5, BF-D4다. docs/05 §4의 controller v0/v1/v2 이름 정리(OPEN)는 그대로 두고 이 문서는 규칙형·학습된 controller로만 부른다 |
-| [06-mathematical-framework.md](/home/jimmy/repos/full-continual-learning/docs/06-mathematical-framework.md) | 기호와 식. BF-B3·C2·C3·E1이 쓴다 | q^-(결과 이전 선택), γ(사후 책임), (a,u,η,b), 비용 민감 제어 J | 선택 혼합(q^-의 합이 1, docs/06 §2)과 가산 gating(docs/13 §6)의 공존은 docs/13이 이미 OPEN으로 둔 문제다. 이 청사진은 read를 「선택·조합」으로 열어 두고 하나로 정하지 않았다(OP16-5). 기호 충돌 대응은 docs/06 §1 표를 따른다 |
-| [07-state-and-storage.md](/home/jimmy/repos/full-continual-learning/docs/07-state-and-storage.md) | 상태·시계·cache·저장 계약. BF-G1~G4, FL-6, BF-A3의 원천 | 시계 표(§1), read/write 분리(§2), 학습 귀속·강화 4구분(§4), bundle manifest(§5), version 의미(§6), eviction과 세 가지 삭제의 구분(§7), 최소 상태 회귀(§8) | 긴장 원장·통찰 사건 로그·발견 보고가 bundle manifest의 어느 필드에 속하는지 manifest에 없다(OP16-4). 「다른 schema의 의존 버전」 필드가 없다는 기존 OPEN도 그대로다 |
-| [13-schema-decomposition-and-interference.md](/home/jimmy/repos/full-continual-learning/docs/13-schema-decomposition-and-interference.md) | schema 정의·분해·변경 간섭. BF-B2·B3·B5·E1의 원천 | schema의 운영적 정의(§2), artifact 다섯 성분(§3), 표현·활성화·변경 분리(§5), 공유 core와 선택적 쓰기(§9.1), copy-on-write(§9.2), 실험 A–E(§10) | artifact의 binding 성분 B에 대응하는 manifest 필드가 없다는 기존 OPEN이 그대로 남는다. USER-HYPOTHESIS(LLM의 schema 중첩 등)는 가설로만 쓰고 확립된 사실로 옮기지 않았다 |
-| [14-schema-lifecycle-crud-and-joint-paper.md](/home/jimmy/repos/full-continual-learning/docs/14-schema-lifecycle-crud-and-joint-paper.md) | CRUD 생명주기. BF-B4·E2·G4, FL-2의 원천 | Update/Create 처리 후보 표(§3), 기능 손실 기반 retention(§4), Read의 판단용 집합과 학습용 집합(§5), 결합된 생명주기(§6) | docs/14 §3의 「새 expert 할당 또는 분화」 한 칸을 branch와 create로 나눈 것은 이 문서의 제안이다(D-25). CRUD 네 동작이 이 문서에서는 판정 여섯 개(read·update·branch·create·hold·evict)와 경로 네 개로 풀렸다. 공동논문 초안과의 대응은 docs/19가 다룬다 |
+| [05-integrated-architecture.md](../docs/05-integrated-architecture.md) | 구성요소 정의(Titans·CMS·Sleep·loop·MoD/MoR·depth read·controller). 이 청사진의 BF-B1·B2·C2·C3·D1~D3·E3가 대응 | 네 가지 상태(§2), 개념도의 입력부·core·출력부·schema read·depth bank·외부 저장소(§3), 문맥 head·실행 head(§4) | docs/05 §3은 별도 fast model을 최종 제품으로 전제하지 않는다고 쓴다. P0(NP)는 외부 frozen LLM과 비모수 기억을 쓰는 대역이라 겉으로 어긋난다. P0는 사용자가 요청한 POC 대역이며 최종형이 아니라고 명시했다(OP16-1). docs/05에 대응 구성요소가 없는 feature는 BF-F1~F5, BF-D4다. docs/05 §4의 controller v0/v1/v2 이름 정리(OPEN)는 그대로 두고 이 문서는 규칙형·학습된 controller로만 부른다 |
+| [06-mathematical-framework.md](../docs/06-mathematical-framework.md) | 기호와 식. BF-B3·C2·C3·E1이 쓴다 | q^-(결과 이전 선택), γ(사후 책임), (a,u,η,b), 비용 민감 제어 J | 선택 혼합(q^-의 합이 1, docs/06 §2)과 가산 gating(docs/13 §6)의 공존은 docs/13이 이미 OPEN으로 둔 문제다. 이 청사진은 read를 「선택·조합」으로 열어 두고 하나로 정하지 않았다(OP16-5). 기호 충돌 대응은 docs/06 §1 표를 따른다 |
+| [07-state-and-storage.md](../docs/07-state-and-storage.md) | 상태·시계·cache·저장 계약. BF-G1~G4, FL-6, BF-A3의 원천 | 시계 표(§1), read/write 분리(§2), 학습 귀속·강화 4구분(§4), bundle manifest(§5), version 의미(§6), eviction과 세 가지 삭제의 구분(§7), 최소 상태 회귀(§8) | 긴장 원장·통찰 사건 로그·발견 보고가 bundle manifest의 어느 필드에 속하는지 manifest에 없다(OP16-4). 「다른 schema의 의존 버전」 필드가 없다는 기존 OPEN도 그대로다 |
+| [13-schema-decomposition-and-interference.md](../docs/13-schema-decomposition-and-interference.md) | schema 정의·분해·변경 간섭. BF-B2·B3·B5·E1의 원천 | schema의 운영적 정의(§2), artifact 다섯 성분(§3), 표현·활성화·변경 분리(§5), 공유 core와 선택적 쓰기(§9.1), copy-on-write(§9.2), 실험 A–E(§10) | artifact의 binding 성분 B에 대응하는 manifest 필드가 없다는 기존 OPEN이 그대로 남는다. USER-HYPOTHESIS(LLM의 schema 중첩 등)는 가설로만 쓰고 확립된 사실로 옮기지 않았다 |
+| [14-schema-lifecycle-crud-and-joint-paper.md](../docs/14-schema-lifecycle-crud-and-joint-paper.md) | CRUD 생명주기. BF-B4·E2·G4, FL-2의 원천 | Update/Create 처리 후보 표(§3), 기능 손실 기반 retention(§4), Read의 판단용 집합과 학습용 집합(§5), 결합된 생명주기(§6) | docs/14 §3의 「새 expert 할당 또는 분화」 한 칸을 branch와 create로 나눈 것은 이 문서의 제안이다(D-25). CRUD 네 동작이 이 문서에서는 판정 여섯 개(read·update·branch·create·hold·evict)와 경로 네 개로 풀렸다. 공동논문 초안과의 대응은 docs/19가 다룬다 |
 
-[04-rhythms-and-orchestration.md](/home/jimmy/repos/full-continual-learning/docs/04-rhythms-and-orchestration.md)(BF-A2·E4), [08-evaluation.md](/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md)(§8.2의 평가 family), [09-roadmap.md](/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md)(phase·뼈대·등급), [11-research-agenda.md](/home/jimmy/repos/full-continual-learning/docs/11-research-agenda.md)(통찰 정의), [12-melete-lineage.md](/home/jimmy/repos/full-continual-learning/docs/12-melete-lineage.md)(H1–H5)도 근거로 썼고 같은 방식으로 대체하지 않는다.
+[04-rhythms-and-orchestration.md](../docs/04-rhythms-and-orchestration.md)(BF-A2·E4), [08-evaluation.md](../docs/08-evaluation.md)(§8.2의 평가 family), [09-roadmap.md](../docs/09-roadmap.md)(phase·뼈대·등급), [11-research-agenda.md](../docs/11-research-agenda.md)(통찰 정의), [12-melete-lineage.md](../docs/12-melete-lineage.md)(H1–H5)도 근거로 썼고 같은 방식으로 대체하지 않는다.
 
 ### 8.2 feature × 평가 family
 
-각 feature를 시험하는 [08-evaluation.md](/home/jimmy/repos/full-continual-learning/docs/08-evaluation.md)의 family다(PROPOSAL). F22·F23·F24는 승인된 gate가 아닌 후보(N-5)다. 어느 family에도 잘 맞지 않는 feature는 새 family 후보를 적었다. P0의 검증 항목(V0-n)과 suite는 [18-poc-nonparametric.md](/home/jimmy/repos/full-continual-learning/docs/18-poc-nonparametric.md)가 정한다.
+각 feature를 시험하는 [08-evaluation.md](../docs/08-evaluation.md)의 family다(PROPOSAL). F22·F23·F24는 승인된 gate가 아닌 후보(N-5)다. 어느 family에도 잘 맞지 않는 feature는 새 family 후보를 적었다. P0의 검증 항목(V0-n)과 suite는 [18-poc-nonparametric.md](../docs/18-poc-nonparametric.md)가 정한다.
 
 | feature | 평가 family | 비고 |
 |---|---|---|
@@ -813,7 +813,7 @@ Melete 시기의 H1–H5([12-melete-lineage.md](/home/jimmy/repos/full-continual
 
 ### 8.3 docs/09 §4 capability 행과의 대응 (참고)
 
-phase·capability의 정의는 [09-roadmap.md](/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md) §4가 소유한다. 아래는 그 17개 행을 feature 쪽에서 읽은 대응이며 docs/09를 고치지 않는다.
+phase·capability의 정의는 [09-roadmap.md](../docs/09-roadmap.md) §4가 소유한다. 아래는 그 17개 행을 feature 쪽에서 읽은 대응이며 docs/09를 고치지 않는다.
 
 | docs/09 §4의 행 | 대응 feature |
 |---|---|
@@ -857,7 +857,7 @@ docs/09 §4에 행이 없는 feature는 BF-A2, BF-A3, BF-C1, BF-D1, BF-D4, BF-E4
 
 ### 9.2 사용자 결정 후보
 
-열은 [09-roadmap.md](/home/jimmy/repos/full-continual-learning/docs/09-roadmap.md) §10의 결정표와 같다(`ID | 결정 | 선택지 | 추천 | 비용 발생 | 결정자`). 아래 번호는 docs/09 §10의 결정 번호다. 같은 결정은 docs/09에서 한 행으로 합쳐져 있어 번호가 겹치거나 순서가 바뀌어 있을 수 있다(초안의 가칭과의 대응은 [id-map.tsv](/home/jimmy/repos/full-continual-learning/research/2026-11-18-blueprint-et-design/id-map.tsv)). 추천은 PROPOSAL이며 어떤 것도 결정된 것이 아니다.
+열은 [09-roadmap.md](../docs/09-roadmap.md) §10의 결정표와 같다(`ID | 결정 | 선택지 | 추천 | 비용 발생 | 결정자`). 아래 번호는 docs/09 §10의 결정 번호다. 같은 결정은 docs/09에서 한 행으로 합쳐져 있어 번호가 겹치거나 순서가 바뀌어 있을 수 있다(초안의 가칭과의 대응은 [id-map.tsv](../research/2026-11-18-blueprint-et-design/id-map.tsv)). 추천은 PROPOSAL이며 어떤 것도 결정된 것이 아니다.
 
 | ID | 결정 | 선택지 | 추천 | 비용 발생 | 결정자 |
 |---|---|---|---|---|---|
@@ -891,4 +891,4 @@ docs/09 §4에 행이 없는 feature는 BF-A2, BF-A3, BF-C1, BF-D1, BF-D4, BF-E4
 
 ---
 
-**조사 기록:** 초안 끝의 색인(정의 위치와 초안의 가칭), 새 참고문헌, 조사 출처는 [doc16-appendices.md](/home/jimmy/repos/full-continual-learning/research/2026-11-18-blueprint-et-design/doc16-appendices.md)에 있다. 작업 방법, 마스터 결정, 사용자 결정 대기, NOT RUN 선언은 [2026-11-18-blueprint-et-design.md](/home/jimmy/repos/full-continual-learning/research/2026-11-18-blueprint-et-design.md)에 있다.
+**조사 기록:** 초안 끝의 색인(정의 위치와 초안의 가칭), 새 참고문헌, 조사 출처는 [doc16-appendices.md](../research/2026-11-18-blueprint-et-design/doc16-appendices.md)에 있다. 작업 방법, 마스터 결정, 사용자 결정 대기, NOT RUN 선언은 [2026-11-18-blueprint-et-design.md](../research/2026-11-18-blueprint-et-design.md)에 있다.

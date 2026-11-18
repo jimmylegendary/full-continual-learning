@@ -20,7 +20,7 @@
 
 ## 확인 깊이의 의미
 
-- `fulltext-read`: 원문 본문·Methods·부록을 읽고 주장과 수치를 위치와 함께 대조. 2026-11-11 신경망 SBL 11편에 처음 적용했다. 읽은 판본과 해시는 [evidence.json](/home/jimmy/repos/full-continual-learning/research/2026-11-11-sbl-fulltext/evidence.json)에 있다. 코드 실행·재현은 아니다.
+- `fulltext-read`: 원문 본문·Methods·부록을 읽고 주장과 수치를 위치와 함께 대조. 2026-11-11 신경망 SBL 11편에 처음 적용했다. 읽은 판본과 해시는 [evidence.json](research/2026-11-11-sbl-fulltext/evidence.json)에 있다. 코드 실행·재현은 아니다.
 - `metadata-checked`: 이번 게시에서 공식 arXiv/학회/저널 metadata를 확인. 숫자와 기전의 전면 재검증 아님.
 - `official-search-checked`: 공식 원문을 가리키는 검색 결과에서 identity를 확인. 원문 전체 독해 아님.
 - `discussion-import`: 이전 답변/PDF에 있는 내용과 URL을 보존. 이번 게시에서 재확인하지 않음.
@@ -51,19 +51,19 @@ URL fetch 실패는 논문 부존재를 뜻하지 않는다. 검색에서 다른
 
 ## 2026-11-17 델타 검토의 범위
 
-[2026-11-17-design-review.md](/home/jimmy/repos/full-continual-learning/research/2026-11-17-design-review.md)의 검토 범위다.
+[2026-11-17-design-review.md](research/2026-11-17-design-review.md)의 검토 범위다.
 
 - **확인한 것:** 11-12 감사 이후 문서(docs/13·14, research/2026-11-16·17-*, 참고문헌 3개, sources/sync/*)의 항목을 기준 커밋 280dc9a 본문과 대조했다(문서 대 문서). 논문·게시물은 공식 arXiv 초록 페이지, 학회·출판 사이트, DOI 레지스트리, 저자 게시 페이지에서 제목·저자·날짜·버전을 확인했고 일부는 본문 일부를 읽었다. 읽은 범위는 항목별로 적었다. runcrate의 가격·사양은 2026-11-17에 조회한 상품 목록과 공개 문서다.
 - **확인하지 않은 것:** 논문 전문 정독(`fulltext-read`), 코드 실행·재현, 접근이 막힌 출판사 본문, 모델 학습·GPU 실행, 클라우드 인스턴스 생성과 실제 비용.
 - **ESTIMATE:** 이 검토가 새로 쓴 증거 표기로, 계산 추정(작업량·시간·비용)이다. 측정이 아니며 모든 ESTIMATE는 NOT RUN이다. P1-T04에서 측정하기 전까지는 가정이다.
-- **검증 범위:** 저장소의 로컬 링크·JSON·TSV·Python 문법이며([VALIDATION.md](/home/jimmy/repos/full-continual-learning/VALIDATION.md)와 같은 범위) 외부 URL이나 논문 진위 전체를 검증하지 않는다.
+- **검증 범위:** 저장소의 로컬 링크·JSON·TSV·Python 문법이며([VALIDATION.md](VALIDATION.md)와 같은 범위) 외부 URL이나 논문 진위 전체를 검증하지 않는다.
 
 
 ## 2026-11-18 설계 작업의 범위
 
-[2026-11-18-blueprint-et-design.md](/home/jimmy/repos/full-continual-learning/research/2026-11-18-blueprint-et-design.md)의 검토 범위다.
+[2026-11-18-blueprint-et-design.md](research/2026-11-18-blueprint-et-design.md)의 검토 범위다.
 
-- **확인한 것:** 사용자 요청 원문의 보존([2026-11-18-discussion.md](/home/jimmy/repos/full-continual-learning/sources/sync/2026-11-18-discussion.md)), 저장소 문서 대 문서의 정합(ID 참조, 절 참조, phase와 ET 단 대응, 등급 상한, H-DISCOVER 문장), 외부 문헌과 공개물의 존재와 서지다. arXiv 초록 페이지, DOI·도서 레지스트리, 학회·학술지 공식 일정 페이지, 모델 카드, 저자 블로그, 공식 저장소 README를 열어 제목·저자·날짜·초록 요지·공개 상태를 확인했고 읽은 범위는 항목별로 부록에 적었다. 새 참고문헌 163행의 status는 metadata-checked 150 / official-search-checked 6 / needs-resolution 7이다.
+- **확인한 것:** 사용자 요청 원문의 보존([2026-11-18-discussion.md](sources/sync/2026-11-18-discussion.md)), 저장소 문서 대 문서의 정합(ID 참조, 절 참조, phase와 ET 단 대응, 등급 상한, H-DISCOVER 문장), 외부 문헌과 공개물의 존재와 서지다. arXiv 초록 페이지, DOI·도서 레지스트리, 학회·학술지 공식 일정 페이지, 모델 카드, 저자 블로그, 공식 저장소 README를 열어 제목·저자·날짜·초록 요지·공개 상태를 확인했고 읽은 범위는 항목별로 부록에 적었다. 새 참고문헌 163행의 status는 metadata-checked 150 / official-search-checked 6 / needs-resolution 7이다.
 - **확인하지 않은 것:** 논문 전문 정독(`fulltext-read`)과 코드 실행·재현, 시간캡슐 모델의 내려받기·실행과 과제 수행 능력, 접근이 막힌 보도(유료 기사, 차단된 서버)의 원문, 참고 영상의 내용, 사료의 개별 문서 열람.
 - **실행하지 않은 것(NOT RUN):** 구현, 학습, GPU 실행, runcrate 호출과 인스턴스 생성, 유료 API, 큰 모델·corpus 내려받기, 비용 지출. 계산 수치는 모두 ESTIMATE다.
 - **검증 범위:** 저장소의 로컬 링크·JSON·TSV·Python 문법(worktree 검사 도구)과 공개 안전성 검사 스크립트 2종, mermaid의 정적 점검이다. 외부 URL이나 논문 진위 전체를 검증하지 않는다. mermaid의 실제 parser 검사와 원본 `tools/validate_docs.py` 검사는 병합 뒤 main checkout에서 한다.
