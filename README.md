@@ -2,7 +2,7 @@
 
 **경험이 다음에 무엇을 이해하고, 얼마나 생각하며, 무엇을 어떻게 배울지까지 바꾸는 하나의 모델.**
 
-이 저장소는 Melete를 출발점으로 논의한 schema-based learning(SBL), 지속학습, 빠른 적응, 가변 깊이 추론, 뇌 리듬에서 영감을 얻은 조율, 기존 LLM의 점진적 retrofit을 통합하는 연구 기반이다. 정리 기준일: **2026-11-18**(이상 청사진·비모수 POC·단계별 계획·아인슈타인 테스트 설계). 직전 기준일은 2026-11-17(델타 설계 반영 감사·계산 계획)이고 그 앞은 2026-11-12(설계 반영 감사와 로드맵 재구성)이며, 백서는 2026-11-12 기준에 머문다.
+이 저장소는 Melete를 출발점으로 논의한 schema-based learning(SBL), 지속학습, 빠른 적응, 가변 깊이 추론, 뇌 리듬에서 영감을 얻은 조율, 기존 LLM의 점진적 retrofit을 통합하는 연구 기반이다. 최신 논의 반영: **2026-11-22**([Ali 미팅 이후 A/B/C 비교 실험](research/2026-11-22-ali-abc-evaluation.md), PROPOSAL / NOT RUN). 이상 청사진·비모수 POC·단계별 계획·아인슈타인 테스트의 전체 설계 기준은 **2026-11-18**이며 이번에는 비교·판정 조건을 보완했다. 직전 기준일은 2026-11-17(델타 설계 반영 감사·계산 계획)이고 그 앞은 2026-11-12(설계 반영 감사와 로드맵 재구성)이며, 백서는 2026-11-12 기준에 머문다.
 
 추가 논의 **2026-11-14**: [Schema 정의·분해·변경 간섭](docs/13-schema-decomposition-and-interference.md) — schema/artifact 구분, LLM과의 통합 가설, 보존의 수학적 조건, 실험 A–E 및 [보충 참고문헌](references/schema-decomposition-2026-11-14.md). 연구 제안의 문서화이며 구현·효용 검증 완료가 아니다.
 
@@ -30,6 +30,7 @@
 | [수학적 연구 명세](docs/06-mathematical-framework.md) | 상태, 조건부 schema, 가소성, meta-objective, 비용 |
 | [상태·시계·cache·저장 계약](docs/07-state-and-storage.md) | token/experience/loop/update 구분, rollback, offload |
 | [Benchmark와 판정](docs/08-evaluation.md) | transfer, rapid learning, ABA, uncertainty, compute |
+| [Ali 미팅 이후 A/B/C 비교 실험](research/2026-11-22-ali-abc-evaluation.md) | Transformer / HOPE(Sleep) / Melete의 같은 정보·목표 성능·turn 비용·장기 유지, 구조 전이와 발견 평가. 사용자 원문·문헌 확인·제안·NOT RUN 구분 |
 | [09-roadmap.md](docs/09-roadmap.md) | 점진적 해상도 로드맵: P1 MVP(실제 `fcl` CLI·소형 retrofit 모델·규칙형 controller v0·대조군·망각/표면 평가)부터 P5까지, capability × phase 표, 결과 등급과 상한, 열린 결정 D-01–D-14. 2026-11-18 개정으로 P0(NP)·P6(ET)와 새 결정(D-15 이후)이 보충됐다 |
 | [Self-evolution와 운영 정책](docs/10-evolution-policy.md) | 독립 evaluator, 후보 계보, 예산, 승격, 실패 기록 |
 | [후속 가설과 미해결 질문](docs/11-research-agenda.md) | pretraining/alignment, schema 분화, insight |

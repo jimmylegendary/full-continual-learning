@@ -65,6 +65,10 @@ S-HAI의 다중 grounding을 다중 schema 생성으로, Spens의 narrative Mist
 
 [catalog.tsv](catalog.tsv) 끝의 33행(S36–S46·A19–A38·E05·N32)은 2026-11-17 델타 설계 반영 감사가 추가한 후보다. 11-16~17 Sleep-time 선별 논문, 11-14·11-16 보충 참고문헌 파일에는 있었으나 catalog에 없던 논문, 사용자 공유 링크 카드에서 확정한 논문이다. 확인 수준은 각 행의 status를 따르며 전문 정독(fulltext-read)이 아니다. 사용자 공유 링크에서 확정한 5건은 읽은 범위와 함께 [shared-links-2026-11-17.md](shared-links-2026-11-17.md)에 있다. 영향 가설 기록의 링크 전용 7건(가소성 손실·Hopfield·Attention·MoE·CoT·OpenAI 글·Levels of AGI)은 이번에 넣지 않았다(결정 대기).
 
+## 2026-11-22 A/B/C 비교 실험 보완
+
+[abc-evaluation-2026-11-22.md](abc-evaluation-2026-11-22.md)는 Sleep의 Transformer 적용·비용 비교, TEM의 구조 전이 평가, DiscoverPhysics의 trajectory 기반 법칙 검증, LLM-SRBench의 암기 통제를 연결한다. 각 출처의 실제 확인 범위를 명시하며 전체 재현을 뜻하지 않는다. 새 catalog 항목 S161은 DiscoverPhysics다. 기존 후보 메타데이터와 역사적 ET 모델의 감사 상태를 이번 읽기로 소급 변경하지 않는다.
+
 ## 재생성
 
 `python tools/export_references.py`는 TSV에서 JSON/BibTeX를 생성한다. TSV의 일부 제목은 PDF의 설명형 표제이며 `note`에서 이를 명시한다. 저자·DOI·venue를 확실히 모르면 가짜 metadata를 넣지 않는다. 생성 BibTeX는 문헌관리 초안으로, 출판 제출 전 공식 citation과 대조해야 한다.

@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "repository": "jimmylegendary/full-continual-learning",
-  "sync_date": "2026-11-18",
+  "sync_date": "2026-11-22",
   "timezone": "Asia/Seoul",
   "base_commit": "aa1413d42904a937041d676fd8406b3bb5f7b0fd",
   "source_scope": "Accessible current conversation and completed 2026-11-16 Sleep-time Compute automation result; not a complete export of prior/future chats",
@@ -161,13 +161,30 @@
       "source": "2026-11-18 GitHub main ef855141e92965e1f4b6d1e468c7de438ae51cc9; complete recursive repository tree and all 69 Markdown files; targeted recent-conversation search",
       "evidence": "Detected 399 remaining worktree-absolute Markdown links in 36 files after the previous 605-link repair. Rewrote only link destinations as repository-relative paths; every rewritten destination exists in the GitHub recursive tree. No affected links inside fenced source/user text. No newly accessible FCL research content found.",
       "caveat": "Documentation-link repair only; existing user statements, research claims and original discussion history unchanged. External URLs, fragment anchors and the complete repository validator were not independently verified; no model implementation, GPU experiments, cloud spending, deployment or external messages."
+    },
+    {
+      "id": "ali-abc-comparison-2026-11-22",
+      "status": "USER_request_documented_PROPOSAL_NOT_RUN",
+      "path": "research/2026-11-22-ali-abc-evaluation.md",
+      "related_paths": [
+        "README.md",
+        "docs/08-evaluation.md",
+        "docs/17-einstein-test.md",
+        "references/README.md",
+        "references/catalog.tsv",
+        "references/abc-evaluation-2026-11-22.md",
+        "sources/sync/2026-11-22-discussion.md"
+      ],
+      "source": "Directly visible current user message reporting Ali meeting critique and proposing Transformer / HOPE(Sleep) / Melete A Basic, B Schema, C Bias experiments; original text retained verbatim.",
+      "evidence": "Research protocol proposal covering matched source experience, extra supervision and compute/storage accounting, Q(N), N*(q), C*(q), long-horizon retention, structural transfer and controlled discovery. Existing historical ET/timecapsule model design and P0(NP) scope preserved.",
+      "caveat": "No model implementation, benchmark run, training, GPU/cloud spending, model-weight download, deployment or external messages. Proposed numerical gates remain unset; no empirical Melete efficacy claims. Meeting date not supplied."
     }
   ],
   "source_excerpts": "sources/sync/2026-11-16-discussion.md",
   "reference_supplement": "references/schema-lifecycle-2026-11-16.md",
   "validation_scope": {
-    "repository_wide_validator": "not_run: local git clone failed due to DNS resolution",
-    "literature_reverification": "not_run",
+    "repository_wide_validator": "PASS 2026-11-22: python tools/validate_docs.py on a complete local clone of main plus this documentation patch; scope is local links, TSV format/IDs, JSON and Python syntax only. Earlier incremental NOT RUN entries remain historical.",
+    "literature_reverification": "Selected primary sources rechecked on 2026-11-22 as recorded in references/abc-evaluation-2026-11-22.md; no corpus/model audit or full literature/implementation reproduction.",
     "model_implementation_or_experiments": "not_run",
     "publication_verification": "verify remote ref, tree and changed paths after commit; this manifest does not self-certify publication",
     "primary_source_metadata_check": "8 official arXiv landing pages inspected on 2026-11-16; titles/authors/version/abstract verified; no full text read or experiments",
@@ -215,6 +232,35 @@
       "external_urls_and_fragment_anchors": "NOT EXHAUSTIVELY VALIDATED",
       "new_research_conversation": "No new accessible content after the already-published 2026-11-18 blueprint/ET work and the 605-link repair; personal-context search did not recover new discussion",
       "model_implementation_or_experiments": "NOT RUN"
+    },
+    "incremental_ali_abc_2026_11_22": {
+      "base_commit": "e8366c9d5b88d953b6e95911548a481d904b6eb3",
+      "source_verification": "Current user message and existing FCL ET source definition; Sleep v2 and DiscoverPhysics v2 selected sections; TEM indexed primary-source excerpts (direct open blocked); Transformer arXiv and LLM-SRBench PMLR abstracts.",
+      "repository_validator": {
+        "command": "python tools/validate_docs.py",
+        "exit_code": 0,
+        "files_scanned": 222,
+        "markdown_files": 72,
+        "local_links_checked": 1137,
+        "reference_records": 297,
+        "errors": [],
+        "scope": "Offline local links, reference format, JSON and Python syntax only; external URLs, anchors, scientific claims and model efficacy are not exhaustively validated."
+      },
+      "existing_unresolved_reference_ids": [
+        "N29",
+        "N30",
+        "N31",
+        "S47",
+        "S48",
+        "S49",
+        "S50",
+        "N39",
+        "S156",
+        "S157"
+      ],
+      "new_reference": "S161 DiscoverPhysics; prior metadata statuses preserved",
+      "model_implementation_or_experiments": "NOT RUN",
+      "publication_verification": "After updating the branch, verify the remote ref and changed file blob identities before reporting publication; this manifest cannot certify its own final commit hash."
     }
   },
   "coverage_limits": [
@@ -225,7 +271,8 @@
     "Independent Sleep-time report was accessible only via topical prior-conversation excerpt, not a complete report; 2 additional related works cross-checked independently.",
     "2026-11-17 additional selection derived from partially accessible independent weekly report; SoMem and Recursive memory preprints were first published 2026-11-09/10, not new 2026-11-17 releases.",
     "Two user messages formerly unavailable as verbatim source for docs/13 and the impact note are now directly preserved; this is not a full chat export, and their per-message timestamps are unavailable.",
-    "2026-11-18 follow-up scanned accessible current and prior discussions but found no additional research changes after the published blueprint/ET design. Documentation repair is not a scientific update."
+    "2026-11-18 follow-up scanned accessible current and prior discussions but found no additional research changes after the published blueprint/ET design. Documentation repair is not a scientific update.",
+    "2026-11-22 records the directly visible Ali/A/B/C user message and selected-source review only. Existing historical timecapsule candidate weights/corpora and prior numeric research claims were not re-audited. A/B/C is proposed experimental design, not executed evidence."
   ],
   "source_reports": [
     {
@@ -236,5 +283,7 @@
       "access": "completed automation latest_result, partially truncated",
       "selected_scope": "8 papers with FCL-relevant findings; not an exhaustive source reproduction"
     }
-  ]
+  ],
+  "latest_incremental_base_commit": "e8366c9d5b88d953b6e95911548a481d904b6eb3",
+  "latest_source_excerpt": "sources/sync/2026-11-22-discussion.md"
 }

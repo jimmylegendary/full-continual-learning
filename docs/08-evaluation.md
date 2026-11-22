@@ -1,5 +1,7 @@
 # 08. 검증 체계: schema가 미래 학습과 계산을 바꾸는가
 
+**2026-11-22 보완 (PROPOSAL / NOT RUN):** Ali 미팅에서 사용자가 제시한 Transformer / HOPE(Sleep) / Melete의 A Basic·B Schema·C Bias 비교를 [A/B/C 연구 설계](../research/2026-11-22-ali-abc-evaluation.md)에 구체화했다. 같은 원천 경험·총 계산·저장 장부, 목표 품질까지의 N*·C*, turn 및 생애 비용, 공통 horizon의 유지, 인출과 구조 전이의 구분, 기존 ET와의 연결을 담는다. 아래 H-SAMPLE/H-COMPUTE와 기존 gate의 수치·승인 상태를 바꾸거나 모델 실행 결과를 추가한 것은 아니다. 직접 확보한 [사용자 원문](../sources/sync/2026-11-22-discussion.md)과 [문헌 확인 범위](../references/abc-evaluation-2026-11-22.md)를 따로 보존한다.
+
 ## 1. 세 종류의 성공을 분리
 
 **Contract:** 인과적 입력, state, 재생, 누수 방지, budget, source 계보가 맞는가.
