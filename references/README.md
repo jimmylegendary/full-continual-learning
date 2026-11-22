@@ -72,3 +72,7 @@ S-HAI의 다중 grounding을 다중 schema 생성으로, Spens의 narrative Mist
 ## 재생성
 
 `python tools/export_references.py`는 TSV에서 JSON/BibTeX를 생성한다. TSV의 일부 제목은 PDF의 설명형 표제이며 `note`에서 이를 명시한다. 저자·DOI·venue를 확실히 모르면 가짜 metadata를 넣지 않는다. 생성 BibTeX는 문헌관리 초안으로, 출판 제출 전 공식 citation과 대조해야 한다.
+
+## 2026-11-23 주간 보고의 선별 원문 대조
+
+신규 참고문헌 S162–S165·A72–A75·E15–E16의 원문 링크·최초 공개/개정/학술지 발행일·읽은 범위와 FCL에 직접 관련된 이유는 [2026-11-23-sbl-sleep-sources.md](2026-11-23-sbl-sleep-sources.md)에 있다. `metadata-checked`는 초록·선택 본문을 확인했다는 뜻이지 원문 정독 또는 효용 재현이 아니다.

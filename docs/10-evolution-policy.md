@@ -141,3 +141,8 @@ HyperAgents [E04]: task/meta agent 개선 연구.
 **OPEN:** 이 감사 시점(2026-11-12)에 이 저장소에는 기술 가이드, webapp, 논문이 없다. 시각화 백서는 같은 날 이 감사 결과를 입력으로 만들었다([README.md](../whitepaper/README.md), 웹 https://fcl-system-one-whitepaper.vercel.app). B15의 논문이 Melete 신경망 논문인지 FCL 논문인지, B16의 superpowers 사용 지시를 FCL 작업에도 적용하는지는 사용자 확인이 필요하다.
 
 **OPEN (2026-11-17 검토):** 2026-11-16에 사용자는 "ali에게 joint paper에 대한 상세한 내용을 제안할거라서" 내용과 흐름을 만들어야 한다고 했다([2026-11-16-discussion.md](../sources/sync/2026-11-16-discussion.md), **USER**). 이 논문이 위 B15의 논문과 같은 것인지는 사용자가 말하지 않았다. 별개라면 Melete 논문·FCL 논문·공동논문이 후보가 되며 무엇이 주 논문인지는 사용자 확인이 필요하다. 공동논문의 주장은 달성한 gate의 범위로 제한하며([09-roadmap.md](09-roadmap.md) §3), 현재 등급은 0(구현·학습 0회)이라 제안문은 설계 단계 문구로 쓴다. 제안문 초안의 상한 점검은 [14-schema-lifecycle-crud-and-joint-paper.md](14-schema-lifecycle-crud-and-joint-paper.md) §7의 주석을 본다. 외부 발송과 연락은 이 저장소 문서화의 범위가 아니다.
+
+
+## 9. 2026-11-23 self-evolution 신뢰성 보충 (PROPOSAL / OPEN / NOT RUN)
+
+독립 Sleep-time 주간 보고에서 선별한 [Resolution Hypothesis](https://arxiv.org/abs/2611.23068) 저자 초록은 7개 진화 방법·6개 모델·1,000만+ LLM 호출 조건에서 **candidate가 존재해도 평가 잡음으로 우열을 판별하기 어려움**을 보고한다. 이는 [기존 evaluator/rollback 정책](../docs/08-evaluation.md)의 중요성을 높일 뿐 FCL 실험 결과가 아니다. 후보를 생성·점수화·승격하는 세 사건을 분리하며, 사전 등록한 paired 반복/효과 크기·보호 cohort 회귀/독립 confirmation이 없는 경우 승격을 보류한다. 오류의 원인이 잘못된 skill 내용인지, 안내를 따르지 않았는지 구별하는 [SkillPlumber](https://arxiv.org/abs/2611.25429)의 'follow / not-follow / uncovered'도 외부 자연어 skill의 **인접** 진단 기법으로만 둔다. 상세 출처: [선별 Sleep-time 기록](../research/2026-11-23-sleep-time-melete-selected.md). 임계값 확정·외부 발송·구현·GPU 실행 **NOT RUN**.

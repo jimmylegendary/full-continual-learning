@@ -122,3 +122,8 @@
 ## 이상 청사진·비모수 POC·단계별 계획·아인슈타인 테스트 설계 — 2026-11-18
 
 사용자 요청(원문과 이번 작업의 경계는 [2026-11-18-discussion.md](sources/sync/2026-11-18-discussion.md))에 따라 이상 청사진, 학습 없는 비모수 POC(P0(NP)), 단계별 구현·논문 계획, runcrate 실험 계획, 아인슈타인 테스트(경험 조건부 발견 시험) 설계를 문서로 썼다. 위 읽는 순서 표의 docs/16–19와 조사 기록, 개정한 [09-roadmap.md](docs/09-roadmap.md)·[15-compute-plan.md](docs/15-compute-plan.md)가 그 결과다. 이번 작업은 문서와 계획의 변경이다. 구현, 모델 학습, GPU 실행, 클라우드 인스턴스 생성, 비용 지출, 백서 재생성, 외부 발송은 0회다. 새 설계 문장은 PROPOSAL·OPEN이고 수치는 ESTIMATE / NOT RUN이다. 백서는 갱신하지 않았으므로 2026-11-12 기준이다.
+
+
+## 2026-11-23 독립 SBL / Sleep-time 보고의 FCL 관련 항목
+
+[2026-11-23 SBL 선별 검토](research/2026-11-23-sbl-weekly-synthesis.md)와 [Sleep-time 직접 관련 선별 기록](research/2026-11-23-sleep-time-melete-selected.md)을 [원문·확인 범위](references/2026-11-23-sbl-sleep-sources.md)에 연결했다. 11/17 TPAMI hybrid 게재와 이전 연구 재발견을 구별하며, scaffold의 초기 경험 이력 편향, SchemaMem의 유지–최적화 비용, session-ID가 필요한 Schema-LoRA 기준선, 원본 보존 대비 검증된 압축과 self-evolution 평가 잡음을 [Ali A/B/C 비교](research/2026-11-22-ali-abc-evaluation.md)의 **PROPOSAL / OPEN** 대조 항목으로만 연결한다. **NOT RUN:** 모델/GPU 실행이나 연구 효용 확인은 수행하지 않았다. 기존 whitepaper는 2026-11-12 기준이다.

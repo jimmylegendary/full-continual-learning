@@ -257,3 +257,16 @@ Dev는 상세 실패를 제공, selection은 사용 횟수와 feedback 제한, c
 **LITERATURE (CHU25·ELDER26·KUMAR26·SWAMI23, 원문 검토 §8, W7-remediation.md:317-319):** 읽은 논문에서도 ±와 괄호값의 정의·분모 누락이 반복됐다. CHU25는 정확도 정의와 93.20의 분모가, ELDER26은 ±의 정의와 978 대 888 clips가, KUMAR26은 본문 ±의 정의가 없고, SWAMI23은 같은 괄호 표기가 표에 따라 95% 신뢰구간 폭(Table 1·4·7)이거나 표준오차(Table 5·6·8·9)다.
 
 **PROPOSAL:** 모든 ±와 괄호값에 정의(SD/SE/95% CI)와 독립 단위(seed/world/query)를 적고, 그림에서 읽은 값은 읽은 값으로 표시하며, 문헌 수치를 인용할 때는 위치와 분모를 함께 적는다.
+
+
+## 10. 2026-11-23 SBL/Sleep-time 추가 대조 후보 (PROPOSAL / OPEN / NOT RUN)
+
+독립 주간 조사 선별 기록 [SBL](../research/2026-11-23-sbl-weekly-synthesis.md), [Sleep-time](../research/2026-11-23-sleep-time-melete-selected.md)을 기존 Ali [A/B/C 비교](../research/2026-11-22-ali-abc-evaluation.md)에 연결한다. 새로운 F-family 번호나 통과 gate를 확정하는 개정이 아니다.
+
+- **초기 경험의 방향 편향**: H_a/H_b의 초기 경험만 다르게 하고 동일한 후속 사례·같은 새 관측과 계산 예산을 준다. 관측한 representation-drift subspace의 overlap, 실제 unseen 구조 공유 사례 학습량과 비용, negative transfer를 **서로 다른 지표**로 보고한다. 초기 scaffold 내부 강제 업데이트와 random-subspace 대조를 같이 둔다. [Deng et al.](https://arxiv.org/abs/2609.36081)은 부분공간 선호가 항상 더 빠른 학습을 뜻하지 않는다는 반례를 보고했다.
+- **지연 상태 유지 vs 학습비용**: 기존 F05/F10/F24에 기록값 유지·수정값 복원·미기록 주소 기본값 오류를 분리한다. [SchemaMem](https://arxiv.org/abs/2609.33436)의 외부 보고는 retention 개선과 optimization overhead가 동시에 나타남을 보여, N*(q)뿐 아니라 training steps/FLOPs·storage·latency를 필수 보고한다.
+- **Task ID 없는 활성화**: Shared Schema-LoRA/Session-LoRA의 **oracle session ID 제공** 진단과, 관측만으로 expert 선택하는 실제 Melete 경로를 구별한다. [Dong et al.](https://doi.org/10.3390/sym18060953)의 continual KGC는 session-aware 실험이지 자율 schema 선택의 입증이 아니다.
+- **원본 vs 검증된 압축**: [GrepMem](https://arxiv.org/abs/2611.25123) append-only 원본 검색을 강한 baseline으로 두고, [MemFolder](https://arxiv.org/abs/2611.26427)식 파생 기억의 복구·오적용·미래 query 비용을 비교한다. 외부 text memory를 neural continuous schema로 주장하지 않는다.
+- **Self-evolution의 평가 resolution**: 후보의 수많은 한 번성 이득을 승격하지 않고 paired seed/world 반복·독립 fresh confirmation·보호 cohort regression을 기록한다. [Resolution Hypothesis](https://arxiv.org/abs/2611.23068)에서 보고한 잡음으로 순위 결정이 불가하면 INCONCLUSIVE이며 이전 후보를 보존한다.
+
+위는 실험 설계 보완 제안일 뿐 측정/승인된 gate가 아니다. 구현·학습·모델 실험 **NOT RUN**.
