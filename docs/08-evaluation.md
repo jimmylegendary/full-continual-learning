@@ -274,3 +274,7 @@ Dev는 상세 실패를 제공, selection은 사용 횟수와 feedback 제한, c
 ### 10.1 Recurrence 비용 분리 보충 (2026-11-24; PROPOSAL / OPEN / NOT RUN)
 
 [원문 보충 검토](../research/2026-11-24-recurrence-cost-controls.md)의 두 연구를 A Basic의 추가 진단 후보로 둔다. Token-axis latent feedback과 schema CRUD의 factorial 대조, depth-axis full/early/late pass의 matched-quality decode 대조를 분리하고, cache completion·SFT·verification·재노출 비용을 포함한다. 단일 통합 System ONE과 기존 MVP 단계는 그대로 유지하며, 수치 gate나 실행을 승인한 기록이 아니다.
+
+### 10.2 Objective-only 및 routing 대조 보충 (2026-11-24; PROPOSAL / OPEN / NOT RUN)
+
+[NextLat v6와 AnyS1의 보충 검토](../research/2026-11-24-objective-and-routing-controls.md)에 따라 동일 Transformer의 NTP vs next-latent auxiliary objective를 A/B 진단군 후보로 둔다. Extra supervision/optimizer/latent dynamics FLOPs와 목표 품질·unseen 구조 전이를 함께 비교한다. AnyS1의 외부 dual-model workflow 절감은 schema CRUD 효과가 아니므로, 통합 Melete 내부의 고정 깊이/조건부 깊이·활성화와 calibration/fallback을 분리하는 참고 사례로만 활용한다. Offline compile/학습비와 online 비용을 따로 계산한다. 기존 주 비교, 단계별 MVP, 사용자 확정 방향 및 수치 gate 상태는 그대로다.

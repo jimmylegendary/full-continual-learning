@@ -29,3 +29,14 @@
 | S167 | [Jin et al., Late Entry in Looped Language Models](https://arxiv.org/abs/2611.24576v1), v1 2026-11-18 | 11/24 arXiv 초록, HTML 그림 1 설명, 실험·한계·concurrency 부록 발췌. Depth recurrence decode, not continual schema |
 
 두 논문 모두 기존 주간 보고에서 재선별한 preprint이며, 새 발표 또는 Melete 실험 결과가 아니다.
+
+## 2026-11-24 보충 — objective-only와 외부 routing 비교
+
+[보충 검토](../research/2026-11-24-objective-and-routing-controls.md)의 원문. 11/23 보고 재선별이며 이전 범위를 소급 수정하지 않는다.
+
+| ID | 원문 / 판본 | 확인 범위 |
+|---|---|---|
+| S168 | [Teoh et al., Next-Latent Prediction Transformers Learn Compact World Models](https://arxiv.org/abs/2511.05963v6), v1 2025-11-08, v6 **2026-11-18** | arXiv metadata/abstract 및 [HTML](https://arxiv.org/html/2511.05963v6) §3.2–3.3/§4.4/§5.1/§6/F 일부. NeurIPS 2026 채택은 저자 Comments. [코드](https://github.com/JaydenTeoh/NextLat) 원문 링크, 미실행. Objective-only adjacent, not continual schema |
+| S169 | [Li et al., Thinking Fast, Anywhere: One System-1 for the Decision Points of Any Agent Workflow](https://arxiv.org/abs/2611.23751v1), v1 2026-11-18 | arXiv abstract 및 [HTML](https://arxiv.org/html/2611.23751v1) §4.1–4.2/표 2 발췌; [프로젝트](https://middle-chunjie.github.io/AnyS1/). External dual-system workflow comparator, not System ONE design or neural schema CRUD |
+
+원문 숫자는 논문 조건의 저자 보고. 코드·모델 실행, 완전한 전문/부록 검토 및 재현은 NOT RUN.

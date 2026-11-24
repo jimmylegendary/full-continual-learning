@@ -130,3 +130,7 @@
 
 ### 2026-11-24 recurrence 비용 통제 보충
 [두 recurrent architecture 원문 보충 검토](research/2026-11-24-recurrence-cost-controls.md)는 11/23 Sleep-time 보고의 미포함 항목을 11/24 공식 초록·선택 본문에서 확인한 기록이다. Token feedback의 정보–계산 trade-off와 loop late entry의 decode 비용을 Ali A의 독립 대조 후보로 연결한다. **PROPOSAL / OPEN / NOT RUN**; 지속 schema 학습 효능이나 설계 승인이 아니다.
+
+### 2026-11-24 objective-only 및 routing 통제 보충
+
+[NextLat v6 / AnyS1 검토](research/2026-11-24-objective-and-routing-controls.md)는 기존 11/23 보고의 누락된 비교 기준을 선별한 기록이다. NextLat의 11/18 개정 확인과 auxiliary loss 대조, AnyS1의 외부 workflow 컴파일/위임 효과 분리를 기존 Ali A/B에 연결한다. **PROPOSAL / OPEN / NOT RUN**; 단일 통합 System ONE 방향은 변경하지 않는다.
