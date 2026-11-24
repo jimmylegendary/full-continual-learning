@@ -40,3 +40,11 @@
 | S169 | [Li et al., Thinking Fast, Anywhere: One System-1 for the Decision Points of Any Agent Workflow](https://arxiv.org/abs/2611.23751v1), v1 2026-11-18 | arXiv abstract 및 [HTML](https://arxiv.org/html/2611.23751v1) §4.1–4.2/표 2 발췌; [프로젝트](https://middle-chunjie.github.io/AnyS1/). External dual-system workflow comparator, not System ONE design or neural schema CRUD |
 
 원문 숫자는 논문 조건의 저자 보고. 코드·모델 실행, 완전한 전문/부록 검토 및 재현은 NOT RUN.
+
+## 2026-11-24 보충 — 공유 기억/조건부 Read
+
+| ID | 원문 / 판본 | 확인 범위 |
+|---|---|---|
+| S170 | [Chung & Du, Chorus: Shared N-gram Embeddings with Layer-wise Adaptation](https://arxiv.org/abs/2611.23386v2), v1 2026-11-17, v2 2026-11-19 | 11/24 arXiv abstract/version 및 [HTML](https://arxiv.org/html/2611.23386v2) §1, §2 lookup/layer-wise adaptation, §3.2 Table 2, Appendix D 발췌; [저자 코드 링크](https://github.com/dualverse-ai/chorus), 미실행. Discrete lexical address + continuous embedding, shared conditional read; not continual schema |
+
+[연구 비교 제안](../research/2026-11-24-shared-schema-read-control.md). 과거 11/23 보고 원문은 이번 재조회에서 404; 대화 검색 요약에서 제목 회수, 수치는 위 공식 원문에서 확인한 저자 보고다. 기존 보고의 원문/읽기 범위를 소급 수정하지 않는다.

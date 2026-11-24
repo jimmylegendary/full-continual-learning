@@ -278,3 +278,7 @@ Dev는 상세 실패를 제공, selection은 사용 횟수와 feedback 제한, c
 ### 10.2 Objective-only 및 routing 대조 보충 (2026-11-24; PROPOSAL / OPEN / NOT RUN)
 
 [NextLat v6와 AnyS1의 보충 검토](../research/2026-11-24-objective-and-routing-controls.md)에 따라 동일 Transformer의 NTP vs next-latent auxiliary objective를 A/B 진단군 후보로 둔다. Extra supervision/optimizer/latent dynamics FLOPs와 목표 품질·unseen 구조 전이를 함께 비교한다. AnyS1의 외부 dual-model workflow 절감은 schema CRUD 효과가 아니므로, 통합 Melete 내부의 고정 깊이/조건부 깊이·활성화와 calibration/fallback을 분리하는 참고 사례로만 활용한다. Offline compile/학습비와 online 비용을 따로 계산한다. 기존 주 비교, 단계별 MVP, 사용자 확정 방향 및 수치 gate 상태는 그대로다.
+
+### 10.3 공유 기억과 조건부 Read 대조 (2026-11-24; PROPOSAL / OPEN / NOT RUN)
+
+[Chorus v2 보충 검토](../research/2026-11-24-shared-schema-read-control.md)에서 착안해 같은 expert 내용의 depth별 저장 vs 공유 고정 read vs 공유 조건부 read를 비교 후보로 둔다. 별도 저장·read parameter·optimizer·offload/traffic·online/Sleep FLOPs를 분리하고, Ali B에서는 어휘 교체와 관계 반전으로 lexical 회상과 구조 전이를 구분한다. 기존 CRUD 실험과 수치 gate를 대체하지 않는다.

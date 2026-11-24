@@ -134,3 +134,7 @@
 ### 2026-11-24 objective-only 및 routing 통제 보충
 
 [NextLat v6 / AnyS1 검토](research/2026-11-24-objective-and-routing-controls.md)는 기존 11/23 보고의 누락된 비교 기준을 선별한 기록이다. NextLat의 11/18 개정 확인과 auxiliary loss 대조, AnyS1의 외부 workflow 컴파일/위임 효과 분리를 기존 Ali A/B에 연결한다. **PROPOSAL / OPEN / NOT RUN**; 단일 통합 System ONE 방향은 변경하지 않는다.
+
+### 2026-11-24 공유 기억/조건부 Read 대조 보충
+
+[Chorus v2 검토](research/2026-11-24-shared-schema-read-control.md)는 11/23 Sleep-time 보고의 접근 가능한 요약에서 회수한 인접 연구를 원문과 대조한 기록이다. 공유 expert 저장량·context/depth-conditioned read·optimizer 비용의 독립 기여를 분리하는 **PROPOSAL / OPEN / NOT RUN**이다.

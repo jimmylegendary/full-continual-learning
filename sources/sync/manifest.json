@@ -235,6 +235,21 @@
       "source": "2026-11-23 SBL report cf2a13f1-5a60-832b-a5f2-ae489225b19e complete and Sleep-time report ba80ff6c-c93c-8332-b32f-968bbee0c1c6 accessible portion re-read; targeted recent conversation search; no new direct USER correction",
       "evidence": "NextLat official arXiv v6 revision 2026-11-18, AnyS1 v1 2026-11-18; selected HTML and abstract checked 2026-11-24; S168/S169; objective-only and external routing comparison proposals",
       "caveat": "Sleep-time result tail truncated; no hardware-only migration, no change to unified System ONE, no new model design decision, implementation, training or experimental evidence"
+    },
+    {
+      "id": "weekly-shared-schema-read-control-2026-11-24",
+      "status": "archived_report_summary_title_official_primary_checked_PROPOSAL_NOT_RUN",
+      "path": "research/2026-11-24-shared-schema-read-control.md",
+      "reference_path": "references/2026-11-23-sbl-sleep-sources.md",
+      "related_paths": [
+        "README.md",
+        "docs/08-evaluation.md",
+        "docs/14-schema-lifecycle-crud-and-joint-paper.md",
+        "references/catalog.tsv"
+      ],
+      "source": "2026-11-23 Sleep-time weekly report title recovered from targeted conversation search summary; direct latest-result retrieval returned 404 in this run; no new direct USER correction recovered",
+      "evidence": "Chorus v1 2026-11-17 v2 2026-11-19; arXiv metadata, abstract and selected HTML sections checked 2026-11-24; S170; shared conditional read and budget control proposal",
+      "caveat": "Not verbatim report recovery; no full-text audit or code execution; hardware-only and diffusion-only entries not migrated; no architecture decision or model experiment"
     }
   ],
   "source_excerpts": "sources/sync/2026-11-16-discussion.md",
@@ -341,6 +356,13 @@
       "document_checks": "Manifest JSON, unique item IDs and referenced paths; catalog 8-column and unique IDs; changed Markdown relative link paths against recursive remote tree; full validator NOT RUN",
       "model_implementation_or_experiments": "NOT RUN",
       "publication": "Verify remote main and changed file contents after non-force ref update"
+    },
+    "incremental_shared_read_2026_11_24": {
+      "base_commit": "cf73cf27fcf4f7b8c9123badf6f9fd5d3a5f11a3",
+      "source_verification": "Chorus official arXiv v2 metadata/abstract, selected HTML sections; reported numbers not independently reproduced",
+      "document_checks": "Manifest JSON and unique IDs, referenced paths, catalog 8-column and unique IDs, changed Markdown relative paths against recursive remote tree; full validator NOT RUN",
+      "model_implementation_or_experiments": "NOT RUN",
+      "publication": "Verify remote ref and changed file contents after non-force ref update"
     }
   },
   "coverage_limits": [
@@ -355,7 +377,8 @@
     "2026-11-22 records the directly visible Ali/A/B/C user message and selected-source review only. Existing historical timecapsule candidate weights/corpora and prior numeric research claims were not re-audited. A/B/C is proposed experimental design, not executed evidence.",
     "2026-11-23 new weekly reports were inspected. Only FCL-relevant selected scientific/agent-memory items imported; older preprints not presented as fresh releases; no independent FCL efficacy test or exact full conversation export.",
     "2026-11-24 added two previously unimported recurrence studies from the same 2026-11-23 report; Sleep-time report tail truncated, no reconstruction; no new direct user correction or neural schema efficacy evidence.",
-    "2026-11-24 additional SBL/Sleep-time selection: NextLat v6 and AnyS1 v1; latter external comparator only; partial Sleep-time result, no new USER correction or model efficacy evidence."
+    "2026-11-24 additional SBL/Sleep-time selection: NextLat v6 and AnyS1 v1; latter external comparator only; partial Sleep-time result, no new USER correction or model efficacy evidence.",
+    "2026-11-24 shared-read selection: independent weekly result retrieval returned 404; title from accessible historical search summary only. Primary Chorus v2 source checked separately; no inaccessible report text reconstructed."
   ],
   "source_reports": [
     {
@@ -383,6 +406,6 @@
       "selected_scope": "Six directly relevant agent-memory/consolidation/evaluation works; other HW topics intentionally not imported"
     }
   ],
-  "latest_incremental_base_commit": "fedb01c5b97e43517f10c33d8da7641e9b439681",
+  "latest_incremental_base_commit": "cf73cf27fcf4f7b8c9123badf6f9fd5d3a5f11a3",
   "latest_source_excerpt": "sources/sync/2026-11-22-discussion.md"
 }
