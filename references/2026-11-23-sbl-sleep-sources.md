@@ -18,3 +18,14 @@
 **다른 보고의 범위:** Sleep-time의 LaFlash·CAIMS 등 HBF/serving 논문은 이번 neural SBL 동기화에 이관하지 않았다. 직접 관련 판단이 새로 생기면 출처를 유지한 별도 컴퓨트 노트에서 검토한다. 기존 SBL bibliography/TEM/CSCG/S-HAI의 분류와 읽기 범위는 바꾸지 않았다.
 
 **원문 확인:** 2026-11-23에 공식 arXiv landing/abstract 및 선택 HTML, PubMed TPAMI metadata/abstract, Symmetry publisher 본문 일부를 확인. 학술지 DOI full text 접근 실패나 arXiv 이전 판본을 2026-11 신규 원문으로 오인하지 않는다. 원저자 수치·논문 상태의 독립 실험 검증 없음.
+
+## 2026-11-24 보충 — 이전 Sleep-time 보고의 recurrent architecture 두 편
+
+기존 10개 선별 범위에 대한 과거 기록은 유지한다. 추가 근거 및 읽은 범위는 [recurrence 비용 통제](../research/2026-11-24-recurrence-cost-controls.md) 참조.
+
+| ID | 원문 / 공개일 | 확인 범위 |
+|---|---|---|
+| S166 | [Huang et al., Latent Feedback Is a Compute and Data Amplifier](https://arxiv.org/abs/2611.20404v1), v1 2026-11-16 | 11/24 arXiv 초록 및 HTML §1–4, §5 일부·표 발췌; [저자 코드 링크](https://github.com/ifm-ai/LoRM), 실행 안 함. Token recurrence, not continual schema |
+| S167 | [Jin et al., Late Entry in Looped Language Models](https://arxiv.org/abs/2611.24576v1), v1 2026-11-18 | 11/24 arXiv 초록, HTML 그림 1 설명, 실험·한계·concurrency 부록 발췌. Depth recurrence decode, not continual schema |
+
+두 논문 모두 기존 주간 보고에서 재선별한 preprint이며, 새 발표 또는 Melete 실험 결과가 아니다.

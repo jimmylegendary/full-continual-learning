@@ -127,3 +127,6 @@
 ## 2026-11-23 독립 SBL / Sleep-time 보고의 FCL 관련 항목
 
 [2026-11-23 SBL 선별 검토](research/2026-11-23-sbl-weekly-synthesis.md)와 [Sleep-time 직접 관련 선별 기록](research/2026-11-23-sleep-time-melete-selected.md)을 [원문·확인 범위](references/2026-11-23-sbl-sleep-sources.md)에 연결했다. 11/17 TPAMI hybrid 게재와 이전 연구 재발견을 구별하며, scaffold의 초기 경험 이력 편향, SchemaMem의 유지–최적화 비용, session-ID가 필요한 Schema-LoRA 기준선, 원본 보존 대비 검증된 압축과 self-evolution 평가 잡음을 [Ali A/B/C 비교](research/2026-11-22-ali-abc-evaluation.md)의 **PROPOSAL / OPEN** 대조 항목으로만 연결한다. **NOT RUN:** 모델/GPU 실행이나 연구 효용 확인은 수행하지 않았다. 기존 whitepaper는 2026-11-12 기준이다.
+
+### 2026-11-24 recurrence 비용 통제 보충
+[두 recurrent architecture 원문 보충 검토](research/2026-11-24-recurrence-cost-controls.md)는 11/23 Sleep-time 보고의 미포함 항목을 11/24 공식 초록·선택 본문에서 확인한 기록이다. Token feedback의 정보–계산 trade-off와 loop late entry의 decode 비용을 Ali A의 독립 대조 후보로 연결한다. **PROPOSAL / OPEN / NOT RUN**; 지속 schema 학습 효능이나 설계 승인이 아니다.

@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "repository": "jimmylegendary/full-continual-learning",
-  "sync_date": "2026-11-23",
+  "sync_date": "2026-11-24",
   "timezone": "Asia/Seoul",
   "base_commit": "aa1413d42904a937041d676fd8406b3bb5f7b0fd",
   "source_scope": "Accessible current conversation and completed 2026-11-16 Sleep-time Compute automation result; not a complete export of prior/future chats",
@@ -207,6 +207,20 @@
       "source": "Independent Sleep-time Compute 주간 동향 run ba80ff6c-c93c-8332-b32f-968bbee0c1c6, completed 2026-11-23; accessible result text",
       "evidence": "6 papers selected for evidence/provenance, text memory baseline, replay cost and evolution quality; official arXiv landing abstracts rechecked 2026-11-23",
       "caveat": "No wholesale migration of HAT/HBF/other projects. External text agent memory, RL distillation and self-evolution evaluation are NOT direct continuous neural schema efficacy. NOT RUN."
+    },
+    {
+      "id": "sleep-time-recurrence-cost-controls-2026-11-24",
+      "status": "previous_weekly_report_additional_selection_official_primary_checked",
+      "path": "research/2026-11-24-recurrence-cost-controls.md",
+      "reference_path": "references/2026-11-23-sbl-sleep-sources.md",
+      "related_paths": [
+        "README.md",
+        "docs/08-evaluation.md",
+        "references/catalog.tsv"
+      ],
+      "source": "2026-11-23 independent Sleep-time report ba80ff6c-c93c-8332-b32f-968bbee0c1c6, re-read accessible excerpt on 2026-11-24; two previously unimported recurrence papers; prior conversation search found no new FCL user correction",
+      "evidence": "arXiv v1 abstract and selected HTML rechecked 2026-11-24; S166/S167; author conditions and A diagnostic proposal",
+      "caveat": "Earlier report re-selection, not fresh publication; report remainder truncated; no full conversation export, code execution, architecture decision, experiment or GPU run"
     }
   ],
   "source_excerpts": "sources/sync/2026-11-16-discussion.md",
@@ -299,6 +313,13 @@
       "document_validation": "Before commit: local Markdown link paths for changed files vs GitHub recursive tree; JSON parse; TSV column/duplicate-ID checks. Repository-wide tools/validate_docs.py NOT RUN: no local GitHub checkout (container DNS github.com inaccessible).",
       "model_or_gpu": "NOT RUN",
       "publication": "Must verify final remote main ref and modified file contents; not self-attested by manifest"
+    },
+    "incremental_recurrence_2026_11_24": {
+      "base_commit": "6d3424af594fa7acf6d3886c0f1b5cadb7e8003c",
+      "source_verification": "Two official arXiv abstracts and selected HTML sections; latest SBL report and accessible Sleep-time result checked; no new direct user research correction",
+      "document_checks": "JSON parse and unique manifest item IDs, TSV 8-column structure and unique IDs, changed/new Markdown relative link paths against recursive remote tree; full validator NOT RUN",
+      "model_implementation_or_experiments": "NOT RUN",
+      "publication": "Remote HEAD and all changed contents must be verified after non-force ref update"
     }
   },
   "coverage_limits": [
@@ -311,7 +332,8 @@
     "Two user messages formerly unavailable as verbatim source for docs/13 and the impact note are now directly preserved; this is not a full chat export, and their per-message timestamps are unavailable.",
     "2026-11-18 follow-up scanned accessible current and prior discussions but found no additional research changes after the published blueprint/ET design. Documentation repair is not a scientific update.",
     "2026-11-22 records the directly visible Ali/A/B/C user message and selected-source review only. Existing historical timecapsule candidate weights/corpora and prior numeric research claims were not re-audited. A/B/C is proposed experimental design, not executed evidence.",
-    "2026-11-23 new weekly reports were inspected. Only FCL-relevant selected scientific/agent-memory items imported; older preprints not presented as fresh releases; no independent FCL efficacy test or exact full conversation export."
+    "2026-11-23 new weekly reports were inspected. Only FCL-relevant selected scientific/agent-memory items imported; older preprints not presented as fresh releases; no independent FCL efficacy test or exact full conversation export.",
+    "2026-11-24 added two previously unimported recurrence studies from the same 2026-11-23 report; Sleep-time report tail truncated, no reconstruction; no new direct user correction or neural schema efficacy evidence."
   ],
   "source_reports": [
     {
@@ -339,6 +361,6 @@
       "selected_scope": "Six directly relevant agent-memory/consolidation/evaluation works; other HW topics intentionally not imported"
     }
   ],
-  "latest_incremental_base_commit": "0d93d9f53ab610807c8f701abeb311b423ed37e1",
+  "latest_incremental_base_commit": "6d3424af594fa7acf6d3886c0f1b5cadb7e8003c",
   "latest_source_excerpt": "sources/sync/2026-11-22-discussion.md"
 }

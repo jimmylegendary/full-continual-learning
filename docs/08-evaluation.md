@@ -270,3 +270,7 @@ Dev는 상세 실패를 제공, selection은 사용 횟수와 feedback 제한, c
 - **Self-evolution의 평가 resolution**: 후보의 수많은 한 번성 이득을 승격하지 않고 paired seed/world 반복·독립 fresh confirmation·보호 cohort regression을 기록한다. [Resolution Hypothesis](https://arxiv.org/abs/2611.23068)에서 보고한 잡음으로 순위 결정이 불가하면 INCONCLUSIVE이며 이전 후보를 보존한다.
 
 위는 실험 설계 보완 제안일 뿐 측정/승인된 gate가 아니다. 구현·학습·모델 실험 **NOT RUN**.
+
+### 10.1 Recurrence 비용 분리 보충 (2026-11-24; PROPOSAL / OPEN / NOT RUN)
+
+[원문 보충 검토](../research/2026-11-24-recurrence-cost-controls.md)의 두 연구를 A Basic의 추가 진단 후보로 둔다. Token-axis latent feedback과 schema CRUD의 factorial 대조, depth-axis full/early/late pass의 matched-quality decode 대조를 분리하고, cache completion·SFT·verification·재노출 비용을 포함한다. 단일 통합 System ONE과 기존 MVP 단계는 그대로 유지하며, 수치 gate나 실행을 승인한 기록이 아니다.
